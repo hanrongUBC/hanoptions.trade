@@ -1,0 +1,1409 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>政策叙事投资 · hanoptions.trade</title>
+<meta name="description" content="十二章研习手册：把新闻里的宏大叙事拆成可以验证、可以下注、也可以认错的投资主题。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700;900&display=swap">
+<style>
+/* Layout: a policy-narrative handbook. Chapter rail on the left, one chapter on stage at a time,
+   each chapter opens with a large serif number; figures and switchboards sit on plates. */
+:root {
+  --paper: #f4f3f0;
+  --plate: #ffffff;
+  --ink: #1c1a24;
+  --muted: #625f6b;
+  --rule: #dcd9d3;
+  --grid: #ebe8e3;
+  --accent: #4a3f8f;
+  --calm: #0f6a63;
+  --loss: #b13450;
+  --warn: #9c5c00;
+  --tint-accent: rgba(74, 63, 143, .08);
+  --tint-calm: rgba(15, 106, 99, .08);
+  --tint-loss: rgba(177, 52, 80, .08);
+  --tint-warn: rgba(156, 92, 0, .09);
+  --font-display: "Noto Serif SC", "Songti SC", "STSong", serif;
+  --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #111017; --plate: #19181f; --ink: #e8e6ee; --muted: #a29fae; --rule: #2d2b36; --grid: #211f29;
+    --accent: #b3abf2; --calm: #4cc2b5; --loss: #f07a93; --warn: #f0a943;
+    --tint-accent: rgba(179, 171, 242, .10); --tint-calm: rgba(76, 194, 181, .10);
+    --tint-loss: rgba(240, 122, 147, .10); --tint-warn: rgba(240, 169, 67, .10);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #111017; --plate: #19181f; --ink: #e8e6ee; --muted: #a29fae; --rule: #2d2b36; --grid: #211f29;
+  --accent: #b3abf2; --calm: #4cc2b5; --loss: #f07a93; --warn: #f0a943;
+  --tint-accent: rgba(179, 171, 242, .10); --tint-calm: rgba(76, 194, 181, .10);
+  --tint-loss: rgba(240, 122, 147, .10); --tint-warn: rgba(240, 169, 67, .10);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 16.5px; line-height: 1.85; -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* masthead */
+.mast { border-bottom: 1px solid var(--rule); }
+.mast-inner { max-width: 1180px; margin: 0 auto; padding-inline: 24px; padding-block: 34px 28px; display: flex; flex-wrap: wrap; gap: 6px 40px; align-items: end; justify-content: space-between; }
+.mast-title { min-width: 0; }
+.eyebrow { font-size: 13px; color: var(--muted); letter-spacing: .08em; margin: 0 0 6px; }
+.mast h1 { font-family: var(--font-display); font-weight: 900; font-size: clamp(36px, 6vw, 60px); line-height: 1.05; margin: 0; letter-spacing: .02em; }
+.deck { margin: 10px 0 0; color: var(--muted); max-width: 40em; font-size: 16.5px; }
+.mast-stat { font-size: 13.5px; color: var(--muted); line-height: 1.6; max-width: 22em; border-left: 1px solid var(--rule); padding-left: 18px; }
+.mast-stat b { display: block; font-family: var(--font-mono); font-size: 30px; font-weight: 500; color: var(--loss); line-height: 1.2; }
+
+/* shell */
+.shell { max-width: 1180px; margin: 0 auto; padding-inline: 24px; padding-block: 36px 80px; display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 56px; }
+.rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 20px); align-self: start; max-height: calc(100vh - 40px); overflow: auto; }
+.rail ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.rail button { width: 100%; text-align: left; font: inherit; font-size: 14.5px; line-height: 1.45; color: var(--muted); background: transparent; border: 0; border-radius: 6px; padding: 8px 10px; cursor: pointer; display: grid; grid-template-columns: 34px 1fr; gap: 4px; }
+.rail button .k { font-family: var(--font-mono); font-size: 12.5px; padding-top: 2px; }
+.rail button:hover { background: var(--grid); color: var(--ink); }
+.rail button[aria-current="true"] { background: var(--tint-accent); color: var(--accent); font-weight: 500; }
+.picker { display: none; }
+main { min-width: 0; max-width: 760px; }
+
+@media (max-width: 920px) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 0; padding-inline: 16px; padding-block: 0 64px; }
+  .rail { display: none; }
+  .picker { display: block; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); padding-block: 12px; border-bottom: 1px solid var(--rule); margin-bottom: 24px; }
+  .picker select { width: 100%; font: inherit; font-size: 15px; padding: 9px 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--plate); color: var(--ink); }
+  .mast-inner { padding-inline: 16px; padding-block: 26px 22px; }
+  .mast-stat { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 12px; }
+}
+
+/* chapter */
+.chapter-head { display: grid; grid-template-columns: auto 1fr; gap: 4px 22px; align-items: end; margin-bottom: 26px; padding-bottom: 20px; border-bottom: 1px solid var(--rule); }
+.chapter-head .no { font-family: var(--font-display); font-weight: 900; font-size: 84px; line-height: .85; color: var(--accent); grid-row: span 2; }
+.chapter-head .kicker { font-size: 13px; color: var(--muted); letter-spacing: .08em; }
+.chapter-head h2 { font-family: var(--font-display); font-size: clamp(26px, 3.6vw, 34px); line-height: 1.25; margin: 0; text-wrap: balance; }
+@media (max-width: 560px) { .chapter-head .no { font-size: 58px; } }
+h3 { font-family: var(--font-display); font-size: 21px; margin: 40px 0 10px; line-height: 1.35; text-wrap: balance; }
+h4 { font-size: 16px; margin: 22px 0 6px; }
+p { margin: 0 0 16px; max-width: 68ch; }
+ul, ol { padding-left: 1.3em; margin: 0 0 16px; max-width: 68ch; }
+li + li { margin-top: 5px; }
+.lead { font-size: 18.5px; line-height: 1.8; }
+.num { font-family: var(--font-mono); font-size: .93em; font-variant-numeric: tabular-nums; }
+.pull { font-family: var(--font-display); font-size: 22px; line-height: 1.6; margin: 28px 0; padding: 4px 0 4px 22px; border-left: 3px solid var(--accent); max-width: 34em; }
+
+.note { margin: 22px 0 24px; padding: 16px 20px 6px; border-radius: 6px; background: var(--tint-accent); }
+.note .tag { display: block; font-size: 12px; letter-spacing: .1em; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+.note p, .note ul, .note ol { font-size: 15.5px; }
+.note.warn { background: var(--tint-warn); } .note.warn .tag { color: var(--warn); }
+.note.loss { background: var(--tint-loss); } .note.loss .tag { color: var(--loss); }
+.note.calm { background: var(--tint-calm); } .note.calm .tag { color: var(--calm); }
+
+.tbl { overflow-x: auto; margin: 18px 0 26px; border: 1px solid var(--rule); border-radius: 6px; background: var(--plate); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; font-variant-numeric: tabular-nums; }
+caption { caption-side: top; text-align: left; padding: 12px 16px 4px; font-size: 13px; color: var(--muted); }
+th, td { padding: 9px 14px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+td.r, th.r { text-align: right; }
+td.mono { font-family: var(--font-mono); }
+thead th { font-size: 12.5px; color: var(--muted); font-weight: 500; letter-spacing: .04em; white-space: nowrap; }
+tbody tr:last-child td { border-bottom: 0; }
+.hl td { background: var(--tint-accent); }
+
+/* bias cards */
+.biases { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: 14px; margin: 18px 0 26px; }
+.bias { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px 12px; min-width: 0; }
+.bias h4 { margin: 0 0 8px; font-size: 16.5px; display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.bias h4 small { font-family: var(--font-mono); font-weight: 400; font-size: 11.5px; color: var(--muted); letter-spacing: .02em; }
+.bias dl { margin: 0; display: grid; grid-template-columns: 3.4em 1fr; gap: 4px 10px; font-size: 14.5px; line-height: 1.7; }
+.bias dt { color: var(--muted); font-size: 13px; padding-top: 1px; }
+.bias dd { margin: 0; }
+.bias dd.fix { color: var(--accent); }
+
+/* figures */
+figure.plate { margin: 26px 0 32px; background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 18px 18px 14px; }
+.fig-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 6px; }
+.fig-title { font-weight: 700; font-size: 15.5px; }
+.fig-no { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); }
+svg.chart { width: 100%; height: auto; display: block; }
+.scroll-x { overflow-x: auto; }
+svg.chart.wide { min-width: 620px; }
+figcaption { font-size: 13.5px; color: var(--muted); line-height: 1.7; margin-top: 8px; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 6px 0 4px; align-items: center; }
+.ctl { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--muted); }
+.ctl input[type="range"] { width: 150px; accent-color: var(--accent); }
+.ctl output { font-family: var(--font-mono); color: var(--ink); min-width: 4em; font-variant-numeric: tabular-nums; }
+.btn { font: inherit; font-size: 13.5px; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); cursor: pointer; }
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); margin-top: 4px; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 18px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.legend i.dash { border-top-style: dashed; }
+.readout { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 12px; }
+.readout div { border-top: 1px solid var(--rule); padding-top: 8px; min-width: 0; }
+.readout b { display: block; font-family: var(--font-mono); font-size: 19px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.readout small { font-size: 12.5px; color: var(--muted); }
+.ax { font-family: var(--font-mono); font-size: 11.5px; }
+
+/* calculator */
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 8px 0 4px; }
+.form-grid label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+.form-grid input { font: inherit; font-family: var(--font-mono); padding: 7px 10px; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); color: var(--ink); width: 100%; }
+
+/* template */
+pre.tpl { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 16px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.7; overflow-x: auto; white-space: pre; margin: 8px 0; }
+
+/* checklists */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; margin: 18px 0 12px; }
+.card { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; min-width: 0; }
+.card h4 { margin: 0 0 8px; }
+.card ul { list-style: none; padding: 0; margin: 0; font-size: 14.5px; line-height: 1.65; }
+.card li { display: grid; grid-template-columns: 22px 1fr; gap: 4px; align-items: start; }
+.card input[type="checkbox"] { margin-top: 5px; accent-color: var(--accent); }
+
+/* quiz */
+.quiz { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 6px 18px 18px; margin: 18px 0; }
+.qrow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 18px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.qrow:last-of-type { border-bottom: 0; }
+.qrow p { margin: 0; font-size: 15px; line-height: 1.6; }
+.scale { display: inline-flex; gap: 4px; }
+.scale label { position: relative; }
+.scale input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.scale span { display: grid; place-items: center; width: 34px; height: 30px; border: 1px solid var(--rule); border-radius: 5px; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.scale input:checked + span { background: var(--accent); color: var(--plate); border-color: var(--accent); }
+.scale input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 560px) { .qrow { grid-template-columns: minmax(0, 1fr); } }
+.scale-legend { font-size: 12.5px; color: var(--muted); margin: 10px 0 0; }
+.result { margin-top: 18px; display: grid; gap: 10px; }
+.bar-row { display: grid; grid-template-columns: 5.5em minmax(0, 1fr) 4.5em; gap: 12px; align-items: center; font-size: 14px; }
+.bar-track { height: 10px; background: var(--grid); border-radius: 5px; overflow: hidden; }
+.bar-fill { height: 100%; width: 0; background: var(--accent); border-radius: 5px; transition: width .3s; }
+.bar-fill.hi { background: var(--loss); }
+@media (prefers-reduced-motion: reduce) { .bar-fill { transition: none; } }
+.bar-row .val { font-family: var(--font-mono); text-align: right; color: var(--muted); }
+.advice { font-size: 14.5px; color: var(--ink); margin-top: 6px; }
+
+/* pager */
+.pager { display: flex; justify-content: space-between; gap: 16px; margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule); flex-wrap: wrap; }
+.pager button { font: inherit; background: transparent; border: 1px solid var(--rule); border-radius: 8px; padding: 10px 16px; cursor: pointer; color: var(--ink); text-align: left; max-width: 48%; min-width: 0; }
+.pager button small { display: block; font-size: 12px; color: var(--muted); }
+.pager button:hover { border-color: var(--accent); }
+.pager button.next { margin-left: auto; text-align: right; }
+@media (max-width: 560px) { .pager button { max-width: 100%; width: 100%; } .pager button.next { text-align: left; } }
+
+footer.end { margin-top: 48px; font-size: 13px; color: var(--muted); }
+footer.end p { max-width: none; }
+
+/* switchboard (interactive toggles) */
+.board { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 10px; margin: 6px 0 12px; }
+.sw { display: grid; gap: 6px; background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px; min-width: 0; }
+.sw > span { font-size: 13.5px; color: var(--ink); font-weight: 500; }
+.seg3 { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; width: max-content; max-width: 100%; }
+.seg3 button { font: inherit; font-size: 13px; background: var(--plate); color: var(--muted); border: 0; padding: 4px 11px; cursor: pointer; }
+.seg3 button + button { border-left: 1px solid var(--rule); }
+.seg3 button[aria-pressed="true"] { background: var(--accent); color: var(--plate); }
+.verdict { border-top: 1px solid var(--rule); padding-top: 12px; margin-top: 4px; }
+.verdict h4 { margin: 0 0 6px; font-family: var(--font-display); font-size: 19px; color: var(--accent); }
+.verdict p, .verdict ul { font-size: 14.5px; margin-bottom: 8px; }
+.pill { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 999px; background: var(--tint-accent); color: var(--accent); margin: 0 4px 4px 0; }
+.pill.up { background: var(--tint-calm); color: var(--calm); }
+.pill.down { background: var(--tint-loss); color: var(--loss); }
+.chain { display: grid; gap: 8px; margin: 8px 0 4px; }
+.chain .step { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; align-items: start; font-size: 14.5px; }
+.chain .step b { font-family: var(--font-mono); font-weight: 500; color: var(--accent); font-size: 13px; padding-top: 2px; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 12px; margin-top: 10px; }
+.two > div { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 14px; min-width: 0; }
+.two h5 { margin: 0 0 4px; font-size: 13.5px; }
+.two ul { font-size: 14px; margin: 0; padding-left: 1.1em; }
+
+/* macro-only additions */
+.formula { font-family: var(--font-mono); background: var(--plate); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 16px; margin: 14px 0 18px; font-size: 14.5px; line-height: 1.8; overflow-x: auto; max-width: 68ch; }
+.formula small { display: block; font-family: var(--font-body); color: var(--muted); font-size: 13px; }
+.v { font-family: var(--font-display); font-style: italic; }
+.qa { margin: 14px 0 24px; }
+.qa details { border-top: 1px solid var(--rule); padding: 12px 0; }
+.qa details:last-child { border-bottom: 1px solid var(--rule); }
+.qa summary { cursor: pointer; font-weight: 500; font-size: 15.5px; line-height: 1.65; list-style: none; display: grid; grid-template-columns: 2.4em minmax(0, 1fr); }
+.qa summary::-webkit-details-marker { display: none; }
+.qa summary .k { font-family: var(--font-mono); color: var(--accent); font-size: 13px; padding-top: 3px; }
+.qa details[open] summary { color: var(--accent); }
+.qa details > div { padding: 8px 0 0 2.4em; font-size: 15px; }
+.qa details > div p { margin-bottom: 8px; }
+.verdict .row { font-size: 13.5px; color: var(--muted); margin: 2px 0 4px; }
+.verdict .row b { font-weight: 500; color: var(--ink); margin-right: 6px; }
+.match { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); font-weight: 400; margin-left: 8px; }
+.copyrow { display: flex; gap: 12px; align-items: center; margin-top: 6px; }
+.copyrow small { color: var(--muted); font-size: 13px; }
+.form-grid select { font: inherit; font-family: var(--font-mono); padding: 7px 10px; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); color: var(--ink); width: 100%; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips button { font: inherit; font-size: 13.5px; line-height: 1.5; padding: 5px 12px; border: 1px solid var(--rule); border-radius: 999px; background: var(--paper); color: var(--muted); cursor: pointer; }
+.chips button:hover { border-color: var(--accent); color: var(--accent); }
+.chips button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--plate); }
+.out-h { font-family: var(--font-display); font-size: 18px; margin: 14px 0 4px; color: var(--accent); }
+#score.board { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.quad { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 10px 0 6px; max-width: 520px; }
+.quad div { border: 1px solid var(--rule); border-radius: 6px; padding: 8px 10px; font-size: 13px; line-height: 1.5; color: var(--muted); background: var(--paper); }
+.quad div b { display: block; font-size: 14px; color: var(--ink); }
+.quad div.on { border-color: var(--accent); background: var(--tint-accent); color: var(--ink); }
+.quad div.on b { color: var(--accent); }
+.ek { font-family: var(--font-body); font-size: .86em; color: var(--muted); font-weight: 400; }
+
+
+/* ---------- site bar (hanoptions.trade) ---------- */
+.sitebar { border-bottom: 1px solid var(--rule); background: var(--paper); font-size: 13.5px; line-height: 1.4; }
+.sitebar-inner { max-width: 1180px; margin: 0 auto; padding: 9px 24px; display: flex; gap: 18px; align-items: center; justify-content: space-between; }
+.sitebar-home { font-family: var(--font-mono); color: var(--muted); text-decoration: none; letter-spacing: .02em; white-space: nowrap; }
+.sitebar-home:hover { color: var(--ink); }
+.sitebar-links { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.sitebar-links::-webkit-scrollbar { display: none; }
+.sitebar-links a { color: var(--muted); text-decoration: none; padding: 3px 9px; border-radius: 4px; white-space: nowrap; }
+.sitebar-links a:hover { color: var(--ink); background: var(--grid); }
+.sitebar-links a[aria-current="page"] { color: var(--ink); background: var(--plate); box-shadow: inset 0 0 0 1px var(--rule); }
+@media (max-width: 900px) { .sitebar-inner { padding-inline: 16px; } }
+@media (max-width: 480px) { .sitebar-inner { gap: 10px; } .sitebar-links a { padding: 3px 7px; } }
+</style>
+</head>
+<body>
+<nav class="sitebar" aria-label="站点导航"><div class="sitebar-inner"><a class="sitebar-home" href="/">hanoptions.trade</a><div class="sitebar-links"><a href="/options/">美股期权课</a><a href="/psychology/">交易心理学</a><a href="/macro/">宏观交易框架</a><a href="/policy/" aria-current="page">政策叙事投资</a></div></div></nav>
+<header class="mast">
+  <div class="mast-inner">
+    <div class="mast-title">
+      <p class="eyebrow">研习手册 · 十二章</p>
+      <h1>政策叙事投资</h1>
+      <p class="deck">政治口号每天都在变，政策带来的资本流向却能持续好几年。这本手册讲怎样把新闻里的宏大叙事，拆成可以验证、可以下注、也可以认错的投资主题。</p>
+    </div>
+    <div class="mast-stat"><b>3 年</b>2022 年通过的清洁能源税收抵免，被视为十年级别的产业政策，2025 年就被大幅缩减。叙事可以讲十年，政策可能只持续一届国会。</div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="rail" aria-label="章节">
+    <ol id="rail"></ol>
+  </nav>
+
+  <main>
+    <div class="picker"><label for="pick" class="eyebrow" style="display:block">章节</label><select id="pick"></select></div>
+
+    <!-- ===================== 00 ===================== -->
+    <article class="chapter" id="c0" data-title="导读：交易政策，不交易口号">
+      <div class="chapter-head"><div class="no">00</div><div class="kicker">导读</div><h2>交易政策，不交易口号</h2></div>
+      <p class="lead">政治新闻是市场里噪音最大的一类信息。但在噪音下面，有一些真正会改变钱往哪里流的东西：预算、法律、关税<span class="ek">（Tariff）</span>、出口限制、补贴<span class="ek">（Subsidy）</span>和采购合同。这本手册只关心后者。</p>
+
+      <h3>口号和政策的区别</h3>
+      <p>一位政治人物说「要把工厂带回来」，这是口号。国会通过一部法律，给在本土建厂的企业提供补贴，财政部发布细则，企业宣布投资计划，工程公司拿到合同，这是政策和它产生的资本流向。前者第二天可能就被忘掉，后者会在财报<span class="ek">（Earnings report）</span>里持续体现好几年。</p>
+      <div class="formula">口号 → 行政表态 → 法律或命令 → 预算拨款 → 实际支出 → 企业收入<small>越往右，确定性越高，市场的定价也通常越充分。好的主题投资者在中间几步介入：方向已经清楚，钱还没有完全落到利润表里。</small></div>
+
+      <h3>为什么要把政治立场放到一边</h3>
+      <p>每个人都有政治观点，这很正常。问题是政治观点会悄悄地进入仓位：你支持的一方上台，你倾向于相信它的政策都会成功；你反对的一方上台，你倾向于认为经济要出问题。两种倾向都会让你看错。</p>
+      <p>市场不关心你支持谁，它只关心政策会让哪些公司的收入增加、哪些公司的成本上升。一个有用的检验：如果你支持的一方失势，你的仓位会不会让你睡不着？如果会，你押注的就是信念，而不是可以验证的逻辑。</p>
+
+      <h3>这本手册里的主题从哪里来</h3>
+      <p>近几年，美国的政策方向出现了几条相对持续的主线，而且很多获得了两党不同程度的支持：</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>主线</th><th>背后的逻辑</th><th>本书章节</th></tr></thead>
+          <tbody>
+            <tr><td>供应链<span class="ek">（Supply chain）</span>安全与西半球<span class="ek">（Western Hemisphere）</span></td><td>把关键产业链从地缘<span class="ek">（Geopolitics）</span>风险高的地区移开，移到本土或邻近国家</td><td>第 3 章</td></tr>
+            <tr><td>国防与备战<span class="ek">（Military preparedness）</span></td><td>大国竞争和地区冲突让各国长期提高国防开支<span class="ek">（Defense spending）</span></td><td>第 4 章</td></tr>
+            <tr><td>资源与能源独立</td><td>关键矿产<span class="ek">（Critical minerals）</span>、能源和燃料的供应被视为国家安全<span class="ek">（National security）</span>问题</td><td>第 5 章</td></tr>
+            <tr><td>制造业回流<span class="ek">（Reshoring）</span>与关税</td><td>用关税、补贴和采购偏好把制造业拉回本土</td><td>第 6 章</td></tr>
+            <tr><td>人工智能与电力</td><td>人工智能被视为生产率和国家竞争力的核心，带动电力和基础设施投资</td><td>第 7 章</td></tr>
+            <tr><td>通胀、消费与人口</td><td>通胀对不同收入人群的影响不同；人口老龄化<span class="ek">（Population aging）</span>带来长期需求</td><td>第 8 章</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>第 1、2 章讲方法：怎样给一个叙事<span class="ek">（Narrative）</span>打分，以及先决定什么不碰。第 9 章讲选举和政策周期，第 10 章讲具体怎么执行，第 11 章是工具箱。</p>
+
+      <div class="note warn"><span class="tag">阅读前的提醒</span>
+        <ul>
+          <li>书中提到的公司和 ETF 只是帮助理解主题的例子，是研究的起点，不是买入建议。</li>
+          <li>政策会变。书中写的是框架和截至成书时的公开事实，用之前要核对最新的法律和预算状态。</li>
+          <li>每一个主题都有反方观点，书里会一起列出。只看支持自己的证据，是主题投资<span class="ek">（Thematic investing）</span>里最常见的亏钱方式。</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ===================== 01 ===================== -->
+    <article class="chapter" id="c1" data-title="叙事评分：从口号到现金流" hidden>
+      <div class="chapter-head"><div class="no">01</div><div class="kicker">第一章</div><h2>叙事评分：从口号到现金流</h2></div>
+      <p class="lead">叙事<span class="ek">（Narrative）</span>决定你研究什么，估值决定你什么时候买。把这两件事分开打分，是避免「故事对了、钱亏了」的第一步。</p>
+
+      <h3>四步：从变化到价格</h3>
+      <div class="chain">
+        <div class="step"><b>1</b><div><strong>找结构性变化</strong>：一个会持续好几年、不依赖某一条新闻的趋势。问自己：未来几年，世界会被迫把钱花在哪里？</div></div>
+        <div class="step"><b>2</b><div><strong>找绕不开的受益者</strong>：不管谁在竞争中胜出，都必须向它买东西的公司，俗称「卖铲子的人」。</div></div>
+        <div class="step"><b>3</b><div><strong>避开最拥挤的表达</strong>：所有人都在买的那一只，往往已经把未来几年的好消息算进了价格。</div></div>
+        <div class="step"><b>4</b><div><strong>等价格</strong>：好公司不等于好价格。等回调、等估值回到合理区间、等波动率下降，再分批买入。</div></div>
+      </div>
+
+      <h3>政策的耐久度，比政策的力度更重要</h3>
+      <p>一项政策能给相关行业带来多少收入，取决于它能持续多久。比较 2022 年通过的两部法律：</p>
+      <div class="two">
+        <div><h5>芯片与科学法案（2022）</h5><ul><li>两党都有议员投赞成票</li><li>逻辑是国家安全<span class="ek">（National security）</span>和对华竞争，两党都认同</li><li>之后几年基本延续，补贴<span class="ek">（Subsidy）</span>陆续落地</li></ul></div>
+        <div><h5>通胀削减法案（2022）</h5><ul><li>参议院以一党票数通过</li><li>清洁能源税收抵免<span class="ek">（Tax credit）</span>是核心</li><li>2025 年的税收法案大幅缩减了电动车和风电、光伏的抵免</li></ul></div>
+      </div>
+      <p>这不是在评价哪部法律更好，而是说明一个规律：<strong>只有一党支持的政策，换届后被改写的概率高得多。</strong>押注它的公司，股价会随着选举结果大幅波动。两党都支持的方向，比如国防、供应链<span class="ek">（Supply chain）</span>安全、对关键技术的出口管制<span class="ek">（Export controls）</span>，耐久度通常更高。</p>
+
+      <h3>六个打分维度</h3>
+      <p>前四项衡量叙事有多可靠，后两项衡量价格有多吸引人。把它们分开，才能回答两个不同的问题：值不值得研究，现在值不值得买。</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">给一个叙事打分，看它落在哪个象限</span><span class="fig-no">图 1-1 · 可操作</span></div>
+        <div class="board" id="score">
+          <div class="sw"><span>政策落地程度</span><div class="seg3" data-k="law" role="group" aria-label="政策落地程度"><button type="button" data-v="0">只是表态</button><button type="button" data-v="1">行政命令</button><button type="button" data-v="2">立法与预算</button></div></div>
+          <div class="sw"><span>政治支持面</span><div class="seg3" data-k="bi" role="group" aria-label="政治支持面"><button type="button" data-v="0">一党</button><button type="button" data-v="1">部分跨党</button><button type="button" data-v="2">两党共识</button></div></div>
+          <div class="sw"><span>需求持续时间</span><div class="seg3" data-k="dur" role="group" aria-label="需求持续时间"><button type="button" data-v="0">一次性</button><button type="button" data-v="1">几年</button><button type="button" data-v="2">十年以上</button></div></div>
+          <div class="sw"><span>受益者是否绕不开</span><div class="seg3" data-k="moat" role="group" aria-label="受益者是否绕不开"><button type="button" data-v="0">容易替代</button><button type="button" data-v="1">部分</button><button type="button" data-v="2">绕不开</button></div></div>
+          <div class="sw"><span>拥挤程度</span><div class="seg3" data-k="crowd" role="group" aria-label="拥挤程度"><button type="button" data-v="0">人人都在聊</button><button type="button" data-v="1">有人关注</button><button type="button" data-v="2">少有人看</button></div></div>
+          <div class="sw"><span>估值</span><div class="seg3" data-k="val" role="group" aria-label="估值"><button type="button" data-v="0">昂贵</button><button type="button" data-v="1">合理</button><button type="button" data-v="2">便宜</button></div></div>
+        </div>
+        <div class="verdict" id="score-out" aria-live="polite"></div>
+        <figcaption>叙事耐久度满分 8 分，价格吸引力满分 4 分。耐久度 5 分以上、价格 3 分以上，才落在「分批建仓」的象限。大多数热门主题会落在右上角：叙事很好，价格太贵，适合放进观察名单等待。</figcaption>
+      </figure>
+
+      <h3>叙事正确，表达工具可能是错的</h3>
+      <p>一个正确的趋势里，会有大量公司因为执行不力、竞争、负债或稀释而失败。叙事对了，只说明这个方向会有钱流进去，不说明钱会流进你买的那一家。几个常见的错配：</p>
+      <ul>
+        <li><strong>买了最纯粹的故事，没买到最赚钱的环节。</strong>一个新技术的利润，经常先落在设备、材料和基础设施供应商身上，而不是最出名的终端公司。</li>
+        <li><strong>买了概念，没买到收入。</strong>名字里带着热门词、但相关收入占比很小的公司，涨跌会跟着主题，长期表现却取决于它的主业。</li>
+        <li><strong>买了单一公司，承担了单一公司的风险。</strong>一家公司的事故、诉讼或管理层变动，就能抹掉整个主题带来的收益。主题 ETF 可以分散这一层风险。</li>
+      </ul>
+
+      <h3>写下失效条件</h3>
+      <p>买入一个主题之前，写下「什么事实出现以后，我会承认这个判断错了」。注意是事实，不是价格：</p>
+      <div class="two">
+        <div><h5>不好的失效条件</h5><ul><li>股价跌 20% 就认错</li><li>感觉风向变了</li></ul></div>
+        <div><h5>好的失效条件</h5><ul><li>相关预算在拨款法案<span class="ek">（Appropriations bill）</span>中被削减</li><li>主要客户连续两个季度下调资本开支<span class="ek">（Capital expenditure (capex)）</span></li><li>补贴细则把这家公司排除在外</li></ul></div>
+      </div>
+      <p class="pull">叙事是工具，不是信仰。</p>
+    </article>
+
+    <!-- ===================== 02 ===================== -->
+    <article class="chapter" id="c2" data-title="先决定不碰什么：国家与市场" hidden>
+      <div class="chapter-head"><div class="no">02</div><div class="kicker">第二章</div><h2>先决定不碰什么：国家与市场</h2></div>
+      <p class="lead">主题投资<span class="ek">（Thematic investing）</span>的第一步，常常是做减法。先排除那些结构上不利、风险说不清的市场，剩下的选择会清楚得多。</p>
+
+      <h3>便宜不等于低估</h3>
+      <p>很多国家的股市长期市盈率<span class="ek">（Price-to-earnings ratio (P/E)）</span>很低，看起来很便宜。但低估值往往有它的原因：增长慢、行业结构偏旧、资本回报率低、政策不稳定、货币长期贬值。如果这些原因没有改变，便宜的东西可以一直便宜下去，甚至更便宜。这就是价值陷阱<span class="ek">（Value trap）</span>。</p>
+      <p>判断一个市场是不是真的被低估，要问：让它便宜的原因，有没有正在改变的迹象？比如公司治理改革、利率环境变化、主要行业的周期反转。没有这样的催化剂，低估值本身不构成买入理由。</p>
+
+      <h3>买一个国家的指数，其实是在买它的行业结构</h3>
+      <p>国家指数<span class="ek">（Country index）</span>通常按市值加权<span class="ek">（Market-cap weighted）</span>，所以一个国家的股市表现，很大程度上由它最大的几个行业决定：</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>市场</th><th>指数的大致结构</th><th>它其实在押注什么</th></tr></thead>
+          <tbody>
+            <tr><td>韩国</td><td>半导体和存储芯片权重很高</td><td>全球存储周期和科技资本开支<span class="ek">（Capital expenditure (capex)）</span></td></tr>
+            <tr><td>台湾地区</td><td>单一晶圆代工龙头占比极高</td><td>先进制程需求，以及地缘<span class="ek">（Geopolitics）</span>风险</td></tr>
+            <tr><td>英国</td><td>能源、金融、必需消费、矿业占比高</td><td>大宗商品价格和股息<span class="ek">（Dividend）</span>，科技成分很少</td></tr>
+            <tr><td>德国</td><td>工业、汽车、化工占比高，出口依赖重</td><td>全球制造业周期、能源成本、对外贸易</td></tr>
+            <tr><td>墨西哥</td><td>消费、金融、材料，叠加近岸制造</td><td>美国需求和对美贸易关系</td></tr>
+            <tr><td>美国</td><td>大型科技公司权重很高</td><td>人工智能和平台经济的盈利能力</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>这张表告诉你，「看好某个国家」这句话太粗了。你看好的到底是它的哪个行业？如果是那个行业，直接买全球的行业 ETF 或者行业龙头，可能比买整个国家更干净。</p>
+
+      <h3>资本没有国籍</h3>
+      <p>资本会流向回报最高、风险最可控的地方，不管它在哪个国家。所以判断一个市场，要像资本一样冷静地比较：</p>
+      <ul>
+        <li><strong>增长和资本回报</strong>：企业能不能持续赚到高于资金成本的回报。</li>
+        <li><strong>货币</strong>：对美元投资者来说，当地货币贬值会直接吃掉股票的收益。</li>
+        <li><strong>治理和股东回报</strong>：公司是否重视小股东，有没有持续的分红和回购<span class="ek">（Share buyback）</span>。</li>
+        <li><strong>政策可预期性</strong>：规则会不会突然改变，外资会不会被区别对待。</li>
+        <li><strong>地缘与制裁<span class="ek">（Sanctions）</span>风险</strong>：这一点过去常被忽视。2022 年俄乌冲突爆发后，外国投资者持有的俄罗斯股票几乎在一夜之间无法交易，主要指数公司随后把俄罗斯从指数中剔除。持有的东西还在，但已经卖不掉了。</li>
+      </ul>
+
+      <h3>几类需要格外谨慎的市场</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>类型</th><th>为什么要谨慎</th><th>如果一定要参与</th></tr></thead>
+          <tbody>
+            <tr><td>长期低增长、低估值的发达市场</td><td>可能是价值陷阱，缺少催化剂</td><td>只在出现明确的改革或周期拐点时参与</td></tr>
+            <tr><td>高度集中、又处在地缘热点的市场</td><td>好的时候涨得很快，一旦地缘风险上升，跌得也很快，像一个「烫手山芋」</td><td>小仓位，当成交易而不是长期配置</td></tr>
+            <tr><td>政策对外资不友好、资本管制<span class="ek">（Capital controls）</span>风险高的市场</td><td>估值再低，也可能因为规则变化而无法退出</td><td>用流动性<span class="ek">（Liquidity）</span>好的 ETF，避免直接持有当地股票</td></tr>
+            <tr><td>「新兴市场<span class="ek">（Emerging markets）</span>除某国」的组合</td><td>去掉一个大国的风险，不等于剩下的就低风险。剩下的国家各有自己的货币和政治风险</td><td>看清楚前十大持仓和国家权重，不要只看名字</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>做减法的好处</h3>
+      <p>先写一份「不碰清单」，好处是在市场热闹的时候保护你。某个市场突然大涨，社交平台上人人都在讨论，你只需要看一眼清单：它为什么在上面？那个原因改变了吗？没有改变，就让这次机会过去。错过一个机会的代价，远小于在一个规则说不清的市场里被困住的代价。</p>
+      <div class="note"><span class="tag">实战观察</span><p>做主题投资的交易者，常常先公布一份「回避的市场」，再公布要研究的主题。顺序本身就有意义：先把风险说不清的地方排除掉，剩下的才值得花时间。</p></div>
+    </article>
+
+    <!-- ===================== 03 ===================== -->
+    <article class="chapter" id="c3" data-title="西半球与供应链重组" hidden>
+      <div class="chapter-head"><div class="no">03</div><div class="kicker">第三章</div><h2>西半球与供应链重组</h2></div>
+      <p class="lead">过去三十年，全球化的原则是「哪里便宜在哪里生产」。现在越来越多的政策在问另一个问题：哪里安全？答案常常是本土，或者离本土近、关系稳定的邻国。</p>
+
+      <h3>从效率优先到安全优先</h3>
+      <p>疫情期间的断供、地区冲突对航运的冲击、关键技术的出口管制<span class="ek">（Export controls）</span>，让各国政府重新评估供应链<span class="ek">（Supply chain）</span>的风险。新的思路有几个名字：</p>
+      <ul>
+        <li><strong>回流<span class="ek">（Reshoring）</span></strong>：把生产搬回本国。</li>
+        <li><strong>近岸外包<span class="ek">（Nearshoring）</span></strong>：搬到邻近的国家，比如从亚洲搬到墨西哥。</li>
+        <li><strong>友岸外包<span class="ek">（Friend-shoring）</span></strong>：搬到政治上关系稳定的盟友国家。</li>
+      </ul>
+      <p>这种转变已经体现在数据里：2023 年，墨西哥取代中国，成为美国最大的进口来源国。对投资者来说，关键问题是：供应链重组的过程中，哪些环节必须新建、哪些服务必须被购买？</p>
+
+      <h3>西半球被重新重视</h3>
+      <p>美国的政策讨论里，越来越多地把西半球<span class="ek">（Western Hemisphere）</span>（北美、中美和南美）视为自己的战略后院：既是供应链转移的目的地，也是资源和安全的来源。这带来了一个以前不太被注意的风险：<strong>商业资产可能被重新定义为国家安全<span class="ek">（National security）</span>资产。</strong></p>
+      <p>2025 年，巴拿马运河两端港口经营权的出售，就被放在了国家安全和大国竞争的框架下讨论。一项原本只是商业交易的资产买卖，变成了外交议题。这意味着，在战略位置上的港口、矿山、电网<span class="ek">（Power grid）</span>和通信设施，所有权结构可能随着政策突然改变，持有它们的公司既可能受益，也可能被迫出售。</p>
+
+      <h3>三个阶段：先安全，后资源，再制造</h3>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">资本进入一个地区的典型顺序</span><span class="fig-no">图 3-1</span></div>
+        <div class="scroll-x">
+        <svg class="chart wide" viewBox="0 0 680 250" role="img" aria-label="安全、资源、制造三个阶段">
+          <defs><marker id="m-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--muted)"></path></marker></defs>
+          <g style="font-family: var(--font-body)">
+            <rect x="20" y="30" width="190" height="180" rx="8" style="fill: var(--tint-accent); stroke: var(--accent)"></rect>
+            <text x="115" y="60" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">一、安全与执法</text>
+            <text x="115" y="92" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">边境、监控、情报</text>
+            <text x="115" y="114" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">无人机、海上巡逻</text>
+            <text x="115" y="136" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">数据分析软件</text>
+            <text x="115" y="186" text-anchor="middle" style="fill: var(--accent); font-size: 12.5px; font-weight: 700">政府预算先到</text>
+            <rect x="245" y="30" width="190" height="180" rx="8" style="fill: var(--tint-warn); stroke: var(--warn)"></rect>
+            <text x="340" y="60" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">二、资源开发</text>
+            <text x="340" y="92" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">铜、锂、关键矿产</text>
+            <text x="340" y="114" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">油气与油服</text>
+            <text x="340" y="136" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">港口与运输</text>
+            <text x="340" y="186" text-anchor="middle" style="fill: var(--warn); font-size: 12.5px; font-weight: 700">安全改善后资本进入</text>
+            <rect x="470" y="30" width="190" height="180" rx="8" style="fill: var(--tint-calm); stroke: var(--calm)"></rect>
+            <text x="565" y="60" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">三、近岸制造与物流</text>
+            <text x="565" y="92" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">工业地产、仓储</text>
+            <text x="565" y="114" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">铁路、卡车、跨境物流</text>
+            <text x="565" y="136" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">工程建设、电力设备</text>
+            <text x="565" y="186" text-anchor="middle" style="fill: var(--calm); font-size: 12.5px; font-weight: 700">时间最长，规模最大</text>
+            <g style="stroke: var(--muted)" stroke-width="1.4" fill="none"><path d="M210 120 H241" marker-end="url(#m-arrow)"></path><path d="M435 120 H466" marker-end="url(#m-arrow)"></path></g>
+          </g>
+        </svg>
+        </div>
+        <figcaption>每个阶段的受益者不同，节奏也不同。第一阶段的钱来自政府预算，来得快但规模有限；第三阶段来自企业的资本开支<span class="ek">（Capital expenditure (capex)）</span>，来得慢但持续时间最长。</figcaption>
+      </figure>
+      <p>这个顺序的道理很朴素：资本不会进入一个不安全的地方。所以当一个地区成为政策重点时，最先拿到订单的往往是安全、执法和监控相关的公司；安全环境改善之后，资源开发的投资才会跟进；等到基础设施和政治环境都稳定了，制造业和物流的长期投资才会大规模到来。</p>
+      <p>常被归入这条链条的公司类型，比如无人机<span class="ek">（Drone）</span>和海上装备制造商、政府数据分析软件公司（第一阶段），铜矿和油服公司（第二阶段），工业地产<span class="ek">（Industrial real estate）</span>、跨境铁路和工程建设<span class="ek">（Engineering and construction (E&C)）</span>公司（第三阶段）。投资拉丁美洲整体的懒人方式，是区域 ETF，比如拉美 40 指数基金或墨西哥国家 ETF。</p>
+
+      <h3>墨西哥：一枚硬币的两面</h3>
+      <div class="two">
+        <div><h5>支持的一面</h5><ul><li>离美国近，运输时间短</li><li>劳动力成本相对较低</li><li>北美贸易协定<span class="ek">（Trade agreement）</span>提供框架</li><li>已经是美国最大的进口来源国</li></ul></div>
+        <div><h5>反对的一面</h5><ul><li>贸易协定会定期审议，关税<span class="ek">（Tariff）</span>威胁随时可能出现</li><li>治安和安全问题影响投资意愿</li><li>电力和水资源等基础设施跟不上</li><li>部分投资只是把中国零部件在墨西哥组装</li></ul></div>
+      </div>
+      <p>对这种「双面叙事<span class="ek">（Narrative）</span>」，最好的做法是同时盯住两边的证据：外商直接投资<span class="ek">（Foreign direct investment (FDI)）</span>和工业地产的空置率<span class="ek">（Vacancy rate）</span>（支持面），以及贸易协定审议、关税公告和安全事件（反对面）。哪一边的证据在累积，就往哪一边调整仓位。</p>
+
+      <h3>区域政治也在变化</h3>
+      <p>近几年，拉美有些国家选出了更强调市场化和吸引外资的政府，也有国家在加强资源国有化<span class="ek">（Resource nationalism）</span>。对投资者来说，政府的政治光谱不是重点，重点是几件具体的事：外资能不能自由进出，合同和产权是否被尊重，资源税和特许权使用费<span class="ek">（Royalty）</span>会不会突然上调。这些比选举口号更能决定一个矿山或一条铁路的价值。</p>
+    </article>
+
+    <!-- ===================== 04 ===================== -->
+    <article class="chapter" id="c4" data-title="国防：战争会结束，备战不会" hidden>
+      <div class="chapter-head"><div class="no">04</div><div class="kicker">第四章</div><h2>国防：战争会结束，备战不会</h2></div>
+      <p class="lead">一场冲突会结束，但它带来的教训会改变各国未来十年的预算。投资国防主题，要区分两种钱：冲突期间的应急开支<span class="ek">（Emergency spending）</span>，和冲突结束后仍然会持续的备战<span class="ek">（Military preparedness）</span>开支。</p>
+
+      <h3>为什么国防开支是长周期</h3>
+      <ul>
+        <li><strong>欧洲在补课</strong>：2025 年北约峰会上，成员国同意在 2035 年前把国防及相关开支提高到 GDP 的 5%，其中核心国防开支<span class="ek">（Defense spending）</span> 3.5%。这比过去普遍不到 2% 的水平高出一大截。</li>
+        <li><strong>库存要重建</strong>：近年的冲突消耗了大量弹药<span class="ek">（Munitions）</span>和防空导弹，许多国家的库存需要好几年才能补回来。</li>
+        <li><strong>两党支持</strong>：在美国，国防预算是少数两党都愿意支持的支出项目之一，耐久度高。</li>
+        <li><strong>采购周期长</strong>：一艘军舰、一款战机的合同动辄持续十年以上，承包商的收入能见度很高。</li>
+      </ul>
+
+      <h3>现代战争需要「便宜、够用、能大量生产」</h3>
+      <p>近年的冲突显示，大量廉价的无人机<span class="ek">（Drone）</span>和弹药，常常比少量昂贵的平台更有效。用一枚几百万美元的导弹去拦截一架几万美元的无人机，在经济上是不可持续的。这改变了采购的重点：</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>方向</th><th>逻辑</th><th>常被讨论的公司类型</th></tr></thead>
+          <tbody>
+            <tr><td>无人机与巡飞弹<span class="ek">（Loitering munition）</span></td><td>便宜、可大量生产、可消耗</td><td>小型无人机和目标机制造商</td></tr>
+            <tr><td>弹药与推进剂</td><td>消耗最大，产能不足</td><td>弹药生产商、化工原料商</td></tr>
+            <tr><td>防空与反无人机</td><td>需要更便宜的拦截手段</td><td>传感器、电子战、定向能</td></tr>
+            <tr><td>造船与维修</td><td>海军扩张，船厂产能是瓶颈</td><td>军用船厂</td></tr>
+            <tr><td>软件与数据</td><td>战场信息整合和决策速度</td><td>国防数据分析软件公司</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>懒人表达是美国航空航天与国防 ETF（例如 ITA、PPA）。需要注意：这类 ETF 里商用航空的权重不小，它会同时受到航空旅行周期的影响。</p>
+
+      <h3>战后交易：哪些成本会消失</h3>
+      <p>冲突期间，市场会为风险付出很多额外的成本：原油里的风险溢价<span class="ek">（Risk premium）</span>、航运保险<span class="ek">（Marine insurance）</span>费、绕行带来的运费、航空公司的燃油成本。冲突缓和时，最值得问的问题是：<strong>战争制造的哪些成本会消失？谁会从这些成本的消失中受益最多？</strong></p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">冲突走到哪一步，受益和受压的板块就换一批</span><span class="fig-no">图 4-1 · 可操作</span></div>
+        <div class="controls"><div class="chips" id="war-pick" role="group" aria-label="选择冲突阶段">
+          <button type="button" data-v="esc">冲突升级</button><button type="button" data-v="stand">长期对峙</button><button type="button" data-v="cease">停火谈判</button><button type="button" data-v="post">战后重建</button>
+        </div></div>
+        <div id="war-out" aria-live="polite"></div>
+        <figcaption>以一场影响产油区和航运通道的地区冲突为例。真实的冲突很少按顺序走完四个阶段，常常在升级和对峙之间反复，所以要盯的是「验证信号」，而不是新闻标题。</figcaption>
+      </figure>
+      <p>还有一点容易被忽视：<strong>战后，国防股不一定下跌。</strong>如果冲突的教训推动了长期的备战开支，国防承包商的订单会继续增长；下跌的往往是那些只靠应急开支、短期订单的公司。所以在冲突高峰时追高国防股，和在冲突缓和时恐慌卖出，都是常见的错误。</p>
+
+      <h3>别把冲突当成交易的唯一理由</h3>
+      <p>地缘<span class="ek">（Geopolitics）</span>事件的时间和结果极难预测，而且市场对它们的反应常常比想象中短暂。一个更稳妥的做法：</p>
+      <ul>
+        <li>长期仓位押注备战开支的结构性增长，而不是某一场冲突。</li>
+        <li>短期的冲突交易用小仓位、有限风险的工具（比如价差），并预先写好退出条件。</li>
+        <li>用组合对冲<span class="ek">（Hedge）</span>：持有受益于冲突升级的资产时，用一小部分资金持有受益于冲突缓和的资产，比如航空股或它们的看涨期权<span class="ek">（Call option）</span>。</li>
+      </ul>
+    </article>
+
+    <!-- ===================== 05 ===================== -->
+    <article class="chapter" id="c5" data-title="资源独立：能源、关键矿产与黄金" hidden>
+      <div class="chapter-head"><div class="no">05</div><div class="kicker">第五章</div><h2>资源独立：能源、关键矿产与黄金</h2></div>
+      <p class="lead">真正的工业独立，首先来自资源独立。没有铜，就没有电网<span class="ek">（Power grid）</span>；没有稀土<span class="ek">（Rare earths）</span>磁体，就没有电机和导弹；没有燃料，原油再多也开不动卡车。</p>
+
+      <h3>关键矿产：瓶颈在加工，不在矿山</h3>
+      <p>很多关键矿产<span class="ek">（Critical minerals）</span>在地球上并不稀缺，稀缺的是开采之后的分离、提炼和加工能力。以稀土为例，全球大约九成的稀土加工能力集中在中国。这让它成了一种地缘<span class="ek">（Geopolitics）</span>工具：</p>
+      <ul>
+        <li>2023 年起，镓、锗、石墨等材料陆续被纳入出口管制<span class="ek">（Export controls）</span>。</li>
+        <li>2025 年，管制扩大到多种稀土元素和相关技术，一些海外的汽车和电子制造商一度面临零部件短缺。</li>
+      </ul>
+      <p>各国的回应是想办法建立「从矿山到磁体」的完整本土链条。这需要很多年，投资巨大，而且在早期往往没有经济效益，因为对手的加工成本更低、可以压低价格。于是政府开始用更直接的工具介入。</p>
+
+      <h3>政府入股和价格底线</h3>
+      <p>2025 年，美国政府采取了一些过去少见的做法：国防部入股一家本土稀土公司，并承诺长期的价格底线<span class="ek">（Price floor）</span>和采购；政府还入股了一家大型芯片制造商。无论你怎样评价这种做法，它对投资的含义很清楚：<strong>政府站到了某些公司的身后，替它们承担了一部分价格风险。</strong></p>
+      <p>价格底线的效果，相当于政府免费送给公司一张看跌期权<span class="ek">（Put option）</span>。下面用一个假设的例子算一下：</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">价格底线把周期股变成了「有保底」的生意</span><span class="fig-no">图 5-1 · 可拖动</span></div>
+        <div class="controls">
+          <label class="ctl" for="pf-m">市场价格 <input id="pf-m" type="range" min="30" max="160" value="60"> <output id="pf-m-o">$60</output></label>
+          <label class="ctl" for="pf-f">政府底价 <input id="pf-f" type="range" min="0" max="140" step="5" value="110"> <output id="pf-f-o">$110</output></label>
+        </div>
+        <svg class="chart" id="f-pf" viewBox="0 0 680 290" role="img" aria-label="有无价格底线时每公斤利润"></svg>
+        <div class="legend"><span><i style="border-color: var(--muted)" class="dash"></i>没有底价</span><span><i style="border-color: var(--accent)"></i>有底价</span></div>
+        <div class="readout">
+          <div><b id="pf-r1">—</b><small>没有底价时，每公斤利润</small></div>
+          <div><b id="pf-r2">—</b><small>有底价时，每公斤利润</small></div>
+          <div><b id="pf-r3">—</b><small>底价相当于一张看跌期权，价值约</small></div>
+        </div>
+        <figcaption>假设：生产成本每公斤 70 美元。看跌期权按 Black-Scholes 估值，期限 1 年、价格波动率 40%、利率 4%，只是为了说明这份保底在金融上值多少钱。市场价格越低，这份保底越值钱，公司的盈利也越不受价格周期影响，估值方式会从「周期股<span class="ek">（Cyclical stocks）</span>」向「公用事业」靠拢。</figcaption>
+      </figure>
+      <p>反过来也要看到风险：政府的支持可以随着政策改变而减弱；有政府入股<span class="ek">（Government equity stake）</span>的公司，经营决策可能受到非商业因素的影响；而且一旦所有人都意识到这个保底，股价会很快把它算进去。</p>
+
+      <h3>能源：有油不代表有燃料</h3>
+      <p>能源独立不只是能开采多少原油，还包括能炼出多少汽油、柴油和航空煤油。美国是原油生产大国，但炼油<span class="ek">（Refining）</span>能力几十年来增长有限，一些炼厂还在关闭。成品油（尤其是柴油）紧张时，炼油公司的利润（裂解价差）会大幅扩大，而原油生产商不一定受益。</p>
+      <p>能源主题里的几个环节，对应的驱动并不相同：</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>环节</th><th>主要驱动</th><th>政策风险</th></tr></thead>
+          <tbody>
+            <tr><td>上游油气生产</td><td>油价、产量、资本纪律</td><td>开采许可、出口政策</td></tr>
+            <tr><td>油服</td><td>全球钻井和开发投资</td><td>地区安全、资源国政策</td></tr>
+            <tr><td>炼油</td><td>裂解价差<span class="ek">（Crack spread）</span>、炼厂开工率</td><td>出口限制、环保法规</td></tr>
+            <tr><td>核电与铀</td><td>电力需求、长期购电合同<span class="ek">（Power purchase agreement (PPA)）</span></td><td>审批速度、燃料供应</td></tr>
+            <tr><td>电网设备</td><td>电力需求增长、老化电网更新</td><td>审批和地方阻力</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>黄金：对冲货币秩序的分裂</h3>
+      <p>传统上，黄金和实际利率<span class="ek">（Real yield）</span>反向变动。但 2022 年以后，各国央行每年购买超过一千吨黄金，这股买盘让黄金和实际利率的关系明显变弱。央行买金的动机，很大程度上是为了减少对单一货币和单一金融体系的依赖：2022 年俄罗斯的外汇储备被冻结，让许多国家意识到，以别国货币持有的资产可能在冲突中被冻结。</p>
+      <p>所以在今天的叙事<span class="ek">（Narrative）</span>里，黄金更像是对「货币秩序<span class="ek">（Monetary order）</span>分裂」和「主要经济体内部风险」的对冲<span class="ek">（Hedge）</span>。一些大型经济体的居民在房地产和本地金融资产承压时，也在增加黄金配置，这让黄金的需求有了宏观之外的支撑。</p>
+      <div class="two">
+        <div><h5>黄金</h5><ul><li>央行和居民的结构性需求</li><li>对冲信誉风险、地缘风险</li><li>相对「干净」，没有工业周期</li></ul></div>
+        <div><h5>白银</h5><ul><li>贵金属叙事加上工业需求（电子、光伏）</li><li>波动更大，受经济周期影响</li><li>适合想放大黄金叙事、能承受更大波动的人</li></ul></div>
+      </div>
+      <p>反方观点同样要记住：黄金不产生现金流，持有它的回报完全来自别人愿意支付的更高价格。央行买盘一旦放缓，或者实际利率大幅上升，黄金可能经历很长的横盘甚至下跌。</p>
+    </article>
+
+    <!-- ===================== 06 ===================== -->
+    <article class="chapter" id="c6" data-title="制造业回流与关税" hidden>
+      <div class="chapter-head"><div class="no">06</div><div class="kicker">第六章</div><h2>制造业回流与关税</h2></div>
+      <p class="lead">不要问谁会把工厂搬回来，要问谁会因为所有人都需要它而赚钱。工厂建在哪里、由谁来建，充满了不确定性；但不管谁建，都要买设备、用电、请工程公司、租仓库。</p>
+
+      <h3>回流需要的「铲子」</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>环节</th><th>为什么绕不开</th><th>常被讨论的公司类型</th></tr></thead>
+          <tbody>
+            <tr><td>工程建设<span class="ek">（Engineering and construction (E&C)）</span></td><td>每座工厂、每条产线都要有人设计和建造</td><td>大型工程建设公司</td></tr>
+            <tr><td>电力设备</td><td>新工厂和数据中心<span class="ek">（Data center）</span>都需要接入电网<span class="ek">（Power grid）</span>；大型变压器<span class="ek">（Transformer）</span>的交货周期一度长达数年</td><td>变压器、开关柜、电网设备制造商</td></tr>
+            <tr><td>工业自动化<span class="ek">（Industrial automation）</span></td><td>本土人工贵，回流<span class="ek">（Reshoring）</span>的工厂必须更自动化</td><td>机器人、控制系统、传感器公司</td></tr>
+            <tr><td>电子制造服务<span class="ek">（Electronics manufacturing services (EMS)）</span></td><td>品牌商不想自己建厂，外包给本土代工</td><td>电子代工和组装公司</td></tr>
+            <tr><td>运输与物流</td><td>零部件和成品要在新的地点之间流动</td><td>重型卡车制造商、铁路、工业地产<span class="ek">（Industrial real estate）</span></td></tr>
+            <tr><td>技术工人培训</td><td>电工、焊工、机械师长期短缺</td><td>职业教育、人力服务</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>懒人表达是美国基础设施类 ETF（例如 PAVE）和电网设备类 ETF。主题里最大的风险是周期：工业资本开支<span class="ek">（Capital expenditure (capex)）</span>对利率很敏感，利率上升、补贴<span class="ek">（Subsidy）</span>退坡时，项目会推迟甚至取消。</p>
+
+      <h3>关税到底由谁来付</h3>
+      <p>关税<span class="ek">（Tariff）</span>在法律上由进口商缴纳，但经济上的负担会在三方之间分摊：外国出口商（降价来保住订单）、进口商（压缩自己的利润）、消费者（买更贵的东西）。各自承担多少，取决于谁的议价能力更强。</p>
+      <p>对股票投资者来说，最重要的是一家公司能把多少成本转嫁<span class="ek">（Pass-through）</span>给客户，以及转嫁以后客户会不会少买。下面用一个假设的公司算一下：收入 100，商品成本 60（毛利率 40%），成本里一半来自进口。</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">能转嫁多少成本，决定了关税是「小麻烦」还是「利润杀手」</span><span class="fig-no">图 6-1 · 可拖动</span></div>
+        <div class="controls">
+          <label class="ctl" for="tf-t">关税税率 <input id="tf-t" type="range" min="0" max="60" step="5" value="25"> <output id="tf-t-o">25%</output></label>
+          <label class="ctl" for="tf-p">转嫁比例 <input id="tf-p" type="range" min="0" max="100" step="5" value="50"> <output id="tf-p-o">50%</output></label>
+          <label class="ctl" for="tf-e">需求弹性 <input id="tf-e" type="range" min="0" max="20" value="10"> <output id="tf-e-o">1.0</output></label>
+        </div>
+        <svg class="chart" id="f-tf" viewBox="0 0 680 290" role="img" aria-label="转嫁比例与毛利变化"></svg>
+        <div class="legend"><span><i style="border-color: var(--accent)"></i>当前需求弹性</span><span><i style="border-color: var(--muted)" class="dash"></i>需求完全不受影响（弹性 0）</span></div>
+        <div class="readout">
+          <div><b id="tf-r1">—</b><small>新增成本（占收入）</small></div>
+          <div><b id="tf-r2">—</b><small>提价幅度 / 销量变化</small></div>
+          <div><b id="tf-r3">—</b><small>毛利润变化</small></div>
+          <div><b id="tf-r4">—</b><small>新的毛利率</small></div>
+        </div>
+        <figcaption>需求弹性<span class="ek">（Price elasticity of demand）</span> 1.0 的意思是：价格每涨 1%，销量减少 1%。默认参数下，25% 的关税让成本增加 7.5，公司转嫁一半、提价 3.75%，销量减少 3.75%，毛利润下降约 12.8%。把弹性拖到 0，全额转嫁可以完全保住毛利润；拖到 2.0，就算全额转嫁，毛利润也要下降 15%。品牌强、产品难替代的公司弹性低，这就是「定价权<span class="ek">（Pricing power）</span>」。</figcaption>
+      </figure>
+
+      <h3>关税的二阶影响</h3>
+      <ul>
+        <li><strong>本土竞争者受益</strong>：进口品变贵以后，本土生产同类产品的公司可以提价或抢份额。钢铁、部分化工和制造业是典型例子。</li>
+        <li><strong>下游用户受损</strong>：以钢铁、铝为原料的制造商，成本跟着上升。</li>
+        <li><strong>贸易绕道</strong>：部分商品改从第三国转口，第三国的物流和组装业务增加，直到规则堵上这个漏洞。</li>
+        <li><strong>报复和谈判</strong>：对方的反制关税会打击出口型行业，比如农产品和飞机。很多关税最后成为谈判筹码，宣布、暂缓、调整反复出现。</li>
+      </ul>
+      <p>最后一点特别重要。关税政策经常出现「先强硬宣布、再部分让步」的节奏。2025 年 4 月，大规模关税宣布后，股市和美债同时剧烈下跌，一周之内多数关税就宣布暂缓 90 天。交易关税新闻时，要把「暂缓或豁免」当成一种随时可能出现的情景，不要在第一天的恐慌里把仓位砍光，也不要在第一天的欢呼里追高。</p>
+
+      <div class="note"><span class="tag">实用的判断方法</span><p>读一家公司的财报<span class="ek">（Earnings report）</span>电话会，找三个问题的答案：进口成本占比多少？已经提价了多少，客户反应如何？有没有在调整供应链<span class="ek">（Supply chain）</span>，需要多久？三个答案都清楚的公司，关税风险通常已经被管理住了。</p></div>
+    </article>
+
+    <!-- ===================== 07 ===================== -->
+    <article class="chapter" id="c7" data-title="人工智能、电力与机器人" hidden>
+      <div class="chapter-head"><div class="no">07</div><div class="kicker">第七章</div><h2>人工智能、电力与机器人</h2></div>
+      <p class="lead">在政策叙事<span class="ek">（Narrative）</span>里，人工智能不只是一项技术，而是降低单位劳动成本、维持国家竞争力的工具。不管哪家公司在模型竞赛中胜出，它都必须买电、买硬件、连网络。</p>
+
+      <h3>从应用到电厂：钱往下游流</h3>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">越往下，越接近「不管谁赢都要买」的环节</span><span class="fig-no">图 7-1</span></div>
+        <div class="scroll-x">
+        <svg class="chart wide" viewBox="0 0 680 342" role="img" aria-label="人工智能产业链分层">
+          <g style="font-family: var(--font-body)">
+            <text x="20" y="22" style="fill: var(--muted); font-size: 12px">环节</text>
+            <text x="210" y="22" style="fill: var(--muted); font-size: 12px">不管谁赢都要买的程度</text>
+            <text x="660" y="22" text-anchor="end" style="fill: var(--muted); font-size: 12px">最大的风险</text>
+            <line x1="20" y1="32" x2="660" y2="32" style="stroke: var(--grid)"></line>
+            <text x="20" y="57" style="fill: var(--ink); font-size: 14px; font-weight: 700">应用与软件</text>
+            <rect x="210" y="42" width="50" height="20" rx="3" style="fill: var(--muted); opacity: 0.45"></rect>
+            <text x="660" y="57" text-anchor="end" style="fill: var(--muted); font-size: 12.5px">竞争最激烈，商业化未知</text>
+            <line x1="20" y1="72" x2="660" y2="72" style="stroke: var(--grid)"></line>
+            <text x="20" y="97" style="fill: var(--ink); font-size: 14px; font-weight: 700">模型公司</text>
+            <rect x="210" y="82" width="90" height="20" rx="3" style="fill: var(--muted); opacity: 0.45"></rect>
+            <text x="660" y="97" text-anchor="end" style="fill: var(--muted); font-size: 12.5px">烧钱，赢家难料</text>
+            <line x1="20" y1="112" x2="660" y2="112" style="stroke: var(--grid)"></line>
+            <text x="20" y="137" style="fill: var(--ink); font-size: 14px; font-weight: 700">云计算与大型科技</text>
+            <rect x="210" y="122" width="130" height="20" rx="3" style="fill: var(--muted); opacity: 0.45"></rect>
+            <text x="660" y="137" text-anchor="end" style="fill: var(--muted); font-size: 12.5px">投资能否带来回报</text>
+            <line x1="20" y1="152" x2="660" y2="152" style="stroke: var(--grid)"></line>
+            <text x="20" y="177" style="fill: var(--ink); font-size: 14px; font-weight: 700">芯片与存储</text>
+            <rect x="210" y="162" width="170" height="20" rx="3" style="fill: var(--muted); opacity: 0.45"></rect>
+            <text x="660" y="177" text-anchor="end" style="fill: var(--muted); font-size: 12.5px">周期性，客户集中</text>
+            <line x1="20" y1="192" x2="660" y2="192" style="stroke: var(--grid)"></line>
+            <text x="20" y="217" style="fill: var(--ink); font-size: 14px; font-weight: 700">网络与服务器</text>
+            <rect x="210" y="202" width="210" height="20" rx="3" style="fill: var(--accent); opacity: 0.85"></rect>
+            <text x="660" y="217" text-anchor="end" style="fill: var(--muted); font-size: 12.5px">订单随资本开支波动</text>
+            <line x1="20" y1="232" x2="660" y2="232" style="stroke: var(--grid)"></line>
+            <text x="20" y="257" style="fill: var(--ink); font-size: 14px; font-weight: 700">数据中心建设与冷却</text>
+            <rect x="210" y="242" width="250" height="20" rx="3" style="fill: var(--accent); opacity: 0.85"></rect>
+            <text x="660" y="257" text-anchor="end" style="fill: var(--muted); font-size: 12.5px">项目延期，融资成本</text>
+            <line x1="20" y1="272" x2="660" y2="272" style="stroke: var(--grid)"></line>
+            <text x="20" y="297" style="fill: var(--ink); font-size: 14px; font-weight: 700">电力与电网</text>
+            <rect x="210" y="282" width="290" height="20" rx="3" style="fill: var(--accent); opacity: 0.85"></rect>
+            <text x="660" y="297" text-anchor="end" style="fill: var(--muted); font-size: 12.5px">审批慢，地方阻力</text>
+            <text x="210" y="328" style="fill: var(--accent); font-size: 12.5px">↓ 钱从上层的资本开支流向下层的订单</text>
+          </g>
+        </svg>
+        </div>
+        <figcaption>上层的竞争最激烈，赢家通吃也最明显；下层的需求来自所有上层玩家的总和，但同时受物理约束（电力、审批、设备交货期）。右侧标注的是每一层最大的风险。</figcaption>
+      </figure>
+      <p>这张图解释了为什么「卖铲子<span class="ek">（Picks and shovels）</span>」的逻辑在人工智能主题里特别流行：模型公司之间谁胜谁负很难判断，但它们加起来的资本开支<span class="ek">（Capital expenditure (capex)）</span>，最终会变成芯片、网络设备、数据中心<span class="ek">（Data center）</span>建设和电力的订单。</p>
+
+      <h3>电力：最硬的约束</h3>
+      <p>数据中心的用电量增长，让电力从一个增长缓慢的公用事业，变成了科技主题的一部分。几个值得关注的环节：</p>
+      <ul>
+        <li><strong>发电</strong>：能长期稳定供电的电源最受欢迎，核电和天然气发电的长期购电合同<span class="ek">（Power purchase agreement (PPA)）</span>受到大型科技公司追捧。</li>
+        <li><strong>电网<span class="ek">（Power grid）</span>设备</strong>：变压器<span class="ek">（Transformer）</span>、开关设备、输电线路，交货期长，产能扩张慢。</li>
+        <li><strong>燃气轮机<span class="ek">（Gas turbine）</span>和冷却设备</strong>：数据中心自建电源和散热的需求。</li>
+        <li><strong>网络和连接</strong>：数据中心内部和之间的高速网络，拥有相关专利和设备的公司也会受益。</li>
+      </ul>
+      <p>反方观点：电力需求的预测历史上多次过于乐观；芯片能效的提升可能降低单位算力的耗电；一些地方的居民和政府开始反对新建数据中心，理由是电价、用水和土地。这些都会限制增长速度。</p>
+
+      <h3>机器人：人工智能的实体化</h3>
+      <p>如果说人工智能降低的是脑力劳动的成本，机器人就是在降低体力劳动的成本。它的第一站最可能是工厂和物流仓库：环境可控、任务重复、人工成本高、招工难。这和制造业回流<span class="ek">（Reshoring）</span>的主题正好衔接：回流的工厂要在高人工成本的地方赚钱，必须大量使用自动化。</p>
+      <p>机器人主题里的风险等级差别很大。成熟的工业自动化<span class="ek">（Industrial automation）</span>公司有稳定的收入和客户；人形机器人<span class="ek">（Humanoid robot）</span>和早期创业公司则多数还没有规模化的收入，有的还通过特殊目的收购公司（SPAC）上市，稀释和失败的风险都很高。把它们放在同一个篮子里，等于把两种完全不同的风险混在一起。</p>
+
+      <h3>人工智能主题的四个风险</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>风险</th><th>表现</th><th>观察指标</th></tr></thead>
+          <tbody>
+            <tr><td>资本开支消化</td><td>大型科技公司放慢投资，订单链条从上到下收缩</td><td>季度资本开支指引的变化</td></tr>
+            <tr><td>回报质疑</td><td>投资者开始要求看到人工智能带来的收入和利润</td><td>云业务增速、财报<span class="ek">（Earnings report）</span>后的股价反应</td></tr>
+            <tr><td>融资循环</td><td>供应商投资客户、客户再买供应商的产品，需求的真实性被质疑</td><td>应收账款、关联交易、信用违约掉期价格</td></tr>
+            <tr><td>拥挤</td><td>所有人都持有同一批股票，指数集中度<span class="ek">（Concentration）</span>极高</td><td>权重占比、期权看涨需求、ETF 资金流<span class="ek">（Fund flows）</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>对学习者的建议：先用一个宽基的半导体或科技 ETF 建立对这个主题的认识，再研究个股。如果一定要选个股，优先选「下层」那些订单能见度高、但估值没有被炒到天上的环节。</p>
+    </article>
+
+    <!-- ===================== 08 ===================== -->
+    <article class="chapter" id="c8" data-title="民生主题：通胀分层、农业与医疗" hidden>
+      <div class="chapter-head"><div class="no">08</div><div class="kicker">第八章</div><h2>民生主题：通胀分层、农业与医疗</h2></div>
+      <p class="lead">人必须吃饭，必须看病，钱少的时候会精打细算，钱多的时候会买体验。这些需求不随政治周期改变，但通胀会改变它们在不同人群中的样子。</p>
+
+      <h3>通胀下的分层消费</h3>
+      <p>通胀对每个人的影响不同。收入较低的家庭把更大比例的收入花在食物、房租和汽油上，对涨价最敏感；收入较高的家庭有资产增值的缓冲，消费能力受影响小。有估算认为，收入最高的一成家庭贡献了接近一半的消费支出。经济学家把这种分化叫做「K 型<span class="ek">（K-shaped）</span>」消费。</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>人群</th><th>常见行为</th><th>受益的商业模式</th></tr></thead>
+          <tbody>
+            <tr><td>收入承压的家庭</td><td>消费降级<span class="ek">（Trading down）</span>：去折扣店、买自有品牌、用更便宜的蛋白质替代牛肉</td><td>折扣零售<span class="ek">（Discount retail）</span>、仓储会员店<span class="ek">（Warehouse club）</span>、价格较低的肉类加工商</td></tr>
+            <tr><td>中等收入家庭</td><td>精打细算，推迟大件消费</td><td>性价比品牌、二手和维修市场</td></tr>
+            <tr><td>高收入家庭</td><td>继续花钱在旅行、餐饮和体验上</td><td>高端旅行、航空的高端舱位、高端信用卡网络</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>这里有一个典型陷阱：<strong>好公司不等于好价格。</strong>仓储会员店是公认的好生意，消费降级的叙事<span class="ek">（Narrative）</span>也站得住，但如果它的股价已经是几十倍的市盈率<span class="ek">（Price-to-earnings ratio (P/E)）</span>，叙事带来的增长早已被算进去。同一个叙事里，一家估值较低、被市场忽视的公司，常常是更好的表达工具。</p>
+      <p>支付网络<span class="ek">（Payment network）</span>是另一个巧妙的表达：通胀让名义消费金额上升，按交易金额收费的支付公司，收入会跟着通胀一起增长，而且不用承担商品成本上升的压力。</p>
+
+      <h3>农业：周期里的刚需</h3>
+      <p>农业的需求很稳定，但价格是周期的。化肥<span class="ek">（Fertilizer）</span>、种子、农机和粮食贸易各有自己的周期：</p>
+      <ul>
+        <li><strong>化肥</strong>：价格受天然气（氮肥的原料）、地缘<span class="ek">（Geopolitics）</span>冲突和粮价影响，波动很大。化肥公司的股价在价格高点时看起来最便宜，因为盈利最高，这正是周期股<span class="ek">（Cyclical stocks）</span>的陷阱。</li>
+        <li><strong>粮食贸易和加工</strong>：赚的是运输、储存和加工的价差，盈利相对稳定，常有股息<span class="ek">（Dividend）</span>。</li>
+        <li><strong>农业综合 ETF</strong>（例如 MOO）可以一次覆盖多个环节。</li>
+      </ul>
+      <p>农业主题适合「等价格」：在周期低谷、股息率较高时分批买入，耐心持有到下一轮周期，而不是在粮价暴涨的新闻里追进去。</p>
+
+      <h3>医疗与长寿：人类在试图购买更多时间</h3>
+      <p>人口老龄化<span class="ek">（Population aging）</span>是少数几个可以提前几十年预测的趋势之一。老年人口增加，意味着对医疗器械<span class="ek">（Medical devices）</span>、手术、药品和护理服务的需求持续增加。这个主题里有几种风险差异很大的表达方式：</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>类型</th><th>特点</th><th>风险</th></tr></thead>
+          <tbody>
+            <tr><td>成熟的医疗器械公司</td><td>手术量随人口老化增长，收入稳定</td><td>估值常常不便宜</td></tr>
+            <tr><td>生命科学工具<span class="ek">（Life science tools）</span>公司</td><td>给整个医药研发行业「卖铲子<span class="ek">（Picks and shovels）</span>」</td><td>受研发预算和融资环境影响</td></tr>
+            <tr><td>业务扭转中的小公司</td><td>新管理层、新产品，可能大幅重估</td><td>执行失败的概率高</td></tr>
+            <tr><td>前沿的抗衰老生物科技</td><td>故事最激动人心</td><td>多数还没有收入，失败率极高</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>医疗主题里还有一个近几年的大变量：减重药物<span class="ek">（GLP-1 weight-loss drugs）</span>。它不仅影响药企，还可能影响食品、饮料、医疗器械甚至航空公司（乘客平均体重下降带来的燃油节省）的长期需求。这是一个用二阶思维<span class="ek">（Second-order thinking）</span>寻找受益者和受损者的好练习。</p>
+
+      <h3>民生主题的共同点</h3>
+      <p>这些主题的需求很确定，所以它们最大的风险往往不是需求，而是<strong>估值和政策</strong>：药品价格谈判、医保报销规则、食品安全和补贴<span class="ek">（Subsidy）</span>政策。它们适合作为组合里的稳定部分，用正股慢慢积累，不适合用短期期权去博短期的波动。</p>
+    </article>
+
+    <!-- ===================== 09 ===================== -->
+    <article class="chapter" id="c9" data-title="选举与政策周期" hidden>
+      <div class="chapter-head"><div class="no">09</div><div class="kicker">第九章</div><h2>选举与政策周期</h2></div>
+      <p class="lead">选举不会改变人要吃饭、要用电，但会改变谁出钱、补贴<span class="ek">（Subsidy）</span>谁、对谁征税。理解政策周期，是为了判断一个主题能走多远，而不是为了押注谁会赢。</p>
+
+      <h3>选举年的激励</h3>
+      <p>执政者普遍希望在选举前看到稳定的经济和上涨的股市。在美国，总统所在的政党在中期选举<span class="ek">（Midterm elections）</span>中失去众议院席位，是历史上反复出现的规律，所以中期选举前的一年，政策制定者对市场大跌的容忍度往往更低。</p>
+      <p>这会形成市场常说的「政策托底<span class="ek">（Policy put）</span>」：当市场的下跌是由政策本身引起的，政策制定者有动机调整政策来止跌。2025 年 4 月的关税<span class="ek">（Tariff）</span>暂缓就是一个例子，普遍认为当时国债市场的剧烈波动是促成暂缓的原因之一。</p>
+      <div class="note warn"><span class="tag">政策托底不是保险</span>
+        <ul>
+          <li>它只在下跌由政策引起时有效。如果下跌来自通胀、盈利或信用问题，政策制定者能做的很有限，央行在高通胀下也很难出手。</li>
+          <li>托底的位置和时间无法预知。等待托底的人，经常在托底到来之前就被迫止损<span class="ek">（Stop-loss）</span>。</li>
+          <li>反复的托底会让市场形成依赖，风险在更高的位置积累。</li>
+        </ul>
+      </div>
+
+      <h3>政策领域的摆动幅度</h3>
+      <p>不同的政策领域，换届后改变的幅度差别很大。下表不评价哪种政策更好，只描述它们随政治周期摆动的程度：</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>政策领域</th><th>两党共识程度</th><th>对投资的含义</th></tr></thead>
+          <tbody>
+            <tr><td>国防预算</td><td>高</td><td>主题耐久度高，换届影响小</td></tr>
+            <tr><td>对关键技术的出口管制<span class="ek">（Export controls）</span></td><td>高</td><td>半导体设备、关键材料的限制会延续</td></tr>
+            <tr><td>供应链<span class="ek">（Supply chain）</span>安全、关键矿产<span class="ek">（Critical minerals）</span></td><td>较高</td><td>支持的工具可能变（补贴、关税、入股），方向不变</td></tr>
+            <tr><td>关税</td><td>中等</td><td>两党都会使用，力度和对象差别很大</td></tr>
+            <tr><td>药品价格</td><td>中等</td><td>两党都有压低药价的倾向，具体手段不同</td></tr>
+            <tr><td>能源结构（传统能源与清洁能源）</td><td>低</td><td>随执政党大幅摆动，相关补贴可能被改写</td></tr>
+            <tr><td>金融监管</td><td>低</td><td>银行资本要求、并购审查的松紧随换届变化</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>一个实用的原则：<strong>长期仓位放在共识高的主题上，摆动大的主题只做有期限的交易。</strong>如果你必须持有一个摆动大的主题，就要在选举前把仓位降到「无论哪一方赢都能承受」的水平。</p>
+
+      <h3>选举前后的波动</h3>
+      <p>期权市场会为选举定价。选举日所在的那一周或那个月，指数期权的隐含波动率<span class="ek">（Implied volatility (IV)）</span>通常明显高于前后。和数据日一样，可以用宏观手册里的方法，把选举日单独的预期波幅<span class="ek">（Expected move）</span>算出来，再和自己的判断比较。选举结果出来后，不确定性消失，隐含波动率常常快速回落；买入保护的人如果没有等到大的波动，会因为波动率下降而亏钱。</p>
+      <p>结果出来以后，最先反应的是对政策最敏感的板块：能源、医疗、金融、国防、清洁能源，以及对关税敏感的进口商。第一天的反应常常过度，因为市场在为「最极端的政策版本」定价，而真正落地的政策通常会被国会和法院打折扣。</p>
+
+      <h3>财政、国债与央行</h3>
+      <p>任何政府都希望融资成本更低。市场关心的是两件事：财政赤字<span class="ek">（Fiscal deficit）</span>是否在持续扩大，以及央行能否独立地根据通胀和就业做决定。当市场担心其中任何一项时，长端国债的期限溢价<span class="ek">（Term premium）</span>会上升，黄金会走强，美元可能走弱。这部分的机制在宏观手册的第 3、4 章有详细讲解。</p>
+      <p>从投资角度看，这两件事都不需要你有政治立场。你只需要观察长端收益率、黄金和美元的组合，看市场是不是在为信誉风险定价。</p>
+
+      <h3>把政治观点挡在仓位外面</h3>
+      <ol>
+        <li><strong>写政策，不写党派。</strong>投资笔记里写「国防预算增长」，不写「某党会赢所以买国防」。</li>
+        <li><strong>做「换届测试<span class="ek">（Change-of-government test）</span>」。</strong>每个主题问一句：如果另一方执政，这个主题还成立吗？成立的部分才是核心仓位。</li>
+        <li><strong>两边的信息都读。</strong>只看一种立场的媒体，会让你系统性地高估自己支持的政策成功的概率。</li>
+        <li><strong>不交易口号。</strong>一条社交媒体上的表态，在没有变成命令、法律或预算之前，最多只值一笔小仓位的短线交易。</li>
+        <li><strong>仓位要能承受任何选举结果。</strong>押注选举结果，和押注一枚硬币没有本质区别。</li>
+      </ol>
+    </article>
+
+    <!-- ===================== 10 ===================== -->
+    <article class="chapter" id="c10" data-title="执行：ETF、两组个股与期权工具" hidden>
+      <div class="chapter-head"><div class="no">10</div><div class="kicker">第十章</div><h2>执行：ETF、两组个股与期权工具</h2></div>
+      <p class="lead">主题选对了只是开始。怎样买、买多少、用不用期权、什么时候认错，决定了你最后能从一个正确的叙事<span class="ek">（Narrative）</span>里拿到多少。</p>
+
+      <h3>第一层：ETF 定投</h3>
+      <p>对大多数主题，最简单的做法是选一两只主题 ETF，每个月按固定金额买入：</p>
+      <ul>
+        <li>先决定每个月投入多少，再决定买什么。金额要小到你在市场大跌时也能继续投。</li>
+        <li>一个月看一次，不要每天看。看的是叙事有没有变，不是价格有没有涨。</li>
+        <li>叙事没变，就继续投；失效条件<span class="ek">（Invalidation criteria）</span>出现，就停止投入，再决定要不要卖出。</li>
+        <li>ETF 的作用是分散单一公司的风险，不是让你停止思考。每个季度还是要检查一次主题的证据。</li>
+      </ul>
+
+      <h3>第二层：个股分两组</h3>
+      <div class="two">
+        <div><h5>低风险组</h5><ul><li>盈利稳定、财务健康的好公司</li><li>以正股为主：找到好公司，然后慢慢「偷便宜」</li><li>只有在隐含波动率<span class="ek">（Implied volatility (IV)）</span>够高、而且你愿意在那个价格接货时，才卖看跌期权<span class="ek">（Put option）</span></li><li>正股建好以后，反弹时可以考虑卖备兑看涨<span class="ek">（Covered call）</span></li></ul></div>
+        <div><h5>高风险组</h5><ul><li>估值高的好公司、周期股<span class="ek">（Cyclical stocks）</span>、业务扭转中的公司、早期投机公司</li><li>原则：小仓位、等价格、等波动率、等事件</li><li>不能用「跌了 30% 所以更便宜」的思路加仓</li><li>小额看涨期权<span class="ek">（Call option）</span>有时比卖看跌期权更干净：最多亏掉权利金<span class="ek">（Premium）</span></li></ul></div>
+      </div>
+      <p>高风险组可以用三个英文词记住：<strong>Small、Lazy、Late</strong>。小仓位，让单个失败不影响全局；懒一点，不频繁交易，给叙事时间；晚一点，等证据出现再进场，宁可错过最早的那段涨幅。</p>
+
+      <h3>买股票，还是卖看跌期权</h3>
+      <p>一个简单的判断规则：</p>
+      <div class="formula">不能错过 → 买股票<br>愿意接货，但可以错过 → 卖看跌期权</div>
+      <p>举个例子：股价 50 美元，隐含波动率 45%，卖出 30 天后到期、行权价<span class="ek">（Strike price）</span> 47.5 美元的看跌期权，权利金约 1.40 美元，被指派<span class="ek">（Assigned）</span>（按 47.5 美元买入股票）的概率约 36%。如果股价一个月后涨到 57.5 美元，买股票的人赚了 7.5 美元，卖看跌期权的人只赚了 1.40 美元。所以卖看跌期权适合「如果跌下来我很乐意买，如果涨上去我也不心疼」的标的。</p>
+
+      <h3>备兑看涨：权利金不等于利润</h3>
+      <p>持有正股的同时卖出看涨期权，每个月收一笔权利金，是最常见的增强收益方法。但要先看清它的代价：</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">隐含波动率越高，权利金越诱人，被叫走的概率也越高</span><span class="fig-no">图 10-1 · 可拖动</span></div>
+        <div class="controls">
+          <label class="ctl" for="cc-v">隐含波动率 <input id="cc-v" type="range" min="15" max="80" value="30"> <output id="cc-v-o">30%</output></label>
+          <label class="ctl" for="cc-o">行权价高于现价 <input id="cc-o" type="range" min="0" max="15" value="5"> <output id="cc-o-o">5%</output></label>
+        </div>
+        <svg class="chart" id="f-cc" viewBox="0 0 680 290" role="img" aria-label="隐含波动率与备兑看涨的权利金"></svg>
+        <div class="legend"><span><i style="border-color: var(--accent)"></i>简单年化权利金（每月 × 12）</span><span><i style="border-color: var(--loss)" class="dash"></i>到期时被行权的概率</span></div>
+        <div class="readout">
+          <div><b id="cc-r1">—</b><small>每月权利金</small></div>
+          <div><b id="cc-r2">—</b><small>简单年化（× 12）</small></div>
+          <div><b id="cc-r3">—</b><small>被行权的概率</small></div>
+        </div>
+        <figcaption>按 Black-Scholes 计算，股价 50 美元，30 天到期。默认参数下每月权利金约 1.66%，简单年化接近 20%，但每个月有约 28% 的概率被行权，失去行权价以上的全部涨幅。在一个合理定价的市场里，权利金只是这份上涨潜力的价格，不是白拿的钱。所以实际能留下的增强收益要低得多，对波动适中的股票，保守估计一年多收 5% 到 10% 是更现实的期待。</figcaption>
+      </figure>
+      <p>两条原则：</p>
+      <ul>
+        <li><strong>高隐含波动率往往是因为市场真的认为风险很高。</strong>高权利金背后，常常是财报<span class="ek">（Earnings report）</span>、诉讼、审批之类的事件。</li>
+        <li><strong>如果被行权以后你会后悔，这个看涨期权从一开始就不应该卖。</strong>对你最看好、最不想卖掉的股票，不要卖备兑看涨。</li>
+      </ul>
+      <p>按适合程度，可以把持仓分成四类：波动适中、愿意被行权的（比较适合）；波动较大、需要更主动管理的（可以做但要盯紧）；特别看好、不想卖掉的（有条件才做）；正股还没有建好仓位的（先把正股入场做好，再谈卖期权）。</p>
+
+      <h3>真正的分散，看风险来源</h3>
+      <p>持有二十只股票，不代表分散。把持仓按它们真正依赖的风险分组：</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>风险来源</th><th>可能同时受影响的持仓</th></tr></thead>
+          <tbody>
+            <tr><td>人工智能资本开支<span class="ek">（Capital expenditure (capex)）</span></td><td>芯片、网络设备、数据中心<span class="ek">（Data center）</span>建设、电力设备、部分发电公司</td></tr>
+            <tr><td>利率</td><td>小盘股<span class="ek">（Small caps）</span>、房地产、公用事业、高估值成长股<span class="ek">（Growth stocks）</span></td></tr>
+            <tr><td>油价</td><td>能源、油服、航空（反向）、化工</td></tr>
+            <tr><td>单一党派的政策</td><td>依赖特定补贴<span class="ek">（Subsidy）</span>或特定监管的行业</td></tr>
+            <tr><td>某一个国家的风险</td><td>在那里有大量收入或供应链<span class="ek">（Supply chain）</span>的公司</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>如果你的二十只股票有十五只都在第一行，你其实只做了一笔交易。</p>
+
+      <h3>现金就是仓位</h3>
+      <p>没有好价格的时候持有现金，是一个主动的决定。主题投资<span class="ek">（Thematic investing）</span>尤其需要现金：好的主题总会有回调，回调的时候只有手里有现金的人能买。要清楚地知道自己在等什么：等某个价格，等某个事件，还是等某个数据。说不清自己在等什么的现金，很快就会被花在冲动的交易上。</p>
+    </article>
+
+    <!-- ===================== 11 ===================== -->
+    <article class="chapter" id="c11" data-title="工具箱：主题地图、叙事卡片与练习" hidden>
+      <div class="chapter-head"><div class="no">11</div><div class="kicker">第十一章</div><h2>工具箱：主题地图、叙事卡片与练习</h2></div>
+      <p class="lead">把前面十章变成可以反复使用的东西。表格里的 ETF 只是帮助你找到研究对象的例子，不是推荐。清单的勾选只保存在你自己的浏览器里。</p>
+
+      <h3>主题地图</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>主题</th><th>核心问题</th><th>受益环节</th><th>ETF 示例</th><th>主要反方观点</th><th>失效信号</th></tr></thead>
+          <tbody>
+            <tr><td>供应链<span class="ek">（Supply chain）</span>与西半球<span class="ek">（Western Hemisphere）</span></td><td>生产搬去哪里，谁来建</td><td>工业地产<span class="ek">（Industrial real estate）</span>、跨境铁路、工程建设<span class="ek">（Engineering and construction (E&C)）</span></td><td>ILF、EWW</td><td>贸易协定<span class="ek">（Trade agreement）</span>审议、治安</td><td>外资流入放缓，工业地产空置率<span class="ek">（Vacancy rate）</span>上升</td></tr>
+            <tr><td>国防与备战<span class="ek">（Military preparedness）</span></td><td>备战开支能持续多久</td><td>弹药<span class="ek">（Munitions）</span>、无人机<span class="ek">（Drone）</span>、造船、国防软件</td><td>ITA、PPA</td><td>预算被削减，估值已高</td><td>拨款法案<span class="ek">（Appropriations bill）</span>削减采购，订单积压<span class="ek">（Order backlog）</span>下降</td></tr>
+            <tr><td>战后交易</td><td>哪些战争成本会消失</td><td>航空、旅行、化工下游</td><td>JETS</td><td>冲突反复</td><td>停火<span class="ek">（Ceasefire）</span>破裂，油价风险溢价<span class="ek">（Risk premium）</span>回升</td></tr>
+            <tr><td>关键矿产<span class="ek">（Critical minerals）</span></td><td>加工瓶颈能否打破</td><td>铜、稀土<span class="ek">（Rare earths）</span>、锂的开采与加工</td><td>COPX、REMX</td><td>周期性强，竞争对手可压价</td><td>政府支持退坡，项目成本超支</td></tr>
+            <tr><td>能源与燃料</td><td>有油是否有燃料</td><td>炼油<span class="ek">（Refining）</span>、油服、上游</td><td>XLE</td><td>需求放缓、油价下跌</td><td>裂解价差<span class="ek">（Crack spread）</span>持续收窄</td></tr>
+            <tr><td>核电与铀</td><td>稳定电源的长期需求</td><td>核电运营、铀矿、燃料</td><td>URA</td><td>审批慢、成本超支</td><td>长期购电合同<span class="ek">（Power purchase agreement (PPA)）</span>减少</td></tr>
+            <tr><td>黄金</td><td>货币秩序<span class="ek">（Monetary order）</span>是否在分裂</td><td>实物黄金、金矿</td><td>GLD</td><td>不产生现金流</td><td>央行购金<span class="ek">（Central bank gold buying）</span>明显放缓，实际利率<span class="ek">（Real yield）</span>大幅上升</td></tr>
+            <tr><td>制造业回流<span class="ek">（Reshoring）</span></td><td>谁因为所有人都需要而赚钱</td><td>工程建设、电力设备、自动化</td><td>PAVE</td><td>利率敏感，补贴<span class="ek">（Subsidy）</span>退坡</td><td>工业资本开支<span class="ek">（Capital expenditure (capex)）</span>指引下调</td></tr>
+            <tr><td>人工智能与电力</td><td>资本开支能否持续</td><td>芯片、网络、电网<span class="ek">（Power grid）</span>设备、发电</td><td>SMH、GRID</td><td>投资回报存疑，拥挤</td><td>大型科技公司下调资本开支</td></tr>
+            <tr><td>机器人</td><td>体力劳动成本能否下降</td><td>工业自动化<span class="ek">（Industrial automation）</span>、物流机器人</td><td>BOTZ</td><td>早期公司收入很少</td><td>订单和出货量不及预期</td></tr>
+            <tr><td>分层消费</td><td>通胀下钱花在哪里</td><td>折扣零售<span class="ek">（Discount retail）</span>、支付网络<span class="ek">（Payment network）</span>、高端旅行</td><td>XLP</td><td>好公司估值贵</td><td>通胀回落，消费降级<span class="ek">（Trading down）</span>逆转</td></tr>
+            <tr><td>农业</td><td>人必须吃饭</td><td>化肥<span class="ek">（Fertilizer）</span>、粮食贸易、农机</td><td>MOO</td><td>价格周期剧烈</td><td>粮价和化肥价格同时下行</td></tr>
+            <tr><td>医疗与长寿</td><td>人类在购买更多时间</td><td>医疗器械<span class="ek">（Medical devices）</span>、生命科学工具<span class="ek">（Life science tools）</span></td><td>IHI</td><td>药价政策、估值</td><td>手术量增长放缓，报销规则收紧</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>叙事卡片模板</h3>
+      <p>每研究一个主题，填一张卡片。三个月后拿出来对照，看哪些判断对了，哪些证据变了。</p>
+      <pre class="tpl" id="tpl">主题：
+一句话叙事：未来几年，世界会被迫把钱花在 ___________
+政策落地程度：表态 / 行政命令 / 立法 / 预算 / 实际支出
+政治支持面：一党 / 部分跨党 / 两党共识
+换届测试：如果另一方执政，还成立吗？___
+绕不开的受益者：
+我选的表达工具：ETF / 低风险个股 / 高风险个股（Small. Lazy. Late.）
+估值与拥挤度：
+入场计划：等什么价格 / 什么事件 / 什么数据
+仓位上限：
+失效条件（写事实，不写价格）：
+  1.
+  2.
+反方最强的论点：
+下次检查日期：</pre>
+      <div class="copyrow"><button class="btn" type="button" id="tpl-copy">复制模板</button><small id="tpl-msg" aria-live="polite"></small></div>
+
+      <h3>四张清单</h3>
+      <div class="cards">
+        <div class="card"><h4>研究一个主题之前</h4><ul>
+          <li><input type="checkbox" id="n1"><label for="n1">能说出钱被迫流向哪里</label></li>
+          <li><input type="checkbox" id="n2"><label for="n2">查过政策走到了哪一步</label></li>
+          <li><input type="checkbox" id="n3"><label for="n3">做过换届测试</label></li>
+          <li><input type="checkbox" id="n4"><label for="n4">找到了至少一个反方论点</label></li>
+        </ul></div>
+        <div class="card"><h4>买入之前</h4><ul>
+          <li><input type="checkbox" id="n5"><label for="n5">叙事评分和价格评分分开打了</label></li>
+          <li><input type="checkbox" id="n6"><label for="n6">选的是绕不开的环节，不是最热的名字</label></li>
+          <li><input type="checkbox" id="n7"><label for="n7">写了事实型的失效条件</label></li>
+          <li><input type="checkbox" id="n8"><label for="n8">和现有持仓合并计算过风险来源</label></li>
+          <li><input type="checkbox" id="n9"><label for="n9">仓位小到任何选举结果都能承受</label></li>
+        </ul></div>
+        <div class="card"><h4>每个季度检查</h4><ul>
+          <li><input type="checkbox" id="n10"><label for="n10">预算和法律状态有没有变化</label></li>
+          <li><input type="checkbox" id="n11"><label for="n11">公司财报里有没有看到相关收入</label></li>
+          <li><input type="checkbox" id="n12"><label for="n12">拥挤度是上升还是下降</label></li>
+          <li><input type="checkbox" id="n13"><label for="n13">失效条件有没有出现</label></li>
+        </ul></div>
+        <div class="card"><h4>政策新闻出现时</h4><ul>
+          <li><input type="checkbox" id="n14"><label for="n14">它是口号、命令、法律还是预算</label></li>
+          <li><input type="checkbox" id="n15"><label for="n15">市场的反应和新闻的分量是否匹配</label></li>
+          <li><input type="checkbox" id="n16"><label for="n16">考虑过「暂缓或豁免」的情景</label></li>
+          <li><input type="checkbox" id="n17"><label for="n17">第一天不追涨，也不恐慌清仓</label></li>
+        </ul></div>
+      </div>
+
+      <h3>情景练习</h3>
+      <p>先自己想答案，再点开对照。</p>
+      <div class="qa">
+        <details><summary><span class="k">01</span><span>一位政治人物在社交媒体上说，要对某类进口商品加征高额关税。相关的本土生产商股价当天上涨 12%。你会追进去吗？</span></summary><div>
+          <p>先判断它处在政策的哪一步：这只是表态，还没有命令或法律。关税<span class="ek">（Tariff）</span>政策常常出现宣布、暂缓、豁免的反复，第一天的涨幅定价的是最极端的版本。</p>
+          <p>更好的做法：不追，把它放进观察名单；如果正式的命令发布、实施细则清楚，再评估本土生产商能拿到多少份额，以及它的估值是否已经充分反映。</p>
+        </div></details>
+        <details><summary><span class="k">02</span><span>你非常看好清洁能源，持有的仓位占总资金的 30%。大选临近，民调显示双方接近。</span></summary><div>
+          <p>能源结构是两党共识<span class="ek">（Bipartisan consensus）</span>低、随执政党大幅摆动的政策领域。30% 的仓位相当于把很大一部分资金押在一个选举结果上。</p>
+          <p>做换届测试<span class="ek">（Change-of-government test）</span>：如果另一方执政，哪些部分还成立（比如电网升级、数据中心<span class="ek">（Data center）</span>的电力需求），哪些部分会受损（比如依赖特定补贴的项目）。把仓位降到无论哪一方赢都能承受的水平，并把持仓向两党都支持的环节倾斜。</p>
+        </div></details>
+        <details><summary><span class="k">03</span><span>一场地区冲突宣布停火，能源股当天下跌 5%，国防股下跌 3%，航空股上涨 8%。你持有国防 ETF，要不要卖？</span></summary><div>
+          <p>要区分应急开支<span class="ek">（Emergency spending）</span>和备战开支。如果你持有国防主题的理由是长期的备战开支（比如各国承诺提高国防预算），一场停火并不改变这个逻辑，第一天的下跌更可能是情绪。</p>
+          <p>如果你买入的理由就是这一场冲突，那么停火就是你的失效条件<span class="ek">（Invalidation criteria）</span>，应该按计划处理。</p>
+        </div></details>
+        <details><summary><span class="k">04</span><span>某只关键矿产公司获得了政府入股和长期价格底线，股价一个月涨了两倍。它还值得买吗？</span></summary><div>
+          <p>政府底线确实降低了它的下行风险，相当于一张看跌期权<span class="ek">（Put option）</span>。但股价涨了两倍以后，这份保底很可能已经被算进价格，甚至被高估。</p>
+          <p>用叙事评分<span class="ek">（Narrative scorecard）</span>卡：耐久度可能很高，但拥挤度和估值得分很低，落在「等待」的象限。可以放进观察名单，等价格回到合理区间、或者等公司兑现产能后再考虑。</p>
+        </div></details>
+        <details><summary><span class="k">05</span><span>你持有一只特别看好的成长股，隐含波动率 60%，卖出一个月后到期、价外 5% 的看涨期权能收到约 5% 的权利金。要卖吗？</span></summary><div>
+          <p>60% 的隐含波动率<span class="ek">（Implied volatility (IV)）</span>说明市场认为这只股票风险很高，被行权的概率也高（约 36%）。如果它真的大涨，你会失去行权价<span class="ek">（Strike price）</span>以上的全部涨幅。</p>
+          <p>这是你特别看好、不想卖掉的股票，属于「有条件才做」的一类。如果被行权以后你会后悔，就不应该卖。</p>
+        </div></details>
+      </div>
+
+      <!--EN-GLOSSARY-START--><h3>中英术语表</h3>
+      <p>书中出现的主要术语和它们的英文原词，按首次出现的章节排列。读英文资料、用券商平台或者搜索时，用英文原词会准确得多。</p>
+      <div class="tbl"><table><thead><tr><th>中文</th><th>English</th><th>首次出现</th></tr></thead><tbody>
+        <tr><td>主题投资</td><td>Thematic investing</td><td>导读</td></tr>
+        <tr><td>人口老龄化</td><td>Population aging</td><td>导读</td></tr>
+        <tr><td>供应链</td><td>Supply chain</td><td>导读</td></tr>
+        <tr><td>关税</td><td>Tariff</td><td>导读</td></tr>
+        <tr><td>关键矿产</td><td>Critical minerals</td><td>导读</td></tr>
+        <tr><td>制造业回流</td><td>Reshoring</td><td>导读</td></tr>
+        <tr><td>叙事</td><td>Narrative</td><td>导读</td></tr>
+        <tr><td>国家安全</td><td>National security</td><td>导读</td></tr>
+        <tr><td>国防开支</td><td>Defense spending</td><td>导读</td></tr>
+        <tr><td>地缘</td><td>Geopolitics</td><td>导读</td></tr>
+        <tr><td>备战</td><td>Military preparedness</td><td>导读</td></tr>
+        <tr><td>补贴</td><td>Subsidy</td><td>导读</td></tr>
+        <tr><td>西半球</td><td>Western Hemisphere</td><td>导读</td></tr>
+        <tr><td>财报</td><td>Earnings report</td><td>导读</td></tr>
+        <tr><td>出口管制</td><td>Export controls</td><td>第 1 章</td></tr>
+        <tr><td>拨款法案</td><td>Appropriations bill</td><td>第 1 章</td></tr>
+        <tr><td>税收抵免</td><td>Tax credit</td><td>第 1 章</td></tr>
+        <tr><td>资本开支</td><td>Capital expenditure (capex)</td><td>第 1 章</td></tr>
+        <tr><td>价值陷阱</td><td>Value trap</td><td>第 2 章</td></tr>
+        <tr><td>制裁</td><td>Sanctions</td><td>第 2 章</td></tr>
+        <tr><td>回购</td><td>Share buyback</td><td>第 2 章</td></tr>
+        <tr><td>国家指数</td><td>Country index</td><td>第 2 章</td></tr>
+        <tr><td>市值加权</td><td>Market-cap weighted</td><td>第 2 章</td></tr>
+        <tr><td>市盈率</td><td>Price-to-earnings ratio (P/E)</td><td>第 2 章</td></tr>
+        <tr><td>新兴市场</td><td>Emerging markets</td><td>第 2 章</td></tr>
+        <tr><td>流动性</td><td>Liquidity</td><td>第 2 章</td></tr>
+        <tr><td>股息</td><td>Dividend</td><td>第 2 章</td></tr>
+        <tr><td>资本管制</td><td>Capital controls</td><td>第 2 章</td></tr>
+        <tr><td>友岸外包</td><td>Friend-shoring</td><td>第 3 章</td></tr>
+        <tr><td>回流</td><td>Reshoring</td><td>第 3 章</td></tr>
+        <tr><td>外商直接投资</td><td>Foreign direct investment (FDI)</td><td>第 3 章</td></tr>
+        <tr><td>工业地产</td><td>Industrial real estate</td><td>第 3 章</td></tr>
+        <tr><td>工程建设</td><td>Engineering and construction (E&C)</td><td>第 3 章</td></tr>
+        <tr><td>无人机</td><td>Drone</td><td>第 3 章</td></tr>
+        <tr><td>特许权使用费</td><td>Royalty</td><td>第 3 章</td></tr>
+        <tr><td>电网</td><td>Power grid</td><td>第 3 章</td></tr>
+        <tr><td>空置率</td><td>Vacancy rate</td><td>第 3 章</td></tr>
+        <tr><td>贸易协定</td><td>Trade agreement</td><td>第 3 章</td></tr>
+        <tr><td>资源国有化</td><td>Resource nationalism</td><td>第 3 章</td></tr>
+        <tr><td>近岸外包</td><td>Nearshoring</td><td>第 3 章</td></tr>
+        <tr><td>对冲</td><td>Hedge</td><td>第 4 章</td></tr>
+        <tr><td>巡飞弹</td><td>Loitering munition</td><td>第 4 章</td></tr>
+        <tr><td>应急开支</td><td>Emergency spending</td><td>第 4 章</td></tr>
+        <tr><td>弹药</td><td>Munitions</td><td>第 4 章</td></tr>
+        <tr><td>看涨期权</td><td>Call option</td><td>第 4 章</td></tr>
+        <tr><td>航运保险</td><td>Marine insurance</td><td>第 4 章</td></tr>
+        <tr><td>风险溢价</td><td>Risk premium</td><td>第 4 章</td></tr>
+        <tr><td>价格底线</td><td>Price floor</td><td>第 5 章</td></tr>
+        <tr><td>周期股</td><td>Cyclical stocks</td><td>第 5 章</td></tr>
+        <tr><td>实际利率</td><td>Real yield</td><td>第 5 章</td></tr>
+        <tr><td>政府入股</td><td>Government equity stake</td><td>第 5 章</td></tr>
+        <tr><td>炼油</td><td>Refining</td><td>第 5 章</td></tr>
+        <tr><td>看跌期权</td><td>Put option</td><td>第 5 章</td></tr>
+        <tr><td>稀土</td><td>Rare earths</td><td>第 5 章</td></tr>
+        <tr><td>裂解价差</td><td>Crack spread</td><td>第 5 章</td></tr>
+        <tr><td>货币秩序</td><td>Monetary order</td><td>第 5 章</td></tr>
+        <tr><td>长期购电合同</td><td>Power purchase agreement (PPA)</td><td>第 5 章</td></tr>
+        <tr><td>变压器</td><td>Transformer</td><td>第 6 章</td></tr>
+        <tr><td>定价权</td><td>Pricing power</td><td>第 6 章</td></tr>
+        <tr><td>工业自动化</td><td>Industrial automation</td><td>第 6 章</td></tr>
+        <tr><td>数据中心</td><td>Data center</td><td>第 6 章</td></tr>
+        <tr><td>电子制造服务</td><td>Electronics manufacturing services (EMS)</td><td>第 6 章</td></tr>
+        <tr><td>转嫁</td><td>Pass-through</td><td>第 6 章</td></tr>
+        <tr><td>需求弹性</td><td>Price elasticity of demand</td><td>第 6 章</td></tr>
+        <tr><td>人形机器人</td><td>Humanoid robot</td><td>第 7 章</td></tr>
+        <tr><td>卖铲子</td><td>Picks and shovels</td><td>第 7 章</td></tr>
+        <tr><td>燃气轮机</td><td>Gas turbine</td><td>第 7 章</td></tr>
+        <tr><td>资金流</td><td>Fund flows</td><td>第 7 章</td></tr>
+        <tr><td>集中度</td><td>Concentration</td><td>第 7 章</td></tr>
+        <tr><td>K 型</td><td>K-shaped</td><td>第 8 章</td></tr>
+        <tr><td>二阶思维</td><td>Second-order thinking</td><td>第 8 章</td></tr>
+        <tr><td>仓储会员店</td><td>Warehouse club</td><td>第 8 章</td></tr>
+        <tr><td>减重药物</td><td>GLP-1 weight-loss drugs</td><td>第 8 章</td></tr>
+        <tr><td>化肥</td><td>Fertilizer</td><td>第 8 章</td></tr>
+        <tr><td>医疗器械</td><td>Medical devices</td><td>第 8 章</td></tr>
+        <tr><td>折扣零售</td><td>Discount retail</td><td>第 8 章</td></tr>
+        <tr><td>支付网络</td><td>Payment network</td><td>第 8 章</td></tr>
+        <tr><td>消费降级</td><td>Trading down</td><td>第 8 章</td></tr>
+        <tr><td>生命科学工具</td><td>Life science tools</td><td>第 8 章</td></tr>
+        <tr><td>中期选举</td><td>Midterm elections</td><td>第 9 章</td></tr>
+        <tr><td>换届测试</td><td>Change-of-government test</td><td>第 9 章</td></tr>
+        <tr><td>政策托底</td><td>Policy put</td><td>第 9 章</td></tr>
+        <tr><td>期限溢价</td><td>Term premium</td><td>第 9 章</td></tr>
+        <tr><td>止损</td><td>Stop-loss</td><td>第 9 章</td></tr>
+        <tr><td>财政赤字</td><td>Fiscal deficit</td><td>第 9 章</td></tr>
+        <tr><td>隐含波动率</td><td>Implied volatility (IV)</td><td>第 9 章</td></tr>
+        <tr><td>预期波幅</td><td>Expected move</td><td>第 9 章</td></tr>
+        <tr><td>备兑看涨</td><td>Covered call</td><td>第 10 章</td></tr>
+        <tr><td>失效条件</td><td>Invalidation criteria</td><td>第 10 章</td></tr>
+        <tr><td>小盘股</td><td>Small caps</td><td>第 10 章</td></tr>
+        <tr><td>成长股</td><td>Growth stocks</td><td>第 10 章</td></tr>
+        <tr><td>权利金</td><td>Premium</td><td>第 10 章</td></tr>
+        <tr><td>行权价</td><td>Strike price</td><td>第 10 章</td></tr>
+        <tr><td>被指派</td><td>Assigned</td><td>第 10 章</td></tr>
+        <tr><td>两党共识</td><td>Bipartisan consensus</td><td>第 11 章</td></tr>
+        <tr><td>停火</td><td>Ceasefire</td><td>第 11 章</td></tr>
+        <tr><td>叙事评分</td><td>Narrative scorecard</td><td>第 11 章</td></tr>
+        <tr><td>央行购金</td><td>Central bank gold buying</td><td>第 11 章</td></tr>
+        <tr><td>订单积压</td><td>Order backlog</td><td>第 11 章</td></tr>
+      </tbody></table></div>
+<!--EN-GLOSSARY-END-->
+      <h3>延伸阅读与资料来源</h3>
+      <ul>
+        <li>克里斯·米勒《芯片战争》：半导体如何成为大国竞争的核心。</li>
+        <li>丹尼尔·耶金 The New Map：能源、地缘<span class="ek">（Geopolitics）</span>与国家冲突的新格局。</li>
+        <li>瑞·达利欧《原则：应对变化中的世界秩序》：大国兴衰与货币秩序的长周期。</li>
+        <li>艾德·康威 Material World：现代经济依赖的六种基础材料。</li>
+        <li>资料：美国国会的法案数据库（congress.gov）、联邦支出数据库（USAspending.gov）、美国贸易代表办公室的关税公告、公司的财报<span class="ek">（Earnings report）</span>电话会记录。</li>
+      </ul>
+    </article>
+
+    <nav class="pager" aria-label="章节翻页">
+      <button type="button" class="prev" id="pg-prev"><small>上一章</small><span></span></button>
+      <button type="button" class="next" id="pg-next"><small>下一章</small><span></span></button>
+    </nav>
+
+    <footer class="end"><p>本手册综合公开的政策信息与主题投资<span class="ek">（Thematic investing）</span>的常见方法整理而成，不代表任何政治立场。文中提到的公司和 ETF 仅为示例，计算基于注明的假设，供学习使用，不构成投资建议。</p></footer>
+  </main>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+  const $ = id => document.getElementById(id);
+
+  // ---------- chapters ----------
+  const chapters = [...document.querySelectorAll("article.chapter")];
+  const rail = $("rail"), pick = $("pick");
+  const prevB = $("pg-prev"), nextB = $("pg-next");
+  chapters.forEach((c, i) => {
+    const t = c.dataset.title;
+    const li = document.createElement("li");
+    li.innerHTML = `<button type="button" data-i="${i}"><span class="k">${String(i).padStart(2, "0")}</span><span>${t}</span></button>`;
+    rail.appendChild(li);
+    const o = document.createElement("option"); o.value = i; o.textContent = String(i).padStart(2, "0") + "　" + t; pick.appendChild(o);
+  });
+  const redraws = {};
+  let current = 0;
+  function show(i, scroll) {
+    i = Math.max(0, Math.min(chapters.length - 1, i));
+    current = i;
+    chapters.forEach((c, j) => { c.hidden = j !== i; });
+    rail.querySelectorAll("button").forEach(b => b.setAttribute("aria-current", +b.dataset.i === i ? "true" : "false"));
+    pick.value = i;
+    prevB.hidden = i === 0; nextB.hidden = i === chapters.length - 1;
+    if (i > 0) prevB.querySelector("span").textContent = chapters[i - 1].dataset.title;
+    if (i < chapters.length - 1) nextB.querySelector("span").textContent = chapters[i + 1].dataset.title;
+    if (redraws[i]) redraws[i].forEach(f => f());
+    store.set("pn-ch", String(i));
+    if (location.hash !== "#c" + i) history.replaceState(null, "", "#c" + i);
+    if (scroll) window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }
+  rail.addEventListener("click", e => { const b = e.target.closest("button"); if (b) show(+b.dataset.i, true); });
+  pick.addEventListener("change", () => show(+pick.value, true));
+  prevB.addEventListener("click", () => show(current - 1, true));
+  nextB.addEventListener("click", () => show(current + 1, true));
+  window.addEventListener("hashchange", () => { const m = location.hash.match(/^#c(\d+)$/); if (m) show(+m[1], false); });
+
+  // ---------- chart helper ----------
+  const NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+  function plot(svg, cfg) {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    if (!svg.dataset.h) svg.dataset.h = svg.viewBox.baseVal.height;
+    const cw = svg.getBoundingClientRect().width || 680;
+    const narrow = cw > 0 && cw < 560;
+    const W = narrow ? 440 : 680, H = +svg.dataset.h;
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    const m = { l: cfg.ml !== undefined ? cfg.ml : (narrow ? 54 : 62), r: narrow ? 12 : 18, t: 16, b: 42 };
+    const [x0, x1] = cfg.x, [y0, y1] = cfg.y;
+    const X = v => m.l + (v - x0) / (x1 - x0) * (W - m.l - m.r);
+    const Y = v => m.t + (1 - (v - y0) / (y1 - y0)) * (H - m.t - m.b);
+    const g = el("g", { class: "ax" }, svg);
+    (cfg.bands || []).forEach(bd => el("rect", { x: X(bd[0]), y: m.t, width: Math.max(0, X(bd[1]) - X(bd[0])), height: H - m.t - m.b, style: "fill: " + bd[2] }, g));
+    (cfg.yt || []).forEach(v => {
+      el("line", { x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v), style: "stroke: var(--grid)", "stroke-width": 1 }, g);
+      el("text", { x: m.l - 8, y: Y(v) + 4, "text-anchor": "end", style: "fill: var(--muted)" }, g).textContent = cfg.yf ? cfg.yf(v) : v;
+    });
+    (cfg.xt || []).forEach(v => {
+      if (!cfg.noxgrid) el("line", { x1: X(v), x2: X(v), y1: m.t, y2: H - m.b, style: "stroke: var(--grid)", "stroke-width": 1 }, g);
+      el("text", { x: X(v), y: H - m.b + 18, "text-anchor": "middle", style: "fill: var(--muted)" + (cfg.xsans ? "; font-family: var(--font-body); font-size: 12.5px" : "") }, g).textContent = cfg.xf ? cfg.xf(v) : v;
+    });
+    if (cfg.zero !== undefined) el("line", { x1: m.l, x2: W - m.r, y1: Y(cfg.zero), y2: Y(cfg.zero), style: "stroke: var(--muted)", "stroke-width": 1 }, g);
+    if (cfg.frame) el("line", { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, style: "stroke: var(--muted)", "stroke-width": 1 }, g);
+    el("text", { x: (m.l + W - m.r) / 2, y: H - 6, "text-anchor": "middle", style: "fill: var(--muted); font-family: var(--font-body); font-size: 12.5px" }, g).textContent = cfg.xlabel || "";
+    const cy = (m.t + H - m.b) / 2;
+    el("text", { x: 11, y: cy, "text-anchor": "middle", transform: `rotate(-90 11 ${cy})`, style: "fill: var(--muted); font-family: var(--font-body); font-size: 12.5px" }, g).textContent = cfg.ylabel || "";
+    const id = "cl" + Math.random().toString(36).slice(2, 8);
+    const cp = el("clipPath", { id }, svg); el("rect", { x: m.l, y: m.t - 2, width: W - m.l - m.r, height: H - m.t - m.b + 4 }, cp);
+    const sg = el("g", { "clip-path": `url(#${id})` }, svg);
+    (cfg.vlines || []).forEach(vl => el("line", { x1: X(vl[0]), x2: X(vl[0]), y1: m.t, y2: H - m.b, style: `stroke: ${vl[1]}; stroke-dasharray: ${vl[2] || "4 4"}`, "stroke-width": 1.2 }, sg));
+    (cfg.bars || []).forEach(b => {
+      const bw = (X(b.w) - X(0));
+      const base = b.base !== undefined ? b.base : y0;
+      const ya = Y(b.y), yb = Y(base);
+      el("rect", { x: X(b.x) - bw / 2, y: Math.min(ya, yb), width: bw, height: Math.max(1, Math.abs(yb - ya)), rx: 2, style: `fill: ${b.color}` }, sg);
+    });
+    (cfg.series || []).forEach(s => {
+      const d = s.pts.map((p, i) => (i ? "L" : "M") + X(p[0]).toFixed(1) + " " + Y(p[1]).toFixed(1)).join("");
+      el("path", { d, style: `fill: none; stroke: ${s.color}; stroke-width: ${s.w || 2.2}; ${s.dash ? "stroke-dasharray:" + s.dash + ";" : ""} opacity: ${s.op || 1}`, "stroke-linejoin": "round" }, sg);
+    });
+    (cfg.dots || []).forEach(dt => el("circle", { cx: X(dt[0]), cy: Y(dt[1]), r: dt[3] || 4, style: `fill: ${dt[2]}` }, sg));
+    (cfg.labels || []).forEach(lb => {
+      el("text", { x: X(lb[0]) + (lb[3] || 0), y: Y(lb[1]) + (lb[4] === undefined ? -8 : lb[4]), "text-anchor": lb[5] || "middle", style: `fill: ${lb[6] || "var(--ink)"}; font-family: ${lb[7] ? "var(--font-body)" : "var(--font-mono)"}; font-size: ${lb[7] ? "12.5px" : "11.5px"}` }, sg).textContent = lb[2];
+    });
+    return { X, Y, narrow };
+  }
+  const range = (a, b, st) => { const o = []; for (let v = a; v <= b + 1e-9; v += st) o.push(+v.toFixed(6)); return o; };
+  const reg = (ch, f) => { (redraws[ch] = redraws[ch] || []).push(f); };
+  let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => (redraws[current] || []).forEach(f => f()), 150); });
+  const sgn = (v, d) => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(d);
+  const money = v => (v < 0 ? "−$" : "+$") + Math.abs(Math.round(v)).toLocaleString("en-US");
+  const niceStep = span => { const raw = span / 5, p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p; return (f < 1.5 ? 1 : f < 3.5 ? 2 : f < 7.5 ? 5 : 10) * p; };
+  const ticks = (a, b) => { const st = niceStep(b - a); const o = []; for (let v = Math.ceil(a / st) * st; v <= b + 1e-9; v += st) o.push(+v.toFixed(6)); return o; };
+
+  // normal & Black-Scholes
+  const npdf = x => Math.exp(-x * x / 2) / Math.sqrt(2 * Math.PI);
+  function ncdf(x) { const t = 1 / (1 + 0.2316419 * Math.abs(x)); const d = npdf(x); const p = d * t * (0.319381530 + t * (-0.356563782 + t * (1.781477937 + t * (-1.821255978 + t * 1.330274429)))); return x > 0 ? 1 - p : p; }
+  function bsCall(S, K, T, s, r) { r = r === undefined ? 0.04 : r; const d1 = (Math.log(S / K) + (r + s * s / 2) * T) / (s * Math.sqrt(T)), d2 = d1 - s * Math.sqrt(T); return S * ncdf(d1) - K * Math.exp(-r * T) * ncdf(d2); }
+  function bsGamma(S, K, T, s, r) { r = r === undefined ? 0.04 : r; const d1 = (Math.log(S / K) + (r + s * s / 2) * T) / (s * Math.sqrt(T)); return npdf(d1) / (S * s * Math.sqrt(T)); }
+
+  // generic toggle groups
+  function group(box, onChange) {
+    const btns = [...box.querySelectorAll("button")];
+    const set = v => { btns.forEach(b => b.setAttribute("aria-pressed", b.dataset.v === String(v) ? "true" : "false")); };
+    box.addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; set(b.dataset.v); onChange(b.dataset.v); });
+    return set;
+  }
+  const pills = (arr, cls) => arr.map(t => `<span class="pill ${cls}">${t}</span>`).join("");
+
+  function bsPut(S, K, T, s, r) { r = r === undefined ? 0.04 : r; if (K <= 0) return 0; const d1 = (Math.log(S / K) + (r + s * s / 2) * T) / (s * Math.sqrt(T)), d2 = d1 - s * Math.sqrt(T); return K * Math.exp(-r * T) * ncdf(-d2) - S * ncdf(-d1); }
+
+  // ---------- 1-1 narrative scorecard ----------
+  (function () {
+    const st = { law: 2, bi: 1, dur: 2, moat: 2, crowd: 0, val: 0 };
+    const out = $("score-out");
+    const Q = [
+      { k: "build", t: "分批建仓", d: "叙事可靠，价格也合理" },
+      { k: "wait", t: "观察名单，等价格", d: "叙事可靠，但已经被定价" },
+      { k: "trade", t: "只做有期限的交易", d: "价格便宜，但叙事不牢靠" },
+      { k: "avoid", t: "回避", d: "叙事不牢靠，价格也不便宜" }
+    ];
+    function render() {
+      const D = st.law + st.bi + st.dur + st.moat, P = st.crowd + st.val;
+      const k = D >= 5 ? (P >= 3 ? "build" : "wait") : (P >= 3 ? "trade" : "avoid");
+      const txt = {
+        build: "方向清楚、政策已经落地，而且还没有被市场充分定价。按计划分批买入，每一批之间留出时间，并写好事实型的失效条件。",
+        wait: "这是大多数热门主题的位置：故事很好，所有人都知道。把它放进观察名单，等回调、等估值回到合理区间、等波动率下降。叙事决定研究什么，估值决定什么时候买。",
+        trade: "价格看起来便宜，但政策还停留在表态、只有一党支持，或者需求只是一次性的。可以做有期限、有限风险的交易，不要当成长期配置。",
+        avoid: "叙事不牢靠，价格也不便宜。最好的决定是不参与，把注意力留给更好的机会。"
+      }[k];
+      const weak = [];
+      if (st.law === 0) weak.push("政策还只是表态");
+      if (st.bi === 0) weak.push("只有一党支持，换届后可能被改写");
+      if (st.dur === 0) weak.push("需求可能只是一次性的");
+      if (st.moat === 0) weak.push("受益者容易被替代");
+      if (st.crowd === 0) weak.push("讨论度过高，可能已经拥挤");
+      if (st.val === 0) weak.push("估值昂贵");
+      out.innerHTML = `<h4>${Q.find(q => q.k === k).t}<span class="match">耐久度 ${D}/8 · 价格 ${P}/4</span></h4>` +
+        `<div class="quad">${Q.map(q => `<div class="${q.k === k ? "on" : ""}"><b>${q.t}</b>${q.d}</div>`).join("")}</div>` +
+        `<p>${txt}</p>` + (weak.length ? `<div class="row"><b>最弱的地方</b>${weak.join("；")}。</div>` : "");
+    }
+    document.querySelectorAll("#score .seg3").forEach(box => {
+      const key = box.dataset.k;
+      const set = group(box, v => { st[key] = +v; render(); });
+      set(st[key]);
+    });
+    render();
+  })();
+
+  // ---------- 4-1 conflict stages ----------
+  (function () {
+    const D = {
+      esc: { t: "冲突升级", s: ["原油里的风险溢价上升，航运保险费和运费上涨", "避险资金流向黄金和美元，波动率上升", "国防的应急采购增加，弹药和防空需求最急", "高油价开始推高通胀预期，利率随之上行（见宏观手册第 2 章）"], up: ["上游油气", "油轮", "国防", "黄金"], dn: ["航空", "邮轮与旅游", "化工下游", "高估值成长股"], v: "油价是持续高于冲突前的区间，还是冲高回落？航运保险费率是否继续上升？" },
+      stand: { t: "长期对峙", s: ["市场逐渐习惯，风险溢价部分回吐，但不会完全消失", "国防订单从应急采购转向补充库存，能见度更高", "受阻的航线被替代路线取代，绕行成本成为常态"], up: ["国防（补库存）", "能源（如果供给持续受限）", "替代航线的港口和物流"], dn: ["依赖受阻航线的运输", "能源密集型制造业"], v: "国防订单积压是否继续增长？油价的波动率是否在下降？" },
+      cease: { t: "停火谈判", s: ["原油风险溢价快速回吐，航运保险费回落", "被冲突压制最狠的板块反弹最猛", "避险资产短期承压"], up: ["航空", "旅游", "化工下游", "新兴市场"], dn: ["能源", "油轮", "黄金（短期）", "只靠应急订单的国防公司"], v: "停火有没有执行和监督机制？航运公司是否开始恢复原来的航线？" },
+      post: { t: "战后重建", s: ["重建需要大量钢铁、水泥、工程服务和电力设备", "能源基础设施修复，供给逐步恢复", "冲突的教训推动长期备战开支，国防预算不随停火回落"], up: ["工程建设", "建材", "电力设备", "长期国防承包商"], dn: ["战时溢价资产", "能源（供给恢复后）"], v: "重建资金是否真正到位（国际援助、贷款、预算）？长期国防预算是否写进了法律？" }
+    };
+    const out = $("war-out");
+    function render(k) {
+      const r = D[k];
+      out.innerHTML = `<div class="verdict"><h4>${r.t}</h4><div class="chain">${r.s.map((t, i) => `<div class="step"><b>${i + 1}</b><div>${t}</div></div>`).join("")}</div>` +
+        `<div class="row" style="margin-top:10px"><b>相对受益</b>${pills(r.up, "up")}</div><div class="row"><b>相对受压</b>${pills(r.dn, "down")}</div>` +
+        `<p style="margin-top:8px"><strong>验证：</strong>${r.v}</p></div>`;
+    }
+    const set = group($("war-pick"), render);
+    set("esc"); render("esc");
+  })();
+
+  // ---------- 5-1 price floor ----------
+  (function () {
+    const svg = $("f-pf"), mS = $("pf-m"), fS = $("pf-f");
+    const COST = 70;
+    function draw() {
+      const m = +mS.value, f = +fS.value;
+      $("pf-m-o").textContent = "$" + m; $("pf-f-o").textContent = f > 0 ? "$" + f : "无";
+      const xs = range(30, 160, 1);
+      plot(svg, {
+        x: [30, 160], y: [-50, 100], xt: range(30, 150, 20), yt: [-40, -20, 0, 20, 40, 60, 80, 100],
+        xf: v => "$" + v, yf: v => (v < 0 ? "−$" : "$") + Math.abs(v), xlabel: "市场价格（美元 / 公斤）", ylabel: "每公斤利润", zero: 0,
+        vlines: [[m, "var(--muted)"]].concat(f > 0 ? [[f, "var(--accent)", "2 4"]] : []),
+        series: [{ pts: xs.map(x => [x, x - COST]), color: "var(--muted)", w: 1.8, dash: "6 4" }, { pts: xs.map(x => [x, Math.max(x, f) - COST]), color: "var(--accent)", w: 2.6 }],
+        dots: [[m, m - COST, "var(--muted)", 4.5], [m, Math.max(m, f) - COST, "var(--accent)", 5]],
+        labels: f > 0 ? [[f, 100, "底价 $" + f, 6, 14, "start", "var(--accent)"]] : []
+      });
+      const put = bsPut(m, f, 1, 0.4);
+      $("pf-r1").textContent = (m - COST < 0 ? "−$" : "$") + Math.abs(m - COST);
+      $("pf-r2").textContent = (Math.max(m, f) - COST < 0 ? "−$" : "$") + Math.abs(Math.max(m, f) - COST);
+      $("pf-r3").textContent = "$" + put.toFixed(2) + " / 公斤";
+    }
+    mS.addEventListener("input", draw); fS.addEventListener("input", draw);
+    reg(5, draw);
+  })();
+
+  // ---------- 6-1 tariff pass-through ----------
+  (function () {
+    const svg = $("f-tf"), tS = $("tf-t"), pS = $("tf-p"), eS = $("tf-e");
+    const COGS = 60, IMP = 0.5, GP0 = 40;
+    const calc = (t, p, e) => { const add = COGS * IMP * t, dp = add * p, q = Math.max(0, 1 - e * dp / 100); const gp = q * ((100 + dp) - (COGS + add)); return { add, dp, q, gp, chg: (gp / GP0 - 1) * 100, m: ((100 + dp) - (COGS + add)) / (100 + dp) * 100 }; };
+    function draw() {
+      const t = +tS.value / 100, p = +pS.value / 100, e = +eS.value / 10;
+      $("tf-t-o").textContent = tS.value + "%"; $("tf-p-o").textContent = pS.value + "%"; $("tf-e-o").textContent = e.toFixed(1);
+      const xs = range(0, 100, 1);
+      const a = xs.map(x => calc(t, x / 100, e).chg), b = xs.map(x => calc(t, x / 100, 0).chg);
+      const lo = Math.min(...a, ...b), hi = Math.max(...a, ...b, 0);
+      const y0 = Math.floor((lo - 4) / 10) * 10, y1 = Math.max(5, Math.ceil((hi + 2) / 5) * 5);
+      const cur = calc(t, p, e);
+      plot(svg, {
+        x: [0, 100], y: [y0, y1], xt: range(0, 100, 20), yt: ticks(y0, y1), xf: v => v + "%", yf: v => sgn(v, 0) + "%",
+        xlabel: "把新增成本转嫁给客户的比例", ylabel: "毛利润变化", zero: 0,
+        series: [{ pts: xs.map((x, i) => [x, b[i]]), color: "var(--muted)", w: 1.8, dash: "6 4" }, { pts: xs.map((x, i) => [x, a[i]]), color: "var(--accent)", w: 2.6 }],
+        dots: [[p * 100, cur.chg, "var(--accent)", 5]],
+        labels: [[p * 100, cur.chg, sgn(cur.chg, 1) + "%", 0, cur.chg > (y0 + y1) / 2 ? 18 : -12, "middle", "var(--accent)"]]
+      });
+      $("tf-r1").textContent = cur.add.toFixed(1) + "%";
+      $("tf-r2").textContent = "+" + cur.dp.toFixed(2) + "% / " + sgn(-(1 - cur.q) * 100, 2) + "%";
+      $("tf-r3").textContent = sgn(cur.chg, 1) + "%";
+      $("tf-r4").textContent = cur.m.toFixed(1) + "%";
+    }
+    [tS, pS, eS].forEach(s => s.addEventListener("input", draw));
+    reg(6, draw);
+  })();
+
+  // ---------- 10-1 covered call ----------
+  (function () {
+    const svg = $("f-cc"), vS = $("cc-v"), oS = $("cc-o");
+    const S = 50, T = 30 / 365;
+    const cc = (iv, otm) => { const K = S * (1 + otm); const c = bsCall(S, K, T, iv); const d2 = (Math.log(S / K) + (0.04 - iv * iv / 2) * T) / (iv * Math.sqrt(T)); return { prem: c / S * 100, p: ncdf(d2) * 100 }; };
+    function draw() {
+      const iv = +vS.value / 100, otm = +oS.value / 100;
+      $("cc-v-o").textContent = vS.value + "%"; $("cc-o-o").textContent = oS.value + "%";
+      const xs = range(15, 80, 0.5);
+      const pts = xs.map(x => cc(x / 100, otm));
+      const ymax = Math.max(60, Math.ceil(Math.max(...pts.map(q => q.prem * 12)) / 20) * 20);
+      const cur = cc(iv, otm);
+      plot(svg, {
+        x: [15, 80], y: [0, ymax], xt: range(20, 80, 10), yt: ticks(0, ymax), xf: v => v + "%", yf: v => v + "%",
+        xlabel: "隐含波动率", ylabel: "百分比",
+        series: [{ pts: xs.map((x, i) => [x, pts[i].prem * 12]), color: "var(--accent)", w: 2.6 }, { pts: xs.map((x, i) => [x, pts[i].p]), color: "var(--loss)", w: 2, dash: "6 4" }],
+        dots: [[iv * 100, cur.prem * 12, "var(--accent)", 5], [iv * 100, cur.p, "var(--loss)", 4.5]]
+      });
+      $("cc-r1").textContent = cur.prem.toFixed(2) + "%";
+      $("cc-r2").textContent = (cur.prem * 12).toFixed(1) + "%";
+      $("cc-r3").textContent = cur.p.toFixed(1) + "%";
+    }
+    vS.addEventListener("input", draw); oS.addEventListener("input", draw);
+    reg(10, draw);
+  })();
+
+  // ---------- template copy ----------
+  $("tpl-copy").addEventListener("click", () => {
+    const txt = $("tpl").textContent, msg = $("tpl-msg");
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents($("tpl")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); msg.textContent = "已选中，按 ⌘C 或 Ctrl+C 复制"; };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(() => { msg.textContent = "已复制"; }, fallback); else fallback();
+  });
+
+  // ---------- checklists ----------
+  document.querySelectorAll(".card input[type=checkbox]").forEach(cb => {
+    cb.checked = store.get("pn-" + cb.id) === "1";
+    cb.addEventListener("change", () => store.set("pn-" + cb.id, cb.checked ? "1" : "0"));
+  });
+
+  // ---------- boot ----------
+  const hm = location.hash.match(/^#c(\d+)$/);
+  const saved = store.get("pn-ch");
+  show(hm ? +hm[1] : (saved !== null ? +saved : 0), false);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1895 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>宏观交易框架 · hanoptions.trade</title>
+<meta name="description" content="十二章研习手册：跨资产仪表盘、利率与估值、市场体制、广度与资金流、事件剧本，从观点到交易。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700;900&display=swap">
+<style>
+/* Layout: a macro desk handbook. Chapter rail on the left, one chapter on stage at a time,
+   each chapter opens with a large serif number; figures and switchboards sit on plates. */
+:root {
+  --paper: #f2f4f6;
+  --plate: #ffffff;
+  --ink: #161f2a;
+  --muted: #5c6774;
+  --rule: #d5dbe2;
+  --grid: #e6eaef;
+  --accent: #1c5a8c;
+  --calm: #0f6a63;
+  --loss: #b13450;
+  --warn: #9c5c00;
+  --tint-accent: rgba(28, 90, 140, .08);
+  --tint-calm: rgba(15, 106, 99, .08);
+  --tint-loss: rgba(177, 52, 80, .08);
+  --tint-warn: rgba(156, 92, 0, .09);
+  --font-display: "Noto Serif SC", "Songti SC", "STSong", serif;
+  --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0e141b; --plate: #151d26; --ink: #e2e8ef; --muted: #94a1ae; --rule: #26313d; --grid: #1b2530;
+    --accent: #7fb3e8; --calm: #4cc2b5; --loss: #f07a93; --warn: #f0a943;
+    --tint-accent: rgba(127, 179, 232, .10); --tint-calm: rgba(76, 194, 181, .10);
+    --tint-loss: rgba(240, 122, 147, .10); --tint-warn: rgba(240, 169, 67, .10);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0e141b; --plate: #151d26; --ink: #e2e8ef; --muted: #94a1ae; --rule: #26313d; --grid: #1b2530;
+  --accent: #7fb3e8; --calm: #4cc2b5; --loss: #f07a93; --warn: #f0a943;
+  --tint-accent: rgba(127, 179, 232, .10); --tint-calm: rgba(76, 194, 181, .10);
+  --tint-loss: rgba(240, 122, 147, .10); --tint-warn: rgba(240, 169, 67, .10);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 16.5px; line-height: 1.85; -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* masthead */
+.mast { border-bottom: 1px solid var(--rule); }
+.mast-inner { max-width: 1180px; margin: 0 auto; padding-inline: 24px; padding-block: 34px 28px; display: flex; flex-wrap: wrap; gap: 6px 40px; align-items: end; justify-content: space-between; }
+.mast-title { min-width: 0; }
+.eyebrow { font-size: 13px; color: var(--muted); letter-spacing: .08em; margin: 0 0 6px; }
+.mast h1 { font-family: var(--font-display); font-weight: 900; font-size: clamp(36px, 6vw, 60px); line-height: 1.05; margin: 0; letter-spacing: .02em; }
+.deck { margin: 10px 0 0; color: var(--muted); max-width: 40em; font-size: 16.5px; }
+.mast-stat { font-size: 13.5px; color: var(--muted); line-height: 1.6; max-width: 22em; border-left: 1px solid var(--rule); padding-left: 18px; }
+.mast-stat b { display: block; font-family: var(--font-mono); font-size: 30px; font-weight: 500; color: var(--loss); line-height: 1.2; }
+
+/* shell */
+.shell { max-width: 1180px; margin: 0 auto; padding-inline: 24px; padding-block: 36px 80px; display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 56px; }
+.rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 20px); align-self: start; max-height: calc(100vh - 40px); overflow: auto; }
+.rail ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.rail button { width: 100%; text-align: left; font: inherit; font-size: 14.5px; line-height: 1.45; color: var(--muted); background: transparent; border: 0; border-radius: 6px; padding: 8px 10px; cursor: pointer; display: grid; grid-template-columns: 34px 1fr; gap: 4px; }
+.rail button .k { font-family: var(--font-mono); font-size: 12.5px; padding-top: 2px; }
+.rail button:hover { background: var(--grid); color: var(--ink); }
+.rail button[aria-current="true"] { background: var(--tint-accent); color: var(--accent); font-weight: 500; }
+.picker { display: none; }
+main { min-width: 0; max-width: 760px; }
+
+@media (max-width: 920px) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 0; padding-inline: 16px; padding-block: 0 64px; }
+  .rail { display: none; }
+  .picker { display: block; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); padding-block: 12px; border-bottom: 1px solid var(--rule); margin-bottom: 24px; }
+  .picker select { width: 100%; font: inherit; font-size: 15px; padding: 9px 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--plate); color: var(--ink); }
+  .mast-inner { padding-inline: 16px; padding-block: 26px 22px; }
+  .mast-stat { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 12px; }
+}
+
+/* chapter */
+.chapter-head { display: grid; grid-template-columns: auto 1fr; gap: 4px 22px; align-items: end; margin-bottom: 26px; padding-bottom: 20px; border-bottom: 1px solid var(--rule); }
+.chapter-head .no { font-family: var(--font-display); font-weight: 900; font-size: 84px; line-height: .85; color: var(--accent); grid-row: span 2; }
+.chapter-head .kicker { font-size: 13px; color: var(--muted); letter-spacing: .08em; }
+.chapter-head h2 { font-family: var(--font-display); font-size: clamp(26px, 3.6vw, 34px); line-height: 1.25; margin: 0; text-wrap: balance; }
+@media (max-width: 560px) { .chapter-head .no { font-size: 58px; } }
+h3 { font-family: var(--font-display); font-size: 21px; margin: 40px 0 10px; line-height: 1.35; text-wrap: balance; }
+h4 { font-size: 16px; margin: 22px 0 6px; }
+p { margin: 0 0 16px; max-width: 68ch; }
+ul, ol { padding-left: 1.3em; margin: 0 0 16px; max-width: 68ch; }
+li + li { margin-top: 5px; }
+.lead { font-size: 18.5px; line-height: 1.8; }
+.num { font-family: var(--font-mono); font-size: .93em; font-variant-numeric: tabular-nums; }
+.pull { font-family: var(--font-display); font-size: 22px; line-height: 1.6; margin: 28px 0; padding: 4px 0 4px 22px; border-left: 3px solid var(--accent); max-width: 34em; }
+
+.note { margin: 22px 0 24px; padding: 16px 20px 6px; border-radius: 6px; background: var(--tint-accent); }
+.note .tag { display: block; font-size: 12px; letter-spacing: .1em; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+.note p, .note ul, .note ol { font-size: 15.5px; }
+.note.warn { background: var(--tint-warn); } .note.warn .tag { color: var(--warn); }
+.note.loss { background: var(--tint-loss); } .note.loss .tag { color: var(--loss); }
+.note.calm { background: var(--tint-calm); } .note.calm .tag { color: var(--calm); }
+
+.tbl { overflow-x: auto; margin: 18px 0 26px; border: 1px solid var(--rule); border-radius: 6px; background: var(--plate); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; font-variant-numeric: tabular-nums; }
+caption { caption-side: top; text-align: left; padding: 12px 16px 4px; font-size: 13px; color: var(--muted); }
+th, td { padding: 9px 14px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+td.r, th.r { text-align: right; }
+td.mono { font-family: var(--font-mono); }
+thead th { font-size: 12.5px; color: var(--muted); font-weight: 500; letter-spacing: .04em; white-space: nowrap; }
+tbody tr:last-child td { border-bottom: 0; }
+.hl td { background: var(--tint-accent); }
+
+/* bias cards */
+.biases { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: 14px; margin: 18px 0 26px; }
+.bias { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px 12px; min-width: 0; }
+.bias h4 { margin: 0 0 8px; font-size: 16.5px; display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.bias h4 small { font-family: var(--font-mono); font-weight: 400; font-size: 11.5px; color: var(--muted); letter-spacing: .02em; }
+.bias dl { margin: 0; display: grid; grid-template-columns: 3.4em 1fr; gap: 4px 10px; font-size: 14.5px; line-height: 1.7; }
+.bias dt { color: var(--muted); font-size: 13px; padding-top: 1px; }
+.bias dd { margin: 0; }
+.bias dd.fix { color: var(--accent); }
+
+/* figures */
+figure.plate { margin: 26px 0 32px; background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 18px 18px 14px; }
+.fig-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 6px; }
+.fig-title { font-weight: 700; font-size: 15.5px; }
+.fig-no { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); }
+svg.chart { width: 100%; height: auto; display: block; }
+.scroll-x { overflow-x: auto; }
+svg.chart.wide { min-width: 620px; }
+figcaption { font-size: 13.5px; color: var(--muted); line-height: 1.7; margin-top: 8px; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 6px 0 4px; align-items: center; }
+.ctl { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--muted); }
+.ctl input[type="range"] { width: 150px; accent-color: var(--accent); }
+.ctl output { font-family: var(--font-mono); color: var(--ink); min-width: 4em; font-variant-numeric: tabular-nums; }
+.btn { font: inherit; font-size: 13.5px; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); cursor: pointer; }
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); margin-top: 4px; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 18px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.legend i.dash { border-top-style: dashed; }
+.readout { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 12px; }
+.readout div { border-top: 1px solid var(--rule); padding-top: 8px; min-width: 0; }
+.readout b { display: block; font-family: var(--font-mono); font-size: 19px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.readout small { font-size: 12.5px; color: var(--muted); }
+.ax { font-family: var(--font-mono); font-size: 11.5px; }
+
+/* calculator */
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 8px 0 4px; }
+.form-grid label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+.form-grid input { font: inherit; font-family: var(--font-mono); padding: 7px 10px; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); color: var(--ink); width: 100%; }
+
+/* template */
+pre.tpl { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 16px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.7; overflow-x: auto; white-space: pre; margin: 8px 0; }
+
+/* checklists */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; margin: 18px 0 12px; }
+.card { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; min-width: 0; }
+.card h4 { margin: 0 0 8px; }
+.card ul { list-style: none; padding: 0; margin: 0; font-size: 14.5px; line-height: 1.65; }
+.card li { display: grid; grid-template-columns: 22px 1fr; gap: 4px; align-items: start; }
+.card input[type="checkbox"] { margin-top: 5px; accent-color: var(--accent); }
+
+/* quiz */
+.quiz { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 6px 18px 18px; margin: 18px 0; }
+.qrow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 18px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.qrow:last-of-type { border-bottom: 0; }
+.qrow p { margin: 0; font-size: 15px; line-height: 1.6; }
+.scale { display: inline-flex; gap: 4px; }
+.scale label { position: relative; }
+.scale input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.scale span { display: grid; place-items: center; width: 34px; height: 30px; border: 1px solid var(--rule); border-radius: 5px; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.scale input:checked + span { background: var(--accent); color: var(--plate); border-color: var(--accent); }
+.scale input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 560px) { .qrow { grid-template-columns: minmax(0, 1fr); } }
+.scale-legend { font-size: 12.5px; color: var(--muted); margin: 10px 0 0; }
+.result { margin-top: 18px; display: grid; gap: 10px; }
+.bar-row { display: grid; grid-template-columns: 5.5em minmax(0, 1fr) 4.5em; gap: 12px; align-items: center; font-size: 14px; }
+.bar-track { height: 10px; background: var(--grid); border-radius: 5px; overflow: hidden; }
+.bar-fill { height: 100%; width: 0; background: var(--accent); border-radius: 5px; transition: width .3s; }
+.bar-fill.hi { background: var(--loss); }
+@media (prefers-reduced-motion: reduce) { .bar-fill { transition: none; } }
+.bar-row .val { font-family: var(--font-mono); text-align: right; color: var(--muted); }
+.advice { font-size: 14.5px; color: var(--ink); margin-top: 6px; }
+
+/* pager */
+.pager { display: flex; justify-content: space-between; gap: 16px; margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule); flex-wrap: wrap; }
+.pager button { font: inherit; background: transparent; border: 1px solid var(--rule); border-radius: 8px; padding: 10px 16px; cursor: pointer; color: var(--ink); text-align: left; max-width: 48%; min-width: 0; }
+.pager button small { display: block; font-size: 12px; color: var(--muted); }
+.pager button:hover { border-color: var(--accent); }
+.pager button.next { margin-left: auto; text-align: right; }
+@media (max-width: 560px) { .pager button { max-width: 100%; width: 100%; } .pager button.next { text-align: left; } }
+
+footer.end { margin-top: 48px; font-size: 13px; color: var(--muted); }
+footer.end p { max-width: none; }
+
+/* switchboard (interactive toggles) */
+.board { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 10px; margin: 6px 0 12px; }
+.sw { display: grid; gap: 6px; background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px; min-width: 0; }
+.sw > span { font-size: 13.5px; color: var(--ink); font-weight: 500; }
+.seg3 { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; width: max-content; max-width: 100%; }
+.seg3 button { font: inherit; font-size: 13px; background: var(--plate); color: var(--muted); border: 0; padding: 4px 11px; cursor: pointer; }
+.seg3 button + button { border-left: 1px solid var(--rule); }
+.seg3 button[aria-pressed="true"] { background: var(--accent); color: var(--plate); }
+.verdict { border-top: 1px solid var(--rule); padding-top: 12px; margin-top: 4px; }
+.verdict h4 { margin: 0 0 6px; font-family: var(--font-display); font-size: 19px; color: var(--accent); }
+.verdict p, .verdict ul { font-size: 14.5px; margin-bottom: 8px; }
+.pill { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 999px; background: var(--tint-accent); color: var(--accent); margin: 0 4px 4px 0; }
+.pill.up { background: var(--tint-calm); color: var(--calm); }
+.pill.down { background: var(--tint-loss); color: var(--loss); }
+.chain { display: grid; gap: 8px; margin: 8px 0 4px; }
+.chain .step { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; align-items: start; font-size: 14.5px; }
+.chain .step b { font-family: var(--font-mono); font-weight: 500; color: var(--accent); font-size: 13px; padding-top: 2px; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 12px; margin-top: 10px; }
+.two > div { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 14px; min-width: 0; }
+.two h5 { margin: 0 0 4px; font-size: 13.5px; }
+.two ul { font-size: 14px; margin: 0; padding-left: 1.1em; }
+
+/* macro-only additions */
+.formula { font-family: var(--font-mono); background: var(--plate); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 16px; margin: 14px 0 18px; font-size: 14.5px; line-height: 1.8; overflow-x: auto; max-width: 68ch; }
+.formula small { display: block; font-family: var(--font-body); color: var(--muted); font-size: 13px; }
+.v { font-family: var(--font-display); font-style: italic; }
+.qa { margin: 14px 0 24px; }
+.qa details { border-top: 1px solid var(--rule); padding: 12px 0; }
+.qa details:last-child { border-bottom: 1px solid var(--rule); }
+.qa summary { cursor: pointer; font-weight: 500; font-size: 15.5px; line-height: 1.65; list-style: none; display: grid; grid-template-columns: 2.4em minmax(0, 1fr); }
+.qa summary::-webkit-details-marker { display: none; }
+.qa summary .k { font-family: var(--font-mono); color: var(--accent); font-size: 13px; padding-top: 3px; }
+.qa details[open] summary { color: var(--accent); }
+.qa details > div { padding: 8px 0 0 2.4em; font-size: 15px; }
+.qa details > div p { margin-bottom: 8px; }
+.verdict .row { font-size: 13.5px; color: var(--muted); margin: 2px 0 4px; }
+.verdict .row b { font-weight: 500; color: var(--ink); margin-right: 6px; }
+.match { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); font-weight: 400; margin-left: 8px; }
+.copyrow { display: flex; gap: 12px; align-items: center; margin-top: 6px; }
+.copyrow small { color: var(--muted); font-size: 13px; }
+.form-grid select { font: inherit; font-family: var(--font-mono); padding: 7px 10px; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); color: var(--ink); width: 100%; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips button { font: inherit; font-size: 13.5px; line-height: 1.5; padding: 5px 12px; border: 1px solid var(--rule); border-radius: 999px; background: var(--paper); color: var(--muted); cursor: pointer; }
+.chips button:hover { border-color: var(--accent); color: var(--accent); }
+.chips button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--plate); }
+.out-h { font-family: var(--font-display); font-size: 18px; margin: 14px 0 4px; color: var(--accent); }
+#reg.board { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.ek { font-family: var(--font-body); font-size: .86em; color: var(--muted); font-weight: 400; }
+
+/* ---------- site bar (hanoptions.trade) ---------- */
+.sitebar { border-bottom: 1px solid var(--rule); background: var(--paper); font-size: 13.5px; line-height: 1.4; }
+.sitebar-inner { max-width: 1180px; margin: 0 auto; padding: 9px 24px; display: flex; gap: 18px; align-items: center; justify-content: space-between; }
+.sitebar-home { font-family: var(--font-mono); color: var(--muted); text-decoration: none; letter-spacing: .02em; white-space: nowrap; }
+.sitebar-home:hover { color: var(--ink); }
+.sitebar-links { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.sitebar-links::-webkit-scrollbar { display: none; }
+.sitebar-links a { color: var(--muted); text-decoration: none; padding: 3px 9px; border-radius: 4px; white-space: nowrap; }
+.sitebar-links a:hover { color: var(--ink); background: var(--grid); }
+.sitebar-links a[aria-current="page"] { color: var(--ink); background: var(--plate); box-shadow: inset 0 0 0 1px var(--rule); }
+@media (max-width: 900px) { .sitebar-inner { padding-inline: 16px; } }
+@media (max-width: 480px) { .sitebar-inner { gap: 10px; } .sitebar-links a { padding: 3px 7px; } }
+</style>
+</head>
+<body>
+<nav class="sitebar" aria-label="站点导航"><div class="sitebar-inner"><a class="sitebar-home" href="/">hanoptions.trade</a><div class="sitebar-links"><a href="/options/">美股期权课</a><a href="/psychology/">交易心理学</a><a href="/macro/" aria-current="page">宏观交易框架</a><a href="/policy/">政策叙事投资</a></div></div></nav>
+<header class="mast">
+  <div class="mast-inner">
+    <div class="mast-title">
+      <p class="eyebrow">研习手册 · 十二章</p>
+      <h1>宏观交易框架</h1>
+      <p class="deck">股价最终由盈利和利率决定，盈利和利率又被油价、美元、就业和政策推着走。这本手册把这些力量串成一张每天能用的地图：看什么，怎么推，什么时候相信，怎样下注。</p>
+    </div>
+    <div class="mast-stat"><b>−25%</b>折现率只上升 1 个百分点，一家长期增长 5% 的公司，理论估值就要下跌 25%。增长率越高，对利率越敏感。</div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="rail" aria-label="章节">
+    <ol id="rail"></ol>
+  </nav>
+
+  <main>
+    <div class="picker"><label for="pick" class="eyebrow" style="display:block">章节</label><select id="pick"></select></div>
+
+    <!-- ===================== 00 ===================== -->
+    <article class="chapter" id="c0" data-title="导读：宏观交易在做什么">
+      <div class="chapter-head"><div class="no">00</div><div class="kicker">导读</div><h2>宏观交易在做什么</h2></div>
+      <p class="lead">宏观交易并不是去预测下个季度的 GDP。它关心两个更实际的问题：钱接下来会被迫流向哪里，以及市场有没有提前想到。</p>
+
+      <h3>股价的两条腿：盈利和折现率</h3>
+      <p>任何一只股票的价格，都可以拆成两部分：</p>
+      <div class="formula">价格 = 每股盈利 × 估值倍数<small>估值倍数由利率（折现率）和投资者愿意承担风险的程度（风险溢价）决定。</small></div>
+      <p>几乎所有宏观消息，最后都落在这两条腿上。油价上涨会抬高企业成本，压低盈利；也会推高通胀，让央行更难降息，抬高折现率<span class="ek">（Discount rate）</span>。美元走强会让跨国公司的海外收入换算后缩水，同时收紧全球的融资环境。就业转弱先让市场期待降息，接着又让人担心盈利。</p>
+      <p>所以宏观分析的落点永远是三个问题：这件事会怎样改变盈利？怎样改变利率？怎样改变风险偏好<span class="ek">（Risk appetite）</span>？</p>
+
+      <h3>一个宏观交易者每天在做的六件事</h3>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">从看到变化到下单，中间隔着四步推理</span><span class="fig-no">图 0-1</span></div>
+        <div class="scroll-x">
+        <svg class="chart wide" viewBox="0 0 680 300" role="img" aria-label="宏观交易的六步循环与各章对应关系">
+          <defs><marker id="m-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--muted)"></path></marker></defs>
+          <g style="font-family: var(--font-body)">
+            <rect x="20" y="40" width="180" height="70" rx="8" style="fill: var(--tint-accent); stroke: var(--accent)"></rect>
+            <text x="110" y="70" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">观察：什么变了</text>
+            <text x="110" y="93" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">第 1 章</text>
+            <rect x="250" y="40" width="180" height="70" rx="8" style="fill: var(--plate); stroke: var(--rule)"></rect>
+            <text x="340" y="70" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">归因：为什么变</text>
+            <text x="340" y="93" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">第 2、8 章</text>
+            <rect x="480" y="40" width="180" height="70" rx="8" style="fill: var(--plate); stroke: var(--rule)"></rect>
+            <text x="570" y="70" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">推演：传到哪里</text>
+            <text x="570" y="93" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">第 2–5 章</text>
+            <rect x="480" y="190" width="180" height="70" rx="8" style="fill: var(--tint-calm); stroke: var(--calm)"></rect>
+            <text x="570" y="220" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">验证：盘面认不认</text>
+            <text x="570" y="243" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">第 6、7 章</text>
+            <rect x="250" y="190" width="180" height="70" rx="8" style="fill: var(--plate); stroke: var(--rule)"></rect>
+            <text x="340" y="220" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">表达：用什么下注</text>
+            <text x="340" y="243" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">第 9、10 章</text>
+            <rect x="20" y="190" width="180" height="70" rx="8" style="fill: var(--plate); stroke: var(--rule); stroke-dasharray: 4 4"></rect>
+            <text x="110" y="220" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">复盘：哪一环错了</text>
+            <text x="110" y="243" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">第 11 章</text>
+            <g style="stroke: var(--muted)" stroke-width="1.4" fill="none">
+              <path d="M200 75 H246" marker-end="url(#m-arrow)"></path>
+              <path d="M430 75 H476" marker-end="url(#m-arrow)"></path>
+              <path d="M570 110 V186" marker-end="url(#m-arrow)"></path>
+              <path d="M480 225 H434" marker-end="url(#m-arrow)"></path>
+              <path d="M250 225 H204" marker-end="url(#m-arrow)"></path>
+              <path d="M110 190 V114" marker-end="url(#m-arrow)"></path>
+            </g>
+            <text x="340" y="152" text-anchor="middle" style="fill: var(--loss); font-size: 12.5px">新手常跳过「验证」，直接从推演跳到下单</text>
+          </g>
+        </svg>
+        </div>
+        <figcaption>中间的四步都是推理，只有「验证」需要市场给你答案。推得再漂亮，盘面不认，就先不下注。</figcaption>
+      </figure>
+
+      <h3>为什么做个股和期权也要懂宏观</h3>
+      <p>2022 年，许多盈利仍在增长的大型科技公司，股价跌了三成到一半以上。公司没有变坏，变的是估值倍数<span class="ek">（Valuation multiple）</span>：利率从接近零快速升高，市场愿意为同样一块钱盈利支付的价格大幅下降。那一年，选股能力很难抵消宏观带来的整体下杀。</p>
+      <p>宏观主导市场的时候，个股之间的相关性<span class="ek">（Correlation）</span>会明显上升，大家一起涨、一起跌。这时你对一家公司的研究再深入，也只决定了你比别人少亏多少。对期权交易者来说更直接：利率、美元和数据日会改变整个市场的隐含波动率<span class="ek">（Implied volatility (IV)）</span>，进而改变每一张期权的价格。</p>
+
+      <h3>三个常见误区</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>误区</th><th>表现</th><th>更好的做法</th></tr></thead>
+          <tbody>
+            <tr><td>把宏观当预言</td><td>押注一个具体结果，比如「下个月一定加息」</td><td>画一张地图：列出几种情景，各自对应什么资产表现，再看市场走向哪一种</td></tr>
+            <tr><td>只读新闻标题</td><td>看到利好就买，看到利空就卖</td><td>看市场怎么反应。利好不涨、利空不跌，本身就是信号</td></tr>
+            <tr><td>把信念当事实</td><td>因为认同某种政治立场或宏大叙事<span class="ek">（Narrative）</span>，就忽略价格给出的证据</td><td>信念可以帮你决定研究什么，下注要看证据。市场不关心你支持谁</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>宏观在不同时间尺度上的用法</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>时间尺度</th><th>主导力量</th><th>常用工具</th></tr></thead>
+          <tbody>
+            <tr><td>几小时到几天</td><td>数据公布、央行讲话、期权到期<span class="ek">（Options expiration (OpEx)）</span>、机械性资金<span class="ek">（Mechanical flows）</span>流</td><td>关键点位、短期期权、价差</td></tr>
+            <tr><td>几周</td><td>利率和美元的趋势、财报<span class="ek">（Earnings report）</span>季、季节性<span class="ek">（Seasonality）</span>、板块轮动<span class="ek">（Sector rotation）</span></td><td>正股、板块 ETF、较长期限的价差</td></tr>
+            <tr><td>几个月</td><td>经济周期、政策周期、市场体制<span class="ek">（Market regime）</span></td><td>仓位高低、对冲比例<span class="ek">（Hedge ratio）</span>、现金比例</td></tr>
+            <tr><td>几年</td><td>结构性叙事：人工智能、能源与资源、制造业回流<span class="ek">（Reshoring）</span>、人口老龄化<span class="ek">（Population aging）</span></td><td>长期持有、定投<span class="ek">（Dollar-cost averaging (DCA)）</span>、长期限期权</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>同一个宏观判断，用错时间尺度的工具，结果会完全不同。一个需要半年才能兑现的逻辑，用三周后到期的期权去表达，即使方向对了，也可能亏光权利金<span class="ek">（Premium）</span>。第 10 章会专门讲这个问题。</p>
+
+      <div class="note calm"><span class="tag">怎么用这本手册</span>
+        <ul>
+          <li>第 1–4 章是零件：仪表盘<span class="ek">（Dashboard）</span>、传导链<span class="ek">（Transmission chain）</span>、利率、美元黄金与能源。</li>
+          <li>第 5–8 章是组装：体制<span class="ek">（Regime）</span>判断、广度<span class="ek">（Market breadth）</span>与轮动、资金流<span class="ek">（Fund flows）</span>、叙事。</li>
+          <li>第 9–11 章是使用：日历与事件、从观点到交易、每天可用的模板和清单。</li>
+          <li>第 1、2、3、5、6、7、9、10 章都有可以操作的图或工具，建议亲手调一调。</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ===================== 01 ===================== -->
+    <article class="chapter" id="c1" data-title="跨资产仪表盘：先看七个数字" hidden>
+      <div class="chapter-head"><div class="no">01</div><div class="kicker">第一章</div><h2>跨资产仪表盘：先看七个数字</h2></div>
+      <p class="lead">股市往往是最后一个知道消息的。债券、美元、原油和波动率经常先动，而且它们之间的组合，比任何一个单独的数字都更能说明市场在担心什么。</p>
+
+      <h3>七个数字和它们的含义</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>指标</th><th>代表什么</th><th>上升常见的含义</th><th>容易误读的地方</th></tr></thead>
+          <tbody>
+            <tr><td>2 年期美债收益率</td><td>市场对未来一两年政策利率<span class="ek">（Policy rate）</span>的预期</td><td>市场在定价更多加息，或更少降息</td><td>对数据和央行讲话最敏感，一天能动很多</td></tr>
+            <tr><td>10 年期美债收益率</td><td>增长、通胀预期<span class="ek">（Inflation expectations）</span>和期限溢价<span class="ek">（Term premium）</span>的合成</td><td>股票的折现率<span class="ek">（Discount rate）</span>上升，长久期<span class="ek">（Duration）</span>资产受压</td><td>要拆开看：是实际利率<span class="ek">（Real yield）</span>在涨，还是通胀预期在涨</td></tr>
+            <tr><td>10 年期实际利率（TIPS）</td><td>扣掉通胀预期后的真实资金成本</td><td>黄金和成长股<span class="ek">（Growth stocks）</span>的机会成本上升</td><td>解释估值变化往往比名义利率更准</td></tr>
+            <tr><td>美元指数（DXY）</td><td>美元相对一篮子主要货币</td><td>全球金融条件<span class="ek">（Financial conditions）</span>收紧，大宗商品和新兴市场<span class="ek">（Emerging markets）</span>承压</td><td>美元为什么涨，比涨了多少更重要（第 4 章）</td></tr>
+            <tr><td>原油（WTI、布伦特）</td><td>需求和供给的混合信号</td><td>通胀预期上行，消费者负担加重</td><td>需求推动的上涨和供给冲击<span class="ek">（Supply shock）</span>的上涨，对股市含义相反</td></tr>
+            <tr><td>VIX 与期限结构<span class="ek">（Term structure）</span></td><td>标普 500 未来 30 天的隐含波动率<span class="ek">（Implied volatility (IV)）</span></td><td>保护需求上升</td><td>近月高于远月（倒挂）才代表眼前的恐慌</td></tr>
+            <tr><td>高收益债利差<span class="ek">（High-yield spread）</span></td><td>投资者对违约风险的要价</td><td>信用压力在上升</td><td>通常动得慢，但一旦明显扩大，往往比股市更可靠</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>另外几个值得放在第二屏的：<strong>黄金</strong>（对货币信誉和地缘风险的对冲<span class="ek">（Hedge）</span>）、<strong>美元兑日元</strong>（套息交易的晴雨表）、<strong>铜</strong>（全球工业需求）。还有几条「领先线索」：韩国股市常常领先全球存储芯片股，金融板块经常比纳斯达克 100 早一步转向，小盘股<span class="ek">（Small caps）</span>对利率最敏感。</p>
+
+      <h3>先看变化的速度，再看水平</h3>
+      <p>10 年期收益率在 4.8% 本身说明不了多少，一个季度内从 4.0% 升到 4.8% 和一年内慢慢升上去，对股市的冲击完全不同。市场能消化缓慢的变化，消化不了急剧的变化。</p>
+      <p>一个简单的习惯：每个数字都记两个变化量，一天的和二十个交易日的。再把它和这个指标平常的波动比一比。10 年期收益率平常一天动 5 个基点左右，某天动了 15 个基点，就值得停下来问为什么。</p>
+
+      <h3>关系反常的时候最值得注意</h3>
+      <p>这些资产之间有一些「正常」的关系。当它们被打破，通常意味着市场在交易一件新的事情：</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>反常组合</th><th>正常情况</th><th>可能说明</th></tr></thead>
+          <tbody>
+            <tr><td>股票和债券一起跌</td><td>股票跌时，资金流<span class="ek">（Fund flows）</span>入国债，债券涨</td><td>市场在交易通胀或利率冲击，美债不再是对冲工具</td></tr>
+            <tr><td>美债收益率上升，美元却下跌</td><td>美国利率越高，美元越有吸引力</td><td>海外资金在减持美国资产，可能是对财政或货币信誉的担忧</td></tr>
+            <tr><td>实际利率上升，黄金也上涨</td><td>实际利率越高，持有黄金的机会成本越高</td><td>有买家在为别的东西付钱：央行购金<span class="ek">（Central bank gold buying）</span>、避险<span class="ek">（Risk-off）</span>、对冲信誉风险</td></tr>
+            <tr><td>股市上涨，VIX 也上涨</td><td>股市涨时，保护需求下降</td><td>追涨的看涨期权<span class="ek">（Call option）</span>需求很大，行情变得拥挤和脆弱</td></tr>
+            <tr><td>指数创新高，信用利差<span class="ek">（Credit spread）</span>却在扩大</td><td>风险偏好<span class="ek">（Risk appetite）</span>好的时候，信用利差收窄</td><td>债券投资者比股票投资者更早看到了风险</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">把今天的变化填进去，看看它们组合起来在说什么</span><span class="fig-no">图 1-1 · 可操作</span></div>
+        <div class="board" id="dash">
+          <div class="sw"><span>10 年期收益率</span><div class="seg3" data-k="y" role="group" aria-label="10 年期收益率"><button type="button" data-v="-1">下跌</button><button type="button" data-v="0">持平</button><button type="button" data-v="1">上升</button></div></div>
+          <div class="sw"><span>美元指数</span><div class="seg3" data-k="d" role="group" aria-label="美元指数"><button type="button" data-v="-1">下跌</button><button type="button" data-v="0">持平</button><button type="button" data-v="1">上升</button></div></div>
+          <div class="sw"><span>原油</span><div class="seg3" data-k="o" role="group" aria-label="原油"><button type="button" data-v="-1">下跌</button><button type="button" data-v="0">持平</button><button type="button" data-v="1">上升</button></div></div>
+          <div class="sw"><span>黄金</span><div class="seg3" data-k="g" role="group" aria-label="黄金"><button type="button" data-v="-1">下跌</button><button type="button" data-v="0">持平</button><button type="button" data-v="1">上升</button></div></div>
+          <div class="sw"><span>VIX</span><div class="seg3" data-k="v" role="group" aria-label="VIX"><button type="button" data-v="-1">下跌</button><button type="button" data-v="0">持平</button><button type="button" data-v="1">上升</button></div></div>
+          <div class="sw"><span>高收益债利差</span><div class="seg3" data-k="c" role="group" aria-label="高收益债利差"><button type="button" data-v="-1">收窄</button><button type="button" data-v="0">持平</button><button type="button" data-v="1">扩大</button></div></div>
+        </div>
+        <div class="verdict" id="dash-out" aria-live="polite"></div>
+        <figcaption>规则按严重程度排序：信用和波动率一起恶化优先级最高，其次是利率与美元的反常组合。这只是读盘的起点，结论要在第 6、7 章的盘面验证之后才算数。</figcaption>
+      </figure>
+
+      <h3>开盘前的读盘顺序</h3>
+      <ol>
+        <li>记下隔夜七个数字的变化：2 年期、10 年期、美元、原油、黄金、VIX、信用利差。</li>
+        <li>找出变化最大、或者最反常的那一个。</li>
+        <li>问为什么：是数据、讲话、拍卖、地缘事件，还是没有消息的资金行为？</li>
+        <li>判断这件事是不是已经被提前交易<span class="ek">（Priced in early）</span>过（第 2 章）。</li>
+        <li>写一句话：「今天市场在交易＿＿＿。」写不出来，就说明今天没有清楚的主线<span class="ek">（Dominant theme）</span>，少做。</li>
+      </ol>
+      <div class="note"><span class="tag">实战观察</span><p>不少做宏观的交易者会把这几个数字放在同一块屏幕上，开盘前先写那一句话，再去看个股。他们发现，最好的交易日往往是那句话很容易写出来的日子；最容易亏钱的日子，是写了三遍还在改的日子。</p></div>
+    </article>
+
+    <!-- ===================== 02 ===================== -->
+    <article class="chapter" id="c2" data-title="传导链与二阶思维" hidden>
+      <div class="chapter-head"><div class="no">02</div><div class="kicker">第二章</div><h2>传导链与二阶思维</h2></div>
+      <p class="lead">新闻本身很少直接决定股价。决定股价的，是这条新闻沿着一条链传到盈利、利率和资金流<span class="ek">（Fund flows）</span>的方式，以及市场在你之前已经想到了多少。</p>
+
+      <h3>最常用的一条主链</h3>
+      <p>大部分宏观事件都能放进下面这条链里。熟练以后，看到任何一条新闻，你都能很快问出「它卡在链条的哪一环」。</p>
+      <div class="chain">
+        <div class="step"><b>1</b><div><strong>地缘或供给事件</strong>：航道受阻、制裁、减产、极端天气。</div></div>
+        <div class="step"><b>2</b><div><strong>原油和柴油</strong>：价格上涨，运输和生产成本上升。</div></div>
+        <div class="step"><b>3</b><div><strong>通胀预期</strong>：盈亏平衡通胀率上行，物价数据开始反映。</div></div>
+        <div class="step"><b>4</b><div><strong>利率</strong>：市场推迟降息甚至定价加息，收益率上行。</div></div>
+        <div class="step"><b>5</b><div><strong>美元和黄金</strong>：美元通常走强，黄金看实际利率和避险需求谁占上风。</div></div>
+        <div class="step"><b>6</b><div><strong>板块</strong>：能源受益；长久期成长股、小盘股、航空和可选消费受压。</div></div>
+      </div>
+
+      <h3>每一环都可能断</h3>
+      <p>传导链<span class="ek">（Transmission chain）</span>不是自动发生的，每一环都有条件。能看出链条在哪里断，比会背链条更有价值。</p>
+      <ul>
+        <li><strong>油价到通胀</strong>：短暂的冲击不会进入核心通胀<span class="ek">（Core inflation）</span>。只有持续几个月的高油价，才会通过运费、机票、化工品慢慢渗进去。</li>
+        <li><strong>通胀到利率</strong>：央行可能选择「看穿」供给冲击<span class="ek">（Supply shock）</span>，不为它加息。这时短端利率不动，长端却可能因为通胀担忧上行。</li>
+        <li><strong>利率到股市</strong>：如果利率上升是因为经济强劲、盈利同步上修，股市可以承受；如果盈利没有跟上，就是纯粹的估值压缩。</li>
+        <li><strong>政策反应</strong>：油价涨到政治上难以接受的水平时，政府可能释放储备、限制出口，链条会突然反转。</li>
+      </ul>
+
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">选一个冲击，看它沿着链条传到哪里</span><span class="fig-no">图 2-1 · 可操作</span></div>
+        <div class="controls"><div class="chips" id="chain-pick" role="group" aria-label="选择冲击">
+          <button type="button" data-v="oil">油价供给冲击</button><button type="button" data-v="long">长端利率急升</button><button type="button" data-v="usd">美元走强</button><button type="button" data-v="jobs">就业大幅转弱</button><button type="button" data-v="dove">央行意外偏鸽</button>
+        </div></div>
+        <div id="chain-out" aria-live="polite"></div>
+        <figcaption>每个冲击都给出了「受益」和「受压」两组方向，以及一个用来判断链条有没有按剧本走的验证信号。真实世界里几个冲击常常同时发生，要看哪一个在主导。</figcaption>
+      </figure>
+
+      <h3>二阶思维：多问一句「然后呢」</h3>
+      <p>一阶思维说：油价涨，买能源股。问题是所有人都想到了这一点，能源股很快会变得拥挤。二阶思维<span class="ek">（Second-order thinking）</span>会接着问：油价涨到让人难受的地步，政府会做什么？如果政策突然把油价压下来，谁反弹最猛？答案是航空和旅游，因为它们之前被卖得最狠。</p>
+      <p>这就引出一种很实用的组合：持有能源仓位押注油价上涨，同时用一小部分资金买入航空股或航空股的看涨期权<span class="ek">（Call option）</span>，作为「意外对冲<span class="ek">（Hedge）</span>」。油价继续涨，能源赚钱；油价因为政策意外下跌，航空的反弹弥补能源的损失。第 10 章会用数字把这个组合算一遍。</p>
+      <p>看不懂局势的时候，最该问的问题是「谁获益」。一项政策、一场冲突、一次技术突破，总有人的成本下降、收入上升，有人被迫花钱。顺着钱被迫流去的方向找，比猜测事件本身的结果可靠。</p>
+
+      <h3>同一个信号，不同板块方向相反</h3>
+      <p>长端收益率下跌，如果是因为市场开始担心经济放缓，对整体股市偏空。但对公用事业、房地产信托、必需消费这些「类债券」板块，利率下降直接降低了它们的融资成本，也让它们的股息<span class="ek">（Dividend）</span>更有吸引力，短期反而利好。</p>
+      <p>所以宏观交易者经常说：交易资金的流向，而不是押指数的涨跌。指数是几百个方向相反的力量相加的结果，板块之间的分化往往比指数本身更清楚。</p>
+
+      <h3>是否已经被定价</h3>
+      <p>市场对几乎所有已知事件都有预期，而且这些预期是可以看到的：联邦基金期货<span class="ek">（Fed funds futures）</span>告诉你市场定价了多少次加息，期权价格告诉你市场预期一个事件会带来多大的波动，分析师一致预期告诉你财报<span class="ek">（Earnings report）</span>的「及格线」。</p>
+      <div class="formula">价格反应 ≈ （实际结果 − 市场预期）× 仓位方向的放大<small>结果好坏决定方向，仓位拥挤程度决定幅度，有时还会让方向反过来。</small></div>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>结果相对预期</th><th>事前仓位</th><th>典型反应</th></tr></thead>
+          <tbody>
+            <tr><td>好于预期</td><td>仓位很轻，大家都在观望</td><td>大涨，而且可能持续几天</td></tr>
+            <tr><td>好于预期</td><td>多头已经很拥挤</td><td>利好出尽<span class="ek">（Sell the news）</span>，冲高回落</td></tr>
+            <tr><td>差于预期</td><td>空头已经很拥挤，保护买得很多</td><td>利空出尽，反而上涨（空头回补、保护被卖出）</td></tr>
+            <tr><td>差于预期</td><td>仓位乐观</td><td>下跌，而且容易加速</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>还有一种常被忽视的情况：<strong>提前交易<span class="ek">（Priced in early）</span></strong>。如果央行官员在数据公布前一天发表了偏鸽的讲话，市场可能已经把「数据偏弱」的利好提前交易完了。第二天数据真的偏弱，市场反而可能下跌，因为「没有想象中那么差」。</p>
+
+      <h3>看反应，不看标题</h3>
+      <p>标题是给所有人看的，反应是用真金白银投出来的。两种情况尤其值得记录：</p>
+      <ul>
+        <li><strong>利好不涨</strong>：一家公司宣布提价，股价却下跌。说明有人在借利好出货，或者市场在担心别的事情。</li>
+        <li><strong>利空不跌</strong>：一项看起来严重的制裁<span class="ek">（Sanctions）</span>宣布了，油价几乎没动。说明市场认为它执行不了，或者早已定价。</li>
+      </ul>
+      <p class="pull">市场的反应是一条新闻真正的分量。</p>
+    </article>
+
+    <!-- ===================== 03 ===================== -->
+    <article class="chapter" id="c3" data-title="利率、美联储与估值" hidden>
+      <div class="chapter-head"><div class="no">03</div><div class="kicker">第三章</div><h2>利率、美联储与估值</h2></div>
+      <p class="lead">利率是所有资产价格的引力。它变一点，离现在越远的现金流受的影响越大。理解这一点，就能理解为什么同样的利率上升，有的股票几乎不动，有的股票跌掉一半。</p>
+
+      <h3>一个公式看懂「利率杀估值」</h3>
+      <p>把一家公司看成一串永远持续、每年增长 <span class="v">g</span> 的现金流，用折现率<span class="ek">（Discount rate）</span> <span class="v">r</span> 折回今天，就得到经典的戈登增长模型<span class="ek">（Gordon growth model）</span>。假设盈利全部分给股东，市盈率<span class="ek">（Price-to-earnings ratio (P/E)）</span>可以简化成：</p>
+      <div class="formula">市盈率 ≈ 1 ÷ （r − g）<small>r = 无风险利率 + 股票风险溢价；g = 长期增长率。分母越小，估值对 r 的变化越敏感。</small></div>
+      <p>设折现率是 8%。一家长期增长 2% 的成熟公司，市盈率约 16.7 倍；一家长期增长 6% 的高成长公司，市盈率约 50 倍。现在折现率上升 1 个百分点到 9%：</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>长期增长率 g</th><th class="r">r = 8% 时的市盈率</th><th class="r">r = 9% 时的市盈率</th><th class="r">估值变化</th></tr></thead>
+          <tbody>
+            <tr><td>2%（成熟公司）</td><td class="r mono">16.7</td><td class="r mono">14.3</td><td class="r mono">−14.3%</td></tr>
+            <tr><td>4%</td><td class="r mono">25.0</td><td class="r mono">20.0</td><td class="r mono">−20.0%</td></tr>
+            <tr><td>5%</td><td class="r mono">33.3</td><td class="r mono">25.0</td><td class="r mono">−25.0%</td></tr>
+            <tr><td>6%（高成长）</td><td class="r mono">50.0</td><td class="r mono">33.3</td><td class="r mono">−33.3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>盈利一分钱没变，高成长公司的理论价值<span class="ek">（Theoretical value）</span>就少了三分之一。这就是 2022 年发生在很多成长股<span class="ek">（Growth stocks）</span>身上的事。</p>
+
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">增长率越高，估值对利率越敏感</span><span class="fig-no">图 3-1 · 可拖动</span></div>
+        <div class="controls">
+          <label class="ctl" for="gv-dr">折现率变化 <input id="gv-dr" type="range" min="-10" max="20" value="10"> <output id="gv-dr-o">+1.0%</output></label>
+        </div>
+        <svg class="chart" id="f-gv" viewBox="0 0 680 300" role="img" aria-label="折现率变化与不同增长率公司的估值变化"></svg>
+        <div class="legend"><span><i style="border-color: var(--calm)"></i>g = 2%</span><span><i style="border-color: var(--accent)"></i>g = 5%</span><span><i style="border-color: var(--loss)"></i>g = 6%</span></div>
+        <div class="readout">
+          <div><b id="gv-r1">—</b><small>g = 2% 的估值变化</small></div>
+          <div><b id="gv-r2">—</b><small>g = 5% 的估值变化</small></div>
+          <div><b id="gv-r3">—</b><small>g = 6% 的估值变化</small></div>
+        </div>
+        <figcaption>基准折现率 8%。把滑块拖到 −1%，高成长公司的估值翻倍；拖到 +2%，它腰斩。曲线是弯的：利率下降时的涨幅大于同样幅度上升时的跌幅，这就是成长股在降息预期下特别凶猛的原因。</figcaption>
+      </figure>
+
+      <h3>成长股是长久期资产</h3>
+      <p>对上面的公式求导，可以得到一个很像债券久期<span class="ek">（Duration）</span>的数字：</p>
+      <div class="formula">估值变化 ≈ −Δr ÷ （r − g）<small>1 ÷ （r − g）就是这只股票的「久期」。g = 2% 时约 16.7 年，g = 5% 时约 33 年，g = 6% 时约 50 年。</small></div>
+      <p>用这个近似去算 g = 5%、利率上升 1 个百分点：−1% × 33 ≈ −33%，比精确值 −25% 夸大了一些，因为曲线是弯的。但它抓住了要点：增长越高、盈利越远的公司，越像一张 30 年、50 年期的长债。没有盈利、靠十年后的故事定价的公司，久期更长。</p>
+      <p>这也解释了一个常见现象：利率急升的日子里，小盘成长股、未盈利科技股、生物科技股跌得最多；银行、能源、必需消费跌得最少，甚至上涨。</p>
+
+      <h3>股票风险溢价：股票比债券多给你多少</h3>
+      <p>市盈率的倒数叫盈利收益率<span class="ek">（Earnings yield）</span>。市盈率 20 倍，盈利收益率就是 5%：每投入 100 美元，公司每年为你赚 5 美元。拿它和国债收益率比较，就是在问：承担股票的风险，你多拿到了多少补偿？</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">估算股票相对国债的补偿</span><span class="fig-no">工具 3-A</span></div>
+        <div class="form-grid">
+          <label for="erp-pe">远期市盈率<input id="erp-pe" type="number" value="19" step="0.5"></label>
+          <label for="erp-y">10 年期名义收益率（%）<input id="erp-y" type="number" value="5.3" step="0.05"></label>
+          <label for="erp-t">10 年期实际利率 TIPS（%）<input id="erp-t" type="number" value="2.65" step="0.05"></label>
+        </div>
+        <div class="readout">
+          <div><b id="erp-ey">—</b><small>盈利收益率</small></div>
+          <div><b id="erp-n">—</b><small>相对名义国债的溢价</small></div>
+          <div><b id="erp-r">—</b><small>相对实际利率的溢价</small></div>
+        </div>
+        <p class="advice" id="erp-msg"></p>
+        <figcaption>默认数字是一组示例假设。盈利会随通胀增长，名义国债的票息不会，所以「盈利收益率减实际利率<span class="ek">（Real yield）</span>」在逻辑上更合理；两种算法都看一下，趋势比绝对值重要。</figcaption>
+      </figure>
+      <p>风险溢价<span class="ek">（Risk premium）</span>很低，不代表股市明天就跌。它是一个很差的择时工具，估值可以在偏贵的位置停留很久。它真正告诉你的是<strong>缓冲有多厚</strong>：溢价很薄的时候，一次利率冲击就足以造成明显的估值压缩，因为股票相对债券已经没有多少多余的吸引力。</p>
+
+      <h3>收益率曲线的四种移动</h3>
+      <p>只看 10 年期不够，要看短端和长端谁动得多。用 2 年期和 10 年期的利差来衡量曲线的陡峭程度，交易员把它的变化分成四种：</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>形态</th><th>发生了什么</th><th>常见背景</th><th>对股市的含义</th></tr></thead>
+          <tbody>
+            <tr><td>牛陡<span class="ek">（Bull steepening）</span></td><td>短端跌得比长端多</td><td>市场开始定价降息，常出现在经济明显放缓、衰退<span class="ek">（Recession）</span>开始时</td><td>看起来是利好，实际经常是坏消息的开始</td></tr>
+            <tr><td>牛平<span class="ek">（Bull flattening）</span></td><td>长端跌得比短端多</td><td>增长和通胀预期<span class="ek">（Inflation expectations）</span>下降，资金涌入长债避险<span class="ek">（Risk-off）</span></td><td>防御板块<span class="ek">（Defensive sectors）</span>、长久期资产相对占优</td></tr>
+            <tr><td>熊陡<span class="ek">（Bear steepening）</span></td><td>长端涨得比短端多</td><td>期限溢价<span class="ek">（Term premium）</span>上升：国债供给大、通胀或财政担忧</td><td>对估值最不友好，股债容易同跌；银行的息差受益</td></tr>
+            <tr><td>熊平<span class="ek">（Bear flattening）</span></td><td>短端涨得比长端多</td><td>加息周期，央行在收紧</td><td>周期后段，小盘和高负债公司先受压</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>曲线倒挂（2 年期高于 10 年期）在过去几次美国衰退之前都出现过，但它不是定时器：2022 年开始的那次倒挂持续了两年多，经济并没有按时进入衰退。更值得警惕的往往是倒挂<strong>结束</strong>的方式：如果是短端因为降息预期快速下跌、曲线重新变陡，常常说明经济正在真正转弱。</p>
+
+      <h3>美联储的反应函数，和市场的定价</h3>
+      <p>美联储<span class="ek">（Federal Reserve (Fed)）</span>有两个目标：物价稳定和充分就业。它的每一次决定，都可以理解为在这两个目标之间称重。通胀远高于目标时，它对就业转弱的容忍度更高；就业明显恶化而通胀接近目标时，它会更快转向宽松。</p>
+      <p>对交易者来说，关键不是美联储做了什么，而是它做的和市场预期的差了多少。联邦基金期货<span class="ek">（Fed funds futures）</span>和隔夜指数掉期<span class="ek">（Overnight index swap (OIS)）</span>会告诉你市场定价了多少次加息或降息（CME 的 FedWatch 工具把它换算成了概率）。会议前市场已经定价 90% 的加息概率，那么加息本身不是新闻，不加才是。</p>
+      <p>还要留意央行官员会前的讲话。他们经常有意识地引导预期，避免在会议上制造意外。这也意味着，讲话本身就会把一部分数据的影响提前交易<span class="ek">（Priced in early）</span>掉。</p>
+
+      <h3>美联储信誉交易</h3>
+      <p>当市场已经几乎完全定价了加息，美联储却选择不加，会发生什么？反应通常分两个阶段：</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>资产</th><th>第一阶段（几小时到一两天）</th><th>第二阶段（如果市场开始怀疑央行）</th></tr></thead>
+          <tbody>
+            <tr><td>2 年期收益率</td><td>下跌</td><td>继续偏低</td></tr>
+            <tr><td>10 年、30 年期收益率</td><td>跟着下跌</td><td>反向上升，曲线熊陡</td></tr>
+            <tr><td>美元</td><td>走弱</td><td>继续走弱</td></tr>
+            <tr><td>黄金</td><td>上涨</td><td>继续上涨</td></tr>
+            <tr><td>股票</td><td>上涨</td><td>长端利率上行，把最初的涨幅卖掉</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>第二阶段会不会出现，取决于市场还信不信央行能把通胀控制住。如果通胀明显还高，央行却不敢收紧，长债投资者会要求更高的补偿来承担未来的通胀风险。这时降息预期反而推高了长端利率，股市得不到任何好处。</p>
+      <p>判断方法很直接：宣布后的几天里，看 10 年期收益率是跟着 2 年期一起下跌（市场相信央行），还是逆向上升（市场在惩罚它）。</p>
+
+      <h3>国债供给、拍卖和期限溢价</h3>
+      <p>长端利率不只取决于对央行的预期，还取决于国债的供需。政府赤字越大，需要发的债越多；如果买家不够，就只能用更高的收益率吸引他们。投资者为了持有长期债券而额外要求的那部分收益，叫期限溢价。</p>
+      <p>值得关注的几个细节：</p>
+      <ul>
+        <li><strong>拍卖结果</strong>：中标收益率明显高于拍卖前的市场水平（俗称「尾部」），认购倍数<span class="ek">（Bid-to-cover ratio）</span>偏低，海外买家比例下降，都说明需求疲弱。20 年、30 年期拍卖的疲弱尤其会推高长端。</li>
+        <li><strong>季度再融资<span class="ek">（Quarterly refunding）</span>公告</strong>：美国财政部每个季度公布接下来的发债计划，包括长债和短期国库券的比例。2023 年 11 月初，财政部放慢了长债发行的增速，叠加美联储暗示暂停加息，长端收益率从接近 5% 回落，股市随后大幅反弹。</li>
+        <li><strong>期限溢价上升时的特征</strong>：长端涨得比短端多，美元不一定跟着涨，股票和债券一起跌。</li>
+      </ul>
+      <div class="note"><span class="tag">本章小结</span><ul>
+        <li>利率通过折现率影响所有资产，增长越高、盈利越远的公司越敏感。</li>
+        <li>看利率要拆开看：短端看央行，长端看增长、通胀和供需；名义利率要拆成实际利率和通胀预期。</li>
+        <li>央行的决定要和市场定价比较；最重要的问题是市场还信不信它。</li>
+      </ul></div>
+    </article>
+
+    <!-- ===================== 04 ===================== -->
+    <article class="chapter" id="c4" data-title="美元、黄金与能源" hidden>
+      <div class="chapter-head"><div class="no">04</div><div class="kicker">第四章</div><h2>美元、黄金与能源</h2></div>
+      <p class="lead">美国的利率决定了全球资金的价格，美元、黄金和原油则把这个价格传到世界各地，再传回美国企业的利润表。</p>
+
+      <h3>美元是全球的融资货币</h3>
+      <p>全球大量的贸易结算、跨境贷款和非美国企业的债务都以美元计价。美元走强，意味着这些借款人要用更多本币去还同样的债，全球的融资环境随之收紧。对美股的影响主要有四条路径：</p>
+      <ul>
+        <li><strong>盈利换算</strong>：标普 500 公司有相当一部分收入来自海外，美元越强，这部分收入换算成美元越少。跨国科技和消费品牌在财报<span class="ek">（Earnings report）</span>里常常提到「汇率逆风」。</li>
+        <li><strong>大宗商品</strong>：以美元计价的商品对其他国家的买家变贵，需求和价格承压。</li>
+        <li><strong>新兴市场<span class="ek">（Emerging markets）</span></strong>：资本外流、本币贬值、美元债务压力上升。</li>
+        <li><strong>风险偏好<span class="ek">（Risk appetite）</span></strong>：美元急涨常常和全球避险<span class="ek">（Risk-off）</span>同时出现。</li>
+      </ul>
+
+      <h3>同样是美元走强，原因不同，含义相反</h3>
+      <p>交易员常用一条「美元微笑<span class="ek">（Dollar smile）</span>」曲线来概括美元和经济环境的关系：</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">美元在两端都会走强，但对美股的意义完全不同</span><span class="fig-no">图 4-1 · 示意</span></div>
+        <svg class="chart" id="f-smile" viewBox="0 0 680 290" role="img" aria-label="美元微笑示意图"></svg>
+        <figcaption>左端：全球恐慌，资金逃向美元，美股通常同时下跌。中间：全球同步复苏，资金流<span class="ek">（Fund flows）</span>向海外，美元走弱。右端：美国增长明显强于其他地区，资金流入美国资产，美元和美股可以一起涨。看到美元走强，先问它在微笑的哪一端。</figcaption>
+      </figure>
+      <p>还有一种不在微笑曲线上的情况值得单独记住：<strong>美国利率上升而美元下跌</strong>。正常情况下利率越高美元越有吸引力，两者反向，往往说明海外投资者在减持美国资产，背后可能是对财政可持续性、政策可预期性或通胀控制的担忧。2025 年 4 月关税冲击期间，就一度出现过美股、美债、美元同时下跌的局面。</p>
+
+      <h3>日元和套息交易</h3>
+      <p>日本长期维持极低的利率，于是很多投资者借入日元，换成美元或其他货币，去买收益更高的资产。这就是套息交易<span class="ek">（Carry trade）</span>。只要日元稳定或贬值，这笔交易每天都在赚利差。</p>
+      <p>风险在于日元突然大幅升值。借日元的人要还的债瞬间变多，只好卖掉手里的各种资产去平仓，而这些资产彼此可能毫无关系。2024 年 7 月底日本央行加息，紧接着 8 月初美国就业数据偏弱，日元急升，套息交易集中平仓。8 月 5 日日经指数单日下跌约 12%，VIX 盘中一度冲到 60 以上，美股的热门科技股也被大量抛售。几周后市场就收复了大部分跌幅，但那几天的波动足以让高杠杆<span class="ek">（Leverage）</span>的仓位出局。</p>
+      <div class="note warn"><span class="tag">规则</span><p>日元短时间内急升，要当成全球风险资产的警报，即使你手里没有任何日本资产。</p></div>
+
+      <h3>黄金：它在对冲什么</h3>
+      <p>黄金没有利息，持有它的代价是放弃的实际利率<span class="ek">（Real yield）</span>。所以传统上，黄金和 10 年期实际利率反向：实际利率上升，黄金承压。除此之外，影响黄金的还有：</p>
+      <ul>
+        <li><strong>美元</strong>：黄金以美元计价，美元走弱通常利好黄金。</li>
+        <li><strong>央行购金<span class="ek">（Central bank gold buying）</span></strong>：一些国家的央行为了减少对美元资产的依赖，持续增持黄金。2022 年以后，这股买盘让黄金和实际利率的传统关系明显变弱。</li>
+        <li><strong>信誉和地缘对冲<span class="ek">（Hedge）</span></strong>：当市场担心货币贬值、财政失控或者冲突升级时，黄金是少数不依赖任何一个政府信用的资产。</li>
+      </ul>
+      <p>白银既有贵金属的属性，也有工业需求（电子、光伏），所以它跟着黄金的叙事<span class="ek">（Narrative）</span>走，但会被经济周期放大，波动也更大，不如黄金「干净」。</p>
+      <p>一个实用的读法：黄金上涨的同时实际利率也在上涨，说明买家在为利率以外的东西付钱，往往是信誉或地缘风险。这时的黄金上涨比单纯由降息预期推动的上涨更有持续性，也更值得当成风险信号。</p>
+
+      <h3>原油：为什么涨，比涨多少更重要</h3>
+      <div class="two">
+        <div><h5>需求推动的上涨</h5><ul><li>全球经济强，消费和工业需求好</li><li>原油、铜、股票一起涨</li><li>周期股<span class="ek">（Cyclical stocks）</span>、工业、能源领涨</li><li>对股市影响偏正面</li></ul></div>
+        <div><h5>供给冲击的上涨</h5><ul><li>减产、制裁<span class="ek">（Sanctions）</span>、航道受阻</li><li>原油涨，股票跌，债券也可能跌</li><li>航空、运输、可选消费受伤最重</li><li>相当于对消费者加税</li></ul></div>
+      </div>
+      <p>「油价税」可以粗算一下：一桶原油是 42 加仑，原油每涨 10 美元，摊到每加仑成品油上大约是 0.24 美元。假设美国每年消费约 1,350 亿加仑汽油，每加仑多 0.24 美元，就是每年约 320 亿美元从消费者口袋里流向能源生产商。这笔钱不会消失，但花在加油站的钱，就不会花在餐厅和商场。</p>
+      <p>判断方法：油价上涨的那几天，看标普 500 是一起涨还是下跌，看铜是否同步上涨。股票和铜都跟着涨，多半是需求；股票跌而铜不涨，多半是供给冲击<span class="ek">（Supply shock）</span>。</p>
+
+      <h3>有油不等于有燃料</h3>
+      <p>原油要经过炼油<span class="ek">（Refining）</span>厂才能变成汽油、柴油和航空煤油。炼油能力不足、或者某个品种（比如柴油）库存紧张的时候，成品油价格可以比原油涨得多得多。原油和成品油之间的价差叫裂解价差<span class="ek">（Crack spread）</span>，它决定了炼油公司的利润。</p>
+      <p>柴油尤其重要，因为卡车运输、农业机械、工程设备都依赖它。柴油紧张会通过运费推高几乎所有商品的价格，对通胀的影响比汽油更广。政策上，如果柴油价格高到引起政治压力，政府可能考虑限制出口，这会让国内价格下跌、海外价格上涨，相关公司的命运一夜之间改变。</p>
+
+      <h3>整数关口和政策反应</h3>
+      <p>原油在整数关口附近常常出现明显的阻力或加速，不是因为数字本身有魔力，而是因为它会改变人们的行为：媒体开始大量报道、消费者开始抱怨、政客开始表态。油价涨到政治上难以接受的水平时，释放战略储备<span class="ek">（Strategic Petroleum Reserve (SPR)）</span>、施压产油国、限制出口这些政策反应的可能性就会上升。交易高油价时，要把政策反应当成一种随时可能出现的情景。</p>
+
+      <div class="tbl">
+        <table>
+          <caption>本章速查</caption>
+          <thead><tr><th>资产</th><th>主要驱动</th><th>对美股意味着什么</th><th>要和谁一起看</th></tr></thead>
+          <tbody>
+            <tr><td>美元</td><td>美国相对他国的利率和增长、避险需求</td><td>急涨收紧全球金融条件<span class="ek">（Financial conditions）</span>；跨国公司盈利受压</td><td>美股、美债收益率、日元</td></tr>
+            <tr><td>日元</td><td>日本利率、套息交易仓位</td><td>急升可能触发全球去杠杆</td><td>日经、VIX、热门科技股</td></tr>
+            <tr><td>黄金</td><td>实际利率、美元、央行购金、信誉风险</td><td>和实际利率同涨时是风险信号</td><td>10 年期 TIPS、美元</td></tr>
+            <tr><td>原油</td><td>需求、供给冲击、政策</td><td>需求型上涨偏正面；供给冲击偏负面</td><td>铜、标普、盈亏平衡通胀率<span class="ek">（Breakeven inflation）</span></td></tr>
+            <tr><td>柴油</td><td>炼油能力、库存、出口政策</td><td>推高运费和商品通胀</td><td>裂解价差、运输股</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- ===================== 05 ===================== -->
+    <article class="chapter" id="c5" data-title="市场体制：四个变量与三个阶段" hidden>
+      <div class="chapter-head"><div class="no">05</div><div class="kicker">第五章</div><h2>市场体制：四个变量与三个阶段</h2></div>
+      <p class="lead">同一条新闻，在不同的市场体制<span class="ek">（Market regime）</span>下意义相反。所以要先判断市场处在哪个阶段，再选标的和工具。体制<span class="ek">（Regime）</span>判断不需要很精确，只要别在大方向上站错。</p>
+
+      <h3>用四个变量代替单点预测</h3>
+      <p>预测「下个月标普涨还是跌」几乎不可能做好。更可行的是持续观察四个变量，它们分别对应估值和盈利的四个来源：</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>变量</th><th>看什么</th><th>它影响的是</th></tr></thead>
+          <tbody>
+            <tr><td>利率</td><td>10 年期收益率的趋势（以周为单位）</td><td>折现率<span class="ek">（Discount rate）</span>，也就是估值倍数<span class="ek">（Valuation multiple）</span></td></tr>
+            <tr><td>油价</td><td>原油和柴油的趋势</td><td>通胀、企业成本、消费者负担</td></tr>
+            <tr><td>财报<span class="ek">（Earnings report）</span></td><td>分析师盈利预期<span class="ek">（Earnings estimates）</span>是在上修还是下修，财报季公司的指引</td><td>每股盈利</td></tr>
+            <tr><td>就业</td><td>失业率<span class="ek">（Unemployment rate）</span>、每周首次申领失业金<span class="ek">（Initial jobless claims）</span>人数、非农<span class="ek">（Nonfarm payrolls (NFP)）</span>就业</td><td>消费能力和衰退<span class="ek">（Recession）</span>风险</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>六种组合，六种打法</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>情景</th><th>利率</th><th>油价</th><th>财报</th><th>就业</th><th>通常怎么做</th></tr></thead>
+          <tbody>
+            <tr><td>全面上涨</td><td>跌</td><td>跌</td><td>好</td><td>强</td><td>做多指数和周期股<span class="ek">（Cyclical stocks）</span>，小盘也会参与</td></tr>
+            <tr><td>轮动<span class="ek">（Sector rotation）</span></td><td>跌</td><td>跌</td><td>一般</td><td>强</td><td>指数横盘，板块轮换；买前期输家的回调，减持拥挤赢家</td></tr>
+            <tr><td>好消息推高利率</td><td>升</td><td>跌</td><td>好</td><td>强</td><td>周期股、银行领涨；留意利率上升的速度</td></tr>
+            <tr><td>下跌第一阶段</td><td>升</td><td>升</td><td>好</td><td>强</td><td>估值压缩期，减少长久期<span class="ek">（Duration）</span>成长股<span class="ek">（Growth stocks）</span>，趁波动率便宜买保护</td></tr>
+            <tr><td>下跌第二阶段</td><td>跌</td><td>升</td><td>好</td><td>转弱</td><td>开始系统性保护，提高现金，防御板块<span class="ek">（Defensive sectors）</span>相对强</td></tr>
+            <tr><td>下跌第三阶段</td><td>跌</td><td>跌</td><td>差</td><td>恶化</td><td>盈利下修和衰退，现金和长期国债为主，等政策催化剂</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>「轮动」那一行里，财报一项最关键：盈利不算好，但也没有坏到引发恐慌，资金就不会全面撤离股市，而是在板块之间换手。</p>
+
+      <h3>下跌的三个阶段</h3>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">大级别下跌往往分三步走，每一步杀的东西不同</span><span class="fig-no">图 5-1</span></div>
+        <div class="scroll-x">
+        <svg class="chart wide" viewBox="0 0 680 290" role="img" aria-label="下跌三阶段中四个变量的方向">
+          <g style="font-family: var(--font-body)">
+            <g>
+              <rect x="20" y="16" width="200" height="258" rx="8" style="fill: var(--tint-warn); stroke: var(--warn)"></rect>
+              <text x="120" y="44" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">第一阶段</text>
+              <text x="120" y="64" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">经济还很好</text>
+            </g>
+            <g>
+              <rect x="240" y="16" width="200" height="258" rx="8" style="fill: var(--tint-loss); stroke: var(--loss)"></rect>
+              <text x="340" y="44" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">第二阶段</text>
+              <text x="340" y="64" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">增长开始受伤</text>
+            </g>
+            <g>
+              <rect x="460" y="16" width="200" height="258" rx="8" style="fill: var(--plate); stroke: var(--loss); stroke-dasharray: 5 4"></rect>
+              <text x="560" y="44" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">第三阶段</text>
+              <text x="560" y="64" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">衰退</text>
+            </g>
+            <g style="font-size: 14px">
+              <text x="44" y="100" style="fill: var(--muted)">利率</text><text x="196" y="100" text-anchor="end" style="fill: var(--loss); font-weight: 700">↑ 上升</text>
+              <text x="44" y="130" style="fill: var(--muted)">油价</text><text x="196" y="130" text-anchor="end" style="fill: var(--loss); font-weight: 700">↑ 上升</text>
+              <text x="44" y="160" style="fill: var(--muted)">财报</text><text x="196" y="160" text-anchor="end" style="fill: var(--calm); font-weight: 700">好</text>
+              <text x="44" y="190" style="fill: var(--muted)">就业</text><text x="196" y="190" text-anchor="end" style="fill: var(--calm); font-weight: 700">强</text>
+              <text x="264" y="100" style="fill: var(--muted)">利率</text><text x="416" y="100" text-anchor="end" style="fill: var(--warn); font-weight: 700">↓ 开始下跌</text>
+              <text x="264" y="130" style="fill: var(--muted)">油价</text><text x="416" y="130" text-anchor="end" style="fill: var(--loss); font-weight: 700">↑ 仍高</text>
+              <text x="264" y="160" style="fill: var(--muted)">财报</text><text x="416" y="160" text-anchor="end" style="fill: var(--calm); font-weight: 700">还不错</text>
+              <text x="264" y="190" style="fill: var(--muted)">就业</text><text x="416" y="190" text-anchor="end" style="fill: var(--warn); font-weight: 700">转弱</text>
+              <text x="484" y="100" style="fill: var(--muted)">利率</text><text x="636" y="100" text-anchor="end" style="fill: var(--warn); font-weight: 700">↓ 大跌</text>
+              <text x="484" y="130" style="fill: var(--muted)">油价</text><text x="636" y="130" text-anchor="end" style="fill: var(--warn); font-weight: 700">↓ 下跌</text>
+              <text x="484" y="160" style="fill: var(--muted)">财报</text><text x="636" y="160" text-anchor="end" style="fill: var(--loss); font-weight: 700">下修</text>
+              <text x="484" y="190" style="fill: var(--muted)">就业</text><text x="636" y="190" text-anchor="end" style="fill: var(--loss); font-weight: 700">恶化</text>
+            </g>
+            <line x1="40" y1="212" x2="200" y2="212" style="stroke: var(--rule)"></line>
+            <line x1="260" y1="212" x2="420" y2="212" style="stroke: var(--rule)"></line>
+            <line x1="480" y1="212" x2="640" y2="212" style="stroke: var(--rule)"></line>
+            <text x="120" y="238" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 700">估值杀</text>
+            <text x="120" y="258" text-anchor="middle" style="fill: var(--muted); font-size: 12px">成长股、小盘先跌</text>
+            <text x="340" y="238" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 700">增长担忧</text>
+            <text x="340" y="258" text-anchor="middle" style="fill: var(--muted); font-size: 12px">周期股、消费股接棒</text>
+            <text x="560" y="238" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 700">盈利杀</text>
+            <text x="560" y="258" text-anchor="middle" style="fill: var(--muted); font-size: 12px">普跌，等政策出手</text>
+          </g>
+        </svg>
+        </div>
+        <figcaption>第一阶段最容易被忽视：财报和就业都很好，人们觉得「经济这么强怎么会跌」，但利率和油价在一起压缩估值。第二阶段的标志是利率开始下跌，而原因不是通胀降温。</figcaption>
+      </figure>
+      <p>从第一阶段到第二阶段的转折最值得监控。一个很实用的规则：<strong>如果收益率开始下跌，而油价还在高位、就业开始转弱，就要开始保护</strong>，可以缩小仓位，也可以买入保护性的看跌价差<span class="ek">（Put spread）</span>。</p>
+
+      <h3>利率下跌，是好消息还是坏消息</h3>
+      <p>同样是 10 年期收益率下跌 30 个基点，可能是通胀降温（好），也可能是市场在担心衰退（坏）。分辨的方法是看它和其他资产的组合：</p>
+      <div class="two">
+        <div><h5>好的下跌：通胀降温</h5><ul><li>盈亏平衡通胀率<span class="ek">（Breakeven inflation）</span>下降，实际利率<span class="ek">（Real yield）</span>稳定</li><li>周期股、小盘股<span class="ek">（Small caps）</span>跟着涨</li><li>信用利差<span class="ek">（Credit spread）</span>稳定或收窄</li><li>油价回落</li></ul></div>
+        <div><h5>坏的下跌：增长担忧</h5><ul><li>实际利率下降，曲线牛陡<span class="ek">（Bull steepening）</span></li><li>周期股、小盘股跑输，防御板块跑赢</li><li>信用利差扩大</li><li>就业数据走弱，初请上升</li></ul></div>
+      </div>
+
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">设定四个变量，看最接近哪一种体制</span><span class="fig-no">图 5-2 · 可操作</span></div>
+        <div class="board" id="reg">
+          <div class="sw"><span>利率（10 年期趋势）</span><div class="seg3" data-k="r" role="group" aria-label="利率"><button type="button" data-v="-1">下降</button><button type="button" data-v="1">上升</button></div></div>
+          <div class="sw"><span>油价</span><div class="seg3" data-k="o" role="group" aria-label="油价"><button type="button" data-v="-1">下降</button><button type="button" data-v="1">上升</button></div></div>
+          <div class="sw"><span>财报与盈利预期</span><div class="seg3" data-k="e" role="group" aria-label="财报"><button type="button" data-v="-1">差</button><button type="button" data-v="0">一般</button><button type="button" data-v="1">好</button></div></div>
+          <div class="sw"><span>就业</span><div class="seg3" data-k="j" role="group" aria-label="就业"><button type="button" data-v="-1">恶化</button><button type="button" data-v="0">转弱</button><button type="button" data-v="1">强</button></div></div>
+        </div>
+        <div class="verdict" id="reg-out" aria-live="polite"></div>
+        <figcaption>四项完全符合某个原型的情况很少。匹配度 3/4 时，看那一项不符合的变量往哪个方向走：它通常就是体制下一步要切换的方向。</figcaption>
+      </figure>
+
+      <h3>回看过去几次大回调</h3>
+      <p>把框架放到历史里检验一下。下表只列定性特征和大致跌幅（标普 500 从高点到低点），具体数据可以在 FRED 等公开数据库里复核。</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>时期</th><th>主要驱动</th><th class="r">跌幅（约）</th><th>美债有没有对冲</th><th>底部由什么确认</th></tr></thead>
+          <tbody>
+            <tr><td>2018 年第四季度</td><td>加息叠加缩表<span class="ek">（Quantitative tightening (QT)）</span>，贸易摩擦</td><td class="r mono">−20%</td><td>后半段有，收益率回落</td><td>美联储<span class="ek">（Federal Reserve (Fed)）</span>转向「耐心」</td></tr>
+            <tr><td>2020 年 2–3 月</td><td>疫情冲击，流动性枯竭<span class="ek">（Liquidity crunch）</span></td><td class="r mono">−34%</td><td>大部分时间有，3 月中旬一度股债同跌</td><td>美联储无限量宽松与财政救助</td></tr>
+            <tr><td>2022 年</td><td>高通胀与快速加息</td><td class="r mono">−25%</td><td>没有，股债同跌</td><td>没有单一的政策转向，通胀见顶迹象与估值压缩到位</td></tr>
+            <tr><td>2023 年 8–10 月</td><td>长端收益率逼近 5%，期限溢价<span class="ek">（Term premium）</span>上升</td><td class="r mono">−10%</td><td>没有</td><td>财政部放慢长债发行，美联储暗示暂停</td></tr>
+            <tr><td>2025 年 2–4 月</td><td>关税冲击，增长和通胀担忧并存</td><td class="r mono">−19%</td><td>不稳定，长端一度上行</td><td>关税暂缓</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>能看出两条规律：</p>
+      <ul>
+        <li><strong>美债对冲<span class="ek">（Hedge）</span>的是增长冲击，对冲不了利率和通胀冲击。</strong>五次里有三次，下跌由利率、通胀或政策引起，国债和股票一起跌。这时候真正有效的保护是期权，或者干脆降低仓位。</li>
+        <li><strong>底部多半由政策确认，而不是由估值自然修复。</strong>五次里有四次，市场是在某个政策变化出现前后见底的。所以在下跌中，与其问「跌够了吗」，不如问「什么政策会让决策者出手，离那个点还有多远」。</li>
+      </ul>
+
+      <h3>体制判断的纪律</h3>
+      <ul>
+        <li>以周为单位更新，不要每天改。日线的噪音会让你在两种体制之间来回横跳。</li>
+        <li>至少两个变量同时变化，才考虑切换体制。</li>
+        <li>把判断写下来，并写明「什么数据出现我会改判」，事后对照。</li>
+        <li>体制决定仓位和打法，不决定具体的入场时机。时机交给第 6、7、9 章。</li>
+      </ul>
+    </article>
+
+    <!-- ===================== 06 ===================== -->
+    <article class="chapter" id="c6" data-title="广度与轮动：指数的假象" hidden>
+      <div class="chapter-head"><div class="no">06</div><div class="kicker">第六章</div><h2>广度与轮动：指数的假象</h2></div>
+      <p class="lead">指数在涨，不代表大多数股票在涨。在一个由少数巨头主导的市场里，读懂广度<span class="ek">（Market breadth）</span>，等于读懂指数背后到底发生了什么。</p>
+
+      <h3>市值加权是一面放大镜</h3>
+      <p>标普 500 和纳斯达克 100 都按市值加权<span class="ek">（Market-cap weighted）</span>，最大的十家公司可以占到指数的三分之一以上。每只股票对指数的贡献等于它的权重乘以涨跌幅：</p>
+      <div class="formula">对指数的贡献 = 权重 × 涨跌幅<small>权重 7% 的股票下跌 5%，拖累指数 0.35 个百分点；十只权重 0.5% 的股票各涨 3%，合计只贡献 0.15 个百分点。</small></div>
+      <p>所以判断指数方向时，要看的是「权重乘以速度」。两组大权重股票反向拉扯时，比如芯片股在跌、云计算巨头在涨，谁的权重更大、跌得或涨得更快，谁就决定指数方向。一组权重大的股票下跌速度一旦加快，其余几百只股票涨得再好也拉不住。</p>
+
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">十家巨头上涨，就能把多数股票的下跌藏起来</span><span class="fig-no">图 6-1 · 可拖动</span></div>
+        <div class="controls">
+          <label class="ctl" for="cs-w">前十大权重 <input id="cs-w" type="range" min="15" max="45" value="38"> <output id="cs-w-o">38%</output></label>
+          <label class="ctl" for="cs-a">前十大涨跌 <input id="cs-a" type="range" min="-10" max="10" value="6"> <output id="cs-a-o">+6%</output></label>
+          <label class="ctl" for="cs-b">其余股票涨跌 <input id="cs-b" type="range" min="-10" max="10" value="-2"> <output id="cs-b-o">−2%</output></label>
+        </div>
+        <svg class="chart" id="f-conc" viewBox="0 0 680 290" role="img" aria-label="市值加权与等权指数的涨跌对比"></svg>
+        <div class="readout">
+          <div><b id="cs-r1">—</b><small>市值加权指数</small></div>
+          <div><b id="cs-r2">—</b><small>等权指数（每只 0.2%）</small></div>
+          <div><b id="cs-r3">—</b><small>两者差距</small></div>
+        </div>
+        <figcaption>假设指数有 500 只股票，前十大在等权<span class="ek">（Equal-weight）</span>指数里只占 2%。默认参数下市值加权指数上涨 1.04%，等权指数却下跌 1.84%。新闻会说「股市上涨」，而你持有的大多数股票在跌。</figcaption>
+      </figure>
+
+      <h3>几组用来验证的比值</h3>
+      <p>把两只 ETF 的价格相除，画成一条线，就得到一个相对强弱<span class="ek">（Relative strength）</span>比值。比值上升说明前者跑赢后者。下面几组最常用：</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>比值</th><th>上升说明</th><th>背离时要警惕</th></tr></thead>
+          <tbody>
+            <tr><td>等权标普 ÷ 标普（RSP / SPY）</td><td>上涨在扩散，多数股票参与</td><td>指数新高而比值创新低：上涨越来越集中</td></tr>
+            <tr><td>小盘 ÷ 纳斯达克 100（IWM / QQQ）</td><td>利率环境和国内经济在改善</td><td>真正的大级别上涨，小盘很少长期缺席</td></tr>
+            <tr><td>金融 ÷ 纳斯达克 100（XLF / QQQ）</td><td>信用和利率环境友好</td><td>金融板块经常比科技早一步转向</td></tr>
+            <tr><td>半导体 ÷ 纳斯达克 100（SMH / QQQ）</td><td>科技领导力还在芯片手里</td><td>芯片先走弱，指数往往随后跟上</td></tr>
+            <tr><td>可选消费 ÷ 必需消费（XLY / XLP）</td><td>消费者风险偏好<span class="ek">（Risk appetite）</span>在上升</td><td>防御板块<span class="ek">（Defensive sectors）</span>持续跑赢，市场在为放缓做准备</td></tr>
+            <tr><td>高收益债<span class="ek">（High-yield bonds）</span> ÷ 中期国债（HYG / IEF）</td><td>信用市场愿意承担风险</td><td>股票涨、信用跌：债券投资者更早看到了问题</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>此外，韩国股市的权重集中在存储芯片和半导体上，它常常领先全球存储芯片股的拐点。美股存储芯片股走强而韩国股市持续疲弱，这种背离通常不会维持很久。</p>
+
+      <h3>轮动和下跌，看起来很像，其实不同</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>特征</th><th>轮动</th><th>真正的下跌</th></tr></thead>
+          <tbody>
+            <tr><td>指数</td><td>横盘或小幅波动</td><td>持续下跌</td></tr>
+            <tr><td>板块</td><td>有的大跌，有的大涨，分化很大</td><td>几乎全部下跌</td></tr>
+            <tr><td>个股之间的相关性<span class="ek">（Correlation）</span></td><td>低</td><td>快速上升，接近「一起跌」</td></tr>
+            <tr><td>广度</td><td>等权、小盘可能反而改善</td><td>全面恶化</td></tr>
+            <tr><td>信用利差<span class="ek">（Credit spread）</span></td><td>稳定</td><td>扩大</td></tr>
+            <tr><td>适合的做法</td><td>换仓，不减总仓位</td><td>减仓、对冲<span class="ek">（Hedge）</span>、持有现金</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>轮动<span class="ek">（Sector rotation）</span>期最常见的错误，是把拥挤赢家的下跌当成整个市场的下跌，于是清仓离场，错过了资金正在流入的那些板块。反过来，下跌期最常见的错误是把普跌当成轮动，以为换个板块就能躲过去。相关性和信用利差是最好的分辨工具。</p>
+
+      <h3>轮动期的打法</h3>
+      <ul>
+        <li><strong>买前期输家的回调，卖前期赢家的反弹。</strong>资金从拥挤的赢家流向被冷落的板块，这个过程通常要持续几周。</li>
+        <li><strong>用正股或较长期限的工具。</strong>轮动需要时间兑现，短期期权的时间损耗<span class="ek">（Time decay）</span>会吃掉利润。</li>
+        <li><strong>等确认再加仓。</strong>一天的等权跑赢说明不了什么。连续几天到一两周，比值稳定上行，同时资金持续流入被抛售过的板块，才算确认。</li>
+        <li><strong>做空挑最弱的，不挑最强的。</strong>想表达看空观点时，做空相对强弱最差的板块，比做空最强的指数安全得多。最强的东西有资金在买，空它要和趋势、和空头回补<span class="ek">（Short covering）</span>一起对抗。</li>
+      </ul>
+
+      <h3>拥挤交易的代价</h3>
+      <p>一笔交易所有人都知道、所有人都持有的时候，它最大的风险往往是<strong>没有下一个买家</strong>，逻辑本身倒未必有错。买盘一旦停下，价格只需要一点点坏消息就会快速下跌，因为每个人都想从同一扇门出去。</p>
+      <p>判断拥挤的线索：媒体和社交平台反复讨论，身边不炒股的人开始问，期权市场上看涨期权<span class="ek">（Call option）</span>的需求明显高于看跌期权<span class="ek">（Put option）</span>，相关 ETF 持续大额流入，以及好消息出来以后股价不再上涨。看到这些信号，不一定要立刻卖出，但应该停止加仓，并且想清楚：买盘停止时，谁来接？</p>
+    </article>
+
+    <!-- ===================== 07 ===================== -->
+    <article class="chapter" id="c7" data-title="资金流与期权结构" hidden>
+      <div class="chapter-head"><div class="no">07</div><div class="kicker">第七章</div><h2>资金流与期权结构</h2></div>
+      <p class="lead">几个月的方向由宏观决定，几天之内的路径常常由机械性的资金流<span class="ek">（Fund flows）</span>决定。这些资金不看新闻，只按规则买卖，但它们足以让一次正常的回调变成急跌，或者把指数钉在某个价位附近。</p>
+
+      <h3>做市商的对冲方向</h3>
+      <p>做市商<span class="ek">（Market maker）</span>卖出期权以后，通常会用股票或期货对冲<span class="ek">（Hedge）</span> Delta，让自己对方向保持中性。随着价格变化，Delta 会变（变化速度就是 Gamma），他们就要不断调整对冲。调整的方向，取决于他们整体是持有 Gamma 还是卖出了 Gamma：</p>
+      <div class="two">
+        <div><h5>做市商持有正 Gamma</h5><ul><li>价格上涨，他们的多头敞口<span class="ek">（Exposure）</span>变大，要卖出</li><li>价格下跌，他们要买入</li><li>结果：涨了有人卖，跌了有人买，波动被压低</li></ul></div>
+        <div><h5>做市商持有负 Gamma</h5><ul><li>价格下跌，他们的多头敞口变大，要卖出</li><li>价格上涨，他们要买入</li><li>结果：跌了有人追着卖，涨了有人追着买，波动被放大</li></ul></div>
+      </div>
+      <p>典型的指数期权市场里，客户（机构）大量买入看跌期权<span class="ek">（Put option）</span>做保护，同时卖出看涨期权<span class="ek">（Call option）</span>增强收益。做市商站在另一边：卖出看跌期权（负 Gamma），买入看涨期权（正 Gamma）。价格在高位时看涨期权的影响更大，做市商整体是正 Gamma；价格跌到看跌期权集中的区域，就会翻转成负 Gamma。翻转的那个价位，就是常说的 <strong>Gamma 分水岭（Gamma Flip）</strong>。</p>
+
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">跌破分水岭以后，下跌会自我加速</span><span class="fig-no">图 7-1 · 可拖动</span></div>
+        <div class="controls">
+          <label class="ctl" for="gx-m">看跌期权需求 <input id="gx-m" type="range" min="5" max="20" value="10"> <output id="gx-m-o">1.0×</output></label>
+          <label class="ctl" for="gx-d">距到期 <input id="gx-d" type="range" min="3" max="30" value="10"> <output id="gx-d-o">10 天</output></label>
+        </div>
+        <svg class="chart" id="f-gex" viewBox="0 0 680 300" role="img" aria-label="做市商净 Gamma 随指数价格的变化"></svg>
+        <div class="readout">
+          <div><b id="gx-r1">—</b><small>Gamma 分水岭</small></div>
+          <div><b id="gx-r2">—</b><small>现价 780 处的净 Gamma（每 1%）</small></div>
+          <div><b id="gx-r3">—</b><small>跌到 760 时，每再跌 1% 需卖出</small></div>
+        </div>
+        <figcaption>一个假想的指数 ETF，现价 780。做市商持有 790、800、810 的看涨期权，卖出了 740 到 770 的看跌期权，隐含波动率<span class="ek">（Implied volatility (IV)）</span>统一按 16% 计算。纵轴是价格每变动 1% 做市商需要调整的对冲金额。把看跌需求拖到 2.0×，分水岭上移到 790 附近：同样的现价，市场从「有人托底」变成「有人追杀」。把到期天数拖短，曲线变得更陡，集中在行权价<span class="ek">（Strike price）</span>附近。</figcaption>
+      </figure>
+      <div class="note warn"><span class="tag">这些数字是估计出来的</span><p>没有人能直接看到做市商的真实仓位。数据服务商发布的 Gamma 分水岭、Gamma 敞口，都是根据未平仓合约<span class="ek">（Open interest (OI)）</span>加上一些假设（比如「客户买看跌、卖看涨」）推算的。把它们当作一张大致的地形图，而不是精确的坐标。价格跌破估算的分水岭后，还要看跌破后的价格行为：成交是否放大、反弹是否无力。</p></div>
+
+      <h3>到期日附近的效应</h3>
+      <ul>
+        <li><strong>月度到期<span class="ek">（Monthly expiration (OpEx)）</span></strong>（每月第三个周五）和<strong>季度四重到期<span class="ek">（Quad witching）</span></strong>（3、6、9、12 月的第三个周五）前后，大量期权集中失效，做市商的对冲仓位随之释放。到期前价格常被大额未平仓的行权价「吸住」，到期后束缚解除，波动常常变大。</li>
+        <li><strong>最大痛点<span class="ek">（Max pain）</span></strong>是让所有期权买方总损失最大的那个到期价。它在到期前一两天对价格有一定的吸引力，离到期越远越没有意义。</li>
+        <li><strong>0DTE 期权</strong>（当天到期）的 Gamma 极大，会放大日内的波动，尤其是在大额行权价附近。它们对日内的路径影响大，对几周的方向影响小。</li>
+        <li><strong>单个行权价的堆积</strong>：某个整数行权价上看涨期权特别多，价格接近时做市商需要买入对冲，可能形成一段加速上涨；越过以后买盘消失，也可能变成阻力。</li>
+      </ul>
+
+      <h3>杠杆 ETF 的收盘再平衡</h3>
+      <p>杠杆 ETF<span class="ek">（Leveraged ETF）</span> 承诺每天提供标的涨跌的固定倍数，所以每天收盘前都必须调整仓位。推导一下：一只杠杆<span class="ek">（Leverage）</span>倍数为 <span class="v">L</span>、净资产为 <span class="v">A</span> 的基金，需要持有 <span class="v">L·A</span> 的敞口。标的当天涨了 <span class="v">r</span>，敞口变成 <span class="v">L·A·(1+r)</span>，净资产变成 <span class="v">A·(1+L·r)</span>，需要的敞口是 <span class="v">L·A·(1+L·r)</span>。两者相减：</p>
+      <div class="formula">需要买入的金额 = A × L × （L − 1） × r<small>L = 3 时系数是 6，L = 2 时是 2，L = −1 时是 2，L = −3 时是 12。系数永远为正：涨了就买，跌了就卖，反向基金也一样。</small></div>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">杠杆 ETF 的再平衡永远顺着当天的方向</span><span class="fig-no">工具 7-A</span></div>
+        <div class="form-grid">
+          <label for="lf-aum">基金规模（亿美元）<input id="lf-aum" type="number" value="100" step="10"></label>
+          <label for="lf-l">杠杆倍数<select id="lf-l"><option value="3" selected>3 倍</option><option value="2">2 倍</option><option value="-1">−1 倍（反向）</option><option value="-2">−2 倍</option><option value="-3">−3 倍</option></select></label>
+          <label for="lf-r">标的当天涨跌（%）<input id="lf-r" type="number" value="5" step="0.5"></label>
+        </div>
+        <div class="readout">
+          <div><b id="lf-o1">—</b><small>收盘前需要交易的金额</small></div>
+          <div><b id="lf-o2">—</b><small>方向</small></div>
+          <div><b id="lf-o3">—</b><small>相当于基金规模的</small></div>
+        </div>
+        <figcaption>规模 100 亿美元、标的上涨 5% 时：3 倍基金要买 30 亿，2 倍和 −1 倍各买 10 亿，−3 倍要买 60 亿。反向基金的规模往往不大，但系数最大。</figcaption>
+      </figure>
+      <p>对于有大规模杠杆 ETF 跟踪的个股（一些热门科技股和半导体股），这股资金会在大涨大跌的日子里放大尾盘的走势：标的大涨，杠杆基金在收盘前买入，第二天开盘更高，又推动更多买入。下跌时反过来。理解这一点，就能理解为什么某些股票的波动总是比基本面消息所能解释的更极端。</p>
+
+      <h3>其他机械性资金</h3>
+      <ul>
+        <li><strong>波动率目标基金<span class="ek">（Volatility-targeting fund）</span>和趋势跟踪<span class="ek">（Trend following (CTA)）</span>基金</strong>：前者在实际波动率<span class="ek">（Realized volatility）</span>上升时自动降低股票仓位，后者在价格跌破趋势时减仓。两者都会在下跌时卖、在平静上涨时慢慢买回。</li>
+        <li><strong>季末和月末再平衡<span class="ek">（Rebalancing）</span></strong>：股债配置型的养老金和基金，在股票大涨的季度末要卖出股票、买入债券，反之亦然。</li>
+        <li><strong>回购静默期<span class="ek">（Buyback blackout period）</span></strong>：公司在财报<span class="ek">（Earnings report）</span>发布前几周通常暂停回购<span class="ek">（Share buyback）</span>，市场少了一个稳定的买家。财报后回购恢复，买盘回来。</li>
+        <li><strong>指数调整</strong>：成分股的加入、剔除和权重调整，会在生效日集中产生成交。</li>
+      </ul>
+
+      <h3>怎么用这些信息</h3>
+      <p>机械性资金<span class="ek">（Mechanical flows）</span>解释的是<strong>路径和时机</strong>，不是方向。宏观判断告诉你大概往哪走，资金流告诉你哪几天可能走得特别快，哪些价位附近可能被吸住或者突然加速。</p>
+      <p>期权数据还有一个用途：识破叙事<span class="ek">（Narrative）</span>。一只股票连续大涨，新闻会给出一个基本面的理由，但如果它恰好伴随着大量短期看涨期权的买入，做市商被迫买入股票对冲，那么这段上涨里有相当一部分是机械性的。这时要问的问题是：看涨期权的买盘停下来以后，谁来接？</p>
+      <div class="note"><span class="tag">实战观察</span><p>不少交易者在给出当天的关键点位时，会优先用期权结构<span class="ek">（Options positioning）</span>里的价位（分水岭、大额行权价、到期痛点），再用技术位（缺口、均线、形态）作为更远的目标，并且总是写成二分法：「守在某价位之上偏多，跌破偏空」。这比单纯说「我看涨」更容易执行，也更容易认错。</p></div>
+    </article>
+
+    <!-- ===================== 08 ===================== -->
+    <article class="chapter" id="c8" data-title="叙事与信息" hidden>
+      <div class="chapter-head"><div class="no">08</div><div class="kicker">第八章</div><h2>叙事与信息</h2></div>
+      <p class="lead">市场交易的是故事，但最后付账的是现金流。会用叙事<span class="ek">（Narrative）</span>的人，用它决定研究什么；被叙事用的人，用它决定什么时候全仓。</p>
+
+      <h3>叙事的生命周期</h3>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">每个阶段该做的事不一样，最危险的是共识之后</span><span class="fig-no">图 8-1</span></div>
+        <div class="scroll-x">
+        <svg class="chart wide" viewBox="0 0 680 300" role="img" aria-label="叙事生命周期与价格走势示意">
+          <g style="font-family: var(--font-body)">
+            <g style="stroke: var(--rule)" stroke-dasharray="3 4">
+              <line x1="146" y1="30" x2="146" y2="230"></line><line x1="272" y1="30" x2="272" y2="230"></line><line x1="398" y1="30" x2="398" y2="230"></line><line x1="524" y1="30" x2="524" y2="230"></line>
+            </g>
+            <line x1="20" y1="230" x2="660" y2="230" style="stroke: var(--muted)"></line>
+            <path d="M20 210 C 70 208, 110 205, 146 196 C 190 184, 230 160, 272 132 C 318 100, 360 62, 398 50 C 430 40, 470 44, 500 70 C 530 98, 560 150, 600 170 C 625 182, 645 180, 660 178" style="fill: none; stroke: var(--accent)" stroke-width="2.6"></path>
+            <circle cx="398" cy="50" r="4.5" style="fill: var(--loss)"></circle>
+            <text x="406" y="40" style="fill: var(--loss); font-size: 12px">「所有人都知道」</text>
+            <g style="font-size: 14px; font-weight: 700; fill: var(--ink)" text-anchor="middle">
+              <text x="83" y="254">萌芽</text><text x="209" y="254">扩散</text><text x="335" y="254">共识</text><text x="461" y="254">拥挤与疲劳</text><text x="592" y="254">证伪或沉寂</text>
+            </g>
+            <g style="font-size: 12px; fill: var(--muted)" text-anchor="middle">
+              <text x="83" y="274">研究，小仓位</text><text x="209" y="274">数据验证后加仓</text><text x="335" y="274">持有，不再加</text><text x="461" y="274">分批减仓</text><text x="592" y="274">观望，等下一条</text>
+            </g>
+          </g>
+        </svg>
+        </div>
+        <figcaption>价格上涨最快的往往是「扩散」到「共识」那一段，但风险收益比<span class="ek">（Risk-reward ratio）</span>最好的是「萌芽」和「扩散」早期。到了共识阶段，好消息已经很难再推动价格，坏消息却能让它大跌。</figcaption>
+      </figure>
+
+      <h3>叙事决定研究什么，估值决定何时买</h3>
+      <p>一个好的叙事回答的是「未来几年，世界会被迫把钱花在哪里」。比如人工智能需要电力、网络和数据中心<span class="ek">（Data center）</span>；制造业回流<span class="ek">（Reshoring）</span>需要工程建设<span class="ek">（Engineering and construction (E&C)）</span>、工业设备和物流；人口老龄化<span class="ek">（Population aging）</span>需要医疗器械<span class="ek">（Medical devices）</span>和服务；安全和资源独立需要国防、关键矿产<span class="ek">（Critical minerals）</span>和能源基础设施。</p>
+      <p>从叙事到具体标的，可以按四步走：</p>
+      <div class="chain">
+        <div class="step"><b>1</b><div><strong>找结构性变化</strong>：一个会持续好几年、不依赖某一次新闻的趋势。</div></div>
+        <div class="step"><b>2</b><div><strong>找绕不开的受益者</strong>：不管谁在竞争中胜出，都必须向它买东西的公司，也就是「卖铲子的人」。</div></div>
+        <div class="step"><b>3</b><div><strong>避开最拥挤的表达</strong>：人人都在买的那一只，往往已经把未来几年的好消息算进了价格。</div></div>
+        <div class="step"><b>4</b><div><strong>等价格</strong>：好公司不等于好价格。等回调、等估值回到合理区间、等波动率下降，再分批买入。</div></div>
+      </div>
+      <p>叙事对，不代表这家公司就是好的表达工具。一个正确的趋势里，有大量公司会因为执行、竞争或负债而失败。真正的分散，要看风险来源<span class="ek">（Risk factor）</span>，而不是看持有多少只股票：五只都靠同一个叙事上涨的股票，其实是一笔交易。</p>
+
+      <h3>写下失效条件，而且要写事实</h3>
+      <p>买入一个叙事之前，先写下「什么事实出现以后，我会承认这个判断错了」。注意是事实，不是价格。</p>
+      <div class="two">
+        <div><h5>不好的失效条件</h5><ul><li>股价跌 20% 就认错</li><li>感觉不对就走</li></ul></div>
+        <div><h5>好的失效条件</h5><ul><li>主要客户连续两个季度下调资本开支<span class="ek">（Capital expenditure (capex)）</span>指引</li><li>政策补贴被取消或推迟</li><li>关键产品的价格开始持续下跌</li></ul></div>
+      </div>
+      <p>价格止损<span class="ek">（Stop-loss）</span>用来控制单笔亏损，事实失效条件<span class="ek">（Invalidation criteria）</span>用来判断叙事本身。两者都需要，但不要混为一谈。价格跌了而事实没变，可能是机会；价格没跌而事实变了，更应该走。</p>
+
+      <h3>一条新闻重不重要，问六个问题</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>问题</th><th>为什么要问</th></tr></thead>
+          <tbody>
+            <tr><td>市场怎么反应？</td><td>真金白银的反应比标题更有分量（第 2 章）</td></tr>
+            <tr><td>它超出预期了吗？</td><td>已知的事情不是新闻，只有预期差<span class="ek">（Expectation gap）</span>才会推动价格</td></tr>
+            <tr><td>它改变了四个变量中的哪一个？</td><td>不改变利率、油价、盈利、就业的新闻，影响通常很短</td></tr>
+            <tr><td>谁获益，谁被迫花钱？</td><td>顺着钱的流向找标的</td></tr>
+            <tr><td>影响范围多大？</td><td>单个公司、一个行业，还是整个宏观</td></tr>
+            <tr><td>有没有资金流<span class="ek">（Fund flows）</span>或期权数据佐证？</td><td>有资金跟随的叙事才会在价格上兑现</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>内部人、大资金和散户情绪</h3>
+      <ul>
+        <li><strong>内部人<span class="ek">（Insiders）</span>买入比卖出更有信息量。</strong>高管卖股票的理由很多：分散财富、缴税、买房，很多还是提前设定好的交易计划<span class="ek">（Trading plan）</span>。但他们用自己的钱在公开市场买入，理由通常只有一个。多名高管同时买入，信号更强。</li>
+        <li><strong>异常期权活动<span class="ek">（Unusual options activity (UOA)）</span>是信息，不是命令。</strong>某个行权价<span class="ek">（Strike price）</span>上突然出现大额成交，可能是看多，也可能是某个大机构在对冲<span class="ek">（Hedge）</span>正股仓位，甚至是在平仓。要结合未平仓量<span class="ek">（Open interest (OI)）</span>的变化和成交价位判断，而且只把它当作一条线索。</li>
+        <li><strong>散户情绪的极端值是反向参考。</strong>身边从不炒股的人开始推荐股票，某只股票成为社交平台上所有人都在聊的话题，这些都是情绪接近高点的信号。它不告诉你明天跌，但提醒你不要在这时候加仓。</li>
+      </ul>
+
+      <h3>交易政策，不交易口号</h3>
+      <p>政治新闻会带来大量噪音。宏观交易者关心的是政策会让资本流向哪里：一项产业补贴、一项关税、一笔国防预算、一项出口限制，都会让某些行业的收入在几年里确定性地增加或减少。至于谁说了什么、你认同哪一方，市场并不在乎。</p>
+      <p>把个人信念和交易判断分开，是这门手艺里最难的一部分。一个有用的检验：如果你支持的一方失势，你的仓位会不会让你睡不着？如果会，你押注的就是信念，而不是可以验证的市场逻辑。</p>
+    </article>
+
+    <!-- ===================== 09 ===================== -->
+    <article class="chapter" id="c9" data-title="日历、季节性与事件剧本" hidden>
+      <div class="chapter-head"><div class="no">09</div><div class="kicker">第九章</div><h2>日历、季节性与事件剧本</h2></div>
+      <p class="lead">宏观交易者的一个月，是被日历切开的。重要的数据和会议都提前公布了日期，所以你完全可以在事件发生之前，把每一种结果下要做什么都写好。</p>
+
+      <h3>一个月里的固定日程</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>事件</th><th>大致时间</th><th>为什么重要</th></tr></thead>
+          <tbody>
+            <tr><td>就业报告（非农、失业率<span class="ek">（Unemployment rate）</span>）</td><td>通常是每月第一个周五</td><td>就业是体制<span class="ek">（Regime）</span>判断的第四个变量，也是美联储<span class="ek">（Federal Reserve (Fed)）</span>的目标之一</td></tr>
+            <tr><td>首次申领失业金<span class="ek">（Initial jobless claims）</span>人数</td><td>每周四</td><td>最及时的就业数据，看四周平均的趋势</td></tr>
+            <tr><td>ISM 制造业与服务业指数</td><td>每月初</td><td>领先指标，价格分项能提前看到通胀压力</td></tr>
+            <tr><td>CPI 与 PPI</td><td>每月中旬</td><td>通胀数据，直接影响加息和降息的定价</td></tr>
+            <tr><td>PCE 物价指数</td><td>每月下旬</td><td>美联储最看重的通胀指标</td></tr>
+            <tr><td>FOMC 议息会议<span class="ek">（FOMC meeting）</span></td><td>每年 8 次，会后有声明和记者会</td><td>政策利率<span class="ek">（Policy rate）</span>、点阵图<span class="ek">（Dot plot）</span>和对未来的指引</td></tr>
+            <tr><td>美债拍卖<span class="ek">（Treasury auction）</span>与季度再融资<span class="ek">（Quarterly refunding）</span>公告</td><td>拍卖几乎每周都有；再融资每季度一次</td><td>长端利率的供需（第 3 章）</td></tr>
+            <tr><td>期权月度到期<span class="ek">（Monthly expiration (OpEx)）</span>与季度四重到期<span class="ek">（Quad witching）</span></td><td>每月第三个周五；3、6、9、12 月为四重到期</td><td>对冲<span class="ek">（Hedge）</span>仓位集中释放（第 7 章）</td></tr>
+            <tr><td>财报<span class="ek">（Earnings report）</span>季</td><td>每季度结束后约两到六周最集中</td><td>盈利是体制判断的第三个变量</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>事件剧本：提前把分支写好</h3>
+      <p>事件当天，价格在几秒内跳动，情绪最容易主导判断。所以要在前一天，用平静的头脑把剧本写好：每一种结果，每一类资产会怎么走，自己要做什么。以 CPI 为例：</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>结果</th><th>2 年期</th><th>美元</th><th>黄金</th><th>纳斯达克 100</th><th>小盘股</th><th>我的动作</th></tr></thead>
+          <tbody>
+            <tr><td>明显高于预期</td><td>大涨</td><td>走强</td><td>下跌</td><td>下跌</td><td>跌得更多</td><td>执行对冲；不抄底，等第一个小时过去</td></tr>
+            <tr><td>符合预期</td><td>小动</td><td>小动</td><td>小动</td><td>波动率回落</td><td>小动</td><td>事件前买的保护会因为隐含波动率<span class="ek">（Implied volatility (IV)）</span>下降而亏一些，按计划处理</td></tr>
+            <tr><td>明显低于预期</td><td>大跌</td><td>走弱</td><td>上涨</td><td>上涨</td><td>涨得更多</td><td>按计划加仓预先选好的标的</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>剧本里最有价值的一栏，是「什么样的反应说明市场在交易别的东西」。比如 CPI 明显低于预期，2 年期大跌，股市却也在跌，说明市场更担心的是增长，而不是通胀。这种与剧本不符的反应，往往比数据本身更重要。</p>
+
+      <h3>期权在为事件定价多少</h3>
+      <p>期权价格里藏着市场对一个事件的波动预期。用一周后到期的期权（包含事件当天）和平常日子的隐含波动率，可以把事件当天单独分离出来。按交易日计算（一年 252 个交易日）：</p>
+      <div class="formula">事件日方差 = σ<sub>含事件</sub>² × 5 ÷ 252 − σ<sub>平常</sub>² × 4 ÷ 252<small>假设这一周 5 个交易日，其中 4 天是平常日子。事件日的预期波幅 = 事件日方差开平方。</small></div>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">周度期权的隐含波动率越高，事件当天被定价的波幅越大</span><span class="fig-no">图 9-1 · 可拖动</span></div>
+        <div class="controls">
+          <label class="ctl" for="ev-1">含事件的周度 IV <input id="ev-1" type="range" min="10" max="30" value="16"> <output id="ev-1-o">16%</output></label>
+          <label class="ctl" for="ev-0">平常的 IV <input id="ev-0" type="range" min="8" max="20" value="13"> <output id="ev-0-o">13%</output></label>
+        </div>
+        <svg class="chart" id="f-ev" viewBox="0 0 680 290" role="img" aria-label="周度隐含波动率与事件日隐含波幅"></svg>
+        <div class="readout">
+          <div><b id="ev-r1">—</b><small>事件当天的预期波幅</small></div>
+          <div><b id="ev-r2">—</b><small>平常一天的预期波幅</small></div>
+          <div><b id="ev-r3">—</b><small>指数 ETF 现价 780 时约为</small></div>
+        </div>
+        <figcaption>默认参数下，市场预期 CPI 当天的波幅约 1.55%，是平常一天 0.82% 的近两倍。如果你认为这次数据不会带来太大意外，事件波动就是「贵」的，用有限风险的结构卖出它更合适；如果你认为意外会很大，买入跨式<span class="ek">（Straddle）</span>期权才有可能赚钱，因为需要的波幅超过 1.55%。</figcaption>
+      </figure>
+
+      <h3>季节性是地图，不是扳机</h3>
+      <p>常被引用的统计里，9 月是标普 500 历史上平均表现最弱的月份；在美国中期选举<span class="ek">（Midterm elections）</span>年，市场常在年中到秋季走弱，然后在年底到第二年表现较好。还有月末基金调仓、长假前后成交清淡、财报季前的回购静默期<span class="ek">（Buyback blackout period）</span>等等。</p>
+      <p>这些规律的问题在于：样本少（中期选举每四年一次，几十年也只有十几个样本），而且每一年的宏观背景完全不同。所以季节性<span class="ek">（Seasonality）</span>的正确用法是：</p>
+      <ul>
+        <li>提前准备：季节性偏弱的时段到来前，准备好现金、对冲和一份购物清单，写下回调 5%、10%、15% 时分别买什么。</li>
+        <li>等待确认：季节性只告诉你「可能」，价格跌破关键位、广度<span class="ek">（Market breadth）</span>恶化、信用利差<span class="ek">（Credit spread）</span>扩大，才是「确认」。不要去预测回调，等市场自己确认。</li>
+        <li>和其他信号叠加：季节性偏弱、估值偏贵、利率上升同时出现，比单独一个季节性更值得重视。</li>
+      </ul>
+      <p>华尔街还流传着不少日历谚语，比如某些节日前卖出、节日后买回。把它们当成值得留意的提醒就够了，不要当成交易信号。</p>
+
+      <h3>事件前后的纪律</h3>
+      <ul>
+        <li><strong>事件前对冲，事件中少动。</strong>重大事件（议息会议、关键数据、重要公司财报）前，为现有仓位买好保护，或者先降低仓位。结果出来的第一个小时，价格常常来回反转，最容易做错。</li>
+        <li><strong>低成交量的时段，小心假突破。</strong>假期前后、夏季成交清淡的周，价格容易被少量资金推动，突破的可靠性下降。</li>
+        <li><strong>周一开盘要谨慎。</strong>周末累积的新闻集中在周一开盘释放，开盘头半个小时的价格往往不能代表当天的方向。</li>
+        <li><strong>一天符合预期，不等于确认。</strong>重要的转折，至少要等到第二天、第三天的价格行为来验证。</li>
+      </ul>
+    </article>
+
+    <!-- ===================== 10 ===================== -->
+    <article class="chapter" id="c10" data-title="从观点到交易" hidden>
+      <div class="chapter-head"><div class="no">10</div><div class="kicker">第十章</div><h2>从观点到交易</h2></div>
+      <p class="lead">宏观观点要变成钱，还要回答四个问题：用什么工具，下多大，拿多久，错了怎么办。很多正确的宏观判断，就输在这四个问题上。</p>
+
+      <h3>一个观点要写全五个部分</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>部分</th><th>问自己</th><th>示例</th></tr></thead>
+          <tbody>
+            <tr><td>方向</td><td>涨还是跌，相对什么</td><td>小盘股<span class="ek">（Small caps）</span>相对纳斯达克 100 跑赢</td></tr>
+            <tr><td>幅度</td><td>大概多少</td><td>比值上升 5% 到 8%</td></tr>
+            <tr><td>时间</td><td>多久兑现</td><td>4 到 8 周</td></tr>
+            <tr><td>置信度</td><td>有多确定，依据是什么</td><td>中等：利率在下行，但就业数据还没确认</td></tr>
+            <tr><td>失效条件<span class="ek">（Invalidation criteria）</span></td><td>什么事实出现就认错</td><td>10 年期收益率重新突破前高，或信用利差<span class="ek">（Credit spread）</span>扩大</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>只写了第一部分的观点，不是一个可以交易的观点。时间这一栏尤其重要，它直接决定你该用什么工具。</p>
+
+      <h3>按时间选工具</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>兑现时间</th><th>适合的工具</th><th>原因</th></tr></thead>
+          <tbody>
+            <tr><td>几天内的事件或点位</td><td>短期期权、价差</td><td>杠杆<span class="ek">（Leverage）</span>高，最大亏损<span class="ek">（Max loss）</span>确定；时间短，时间损耗<span class="ek">（Time decay）</span>可以接受</td></tr>
+            <tr><td>几周到几个月的宏观逻辑</td><td>正股、板块 ETF、较长期限的价差</td><td>宏观逻辑需要时间兑现，正股不怕等</td></tr>
+            <tr><td>一年以上的结构性叙事<span class="ek">（Narrative）</span></td><td>正股分批<span class="ek">（Scaling in）</span>买入、长期限期权</td><td>波动会很大，要能拿得住</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>一个需要半年才能兑现的判断，用三周后到期的看涨期权<span class="ek">（Call option）</span>去表达，等于同时押了方向和时间，而时间几乎一定会站在你的对面。当宏观逻辑需要时间的时候，宁可买股票，也不要买短期期权：我们需要的是时间，而不是刺激。</p>
+
+      <h3>挑最干净、最薄弱的那一环</h3>
+      <ul>
+        <li><strong>看多时，找最直接的受益者。</strong>油价上涨的观点，用上游生产商表达比用综合性能源公司更直接；利率下行的观点，用小盘股或房地产信托比用大型科技股更直接。</li>
+        <li><strong>看空时，找最弱的板块。</strong>看空科技，与其做空走势最强的纳斯达克 100，不如做空相对强弱<span class="ek">（Relative strength）</span>最差、动能已经转弱的子板块。软柿子比硬石头好捏。</li>
+        <li><strong>想不清楚方向时，交易相对强弱。</strong>买入一个、卖出另一个，可以把整体市场的涨跌对冲<span class="ek">（Hedge）</span>掉，只押你最有把握的那部分判断。</li>
+      </ul>
+
+      <h3>组合层面的对冲</h3>
+      <p>第 2 章提到的「意外对冲」可以算一下。假设你持有 10,000 美元的能源股，它对油价的弹性是 0.6（油价涨 10%，它涨 6%）。你担心政策突然把油价压下来，于是买入航空 ETF 的看涨期权作为保护。</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">用一小笔权利金，换掉大部分的下行风险</span><span class="fig-no">图 10-1 · 可拖动</span></div>
+        <div class="controls">
+          <label class="ctl" for="hg-n">航空看涨期权 <input id="hg-n" type="range" min="0" max="10" value="4"> <output id="hg-n-o">4 张</output></label>
+        </div>
+        <svg class="chart" id="f-hg" viewBox="0 0 680 300" role="img" aria-label="能源仓位加航空看涨期权的盈亏"></svg>
+        <div class="legend"><span><i style="border-color: var(--muted)" class="dash"></i>只持有能源股</span><span><i style="border-color: var(--accent)"></i>能源股 + 航空看涨期权</span></div>
+        <div class="readout">
+          <div><b id="hg-r1">—</b><small>对冲成本（权利金）</small></div>
+          <div><b id="hg-r2">—</b><small>油价下跌 20% 时（未对冲 <span id="hg-r2s">—</span>）</small></div>
+          <div><b id="hg-r3">—</b><small>油价上涨 20% 时（未对冲 <span id="hg-r3s">—</span>）</small></div>
+        </div>
+        <figcaption>假设：航空 ETF 现价 25 美元，对油价的弹性是 −0.9；买入 60 天到期、行权价<span class="ek">（Strike price）</span> 27 美元的看涨期权，隐含波动率<span class="ek">（Implied volatility (IV)）</span> 45%，每张约 1.11 美元。图中是 30 天后、隐含波动率不变时的盈亏。4 张期权花费约 444 美元：油价跌 20% 时亏损从 1,200 美元降到约 405 美元，油价涨 20% 时盈利从 1,200 美元降到约 764 美元。真实冲击中隐含波动率通常会上升，对冲效果会比这里更好。</figcaption>
+      </figure>
+      <p>这个例子的重点在于形状。用看涨期权对冲，你付出的是一笔确定的、有限的权利金<span class="ek">（Premium）</span>，换来的是油价朝不利方向大幅变动时的保护。如果用卖空<span class="ek">（Short selling）</span>能源股来对冲，你会把盈利和亏损同比例削掉，观点本身也就没了。</p>
+      <p>同样的思路可以用在任何宏观仓位上：先问「我最怕哪种情景」，再找在那种情景下涨得最多的资产，用小仓位或期权持有它。不要只看一个单子，要看整个组合在每种情景下的结果。</p>
+
+      <h3>分批进场，确认后加仓</h3>
+      <p>宏观判断很少一次就对准时机。一个简单的分批方案：</p>
+      <ol>
+        <li>判断形成时，建立计划仓位的三分之一，确认你能承受它的波动。</li>
+        <li>预先写好确认清单，比如「等权<span class="ek">（Equal-weight）</span>跑赢持续一周」「信用利差没有扩大」「油价稳定」。清单满足后，再加三分之一。</li>
+        <li>趋势走出来、出现第一次健康回调时，加最后三分之一。</li>
+        <li>任何时候，失效条件出现就全部退出。没有新证据，绝不在亏损的宏观仓位上加仓。</li>
+      </ol>
+
+      <h3>仓位反映不确定性，不反映兴奋程度</h3>
+      <ul>
+        <li><strong>越不确定，仓位越小。</strong>你越兴奋，越要怀疑自己是不是落进了叙事里。</li>
+        <li><strong>相关的仓位要合在一起算。</strong>三只科技股、一只小盘 ETF 和两笔看涨期权，可能是同一个方向的六种写法。看风险来源<span class="ek">（Risk factor）</span>，不看代码数量。</li>
+        <li><strong>管好总敞口<span class="ek">（Exposure）</span>和单日亏损上限。</strong>除了单笔仓位，还要给整个组合设一个每天最多亏多少的上限，碰到就停。</li>
+        <li><strong>现金也是仓位<span class="ek">（Cash is a position）</span>。</strong>没有清楚机会的时候持有现金，是一个主动的决定。它让你在别人被迫卖出时有能力买入。</li>
+      </ul>
+
+      <h3>用情景和概率做最后检查</h3>
+      <p>下单前，把未来一到三个月可能出现的两三种情景列出来，各给一个主观概率和预估的市场表现。比如：</p>
+      <div class="tbl">
+        <table>
+          <caption>示例，数字为假设</caption>
+          <thead><tr><th>情景</th><th class="r">主观概率</th><th class="r">指数表现</th><th class="r">概率 × 表现</th></tr></thead>
+          <tbody>
+            <tr><td>A. 利率继续上行，估值回调</td><td class="r mono">40%</td><td class="r mono">−10%</td><td class="r mono">−4.00%</td></tr>
+            <tr><td>B. 利率见顶，盈利接力</td><td class="r mono">35%</td><td class="r mono">+5%</td><td class="r mono">+1.75%</td></tr>
+            <tr><td>C. 就业断裂，进入第二阶段</td><td class="r mono">25%</td><td class="r mono">−15%</td><td class="r mono">−3.75%</td></tr>
+            <tr class="hl"><td>加权合计</td><td class="r mono">100%</td><td></td><td class="r mono">−6.00%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>这张表的价值不在于 −6% 这个数字有多准，主观概率本来就是猜的。它的价值在于逼你做两件事：第一，承认还有你不看好的情景，并给它一个概率；第二，检查在每一种情景下，你的组合都能活下来。如果某个情景出现会让你爆仓，不管它的概率多低，都要先处理它。</p>
+    </article>
+
+    <!-- ===================== 11 ===================== -->
+    <article class="chapter" id="c11" data-title="工具箱：晨报、触发线与练习" hidden>
+      <div class="chapter-head"><div class="no">11</div><div class="kicker">第十一章</div><h2>工具箱：晨报、触发线与练习</h2></div>
+      <p class="lead">把前面十章变成每天可以用的东西。清单的勾选只保存在你自己的浏览器里。</p>
+
+      <h3>晨报模板</h3>
+      <p>每天开盘前花十五分钟，按这个顺序写一份给自己看的晨报。坚持一个月，你会发现自己读市场的速度明显变快。</p>
+      <pre class="tpl" id="tpl">日期：
+一、隔夜变化
+    2Y ___  10Y ___  美元 ___  原油 ___  黄金 ___  VIX ___  信用利差 ___
+    变化最大或最反常的是：
+二、原因
+    事件 / 数据 / 讲话 / 拍卖：
+    是否已被提前交易：
+三、放进大框架
+    当前体制（第 5 章）：      本周日程：      季节性位置：
+四、传导链
+    ___ → ___ → ___    受益：            受压：
+五、盘面验证
+    等权 vs 市值：    小盘：    金融：    半导体：    信用：
+六、关键点位（之上做什么 / 之下做什么）
+    指数：            分水岭与大额行权价：
+七、今天的计划
+    结构：    仓位：    止损：    对冲：
+八、一句话：今天市场在交易 ___________
+九、纪律：等确认，不追，轻仓，事件中少动</pre>
+      <div class="copyrow"><button class="btn" type="button" id="tpl-copy">复制模板</button><small id="tpl-msg" aria-live="polite"></small></div>
+
+      <h3>监控清单和触发线</h3>
+      <p>触发线用来提醒你「该重新评估了」，而不是自动下单。下面的数值是示例，要根据你开始使用时各个指标的水平和平常的波动来调整。用相对变化（多少天内变了多少）比用绝对水平更不容易过时。</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>指标</th><th>示例触发线</th><th>触发后做什么</th></tr></thead>
+          <tbody>
+            <tr><td>10 年期收益率</td><td>20 个交易日内上升超过 40 个基点</td><td>减少长久期<span class="ek">（Duration）</span>成长股<span class="ek">（Growth stocks）</span>，检查对冲<span class="ek">（Hedge）</span></td></tr>
+            <tr><td>10 年期实际利率<span class="ek">（Real yield）</span></td><td>突破过去一年的高点</td><td>估值压缩风险上升，降低仓位</td></tr>
+            <tr><td>美元指数<span class="ek">（US Dollar Index (DXY)）</span></td><td>一个月内上涨超过 3%</td><td>检查跨国公司、大宗商品、新兴市场<span class="ek">（Emerging markets）</span>敞口<span class="ek">（Exposure）</span></td></tr>
+            <tr><td>美元兑日元</td><td>日元一周内升值超过 3%</td><td>警惕套息交易<span class="ek">（Carry trade）</span>平仓，降低杠杆<span class="ek">（Leverage）</span></td></tr>
+            <tr><td>原油</td><td>突破前高并站稳一周</td><td>重新评估通胀和体制<span class="ek">（Regime）</span>，考虑意外对冲</td></tr>
+            <tr><td>VIX 期限结构<span class="ek">（Term structure）</span></td><td>近月高于远月（倒挂）</td><td>眼前的恐慌，停止加仓，保护优先</td></tr>
+            <tr><td>高收益债利差<span class="ek">（High-yield spread）</span></td><td>一个月内扩大超过 100 个基点</td><td>信用压力，体制可能在恶化</td></tr>
+            <tr><td>首次申领失业金<span class="ek">（Initial jobless claims）</span></td><td>四周平均连续上升并突破前高</td><td>就业转弱，检查是否进入第二阶段</td></tr>
+            <tr><td>等权<span class="ek">（Equal-weight）</span> ÷ 市值</td><td>指数新高而比值创新低</td><td>上涨过度集中，不追指数</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>四张清单</h3>
+      <div class="cards">
+        <div class="card"><h4>开盘前</h4><ul>
+          <li><input type="checkbox" id="m1"><label for="m1">记下七个数字的隔夜变化</label></li>
+          <li><input type="checkbox" id="m2"><label for="m2">找出最反常的组合，写下原因</label></li>
+          <li><input type="checkbox" id="m3"><label for="m3">确认今天有没有重要数据或讲话</label></li>
+          <li><input type="checkbox" id="m4"><label for="m4">写出那一句「今天市场在交易什么」</label></li>
+          <li><input type="checkbox" id="m5"><label for="m5">标出关键点位的二分法</label></li>
+        </ul></div>
+        <div class="card"><h4>每周体制检查</h4><ul>
+          <li><input type="checkbox" id="m6"><label for="m6">四个变量各自的方向更新了吗</label></li>
+          <li><input type="checkbox" id="m7"><label for="m7">有没有两个以上的变量同时变化</label></li>
+          <li><input type="checkbox" id="m8"><label for="m8">广度和信用有没有确认指数的方向</label></li>
+          <li><input type="checkbox" id="m9"><label for="m9">下周的日程和事件剧本写好了</label></li>
+          <li><input type="checkbox" id="m10"><label for="m10">对照上周的判断，记录对错</label></li>
+        </ul></div>
+        <div class="card"><h4>宏观交易下单前</h4><ul>
+          <li><input type="checkbox" id="m11"><label for="m11">方向、幅度、时间、置信度、失效条件都写了</label></li>
+          <li><input type="checkbox" id="m12"><label for="m12">工具和兑现时间匹配</label></li>
+          <li><input type="checkbox" id="m13"><label for="m13">选的是最干净或最薄弱的那一环</label></li>
+          <li><input type="checkbox" id="m14"><label for="m14">和现有仓位合并计算过风险来源</label></li>
+          <li><input type="checkbox" id="m15"><label for="m15">最怕的情景下，组合能活下来</label></li>
+        </ul></div>
+        <div class="card"><h4>事件日</h4><ul>
+          <li><input type="checkbox" id="m16"><label for="m16">前一天写好三种结果的剧本</label></li>
+          <li><input type="checkbox" id="m17"><label for="m17">算过期权定价的事件波幅</label></li>
+          <li><input type="checkbox" id="m18"><label for="m18">保护在事件前买好了</label></li>
+          <li><input type="checkbox" id="m19"><label for="m19">结果出来后第一个小时不追</label></li>
+          <li><input type="checkbox" id="m20"><label for="m20">记录市场反应和剧本的差别</label></li>
+        </ul></div>
+      </div>
+
+      <h3>情景练习</h3>
+      <p>先自己想答案，再点开对照。没有唯一的标准答案，重要的是推理的顺序。</p>
+      <div class="qa">
+        <details><summary><span class="k">01</span><span>非农就业大幅低于预期。2 年期收益率急跌，股指开盘上涨，午后转跌，高收益债利差扩大。市场在交易什么？</span></summary><div>
+          <p>开盘时市场交易的是「降息会更早更多」，所以股票先涨。午后转跌、信用利差<span class="ek">（Credit spread）</span>扩大，说明焦点转到了「盈利会不会下修、经济会不会衰退<span class="ek">（Recession）</span>」。坏消息从「对降息是好消息」变成了「坏消息就是坏消息」。</p>
+          <p>体制上，这是向第二阶段靠近的信号。应对：检查保护是否足够，减少周期股<span class="ek">（Cyclical stocks）</span>和小盘股<span class="ek">（Small caps）</span>，观察接下来几周的初请数据。</p>
+        </div></details>
+        <details><summary><span class="k">02</span><span>10 年期收益率上升 15 个基点，同一天美元下跌、黄金上涨，股票和长期国债一起跌。</span></summary><div>
+          <p>利率上升而美元下跌，是反常组合。最可能的解释是海外资金在减持美国资产，或者市场对财政、通胀控制的信誉产生了担忧，期限溢价<span class="ek">（Term premium）</span>在上升。</p>
+          <p>这种环境下国债不是对冲工具，黄金才是。长久期成长股最受伤。可以用期权保护，或者降低整体仓位，而不是买入长债。</p>
+        </div></details>
+        <details><summary><span class="k">03</span><span>原油一周上涨 12%，同期标普 500 上涨，铜也大涨，周期股领涨。要不要因为油价上涨而减仓？</span></summary><div>
+          <p>股票和铜跟着原油一起涨，说明这更可能是需求推动的上涨，经济在加速。它和供给冲击<span class="ek">（Supply shock）</span>的含义相反，不需要因此减仓，周期股和能源股都可以参与。</p>
+          <p>需要留意的是后续：如果油价继续涨，开始推高通胀预期<span class="ek">（Inflation expectations）</span>和长端利率，需求推动可能逐渐转成对估值的压力。</p>
+        </div></details>
+        <details><summary><span class="k">04</span><span>标普 500 创出新高，但过去一个月等权标普持续跑输，小盘股下跌，信用利差小幅扩大。</span></summary><div>
+          <p>上涨越来越集中在少数大权重股上，广度<span class="ek">（Market breadth）</span>在恶化，信用市场也没有确认。这是典型的「指数假象」。</p>
+          <p>不追指数；检查自己的组合是否过度集中在同一批领涨股上；做空的话，挑相对最弱的板块，不要直接做空领涨的指数。</p>
+        </div></details>
+        <details><summary><span class="k">05</span><span>一只指数 ETF 跌破了估算的 Gamma 分水岭，距离月度到期还有一周，VIX 期限结构开始走平。</span></summary><div>
+          <p>跌破分水岭后做市商<span class="ek">（Market maker）</span>可能转为负 Gamma，下跌时需要追着卖出，日内波动容易放大。期限结构走平说明眼前的保护需求在上升。</p>
+          <p>短期内要预期更大的波动，降低杠杆，不急着抄底。到期以后，大量期权失效，对冲结构会重新分布，届时再评估。</p>
+        </div></details>
+        <details><summary><span class="k">06</span><span>CPI 所在一周的周度期权隐含波动率是 18%，平常是 13%。你预计这次 CPI 当天指数只会波动 1.2% 左右。该买入还是卖出事件波动？</span></summary><div>
+          <p>事件日方差<span class="ek">（Variance）</span> = 0.18² × 5 ÷ 252 − 0.13² × 4 ÷ 252 ≈ 0.000375，开平方约 1.94%。市场为 CPI 当天定价的波幅约 1.94%，高于你预计的 1.2%。</p>
+          <p>如果你的判断可靠，事件波动是贵的，适合用有限风险的结构卖出（例如铁鹰<span class="ek">（Iron condor）</span>式价差），而不是买入跨式<span class="ek">（Straddle）</span>期权。卖出之前，同样要写好「如果结果大幅偏离」的处理方案。</p>
+        </div></details>
+      </div>
+
+      <!--EN-GLOSSARY-START--><h3>中英术语表</h3>
+      <p>书中出现的主要术语和它们的英文原词，按首次出现的章节排列。读英文资料、用券商平台或者搜索时，用英文原词会准确得多。</p>
+      <div class="tbl"><table><thead><tr><th>中文</th><th>English</th><th>首次出现</th></tr></thead><tbody>
+        <tr><td>人口老龄化</td><td>Population aging</td><td>导读</td></tr>
+        <tr><td>仪表盘</td><td>Dashboard</td><td>导读</td></tr>
+        <tr><td>传导链</td><td>Transmission chain</td><td>导读</td></tr>
+        <tr><td>估值倍数</td><td>Valuation multiple</td><td>导读</td></tr>
+        <tr><td>体制</td><td>Regime</td><td>导读</td></tr>
+        <tr><td>制造业回流</td><td>Reshoring</td><td>导读</td></tr>
+        <tr><td>叙事</td><td>Narrative</td><td>导读</td></tr>
+        <tr><td>季节性</td><td>Seasonality</td><td>导读</td></tr>
+        <tr><td>定投</td><td>Dollar-cost averaging (DCA)</td><td>导读</td></tr>
+        <tr><td>对冲比例</td><td>Hedge ratio</td><td>导读</td></tr>
+        <tr><td>市场体制</td><td>Market regime</td><td>导读</td></tr>
+        <tr><td>广度</td><td>Market breadth</td><td>导读</td></tr>
+        <tr><td>折现率</td><td>Discount rate</td><td>导读</td></tr>
+        <tr><td>期权到期</td><td>Options expiration (OpEx)</td><td>导读</td></tr>
+        <tr><td>机械性资金</td><td>Mechanical flows</td><td>导读</td></tr>
+        <tr><td>权利金</td><td>Premium</td><td>导读</td></tr>
+        <tr><td>相关性</td><td>Correlation</td><td>导读</td></tr>
+        <tr><td>财报</td><td>Earnings report</td><td>导读</td></tr>
+        <tr><td>资金流</td><td>Fund flows</td><td>导读</td></tr>
+        <tr><td>轮动</td><td>Sector rotation</td><td>导读</td></tr>
+        <tr><td>隐含波动率</td><td>Implied volatility (IV)</td><td>导读</td></tr>
+        <tr><td>风险偏好</td><td>Risk appetite</td><td>导读</td></tr>
+        <tr><td>主线</td><td>Dominant theme</td><td>第 1 章</td></tr>
+        <tr><td>久期</td><td>Duration</td><td>第 1 章</td></tr>
+        <tr><td>供给冲击</td><td>Supply shock</td><td>第 1 章</td></tr>
+        <tr><td>信用利差</td><td>Credit spread</td><td>第 1 章</td></tr>
+        <tr><td>央行购金</td><td>Central bank gold buying</td><td>第 1 章</td></tr>
+        <tr><td>实际利率</td><td>Real yield</td><td>第 1 章</td></tr>
+        <tr><td>对冲</td><td>Hedge</td><td>第 1 章</td></tr>
+        <tr><td>小盘股</td><td>Small caps</td><td>第 1 章</td></tr>
+        <tr><td>成长股</td><td>Growth stocks</td><td>第 1 章</td></tr>
+        <tr><td>提前交易</td><td>Priced in early</td><td>第 1 章</td></tr>
+        <tr><td>政策利率</td><td>Policy rate</td><td>第 1 章</td></tr>
+        <tr><td>新兴市场</td><td>Emerging markets</td><td>第 1 章</td></tr>
+        <tr><td>期限溢价</td><td>Term premium</td><td>第 1 章</td></tr>
+        <tr><td>期限结构</td><td>Term structure</td><td>第 1 章</td></tr>
+        <tr><td>看涨期权</td><td>Call option</td><td>第 1 章</td></tr>
+        <tr><td>通胀预期</td><td>Inflation expectations</td><td>第 1 章</td></tr>
+        <tr><td>避险</td><td>Risk-off</td><td>第 1 章</td></tr>
+        <tr><td>金融条件</td><td>Financial conditions</td><td>第 1 章</td></tr>
+        <tr><td>高收益债利差</td><td>High-yield spread</td><td>第 1 章</td></tr>
+        <tr><td>二阶思维</td><td>Second-order thinking</td><td>第 2 章</td></tr>
+        <tr><td>利好出尽</td><td>Sell the news</td><td>第 2 章</td></tr>
+        <tr><td>制裁</td><td>Sanctions</td><td>第 2 章</td></tr>
+        <tr><td>核心通胀</td><td>Core inflation</td><td>第 2 章</td></tr>
+        <tr><td>联邦基金期货</td><td>Fed funds futures</td><td>第 2 章</td></tr>
+        <tr><td>股息</td><td>Dividend</td><td>第 2 章</td></tr>
+        <tr><td>季度再融资</td><td>Quarterly refunding</td><td>第 3 章</td></tr>
+        <tr><td>市盈率</td><td>Price-to-earnings ratio (P/E)</td><td>第 3 章</td></tr>
+        <tr><td>戈登增长模型</td><td>Gordon growth model</td><td>第 3 章</td></tr>
+        <tr><td>熊平</td><td>Bear flattening</td><td>第 3 章</td></tr>
+        <tr><td>熊陡</td><td>Bear steepening</td><td>第 3 章</td></tr>
+        <tr><td>牛平</td><td>Bull flattening</td><td>第 3 章</td></tr>
+        <tr><td>牛陡</td><td>Bull steepening</td><td>第 3 章</td></tr>
+        <tr><td>理论价值</td><td>Theoretical value</td><td>第 3 章</td></tr>
+        <tr><td>盈利收益率</td><td>Earnings yield</td><td>第 3 章</td></tr>
+        <tr><td>美联储</td><td>Federal Reserve (Fed)</td><td>第 3 章</td></tr>
+        <tr><td>衰退</td><td>Recession</td><td>第 3 章</td></tr>
+        <tr><td>认购倍数</td><td>Bid-to-cover ratio</td><td>第 3 章</td></tr>
+        <tr><td>防御板块</td><td>Defensive sectors</td><td>第 3 章</td></tr>
+        <tr><td>隔夜指数掉期</td><td>Overnight index swap (OIS)</td><td>第 3 章</td></tr>
+        <tr><td>风险溢价</td><td>Risk premium</td><td>第 3 章</td></tr>
+        <tr><td>周期股</td><td>Cyclical stocks</td><td>第 4 章</td></tr>
+        <tr><td>套息交易</td><td>Carry trade</td><td>第 4 章</td></tr>
+        <tr><td>战略储备</td><td>Strategic Petroleum Reserve (SPR)</td><td>第 4 章</td></tr>
+        <tr><td>杠杆</td><td>Leverage</td><td>第 4 章</td></tr>
+        <tr><td>炼油</td><td>Refining</td><td>第 4 章</td></tr>
+        <tr><td>盈亏平衡通胀率</td><td>Breakeven inflation</td><td>第 4 章</td></tr>
+        <tr><td>美元微笑</td><td>Dollar smile</td><td>第 4 章</td></tr>
+        <tr><td>裂解价差</td><td>Crack spread</td><td>第 4 章</td></tr>
+        <tr><td>失业率</td><td>Unemployment rate</td><td>第 5 章</td></tr>
+        <tr><td>流动性枯竭</td><td>Liquidity crunch</td><td>第 5 章</td></tr>
+        <tr><td>盈利预期</td><td>Earnings estimates</td><td>第 5 章</td></tr>
+        <tr><td>看跌价差</td><td>Put spread</td><td>第 5 章</td></tr>
+        <tr><td>缩表</td><td>Quantitative tightening (QT)</td><td>第 5 章</td></tr>
+        <tr><td>非农</td><td>Nonfarm payrolls (NFP)</td><td>第 5 章</td></tr>
+        <tr><td>首次申领失业金</td><td>Initial jobless claims</td><td>第 5 章</td></tr>
+        <tr><td>市值加权</td><td>Market-cap weighted</td><td>第 6 章</td></tr>
+        <tr><td>时间损耗</td><td>Time decay</td><td>第 6 章</td></tr>
+        <tr><td>相对强弱</td><td>Relative strength</td><td>第 6 章</td></tr>
+        <tr><td>看跌期权</td><td>Put option</td><td>第 6 章</td></tr>
+        <tr><td>空头回补</td><td>Short covering</td><td>第 6 章</td></tr>
+        <tr><td>等权</td><td>Equal-weight</td><td>第 6 章</td></tr>
+        <tr><td>高收益债</td><td>High-yield bonds</td><td>第 6 章</td></tr>
+        <tr><td>做市商</td><td>Market maker</td><td>第 7 章</td></tr>
+        <tr><td>再平衡</td><td>Rebalancing</td><td>第 7 章</td></tr>
+        <tr><td>四重到期</td><td>Quad witching</td><td>第 7 章</td></tr>
+        <tr><td>回购</td><td>Share buyback</td><td>第 7 章</td></tr>
+        <tr><td>回购静默期</td><td>Buyback blackout period</td><td>第 7 章</td></tr>
+        <tr><td>实际波动率</td><td>Realized volatility</td><td>第 7 章</td></tr>
+        <tr><td>敞口</td><td>Exposure</td><td>第 7 章</td></tr>
+        <tr><td>最大痛点</td><td>Max pain</td><td>第 7 章</td></tr>
+        <tr><td>月度到期</td><td>Monthly expiration (OpEx)</td><td>第 7 章</td></tr>
+        <tr><td>期权结构</td><td>Options positioning</td><td>第 7 章</td></tr>
+        <tr><td>未平仓合约</td><td>Open interest (OI)</td><td>第 7 章</td></tr>
+        <tr><td>杠杆 ETF</td><td>Leveraged ETF</td><td>第 7 章</td></tr>
+        <tr><td>波动率目标基金</td><td>Volatility-targeting fund</td><td>第 7 章</td></tr>
+        <tr><td>行权价</td><td>Strike price</td><td>第 7 章</td></tr>
+        <tr><td>趋势跟踪</td><td>Trend following (CTA)</td><td>第 7 章</td></tr>
+        <tr><td>交易计划</td><td>Trading plan</td><td>第 8 章</td></tr>
+        <tr><td>关键矿产</td><td>Critical minerals</td><td>第 8 章</td></tr>
+        <tr><td>内部人</td><td>Insiders</td><td>第 8 章</td></tr>
+        <tr><td>医疗器械</td><td>Medical devices</td><td>第 8 章</td></tr>
+        <tr><td>失效条件</td><td>Invalidation criteria</td><td>第 8 章</td></tr>
+        <tr><td>工程建设</td><td>Engineering and construction (E&C)</td><td>第 8 章</td></tr>
+        <tr><td>异常期权活动</td><td>Unusual options activity (UOA)</td><td>第 8 章</td></tr>
+        <tr><td>数据中心</td><td>Data center</td><td>第 8 章</td></tr>
+        <tr><td>未平仓量</td><td>Open interest (OI)</td><td>第 8 章</td></tr>
+        <tr><td>止损</td><td>Stop-loss</td><td>第 8 章</td></tr>
+        <tr><td>资本开支</td><td>Capital expenditure (capex)</td><td>第 8 章</td></tr>
+        <tr><td>预期差</td><td>Expectation gap</td><td>第 8 章</td></tr>
+        <tr><td>风险收益比</td><td>Risk-reward ratio</td><td>第 8 章</td></tr>
+        <tr><td>风险来源</td><td>Risk factor</td><td>第 8 章</td></tr>
+        <tr><td>中期选举</td><td>Midterm elections</td><td>第 9 章</td></tr>
+        <tr><td>点阵图</td><td>Dot plot</td><td>第 9 章</td></tr>
+        <tr><td>美债拍卖</td><td>Treasury auction</td><td>第 9 章</td></tr>
+        <tr><td>议息会议</td><td>FOMC meeting</td><td>第 9 章</td></tr>
+        <tr><td>跨式</td><td>Straddle</td><td>第 9 章</td></tr>
+        <tr><td>分批</td><td>Scaling in</td><td>第 10 章</td></tr>
+        <tr><td>卖空</td><td>Short selling</td><td>第 10 章</td></tr>
+        <tr><td>最大亏损</td><td>Max loss</td><td>第 10 章</td></tr>
+        <tr><td>现金也是仓位</td><td>Cash is a position</td><td>第 10 章</td></tr>
+        <tr><td>反身性</td><td>Reflexivity</td><td>第 11 章</td></tr>
+        <tr><td>方差</td><td>Variance</td><td>第 11 章</td></tr>
+        <tr><td>美元指数</td><td>US Dollar Index (DXY)</td><td>第 11 章</td></tr>
+        <tr><td>铁鹰</td><td>Iron condor</td><td>第 11 章</td></tr>
+      </tbody></table></div>
+<!--EN-GLOSSARY-END-->
+      <h3>延伸阅读与数据来源</h3>
+      <ul>
+        <li>霍华德·马克斯《周期》：如何判断自己处在周期的什么位置。</li>
+        <li>瑞·达利欧《债务危机》：利率、债务和政策如何相互作用。</li>
+        <li>爱德华·钱塞勒 The Price of Time：利率的历史，以及长期低利率如何改变资产价格。</li>
+        <li>乔治·索罗斯《金融炼金术》：反身性<span class="ek">（Reflexivity）</span>，叙事<span class="ek">（Narrative）</span>如何改变它所描述的现实。</li>
+        <li>数据：圣路易斯联储的 FRED 数据库（利率、利差、就业），CME FedWatch（加息降息概率），美国财政部的拍卖结果和季度再融资<span class="ek">（Quarterly refunding）</span>公告。</li>
+      </ul>
+    </article>
+
+    <nav class="pager" aria-label="章节翻页">
+      <button type="button" class="prev" id="pg-prev"><small>上一章</small><span></span></button>
+      <button type="button" class="next" id="pg-next"><small>下一章</small><span></span></button>
+    </nav>
+
+    <footer class="end"><p>本手册综合宏观金融的常见框架与交易者的实战经验整理而成。文中示例由注明的假设计算，历史数据为近似值，供学习使用，不构成投资建议。</p></footer>
+  </main>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+  const $ = id => document.getElementById(id);
+
+  // ---------- chapters ----------
+  const chapters = [...document.querySelectorAll("article.chapter")];
+  const rail = $("rail"), pick = $("pick");
+  const prevB = $("pg-prev"), nextB = $("pg-next");
+  chapters.forEach((c, i) => {
+    const t = c.dataset.title;
+    const li = document.createElement("li");
+    li.innerHTML = `<button type="button" data-i="${i}"><span class="k">${String(i).padStart(2, "0")}</span><span>${t}</span></button>`;
+    rail.appendChild(li);
+    const o = document.createElement("option"); o.value = i; o.textContent = String(i).padStart(2, "0") + "　" + t; pick.appendChild(o);
+  });
+  const redraws = {};
+  let current = 0;
+  function show(i, scroll) {
+    i = Math.max(0, Math.min(chapters.length - 1, i));
+    current = i;
+    chapters.forEach((c, j) => { c.hidden = j !== i; });
+    rail.querySelectorAll("button").forEach(b => b.setAttribute("aria-current", +b.dataset.i === i ? "true" : "false"));
+    pick.value = i;
+    prevB.hidden = i === 0; nextB.hidden = i === chapters.length - 1;
+    if (i > 0) prevB.querySelector("span").textContent = chapters[i - 1].dataset.title;
+    if (i < chapters.length - 1) nextB.querySelector("span").textContent = chapters[i + 1].dataset.title;
+    if (redraws[i]) redraws[i].forEach(f => f());
+    store.set("mm-ch", String(i));
+    if (location.hash !== "#c" + i) history.replaceState(null, "", "#c" + i);
+    if (scroll) window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }
+  rail.addEventListener("click", e => { const b = e.target.closest("button"); if (b) show(+b.dataset.i, true); });
+  pick.addEventListener("change", () => show(+pick.value, true));
+  prevB.addEventListener("click", () => show(current - 1, true));
+  nextB.addEventListener("click", () => show(current + 1, true));
+  window.addEventListener("hashchange", () => { const m = location.hash.match(/^#c(\d+)$/); if (m) show(+m[1], false); });
+
+  // ---------- chart helper ----------
+  const NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+  function plot(svg, cfg) {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    if (!svg.dataset.h) svg.dataset.h = svg.viewBox.baseVal.height;
+    const cw = svg.getBoundingClientRect().width || 680;
+    const narrow = cw > 0 && cw < 560;
+    const W = narrow ? 440 : 680, H = +svg.dataset.h;
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    const m = { l: cfg.ml !== undefined ? cfg.ml : (narrow ? 54 : 62), r: narrow ? 12 : 18, t: 16, b: 42 };
+    const [x0, x1] = cfg.x, [y0, y1] = cfg.y;
+    const X = v => m.l + (v - x0) / (x1 - x0) * (W - m.l - m.r);
+    const Y = v => m.t + (1 - (v - y0) / (y1 - y0)) * (H - m.t - m.b);
+    const g = el("g", { class: "ax" }, svg);
+    (cfg.bands || []).forEach(bd => el("rect", { x: X(bd[0]), y: m.t, width: Math.max(0, X(bd[1]) - X(bd[0])), height: H - m.t - m.b, style: "fill: " + bd[2] }, g));
+    (cfg.yt || []).forEach(v => {
+      el("line", { x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v), style: "stroke: var(--grid)", "stroke-width": 1 }, g);
+      el("text", { x: m.l - 8, y: Y(v) + 4, "text-anchor": "end", style: "fill: var(--muted)" }, g).textContent = cfg.yf ? cfg.yf(v) : v;
+    });
+    (cfg.xt || []).forEach(v => {
+      if (!cfg.noxgrid) el("line", { x1: X(v), x2: X(v), y1: m.t, y2: H - m.b, style: "stroke: var(--grid)", "stroke-width": 1 }, g);
+      el("text", { x: X(v), y: H - m.b + 18, "text-anchor": "middle", style: "fill: var(--muted)" + (cfg.xsans ? "; font-family: var(--font-body); font-size: 12.5px" : "") }, g).textContent = cfg.xf ? cfg.xf(v) : v;
+    });
+    if (cfg.zero !== undefined) el("line", { x1: m.l, x2: W - m.r, y1: Y(cfg.zero), y2: Y(cfg.zero), style: "stroke: var(--muted)", "stroke-width": 1 }, g);
+    if (cfg.frame) el("line", { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, style: "stroke: var(--muted)", "stroke-width": 1 }, g);
+    el("text", { x: (m.l + W - m.r) / 2, y: H - 6, "text-anchor": "middle", style: "fill: var(--muted); font-family: var(--font-body); font-size: 12.5px" }, g).textContent = cfg.xlabel || "";
+    const cy = (m.t + H - m.b) / 2;
+    el("text", { x: 11, y: cy, "text-anchor": "middle", transform: `rotate(-90 11 ${cy})`, style: "fill: var(--muted); font-family: var(--font-body); font-size: 12.5px" }, g).textContent = cfg.ylabel || "";
+    const id = "cl" + Math.random().toString(36).slice(2, 8);
+    const cp = el("clipPath", { id }, svg); el("rect", { x: m.l, y: m.t - 2, width: W - m.l - m.r, height: H - m.t - m.b + 4 }, cp);
+    const sg = el("g", { "clip-path": `url(#${id})` }, svg);
+    (cfg.vlines || []).forEach(vl => el("line", { x1: X(vl[0]), x2: X(vl[0]), y1: m.t, y2: H - m.b, style: `stroke: ${vl[1]}; stroke-dasharray: ${vl[2] || "4 4"}`, "stroke-width": 1.2 }, sg));
+    (cfg.bars || []).forEach(b => {
+      const bw = (X(b.w) - X(0));
+      const base = b.base !== undefined ? b.base : y0;
+      const ya = Y(b.y), yb = Y(base);
+      el("rect", { x: X(b.x) - bw / 2, y: Math.min(ya, yb), width: bw, height: Math.max(1, Math.abs(yb - ya)), rx: 2, style: `fill: ${b.color}` }, sg);
+    });
+    (cfg.series || []).forEach(s => {
+      const d = s.pts.map((p, i) => (i ? "L" : "M") + X(p[0]).toFixed(1) + " " + Y(p[1]).toFixed(1)).join("");
+      el("path", { d, style: `fill: none; stroke: ${s.color}; stroke-width: ${s.w || 2.2}; ${s.dash ? "stroke-dasharray:" + s.dash + ";" : ""} opacity: ${s.op || 1}`, "stroke-linejoin": "round" }, sg);
+    });
+    (cfg.dots || []).forEach(dt => el("circle", { cx: X(dt[0]), cy: Y(dt[1]), r: dt[3] || 4, style: `fill: ${dt[2]}` }, sg));
+    (cfg.labels || []).forEach(lb => {
+      el("text", { x: X(lb[0]) + (lb[3] || 0), y: Y(lb[1]) + (lb[4] === undefined ? -8 : lb[4]), "text-anchor": lb[5] || "middle", style: `fill: ${lb[6] || "var(--ink)"}; font-family: ${lb[7] ? "var(--font-body)" : "var(--font-mono)"}; font-size: ${lb[7] ? "12.5px" : "11.5px"}` }, sg).textContent = lb[2];
+    });
+    return { X, Y, narrow };
+  }
+  const range = (a, b, st) => { const o = []; for (let v = a; v <= b + 1e-9; v += st) o.push(+v.toFixed(6)); return o; };
+  const reg = (ch, f) => { (redraws[ch] = redraws[ch] || []).push(f); };
+  let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => (redraws[current] || []).forEach(f => f()), 150); });
+  const sgn = (v, d) => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(d);
+  const money = v => (v < 0 ? "−$" : "+$") + Math.abs(Math.round(v)).toLocaleString("en-US");
+  const niceStep = span => { const raw = span / 5, p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p; return (f < 1.5 ? 1 : f < 3.5 ? 2 : f < 7.5 ? 5 : 10) * p; };
+  const ticks = (a, b) => { const st = niceStep(b - a); const o = []; for (let v = Math.ceil(a / st) * st; v <= b + 1e-9; v += st) o.push(+v.toFixed(6)); return o; };
+
+  // normal & Black-Scholes
+  const npdf = x => Math.exp(-x * x / 2) / Math.sqrt(2 * Math.PI);
+  function ncdf(x) { const t = 1 / (1 + 0.2316419 * Math.abs(x)); const d = npdf(x); const p = d * t * (0.319381530 + t * (-0.356563782 + t * (1.781477937 + t * (-1.821255978 + t * 1.330274429)))); return x > 0 ? 1 - p : p; }
+  function bsCall(S, K, T, s, r) { r = r === undefined ? 0.04 : r; const d1 = (Math.log(S / K) + (r + s * s / 2) * T) / (s * Math.sqrt(T)), d2 = d1 - s * Math.sqrt(T); return S * ncdf(d1) - K * Math.exp(-r * T) * ncdf(d2); }
+  function bsGamma(S, K, T, s, r) { r = r === undefined ? 0.04 : r; const d1 = (Math.log(S / K) + (r + s * s / 2) * T) / (s * Math.sqrt(T)); return npdf(d1) / (S * s * Math.sqrt(T)); }
+
+  // generic toggle groups
+  function group(box, onChange) {
+    const btns = [...box.querySelectorAll("button")];
+    const set = v => { btns.forEach(b => b.setAttribute("aria-pressed", b.dataset.v === String(v) ? "true" : "false")); };
+    box.addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; set(b.dataset.v); onChange(b.dataset.v); });
+    return set;
+  }
+  const pills = (arr, cls) => arr.map(t => `<span class="pill ${cls}">${t}</span>`).join("");
+
+  // ---------- 1-1 dashboard ----------
+  (function () {
+    const st = { y: 1, d: 1, o: 1, g: 0, v: 1, c: 0 };
+    const out = $("dash-out");
+    function verdict() {
+      const { y, d, o, g, v, c } = st;
+      const fc = y + d + 0.5 * o + v + 1.5 * c;
+      const fcl = fc >= 2 ? "明显收紧" : fc >= 0.75 ? "偏紧" : fc > -0.75 ? "中性" : fc > -2 ? "偏松" : "明显放松";
+      let r;
+      if (c === 1 && v === 1) r = { t: "信用压力：风险在扩散", p: "信用利差和波动率一起恶化，是七个数字里最严肃的组合。债券投资者在为违约风险要价，股市的问题可能正在从估值变成盈利和融资。" + (y === -1 ? "利率同时下跌，这次长期国债大概率能起到对冲作用。" : y === 1 ? "利率还在上升，股债可能一起跌，现金比国债更安全。" : ""), up: ["现金", "短期国债"].concat(y === -1 ? ["长期国债"] : []).concat(["黄金", "必需消费"]), dn: ["高收益债", "小盘股", "高负债公司", "金融", "可选消费"], n: "看信用利差是否继续扩大、VIX 期限结构是否倒挂。体制可能正在进入第二或第三阶段（第 5 章）。" };
+      else if (y === 1 && d === -1) r = { t: "信誉或期限溢价担忧：资金在离开美国资产", p: "利率上升而美元下跌，说明海外资金在减持美债和美元资产。股票和国债可能一起跌。" + (g === 1 ? "黄金上涨印证了这种担忧。" : ""), up: ["黄金", "非美资产", "实物资产", "短久期资产"], dn: ["长期美债", "长久期成长股", "房地产信托", "小盘股"], n: "看下一次长债拍卖的结果，以及 30 年期是否继续领涨收益率曲线。" };
+      else if (y === 1 && o === 1) r = { t: "通胀型压力：利率和油价一起压缩估值", p: "油价推高通胀预期，利率随之上行。这是下跌第一阶段的典型组合：经济数据可能还很好，估值却在被压缩。" + (d === 1 ? "美元走强，进一步收紧了全球金融条件。" : ""), up: ["能源", "油服", "银行（曲线变陡时）", "价值股", "现金"], dn: ["长久期成长股", "小盘股", "航空", "可选消费", "长期美债"], n: "拆开 10 年期：是实际利率还是通胀预期在主导？再看就业是否开始转弱，那是第二阶段的信号。" };
+      else if (y === -1 && v === 1 && (d === 1 || g === 1)) r = { t: "避险：增长担忧", p: "利率下跌、波动率上升，资金在逃向安全资产。这类环境里，国债通常能起到对冲作用。", up: ["长期国债", "黄金", "公用事业", "必需消费", "医疗"], dn: ["周期股", "小盘股", "金融", "工业"], n: "看收益率曲线是否牛陡、信用利差是否跟着扩大。如果信用也开始恶化，就是更严重压力的前奏。" };
+      else if (y === -1 && v <= 0 && d <= 0) r = { t: "宽松与风险偏好", p: "利率、美元和波动率都在回落，金融条件在放松，上涨更容易扩散到小盘股和周期股。" + (o === 1 ? "但油价在涨，要留意它会不会让降息预期打折扣。" : ""), up: ["小盘股", "成长股", "周期股", "新兴市场"].concat(g === 1 ? ["黄金"] : []), dn: ["美元", "防御板块（相对）"], n: "看等权指数和小盘股是否确认。广度跟上，才是健康的上涨（第 6 章）。" };
+      else if (y === 1 && v <= 0 && o <= 0) r = { t: "好消息推高利率", p: "利率上升，但波动率平稳、油价不涨，多半是强劲的经济数据带动的。周期股能承受，成长股的估值会承压。", up: ["银行", "工业", "周期股", "价值股"], dn: ["长久期成长股", "房地产信托", "公用事业"], n: "盯住上升的速度：20 个交易日内升超过 40 个基点，「好消息」就会变成估值压力。" };
+      else if (v === 1 && g === 1) r = { t: "地缘或突发事件的避险需求", p: "波动率和黄金同时上涨，利率方向不明确，常见于地缘冲突或突发事件。", up: ["黄金", "国防"].concat(o === 1 ? ["能源"] : []).concat(["现金"]), dn: ["航空", "旅游", "高估值股"], n: "事件型冲击通常来得快去得也快。看信用利差有没有跟随，没有跟随的话，冲击多半是短期的。" };
+      else if (v === 1) r = { t: "波动率上升，但宏观上没有统一的解释", p: "保护需求在上升，利率、美元和商品却没有讲同一个故事。可能是个股或板块层面的事件，也可能是资金流（第 7 章）。", up: ["现金", "保护性期权"], dn: ["高杠杆仓位", "拥挤的赢家"], n: "看期权到期日、Gamma 分水岭和杠杆 ETF 的再平衡，判断这是机械性的波动还是宏观的开始。" };
+      else if (y === 0 && d === 0 && o === 0 && g === 0 && v <= 0 && c <= 0) r = { t: "平静的一天", p: "七个数字都没有明显变化。平静本身不是信号，但它适合做准备工作：更新体制判断、写事件剧本、列购物清单。", up: [], dn: [], n: "看本周日程，找出下一个可能打破平静的事件。" };
+      else r = { t: "信号混杂", p: "这几个数字没有指向同一个方向，市场还没有找到主线。这种日子最适合少做。", up: [], dn: [], n: "等某个变量出现明显的变化，或者出现一个反常组合，再出手。" };
+      out.innerHTML = `<h4>${r.t}</h4><div class="row"><b>金融条件</b>${fcl}（收紧得分 ${sgn(fc, 1)}）</div><p>${r.p}</p>` +
+        (r.up.length ? `<div class="row"><b>相对受益</b>${pills(r.up, "up")}</div>` : "") +
+        (r.dn.length ? `<div class="row"><b>相对受压</b>${pills(r.dn, "down")}</div>` : "") +
+        `<div class="row"><b>下一步验证</b>${r.n}</div>`;
+    }
+    document.querySelectorAll("#dash .seg3").forEach(box => {
+      const k = box.dataset.k;
+      const set = group(box, v => { st[k] = +v; verdict(); });
+      set(st[k]);
+    });
+    verdict();
+  })();
+
+  // ---------- 2-1 chain explorer ----------
+  (function () {
+    const D = {
+      oil: { t: "油价供给冲击", s: ["原油和柴油上涨，运输和生产成本上升", "通胀预期上行，盈利预期里的成本项被上调", "市场推迟降息，甚至开始定价加息，短端和长端收益率上行", "估值收缩：长久期成长股、小盘股、高负债公司先受压；消费者被「油价税」挤压", "油价持续高位会造成需求破坏：利率开始回落而油价仍高，体制可能滑向第二阶段"], up: ["上游油气", "油服", "油轮与航运", "国防"], dn: ["航空", "邮轮", "化工下游", "可选消费", "小盘股"], x: "政策可能介入：释放储备、限制出口。如果油价因此急跌，之前被卖得最狠的航空和旅游会反弹最猛，可以拿它们做能源仓位的意外对冲。", v: "油价上涨的那几天，标普是跟着涨（需求推动）还是下跌（供给冲击）？铜有没有一起涨？" },
+      long: { t: "长端利率急升", s: ["期限溢价上升：国债供给多、拍卖需求弱，或者市场担心财政和通胀", "房贷利率和企业的融资成本跟着上升", "股票的折现率上升，远期现金流占比高的公司估值受伤最大", "如果美元不涨反跌，说明海外资金在减持美国资产，股债可能同跌"], up: ["银行（曲线变陡时）", "保险", "价值股", "短久期资产", "现金"], dn: ["未盈利成长股", "房地产信托", "公用事业", "房屋建筑", "小盘股"], x: "曲线熊陡对银行的息差是好事，但如果利率上升同时引发对商业地产或私募信贷的担忧，银行反而会领跌。", v: "上升来自实际利率（增长或紧缩），还是来自盈亏平衡通胀率（通胀担忧）？30 年期是否领涨？" },
+      usd: { t: "美元走强", s: ["美元是全球融资货币，走强意味着全球金融条件收紧", "跨国公司的海外收入换算后缩水；以美元计价的大宗商品承压", "新兴市场资本外流，有美元债务的国家和公司压力上升", "如果日元等融资货币同时剧烈波动，可能触发套息交易平仓"], up: ["美国本土收入为主的公司", "进口商", "现金"], dn: ["黄金", "铜等大宗商品", "新兴市场", "跨国科技与消费品牌", "加密资产"], x: "美元为什么强决定了结论。「美国独强」带来的美元走强可以和美股一起涨；「全球避险」带来的美元走强通常伴随美股下跌（第 4 章的美元微笑）。", v: "美元走强的那几天，美股是涨还是跌？美债收益率是涨还是跌？" },
+      jobs: { t: "就业大幅转弱", s: ["市场先计算「降息会更早更多」，短端收益率急跌，曲线牛陡", "第一反应可能是股市上涨：坏消息对降息是好消息", "接着市场会问：盈利会不会下修？周期股、小盘股和信用利差开始反映衰退风险", "如果失业率持续上升（比如三个月均值比过去一年的低点高出 0.5 个百分点），就进入「坏消息就是坏消息」的阶段"], up: ["长期国债", "黄金", "公用事业", "必需消费", "医疗"], dn: ["银行", "可选消费", "工业", "小盘股", "高收益债"], x: "同一份数据，在通胀担忧主导时是利好，在增长担忧主导时是利空。先判断市场此刻更怕通胀还是更怕衰退。", v: "数据公布后，股票和债券是一起涨（交易降息），还是股票跌、债券涨（交易衰退）？" },
+      dove: { t: "央行意外偏鸽", s: ["市场几乎已经定价了加息，央行却没有加", "第一反应：短端收益率下行、美元走弱、黄金和股票上涨", "市场接着问：通胀还高，为什么不敢加？", "如果市场怀疑央行控通胀的决心：2 年期下行，10 年、30 年期反而上行（曲线熊陡），黄金继续涨，美元继续弱", "长端利率上行，把股票最初的涨幅卖掉"], up: ["黄金", "实物资产", "短久期资产", "非美资产"], dn: ["长期美债", "美元", "长久期成长股（第二阶段）"], x: "关键不在于加不加息，在于市场还信不信央行能控住通胀。第 3 章的信誉交易讲的就是这个两阶段反应。", v: "宣布后的几天，10 年期收益率是跟着 2 年期下行（相信央行），还是逆向上行（失去信任）？" }
+    };
+    const out = $("chain-out");
+    function render(k) {
+      const r = D[k];
+      out.innerHTML = `<div class="verdict"><h4>${r.t}</h4><div class="chain">${r.s.map((t, i) => `<div class="step"><b>${i + 1}</b><div>${t}</div></div>`).join("")}</div>` +
+        `<div class="row" style="margin-top:10px"><b>相对受益</b>${pills(r.up, "up")}</div><div class="row"><b>相对受压</b>${pills(r.dn, "down")}</div>` +
+        `<p style="margin-top:8px"><strong>二阶：</strong>${r.x}</p><p><strong>验证：</strong>${r.v}</p></div>`;
+    }
+    const set = group($("chain-pick"), render);
+    set("oil"); render("oil");
+  })();
+
+  // ---------- 3-1 valuation sensitivity ----------
+  (function () {
+    const svg = $("f-gv"), sl = $("gv-dr");
+    const G = [[0.02, "var(--calm)"], [0.05, "var(--accent)"], [0.06, "var(--loss)"]];
+    const chg = (g, dr) => ((0.08 - g) / (0.08 + dr - g) - 1) * 100;
+    function draw() {
+      const dr = +sl.value / 1000;
+      $("gv-dr-o").textContent = (dr >= 0 ? "+" : "−") + Math.abs(dr * 100).toFixed(1) + "%";
+      const xs = range(-1, 2, 0.02);
+      plot(svg, {
+        x: [-1, 2], y: [-60, 100], xt: [-1, -0.5, 0, 0.5, 1, 1.5, 2], yt: [-50, -25, 0, 25, 50, 75, 100],
+        xf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%", yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%",
+        xlabel: "折现率变化（百分点，基准 8%）", ylabel: "理论估值变化", zero: 0, vlines: [[dr * 100, "var(--muted)"]],
+        series: G.map(([g, c]) => ({ pts: xs.map(x => [x, Math.min(140, chg(g, x / 100))]), color: c, w: 2.4 })),
+        dots: G.map(([g, c]) => [dr * 100, Math.min(140, chg(g, dr)), c, 4.5])
+      });
+      ["gv-r1", "gv-r2", "gv-r3"].forEach((id, i) => { $(id).textContent = sgn(chg(G[i][0], dr), 1) + "%"; });
+    }
+    sl.addEventListener("input", draw);
+    reg(3, draw);
+  })();
+
+  // ---------- 3-A ERP ----------
+  (function () {
+    const ids = ["erp-pe", "erp-y", "erp-t"];
+    function calc() {
+      const [pe, y, t] = ids.map(i => parseFloat($(i).value));
+      if (!(pe > 0) || isNaN(y) || isNaN(t)) { ["erp-ey", "erp-n", "erp-r"].forEach(i => $(i).textContent = "—"); $("erp-msg").textContent = ""; return; }
+      const ey = 100 / pe, n = ey - y, r = ey - t;
+      $("erp-ey").textContent = ey.toFixed(2) + "%";
+      $("erp-n").textContent = sgn(n, 2) + "%";
+      $("erp-r").textContent = sgn(r, 2) + "%";
+      let msg = n < 0.5 ? "盈利收益率和名义国债几乎一样，甚至更低：只看名义回报，买国债和买股票拿到的差不多，国债的风险却小得多。" : "盈利收益率高于名义国债，股票仍然提供了一些额外补偿。";
+      msg += r < 2.5 ? "相对实际利率的补偿也偏薄，估值对利率冲击的缓冲很小。" : r < 4 ? "相对实际利率的补偿处于中等水平。" : "相对实际利率的补偿较厚，估值对利率上升有一定缓冲。";
+      $("erp-msg").textContent = msg + "（阈值只是粗略参考。）";
+    }
+    ids.forEach(i => $(i).addEventListener("input", calc));
+    calc();
+  })();
+
+  // ---------- 4-1 dollar smile ----------
+  (function () {
+    const svg = $("f-smile");
+    function draw() {
+      const f = x => 0.22 + 0.62 * x * x;
+      const r = plot(svg, {
+        x: [-1.08, 1.08], y: [0, 1.05], xt: [], yt: [], frame: true, ml: 30,
+        xlabel: "美国经济相对全球：更差 ← → 更强", ylabel: "美元强弱",
+        series: [{ pts: range(-1, 1, 0.02).map(x => [x, f(x)]), color: "var(--accent)", w: 2.8 }],
+        dots: [[-0.82, f(-0.82), "var(--loss)", 5.5], [0, f(0), "var(--calm)", 5.5], [0.82, f(0.82), "var(--accent)", 5.5]]
+      });
+      const nl = r.narrow;
+      const lab = [
+        [-0.82, f(-0.82), "全球避险", "美股通常下跌", "start", 14],
+        [0, f(0), "全球同步复苏", "资金流向海外", "middle", 0],
+        [0.82, f(0.82), "美国独强", "美股可以一起涨", "end", -14]
+      ];
+      const g = svg.lastChild;
+      lab.forEach(([x, y, a, b, anc, dx]) => {
+        const yy = x === 0 ? r.Y(y) - 42 : r.Y(y) - 30;
+        el("text", { x: r.X(x) + dx, y: yy, "text-anchor": anc, style: "fill: var(--ink); font-family: var(--font-body); font-size: " + (nl ? 12.5 : 14) + "px; font-weight: 700" }, g).textContent = a;
+        el("text", { x: r.X(x) + dx, y: yy + 18, "text-anchor": anc, style: "fill: var(--muted); font-family: var(--font-body); font-size: 12px" }, g).textContent = b;
+      });
+    }
+    reg(4, draw);
+  })();
+
+  // ---------- 5-2 regime classifier ----------
+  (function () {
+    const st = { r: 1, o: 1, e: 1, j: 1 };
+    const names = { r: "利率", o: "油价", e: "财报", j: "就业" };
+    const lab = { r: { "-1": "下降", "1": "上升" }, o: { "-1": "下降", "1": "上升" }, e: { "-1": "差", "0": "一般", "1": "好" }, j: { "-1": "恶化", "0": "转弱", "1": "强" } };
+    const P = [
+      { k: [-1, -1, 1, 1], t: "全面上涨", d: "折现率下降、成本下降、盈利和就业都好，几乎所有资产都顺风。", a: ["做多指数和周期股，小盘也会参与", "风险是过度乐观和拥挤：用移动止损管理，不去预测顶部", "趁这个阶段降低成本、积累利润，为下一个阶段留余地"] },
+      { k: [-1, -1, 0, 1], t: "轮动", d: "利率和油价回落，就业仍好，但盈利不算亮眼。资金不会全面撤离股市，而是在板块之间换手。", a: ["买前期输家的回调，减持拥挤赢家的反弹", "用正股或较长期限的工具，轮动需要时间兑现", "等权指数和小盘股持续跑赢，是轮动成立的确认"] },
+      { k: [1, -1, 1, 1], t: "好消息推高利率", d: "利率上升来自强劲的增长，盈利能跟上，油价不添乱。", a: ["周期股、银行、工业领涨，成长股估值承压但可以被盈利抵消", "盯住利率上升的速度，太快会滑向第一阶段", "长久期资产降低权重"] },
+      { k: [1, 1, 1, 1], t: "下跌第一阶段：估值压缩", d: "利率和油价一起上涨，财报和就业都还很好。人们觉得经济这么强不会跌，估值却在被压缩。", a: ["减少长久期成长股和小盘股", "持有能源和实物资产", "趁波动率便宜买保护；记住美债在这个阶段不是对冲"] },
+      { k: [-1, 1, 1, 0], t: "下跌第二阶段：增长开始受伤", d: "利率开始下跌，但原因不是通胀降温；油价仍高，就业转弱。", a: ["开始系统性保护：缩小仓位，买保护性看跌价差", "提高现金比例，防御板块相对强", "关注初请和信用利差，判断是否滑向第三阶段"] },
+      { k: [-1, -1, -1, -1], t: "下跌第三阶段：衰退", d: "盈利下修、失业大升，利率和油价都在下跌。", a: ["现金和长期国债为主，空仓或做空", "等政策催化剂确认底部，不要因为估值「看起来便宜」就抄底", "列好购物清单，政策转向后分批买入"] },
+      { k: [1, 1, -1, 0], t: "滞胀压力", d: "利率和油价上涨，盈利和就业却在转弱，是最难的环境。", a: ["股债可能双杀，现金和短久期资产最安全", "能源和实物资产相对抗跌", "整体仓位压低，等待一个变量先改善"] }
+    ];
+    const keys = ["r", "o", "e", "j"];
+    const out = $("reg-out");
+    function classify() {
+      const s = keys.map(k => st[k]);
+      let best = null;
+      P.forEach((p, i) => {
+        const dist = s.reduce((a, v, j) => a + Math.abs(v - p.k[j]) / (j < 2 ? 2 : 1), 0);
+        const match = s.filter((v, j) => v === p.k[j]).length;
+        if (!best || dist < best.dist - 1e-9) best = { p, dist, match };
+      });
+      const p = best.p;
+      const diff = keys.filter((k, j) => st[k] !== p.k[j]).map((k, j) => `${names[k]}：原型是「${lab[k][String(p.k[keys.indexOf(k)])]}」，你选的是「${lab[k][String(st[k])]}」`);
+      out.innerHTML = `<h4>${p.t}<span class="match">匹配 ${best.match}/4</span></h4><p>${p.d}</p><ul>${p.a.map(t => `<li>${t}</li>`).join("")}</ul>` +
+        (diff.length ? `<div class="row"><b>与原型的差别</b>${diff.join("；")}。</div>` : `<div class="row"><b>与原型的差别</b>完全符合。</div>`);
+    }
+    document.querySelectorAll("#reg .seg3").forEach(box => {
+      const k = box.dataset.k;
+      const set = group(box, v => { st[k] = +v; classify(); });
+      set(st[k]);
+    });
+    classify();
+  })();
+
+  // ---------- 6-1 concentration ----------
+  (function () {
+    const svg = $("f-conc");
+    const w = $("cs-w"), a = $("cs-a"), b = $("cs-b");
+    function draw() {
+      const W = +w.value / 100, A = +a.value, B = +b.value;
+      $("cs-w-o").textContent = w.value + "%";
+      $("cs-a-o").textContent = sgn(A, 0) + "%";
+      $("cs-b-o").textContent = sgn(B, 0) + "%";
+      const cap = W * A + (1 - W) * B, eq = 0.02 * A + 0.98 * B;
+      const vals = [A, B, cap, eq];
+      const mx = Math.max(2, ...vals.map(Math.abs)) * 1.3;
+      const yt = ticks(-mx, mx);
+      plot(svg, {
+        x: [0.4, 4.6], y: [-mx, mx], xt: [1, 2, 3, 4], yt, noxgrid: true, xsans: true,
+        xf: v => ["", "前十大", "其余 490 只", "市值加权", "等权"][v], yf: v => sgn(v, Math.abs(v) < 1 && v !== 0 ? 1 : 0) + "%",
+        xlabel: "", ylabel: "当天涨跌", zero: 0,
+        bars: vals.map((v, i) => ({ x: i + 1, y: v, base: 0, w: 0.5, color: i < 2 ? (v >= 0 ? "var(--tint-calm)" : "var(--tint-loss)") : (v >= 0 ? "var(--calm)" : "var(--loss)") })),
+        labels: vals.map((v, i) => [i + 1, v, sgn(v, 2) + "%", 0, v >= 0 ? -8 : 18, "middle", "var(--ink)"])
+      });
+      $("cs-r1").textContent = sgn(cap, 2) + "%";
+      $("cs-r2").textContent = sgn(eq, 2) + "%";
+      $("cs-r3").textContent = Math.abs(cap - eq).toFixed(2) + " 个百分点";
+    }
+    [w, a, b].forEach(s => s.addEventListener("input", draw));
+    reg(6, draw);
+  })();
+
+  // ---------- 7-1 dealer gamma ----------
+  (function () {
+    const svg = $("f-gex"), mS = $("gx-m"), dS = $("gx-d");
+    const calls = [[790, 40000], [800, 50000], [810, 30000]];
+    const puts = [[740, 30000], [750, 50000], [760, 60000], [770, 40000]];
+    const net = (S, m, days) => {
+      const T = days / 365; let t = 0;
+      calls.forEach(([K, oi]) => { t += oi * 100 * bsGamma(S, K, T, 0.16) * S * S * 0.01; });
+      puts.forEach(([K, oi]) => { t -= m * oi * 100 * bsGamma(S, K, T, 0.16) * S * S * 0.01; });
+      return t / 1e8; // 亿美元
+    };
+    function draw() {
+      const m = +mS.value / 10, days = +dS.value;
+      $("gx-m-o").textContent = m.toFixed(1) + "×";
+      $("gx-d-o").textContent = days + " 天";
+      const xs = range(730, 830, 0.5);
+      const ys = xs.map(x => net(x, m, days));
+      let flip = null;
+      for (let i = 1; i < xs.length; i++) { if ((ys[i - 1] < 0) !== (ys[i] < 0)) { const t = ys[i - 1] / (ys[i - 1] - ys[i]); flip = xs[i - 1] + t * (xs[i] - xs[i - 1]); break; } }
+      const lo = Math.min(...ys), hi = Math.max(...ys);
+      const pad = (hi - lo) * 0.12;
+      const y0 = Math.min(-1, lo - pad), y1 = Math.max(1, hi + pad);
+      const at = net(780, m, days), at760 = net(760, m, days);
+      const r = plot(svg, {
+        x: [730, 830], y: [y0, y1], xt: range(730, 830, 20), yt: ticks(y0, y1), yf: v => sgn(v, 0), zero: 0,
+        xlabel: "指数 ETF 价格", ylabel: "做市商净 Gamma（亿美元 / 每 1%）",
+        bands: flip ? [[730, flip, "var(--tint-loss)"], [flip, 830, "var(--tint-calm)"]] : [],
+        vlines: [[780, "var(--muted)"]],
+        series: [{ pts: xs.map((x, i) => [x, ys[i]]), color: "var(--accent)", w: 2.6 }],
+        dots: [[780, at, "var(--ink)", 4.5]].concat(flip ? [[flip, 0, "var(--loss)", 5]] : []),
+        labels: [[780, y1, "现价 780", 6, 14, "start", "var(--muted)"]].concat(flip ? [[flip, 0, "分水岭 " + flip.toFixed(0), -10, -10, "end", "var(--loss)"]] : [])
+      });
+      $("gx-r1").textContent = flip ? flip.toFixed(1) : "—";
+      $("gx-r2").textContent = sgn(at, 1) + " 亿" + (at < 0 ? "（负）" : "（正）");
+      $("gx-r3").textContent = at760 < 0 ? Math.abs(at760).toFixed(1) + " 亿美元" : "无需卖出";
+    }
+    mS.addEventListener("input", draw); dS.addEventListener("input", draw);
+    reg(7, draw);
+  })();
+
+  // ---------- 7-A leveraged ETF ----------
+  (function () {
+    const ids = ["lf-aum", "lf-l", "lf-r"];
+    function calc() {
+      const A = parseFloat($("lf-aum").value), L = parseFloat($("lf-l").value), r = parseFloat($("lf-r").value);
+      if (isNaN(A) || isNaN(L) || isNaN(r)) { ["lf-o1", "lf-o2", "lf-o3"].forEach(i => $(i).textContent = "—"); return; }
+      const f = A * L * (L - 1) * r / 100;
+      $("lf-o1").textContent = Math.abs(f).toFixed(1) + " 亿美元";
+      $("lf-o2").textContent = f > 0 ? "收盘前买入" : f < 0 ? "收盘前卖出" : "无需调整";
+      $("lf-o3").textContent = Math.abs(L * (L - 1) * r).toFixed(1) + "%";
+    }
+    ids.forEach(i => { $(i).addEventListener("input", calc); $(i).addEventListener("change", calc); });
+    calc();
+  })();
+
+  // ---------- 9-1 event move ----------
+  (function () {
+    const svg = $("f-ev"), s1 = $("ev-1"), s0 = $("ev-0");
+    const mv = (a, b) => { const v = a * a * 5 / 252 - b * b * 4 / 252; return v > 0 ? Math.sqrt(v) * 100 : 0; };
+    function draw() {
+      const a = +s1.value / 100, b = +s0.value / 100;
+      $("ev-1-o").textContent = s1.value + "%"; $("ev-0-o").textContent = s0.value + "%";
+      const xs = range(10, 30, 0.25);
+      const normal = b / Math.sqrt(252) * 100;
+      const e = mv(a, b);
+      plot(svg, {
+        x: [10, 30], y: [0, 4.5], xt: range(10, 30, 5), yt: [0, 1, 2, 3, 4], xf: v => v + "%", yf: v => v + "%",
+        xlabel: "含事件的周度隐含波动率", ylabel: "事件当天的预期波幅",
+        series: [{ pts: xs.map(x => [x, mv(x / 100, b)]), color: "var(--accent)", w: 2.6 }, { pts: [[10, normal], [30, normal]], color: "var(--muted)", w: 1.4, dash: "5 4" }],
+        dots: [[a * 100, e, "var(--loss)", 5]],
+        labels: [[a * 100, e, e.toFixed(2) + "%", 0, -12, "middle", "var(--loss)"], [29.6, normal, "平常一天 " + normal.toFixed(2) + "%", 0, -7, "end", "var(--muted)"]]
+      });
+      $("ev-r1").textContent = e > 0 ? e.toFixed(2) + "%" : "接近 0";
+      $("ev-r2").textContent = normal.toFixed(2) + "%";
+      $("ev-r3").textContent = "±$" + (780 * e / 100).toFixed(2);
+    }
+    s1.addEventListener("input", draw); s0.addEventListener("input", draw);
+    reg(9, draw);
+  })();
+
+  // ---------- 10-1 convex hedge ----------
+  (function () {
+    const svg = $("f-hg"), nS = $("hg-n");
+    const prem = bsCall(25, 27, 60 / 365, 0.45);
+    const pnl = (x, n) => { const e = 10000 * 0.6 * x; const A = 25 * (1 - 0.9 * x); const c = bsCall(A, 27, 30 / 365, 0.45); return [e, e + n * 100 * (c - prem)]; };
+    function draw() {
+      const n = +nS.value;
+      $("hg-n-o").textContent = n + " 张";
+      const xs = range(-30, 30, 0.5);
+      const pts = xs.map(x => pnl(x / 100, n));
+      const all = pts.flat();
+      const lo = Math.min(...all), hi = Math.max(...all);
+      const y0 = Math.min(-500, lo * 1.12), y1 = Math.max(500, hi * 1.12);
+      plot(svg, {
+        x: [-30, 30], y: [y0, y1], xt: range(-30, 30, 10), yt: ticks(y0, y1), xf: v => sgn(v, 0) + "%", yf: v => (v < 0 ? "−" : "") + "$" + Math.abs(v).toLocaleString("en-US"),
+        xlabel: "30 天后油价变化", ylabel: "组合盈亏", zero: 0,
+        series: [{ pts: xs.map((x, i) => [x, pts[i][0]]), color: "var(--muted)", w: 1.8, dash: "6 4" }, { pts: xs.map((x, i) => [x, pts[i][1]]), color: "var(--accent)", w: 2.6 }],
+        dots: [[-20, pnl(-0.2, n)[1], "var(--accent)", 4.5], [20, pnl(0.2, n)[1], "var(--accent)", 4.5]]
+      });
+      $("hg-r1").textContent = "$" + Math.round(n * 100 * prem).toLocaleString("en-US");
+      const d = pnl(-0.2, n), u = pnl(0.2, n);
+      $("hg-r2").textContent = money(d[1]); $("hg-r2s").textContent = money(d[0]);
+      $("hg-r3").textContent = money(u[1]); $("hg-r3s").textContent = money(u[0]);
+    }
+    nS.addEventListener("input", draw);
+    reg(10, draw);
+  })();
+
+  // ---------- template copy ----------
+  $("tpl-copy").addEventListener("click", () => {
+    const txt = $("tpl").textContent, msg = $("tpl-msg");
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents($("tpl")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); msg.textContent = "已选中，按 ⌘C 或 Ctrl+C 复制"; };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(() => { msg.textContent = "已复制"; }, fallback); else fallback();
+  });
+
+  // ---------- checklists ----------
+  document.querySelectorAll(".card input[type=checkbox]").forEach(cb => {
+    cb.checked = store.get("mm-" + cb.id) === "1";
+    cb.addEventListener("change", () => store.set("mm-" + cb.id, cb.checked ? "1" : "0"));
+  });
+
+  // ---------- boot ----------
+  const hm = location.hash.match(/^#c(\d+)$/);
+  const saved = store.get("mm-ch");
+  show(hm ? +hm[1] : (saved !== null ? +saved : 0), false);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>交易心理学 · hanoptions.trade</title>
+<meta name="description" content="十一章研习手册：概率思维、认知偏差、仓位数学、连败概率与复盘。知道和做到之间的那段距离。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700;900&display=swap">
+<style>
+/* Layout: a study handbook. Fixed chapter rail on the left, one chapter on stage at a time,
+   each chapter opens with a large serif number and closes with prev/next. Figures sit on plates. */
+:root {
+  --paper: #f2f4f3;
+  --plate: #ffffff;
+  --ink: #17211f;
+  --muted: #5e6b68;
+  --rule: #d5dcda;
+  --grid: #e6ebe9;
+  --accent: #0f6a63;
+  --calm: #3b4fa3;
+  --loss: #b13450;
+  --warn: #9c5c00;
+  --tint-accent: rgba(15, 106, 99, .08);
+  --tint-calm: rgba(59, 79, 163, .08);
+  --tint-loss: rgba(177, 52, 80, .08);
+  --tint-warn: rgba(156, 92, 0, .09);
+  --font-display: "Noto Serif SC", "Songti SC", "STSong", serif;
+  --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1514; --plate: #161e1d; --ink: #e2e9e7; --muted: #94a3a0; --rule: #273331; --grid: #1c2725;
+    --accent: #4cc2b5; --calm: #93a5ff; --loss: #f07a93; --warn: #f0a943;
+    --tint-accent: rgba(76, 194, 181, .10); --tint-calm: rgba(147, 165, 255, .10);
+    --tint-loss: rgba(240, 122, 147, .10); --tint-warn: rgba(240, 169, 67, .10);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1514; --plate: #161e1d; --ink: #e2e9e7; --muted: #94a3a0; --rule: #273331; --grid: #1c2725;
+  --accent: #4cc2b5; --calm: #93a5ff; --loss: #f07a93; --warn: #f0a943;
+  --tint-accent: rgba(76, 194, 181, .10); --tint-calm: rgba(147, 165, 255, .10);
+  --tint-loss: rgba(240, 122, 147, .10); --tint-warn: rgba(240, 169, 67, .10);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 16.5px; line-height: 1.85; -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* masthead */
+.mast { border-bottom: 1px solid var(--rule); }
+.mast-inner { max-width: 1180px; margin: 0 auto; padding-inline: 24px; padding-block: 34px 28px; display: flex; flex-wrap: wrap; gap: 6px 40px; align-items: end; justify-content: space-between; }
+.mast-title { min-width: 0; }
+.eyebrow { font-size: 13px; color: var(--muted); letter-spacing: .08em; margin: 0 0 6px; }
+.mast h1 { font-family: var(--font-display); font-weight: 900; font-size: clamp(36px, 6vw, 60px); line-height: 1.05; margin: 0; letter-spacing: .02em; }
+.deck { margin: 10px 0 0; color: var(--muted); max-width: 40em; font-size: 16.5px; }
+.mast-stat { font-size: 13.5px; color: var(--muted); line-height: 1.6; max-width: 22em; border-left: 1px solid var(--rule); padding-left: 18px; }
+.mast-stat b { display: block; font-family: var(--font-mono); font-size: 30px; font-weight: 500; color: var(--loss); line-height: 1.2; }
+
+/* shell */
+.shell { max-width: 1180px; margin: 0 auto; padding-inline: 24px; padding-block: 36px 80px; display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 56px; }
+.rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 20px); align-self: start; max-height: calc(100vh - 40px); overflow: auto; }
+.rail ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.rail button { width: 100%; text-align: left; font: inherit; font-size: 14.5px; line-height: 1.45; color: var(--muted); background: transparent; border: 0; border-radius: 6px; padding: 8px 10px; cursor: pointer; display: grid; grid-template-columns: 34px 1fr; gap: 4px; }
+.rail button .k { font-family: var(--font-mono); font-size: 12.5px; padding-top: 2px; }
+.rail button:hover { background: var(--grid); color: var(--ink); }
+.rail button[aria-current="true"] { background: var(--tint-accent); color: var(--accent); font-weight: 500; }
+.picker { display: none; }
+main { min-width: 0; max-width: 760px; }
+
+@media (max-width: 920px) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 0; padding-inline: 16px; padding-block: 0 64px; }
+  .rail { display: none; }
+  .picker { display: block; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); padding-block: 12px; border-bottom: 1px solid var(--rule); margin-bottom: 24px; }
+  .picker select { width: 100%; font: inherit; font-size: 15px; padding: 9px 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--plate); color: var(--ink); }
+  .mast-inner { padding-inline: 16px; padding-block: 26px 22px; }
+  .mast-stat { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 12px; }
+}
+
+/* chapter */
+.chapter-head { display: grid; grid-template-columns: auto 1fr; gap: 4px 22px; align-items: end; margin-bottom: 26px; padding-bottom: 20px; border-bottom: 1px solid var(--rule); }
+.chapter-head .no { font-family: var(--font-display); font-weight: 900; font-size: 84px; line-height: .85; color: var(--accent); grid-row: span 2; }
+.chapter-head .kicker { font-size: 13px; color: var(--muted); letter-spacing: .08em; }
+.chapter-head h2 { font-family: var(--font-display); font-size: clamp(26px, 3.6vw, 34px); line-height: 1.25; margin: 0; text-wrap: balance; }
+@media (max-width: 560px) { .chapter-head .no { font-size: 58px; } }
+h3 { font-family: var(--font-display); font-size: 21px; margin: 40px 0 10px; line-height: 1.35; text-wrap: balance; }
+h4 { font-size: 16px; margin: 22px 0 6px; }
+p { margin: 0 0 16px; max-width: 68ch; }
+ul, ol { padding-left: 1.3em; margin: 0 0 16px; max-width: 68ch; }
+li + li { margin-top: 5px; }
+.lead { font-size: 18.5px; line-height: 1.8; }
+.num { font-family: var(--font-mono); font-size: .93em; font-variant-numeric: tabular-nums; }
+.pull { font-family: var(--font-display); font-size: 22px; line-height: 1.6; margin: 28px 0; padding: 4px 0 4px 22px; border-left: 3px solid var(--accent); max-width: 34em; }
+
+.note { margin: 22px 0 24px; padding: 16px 20px 6px; border-radius: 6px; background: var(--tint-accent); }
+.note .tag { display: block; font-size: 12px; letter-spacing: .1em; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+.note p, .note ul, .note ol { font-size: 15.5px; }
+.note.warn { background: var(--tint-warn); } .note.warn .tag { color: var(--warn); }
+.note.loss { background: var(--tint-loss); } .note.loss .tag { color: var(--loss); }
+.note.calm { background: var(--tint-calm); } .note.calm .tag { color: var(--calm); }
+
+.tbl { overflow-x: auto; margin: 18px 0 26px; border: 1px solid var(--rule); border-radius: 6px; background: var(--plate); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; font-variant-numeric: tabular-nums; }
+caption { caption-side: top; text-align: left; padding: 12px 16px 4px; font-size: 13px; color: var(--muted); }
+th, td { padding: 9px 14px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+td.r, th.r { text-align: right; }
+td.mono { font-family: var(--font-mono); }
+thead th { font-size: 12.5px; color: var(--muted); font-weight: 500; letter-spacing: .04em; white-space: nowrap; }
+tbody tr:last-child td { border-bottom: 0; }
+.hl td { background: var(--tint-accent); }
+
+/* bias cards */
+.biases { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: 14px; margin: 18px 0 26px; }
+.bias { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px 12px; min-width: 0; }
+.bias h4 { margin: 0 0 8px; font-size: 16.5px; display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.bias h4 small { font-family: var(--font-mono); font-weight: 400; font-size: 11.5px; color: var(--muted); letter-spacing: .02em; }
+.bias dl { margin: 0; display: grid; grid-template-columns: 3.4em 1fr; gap: 4px 10px; font-size: 14.5px; line-height: 1.7; }
+.bias dt { color: var(--muted); font-size: 13px; padding-top: 1px; }
+.bias dd { margin: 0; }
+.bias dd.fix { color: var(--accent); }
+
+/* figures */
+figure.plate { margin: 26px 0 32px; background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 18px 18px 14px; }
+.fig-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 6px; }
+.fig-title { font-weight: 700; font-size: 15.5px; }
+.fig-no { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); }
+svg.chart { width: 100%; height: auto; display: block; }
+.scroll-x { overflow-x: auto; }
+svg.chart.wide { min-width: 620px; }
+figcaption { font-size: 13.5px; color: var(--muted); line-height: 1.7; margin-top: 8px; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 6px 0 4px; align-items: center; }
+.ctl { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--muted); }
+.ctl input[type="range"] { width: 150px; accent-color: var(--accent); }
+.ctl output { font-family: var(--font-mono); color: var(--ink); min-width: 4em; font-variant-numeric: tabular-nums; }
+.btn { font: inherit; font-size: 13.5px; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); cursor: pointer; }
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); margin-top: 4px; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 18px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.legend i.dash { border-top-style: dashed; }
+.readout { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 12px; }
+.readout div { border-top: 1px solid var(--rule); padding-top: 8px; min-width: 0; }
+.readout b { display: block; font-family: var(--font-mono); font-size: 19px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.readout small { font-size: 12.5px; color: var(--muted); }
+.ax { font-family: var(--font-mono); font-size: 11.5px; }
+
+/* calculator */
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 8px 0 4px; }
+.form-grid label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+.form-grid input { font: inherit; font-family: var(--font-mono); padding: 7px 10px; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); color: var(--ink); width: 100%; }
+
+/* template */
+pre.tpl { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 16px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.7; overflow-x: auto; white-space: pre; margin: 8px 0; }
+
+/* checklists */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; margin: 18px 0 12px; }
+.card { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; min-width: 0; }
+.card h4 { margin: 0 0 8px; }
+.card ul { list-style: none; padding: 0; margin: 0; font-size: 14.5px; line-height: 1.65; }
+.card li { display: grid; grid-template-columns: 22px 1fr; gap: 4px; align-items: start; }
+.card input[type="checkbox"] { margin-top: 5px; accent-color: var(--accent); }
+
+/* quiz */
+.quiz { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 6px 18px 18px; margin: 18px 0; }
+.qrow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 18px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.qrow:last-of-type { border-bottom: 0; }
+.qrow p { margin: 0; font-size: 15px; line-height: 1.6; }
+.scale { display: inline-flex; gap: 4px; }
+.scale label { position: relative; }
+.scale input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.scale span { display: grid; place-items: center; width: 34px; height: 30px; border: 1px solid var(--rule); border-radius: 5px; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.scale input:checked + span { background: var(--accent); color: var(--plate); border-color: var(--accent); }
+.scale input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 560px) { .qrow { grid-template-columns: minmax(0, 1fr); } }
+.scale-legend { font-size: 12.5px; color: var(--muted); margin: 10px 0 0; }
+.result { margin-top: 18px; display: grid; gap: 10px; }
+.bar-row { display: grid; grid-template-columns: 5.5em minmax(0, 1fr) 4.5em; gap: 12px; align-items: center; font-size: 14px; }
+.bar-track { height: 10px; background: var(--grid); border-radius: 5px; overflow: hidden; }
+.bar-fill { height: 100%; width: 0; background: var(--accent); border-radius: 5px; transition: width .3s; }
+.bar-fill.hi { background: var(--loss); }
+@media (prefers-reduced-motion: reduce) { .bar-fill { transition: none; } }
+.bar-row .val { font-family: var(--font-mono); text-align: right; color: var(--muted); }
+.advice { font-size: 14.5px; color: var(--ink); margin-top: 6px; }
+
+/* pager */
+.pager { display: flex; justify-content: space-between; gap: 16px; margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule); flex-wrap: wrap; }
+.pager button { font: inherit; background: transparent; border: 1px solid var(--rule); border-radius: 8px; padding: 10px 16px; cursor: pointer; color: var(--ink); text-align: left; max-width: 48%; min-width: 0; }
+.pager button small { display: block; font-size: 12px; color: var(--muted); }
+.pager button:hover { border-color: var(--accent); }
+.pager button.next { margin-left: auto; text-align: right; }
+@media (max-width: 560px) { .pager button { max-width: 100%; width: 100%; } .pager button.next { text-align: left; } }
+
+footer.end { margin-top: 48px; font-size: 13px; color: var(--muted); }
+footer.end p { max-width: none; }
+.ek { font-family: var(--font-body); font-size: .86em; color: var(--muted); font-weight: 400; }
+
+/* ---------- site bar (hanoptions.trade) ---------- */
+.sitebar { border-bottom: 1px solid var(--rule); background: var(--paper); font-size: 13.5px; line-height: 1.4; }
+.sitebar-inner { max-width: 1180px; margin: 0 auto; padding: 9px 24px; display: flex; gap: 18px; align-items: center; justify-content: space-between; }
+.sitebar-home { font-family: var(--font-mono); color: var(--muted); text-decoration: none; letter-spacing: .02em; white-space: nowrap; }
+.sitebar-home:hover { color: var(--ink); }
+.sitebar-links { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.sitebar-links::-webkit-scrollbar { display: none; }
+.sitebar-links a { color: var(--muted); text-decoration: none; padding: 3px 9px; border-radius: 4px; white-space: nowrap; }
+.sitebar-links a:hover { color: var(--ink); background: var(--grid); }
+.sitebar-links a[aria-current="page"] { color: var(--ink); background: var(--plate); box-shadow: inset 0 0 0 1px var(--rule); }
+@media (max-width: 900px) { .sitebar-inner { padding-inline: 16px; } }
+@media (max-width: 480px) { .sitebar-inner { gap: 10px; } .sitebar-links a { padding: 3px 7px; } }
+</style>
+</head>
+<body>
+<nav class="sitebar" aria-label="站点导航"><div class="sitebar-inner"><a class="sitebar-home" href="/">hanoptions.trade</a><div class="sitebar-links"><a href="/options/">美股期权课</a><a href="/psychology/" aria-current="page">交易心理学</a><a href="/macro/">宏观交易框架</a><a href="/policy/">政策叙事投资</a></div></div></nav>
+<header class="mast">
+  <div class="mast-inner">
+    <div class="mast-title">
+      <p class="eyebrow">研习手册 · 十一章</p>
+      <h1>交易心理学</h1>
+      <p class="deck">多数人亏钱，不是因为不懂市场，而是在不确定和情绪里做不到自己知道该做的事。这本手册讲的就是知道和做到之间的那段距离。</p>
+    </div>
+    <div class="mast-stat"><b>26.6%</b>一个每笔期望 +0.35R 的好系统，做 10 笔交易后仍然是亏损的概率。做到 100 笔，这个概率降到 1%。</div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="rail" aria-label="章节">
+    <ol id="rail"></ol>
+  </nav>
+
+  <main>
+    <div class="picker"><label for="pick" class="eyebrow" style="display:block">章节</label><select id="pick"></select></div>
+
+    <!-- ===================== 00 ===================== -->
+    <article class="chapter" id="c0" data-title="导读：交易为什么是心理游戏">
+      <div class="chapter-head"><div class="no">00</div><div class="kicker">导读</div><h2>交易为什么是心理游戏</h2></div>
+      <p class="lead">打开交易软件之前，大多数人已经知道「要止损<span class="ek">（Stop-loss）</span>」「别重仓」「别追高」。真正的难题是：在亏损正在扩大、别人都在赚钱、你已经连输三笔的那一刻，还能不能照做。</p>
+      <p>交易心理学研究的就是这一刻。它不研究市场会往哪走，而是研究你在面对涨跌时，为什么常常做出与自己的计划相反的事，以及怎样让行为和认知保持一致。</p>
+
+      <h3>市场是一个「恶劣的学习环境」</h3>
+      <p>我们从小习惯的学习环境，反馈清楚、及时、公正：做对了得分，做错了扣分。市场完全不同。</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>维度</th><th>学校、考试</th><th>市场</th></tr></thead>
+          <tbody>
+            <tr><td>答案</td><td>有标准答案</td><td>没有，只有概率</td></tr>
+            <tr><td>反馈</td><td>做对就得分</td><td>做对也可能亏，做错也可能赚</td></tr>
+            <tr><td>时间</td><td>交卷后很快知道结果</td><td>要几十上百笔才看得出真实水平</td></tr>
+            <tr><td>纠错</td><td>老师会指出错误</td><td>没人告诉你，还常常奖励错误</td></tr>
+            <tr><td>代价</td><td>分数</td><td>真金白银，外加情绪</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>在这样的环境里，靠「感觉」学习会学歪：一次侥幸的重仓赚了钱，会让你更愿意重仓；一次正确的止损之后价格反弹，会让你下次不敢止损。所以交易者需要刻意建立一套不依赖单次结果的学习方法。</p>
+
+      <h3>三层结构：认知、情绪、行为</h3>
+      <ul>
+        <li><strong>认知</strong>：你怎么看待概率、风险和结果。错的认知会让正确的行为显得愚蠢。</li>
+        <li><strong>情绪</strong>：恐惧<span class="ek">（Fear）</span>、贪婪<span class="ek">（Greed）</span>、后悔、狂喜<span class="ek">（Euphoria）</span>。它们本身不是敌人，是信息；问题在于让它们直接下单。</li>
+        <li><strong>行为</strong>：你实际做了什么。心理训练的目标，就是让行为在压力下也能稳定地落在计划里。</li>
+      </ul>
+
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">每一笔交易都会走完这个循环，每个环节都有对应的心理陷阱</span><span class="fig-no">图 0-1</span></div>
+        <div class="scroll-x">
+        <svg class="chart wide" viewBox="0 0 680 300" role="img" aria-label="交易循环与各章对应关系">
+          <defs><marker id="m-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--muted)"></path></marker></defs>
+          <g style="font-family: var(--font-body)">
+            <g>
+              <rect x="20" y="40" width="180" height="70" rx="8" style="fill: var(--tint-calm); stroke: var(--calm)"></rect>
+              <text x="110" y="70" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">判断</text>
+              <text x="110" y="93" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">第 1、2、7 章</text>
+            </g>
+            <g>
+              <rect x="250" y="40" width="180" height="70" rx="8" style="fill: var(--plate); stroke: var(--rule)"></rect>
+              <text x="340" y="70" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">下单与仓位</text>
+              <text x="340" y="93" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">第 4、5 章</text>
+            </g>
+            <g>
+              <rect x="480" y="40" width="180" height="70" rx="8" style="fill: var(--plate); stroke: var(--rule)"></rect>
+              <text x="570" y="70" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">持仓中的波动</text>
+              <text x="570" y="93" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">第 3、5 章</text>
+            </g>
+            <g>
+              <rect x="480" y="190" width="180" height="70" rx="8" style="fill: var(--tint-loss); stroke: var(--loss)"></rect>
+              <text x="570" y="220" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">结果与情绪</text>
+              <text x="570" y="243" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">第 3、6 章</text>
+            </g>
+            <g>
+              <rect x="250" y="190" width="180" height="70" rx="8" style="fill: var(--tint-accent); stroke: var(--accent)"></rect>
+              <text x="340" y="220" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">复盘</text>
+              <text x="340" y="243" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">第 8 章</text>
+            </g>
+            <g>
+              <rect x="20" y="190" width="180" height="70" rx="8" style="fill: var(--plate); stroke: var(--rule); stroke-dasharray: 4 4"></rect>
+              <text x="110" y="220" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">交易之外的你</text>
+              <text x="110" y="243" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">第 9 章</text>
+            </g>
+            <g style="stroke: var(--muted)" stroke-width="1.4" fill="none">
+              <path d="M200 75 H246" marker-end="url(#m-arrow)"></path>
+              <path d="M430 75 H476" marker-end="url(#m-arrow)"></path>
+              <path d="M570 110 V186" marker-end="url(#m-arrow)"></path>
+              <path d="M480 225 H434" marker-end="url(#m-arrow)"></path>
+              <path d="M250 225 H204" marker-end="url(#m-arrow)"></path>
+              <path d="M110 190 V114" marker-end="url(#m-arrow)"></path>
+            </g>
+            <text x="455" y="146" text-anchor="middle" style="fill: var(--muted); font-size: 12px">最容易失控的两段</text>
+            <path d="M455 152 C 470 165, 500 150, 520 140" style="fill: none; stroke: var(--loss)" stroke-width="1" stroke-dasharray="3 3"></path>
+            <path d="M455 152 C 440 165, 410 150, 395 118" style="fill: none; stroke: var(--loss)" stroke-width="1" stroke-dasharray="3 3"></path>
+          </g>
+        </svg>
+        </div>
+        <figcaption>「交易之外的你」是虚线框：睡眠、财务压力、生活节奏不在交易软件里，却决定了你带着什么状态进入下一次判断。</figcaption>
+      </figure>
+
+      <h3>怎么用这本手册</h3>
+      <ul>
+        <li>第 1–2 章先建立正确的认知；第 3–6 章处理情绪、仓位、纪律<span class="ek">（Discipline）</span>和随机性<span class="ek">（Randomness）</span>；第 7–9 章讲独立、复盘<span class="ek">（Trade review）</span>和交易之外的你。</li>
+        <li>第 4、6 章有可以拖动参数的模拟，建议亲手调一调，比读结论更有体会。</li>
+        <li>第 10 章是工具箱：清单、失控处理流程和一份自评。可以先做自评，再按结果挑章节读。</li>
+      </ul>
+    </article>
+
+    <!-- ===================== 01 ===================== -->
+    <article class="chapter" id="c1" data-title="概率思维：用一百笔交易看一笔交易" hidden>
+      <div class="chapter-head"><div class="no">01</div><div class="kicker">第一章</div><h2>概率思维：用一百笔交易看一笔交易</h2></div>
+      <p class="lead">一笔交易的结果，告诉你的信息比你以为的少得多。职业交易者把每一笔交易看成一个长序列里的一次抽样，而不是一场需要赢的考试。</p>
+
+      <h3>先学会用 R 来计数</h3>
+      <p>R 是你在一笔交易里计划承担的风险。如果你在 $50 买入、止损<span class="ek">（Stop-loss）</span>设在 $47，每股风险 $3，这就是 1R。赚 $6 记为 +2R，止损出局记为 −1R。用 R 计数，能让不同价格、不同仓位的交易放在同一把尺子上比较。</p>
+      <p>一个系统的长期价值由期望值<span class="ek">（Expected value (EV)）</span>决定：</p>
+      <div class="note calm"><span class="tag">期望值</span><p><span class="num">期望（R）= 胜率 × 平均盈利 − 败率 × 平均亏损</span></p><p>例如胜率<span class="ek">（Win rate）</span> 45%、平均盈利 2R、平均亏损 1R：<span class="num">0.45 × 2 − 0.55 × 1 = +0.35R</span>。每做一笔，长期平均多赚 0.35 倍的风险金额。这是一个相当好的系统。</p></div>
+
+      <h3>小样本会骗人</h3>
+      <p>就算你拿着上面这个 +0.35R 的好系统，短期结果也会剧烈波动：</p>
+      <div class="tbl">
+        <table>
+          <caption>表 1-1　胜率 45%、盈亏比 2:1 的系统，做 N 笔之后整体仍是亏损的概率</caption>
+          <thead><tr><th>交易笔数</th><th class="r">整体亏损的概率</th><th>你可能得出的错误结论</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">10</td><td class="r mono">26.6%</td><td>「这套方法不行，换一个」</td></tr>
+            <tr><td class="mono">20</td><td class="r mono">13.0%</td><td>「一定是我执行有问题」</td></tr>
+            <tr><td class="mono">50</td><td class="r mono">4.3%</td><td>开始接近真相</td></tr>
+            <tr class="hl"><td class="mono">100</td><td class="r mono">1.0%</td><td>样本足够，可以评价系统</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>反过来也一样：一个期望为负的系统，在前 10 笔里赚钱的概率同样不低。很多人就是在这个阶段「确认」了一套注定亏钱的方法。</p>
+      <p class="pull">评价一个方法至少要看几十笔交易，评价一笔交易要看决策过程，而不是看它最后是红是绿。</p>
+
+      <h3>决策质量和结果是两回事</h3>
+      <p>把结果当成决策好坏的唯一证据，在决策研究里被称为「结果导向<span class="ek">（Resulting）</span>」。在交易里，它是最贵的思维习惯之一。下面这张图是复盘<span class="ek">（Trade review）</span>时最常用的工具：</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">四种组合里，最危险的是「坏决策、好结果」</span><span class="fig-no">图 1-1</span></div>
+        <div class="scroll-x">
+        <svg class="chart wide" viewBox="0 0 680 330" role="img" aria-label="决策质量与结果的四象限">
+          <g style="font-family: var(--font-body)">
+            <text x="400" y="22" text-anchor="middle" style="fill: var(--muted); font-size: 13px">结果</text>
+            <text x="270" y="44" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 700">赚钱</text>
+            <text x="530" y="44" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 700">亏钱</text>
+            <text x="30" y="190" text-anchor="middle" transform="rotate(-90 30 190)" style="fill: var(--muted); font-size: 13px">决策质量</text>
+            <text x="92" y="122" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 700">好决策</text>
+            <text x="92" y="256" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 700">坏决策</text>
+            <rect x="145" y="56" width="250" height="128" rx="8" style="fill: var(--tint-accent); stroke: var(--accent)"></rect>
+            <text x="270" y="92" text-anchor="middle" style="fill: var(--accent); font-size: 15px; font-weight: 700">应得的回报</text>
+            <text x="270" y="118" text-anchor="middle" style="fill: var(--ink); font-size: 13px">按计划执行，结果也好</text>
+            <text x="270" y="140" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">继续做，别因此加大仓位</text>
+            <rect x="405" y="56" width="250" height="128" rx="8" style="fill: var(--tint-calm); stroke: var(--calm)"></rect>
+            <text x="530" y="92" text-anchor="middle" style="fill: var(--calm); font-size: 15px; font-weight: 700">运气不好</text>
+            <text x="530" y="118" text-anchor="middle" style="fill: var(--ink); font-size: 13px">过程正确，概率站在对面</text>
+            <text x="530" y="140" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">不改方法，这是做生意的成本</text>
+            <rect x="145" y="192" width="250" height="128" rx="8" style="fill: var(--tint-loss); stroke: var(--loss)" stroke-width="2"></rect>
+            <text x="270" y="228" text-anchor="middle" style="fill: var(--loss); font-size: 15px; font-weight: 700">侥幸（最危险）</text>
+            <text x="270" y="254" text-anchor="middle" style="fill: var(--ink); font-size: 13px">重仓、追高、没止损，却赚了</text>
+            <text x="270" y="276" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">会强化坏习惯，复盘时要当亏损看</text>
+            <rect x="405" y="192" width="250" height="128" rx="8" style="fill: var(--tint-warn); stroke: var(--warn)"></rect>
+            <text x="530" y="228" text-anchor="middle" style="fill: var(--warn); font-size: 15px; font-weight: 700">应得的教训</text>
+            <text x="530" y="254" text-anchor="middle" style="fill: var(--ink); font-size: 13px">违反纪律，也亏了钱</text>
+            <text x="530" y="276" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">找出是哪条规则被破坏</text>
+          </g>
+        </svg>
+        </div>
+        <figcaption>亏损会逼你反思，赚钱却会奖励错误。复盘时最该花时间的，往往是左下角那些赚了钱的坏交易。</figcaption>
+      </figure>
+
+      <h3>下单前的三个问题</h3>
+      <ol>
+        <li><strong>最可能发生什么？</strong>写下你的判断，以及你认为它的大致概率。</li>
+        <li><strong>对了能赚多少？</strong>用 R 表示，并说清楚在哪里止盈<span class="ek">（Take profit）</span>。</li>
+        <li><strong>错了准备亏多少？</strong>止损位置在哪，什么事实出现就承认判断失效。</li>
+      </ol>
+      <p>三个问题里，第三个最重要，也最常被跳过。多数人下单时只想第二个问题。</p>
+
+      <h3>判断准确不等于能赚钱</h3>
+      <p>同一个正确的判断，可以因为仓位太大被中途震出局，可以因为用了时间太短的期权「方向对了期权先死了」，也可以因为进场太晚只吃到尾巴。最终的盈亏是判断、时机、工具和仓位四件事的乘积，其中任何一项是零，结果都是零。</p>
+    </article>
+
+    <!-- ===================== 02 ===================== -->
+    <article class="chapter" id="c2" data-title="认知偏差：大脑的默认设置" hidden>
+      <div class="chapter-head"><div class="no">02</div><div class="kicker">第二章</div><h2>认知偏差：大脑的默认设置</h2></div>
+      <p class="lead">认知偏差<span class="ek">（Cognitive bias）</span>不是愚蠢，而是大脑为了在日常生活里快速做决定而形成的捷径。它们在大多数场合很好用，到了市场里却会系统性地把你推向错误的方向。</p>
+      <p>行为金融学最有名的发现之一，是损失带来的痛苦大约是同等收益带来快乐的两倍左右。很多交易错误都可以从这一点推出来。下面是交易里最常见的十二种偏差。</p>
+
+      <div class="biases">
+        <div class="bias"><h4>损失厌恶<small>LOSS AVERSION</small></h4><dl><dt>表现</dt><dd>亏 1000 的痛苦远大于赚 1000 的快乐</dd><dt>交易中</dt><dd>不愿止损<span class="ek">（Stop-loss）</span>，宁可「等回本」；为了避免小亏而承担大亏的风险</dd><dt>对策</dt><dd class="fix">下单前就把止损写死；用 R 而不是金额去想亏损</dd></dl></div>
+        <div class="bias"><h4>处置效应<small>DISPOSITION EFFECT</small></h4><dl><dt>表现</dt><dd>赚钱的仓位急着卖，亏钱的仓位死扛</dd><dt>交易中</dt><dd>「赚一点就跑，亏了就扛」，胜率<span class="ek">（Win rate）</span>不低却整体亏钱</dd><dt>对策</dt><dd class="fix">预设止盈<span class="ek">（Take profit）</span>规则（如翻倍卖一半）；统计自己的平均盈利和平均亏损</dd></dl></div>
+        <div class="bias"><h4>锚定成本价<small>ANCHORING BIAS</small></h4><dl><dt>表现</dt><dd>把买入价当成股票的「真实价值」</dd><dt>交易中</dt><dd>「回到成本就卖」；市场根本不知道你的成本价</dd><dt>对策</dt><dd class="fix">每天问：如果现在空仓，我会在这个价买吗？</dd></dl></div>
+        <div class="bias"><h4>沉没成本<small>SUNK COST FALLACY</small></h4><dl><dt>表现</dt><dd>已经投入的越多，越不愿放弃</dd><dt>交易中</dt><dd>亏损仓一补再补，补仓变成了「拯救」而不是新决定</dd><dt>对策</dt><dd class="fix">亏损仓最多一次有计划的加仓，并且要先看到确认信号</dd></dl></div>
+        <div class="bias"><h4>确认偏误<small>CONFIRMATION BIAS</small></h4><dl><dt>表现</dt><dd>只找支持自己观点的信息</dd><dt>交易中</dt><dd>持仓后只看利好新闻和看多的帖子</dd><dt>对策</dt><dd class="fix">每个仓位写一条「反方最强理由」；主动读相反立场</dd></dl></div>
+        <div class="bias"><h4>过度自信<small>OVERCONFIDENCE</small></h4><dl><dt>表现</dt><dd>高估自己的判断准确度</dd><dt>交易中</dt><dd>连赢几笔后放大仓位，账户往往在连胜<span class="ek">（Winning streak）</span>之后爆掉</dd><dt>对策</dt><dd class="fix">仓位由风险规则决定，不由信心决定；连胜后反而缩仓</dd></dl></div>
+        <div class="bias"><h4>近因效应<small>RECENCY BIAS</small></h4><dl><dt>表现</dt><dd>把最近发生的事当成会一直持续</dd><dt>交易中</dt><dd>涨了三天就以为会一直涨；最近一笔亏了就怀疑整个系统</dd><dt>对策</dt><dd class="fix">看长周期图和长样本统计，而不是最近几根 K 线</dd></dl></div>
+        <div class="bias"><h4>后见之明<small>HINDSIGHT BIAS</small></h4><dl><dt>表现</dt><dd>事后觉得「我早就知道」</dd><dt>交易中</dt><dd>高估自己的预测力，低估当时的不确定性</dd><dt>对策</dt><dd class="fix">事前写下判断和信心程度，事后对照</dd></dl></div>
+        <div class="bias"><h4>从众与错失恐惧<small>HERDING / FOMO</small></h4><dl><dt>表现</dt><dd>别人都在赚，自己不在场很难受</dd><dt>交易中</dt><dd>追高进场，买在情绪最热的时候</dd><dt>对策</dt><dd class="fix">只做计划内的交易；错过就是错过，市场每天都开</dd></dl></div>
+        <div class="bias"><h4>赌徒谬误<small>GAMBLER'S FALLACY</small></h4><dl><dt>表现</dt><dd>连输几次后以为「该赢了」</dd><dt>交易中</dt><dd>连续止损后加大下一笔的仓位想翻本</dd><dt>对策</dt><dd class="fix">每笔交易独立；连败<span class="ek">（Losing streak）</span>时按规则减仓而不是加仓（第 6 章）</dd></dl></div>
+        <div class="bias"><h4>叙事谬误<small>NARRATIVE FALLACY</small></h4><dl><dt>表现</dt><dd>一个好故事让人忽略数字和价格</dd><dt>交易中</dt><dd>爱上一个题材，价格走坏了还在用故事安慰自己</dd><dt>对策</dt><dd class="fix">叙事<span class="ek">（Narrative）</span>决定研究什么，价格和估值决定何时买；写下叙事失效的事实</dd></dl></div>
+        <div class="bias"><h4>幸存者偏差<small>SURVIVORSHIP BIAS</small></h4><dl><dt>表现</dt><dd>只看到活下来的人</dd><dt>交易中</dt><dd>社交媒体上晒单的都是赢家，爆仓的人不会发帖</dd><dt>对策</dt><dd class="fix">把别人的一次暴利当噪音；只和自己的长期记录比</dd></dl></div>
+      </div>
+
+      <h3>偏差总是成串出现</h3>
+      <p>单个偏差的伤害有限，真正的灾难来自一串偏差互相放大。一个很典型的路径：</p>
+      <ol>
+        <li>仓位开始亏损，<strong>损失厌恶<span class="ek">（Loss aversion）</span></strong>让你没有在止损位离场；</li>
+        <li>你开始只看利好消息（<strong>确认偏误</strong>），并告诉自己「回到成本就走」（<strong>锚定<span class="ek">（Anchoring）</span></strong>）；</li>
+        <li>继续下跌，你补仓摊低成本，因为已经投入太多（<strong>沉没成本<span class="ek">（Sunk cost fallacy）</span></strong>）；</li>
+        <li>仓位越来越重，小亏变成伤及账户的大亏。</li>
+      </ol>
+      <div class="note"><span class="tag">打断链条的办法</span><p>不要指望在当下用意志力识破偏差。在冷静的时候把规则写好（止损位、最多补仓一次、仓位上限），让规则替你在热的时候做决定。这是第 5 章的主题。</p></div>
+    </article>
+
+    <!-- ===================== 03 ===================== -->
+    <article class="chapter" id="c3" data-title="情绪与状态：当身体替你下单" hidden>
+      <div class="chapter-head"><div class="no">03</div><div class="kicker">第三章</div><h2>情绪与状态：当身体替你下单</h2></div>
+      <p class="lead">情绪不是要消灭的东西。恐惧<span class="ek">（Fear）</span>提醒你风险在变大，兴奋提醒你可能过度自信<span class="ek">（Overconfidence）</span>。问题从来不是有情绪，而是让情绪直接按下买卖键。</p>
+
+      <h3>压力下的大脑会变窄</h3>
+      <p>账户快速亏损时，身体会进入类似「战斗或逃跑」的应激状态：注意力收窄到眼前的价格，长期计划和概率思考被挤到一边。这时候做出的决定，往往是为了让难受的感觉马上停止，而不是为了最优结果。所以「盯盘越紧越容易犯错」是有生理基础的。</p>
+      <p>研究还发现，评估结果的频率越高，人们感受到的损失越多，越倾向于规避风险。每五分钟看一次账户的人，比每周看一次的人经历更多的「亏损时刻」，即使两人持有的是完全相同的仓位。</p>
+
+      <h3>六种最常见的失控状态</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>状态</th><th>它让你做什么</th><th>识别信号</th><th>处理</th></tr></thead>
+          <tbody>
+            <tr><td><strong>恐惧</strong></td><td>不敢按计划进场；刚有浮盈就平仓</td><td>反复看图却不下单；手心出汗</td><td>把仓位缩到不再害怕的大小</td></tr>
+            <tr><td><strong>贪婪<span class="ek">（Greed）</span></strong></td><td>不止盈<span class="ek">（Take profit）</span>；加仓追涨</td><td>开始计算「如果再涨 20% 我能赚多少」</td><td>执行预设的止盈规则</td></tr>
+            <tr><td><strong>报复交易<span class="ek">（Revenge trading）</span></strong></td><td>亏损后马上开新单想赢回来</td><td>愤怒；觉得市场「欠」你</td><td>当天停止交易</td></tr>
+            <tr><td><strong>狂喜<span class="ek">（Euphoria）</span></strong></td><td>连赢后放大仓位、降低标准</td><td>觉得自己找到了圣杯</td><td>强制冷却一天，下一笔减半仓位</td></tr>
+            <tr><td><strong>无聊</strong></td><td>没有好机会也要做点什么</td><td>开仓理由是「好久没交易了」</td><td>把不交易记作一次正确决策</td></tr>
+            <tr><td><strong>后悔</strong></td><td>错过行情后追高，或卖飞后追回</td><td>反复看自己没买的那只股票</td><td>写下来，然后关掉那个页面</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>什么状态下不要交易</h3>
+      <p>一个简单好记的检查：<strong>饿、怒、孤独、累</strong>。其中任何一项明显存在，就不做新的决定。再加上三条：睡眠不足、喝了酒、刚经历一笔大亏或大赚。</p>
+      <div class="note warn"><span class="tag">注意</span><p>连续赚钱之后的兴奋也是一种需要冷却的状态。很多人对亏损后的情绪有警惕，却把赚钱后的飘飘然当成「手感好」，这正是仓位失控最常见的起点。</p></div>
+
+      <h3>仓位是最好用的情绪调节器</h3>
+      <p>如果一笔交易的涨跌开始影响你的睡眠、心情或判断，问题通常不在心理素质，而在仓位太大。把仓位缩到「跌了也能睡着」的程度，大多数情绪问题会自己消失。冷静是仓位允许你冷静，而不是因为你天生冷静。</p>
+      <p class="pull">仓位应该小到让你能够冷静地做决定。</p>
+
+      <h3>身体是交易系统的一部分</h3>
+      <ul>
+        <li><strong>睡眠</strong>：睡眠不足会削弱冲动控制和风险判断，这是交易最需要的两样能力。</li>
+        <li><strong>运动</strong>：规律运动能降低基础压力水平，让你在亏损时恢复得更快。</li>
+        <li><strong>作息</strong>：固定的看盘和交易时段，比全天候盯盘更不容易犯错。好的机会多集中在开盘和收盘附近，其余时间可以离开屏幕。</li>
+      </ul>
+    </article>
+
+    <!-- ===================== 04 ===================== -->
+    <article class="chapter" id="c4" data-title="仓位即心理：正期望也会亏光" hidden>
+      <div class="chapter-head"><div class="no">04</div><div class="kicker">第四章</div><h2>仓位即心理：正期望也会亏光</h2></div>
+      <p class="lead">很多人以为只要找到一个赚钱的方法就够了。数学告诉我们另一件事：同一个正期望的方法，仓位太大，长期结果会是亏损甚至归零。</p>
+
+      <h3>亏损和回本不对称</h3>
+      <p>亏 50% 需要涨 100% 才能回本，亏 75% 需要涨 300%。回撤<span class="ek">（Drawdown）</span>越深，回本越难，而且这种难是加速的。</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">回撤越深，回本所需的涨幅越陡</span><span class="fig-no">图 4-1</span></div>
+        <svg class="chart" id="f-rec" viewBox="0 0 680 300" role="img" aria-label="回撤幅度与回本所需涨幅"></svg>
+        <figcaption>回撤 10% 只需涨 11.1%，回撤 30% 需要 42.9%，回撤 50% 需要 100%。所以风险管理的第一目标是不让回撤进入曲线右侧的陡峭区域。</figcaption>
+      </figure>
+
+      <h3>仓位大小决定长期增长率</h3>
+      <p>用第 1 章那个系统（胜率 45%、盈亏比<span class="ek">（Reward-to-risk ratio）</span> 2:1）来算：每笔交易拿出账户的多少比例去冒险，长期复合增长最快？</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">长期增长率先升后降，仓位过大会把正期望变成亏损</span><span class="fig-no">图 4-2 · 可拖动</span></div>
+        <div class="controls">
+          <label class="ctl" for="k-p">胜率 <input id="k-p" type="range" min="30" max="70" value="45"> <output id="k-p-o">45%</output></label>
+          <label class="ctl" for="k-b">盈亏比 <input id="k-b" type="range" min="5" max="40" value="20"> <output id="k-b-o">2.0 : 1</output></label>
+        </div>
+        <svg class="chart" id="f-kelly" viewBox="0 0 680 300" role="img" aria-label="每笔风险比例与长期增长率"></svg>
+        <div class="readout">
+          <div><b id="k-r1">—</b><small>每笔期望</small></div>
+          <div><b id="k-r2">—</b><small>增长最快的风险比例</small></div>
+          <div><b id="k-r3">—</b><small>超过这个比例长期必亏</small></div>
+        </div>
+        <figcaption>纵轴是平均每笔交易的复合增长率。默认参数下，每笔冒 17.5% 的风险增长最快，但超过 35.6% 增长率就变成负数：方法本身是赚钱的，仓位却会让账户长期缩水。实务中多数人用这个最优值的一半甚至更少，因为增长只少了一些，回撤却小得多。</figcaption>
+      </figure>
+      <p>上图的最优值在数学上叫凯利比例<span class="ek">（Kelly criterion）</span>。它假设你确切知道胜率<span class="ek">（Win rate）</span>和盈亏比，而现实中这两个数都是估计，还会随市场变化。估计偏高时按凯利下注，会直接落在曲线右侧。这就是为什么经验丰富的交易者通常每笔只冒账户 0.5% 到 2% 的风险。</p>
+
+      <h3>同一个系统，不同的仓位，不同的人生</h3>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">24 个平行世界里的资金曲线</span><span class="fig-no">图 4-3 · 模拟</span></div>
+        <div class="controls">
+          <label class="ctl" for="mc-r">每笔风险 <input id="mc-r" type="range" min="1" max="40" value="2"> <output id="mc-r-o">2%</output></label>
+          <button class="btn" type="button" id="mc-seed">重新抽样</button>
+        </div>
+        <svg class="chart" id="f-mc" viewBox="0 0 680 320" role="img" aria-label="不同仓位下的模拟资金曲线"></svg>
+        <div class="readout">
+          <div><b id="mc-r1">—</b><small>200 笔后资金中位数</small></div>
+          <div><b id="mc-r2">—</b><small>最终亏损的世界占比</small></div>
+          <div><b id="mc-r3">—</b><small>最大回撤中位数</small></div>
+          <div><b id="mc-r4">—</b><small>最惨那条的最大回撤</small></div>
+        </div>
+        <figcaption>每条线是同一个系统（胜率 45%、盈亏比 2:1）在不同运气下的 200 笔交易，纵轴为对数刻度，1× 为本金。把风险从 2% 拖到 25% 以上，看看曲线怎样从整齐的扇形变成一地鸡毛。</figcaption>
+      </figure>
+
+      <h3>把「多大仓位」变成一道算术题</h3>
+      <p>先决定每笔愿意亏账户的百分之几，再由止损<span class="ek">（Stop-loss）</span>距离倒推买多少股。这样仓位大小就不再取决于你当时的心情。</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">按风险倒推仓位</span><span class="fig-no">工具 4-A</span></div>
+        <div class="form-grid">
+          <label for="ps-acct">账户资金（美元）<input id="ps-acct" type="number" value="20000"></label>
+          <label for="ps-risk">每笔风险（%）<input id="ps-risk" type="number" value="1" step="0.25"></label>
+          <label for="ps-entry">计划买入价<input id="ps-entry" type="number" value="50" step="0.01"></label>
+          <label for="ps-stop">止损价<input id="ps-stop" type="number" value="47" step="0.01"></label>
+        </div>
+        <div class="readout">
+          <div><b id="ps-sh">—</b><small>可以买入的股数</small></div>
+          <div><b id="ps-val">—</b><small>仓位市值（占账户）</small></div>
+          <div><b id="ps-loss">—</b><small>止损触发时的亏损</small></div>
+        </div>
+        <figcaption>如果算出来的股数让你觉得「太少了」，那正是这个工具在保护你。</figcaption>
+      </figure>
+      <div class="note"><span class="tag">情绪测试</span><p>一个更直观的检验：如果这笔交易打到止损，亏掉的钱会不会影响你今天剩下的心情？会的话，就是仓位太大，与这道算术题算出来的结果无关。</p></div>
+    </article>
+
+    <!-- ===================== 05 ===================== -->
+    <article class="chapter" id="c5" data-title="纪律与规则：把决定提前做完" hidden>
+      <div class="chapter-head"><div class="no">05</div><div class="kicker">第五章</div><h2>纪律与规则：把决定提前做完</h2></div>
+      <p class="lead">纪律<span class="ek">（Discipline）</span>不是在压力下咬牙坚持，而是在冷静的时候把决定做完，让压力出现时只剩执行。</p>
+
+      <h3>为什么要事先决定</h3>
+      <p>人在冷静和激动两种状态下，几乎是两个不同的决策者。冷静时你很清楚止损<span class="ek">（Stop-loss）</span>的意义，亏损扩大时你会找出一百个理由再等等。心理学里有一个很实用的方法叫「如果…就…」计划：提前把情境和动作绑定在一起，比单纯下决心有效得多。</p>
+      <ul>
+        <li>如果收盘跌破 $47，就在第二天开盘卖出，不看新闻。</li>
+        <li>如果单日亏损达到账户的 3%，就关掉交易软件到明天。</li>
+        <li>如果连续三笔止损，下一笔仓位减半。</li>
+      </ul>
+
+      <h3>一份交易计划至少要写清楚这些</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>项目</th><th>要回答的问题</th></tr></thead>
+          <tbody>
+            <tr><td>论点</td><td>我为什么认为会这样走？一两句话写清楚</td></tr>
+            <tr><td>入场条件</td><td>什么价格或信号出现我才进？</td></tr>
+            <tr><td>失效条件<span class="ek">（Invalidation criteria）</span></td><td>什么事实出现说明我错了？（不只是价格）</td></tr>
+            <tr><td>止损</td><td>在哪里认错，亏多少 R</td></tr>
+            <tr><td>止盈<span class="ek">（Take profit）</span>与退出</td><td>赚到哪里卖一部分，剩下的怎么处理</td></tr>
+            <tr><td>仓位</td><td>按第 4 章的算法得出的股数或张数</td></tr>
+            <tr><td>时间止损</td><td>多长时间没按预期走就离场</td></tr>
+            <tr><td>加仓条件</td><td>什么情况下加，最多加几次</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>止损是做生意的成本</h3>
+      <p>开餐馆要付房租，做交易要付止损。止损不是承认自己愚蠢，而是情况变了、判断失效了，保存实力等下一个机会。把止损想成成本而不是失败，执行起来会容易得多。</p>
+      <p>同样重要的是区分两件事：<strong>价格波动</strong>和<strong>逻辑失效</strong>。论点还成立时，正常的波动可以承受，这叫等待验证；论点已经被事实推翻，再等就是死扛。两者的区别，在下单前就要写进失效条件里。</p>
+
+      <h3>少交易，提高标准</h3>
+      <p>交易越频繁，手续费、滑点<span class="ek">（Slippage）</span>和情绪失误的累积就越多。对多数人来说，提高交易质量最快的办法不是赢更多，而是少犯错：减少不在计划内的交易，把门槛提高。没有好机会的时候，空仓本身就是一种仓位。</p>
+      <div class="note calm"><span class="tag">一个衡量方法</span><p>把交易分成两类：按计划执行的，和有明显违规（追高、没止损、超仓位）的。信心应该来自前者的比例在提高，而不是最近赚了多少。</p></div>
+
+      <h3>关于打破规则</h3>
+      <p>规则不是永远正确的，市场环境会变。但修改规则应该发生在周末的复盘<span class="ek">（Trade review）</span>里，而不是交易时段的冲动中。如果确实需要在盘中破例，必须满足：确定性非常高、事后单独记录、不能变成习惯。</p>
+    </article>
+
+    <!-- ===================== 06 ===================== -->
+    <article class="chapter" id="c6" data-title="连胜与连败：随机性比你想象的更长" hidden>
+      <div class="chapter-head"><div class="no">06</div><div class="kicker">第六章</div><h2>连胜与连败：随机性比你想象的更长</h2></div>
+      <p class="lead">人对随机性<span class="ek">（Randomness）</span>有一种系统性的误判：我们以为好运和坏运会很快轮换，实际上随机序列里的连续结果比直觉长得多。</p>
+
+      <h3>连败几乎一定会来</h3>
+      <p>胜率<span class="ek">（Win rate）</span> 50% 的系统做 100 笔，至少出现一次连续 5 笔亏损的概率是 81%，出现 6 连败<span class="ek">（Losing streak）</span>的概率也超过一半。这不是系统坏了，是抛硬币本来的样子。</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">至少出现一次 k 连败的概率</span><span class="fig-no">图 6-1 · 可拖动</span></div>
+        <div class="controls">
+          <label class="ctl" for="st-p">胜率 <input id="st-p" type="range" min="30" max="75" value="50"> <output id="st-p-o">50%</output></label>
+          <label class="ctl" for="st-n">交易笔数 <input id="st-n" type="range" min="20" max="500" step="10" value="100"> <output id="st-n-o">100</output></label>
+        </div>
+        <svg class="chart" id="f-streak" viewBox="0 0 680 290" role="img" aria-label="不同连败长度出现的概率"></svg>
+        <div class="readout">
+          <div><b id="st-r1">—</b><small>最长连败的中位数</small></div>
+          <div><b id="st-r2">—</b><small>出现 5 连败的概率</small></div>
+          <div><b id="st-r3">—</b><small>出现 8 连败的概率</small></div>
+        </div>
+        <figcaption>先估计自己系统的胜率，再看看在一年的交易笔数里，几连败是「正常」的。把这个数字写进交易计划<span class="ek">（Trading plan）</span>，连败来临时就不会把它误读成系统失效。</figcaption>
+      </figure>
+      <div class="tbl">
+        <table>
+          <caption>表 6-1　做 100 笔交易，至少出现一次 k 连败的概率</caption>
+          <thead><tr><th>胜率</th><th class="r">4 连败</th><th class="r">5 连败</th><th class="r">6 连败</th><th class="r">8 连败</th><th class="r">10 连败</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">40%</td><td class="r mono">99.9%</td><td class="r mono">97.6%</td><td class="r mono">87.3%</td><td class="r mono">49.0%</td><td class="r mono">20.5%</td></tr>
+            <tr><td class="mono">50%</td><td class="r mono">97.3%</td><td class="r mono">81.0%</td><td class="r mono">54.6%</td><td class="r mono">17.0%</td><td class="r mono">4.4%</td></tr>
+            <tr><td class="mono">60%</td><td class="r mono">80.1%</td><td class="r mono">45.9%</td><td class="r mono">21.2%</td><td class="r mono">3.6%</td><td class="r mono">0.6%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>连败时怎么办</h3>
+      <ol>
+        <li><strong>先区分</strong>：这次连败在你的系统「正常范围」内吗？用上图判断。</li>
+        <li><strong>再检查执行</strong>：亏损的单子是按计划做的，还是有违规？违规的连败是纪律<span class="ek">（Discipline）</span>问题，不是运气问题。</li>
+        <li><strong>按规则减速</strong>：事先定好回撤<span class="ek">（Drawdown）</span>规则，例如回撤 6% 仓位减半，回撤 10% 停止交易一周、全面复盘<span class="ek">（Trade review）</span>。</li>
+        <li><strong>绝不加码翻本</strong>：赌徒谬误<span class="ek">（Gambler's fallacy）</span>会告诉你「该赢了」，但下一笔的胜率不会因为前面输了就变高。</li>
+      </ol>
+
+      <h3>连胜时更要小心</h3>
+      <p>账户很少在连亏中爆掉，更多是在连赢之后：信心膨胀，仓位放大，标准降低，然后一笔大亏把几周的利润连本带利吐回去。连胜<span class="ek">（Winning streak）</span>同样是随机序列的一部分，不代表你突然变厉害了。</p>
+      <p class="pull">赚钱可以让账户变大，但不要让胆子变大。</p>
+      <ul>
+        <li>大赚之后休息一天，再回到正常节奏。</li>
+        <li>连胜期间维持原来的风险比例<span class="ek">（Risk per trade）</span>，不因为「手感好」而放大。</li>
+        <li>把连胜期的交易单独复盘一遍，找出其中靠运气的部分。</li>
+      </ul>
+    </article>
+
+    <!-- ===================== 07 ===================== -->
+    <article class="chapter" id="c7" data-title="独立判断：信息、叙事与跟单" hidden>
+      <div class="chapter-head"><div class="no">07</div><div class="kicker">第七章</div><h2>独立判断：信息、叙事与跟单</h2></div>
+      <p class="lead">信息越多不一定判断越好。决定结果的，是你怎样处理信息，以及最后由谁对决定负责。</p>
+
+      <h3>价格常常走在新闻前面</h3>
+      <p>很多时候是先有价格变化，再有解释这个变化的新闻。读新闻时更有用的问题是：市场对这条消息的反应和你预期的一样吗？利好不涨、利空不跌，本身就是信号。看不懂局势的时候，问一句「谁从中获益？」往往比读十篇分析更有帮助。</p>
+
+      <h3>信息饮食</h3>
+      <ul>
+        <li><strong>多来源、多立场</strong>：同一件事读两个立场相反的版本，比较双方各自强调了什么、回避了什么。</li>
+        <li><strong>分清信号和噪音</strong>：大部分盘中消息对一个按日或按周交易的人来说都是噪音。</li>
+        <li><strong>别让立场替你交易</strong>：你支持哪个政党、喜欢哪家公司，和价格会怎么走没有关系。</li>
+        <li><strong>警惕晒单</strong>：社交媒体上的暴利截图是被筛选过的样本，看多了会让你对自己的正常收益感到不满，进而加大风险。</li>
+      </ul>
+
+      <h3>跟单的真实成本</h3>
+      <p>跟着别人的单子做，看起来省力，实际上你只复制了交易里最容易的那一部分：</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>你复制到的</th><th>你复制不到的</th></tr></thead>
+          <tbody>
+            <tr><td>买什么、大概什么价</td><td>他为什么买、什么情况下认错</td></tr>
+            <tr><td>开仓那一刻</td><td>后续的减仓、止损<span class="ek">（Stop-loss）</span>、对冲和改观点</td></tr>
+            <tr><td>标的名字</td><td>他的仓位比例、资金规模和承受力</td></tr>
+            <tr><td>他的信心</td><td>你自己的信心（信念借不来）</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>所以跟单<span class="ek">（Copy trading）</span>者常常会遇到：别人止损了你还拿着，别人小仓试错你重仓押注，别人的对冲腿你没抄。同一笔交易，别人小亏，你大亏。</p>
+      <div class="note"><span class="tag">参考别人的想法之前</span><ol><li>我能用自己的话说出这笔交易的逻辑吗？</li><li>我知道它在什么情况下失效吗？</li><li>这个仓位大小，对我的账户和我的神经合适吗？</li><li>如果对方明天不再更新，我知道怎么管理这笔仓位吗？</li></ol><p>四个问题里有一个答不上来，就先别做。</p></div>
+
+      <h3>独立不等于唱反调</h3>
+      <p>逆向本身不是优势。独立的意思是：你对自己的每一个决定负责，能解释它，也能在它错的时候认错。可以向任何人学习思路，但最后按下按钮的是你，承担结果的也是你。学习的对象应该是别人的思考过程和方法，而不是结论。</p>
+    </article>
+
+    <!-- ===================== 08 ===================== -->
+    <article class="chapter" id="c8" data-title="复盘：把亏损变成学费" hidden>
+      <div class="chapter-head"><div class="no">08</div><div class="kicker">第八章</div><h2>复盘：把亏损变成学费</h2></div>
+      <p class="lead">不复盘<span class="ek">（Trade review）</span>的交易者是在不停考试，复盘的交易者是在看错题本。亏损只有在被理解之后才是学费，否则就是税。</p>
+
+      <h3>交易日记记什么</h3>
+      <p>只记盈亏是最慢的进步方式。日记要记录的是你的大脑，而不是你的账户。</p>
+      <pre class="tpl" id="tpl">日期 / 标的 / 方向 / 工具：
+入场理由（论点）：
+当时的信心（1–5）和情绪：
+计划：入场 ___ 止损 ___ 目标 ___ 仓位 ___R
+实际：入场 ___ 出场 ___ 结果 ___R
+哪里判断对了：
+哪里判断错了：
+有没有违反规则？哪一条：
+如果重来一次，我会：
+归类：判断错 / 执行错 / 风控错 / 正常波动</pre>
+      <p><button class="btn" type="button" id="tpl-copy">复制模板</button> <span id="tpl-msg" class="eyebrow" style="margin-left:8px"></span></p>
+
+      <h3>亏损归因：四个抽屉</h3>
+      <p>每一笔亏损都放进下面四个抽屉之一。归错抽屉，就会修错地方。</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>抽屉</th><th>典型例子</th><th>该怎么改</th></tr></thead>
+          <tbody>
+            <tr><td><strong>判断错</strong></td><td>论点本身不成立；看错了驱动因素</td><td>改进分析方法、补知识</td></tr>
+            <tr><td><strong>执行错</strong></td><td>追高进场；没按计划止损<span class="ek">（Stop-loss）</span>；中途改剧本</td><td>强化规则和「如果…就…」计划</td></tr>
+            <tr><td><strong>风控错</strong></td><td>仓位太大被迫在最差位置平仓；工具期限太短</td><td>回到第 4 章重新算仓位</td></tr>
+            <tr><td><strong>正常波动</strong></td><td>按计划执行，概率站在了对面</td><td>什么都不用改，这是成本</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note loss"><span class="tag">最容易漏掉的</span><p>赚了钱的交易也要归类。追高进场、没设止损、超仓位，即使赚了，也应该放进「执行错」或「风控错」。这些交易如果不被纠正，迟早会以更大的亏损还回去。</p></div>
+
+      <h3>每周复盘，每月统计</h3>
+      <ul>
+        <li><strong>每周</strong>：读一遍本周的日记；找出最大的一个错误；为下周只定一个要改进的行为。一次改一件事，比同时改五件更有效。</li>
+        <li><strong>每月</strong>：统计胜率<span class="ek">（Win rate）</span>、平均盈利（R）、平均亏损（R）、期望值<span class="ek">（Expected value (EV)）</span>、最大回撤<span class="ek">（Maximum drawdown）</span>，以及违规交易的数量。</li>
+        <li><strong>一个特别有用的数字</strong>：把所有违规交易的盈亏单独加总。很多人会发现，只要不做这些交易，整个月就是赚钱的。</li>
+      </ul>
+      <p class="pull">真正的进步很少来自找到更好的买点，更多来自少做那几笔不该做的交易。</p>
+    </article>
+
+    <!-- ===================== 09 ===================== -->
+    <article class="chapter" id="c9" data-title="心性与生活：交易之外的那部分" hidden>
+      <div class="chapter-head"><div class="no">09</div><div class="kicker">第九章</div><h2>心性与生活：交易之外的那部分</h2></div>
+      <p class="lead">市场像一个放大器：你在生活里的冲动、拖延、虚荣、不会拒绝，都会在账户里被放大成数字。所以交易做到后来，很大一部分功夫在交易之外。</p>
+
+      <h3>生活里的习惯会被带进市场</h3>
+      <ul>
+        <li><strong>贪小便宜</strong>：为了省一点手续费不买保护、为了多赚一点不止盈<span class="ek">（Take profit）</span>，最后把自己逼进越来越难退出的仓位。</li>
+        <li><strong>没有边界感</strong>：生活中不敢拒绝别人的人，在市场里也很难对亏损仓位说「不」，别人一句「再等等」就动摇。</li>
+        <li><strong>「差不多」心态</strong>：在重要的事上，差不多往往意味着放弃了标准。止损<span class="ek">（Stop-loss）</span>「差不多」到了、仓位「差不多」合适，都是漏洞。</li>
+      </ul>
+
+      <h3>你需要多少钱，决定你能多耐心</h3>
+      <p>生活成本越高、对交易收入的依赖越大，你对市场的索取就越急，越容易为了赚钱而强行交易。反过来，生活成本低，对市场要求少，就更能等待好机会。财务自由买到的，与其说是钱，不如说是选择权：可以等，可以不做，可以不向任何人证明自己。</p>
+      <div class="note warn"><span class="tag">尤其是学生和刚开始的人</span><p>用生活费、学费或借来的钱交易，等于把最大的心理压力直接装进了每一笔交易。本金越小，越应该少交易、慢慢练能力；先学会不亏大钱，再谈赚快钱。</p></div>
+
+      <h3>长期主义</h3>
+      <p>交易更像一项需要多年训练的职业技能，而不是一夜致富的机会。一个合理的期待是：花几年时间活下来、建立方法、积累样本，然后让小而稳定的优势慢慢复利<span class="ek">（Compounding）</span>。追求「每周稳定小赚」的人，最终往往跑得比追求「一把翻倍」的人更远。</p>
+
+      <h3>为结果负全责</h3>
+      <p>把亏损归咎于庄家、新闻、老师或运气，会让你失去改进的机会。为自己的每一个决定负责，不是自责，而是把控制权拿回来：只有你能决定下一笔交易怎么做。</p>
+
+      <h3>别把自我价值押在盈亏上</h3>
+      <p>如果一次亏损让你觉得自己失败，一次盈利让你觉得自己了不起，你的情绪就会被账户牵着走。把注意力放在「我今天有没有按计划做」，而不是「我今天赚了多少」。前者完全由你控制，后者不是。</p>
+    </article>
+
+    <!-- ===================== 10 ===================== -->
+    <article class="chapter" id="c10" data-title="工具箱：清单、协议与自评" hidden>
+      <div class="chapter-head"><div class="no">10</div><div class="kicker">第十章</div><h2>工具箱：清单、协议与自评</h2></div>
+      <p class="lead">把前面九章变成每天可以用的东西。勾选和自评结果只保存在你自己的浏览器里。</p>
+
+      <h3>四张清单</h3>
+      <div class="cards">
+        <div class="card"><h4>下单前</h4><ul>
+          <li><input type="checkbox" id="t1"><label for="t1">能用一两句话说出论点</label></li>
+          <li><input type="checkbox" id="t2"><label for="t2">写下了失效条件和止损</label></li>
+          <li><input type="checkbox" id="t3"><label for="t3">仓位由风险比例算出，不由信心决定</label></li>
+          <li><input type="checkbox" id="t4"><label for="t4">饿、怒、孤独、累都不明显</label></li>
+          <li><input type="checkbox" id="t5"><label for="t5">这是计划内的交易，不是追涨或报复</label></li>
+        </ul></div>
+        <div class="card"><h4>持仓中</h4><ul>
+          <li><input type="checkbox" id="t6"><label for="t6">论点还成立吗？价格波动还是逻辑失效？</label></li>
+          <li><input type="checkbox" id="t7"><label for="t7">没有在亏损仓上加第二次仓</label></li>
+          <li><input type="checkbox" id="t8"><label for="t8">没有每几分钟就看一次账户</label></li>
+          <li><input type="checkbox" id="t9"><label for="t9">到了止盈规则就执行</label></li>
+        </ul></div>
+        <div class="card"><h4>平仓后</h4><ul>
+          <li><input type="checkbox" id="t10"><label for="t10">写了日记，归入四个抽屉之一</label></li>
+          <li><input type="checkbox" id="t11"><label for="t11">赚钱的单子也检查了有没有违规</label></li>
+          <li><input type="checkbox" id="t12"><label for="t12">大赚或大亏后，今天不再开新仓</label></li>
+        </ul></div>
+        <div class="card"><h4>失控处理流程</h4><ul>
+          <li><input type="checkbox" id="t13"><label for="t13">发现自己在报复交易或狂喜：停止下单</label></li>
+          <li><input type="checkbox" id="t14"><label for="t14">把现有仓位缩到能睡着的大小</label></li>
+          <li><input type="checkbox" id="t15"><label for="t15">离开屏幕至少 30 分钟，去走一走</label></li>
+          <li><input type="checkbox" id="t16"><label for="t16">写下刚才发生了什么、当时的感受</label></li>
+          <li><input type="checkbox" id="t17"><label for="t17">第二天再决定要不要恢复交易</label></li>
+        </ul></div>
+      </div>
+
+      <h3>交易心理自评</h3>
+      <p>按最近一个月的真实情况选择：1 代表从不，5 代表几乎总是。分数越高，代表这一项越需要关注。</p>
+      <div class="quiz" id="quiz"></div>
+      <div class="result" id="quiz-result"></div>
+
+      <!--EN-GLOSSARY-START--><h3>中英术语表</h3>
+      <p>书中出现的主要术语和它们的英文原词，按首次出现的章节排列。读英文资料、用券商平台或者搜索时，用英文原词会准确得多。</p>
+      <div class="tbl"><table><thead><tr><th>中文</th><th>English</th><th>首次出现</th></tr></thead><tbody>
+        <tr><td>复盘</td><td>Trade review</td><td>导读</td></tr>
+        <tr><td>恐惧</td><td>Fear</td><td>导读</td></tr>
+        <tr><td>止损</td><td>Stop-loss</td><td>导读</td></tr>
+        <tr><td>狂喜</td><td>Euphoria</td><td>导读</td></tr>
+        <tr><td>纪律</td><td>Discipline</td><td>导读</td></tr>
+        <tr><td>贪婪</td><td>Greed</td><td>导读</td></tr>
+        <tr><td>随机性</td><td>Randomness</td><td>导读</td></tr>
+        <tr><td>期望值</td><td>Expected value (EV)</td><td>第 1 章</td></tr>
+        <tr><td>止盈</td><td>Take profit</td><td>第 1 章</td></tr>
+        <tr><td>结果导向</td><td>Resulting</td><td>第 1 章</td></tr>
+        <tr><td>胜率</td><td>Win rate</td><td>第 1 章</td></tr>
+        <tr><td>叙事</td><td>Narrative</td><td>第 2 章</td></tr>
+        <tr><td>损失厌恶</td><td>Loss aversion</td><td>第 2 章</td></tr>
+        <tr><td>沉没成本</td><td>Sunk cost fallacy</td><td>第 2 章</td></tr>
+        <tr><td>认知偏差</td><td>Cognitive bias</td><td>第 2 章</td></tr>
+        <tr><td>连胜</td><td>Winning streak</td><td>第 2 章</td></tr>
+        <tr><td>连败</td><td>Losing streak</td><td>第 2 章</td></tr>
+        <tr><td>锚定</td><td>Anchoring</td><td>第 2 章</td></tr>
+        <tr><td>报复交易</td><td>Revenge trading</td><td>第 3 章</td></tr>
+        <tr><td>过度自信</td><td>Overconfidence</td><td>第 3 章</td></tr>
+        <tr><td>凯利比例</td><td>Kelly criterion</td><td>第 4 章</td></tr>
+        <tr><td>回撤</td><td>Drawdown</td><td>第 4 章</td></tr>
+        <tr><td>盈亏比</td><td>Reward-to-risk ratio</td><td>第 4 章</td></tr>
+        <tr><td>失效条件</td><td>Invalidation criteria</td><td>第 5 章</td></tr>
+        <tr><td>滑点</td><td>Slippage</td><td>第 5 章</td></tr>
+        <tr><td>交易计划</td><td>Trading plan</td><td>第 6 章</td></tr>
+        <tr><td>赌徒谬误</td><td>Gambler's fallacy</td><td>第 6 章</td></tr>
+        <tr><td>风险比例</td><td>Risk per trade</td><td>第 6 章</td></tr>
+        <tr><td>跟单</td><td>Copy trading</td><td>第 7 章</td></tr>
+        <tr><td>最大回撤</td><td>Maximum drawdown</td><td>第 8 章</td></tr>
+        <tr><td>复利</td><td>Compounding</td><td>第 9 章</td></tr>
+        <tr><td>决策质量</td><td>Decision quality</td><td>第 10 章</td></tr>
+        <tr><td>概率思维</td><td>Probabilistic thinking</td><td>第 10 章</td></tr>
+      </tbody></table></div>
+<!--EN-GLOSSARY-END-->
+      <h3>延伸阅读</h3>
+      <ul>
+        <li>丹尼尔·卡尼曼《思考，快与慢》：损失厌恶<span class="ek">（Loss aversion）</span>和各种认知偏差<span class="ek">（Cognitive bias）</span>的来源。</li>
+        <li>安妮·杜克《对赌》：在不确定中做决定，区分决策质量<span class="ek">（Decision quality）</span>和结果。</li>
+        <li>马克·道格拉斯《交易心理分析》：用概率思维<span class="ek">（Probabilistic thinking）</span>看待每一笔交易。</li>
+        <li>乔科·威林克《极限控制》：为结果负全责的思维方式。</li>
+        <li>《股票大作手回忆录》：一百年前的交易者，犯的是和今天一样的错。</li>
+      </ul>
+    </article>
+
+    <nav class="pager" aria-label="章节翻页">
+      <button type="button" class="prev" id="pg-prev"><small>上一章</small><span></span></button>
+      <button type="button" class="next" id="pg-next"><small>下一章</small><span></span></button>
+    </nav>
+
+    <footer class="end"><p>本手册综合行为金融学的常见结论与交易社群的实战经验整理而成，书中示例由数学模型计算，供学习使用，不构成投资建议。</p></footer>
+  </main>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+
+  // ---------- chapters ----------
+  const chapters = [...document.querySelectorAll("article.chapter")];
+  const rail = document.getElementById("rail");
+  const pick = document.getElementById("pick");
+  const prevB = document.getElementById("pg-prev"), nextB = document.getElementById("pg-next");
+  chapters.forEach((c, i) => {
+    const t = c.dataset.title;
+    const li = document.createElement("li");
+    li.innerHTML = `<button type="button" data-i="${i}"><span class="k">${String(i).padStart(2, "0")}</span><span>${t}</span></button>`;
+    rail.appendChild(li);
+    const o = document.createElement("option"); o.value = i; o.textContent = String(i).padStart(2, "0") + "　" + t; pick.appendChild(o);
+  });
+  const redraws = {};
+  let current = 0;
+  function show(i, scroll) {
+    i = Math.max(0, Math.min(chapters.length - 1, i));
+    current = i;
+    chapters.forEach((c, j) => { c.hidden = j !== i; });
+    rail.querySelectorAll("button").forEach(b => b.setAttribute("aria-current", +b.dataset.i === i ? "true" : "false"));
+    pick.value = i;
+    prevB.hidden = i === 0; nextB.hidden = i === chapters.length - 1;
+    if (i > 0) prevB.querySelector("span").textContent = chapters[i - 1].dataset.title;
+    if (i < chapters.length - 1) nextB.querySelector("span").textContent = chapters[i + 1].dataset.title;
+    if (redraws[i]) redraws[i].forEach(f => f());
+    store.set("tp-ch", String(i));
+    if (location.hash !== "#c" + i) history.replaceState(null, "", "#c" + i);
+    if (scroll) window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }
+  rail.addEventListener("click", e => { const b = e.target.closest("button"); if (b) show(+b.dataset.i, true); });
+  pick.addEventListener("change", () => show(+pick.value, true));
+  prevB.addEventListener("click", () => show(current - 1, true));
+  nextB.addEventListener("click", () => show(current + 1, true));
+  window.addEventListener("hashchange", () => { const m = location.hash.match(/^#c(\d+)$/); if (m) show(+m[1], false); });
+
+  // ---------- chart helper ----------
+  const NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+  function plot(svg, cfg) {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    if (!svg.dataset.h) svg.dataset.h = svg.viewBox.baseVal.height;
+    const cw = svg.getBoundingClientRect().width || 680;
+    const narrow = cw > 0 && cw < 560;
+    const W = narrow ? 440 : 680, H = +svg.dataset.h;
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    const m = { l: narrow ? 54 : 60, r: narrow ? 12 : 18, t: 14, b: 42 };
+    const [x0, x1] = cfg.x, [y0, y1] = cfg.y;
+    const sx = cfg.ylog ? v => Math.log10(v) : v => v;
+    const X = v => m.l + (v - x0) / (x1 - x0) * (W - m.l - m.r);
+    const Y = v => m.t + (1 - (sx(v) - sx(y0)) / (sx(y1) - sx(y0))) * (H - m.t - m.b);
+    const g = el("g", { class: "ax" }, svg);
+    if (cfg.band) el("rect", { x: X(cfg.band[0]), y: m.t, width: Math.max(0, X(cfg.band[1]) - X(cfg.band[0])), height: H - m.t - m.b, style: "fill: " + cfg.band[2] }, g);
+    cfg.yt.forEach(v => {
+      el("line", { x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v), style: "stroke: var(--grid)", "stroke-width": 1 }, g);
+      el("text", { x: m.l - 8, y: Y(v) + 4, "text-anchor": "end", style: "fill: var(--muted)" }, g).textContent = cfg.yf ? cfg.yf(v) : v;
+    });
+    cfg.xt.forEach(v => {
+      el("line", { x1: X(v), x2: X(v), y1: m.t, y2: H - m.b, style: "stroke: var(--grid)", "stroke-width": 1 }, g);
+      el("text", { x: X(v), y: H - m.b + 18, "text-anchor": "middle", style: "fill: var(--muted)" }, g).textContent = cfg.xf ? cfg.xf(v) : v;
+    });
+    if (cfg.zero !== undefined) el("line", { x1: m.l, x2: W - m.r, y1: Y(cfg.zero), y2: Y(cfg.zero), style: "stroke: var(--muted)", "stroke-width": 1 }, g);
+    el("text", { x: (m.l + W - m.r) / 2, y: H - 6, "text-anchor": "middle", style: "fill: var(--muted); font-family: var(--font-body); font-size: 12.5px" }, g).textContent = cfg.xlabel || "";
+    const cy = (m.t + H - m.b) / 2;
+    el("text", { x: 11, y: cy, "text-anchor": "middle", transform: `rotate(-90 11 ${cy})`, style: "fill: var(--muted); font-family: var(--font-body); font-size: 12.5px" }, g).textContent = cfg.ylabel || "";
+    const id = "cl" + Math.random().toString(36).slice(2, 8);
+    const cp = el("clipPath", { id }, svg); el("rect", { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b }, cp);
+    const sg = el("g", { "clip-path": `url(#${id})` }, svg);
+    (cfg.bars || []).forEach(b => {
+      const bw = (X(b.w) - X(0));
+      el("rect", { x: X(b.x) - bw / 2, y: Y(b.y), width: bw, height: Math.max(0, Y(y0) - Y(b.y)), rx: 2, style: `fill: ${b.color}` }, sg);
+    });
+    (cfg.series || []).forEach(s => {
+      const d = s.pts.map((p, i) => (i ? "L" : "M") + X(p[0]).toFixed(1) + " " + Y(p[1]).toFixed(1)).join("");
+      el("path", { d, style: `fill: none; stroke: ${s.color}; stroke-width: ${s.w || 2.2}; ${s.dash ? "stroke-dasharray:" + s.dash + ";" : ""} opacity: ${s.op || 1}`, "stroke-linejoin": "round" }, sg);
+    });
+    (cfg.dots || []).forEach(dt => el("circle", { cx: X(dt[0]), cy: Y(dt[1]), r: dt[3] || 4, style: `fill: ${dt[2]}` }, sg));
+    (cfg.labels || []).forEach(lb => {
+      el("text", { x: X(lb[0]) + (lb[3] || 0), y: Y(lb[1]) + (lb[4] || -8), "text-anchor": lb[5] || "middle", style: `fill: ${lb[6] || "var(--ink)"}; font-family: var(--font-mono); font-size: 11.5px` }, sg).textContent = lb[2];
+    });
+    return { X, Y };
+  }
+  const range = (a, b, st) => { const o = []; for (let v = a; v <= b + 1e-9; v += st) o.push(+v.toFixed(6)); return o; };
+  const reg = (ch, f) => { (redraws[ch] = redraws[ch] || []).push(f); };
+  let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => (redraws[current] || []).forEach(f => f()), 150); });
+
+  // ---------- 4-1 recovery ----------
+  (function () {
+    const svg = document.getElementById("f-rec");
+    const draw = () => {
+      const pts = range(0, 80, 0.5).map(d => [d, 100 * (1 / (1 - d / 100) - 1)]);
+      const marks = [10, 30, 50, 75];
+      plot(svg, {
+        x: [0, 80], y: [0, 420], xt: range(0, 80, 10), yt: [0, 100, 200, 300, 400],
+        xf: v => v + "%", yf: v => v + "%", xlabel: "回撤幅度", ylabel: "回本所需涨幅",
+        series: [{ pts, color: "var(--loss)", w: 2.6 }],
+        dots: marks.map(d => [d, 100 * (1 / (1 - d / 100) - 1), "var(--loss)", 4.5]),
+        labels: marks.map(d => [d, 100 * (1 / (1 - d / 100) - 1), "+" + (100 * (1 / (1 - d / 100) - 1)).toFixed(d === 10 || d === 30 ? 1 : 0) + "%", -6, -10, "end"])
+      });
+    };
+    reg(4, draw);
+  })();
+
+  // ---------- 4-2 kelly ----------
+  (function () {
+    const svg = document.getElementById("f-kelly");
+    const pS = document.getElementById("k-p"), bS = document.getElementById("k-b");
+    function draw() {
+      const p = +pS.value / 100, b = +bS.value / 10, q = 1 - p;
+      document.getElementById("k-p-o").textContent = pS.value + "%";
+      document.getElementById("k-b-o").textContent = b.toFixed(1) + " : 1";
+      const g = f => 100 * (p * Math.log(1 + b * f) + q * Math.log(1 - f));
+      const xs = range(0, 0.6, 0.0025);
+      const pts = xs.map(f => [f * 100, g(f)]);
+      const ev = p * b - q;
+      const kelly = p - q / b;
+      let zero = null;
+      if (kelly > 0) { let lo = kelly, hi = 0.999; for (let i = 0; i < 60; i++) { const mid = (lo + hi) / 2; if (g(mid) > 0) lo = mid; else hi = mid; } zero = lo; }
+      const ymax = Math.max(1, kelly > 0 ? g(kelly) * 1.35 : 1);
+      const ymin = -Math.max(2, ymax);
+      const step = ymax > 8 ? 4 : ymax > 4 ? 2 : 1;
+      const yt = []; for (let v = Math.ceil(ymin / step) * step; v <= ymax; v += step) yt.push(v);
+      const dots = [], labels = [];
+      if (kelly > 0 && kelly < 0.6) { dots.push([kelly * 100, g(kelly), "var(--accent)", 5]); labels.push([kelly * 100, g(kelly), "最快 " + (kelly * 100).toFixed(1) + "%", 0, -12, "middle", "var(--accent)"]); }
+      if (kelly > 0 && kelly / 2 < 0.6) { dots.push([kelly * 50, g(kelly / 2), "var(--calm)", 4]); labels.push([kelly * 50, g(kelly / 2), "一半", 0, 18, "middle", "var(--calm)"]); }
+      if (zero && zero < 0.6) { dots.push([zero * 100, 0, "var(--loss)", 5]); labels.push([zero * 100, 0, (zero * 100).toFixed(1) + "%", 8, 18, "start", "var(--loss)"]); }
+      plot(svg, {
+        x: [0, 60], y: [ymin, ymax], xt: range(0, 60, 10), yt, xf: v => v + "%", yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%",
+        xlabel: "每笔交易冒险的资金比例", ylabel: "每笔平均复合增长", zero: 0,
+        band: zero && zero < 0.6 ? [zero * 100, 60, "var(--tint-loss)"] : (kelly <= 0 ? [0, 60, "var(--tint-loss)"] : null),
+        series: [{ pts, color: "var(--accent)", w: 2.6 }], dots, labels
+      });
+      document.getElementById("k-r1").textContent = (ev >= 0 ? "+" : "−") + Math.abs(ev).toFixed(2) + "R";
+      document.getElementById("k-r2").textContent = kelly > 0 ? (kelly * 100).toFixed(1) + "%" : "期望为负";
+      document.getElementById("k-r3").textContent = zero ? (zero * 100).toFixed(1) + "%" : (kelly > 0 ? "—" : "任何仓位");
+    }
+    pS.addEventListener("input", draw); bS.addEventListener("input", draw);
+    reg(4, draw);
+  })();
+
+  // ---------- 4-3 monte carlo ----------
+  (function () {
+    const svg = document.getElementById("f-mc");
+    const rS = document.getElementById("mc-r");
+    let seed = 20261010;
+    function rng(s) { return function () { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+    function draw() {
+      const r = +rS.value / 100;
+      document.getElementById("mc-r-o").textContent = rS.value + "%";
+      const rand = rng(seed);
+      const P = 24, T = 200, p = 0.45, b = 2;
+      const outcomes = [];
+      for (let k = 0; k < P; k++) { const o = []; for (let t = 0; t < T; t++) o.push(rand() < p); outcomes.push(o); }
+      const finals = [], dds = [], series = [];
+      outcomes.forEach((o, k) => {
+        let eq = 1, peak = 1, mdd = 0; const pts = [[0, 1]];
+        o.forEach((w, t) => { eq *= w ? 1 + b * r : 1 - r; eq = Math.max(eq, 1e-4); peak = Math.max(peak, eq); mdd = Math.max(mdd, 1 - eq / peak); pts.push([t + 1, eq]); });
+        finals.push(eq); dds.push(mdd);
+        series.push({ pts, color: eq >= 1 ? "var(--accent)" : "var(--loss)", w: 1.3, op: 0.65 });
+      });
+      const med = a => { const s = [...a].sort((x, y) => x - y); return (s[11] + s[12]) / 2; };
+      plot(svg, {
+        x: [0, 200], y: [0.01, 1000], ylog: true, xt: range(0, 200, 50), yt: [0.01, 0.1, 1, 10, 100, 1000],
+        yf: v => v >= 1 ? v + "×" : v + "×", xlabel: "交易笔数", ylabel: "资金（本金的倍数，对数）", zero: 1, series
+      });
+      const fm = med(finals);
+      document.getElementById("mc-r1").textContent = fm >= 100 ? Math.round(fm) + "×" : fm.toFixed(fm < 1 ? 3 : 2) + "×";
+      document.getElementById("mc-r2").textContent = Math.round(finals.filter(f => f < 1).length / P * 100) + "%";
+      document.getElementById("mc-r3").textContent = "−" + (med(dds) * 100).toFixed(0) + "%";
+      document.getElementById("mc-r4").textContent = "−" + (Math.max(...dds) * 100).toFixed(0) + "%";
+    }
+    rS.addEventListener("input", draw);
+    document.getElementById("mc-seed").addEventListener("click", () => { seed = (seed * 1103515245 + 12345) >>> 0; draw(); });
+    reg(4, draw);
+  })();
+
+  // ---------- position size ----------
+  (function () {
+    const ids = ["ps-acct", "ps-risk", "ps-entry", "ps-stop"];
+    function calc() {
+      const [a, r, e, s] = ids.map(i => +document.getElementById(i).value);
+      const per = Math.abs(e - s);
+      if (!a || !r || !e || !per) { ["ps-sh", "ps-val", "ps-loss"].forEach(i => document.getElementById(i).textContent = "—"); return; }
+      const risk = a * r / 100;
+      const sh = Math.floor(risk / per);
+      document.getElementById("ps-sh").textContent = sh.toLocaleString("en-US") + " 股";
+      document.getElementById("ps-val").textContent = "$" + Math.round(sh * e).toLocaleString("en-US") + "（" + (sh * e / a * 100).toFixed(1) + "%）";
+      document.getElementById("ps-loss").textContent = "−$" + Math.round(sh * per).toLocaleString("en-US");
+    }
+    ids.forEach(i => document.getElementById(i).addEventListener("input", calc));
+    calc();
+  })();
+
+  // ---------- 6-1 streaks ----------
+  (function () {
+    const svg = document.getElementById("f-streak");
+    const pS = document.getElementById("st-p"), nS = document.getElementById("st-n");
+    function probRun(n, k, q) {
+      let dp = new Array(k).fill(0); dp[0] = 1; let hit = 0;
+      for (let t = 0; t < n; t++) {
+        const nd = new Array(k).fill(0);
+        for (let r = 0; r < k; r++) { const pr = dp[r]; if (!pr) continue; nd[0] += pr * (1 - q); if (r + 1 >= k) hit += pr * q; else nd[r + 1] += pr * q; }
+        dp = nd;
+      }
+      return hit;
+    }
+    function draw() {
+      const p = +pS.value / 100, n = +nS.value, q = 1 - p;
+      document.getElementById("st-p-o").textContent = pS.value + "%";
+      document.getElementById("st-n-o").textContent = n;
+      const ks = range(3, 14, 1);
+      const probs = ks.map(k => probRun(n, k, q) * 100);
+      let med = 1; for (let k = 2; k < 40; k++) { if (probRun(n, k, q) < 0.5) { med = k - 1; break; } }
+      plot(svg, {
+        x: [2.4, 14.6], y: [0, 100], xt: ks, yt: [0, 25, 50, 75, 100], yf: v => v + "%", xf: v => v,
+        xlabel: "连败长度 k（至少出现一次）", ylabel: "概率",
+        bars: ks.map((k, i) => ({ x: k, y: probs[i], w: 0.62, color: k === med ? "var(--loss)" : "var(--calm)" })),
+        labels: ks.map((k, i) => [k, probs[i], probs[i] >= 99.95 ? "≈100" : probs[i] < 0.1 ? "<0.1" : probs[i].toFixed(probs[i] < 10 ? 1 : 0), 0, -6, "middle", "var(--muted)"])
+      });
+      document.getElementById("st-r1").textContent = med + " 连败";
+      document.getElementById("st-r2").textContent = (probRun(n, 5, q) * 100).toFixed(1) + "%";
+      document.getElementById("st-r3").textContent = (probRun(n, 8, q) * 100).toFixed(1) + "%";
+    }
+    pS.addEventListener("input", draw); nS.addEventListener("input", draw);
+    reg(6, draw);
+  })();
+
+  // ---------- template copy ----------
+  document.getElementById("tpl-copy").addEventListener("click", () => {
+    const txt = document.getElementById("tpl").textContent;
+    const msg = document.getElementById("tpl-msg");
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(document.getElementById("tpl")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); msg.textContent = "已选中，按 ⌘C 或 Ctrl+C 复制"; };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(() => { msg.textContent = "已复制"; }, fallback); else fallback();
+  });
+
+  // ---------- checklists ----------
+  document.querySelectorAll(".card input[type=checkbox]").forEach(cb => {
+    cb.checked = store.get("tp-" + cb.id) === "1";
+    cb.addEventListener("change", () => store.set("tp-" + cb.id, cb.checked ? "1" : "0"));
+  });
+
+  // ---------- self assessment ----------
+  (function () {
+    const dims = { e: "情绪", d: "纪律", r: "风险", i: "独立" };
+    const chap = { e: "第 3 章", d: "第 5、8 章", r: "第 4、6 章", i: "第 1、7 章" };
+    const qs = [
+      ["e", "亏损之后，我会很快再开一单想把钱赢回来。"],
+      ["d", "我会在没有写好止损的情况下下单。"],
+      ["r", "一笔交易的涨跌会影响我的睡眠或一整天的心情。"],
+      ["i", "我会因为别人推荐或社交媒体上的热度而买入。"],
+      ["e", "连续赚钱后，我会觉得自己状态很好，想做大一点。"],
+      ["d", "价格到了止损位，我会再等等看。"],
+      ["r", "我会在亏损的仓位上补仓不止一次。"],
+      ["i", "我说不清自己仓位的失效条件，只知道「应该会涨」。"],
+      ["e", "我会在很累、很烦或喝了酒之后交易。"],
+      ["d", "我会做计划之外的交易，只是因为不想错过。"],
+      ["r", "我不确定自己每笔交易冒了账户百分之几的风险。"],
+      ["i", "我评价自己做得好不好，主要看这周赚了还是亏了。"]
+    ];
+    const box = document.getElementById("quiz");
+    box.innerHTML = qs.map((q, i) => `<div class="qrow"><p>${i + 1}. ${q[1]}</p><div class="scale" role="radiogroup" aria-label="第 ${i + 1} 题">${[1, 2, 3, 4, 5].map(v => `<label><input type="radio" name="q${i}" id="q${i}-${v}" value="${v}"><span>${v}</span></label>`).join("")}</div></div>`).join("") + `<p class="scale-legend">1 从不 · 2 很少 · 3 有时 · 4 经常 · 5 几乎总是</p>`;
+    const res = document.getElementById("quiz-result");
+    function score() {
+      const ans = qs.map((_, i) => { const c = box.querySelector(`input[name=q${i}]:checked`); return c ? +c.value : null; });
+      store.set("tp-quiz", JSON.stringify(ans));
+      const done = ans.filter(a => a !== null).length;
+      const rows = Object.keys(dims).map(k => {
+        const vals = ans.filter((a, i) => qs[i][0] === k && a !== null);
+        const avg = vals.length ? vals.reduce((s, v) => s + v, 0) / vals.length : 0;
+        return { k, avg, n: vals.length };
+      });
+      const worst = done === qs.length ? rows.slice().sort((a, b) => b.avg - a.avg)[0] : null;
+      res.innerHTML = `<p class="eyebrow" style="margin:0">已答 ${done} / ${qs.length}　分数越高越需要关注</p>` +
+        rows.map(r => `<div class="bar-row"><span>${dims[r.k]}</span><div class="bar-track"><div class="bar-fill${r.avg >= 3.5 ? " hi" : ""}" style="width:${r.n ? (r.avg - 1) / 4 * 100 : 0}%"></div></div><span class="val">${r.n ? r.avg.toFixed(1) : "—"}</span></div>`).join("") +
+        (worst ? `<p class="advice">最需要关注的是 <strong>${dims[worst.k]}</strong>（平均 ${worst.avg.toFixed(1)} 分），建议先读 ${chap[worst.k]}。${worst.avg < 2.5 ? "整体状态不错，保持记录日记的习惯。" : ""}</p>` : `<p class="advice">答完全部 12 题后，这里会告诉你最该先读哪一章。</p>`);
+    }
+    try { const saved = JSON.parse(store.get("tp-quiz") || "null"); if (Array.isArray(saved)) saved.forEach((v, i) => { if (v) { const r = document.getElementById(`q${i}-${v}`); if (r) r.checked = true; } }); } catch (e) {}
+    box.addEventListener("change", score);
+    score();
+  })();
+
+  // ---------- boot ----------
+  const hm = location.hash.match(/^#c(\d+)$/);
+  const saved = store.get("tp-ch");
+  show(hm ? +hm[1] : (saved !== null ? +saved : 0), false);
+})();
+</script>
+</body>
+</html>
