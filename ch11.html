@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 11 章 对冲与组合保护 · 美股期权课</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  .seg { flex-wrap: wrap; max-width: 100%; }
+  .seg button { white-space: nowrap; }
+</style>
+</head>
+<body data-ch="11">
+<div class="topbar"><div class="topbar-inner"><a class="brand" href="index.html">美股期权<span>课</span></a><select id="ck-jump" aria-label="跳转到章节"></select></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">11</div>
+    <div class="eyebrow">美股期权课 · 第三部分 策略 · 第 11 章</div>
+    <h1>对冲与<span class="g">组合保护</span></h1>
+    <p class="deck">对冲的目标是让组合在大跌里活下来，同时尽量保留上涨、不触发税务。本章把保护性看跌、领口、看跌价差和尾部预算都算成钱，让你知道每一种保险的保费是多少、在哪种跌法里赔付。</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="本章目录">
+    <p class="toc-title">本章目录</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>开篇：赚了钱以后的三个月</span></a></li>
+      <li><a href="#s1"><span class="n">11.1</span><span>对冲与减仓的区别</span></a></li>
+      <li><a href="#s2"><span class="n">11.2</span><span>保护性看跌的成本</span></a></li>
+      <li><a href="#s3"><span class="n">11.3</span><span>领口：零成本的代价</span></a></li>
+      <li><a href="#s4"><span class="n">11.4</span><span>看跌价差与四种方案</span></a></li>
+      <li><a href="#s5"><span class="n">11.5</span><span>VIX 看涨：崩盘对冲</span></a></li>
+      <li><a href="#s6"><span class="n">11.6</span><span>尾部预算</span></a></li>
+      <li><a href="#s7"><span class="n">11.7</span><span>变现规则</span></a></li>
+      <li><a href="#s8"><span class="n">11.8</span><span>股票替代：深度价内 LEAPS</span></a></li>
+      <li><a href="#s9"><span class="n">11.9</span><span>用期权调整组合 Beta</span></a></li>
+      <li><a href="#cases"><span class="n">案例</span><span>三个案例</span></a></li>
+      <li><a href="#tools"><span class="n">工具</span><span>清单与自测</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>本章目录</summary>
+      <ol>
+        <li><a href="#open">开篇：赚了钱以后的三个月</a></li>
+        <li><a href="#s1">11.1 对冲与减仓的区别</a></li>
+        <li><a href="#s2">11.2 保护性看跌的成本</a></li>
+        <li><a href="#s3">11.3 领口：零成本的代价</a></li>
+        <li><a href="#s4">11.4 看跌价差与四种方案</a></li>
+        <li><a href="#s5">11.5 VIX 看涨：崩盘对冲</a></li>
+        <li><a href="#s6">11.6 尾部预算</a></li>
+        <li><a href="#s7">11.7 变现规则</a></li>
+        <li><a href="#s8">11.8 股票替代：深度价内 LEAPS</a></li>
+        <li><a href="#s9">11.9 用期权调整组合 Beta</a></li>
+        <li><a href="#cases">三个案例</a></li>
+        <li><a href="#tools">清单与自测</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>学完本章你能</h4>
+        <ul>
+          <li>算出不同行权价、不同期限保护性看跌的年化成本，并解释为什么短期平值保护最贵</li>
+          <li>求出零成本领口的看涨行权价，说清「零成本」放弃了多少上涨</li>
+          <li>给 20 万美元组合设计保护方案，算出 −10%、−20%、−30% 时的结果</li>
+        </ul>
+      </div>
+      <div>
+        <h4>前置知识</h4>
+        <ul>
+          <li>第 4 章：Beta 加权 Delta</li>
+          <li>第 6 章：偏度、IV Rank 与 VIX</li>
+          <li>第 7、8 章：买方、卖方与价差</li>
+        </ul>
+      </div>
+      <div>
+        <h4>本章约定</h4>
+        <ul>
+          <li>Black-Scholes，利率 4%，不派息，一年 365 天</li>
+          <li>指数平值 IV 18%，偏度按 11.2 节的假设</li>
+          <li>组合跟踪标普 500（Beta 1），不计手续费和权利金利息</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">开篇</span>赚了钱以后的三个月</h2>
+      <p class="lead">你的股票组合今年从成本 $160,000 涨到 $200,000，浮盈 $40,000。你担心接下来三个月，又不想错过可能的继续上涨。</p>
+      <p>摆在面前的是两条路：卖掉 30%，或者给整个组合买 3 个月期、行权价在现价 90% 的看跌期权。卖出 30% 会实现 $12,000 的盈利，按 15% 的长期资本利得税率（假设）要缴 <span class="num">$1,800</span>。看跌期权的保费是组合的 <span class="num">1.01%</span>，即 <span class="num">$2,021</span>。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 11-0　三个月后的结果（美元，含税和保费）</caption>
+          <thead><tr><th>方案</th><th>市场 −30%</th><th>−20%</th><th>−10%</th><th>不动</th><th>+15%</th></tr></thead>
+          <tbody>
+            <tr><td>什么都不做</td><td class="mono neg">−60,000</td><td class="mono neg">−40,000</td><td class="mono neg">−20,000</td><td class="mono">0</td><td class="mono pos">+30,000</td></tr>
+            <tr><td>卖出 30%</td><td class="mono neg">−43,800</td><td class="mono neg">−29,800</td><td class="mono neg">−15,800</td><td class="mono neg">−1,800</td><td class="mono pos">+19,200</td></tr>
+            <tr class="hl"><td>买 90% 看跌</td><td class="mono neg">−22,021</td><td class="mono neg">−22,021</td><td class="mono neg">−22,021</td><td class="mono neg">−2,021</td><td class="mono pos">+27,979</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>卖出 30% 把涨和跌按同一比例砍掉，跌 30% 时仍亏 $43,800。看跌期权把亏损锁死在 $22,021，无论跌多深；涨 15% 时还留着 93% 的收益。代价也很清楚：跌 10% 时，看跌一分钱没赔，你反而多亏了保费。卖出得到的 $60,000 现金三个月约有 $600 利息，表里没算。</p>
+      <p>这张表就是本章的缩影：每一种保护都有它赔付的跌法和不赔付的跌法。下面逐一把它们算清楚。</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">11.1</span>对冲与减仓的区别</h2>
+      <p>减仓按同一比例砍掉上涨和下跌，对冲只砍下跌，代价是保费。</p>
+      <div class="grid2">
+        <div class="tile">
+          <h4>减仓</h4>
+          <ul>
+            <li>没有保费，还能拿现金利息</li>
+            <li>下跌仍然是线性的，没有底</li>
+            <li>卖出即实现盈利，触发资本利得税</li>
+            <li>判断错了想买回，要承担踏空</li>
+          </ul>
+        </div>
+        <div class="tile">
+          <h4>对冲（以保护性看跌为例）</h4>
+          <ul>
+            <li>每年持续付保费</li>
+            <li>下跌有底：最大亏损 = 行权价距离 + 保费</li>
+            <li>不卖出，原则上不实现盈利</li>
+            <li>上涨几乎全部保留，只少了保费</li>
+          </ul>
+        </div>
+      </div>
+      <h3>税务上的两个陷阱</h3>
+      <p>「对冲不触发税务」有前提，美国税法对它有专门的规则：</p>
+      <ul>
+        <li><strong>推定出售。</strong>如果对冲几乎消除了持股的全部风险和收益，比如非常窄的领口（买 98 看跌、卖 102 看涨），税法可能视同你已经卖出。</li>
+        <li><strong>跨式规则。</strong>持股和对冲它的期权可能被视为一组「跨式」头寸：对冲腿的亏损可能要递延确认；持有不满一年的股票买保护性看跌，还可能影响持有期的计算。</li>
+      </ul>
+      <p>这些规则的细节复杂，涉及具体金额时请咨询税务专业人士。本章的做法是：行权价离现价保持一定距离，不追求「完全锁死」。</p>
+      <h3>什么时候应该直接减仓</h3>
+      <ul>
+        <li>当初买入的理由已经不成立：这时需要的是卖出，保险解决不了判断错误</li>
+        <li>单一持仓过于集中（例如占组合 40%）：对冲只是推迟问题</li>
+        <li>在免税或递延税账户里：卖出没有税务成本，减仓更干净</li>
+        <li>付不起持续的保费：一年 3% 的保护成本会吃掉一半的预期收益</li>
+      </ul>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">11.2</span>保护性看跌：行权价与期限的成本</h2>
+      <p>保护离现价越近、期限越短，每年的成本越高：每月滚动买 30 天平值看跌，一年要花掉组合的 23%。</p>
+      <h3>本章的偏度假设</h3>
+      <p>真实市场里，虚值看跌的 IV 高于平值，虚值看涨的 IV 略低（第 6 章的偏度），而且短期的偏度更陡。本章用一个简单的假设来近似：</p>
+      <div class="formula">
+        <div class="eq">IV<span class="up">(</span><span class="v">K</span><span class="up">) =</span> 18% <span class="up">+</span> <span class="v">a</span> <span class="up">×</span> 虚值% <span class="up">×</span> √<span class="up">(</span>91 / 天数<span class="up">)</span></div>
+        <p class="where">看跌一侧（行权价低于现价）<span class="v">a</span> = 0.6 个点，每虚值 1% 加 0.6 个点（以 91 天为基准）；看涨一侧每虚值 1% 减 0.2 个点；IV 最低 8%。√(91/天数) 让短期偏度更陡、长期更平。看跌和看涨在同一行权价用同一个 IV。</p>
+      </div>
+      <div class="tbl">
+        <table>
+          <caption>表 11-1　假设的 IV 曲面（%）</caption>
+          <thead><tr><th>期限</th><th>80</th><th>90</th><th>95</th><th>100</th><th>105</th><th>110</th></tr></thead>
+          <tbody>
+            <tr><td>30 天</td><td class="mono">38.9</td><td class="mono">28.4</td><td class="mono">23.2</td><td class="mono">18.0</td><td class="mono">16.3</td><td class="mono">14.5</td></tr>
+            <tr><td>91 天</td><td class="mono">30.0</td><td class="mono">24.0</td><td class="mono">21.0</td><td class="mono">18.0</td><td class="mono">17.0</td><td class="mono">16.0</td></tr>
+            <tr><td>182 天</td><td class="mono">26.5</td><td class="mono">22.2</td><td class="mono">20.1</td><td class="mono">18.0</td><td class="mono">17.3</td><td class="mono">16.6</td></tr>
+            <tr><td>365 天</td><td class="mono">24.0</td><td class="mono">21.0</td><td class="mono">19.5</td><td class="mono">18.0</td><td class="mono">17.5</td><td class="mono">17.0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>成本表</h3>
+      <p>现价记为 100，看跌价格就是组合市值的百分比。年化成本 = 价格 × 365 ÷ 天数，意思是「按同样条件一直滚动下去，一年要花多少」。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 11-2　保护性看跌的价格与年化成本（占组合 %）</caption>
+          <thead><tr><th>行权价</th><th>30 天</th><th>91 天</th><th>182 天</th><th>365 天</th></tr></thead>
+          <tbody>
+            <tr><td>100（平值）</td><td class="mono">1.90 / 年化 23.1</td><td class="mono">3.09 / 12.4</td><td class="mono">4.09 / 8.2</td><td class="mono">5.24 / 5.2</td></tr>
+            <tr><td>95（虚值 5%）</td><td class="mono">0.75 / 9.2</td><td class="mono">1.76 / 7.1</td><td class="mono">2.70 / 5.4</td><td class="mono">3.86 / 3.9</td></tr>
+            <tr class="hl"><td>90（虚值 10%）</td><td class="mono">0.33 / 4.0</td><td class="mono">1.01 / 4.1</td><td class="mono">1.78 / 3.6</td><td class="mono">2.82 / 2.8</td></tr>
+            <tr><td>80（虚值 20%）</td><td class="mono">0.08 / 1.0</td><td class="mono">0.34 / 1.4</td><td class="mono">0.75 / 1.5</td><td class="mono">1.45 / 1.5</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>三个结论：</p>
+      <ul>
+        <li><strong>期限越短，年化越贵。</strong>平值保护每月滚动，年化 23.1%；直接买一年期，5.2%。时间价值按平方根衰减（第 5 章），短期期权每天的损耗最快。</li>
+        <li><strong>行权价每远一档，成本降得很快。</strong>91 天的平值要 3.09%，90 只要 1.01%，80 只要 0.34%。代价是免赔额：90 看跌只赔超过 10% 的那部分跌幅。</li>
+        <li><strong>年化成本只能在保护同一种风险时比较。</strong>30 天的 80 看跌年化只有 1.0%，比一年期的 1.5% 还便宜。这并不说明它划算：它只在「一个月内跌 20%」时赔付，这比「一年内跌 20%」罕见得多。</li>
+      </ul>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">保护离得越近、期限越短，每年付得越多</span><span class="fig-no">图 11-1 · 年化成本，纵轴对数刻度</span></div>
+        <div class="controls">
+          <label class="ctl" for="f1-iv">平值 IV <input id="f1-iv" type="range" min="10" max="40" value="18"> <output id="f1-iv-o">18%</output></label>
+          <label class="ctl" for="f1-a">偏度 <span class="v">a</span> <input id="f1-a" type="range" min="0" max="1.2" step="0.1" value="0.6"> <output id="f1-a-o">0.6</output></label>
+        </div>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 320" role="img" aria-label="保护性看跌年化成本随虚值程度和期限的变化"></svg>
+        <div class="legend"><span><i style="border-color: var(--gamma)"></i>30 天</span><span><i style="border-color: var(--delta)"></i>91 天</span><span><i style="border-color: var(--theta)"></i>182 天</span><span><i style="border-color: var(--warn)"></i>365 天</span></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small>30 天平值，年化</small></div>
+          <div><b id="f1-r2">—</b><small>91 天 90 看跌，年化</small></div>
+          <div><b id="f1-r3">—</b><small>365 天 90 看跌，年化</small></div>
+          <div><b id="f1-r4">—</b><small>365 天 80 看跌，年化</small></div>
+        </div>
+        <figcaption>四条线在平值处差得最远，在虚值 10%–15% 附近交叉：再往右，短期的反而便宜，因为它们保护的是更罕见的事件。把平值 IV 拖到 35%（市场恐慌时的水平），所有线整体上移，91 天的 90 看跌年化升到约 14%，这就是「火灾之后买保险」的价格。把偏度拖到 0，虚值看跌变便宜，30 天那条线在右端掉得最快：偏度主要加价在短期虚值看跌上。</figcaption>
+      </figure>
+      <p>实务中常见的中间方案是 3–6 个月、虚值 5%–15%：比月度平值便宜得多，又比一年期远虚值更快开始赔付。具体选哪一档，取决于你最怕的跌法（11.4 节）和你的预算（11.6 节）。</p>
+      <h3>买长、卖早：滚动的时机</h3>
+      <p>时间价值在最后几周衰减最快（第 5 章）。既然保护要一直滚动下去，就可以只持有期权「衰减慢」的那一段，在进入陡峭段之前卖掉换新。以 90 看跌为例，假设市场不动、IV 曲面不变：</p>
+      <div class="tbl">
+        <table>
+          <caption>表 11-3　同一个 90 行权价，三种滚动方式的年化成本（占组合 %）</caption>
+          <thead><tr><th>做法</th><th>每次净花费</th><th>年化成本</th></tr></thead>
+          <tbody>
+            <tr><td>买 91 天，持有到期</td><td class="mono">1.01（每季）</td><td class="mono">4.05</td></tr>
+            <tr><td>买 182 天，剩 91 天时卖出换新</td><td class="mono">1.78 − 1.01 = 0.77（每季）</td><td class="mono">3.07</td></tr>
+            <tr class="hl"><td>买 365 天，剩 182 天时卖出换新</td><td class="mono">2.82 − 1.78 = 1.04（每半年）</td><td class="mono">2.07</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>同样的保护水平，年化成本从 4.05% 降到 2.07%，几乎减半。代价有两个：一开始要付更多现金（2.82% 对 1.01%）；长期期权的 Vega 更大，IV 下跌时账面损失也更大，IV 上涨时则相反。另外，市场上涨后原来的行权价离现价越来越远，需要按新的价格把行权价上移，这一步的成本不在表里。</p>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">11.3</span>领口：「零成本」的代价</h2>
+      <p>零成本领口用一张虚值看涨的上涨空间换一张虚值看跌的保护；有偏度时，你卖掉的上涨比想象的多。</p>
+      <p>领口 = 持股 + 买入虚值看跌 + 卖出虚值看涨。卖看涨收的钱用来付看跌的保费，两者相等就叫「零成本」。它其实有成本，只是付的形式从现金变成了上涨空间。</p>
+      <h3>算一个零成本领口</h3>
+      <p>91 天的 90 看跌值 1.01%（IV 24%）。要找一个看涨行权价，让它的价格也是 1.01%。在本章的偏度下，答案是 <span class="num">107.9</span>（IV 16.4%）：你用超过 7.9% 的上涨换来了低于 −10% 的保护。</p>
+      <p>如果没有偏度，所有行权价的 IV 都是 18%，90 看跌只值 0.40%，零成本的看涨行权价在 <span class="num">113.9</span>。偏度让你多放弃了 6 个百分点的上涨：看跌被加价、看涨被打折，两头都对领口的买方不利。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 11-4　91 天领口的几种组合（占组合 %）</caption>
+          <thead><tr><th>组合</th><th>看跌成本</th><th>看涨收入</th><th>净成本</th><th>下限</th><th>上限</th></tr></thead>
+          <tbody>
+            <tr><td>对称 90 / 110</td><td class="mono">1.01</td><td class="mono">0.61</td><td class="mono">付 0.40</td><td class="mono">−10%</td><td class="mono">+10%</td></tr>
+            <tr class="hl"><td>零成本 90 / 107.9</td><td class="mono">1.01</td><td class="mono">1.01</td><td class="mono">0</td><td class="mono">−10%</td><td class="mono">+7.9%</td></tr>
+            <tr><td>零成本 95 / 105.2</td><td class="mono">1.76</td><td class="mono">1.76</td><td class="mono">0</td><td class="mono">−5%</td><td class="mono">+5.2%</td></tr>
+            <tr><td>不对称 95 / 110</td><td class="mono">1.76</td><td class="mono">0.61</td><td class="mono">付 1.15</td><td class="mono">−5%</td><td class="mono">+10%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>不对称领口</h3>
+      <p>「零成本」常常把上限压得太近。两种常见的放宽方法：</p>
+      <ul>
+        <li><strong>付一点钱换上涨。</strong>95 / 110 净付 1.15%，保护从 −5% 开始，上涨保留到 +10%。</li>
+        <li><strong>只对一部分持股卖看涨。</strong>买全额的 90 看跌，只对一半持股卖看涨，零成本的看涨行权价要降到 <span class="num">104.5</span>。一半持股上限 +4.5%，另一半没有上限。适合你相信「上涨可能很大」的时候。</li>
+      </ul>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">保护越近、期限越短，零成本的上限就越低</span><span class="fig-no">工具 11-A · 零成本领口求解器</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="期限">
+            <button type="button" data-d="30" aria-pressed="false">30 天</button>
+            <button type="button" data-d="91" aria-pressed="true">91 天</button>
+            <button type="button" data-d="182" aria-pressed="false">182 天</button>
+            <button type="button" data-d="365" aria-pressed="false">365 天</button>
+          </div>
+          <label class="ctl" for="f2-k">看跌虚值 <input id="f2-k" type="range" min="2" max="20" value="10"> <output id="f2-k-o">10%</output></label>
+          <label class="ctl" for="f2-iv">平值 IV <input id="f2-iv" type="range" min="10" max="40" value="18"> <output id="f2-iv-o">18%</output></label>
+          <label class="ctl" for="f2-a">偏度 <span class="v">a</span> <input id="f2-a" type="range" min="0" max="1.2" step="0.1" value="0.6"> <output id="f2-a-o">0.6</output></label>
+        </div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 320" role="img" aria-label="领口与持股的到期收益对比"></svg>
+        <div class="legend"><span><i class="dash" style="border-color: var(--muted)"></i>只持股</span><span><i style="border-color: var(--delta)"></i>持股 + 看跌</span><span><i style="border-color: var(--theta)"></i>零成本领口</span></div>
+        <div class="readout">
+          <div><b id="f2-r1">—</b><small>看跌成本（占组合）</small></div>
+          <div><b id="f2-r2">—</b><small>零成本看涨行权价</small></div>
+          <div><b id="f2-r3">—</b><small>无偏度时的行权价</small></div>
+          <div><b id="f2-r4">—</b><small>看涨的 IV</small></div>
+        </div>
+        <figcaption>默认是 91 天、90 看跌，上限 107.9。把期限切到 365 天，上限推到 115 左右；切到 30 天，只有 105.5：短期的偏度更陡，看涨更不值钱。把看跌虚值拖到 5%，上限降到 105.2；拖到 20%，上限升到 112.1。保护每靠近 5 个百分点，上限大约要让出 2–3 个百分点。</figcaption>
+      </figure>
+      <h3>大涨之后：滚动领口</h3>
+      <p>领口不必拿到到期。假设建仓 45 天后市场涨了 10%（指数 110），平值 IV 降到 15%。这时 107.9 看涨已经实值，值 4.10；90 看跌几乎作废，值 0.12。整组平掉要付 <span class="num">4.10 − 0.12 = 3.99</span>，加上股票的 +10，这 45 天净赚约 6.0。</p>
+      <p>然后按新价格重开一个 91 天的零成本领口：买 99 看跌（110 的 90%），零成本的看涨行权价在 <span class="num">118.2</span>。新的下限 99 只比最初的 100 低 1%，等于把大部分浮盈锁住了；新的上限比现价还有 7.4% 的空间。滚动领口的节奏就是：涨了就整体上移，下限跟着抬高。</p>
+      <div class="note warn">
+        <span class="tag">领口的三个坑</span>
+        <ul>
+          <li><strong>大涨之后。</strong>股价冲过看涨行权价，你要么接受被行权卖出（税务事件），要么高价买回看涨，账面上像是「亏了钱」</li>
+          <li><strong>单只股票的提前指派。</strong>个股看涨是美式，除息日前实值的看涨可能被提前行权</li>
+          <li><strong>太窄就是卖出。</strong>上下限都离现价只有一两个百分点，既没有收益空间，又可能被税法视为推定出售</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">11.4</span>看跌价差与四种方案</h2>
+      <p>看跌价差保护的是「中等跌幅」；跌得越深，它越像没有保护。</p>
+      <p>看跌价差保护 = 持股 + 买入较高行权价的看跌 + 卖出较低行权价的看跌。91 天的 95 看跌值 1.76%，80 看跌值 0.34%，净成本 <span class="num">1.42%</span>（$2,831）。它在 −5% 到 −20% 之间全额赔付，最多赔 15%；跌破 −20% 之后，每多跌 1% 你就多亏 1%。</p>
+      <p>为什么卖 80 看跌能收回这么多？还是偏度：80 看跌的 IV 是 30%，比平值高 12 个点。你卖出的正是市场上最贵的那部分保险。如果你最怕的是 10%–20% 级别的回调，这笔交易很合理；如果你最怕的是 2008 年式的崩盘，它不够。</p>
+      <p>把四种方案放在同一个 $200,000 组合上（91 天，按名义金额 1:1 覆盖）：</p>
+      <ul>
+        <li><strong>不对冲。</strong></li>
+        <li><strong>保护性看跌</strong>：买 90 看跌，保费 $2,021。</li>
+        <li><strong>零成本领口</strong>：买 90 看跌、卖 107.9 看涨。</li>
+        <li><strong>看跌价差</strong>：买 95 看跌、卖 80 看跌，成本 $2,831。</li>
+      </ul>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">没有一种保护在所有跌法里都最好</span><span class="fig-no">图 11-2 · 保护方案对比器，$200,000 组合，91 天后</span></div>
+        <div class="controls">
+          <label class="ctl" for="f3-m">到期时市场涨跌 <input id="f3-m" type="range" min="-40" max="30" value="-20"> <output id="f3-m-o">−20%</output></label>
+        </div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 340" role="img" aria-label="四种保护方案的组合盈亏随市场涨跌的变化"></svg>
+        <div class="legend"><span><i class="dash" style="border-color: var(--muted)"></i>不对冲</span><span><i style="border-color: var(--delta)"></i>保护性看跌 90</span><span><i style="border-color: var(--theta)"></i>零成本领口 90 / 107.9</span><span><i style="border-color: var(--gamma)"></i>看跌价差 95 / 80</span></div>
+        <div class="readout">
+          <div><b id="f3-r1">—</b><small>不对冲</small></div>
+          <div><b id="f3-r2">—</b><small>保护性看跌</small></div>
+          <div><b id="f3-r3">—</b><small>零成本领口</small></div>
+          <div><b id="f3-r4">—</b><small>看跌价差</small></div>
+        </div>
+        <figcaption>把滑块从 −5% 往左拖：看跌价差最先开始赔付，在 −10% 到 −20% 之间一直是最好的方案；过了 −20%，它的线重新往下掉，到 −30% 时已经落到保护性看跌和领口之后。往右拖到 +10% 以上，领口被压平在 +$15,775，其他方案继续上涨。</figcaption>
+      </figure>
+      <h3>对冲多少：按 Beta 算名义金额</h3>
+      <p>上面假设组合 Beta 为 1。如果组合 Beta 是 1.25（偏科技、偏高 Beta），SPY 跌 10% 时组合大约跌 12.5%，要覆盖的名义金额是 <span class="num">200,000 × 1.25 = $250,000</span>，SPY 780 时约 320.5 股，即 3.2 张。用 91 天的 702 看跌（SPY 的 90%，IV 24%，每股 $7.88），3 张要 <span class="num">$2,365</span>。</p>
+      <p>SPY 跌 20% 时，3 张看跌赔 <span class="num">300 × (702 − 624) = $23,400</span>，而 Beta 1.25 的组合大约亏 $50,000。保护只覆盖 SPY 跌破 702 之后的那部分，组合在那之前已经亏了约 12.5%。还要记住，这一切都建立在 Beta 稳定的前提上：如果组合里的个股因为自己的原因多跌了，指数看跌不会多赔。</p>
+      <p>对冲比例也不必是 100%。只覆盖一半名义金额（$100,000 的 90 看跌），保费减半到 <span class="num">$1,011</span>；市场跌 20% 时组合亏 <span class="num">−40,000 + 10,000 − 1,011 = −$31,011</span>，跌 30% 时亏 <span class="num">−$41,011</span>。半额对冲的意义在于：它让「最坏情况」变得可以承受，同时保费压力小到你愿意年年坚持。比例本身没有标准答案，最好的检验是问自己：在那个最坏数字下，你会不会恐慌卖出。</p>
+      <p>完整的数字在案例 1。先记住选择的逻辑：先回答「我最怕哪种跌法」，再选结构。</p>
+      <ul>
+        <li>怕 10%–20% 的回调：看跌价差</li>
+        <li>怕崩盘，又要保留上涨：保护性看跌</li>
+        <li>怕崩盘，愿意接受上涨封顶：领口</li>
+      </ul>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">11.5</span>VIX 看涨：崩盘对冲</h2>
+      <p>VIX 看涨在崩盘时的弹性最大，但它跟踪的是 VIX 期货，持有成本和对时机的要求都比指数看跌高。</p>
+      <ul>
+        <li><strong>弹性大。</strong>市场急跌时 VIX 往往跳升，而且是非线性的。少量 VIX 看涨在崩盘中的涨幅，可能远超同样花费的指数看跌。</li>
+        <li><strong>标的是期货（第 10 章 10.8 节）。</strong>平静时 VIX 期货通常高于现货 VIX，随着到期临近，期货会向现货收敛。现货 14 时买 20 的看涨，真正要跨过的距离是从期货价格算起，而期货自己在往下走。</li>
+        <li><strong>期限的两难。</strong>近月 VIX 看涨对冲高最敏感，但很快到期，需要不断滚动；远月期货在恐慌中动得少，远月看涨的反应也弱。</li>
+        <li><strong>冲高很短。</strong>VIX 的均值回归很强，峰值常常只持续几天。没有事先写好的变现规则（11.7 节），涨幅可能在你犹豫时回吐。</li>
+        <li><strong>基差风险。</strong>VIX 涨不等于你的组合跌得多。慢慢阴跌的熊市里，VIX 可能只是温和上升，VIX 看涨帮不上忙；这时指数看跌更可靠。</li>
+      </ul>
+      <p>比较稳妥的用法是把它当作指数看跌的补充，只占尾部预算的一小部分，专门对付「一两天内的急跌」。定规模时先问两个问题：如果 VIX 期货在几天内大幅跳升，这笔看涨大约能赔多少，能覆盖组合同期亏损的几成；如果一整年都没有跳升，它全部归零，占尾部预算的多少。第二个问题的答案应该是「一小部分」。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 11-5　五种保护手段的定性比较</caption>
+          <thead><tr><th>手段</th><th>保留上涨</th><th>平时成本</th><th>防慢跌</th><th>防急跌</th><th>主要风险</th></tr></thead>
+          <tbody>
+            <tr><td>保护性看跌</td><td>几乎全部</td><td>中到高</td><td>有免赔额</td><td>好</td><td>持续付保费</td></tr>
+            <tr><td>零成本领口</td><td>封顶</td><td>无现金成本</td><td>有免赔额</td><td>好</td><td>大涨时踏空</td></tr>
+            <tr><td>看跌价差</td><td>几乎全部</td><td>中</td><td>好</td><td>只赔到下限</td><td>深跌时失效</td></tr>
+            <tr><td>VIX 看涨</td><td>全部</td><td>中，滚动损耗大</td><td>弱</td><td>弹性最大</td><td>时机与基差</td></tr>
+            <tr><td>减仓</td><td>按比例减少</td><td>无（触发税务）</td><td>按比例</td><td>按比例</td><td>踏空与税</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">11.6</span>尾部预算：在火灾之前买保险</h2>
+      <p>把保护当成固定预算来买，每年花组合的 1%–2%，比恐慌时一次性买更便宜，也更容易坚持。</p>
+      <h3>1%–2% 从哪里来</h3>
+      <p>这个数没有严格的理论来源，它来自一个简单的权衡。股票相对现金的长期超额收益大约是每年几个百分点（这是假设，不同时期差别很大）。每年拿出 1%–2% 买保险，还能留下大部分超额收益；超过 2%–3%，保险本身就会吃掉股票相对现金的大部分优势，你还不如直接少持一些股票。</p>
+      <p>在本章的假设下（平值 IV 18%），这笔预算能买到的一年期看跌：</p>
+      <ul>
+        <li>预算 1%：行权价约 <span class="num">74.9</span>，虚值 25%</li>
+        <li>预算 1.5%：行权价约 <span class="num">80.5</span>，虚值 19.5%</li>
+        <li>预算 2%：行权价约 <span class="num">84.8</span>，虚值 15%</li>
+      </ul>
+      <p>同样 1.5% 的预算，如果在暴跌之后、平值 IV 升到 32% 时才买，只能买到行权价 <span class="num">58.5</span> 的看跌：保费变贵，保额变低。这就是「在 IV Rank 低时买，不要在火灾之后买」的数字含义。</p>
+      <h3>二十年的模拟</h3>
+      <p>下面用两条假设的 20 年路径做模拟。路径 A 含两次崩盘（第 6 年 −35%、第 14 年 −24%），路径 B 没有崩盘。每年年初用预算买一年期看跌，按当时的 IV 求行权价：平常年份平值 IV 18%，前一年跌超过 15% 时为 32%。</p>
+
+      <figure class="plate" id="fig4">
+        <div class="fig-head"><span class="fig-title">没有崩盘时保险是纯成本，有崩盘时它把最大回撤砍掉一截</span><span class="fig-no">图 11-3 · 尾部预算与长期拖累，假设路径</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="选择路径">
+            <button type="button" data-p="A" aria-pressed="true">路径 A：两次崩盘</button>
+            <button type="button" data-p="B" aria-pressed="false">路径 B：没有崩盘</button>
+          </div>
+          <label class="ctl" for="f4-b">每年预算 <input id="f4-b" type="range" min="0" max="3" step="0.25" value="1.5"> <output id="f4-b-o">1.5%</output></label>
+        </div>
+        <svg class="chart" id="f4-svg" viewBox="0 0 680 320" role="img" aria-label="对冲与不对冲组合二十年的净值"></svg>
+        <div class="legend"><span><i class="dash" style="border-color: var(--muted)"></i>不对冲</span><span><i style="border-color: var(--theta)"></i>每年按预算买一年期看跌</span></div>
+        <div class="readout">
+          <div><b id="f4-r1">—</b><small id="f4-r1s">平常年份买到的行权价</small></div>
+          <div><b id="f4-r2">—</b><small>20 年后净值：对冲 / 不对冲</small></div>
+          <div><b id="f4-r3">—</b><small>年化收益：对冲 / 不对冲</small></div>
+          <div><b id="f4-r4">—</b><small>最大回撤：对冲 / 不对冲</small></div>
+        </div>
+        <figcaption>路径 A、预算 1.5%：20 年后两条线几乎在同一点（322 对 326），最大回撤从 −35% 降到 −21%。切到路径 B：保险从不赔付，年化收益从 8.99% 降到 7.48%，差的正好接近每年的预算。把预算拖到 3%，路径 A 的回撤进一步降到 −12%，路径 B 的拖累则翻倍。</figcaption>
+      </figure>
+      <p>你事先不知道自己活在哪条路径上。所以尾部预算的意义不在于「赚钱」，而在于两件事：一是让你在 −35% 的年份里不至于恐慌卖出；二是保险赔付的现金让你能在低位再平衡、加仓。模拟里没有计入这两件事带来的好处，它们才是保护真正的回报。</p>
+      <h3>预算怎么花：阶梯式买入</h3>
+      <p>一年只买一次，等于把全部保护押在一个时点的 IV 和一个到期日上。更平滑的做法是阶梯式：每个季度用四分之一的预算，买覆盖四分之一组合的一年期看跌。一年后你手里总有四张到期日错开的看跌，行权价也随着每个季度的市场水平更新。年度花费不变，但不会因为某一天 IV 恰好很高而买贵，也不会在某个到期日之后突然「裸奔」。</p>
+      <div class="note">
+        <span class="tag">什么时候买</span>
+        <ul>
+          <li>IV Rank 低（例如低于 30）时，用预算买直接的看跌</li>
+          <li>IV Rank 高时，保险贵：改用看跌价差或领口，卖出同样昂贵的期权来抵消</li>
+          <li>已经跌了很多、IV 很高时，与其追买保护，不如检查仓位是否过大，必要时直接减仓</li>
+        </ul>
+      </div>
+      <div class="note warn">
+        <span class="tag">模拟的局限</span>
+        <p>这两条路径是为说明问题编出来的，结果完全取决于假设：崩盘的次数和深度、IV 的水平、看跌只在年末结算（真实的崩盘可能在年中发生又在年底收复）。它告诉你的是「保险的成本和赔付长什么样」，不是「保险会不会赚钱」。</p>
+      </div>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">11.7</span>变现规则：保护赚钱之后</h2>
+      <p>保护赚钱之后要卖掉一部分，否则市场一反弹、IV 一回落，账面利润很快消失。</p>
+      <h3>一个例子</h3>
+      <p>你以 1.01 买了 91 天的 90 看跌（指数 100）。30 天后指数跌了 15%，到 85，平值 IV 升到 34%。这张看跌现在是实值，值 <span class="num">7.16</span>，是成本的 <span class="num">7.1</span> 倍，Delta <span class="num">−0.62</span>。</p>
+      <p>变现规则：卖掉一半，剩下一半从 90 看跌滚到同到期日的 80 看跌（IV 38.3%，价格 2.83）。</p>
+      <ul>
+        <li>卖掉一半：收回 <span class="num">0.5 × 7.16 = 3.58</span></li>
+        <li>另一半滚动：<span class="num">0.5 × (7.16 − 2.83) = 2.16</span></li>
+        <li>合计收回现金 <span class="num">5.74</span>（原组合的 5.7%，是保费的 5.7 倍），手里还有 0.5 份 80 看跌</li>
+      </ul>
+      <div class="tbl">
+        <table>
+          <caption>表 11-6　再过 30 天，两种处理方式的保护价值（每 100 名义）</caption>
+          <thead><tr><th>情景</th><th>指数</th><th>平值 IV</th><th>一直持有 90 看跌</th><th>变现 + 滚动</th></tr></thead>
+          <tbody>
+            <tr><td>反弹</td><td class="mono">95</td><td class="mono">22%</td><td class="mono">1.02</td><td class="mono pos">5.86</td></tr>
+            <tr><td>继续崩跌</td><td class="mono">72</td><td class="mono">45%</td><td class="mono pos">17.75</td><td class="mono">10.10</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>反弹时，一直持有的人眼看着 7.16 缩水到 1.02；变现的人留住了 5.86。继续崩跌时，变现的人少赚了一截（10.10 对 17.75），但手里仍有 80 看跌在赔付。变现规则用一部分极端情况的收益，换来了大多数情况下的确定性。</p>
+      <h3>另一个方向：涨了之后上移</h3>
+      <p>变现处理的是下跌，上涨也需要规则。假设你买了一年期 90 看跌（2.82），三个月后市场涨到 110。旧看跌离现价已经 18% 远，只值 <span class="num">1.42</span>；新买一年期 99 看跌（110 的 90%）要 <span class="num">3.10</span>。卖旧买新净付 <span class="num">1.68</span>，约为新市值的 1.5%。这笔钱买到的是把保护的下限从 90 抬到 99。常见的规则是：市场比买入时涨了 10% 以上，就把行权价上移一次，花费计入当年的尾部预算。</p>
+      <h3>写在事前的规则</h3>
+      <ul>
+        <li>保护的价值达到成本的 3–5 倍，或者 Delta 超过 −0.6 时，先卖一半</li>
+        <li>剩下的滚到更低的行权价或更长的期限，收回现金，同时保留尾部保护</li>
+        <li>在 VIX 冲高、期限结构倒挂时变现，比等 VIX 回落后再变现划算</li>
+        <li>变现得到的现金写进再平衡计划：在低位买回股票，这是保护真正的回报来源之一</li>
+      </ul>
+      <p>再平衡的算术值得算一下。变现收回的 5.74 如果在指数 85 时买回股票，指数之后回到 100，这笔钱多赚 <span class="num">5.74 × (100 ÷ 85 − 1) = 1.01</span>，正好约等于当初付出的保费。保护在下跌中的赔付，加上用赔付在低位加仓的收益，才是它的完整回报。</p>
+      <p>3–5 倍和 −0.6 这两个阈值没有理论最优。Delta 超过 −0.6 说明这张看跌的走势已经越来越像空头股票，凸性带来的优势在变小，而你持有的是此刻最贵的波动率。阈值的作用是让你在情绪最激烈的时候有规则可依，具体数字可以按自己的风格调整，但要在买入保护的同一天写下来。</p>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">11.8</span>股票替代：深度价内 LEAPS</h2>
+      <p>卖掉股票、买深度价内的长期看涨期权（LEAPS），可以保留约九成的方向敞口，同时把最大亏损锁定在权利金。</p>
+      <p>例子：你持有 200 股 $150 的股票，市值 $30,000。改为买 2 张一年期、行权价 110 的看涨（IV 30%，单只股票，这里不考虑偏度）：</p>
+      <ul>
+        <li>每张 <span class="num">$46.56</span>，Delta <span class="num">0.906</span>，2 张相当于 181 股</li>
+        <li>花费 <span class="num">$9,312</span>，释放 <span class="num">$20,688</span> 现金，按 4% 一年约 <span class="num">$844</span> 利息</li>
+      </ul>
+      <h3>时间价值里装着什么</h3>
+      <p>由买卖权平价可以把这张看涨拆开：</p>
+      <div class="formula">
+        <div class="eq"><span class="v">C</span> <span class="up">=</span> <span class="up">(</span><span class="v">S</span> <span class="up">−</span> <span class="v">K</span><span class="up">)</span> <span class="up">+</span> <span class="v">K</span><span class="up">(</span>1 <span class="up">−</span> <span class="v">e</span><sup>−<span class="v">rT</span></sup><span class="up">)</span> <span class="up">+</span> <span class="v">P</span></div>
+        <p class="where">46.56 = 内在价值 40 + 利息部分 4.31 + 一张 110 看跌 2.25。时间价值 6.56 由「借钱的利息」和「一份保险」组成。</p>
+      </div>
+      <p>利息部分会被释放现金赚到的利息大致抵掉，你真正付的是那张 110 看跌：股票替代等于「持股 + 买一张虚值 27% 的保护」。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 11-7　一年后的结果（美元，LEAPS 一栏已计入现金利息）</caption>
+          <thead><tr><th>到期股价</th><th>75</th><th>105</th><th>120</th><th>150</th><th>180</th></tr></thead>
+          <tbody>
+            <tr><td>持有 200 股</td><td class="mono neg">−15,000</td><td class="mono neg">−9,000</td><td class="mono neg">−6,000</td><td class="mono">0</td><td class="mono pos">+6,000</td></tr>
+            <tr class="hl"><td>2 张 110 LEAPS</td><td class="mono neg">−8,468</td><td class="mono neg">−8,468</td><td class="mono neg">−6,468</td><td class="mono neg">−468</td><td class="mono pos">+5,532</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>股价不动时，替代方案亏 $468，约等于那两张看跌的价值；涨到 180 时少赚 $468；跌到 110 以下，亏损封顶在 $8,468。</p>
+      <h3>什么时候适合用股票替代</h3>
+      <ul>
+        <li>持仓有浮亏或浮盈很小，卖出几乎没有税务成本（同时要避开洗售规则）</li>
+        <li>在免税或递延税账户里，卖出不产生当期税负</li>
+        <li>你仍然看好这只股票，但想给最坏情况设一个硬上限，又不想每季度付一次看跌的保费</li>
+        <li>IV 处在低位：LEAPS 里那张「隐含的看跌」更便宜</li>
+      </ul>
+      <div class="note warn">
+        <span class="tag">要注意的地方</span>
+        <ul>
+          <li><strong>税。</strong>卖出股票会实现盈亏。有浮亏时卖出、30 天内又买入同一股票的看涨期权，可能触发洗售规则，亏损不能当期抵扣</li>
+          <li><strong>分红。</strong>真实世界里，LEAPS 持有人拿不到分红，高股息股票的替代成本更高</li>
+          <li><strong>杠杆诱惑。</strong>释放出来的现金要老老实实放在短期国债里，用它再买更多 LEAPS，就把一个降风险的操作变成了加杠杆</li>
+          <li><strong>流动性。</strong>LEAPS 的买卖价差通常较宽，进出各损失一点</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s9">
+      <h2><span class="sn">11.9</span>用期权调整组合 Beta</h2>
+      <p>不动持仓，也能用指数期权把组合的 Beta 从 1.25 调到 0.75；但期权的 Delta 会变，调出来的 Beta 也会漂。</p>
+      <p>沿用第 4 章的 Beta 加权：$200,000 的组合，Beta 1.25，SPY 780，相当于 <span class="num">200,000 × 1.25 ÷ 780 = 320.5</span> 股 SPY。目标 Beta 0.75 对应 192.3 股，需要 <span class="num">−128.2</span> 股的 SPY Delta。91 天期权，IV 用本章的偏度假设。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 11-8　四种降 Beta 的方法，以及 SPY 瞬间 ±5% 后的有效 Beta</caption>
+          <thead><tr><th>方法</th><th>数量</th><th>现金</th><th>建仓后 Beta</th><th>SPY −5% 后</th><th>SPY +5% 后</th></tr></thead>
+          <tbody>
+            <tr><td>卖空 SPY</td><td class="mono">128 股</td><td class="mono">无（需保证金）</td><td class="mono">0.75</td><td class="mono">0.74</td><td class="mono">0.76</td></tr>
+            <tr><td>买 741 看跌（Delta −0.26）</td><td class="mono">5 张</td><td class="mono neg">付 $6,857</td><td class="mono">0.74</td><td class="mono">0.37</td><td class="mono">1.00</td></tr>
+            <tr><td>卖 819 看涨（Delta 0.34）</td><td class="mono">4 张</td><td class="mono pos">收 $5,703</td><td class="mono">0.72</td><td class="mono">0.90</td><td class="mono">0.38</td></tr>
+            <tr class="hl"><td>领口 741 / 819</td><td class="mono">2 组</td><td class="mono pos">收 $109</td><td class="mono">0.78</td><td class="mono">0.73</td><td class="mono">0.71</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>「−5% 后」假设 SPY 瞬间跌到 741、平值 IV 升到 24%；「+5% 后」假设涨到 819、平值 IV 降到 15%。几个读法：</p>
+      <ul>
+        <li><strong>买看跌：越跌越防守。</strong>下跌时看跌的 Delta 变大，组合 Beta 从 0.74 降到 0.37，正是你想要的方向。代价是贵：一个季度 $6,857，占组合 3.4%。</li>
+        <li><strong>卖看涨：越涨越防守。</strong>收钱，但下跌时看涨的 Delta 变小，Beta 回升到 0.90，保护在最需要的时候变弱；上涨时 Beta 被压到 0.38，涨多少都分不到。</li>
+        <li><strong>领口最稳定。</strong>看跌和卖出看涨的 Gamma 方向相反，互相抵消，±5% 后 Beta 都留在 0.7 附近，现金上几乎零成本。</li>
+      </ul>
+      <p>调整之后要定期检查。规则可以写成：有效 Beta 偏离目标超过 ±0.15 就重新调整张数。还要记住两点：Beta 本身是用历史数据估出来的，在崩盘中各股票的相关性上升，Beta 会变；指数期权对冲不了个股自己的风险，组合里某只股票的财报暴雷，SPY 看跌帮不上忙。</p>
+      <div class="note field">
+        <span class="tag">实战观察</span>
+        <p>对冲不一定用期权。有交易者在看多油价时买入能源股 ETF 和原油杠杆 ETF，同时分批重仓航空股 ETF 作对冲：油价上涨利好能源、推高航空公司的燃油成本，油价下跌则相反。后来一则消息让油价急跌，原油杠杆 ETF 大亏，航空 ETF 上涨，整个组合仍然盈利。这类跨资产对冲没有时间损耗，但它依赖相关性，没有期权的凸性：在经济衰退这类极端情景里，油价和航空股可能一起下跌。另一个常见习惯是：在市场整体的对冲成本处在多年低位时，利用反弹去布局下行保护，而不是等下跌开始后再追。</p>
+      </div>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">案例</span>三个案例</h2>
+
+      <div class="case">
+        <div class="case-no">案例 1</div>
+        <h3>20 万美元组合跌 10%、20%、30%，四种方案各剩多少</h3>
+        <p>条件同 11.4 节：组合 $200,000，跟踪标普 500，保护期 91 天，按名义金额 1:1 覆盖（用 SPY 期权时约 2.56 张，实际只能买整数张，可以选 3 张略微过度对冲）。平值 IV 18%，偏度按 11.2 节。结果按 91 天后到期结算，含保费。</p>
+        <div class="tbl">
+          <table>
+            <caption>表 11-9　四种方案的组合盈亏（美元）</caption>
+            <thead><tr><th>方案</th><th>成本</th><th>−30%</th><th>−20%</th><th>−10%</th><th>不动</th><th>+15%</th></tr></thead>
+            <tbody>
+              <tr><td>不对冲</td><td class="mono">0</td><td class="mono neg">−60,000</td><td class="mono neg">−40,000</td><td class="mono neg">−20,000</td><td class="mono">0</td><td class="mono pos">+30,000</td></tr>
+              <tr><td>保护性看跌 90</td><td class="mono">2,021</td><td class="mono neg">−22,021</td><td class="mono neg">−22,021</td><td class="mono neg">−22,021</td><td class="mono neg">−2,021</td><td class="mono pos">+27,979</td></tr>
+              <tr><td>零成本领口 90 / 107.9</td><td class="mono">0</td><td class="mono neg">−20,000</td><td class="mono neg">−20,000</td><td class="mono neg">−20,000</td><td class="mono">0</td><td class="mono pos">+15,775</td></tr>
+              <tr><td>看跌价差 95 / 80</td><td class="mono">2,831</td><td class="mono neg">−32,831</td><td class="mono neg">−12,831</td><td class="mono neg">−12,831</td><td class="mono neg">−2,831</td><td class="mono pos">+27,169</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li><strong>−10%：</strong>看跌价差最好（−$12,831），它从 −5% 就开始赔。保护性看跌一分没赔，比不对冲还多亏了保费。领口和不对冲一样。</li>
+          <li><strong>−20%：</strong>看跌价差仍然最好，正好用满 15% 的赔付区间。保护性看跌和领口都把亏损控制在 $20,000 出头。</li>
+          <li><strong>−30%：</strong>看跌价差在 −20% 之后不再赔付，亏 $32,831，落到第三。领口（−$20,000）和保护性看跌（−$22,021）兑现了「有底」的承诺。</li>
+          <li><strong>+15%：</strong>领口只赚 $15,775，比不对冲少了将近一半，这就是「零成本」的真实成本。</li>
+        </ul>
+        <p>启示：没有一种保护在所有情景下都最好。买保护之前先写下「我最怕的跌法」，比如「三个月内跌 15% 左右的回调」或「一次 30% 的崩盘」，再挑与之对应的结构。如果答案是「都怕」，可以组合使用：用看跌价差覆盖回调，再用少量远虚值看跌覆盖尾部。</p>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 2</div>
+        <h3>反面例子：保护买得太贵</h3>
+        <p>同一个 $200,000 组合，两位投资者，同一段假设的行情：</p>
+        <div class="tbl">
+          <table>
+            <caption>表 11-10　假设的行情</caption>
+            <thead><tr><th>时点</th><th>指数</th><th>平值 IV</th><th>组合市值</th></tr></thead>
+            <tbody>
+              <tr><td>第 0 天</td><td class="mono">100</td><td class="mono">14%</td><td class="mono">$200,000</td></tr>
+              <tr><td>第 30 天</td><td class="mono">85</td><td class="mono">40%</td><td class="mono">$170,000</td></tr>
+              <tr><td>第 60 天</td><td class="mono">90</td><td class="mono">28%</td><td class="mono">$180,000</td></tr>
+              <tr><td>第 90 天</td><td class="mono">94</td><td class="mono">20%</td><td class="mono">$188,000</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>投资者 A 在平静时买。</strong>第 0 天买 91 天的 90 看跌，IV 20%，成本 0.58%，即 <span class="num">$1,158</span>。第 30 天指数跌到 85、IV 升到 40% 时，这张看跌值 <span class="num">$15,913</span>，是成本的 13.7 倍。</p>
+        <p><strong>投资者 B 在火灾之后买。</strong>第 0 天觉得保护没必要。第 30 天吓坏了，买 30 天的平值 85 看跌，IV 40%，花 4.40%，即 <span class="num">$7,485</span>。第 60 天指数回到 90，看跌作废；他还是不放心，再买 30 天的平值 90 看跌，IV 28%，花 3.03%，即 <span class="num">$5,463</span>。第 90 天指数到 94，又作废。</p>
+        <p>B 一共花了 <span class="num">$12,947</span>，一分钱没赔回来，而且他买保护的时候，最大的那次下跌已经过去了。按 IV 40% 每月滚动平值看跌，年化成本是 <span class="num">52.8%</span>。同样一张 30 天平值看跌，IV 40% 时的价格是 IV 14% 时的 <span class="num">3.06</span> 倍。</p>
+        <ul>
+          <li><strong>保护要在 IV 低的时候买。</strong>这是尾部预算（11.6 节）存在的理由：按计划在平静时买，不按情绪在恐慌时买。</li>
+          <li><strong>恐慌后买的保护，常常保护的是已经过去的风险。</strong>大跌之后市场既可能继续跌，也可能反弹，而你付的是最高的价格。</li>
+          <li><strong>如果高 IV 时确实需要保护，</strong>用看跌价差或领口，把同样昂贵的期权卖出去抵消一部分成本；或者承认仓位太大，直接减仓。</li>
+        </ul>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 3</div>
+        <h3>方向对了，标的选错了：对冲的基差风险</h3>
+        <p>你的 $200,000 组合以科技股为主，对 SPY 的 Beta 是 1.25。两种对冲（91 天，行权价都在现价的 90%，以下市场数据均为假设）：</p>
+        <ul>
+          <li>3 张 SPY 702 看跌（SPY 780，IV 24%）：成本 <span class="num">$2,365</span></li>
+          <li>3 张 QQQ 630 看跌（QQQ 700，平值 IV 22%，该行权价 IV 28%）：成本 <span class="num">$3,183</span>，因为科技指数的波动率更高</li>
+        </ul>
+        <div class="tbl">
+          <table>
+            <caption>表 11-11　两种下跌情景，到期时的组合盈亏（美元，含保费）</caption>
+            <thead><tr><th>情景</th><th>SPY</th><th>QQQ</th><th>组合</th><th>用 SPY 看跌</th><th>用 QQQ 看跌</th></tr></thead>
+            <tbody>
+              <tr><td>科技板块被抛售</td><td class="mono">−8%</td><td class="mono">−18%</td><td class="mono neg">−50,000</td><td class="mono neg">−52,365</td><td class="mono neg">−36,383</td></tr>
+              <tr><td>全面下跌</td><td class="mono">−25%</td><td class="mono">−30%</td><td class="mono neg">−64,000</td><td class="mono neg">−31,265</td><td class="mono neg">−25,183</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>第一种情景里，资金从科技股流向其他板块，SPY 只跌 8%，702 看跌一分没赔，组合跌了 25%：保险买了，事故也发生了，可保单写的不是这种事故。QQQ 看跌赔了 $16,800。第二种情景里两者都赔，QQQ 仍然多赔一些。</p>
+        <ul>
+          <li><strong>对冲工具要贴近你真实持有的东西。</strong>科技为主就用 QQQ，小盘为主就用 IWM，贵一点通常是值得的。</li>
+          <li><strong>Beta 是平均关系，不是保证。</strong>组合跌 25% 而 QQQ 只跌 18%，多出来的 7% 来自个股自己，任何指数期权都对冲不了。</li>
+          <li><strong>集中持仓先降集中度。</strong>如果组合里一两只股票就占了大头，单靠指数保护会留下大块缺口。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">工具</span>清单与自测</h2>
+      <p>勾选状态只保存在你自己的浏览器里。</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">11-1</span>买保护之前</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">写下最怕的跌法：幅度多大、多快</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">算年化成本，全年合计不超过预算（组合的 1%–2%）</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">查 IV Rank：低时买看跌，高时用价差或领口</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">11-2</span>选结构</h4>
+          <ul>
+            <li><input type="checkbox" id="k4"><label for="k4">怕回调用看跌价差，怕崩盘用看跌或领口</label></li>
+            <li><input type="checkbox" id="k5"><label for="k5">零成本领口先算清放弃了多少上涨</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">单股领口查除息日和提前指派风险</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">11-3</span>持有期间</h4>
+          <ul>
+            <li><input type="checkbox" id="k7"><label for="k7">价值达到成本 3–5 倍或 Delta 超过 −0.6，先卖一半</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">剩下的滚到更低的行权价或更长期限</label></li>
+            <li><input type="checkbox" id="k9"><label for="k9">变现的现金写进再平衡计划</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">11-4</span>税务与组合</h4>
+          <ul>
+            <li><input type="checkbox" id="k10"><label for="k10">上下限别太窄，避免被视为推定出售</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">用 Beta 加权 Delta 检查调整后的组合</label></li>
+            <li><input type="checkbox" id="k12"><label for="k12">有效 Beta 偏离目标超过 ±0.15 时重新调整</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>自测五题</h3>
+      <details class="q"><summary><span class="num">1</span><span>91 天的 90 看跌成本 1.01%，按年化是多少？30 天的 80 看跌年化只有 1.0%，为什么不能说它更便宜？</span></summary>
+        <div class="ans"><p><span class="num">1.01% × 365 ÷ 91 = 4.05%</span>。30 天的 80 看跌只在「一个月内跌 20%」时赔付，保护的是比「三个月内跌 10%」罕见得多的风险。年化成本只能在保护同一种风险时比较。</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>同样是 91 天的 90 看跌，有偏度时零成本看涨行权价是 107.9，没有偏度时是 113.9。为什么偏度让上限变低？</span></summary>
+        <div class="ans"><p>偏度让虚值看跌更贵（IV 24% 对 18%），让虚值看涨更便宜（107.9 处 IV 16.4%）。要付的保费变多，卖出的看涨每一张又更不值钱，只能把行权价往现价拉近，多卖一些上涨空间。</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>$200,000 组合用 95 / 80 看跌价差保护（成本 1.42%），市场跌 30% 时组合亏多少？</span></summary>
+        <div class="ans"><p>股票亏 $60,000；价差最多赔 15%，即 $30,000；减去成本 $2,831。合计 <span class="num">−60,000 + 30,000 − 2,831 = −$32,831</span>。</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>股价 $150，一年期 110 看涨值 $46.56。它的时间价值由哪两部分组成，各是多少？</span></summary>
+        <div class="ans"><p>时间价值 <span class="num">46.56 − 40 = 6.56</span>。由买卖权平价拆成利息部分 <span class="num">110 × (1 − e<sup>−0.04</sup>) = 4.31</span> 和一张 110 看跌 <span class="num">2.25</span>。</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>$200,000 组合，Beta 1.25，SPY 780。要把 Beta 降到 0.75，需要多少股 SPY 的空头 Delta？用 Delta −0.40 的 SPY 看跌，要买几张？</span></summary>
+        <div class="ans"><p><span class="num">200,000 × (1.25 − 0.75) ÷ 780 = 128.2</span> 股。每张看跌提供 −40 股，需要 <span class="num">128.2 ÷ 40 ≈ 3.2</span> 张。注意单位：是 128 股，不是 128 张。</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="章节翻页"></nav>
+
+    <footer class="end">
+      <p>本章示例由 Black-Scholes 模型和文中注明的假设计算（利率 4%，不派息，一年 365 天，偏度与行情路径均为假设），用于教学，不构成投资建议或税务建议。</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+  /* 本章的偏度假设：IV(K) = 平值 + a·虚值%·√(91/天数)（看跌一侧），看涨一侧每虚值 1% 减 b 个点 */
+  function smile(K, S, D, atm, a, b) {
+    a = a === undefined ? 0.6 : a; b = b === undefined ? 0.2 : b;
+    const x = (K / S - 1) * 100, k = Math.sqrt(91 / D);
+    return Math.max(atm + (x < 0 ? a * k * (-x) : -b * k * x) / 100, 0.08);
+  }
+  const opt = (K, S, D, atm, kind, a, b) => bs(S, K, D / DAY, smile(K, S, D, atm, a, b), kind);
+  const pctS = (v, d) => (v * 100).toFixed(d === undefined ? 1 : d) + "%";
+
+  // ---------- fig 11-1: annualized cost ----------
+  (function () {
+    const svg = document.getElementById("f1-svg");
+    const ivS = document.getElementById("f1-iv"), aS = document.getElementById("f1-a");
+    const tenors = [[30, "var(--gamma)"], [91, "var(--delta)"], [182, "var(--theta)"], [365, "var(--warn)"]];
+    const ann = (otm, D, atm, a) => opt(100 - otm, 100, D, atm, "p", a).price * 365 / D;
+    function draw() {
+      const atm = +ivS.value / 100, a = +aS.value;
+      document.getElementById("f1-iv-o").textContent = ivS.value + "%";
+      document.getElementById("f1-a-o").textContent = a.toFixed(1);
+      const xs = range(0, 25, 0.25);
+      plot(svg, {
+        x: [0, 25], y: [0.1, 80], ylog: true, xt: [0, 5, 10, 15, 20, 25], yt: [0.1, 0.3, 1, 3, 10, 30],
+        xf: v => v + "%", yf: v => v + "%", xlabel: "看跌的虚值程度", ylabel: "年化成本（占组合）",
+        series: tenors.map(([D, c]) => ({ pts: xs.map(x => [x, ann(x, D, atm, a)]), color: c, w: 2.4 }))
+      });
+      document.getElementById("f1-r1").textContent = ann(0, 30, atm, a).toFixed(1) + "%";
+      document.getElementById("f1-r2").textContent = ann(10, 91, atm, a).toFixed(2) + "%";
+      document.getElementById("f1-r3").textContent = ann(10, 365, atm, a).toFixed(2) + "%";
+      document.getElementById("f1-r4").textContent = ann(20, 365, atm, a).toFixed(2) + "%";
+    }
+    ivS.addEventListener("input", draw); aS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- tool 11-A: zero-cost collar ----------
+  (function () {
+    const svg = document.getElementById("f2-svg");
+    const kS = document.getElementById("f2-k"), ivS = document.getElementById("f2-iv"), aS = document.getElementById("f2-a");
+    const btns = document.querySelectorAll("#fig2 .seg button");
+    let D = 91;
+    function solve(target, D, atm, a) {
+      let lo = 50, hi = 400;
+      for (let i = 0; i < 80; i++) { const m = (lo + hi) / 2; if (opt(m, 100, D, atm, "c", a).price > target) lo = m; else hi = m; }
+      return (lo + hi) / 2;
+    }
+    function draw() {
+      const otm = +kS.value, atm = +ivS.value / 100, a = +aS.value;
+      document.getElementById("f2-k-o").textContent = otm + "%";
+      document.getElementById("f2-iv-o").textContent = ivS.value + "%";
+      document.getElementById("f2-a-o").textContent = a.toFixed(1);
+      const Kp = 100 - otm;
+      const put = opt(Kp, 100, D, atm, "p", a).price;
+      const Kc = solve(put, D, atm, a);
+      const flatPut = bs(100, Kp, D / DAY, atm, "p").price;
+      let lo = 50, hi = 400;
+      for (let i = 0; i < 80; i++) { const m = (lo + hi) / 2; if (bs(100, m, D / DAY, atm, "c").price > flatPut) lo = m; else hi = m; }
+      const KcFlat = (lo + hi) / 2;
+      const xs = range(-30, 30, 0.25);
+      const fl = Kp / 100 - 1, cap = Kc / 100 - 1;
+      plot(svg, {
+        x: [-30, 30], y: [-30, 30], xt: range(-30, 30, 10), yt: range(-30, 30, 10),
+        xf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%", yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%",
+        xlabel: "到期时股价涨跌", ylabel: "组合收益（含保费）", zero: 0, vline: 0,
+        series: [
+          { pts: xs.map(m => [m, m]), color: "var(--muted)", w: 1.6, dash: "5 5" },
+          { pts: xs.map(m => [m, m + Math.max(Kp - 100 - m, 0) - put]), color: "var(--delta)", w: 2 },
+          { pts: xs.map(m => [m, Math.min(Math.max(m, fl * 100), cap * 100)]), color: "var(--theta)", w: 2.8 }
+        ],
+        labels: [[20, cap * 100, "上限 " + (cap >= 0 ? "+" : "−") + Math.abs(cap * 100).toFixed(1) + "%", 0, -10, "middle", "var(--theta)"],
+                 [-20, fl * 100, "下限 −" + otm + "%", 0, 18, "middle", "var(--theta)"]]
+      });
+      document.getElementById("f2-r1").textContent = put.toFixed(2) + "%";
+      document.getElementById("f2-r2").textContent = Kc.toFixed(1) + "（" + (cap >= 0 ? "+" : "−") + Math.abs(cap * 100).toFixed(1) + "%）";
+      document.getElementById("f2-r3").textContent = KcFlat.toFixed(1);
+      document.getElementById("f2-r4").textContent = (smile(Kc, 100, D, atm, a) * 100).toFixed(1) + "%";
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      D = +b.dataset.d;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    [kS, ivS, aS].forEach(s => s.addEventListener("input", draw));
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 11-2: scheme comparator ----------
+  (function () {
+    const svg = document.getElementById("f3-svg");
+    const mS = document.getElementById("f3-m");
+    const W = 200000, D = 91, atm = 0.18;
+    const p90 = opt(90, 100, D, atm, "p").price / 100, p95 = opt(95, 100, D, atm, "p").price / 100, p80 = opt(80, 100, D, atm, "p").price / 100;
+    let lo = 100, hi = 200;
+    for (let i = 0; i < 80; i++) { const m = (lo + hi) / 2; if (opt(m, 100, D, atm, "c").price / 100 > p90) lo = m; else hi = m; }
+    const kc = (lo + hi) / 200;
+    const f = [
+      m => W * m,
+      m => W * (m + Math.max(0.9 - (1 + m), 0) - p90),
+      m => W * (m + Math.max(0.9 - (1 + m), 0) - Math.max((1 + m) - kc, 0)),
+      m => W * (m + Math.max(0.95 - (1 + m), 0) - Math.max(0.80 - (1 + m), 0) - (p95 - p80))
+    ];
+    const cols = ["var(--muted)", "var(--delta)", "var(--theta)", "var(--gamma)"];
+    function draw() {
+      const mv = +mS.value;
+      document.getElementById("f3-m-o").textContent = (mv > 0 ? "+" : mv < 0 ? "−" : "") + Math.abs(mv) + "%";
+      const xs = range(-40, 30, 0.5);
+      plot(svg, {
+        x: [-40, 30], y: [-80000, 60000], xt: range(-40, 30, 10), yt: range(-80000, 60000, 20000),
+        xf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%", yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v / 1000) + "k",
+        xlabel: "91 天后市场涨跌", ylabel: "组合盈亏（美元）", zero: 0, vline: mv,
+        series: f.map((fn, i) => ({ pts: xs.map(x => [x, fn(x / 100)]), color: cols[i], w: i === 0 ? 1.8 : 2.4, dash: i === 0 ? "5 5" : null })),
+        dots: f.map((fn, i) => [mv, fn(mv / 100), cols[i], 4.5])
+      });
+      ["f3-r1", "f3-r2", "f3-r3", "f3-r4"].forEach((id, i) => { document.getElementById(id).textContent = money(f[i](mv / 100)); });
+    }
+    mS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 11-3: tail budget simulation ----------
+  (function () {
+    const svg = document.getElementById("f4-svg");
+    const bS = document.getElementById("f4-b");
+    const btns = document.querySelectorAll("#fig4 .seg button");
+    const paths = {
+      A: [12, 18, -6, 22, 9, -35, 28, 14, 7, 16, -12, 20, 11, -24, 24, 5, 15, 19, -4, 10],
+      B: [12, 18, -6, 22, 9, 4, 13, 14, 7, 16, -8, 20, 11, 2, 14, 5, 15, 12, -4, 10]
+    };
+    const put1y = (K, atm) => bs(100, K, 1, smile(K, 100, 365, atm), "p").price;
+    function strikeFor(b, atm) {
+      let lo = 30, hi = 100;
+      for (let i = 0; i < 80; i++) { const m = (lo + hi) / 2; if (put1y(m, atm) > b) hi = m; else lo = m; }
+      return (lo + hi) / 2;
+    }
+    let cur = "A";
+    function run(path, b) {
+      let W = 100, U = 100, pk = 100, pu = 100, mdd = 0, mddu = 0, prev = 0;
+      const hw = [[0, 100]], uw = [[0, 100]];
+      path.forEach((r, i) => {
+        const atm = prev <= -15 ? 0.32 : 0.18;
+        let pay = 0;
+        if (b > 0) { const K = strikeFor(b * 100, atm); pay = Math.max(K / 100 - (1 + r / 100), 0); }
+        W = W * (1 + r / 100 + pay - b); U = U * (1 + r / 100);
+        pk = Math.max(pk, W); pu = Math.max(pu, U);
+        mdd = Math.min(mdd, W / pk - 1); mddu = Math.min(mddu, U / pu - 1);
+        hw.push([i + 1, W]); uw.push([i + 1, U]); prev = r;
+      });
+      return { W, U, mdd, mddu, hw, uw };
+    }
+    function draw() {
+      const b = +bS.value / 100;
+      document.getElementById("f4-b-o").textContent = (+bS.value).toFixed(2).replace(/0$/, "").replace(/\.$/, "") + "%";
+      const path = paths[cur], R = run(path, b);
+      const top = Math.max(...R.hw.map(p => p[1]), ...R.uw.map(p => p[1]));
+      const hi = Math.ceil(top * 1.08 / 100) * 100;
+      const yt = range(0, hi, hi > 400 ? 100 : 50);
+      const labels = [];
+      path.forEach((r, i) => { if (r <= -15) labels.push([i + 1, R.uw[i + 1][1], "−" + Math.abs(r) + "%", 0, 18, "middle", "var(--gamma)"]); });
+      plot(svg, {
+        x: [0, 20], y: [0, hi], xt: [0, 5, 10, 15, 20], yt, yf: v => v.toFixed(0),
+        xlabel: "年", ylabel: "净值（起点 100）",
+        series: [{ pts: R.uw, color: "var(--muted)", w: 1.8, dash: "5 5" }, { pts: R.hw, color: "var(--theta)", w: 2.6 }],
+        labels
+      });
+      const K = b > 0 ? strikeFor(b * 100, 0.18) : null;
+      const cagr = v => Math.pow(v / 100, 1 / 20) - 1;
+      document.getElementById("f4-r1").textContent = K ? K.toFixed(1) : "不买";
+      document.getElementById("f4-r1s").textContent = K ? "平常年份买到的行权价（虚值 " + (100 - K).toFixed(1) + "%）" : "预算为 0，不买保护";
+      document.getElementById("f4-r2").textContent = R.W.toFixed(0) + " / " + R.U.toFixed(0);
+      document.getElementById("f4-r3").textContent = pctS(cagr(R.W), 2) + " / " + pctS(cagr(R.U), 2);
+      document.getElementById("f4-r4").textContent = pctS(R.mdd, 0).replace("-", "−") + " / " + pctS(R.mddu, 0).replace("-", "−");
+    }
+    btns.forEach(bt => bt.addEventListener("click", () => {
+      cur = bt.dataset.p;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === bt ? "true" : "false"));
+      draw();
+    }));
+    bS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+})();
+</script>
+</body>
+</html>

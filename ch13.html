@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 13 章 期权的风险管理 · 美股期权课</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  #s-tbl { font-size: 13px; }
+  #s-tbl th, #s-tbl td { padding: 6px 3px; }
+  #s-tbl th:first-child, #s-tbl td:first-child { padding-left: 10px; }
+  #s-tbl th:last-child, #s-tbl td:last-child { padding-right: 10px; }
+  .calc table input { width: 3.3em; padding: 3px 4px; font-size: 13px; -moz-appearance: textfield; appearance: textfield; }
+  .calc table input::-webkit-inner-spin-button, .calc table input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+  .calc table input.name { width: 4.2em; }
+  .calc table select { font-size: 13px; padding: 3px 2px; }
+  .tbl.txt th, .tbl.txt td { text-align: left; }
+  .tbl.compact table { font-size: 13.5px; }
+  .tbl.compact th, .tbl.compact td { padding: 8px 7px; }
+  .tbl.compact th:first-child, .tbl.compact td:first-child { padding-left: 14px; }
+  .tbl.compact th:last-child, .tbl.compact td:last-child { padding-right: 14px; }
+  .tbl .l { text-align: left; }
+  .rulecard .card { border-top: 3px solid var(--theta); }
+</style>
+</head>
+<body data-ch="13">
+<div class="topbar"><div class="topbar-inner"><a class="brand" href="index.html">美股期权<span>课</span></a><select id="ck-jump" aria-label="跳转到章节"></select></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">13</div>
+    <div class="eyebrow">美股期权课 · 第四部分 组合与风险管理 · 第 13 章</div>
+    <h1>期权的<span class="g">风险管理</span></h1>
+    <p class="deck">期权账户很少死于一笔看错的交易，多半死于仓位太大、彼此太像、在最坏的时候被迫离场。这一章给你三把度量仓位的尺子、买方和卖方各一套规模规则，以及一张每周都能执行的压力测试表。</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="本章目录">
+    <p class="toc-title">本章目录</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>开篇：每张只收 $100</span></a></li>
+      <li><a href="#s1"><span class="n">13.1</span><span>仓位的三种度量</span></a></li>
+      <li><a href="#s2"><span class="n">13.2</span><span>买方规则</span></a></li>
+      <li><a href="#s3"><span class="n">13.3</span><span>卖方规则</span></a></li>
+      <li><a href="#s4"><span class="n">13.4</span><span>压力测试：三个情景，每周一次</span></a></li>
+      <li><a href="#s5"><span class="n">13.5</span><span>分散的幻觉</span></a></li>
+      <li><a href="#s6"><span class="n">13.6</span><span>保证金螺旋</span></a></li>
+      <li><a href="#s7"><span class="n">13.7</span><span>流动性、提前指派与钉住风险</span></a></li>
+      <li><a href="#s8"><span class="n">13.8</span><span>期权仓位规则卡</span></a></li>
+      <li><a href="#cases"><span class="n">案例</span><span>两个案例</span></a></li>
+      <li><a href="#tools"><span class="n">工具</span><span>清单与自测</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>本章目录</summary>
+      <ol>
+        <li><a href="#open">开篇：每张只收 $100</a></li>
+        <li><a href="#s1">13.1 仓位的三种度量</a></li>
+        <li><a href="#s2">13.2 买方规则</a></li>
+        <li><a href="#s3">13.3 卖方规则</a></li>
+        <li><a href="#s4">13.4 压力测试：三个情景，每周一次</a></li>
+        <li><a href="#s5">13.5 分散的幻觉</a></li>
+        <li><a href="#s6">13.6 保证金螺旋</a></li>
+        <li><a href="#s7">13.7 流动性、提前指派与钉住风险</a></li>
+        <li><a href="#s8">13.8 期权仓位规则卡</a></li>
+        <li><a href="#cases">两个案例</a></li>
+        <li><a href="#tools">清单与自测</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>学完本章你能</h4>
+        <ul>
+          <li>对任何期权仓位同时算出名义敞口、最大亏损和压力亏损</li>
+          <li>按最大亏损或压力亏损决定开几张，不再按权利金</li>
+          <li>每周用三个情景给整个账户做压力测试，并按规则卡减仓</li>
+        </ul>
+      </div>
+      <div>
+        <h4>前置知识</h4>
+        <ul>
+          <li>第 2 章：行权、指派与保证金</li>
+          <li>第 8 章：卖方策略与仓位压力测试</li>
+          <li>第 12 章：组合 Greeks 与 Beta 加权</li>
+        </ul>
+      </div>
+      <div>
+        <h4>本章约定</h4>
+        <ul>
+          <li>Black-Scholes，利率 4%，不派息，一年 365 天；期货期权用同一公式的 Black 形式</li>
+          <li>一张股票期权 = 100 股；账户默认 $100,000</li>
+          <li>「跳空」指瞬时变动，剩余天数不变；保证金按常见的 Reg T 规则估算</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">开篇</span>每张只收 $100</h2>
+      <p class="lead">你的账户有 $100,000。你挑了十只股价都在 $100 左右的股票，各卖一张 30 天、行权价 90 的看跌期权（IV 40%），每张收 <span class="num">$99.8</span>，十张合计 <span class="num">$998</span>，不到账户的 1%。看起来，你只冒了 1% 的风险。</p>
+      <div class="tbl txt">
+        <table>
+          <caption>表 13-0　同一组仓位的五个数字</caption>
+          <thead><tr><th>度量</th><th>怎么算</th><th>金额</th><th>占账户</th></tr></thead>
+          <tbody>
+            <tr><td>收到的权利金</td><td>10 × $99.8</td><td class="mono">$998</td><td class="mono">1.0%</td></tr>
+            <tr><td>名义敞口</td><td>10 × 100 股 × $100</td><td class="mono">$100,000</td><td class="mono">100%</td></tr>
+            <tr><td>现金担保所需</td><td>10 × 100 × $90</td><td class="mono">$90,000</td><td class="mono">90%</td></tr>
+            <tr class="hl"><td>压力亏损</td><td>十只同时 −20%，IV 翻倍</td><td class="mono neg">−$12,541</td><td class="mono">12.5%</td></tr>
+            <tr><td>最大亏损</td><td>十只全部归零：(90 − 0.998) × 1,000</td><td class="mono neg">−$89,002</td><td class="mono">89.0%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>权利金是你最多能赚的钱，它和你可能亏多少几乎没有关系。压力亏损是权利金的 <span class="num">12.6</span> 倍；就算 IV 不变、只是股价跌 20%，也要亏 <span class="num">$9,517</span>。十只股票看起来分散，到了下跌那天，它们多半一起跌。</p>
+      <p>这一章做三件事：把仓位的大小换成正确的度量；给买方和卖方各一套规模规则；用压力测试把规则落到每周一次的例行检查里。最后你会得到一张自己的仓位规则卡。</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">13.1</span>仓位的三种度量</h2>
+      <p>期权仓位要用三把尺子量：名义敞口、最大亏损、希腊字母风险。权利金只适合度量买方。</p>
+      <ul>
+        <li><strong>名义敞口</strong>：合约对应的股数 × 股价。它告诉你最坏时可能接手或欠下多少股票，也是指派和保证金的基数。</li>
+        <li><strong>最大亏损</strong>：到期时最坏的结果。价差和铁鹰有硬上限；裸卖看跌的上限是「行权价 − 权利金」（股价归零）；裸卖看涨没有上限。</li>
+        <li><strong>希腊字母风险</strong>：Delta 美元（Δ × 100 × 股价）告诉你相当于多少股票，Vega 告诉你 IV 每变一点赚亏多少。把它们放进一个现实的冲击里（股价跳空加 IV 上升），就是压力亏损。</li>
+      </ul>
+      <div class="tbl compact">
+        <table>
+          <caption>表 13-1　五种常见仓位的三种度量（股价 $100，30 天，IV 40%，每种 1 张或 1 组）</caption>
+          <thead><tr><th>仓位</th><th>权利金</th><th>名义敞口</th><th>最大亏损</th><th>Delta 美元</th><th>Vega / 点</th><th>压力亏损</th></tr></thead>
+          <tbody>
+            <tr><td>买 100 看涨</td><td class="mono">付 $473</td><td class="mono">$10,000</td><td class="mono">$473</td><td class="mono">+$5,343</td><td class="mono">+$11.4</td><td class="mono neg">−$289</td></tr>
+            <tr><td>卖 90 看跌</td><td class="mono">收 $100</td><td class="mono">$10,000</td><td class="mono">$8,900</td><td class="mono">+$1,575</td><td class="mono">−$6.9</td><td class="mono neg">−$1,254</td></tr>
+            <tr><td>卖 90/85 看跌价差</td><td class="mono">收 $65</td><td class="mono">$10,000</td><td class="mono">$435</td><td class="mono">+$911</td><td class="mono">−$3.2</td><td class="mono neg">−$278</td></tr>
+            <tr><td>卖 90/110 宽跨</td><td class="mono">收 $243</td><td class="mono">$20,000</td><td>无上限</td><td class="mono">−$706</td><td class="mono">−$15.6</td><td class="mono neg">−$1,194</td></tr>
+            <tr><td>卖 85/90/110/115 铁鹰</td><td class="mono">收 $138</td><td class="mono">$20,000</td><td class="mono">$362</td><td class="mono">−$83</td><td class="mono">−$5.9</td><td class="mono neg">−$233</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>压力亏损一栏按「股价瞬间 −20%、IV 翻倍」计算。几个读法：</p>
+      <ul>
+        <li><strong>买方</strong>：权利金就是最大亏损，用权利金度量是对的。同样的冲击下，买入看涨只亏 $289，比权利金还少：IV 翻倍给它补回了一部分。</li>
+        <li><strong>卖方</strong>：权利金是三把尺子里最小的数字。卖 90 看跌收 $100，压力亏损是它的 12.6 倍，最大亏损是它的 89 倍。</li>
+        <li><strong>价差</strong>：最大亏损 $435 就是它的规模；30 天到期时一次冲击还到不了上限（$278），但离到期越近越接近上限。</li>
+        <li><strong>宽跨</strong>：Delta 只有 −$706，看起来很中性，可它的 Vega 是表里最大的（−$15.6），股价往上 20% 同样亏 $956。中性仓位的风险在 Vega 和跳空里。</li>
+      </ul>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">13.2</span>买方规则</h2>
+      <p>买方最大的敌人是连续亏损。单笔比例要小到让最坏的一串连亏，也只是一次可以恢复的回撤。</p>
+
+      <h3>单笔比例：从 Kelly 公式看上限</h3>
+      <p>设胜率为 <span class="v">p</span>，赢时平均赚 <span class="v">b</span> 倍权利金，输时亏掉全部权利金。长期复利最快的下注比例是：</p>
+      <div class="formula">
+        <div class="eq"><span class="v">f</span>* <span class="up">=</span> <span class="frac"><span><span class="v">b</span> · <span class="v">p</span> <span class="up">−</span> (1 <span class="up">−</span> <span class="v">p</span>)</span><span><span class="v">b</span></span></span></div>
+        <p class="where">胜率 35%、赢时平均赚 2 倍：f* = (0.70 − 0.65) ÷ 2 = 2.5%。胜率 40%：10%。胜率只要高估 3 个点（实际 32%）：f* = −2%，这笔交易本身就是亏钱的。</p>
+      </div>
+      <p>Kelly 比例是上限，不是目标。它假设你确切知道胜率和赔率，而买方的胜率估计误差往往有好几个百分点。实务上取它的一半甚至更少，所以常见的规则是<strong>单笔权利金不超过账户的 1%–2%</strong>。如果你给每笔设了 −50% 的止损，单笔风险可以按权利金的一半计算；但 IV 崩塌和跳空经常让止损失效，保守起见按全部权利金算。</p>
+
+      <h3>连亏有多长</h3>
+      <p>胜率 35% 的买方，在 100 笔交易里会遇到多长的连亏？这可以精确算出来：</p>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">胜率 35% 的买方，100 笔里多半会遇到 9 连亏</span><span class="fig-no">图 13-1 · 100 笔交易中最长连亏的分布</span></div>
+        <div class="controls">
+          <label class="ctl" for="f1-w">胜率 <input id="f1-w" type="range" min="20" max="60" value="35" step="1"> <output id="f1-w-o">35%</output></label>
+          <div class="seg" role="group" aria-label="单笔权利金占账户比例">
+            <button type="button" data-f="0.01" aria-pressed="false">单笔 1%</button>
+            <button type="button" data-f="0.02" aria-pressed="true">2%</button>
+            <button type="button" data-f="0.05" aria-pressed="false">5%</button>
+            <button type="button" data-f="0.10" aria-pressed="false">10%</button>
+          </div>
+        </div>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 280" role="img" aria-label="最长连亏笔数的概率分布"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta); border-top-width: 8px"></i>出现概率</span><span><i style="border-color: var(--gamma); border-top-width: 8px"></i>最坏的 5%</span></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small>最长连亏的中位数</small></div>
+          <div><b id="f1-r2">—</b><small>95% 的情况下不超过</small></div>
+          <div><b id="f1-r3">—</b><small>这串连亏造成的回撤</small></div>
+          <div><b id="f1-r4">—</b><small>至少一次 10 连亏的概率</small></div>
+        </div>
+        <figcaption>每次下注按当前净值的固定比例。胜率 35% 时，最长连亏的中位数是 9 笔，95% 分位是 14 笔。按单笔 2% 计，14 连亏的回撤是 24.6%；换成单笔 5%，同样的连亏回撤 51.2%，要翻倍才能回本。把胜率拖到 50%，95% 分位仍有 9 笔。</figcaption>
+      </figure>
+      <div class="tbl compact">
+        <table>
+          <caption>表 13-2　14 连亏（胜率 35% 时的 95% 分位）在不同单笔比例下的回撤</caption>
+          <thead><tr><th>单笔权利金占净值</th><th>1%</th><th>2%</th><th>5%</th><th>10%</th></tr></thead>
+          <tbody>
+            <tr><td>9 连亏后的回撤（中位数情形）</td><td class="mono">8.6%</td><td class="mono">16.6%</td><td class="mono">37.0%</td><td class="mono">61.3%</td></tr>
+            <tr class="hl"><td>14 连亏后的回撤</td><td class="mono">13.1%</td><td class="mono">24.6%</td><td class="mono">51.2%</td><td class="mono neg">77.1%</td></tr>
+            <tr><td>14 连亏后回到原点需要的涨幅</td><td class="mono">15.1%</td><td class="mono">32.7%</td><td class="mono">105.1%</td><td class="mono neg">337.1%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>同时持有几笔</h3>
+      <p>单笔 2% 只在各笔互不相关时成立。五笔科技股看涨期权，同一天会被同一条宏观消息打下来，实际上是一笔 10% 的押注。所以买方还需要两条总量规则：<strong>同时持有不超过 5 笔，权利金合计不超过账户的 10%</strong>；同一主题（同一行业、同一方向、同一事件）的仓位合并计算，合计不超过 6%。</p>
+      <div class="note">
+        <span class="tag">要点</span>
+        <p>买方的规则看起来保守，原因是买方赢的方式是「少数几笔赚大钱」。只有活到那几笔出现，前面的小亏才有意义。</p>
+      </div>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">13.3</span>卖方规则</h2>
+      <p>卖方仓位按「会亏多少」来定大小：定义风险的看最大亏损，未定义风险的看压力测试，再给总量和集中度各设一个上限。</p>
+
+      <h3>定义风险：按最大亏损</h3>
+      <p>价差、铁鹰的最大亏损是确定的，直接用它定张数：<strong>单笔最大亏损不超过账户的 3%</strong>（刚开始做卖方时用 1%–2%）。表 13-1 的 90/85 看跌价差每组最大亏损 $435，$100,000 的账户可以开 <span class="num">3,000 ÷ 435 = 6.9</span>，取 6 组，最大亏损 $2,610。</p>
+      <p>还要加一条总量规则：<strong>同方向的定义风险仓位，最大亏损合计不超过 20%</strong>。原因很直接：大盘急跌时，你所有看多的看跌价差会同时亏到上限，「各自的最大亏损」会在同一天全部兑现。</p>
+
+      <h3>未定义风险：按压力测试</h3>
+      <p>裸卖看跌、宽跨式的最大亏损太大，没有参考意义，改用压力亏损：<strong>单笔压力亏损（−20%，IV 翻倍）不超过账户的 5%</strong>。卖 90 看跌每张压力亏损 $1,254，所以最多 <span class="num">5,000 ÷ 1,254 = 4.0</span>，取 3 张更稳妥。</p>
+      <p>同一个账户、同一张合约，三种思路得到三个完全不同的数字：</p>
+      <ul>
+        <li>按权利金（「每张才 $100」）：没有上限</li>
+        <li>按现金担保：<span class="num">100,000 ÷ 9,000 = 11</span> 张</li>
+        <li>按压力亏损 5%：3 到 4 张</li>
+      </ul>
+
+      <h3>总敞口与集中度</h3>
+      <ul>
+        <li><strong>压力亏损合计不超过账户的 20%。</strong>回撤 20% 需要涨 25% 回本；回撤 50% 需要翻倍。20% 是一个仍能正常交易、心态不变形的回撤。</li>
+        <li><strong>卖沽的名义敞口（行权价 × 100 × 张数）合计不超过账户的 1–1.5 倍。</strong>它是你在系统性下跌中可能被迫接手的股票规模。</li>
+        <li><strong>单一标的不超过总压力亏损的 25%，同一行业不超过 40%。</strong>集中度上限防的是个股跳空：一份财报、一次监管消息就够了。</li>
+      </ul>
+
+      <h3>为什么是 −20%</h3>
+      <p>对宽基指数，−20% 大约是现代历史上最糟的单日：1987 年 10 月 19 日，标普 500 一天跌了约两成。拿它做每周的压力情景已经足够保守。对个股，财报后跳空 20%–30% 并不罕见，−20% 只是起点；生物科技的临床结果、并购失败这类二元事件，要按 −50% 甚至更多来测。杠杆 ETF 要把杠杆乘进去：3 倍做多的 ETF，指数跌 10% 它就跌约 30%。IV 翻倍同理：平时 IV 15% 的指数，急跌时翻一倍并不夸张；本来就 80% 的妖股，翻倍反而不太现实，这时重点是价格跳空。</p>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">13.4</span>压力测试：三个情景，每周一次</h2>
+      <p>压力测试的价值在于固定执行。每周同一时间、同一套情景，超限就减仓，不靠当天的感觉。</p>
+      <ol>
+        <li><strong>导出持仓</strong>：每周五收盘后，列出所有期权和股票仓位。</li>
+        <li><strong>跑三个情景</strong>：A 所有标的同时 −20%；B 价格不动、IV 翻倍；C 两者同时。有卖出看涨的，再加一组 +10% 或 +15%。</li>
+        <li><strong>对照上限</strong>：单笔压力亏损 ≤ 5%，合计 ≤ 20%，单一标的 ≤ 25%。</li>
+        <li><strong>超限就减</strong>：先减贡献最大的那一项。不要靠新开一笔反向仓位去「抵消」，新仓位有它自己的风险。</li>
+        <li><strong>记下来</strong>：数字和处理写进交易日志（第 14 章），一个月后回看规则是否需要调整。</li>
+      </ol>
+      <div class="tbl compact">
+        <table>
+          <caption>表 13-3　一个示例账户的周度压力测试（$100,000，所有标的同时变动；合计按未取整的数值计算）</caption>
+          <thead><tr><th>标的与仓位</th><th>权利金</th><th>A −20%</th><th>B IV×2</th><th>C 两者</th><th>C 占账户</th><th>+10%</th></tr></thead>
+          <tbody>
+            <tr><td>A：卖 2 张 140 看跌</td><td class="mono">400</td><td class="mono neg">−3,583</td><td class="mono neg">−1,016</td><td class="mono neg">−4,185</td><td class="mono">4.2%</td><td class="mono pos">+341</td></tr>
+            <tr><td>B：卖 5 张 55 看跌</td><td class="mono">404</td><td class="mono neg">−3,185</td><td class="mono neg">−1,121</td><td class="mono neg">−4,029</td><td class="mono">4.0%</td><td class="mono pos">+327</td></tr>
+            <tr><td>SPY：3 组 750/730 看跌价差</td><td class="mono">591</td><td class="mono neg">−5,382</td><td class="mono neg">−383</td><td class="mono neg">−4,850</td><td class="mono">4.9%</td><td class="mono pos">+587</td></tr>
+            <tr><td>C：卖 2 张 110 看涨</td><td class="mono">377</td><td class="mono pos">+371</td><td class="mono neg">−946</td><td class="mono pos">+119</td><td class="mono">—</td><td class="mono neg">−789</td></tr>
+            <tr><td>D：卖 4 张 45 看跌（45 天）</td><td class="mono">534</td><td class="mono neg">−1,844</td><td class="mono neg">−1,191</td><td class="mono neg">−2,904</td><td class="mono">2.9%</td><td class="mono pos">+327</td></tr>
+            <tr class="hl"><td>合计</td><td class="mono">2,306</td><td class="mono neg">−13,623</td><td class="mono neg">−4,656</td><td class="mono neg">−15,848</td><td class="mono">15.8%</td><td class="mono pos">+793</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>逐项对照：每一笔都在 5% 以内，合计 15.8% 在 20% 以内。但 SPY 价差贡献了总压力亏损的 <span class="num">31%</span>，超过 25% 的集中度上限。减掉 1 组后，SPY 的占比降到 <span class="num">22.7%</span>，合计压力亏损变成 <span class="num">$14,232</span>。另一个要注意的是 C：它是唯一在上涨时亏钱的仓位，+15% 时亏 <span class="num">$1,393</span>，所以这个账户每周还要加测上涨情景。</p>
+
+      <h3>三个常见错误</h3>
+      <ul>
+        <li><strong>用 Delta 线性外推。</strong>开篇的十张 90 看跌，Delta 合计约 +157.5 股。按 Delta 估算，−20% 只亏 <span class="num">157.5 × 20 = $3,150</span>；加上 Gamma 项是 $7,350；重新定价是 <span class="num">$9,517</span>，Delta 估算少了三分之二。卖方的压力测试必须重新定价，近似公式只在小幅移动时可信（第 4 章）。</li>
+        <li><strong>只测单个仓位。</strong>每一笔都在 5% 以内，不代表合计在 20% 以内；同一天被打穿的仓位要一起算。</li>
+        <li><strong>忘了 IV 和流动性。</strong>只测价格、不测 IV，会漏掉约四分之一的亏损：同样十张看跌，−20% 时亏 $9,517，再加上 IV 翻倍就是 $12,541。成交时还要再付一段买卖价差（13.7 节）。</li>
+      </ul>
+
+      <figure class="plate calc" id="calc">
+        <div class="fig-head"><span class="fig-title">压力测试器</span><span class="fig-no">工具 13-A · 可编辑，默认值为表 13-3 的账户</span></div>
+        <div class="spy"><label for="s-acct">账户净值</label><input id="s-acct" type="number" value="100000" step="1000"></div>
+        <div class="controls">
+          <label class="ctl" for="s-gap">跳空幅度 <input id="s-gap" type="range" min="-40" max="20" value="-20" step="1"> <output id="s-gap-o">−20%</output></label>
+          <label class="ctl" for="s-ivm">IV 倍数 <input id="s-ivm" type="range" min="1" max="3" value="2" step="0.1"> <output id="s-ivm-o">× 2.0</output></label>
+        </div>
+        <div class="tbl" style="margin: 6px 0 0;">
+          <table id="s-tbl">
+            <thead><tr><th>标的</th><th>类型</th><th>张数</th><th>标的价</th><th>行权价</th><th>天数</th><th>IV %</th><th>当前市值</th><th>情景盈亏</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <svg class="chart" id="s-svg" viewBox="0 0 680 280" role="img" aria-label="组合盈亏随跳空幅度变化"></svg>
+        <div class="legend"><span><i class="dash" style="border-color: var(--muted)"></i>IV 不变</span><span><i style="border-color: var(--gamma)"></i>IV × 所选倍数</span><span><i class="dash" style="border-color: var(--warn)"></i>账户 −20% 上限</span></div>
+        <div class="readout">
+          <div><b id="s-r1">—</b><small>情景下组合盈亏</small></div>
+          <div><b id="s-r2">—</b><small>占账户</small></div>
+          <div><b id="s-r3">—</b><small>亏损最大的单一标的（占比）</small></div>
+          <div><b id="s-r4">—</b><small>收到的权利金合计</small></div>
+        </div>
+        <figcaption>所有标的按同一幅度跳空，相当于假设相关性为 1，剩余天数不变。张数卖出填负数；同一标的的多条腿填同一个标的名，会合并计算集中度。把跳空拖到 +15%，可以看到卖出看涨的风险；把 IV 倍数拖到 3，看 Vega 有多重。</figcaption>
+      </figure>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">13.5</span>分散的幻觉</h2>
+      <p>十只股票的卖沽，大部分是同一个赌注：大盘不跌。分散了代码，没有分散风险。</p>
+      <p>每只股票的涨跌都可以拆成两部分：跟着大盘走的部分（β × 大盘涨跌），和它自己的部分。卖出看跌的 Delta 是正的，十张加起来就是一个大盘多头。开篇的十张看跌每张 Delta −0.1575，合计相当于持有约 157.5 股、<span class="num">$15,750</span> 的股票；如果这些股票的平均 β 是 1.2，就相当于 <span class="num">$18,900</span> 的 SPY 多头（第 12 章的 Beta 加权）。</p>
+      <p>平时，个股各走各的，相关性不高，十张看跌偶尔有一两张被打穿，其余作废，组合很平稳。到了急跌的日子，所有人都在卖，个股之间的相关性会迅速升向 1，十张一起被打穿。下面用一个简单的单因子模型演示：每只股票的收益 = √ρ × 共同冲击 + √(1 − ρ) × 自身冲击，真实波动率假设为 35%（低于 IV 40%，所以卖方平均是赚钱的），4,000 个情景，所有相关性用同一组随机数。</p>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">相关性几乎不改变平均收益，却把尾部放大了好几倍</span><span class="fig-no">图 13-2 · 10 张 90 看跌（每只股票各 1 张）到期盈亏</span></div>
+        <div class="controls">
+          <label class="ctl" for="f2-rho">股票间相关性 ρ <input id="f2-rho" type="range" min="0" max="0.95" value="0.3" step="0.05"> <output id="f2-rho-o">0.30</output></label>
+        </div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 300" role="img" aria-label="组合亏损超过某一金额的概率曲线"></svg>
+        <div class="legend"><span><i style="border-color: var(--gamma)"></i>当前相关性</span><span><i class="dash" style="border-color: var(--muted)"></i>参照：ρ = 0</span></div>
+        <div class="readout">
+          <div><b id="f2-r1">—</b><small>平均盈亏</small></div>
+          <div><b id="f2-r2">—</b><small>最差 5% 的情景</small></div>
+          <div><b id="f2-r3">—</b><small>最差 1% 的情景</small></div>
+          <div><b id="f2-r4">—</b><small>亏损超过 $5,000 的概率</small></div>
+        </div>
+        <figcaption>纵轴是「组合亏损超过横轴金额」的概率，对数刻度。ρ = 0 时曲线在 $4,000 附近就掉到零；把 ρ 拖到 0.9，同一条曲线一直延伸到 $18,000 以上。平均盈亏一直在 $260 到 $281 之间，几乎不动。</figcaption>
+      </figure>
+      <div class="tbl compact">
+        <table>
+          <caption>表 13-4　同样十张看跌，三种相关性下的结果（4,000 个情景）</caption>
+          <thead><tr><th>相关性 ρ</th><th>平均盈亏</th><th>出现亏损的概率</th><th>最差 5%</th><th>最差 1%</th><th>亏损 > $5,000</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">0</td><td class="mono pos">+$281</td><td class="mono">29.0%</td><td class="mono neg">−$1,056</td><td class="mono neg">−$2,038</td><td class="mono">0%</td></tr>
+            <tr><td class="mono">0.3</td><td class="mono pos">+$277</td><td class="mono">25.1%</td><td class="mono neg">−$1,955</td><td class="mono neg">−$3,986</td><td class="mono">0.4%</td></tr>
+            <tr class="hl"><td class="mono">0.9</td><td class="mono pos">+$261</td><td class="mono">14.7%</td><td class="mono neg">−$4,114</td><td class="mono neg">−$9,706</td><td class="mono">4.3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>三个发现：</p>
+      <ul>
+        <li><strong>平均收益几乎不变。</strong>每只股票自己的分布没变，期望值就不变。只看平均收益的回测，看不出相关性的危险。</li>
+        <li><strong>相关性越高，亏钱的次数反而越少。</strong>ρ = 0.9 时只有 14.7% 的情景亏钱，比 ρ = 0 时还少。这正是这类账户让人放心的原因：平静的月份更多。</li>
+        <li><strong>但亏的时候一起亏。</strong>最差 1% 从 −$2,038 扩大到 −$9,706，接近五倍。真实市场的尾部比正态分布更厚，而且相关性在下跌时升高、在上涨时回落，这个模型反而是乐观的。</li>
+      </ul>
+      <div class="note warn">
+        <span class="tag">怎么办</span>
+        <ul>
+          <li>按 ρ = 0.9 那一行准备资金：用 13.4 节「所有标的同时 −20%」的压力测试定规模</li>
+          <li>分散风险因子，而不只是代码：加入卖出看涨或看涨价差、不同到期日、少量买入的指数看跌</li>
+          <li>用 Beta 加权 Delta 盯住总的大盘敞口（第 12 章），把它当成一个仓位来管理</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">13.6</span>保证金螺旋</h2>
+      <p>卖方在最坏的时候离场，原因常常是保证金先用完了，看法其实没变。下跌和 IV 上升会同时做两件事：让你的净值变少，让券商要求的保证金变多。</p>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">保证金螺旋：每转一圈，下一圈更陡</span><span class="fig-no">图 13-3 · 示意图</span></div>
+        <div class="scroll-x"><svg class="chart wide" viewBox="0 0 680 320" role="img" aria-label="价格下跌与 IV 上升导致保证金增加、被迫平仓、进一步推高 IV 的循环">
+          <defs>
+            <marker id="arr-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--muted)"></path></marker>
+          </defs>
+          <g style="font-family: var(--font-body); font-size: 13.5px">
+            <rect x="20" y="20" width="270" height="80" rx="6" style="fill: var(--tint-gamma); stroke: var(--gamma)"></rect>
+            <text x="155" y="50" text-anchor="middle" style="fill: var(--gamma); font-weight: 700">① 价格下跌，IV 上升</text>
+            <text x="155" y="76" text-anchor="middle" style="fill: var(--ink)">起点可以是任何一条坏消息</text>
+            <rect x="390" y="20" width="270" height="80" rx="6" style="fill: var(--tint-warn); stroke: var(--warn)"></rect>
+            <text x="525" y="50" text-anchor="middle" style="fill: var(--warn); font-weight: 700">② 空头期权市值上涨</text>
+            <text x="525" y="76" text-anchor="middle" style="fill: var(--ink)">净值减少，保证金要求增加</text>
+            <rect x="390" y="220" width="270" height="80" rx="6" style="fill: var(--tint-warn); stroke: var(--warn)"></rect>
+            <text x="525" y="250" text-anchor="middle" style="fill: var(--warn); font-weight: 700">③ 超额流动性转负</text>
+            <text x="525" y="276" text-anchor="middle" style="fill: var(--ink)">追加保证金，或券商直接强平</text>
+            <rect x="20" y="220" width="270" height="80" rx="6" style="fill: var(--tint-gamma); stroke: var(--gamma)"></rect>
+            <text x="155" y="250" text-anchor="middle" style="fill: var(--gamma); font-weight: 700">④ 在最差的价格被迫买回</text>
+            <text x="155" y="276" text-anchor="middle" style="fill: var(--ink)">买盘推高 IV，对冲盘卖出标的</text>
+            <path d="M292 60 H386" style="stroke: var(--muted); fill: none" stroke-width="1.6" marker-end="url(#arr-m)"></path>
+            <path d="M525 102 V216" style="stroke: var(--muted); fill: none" stroke-width="1.6" marker-end="url(#arr-m)"></path>
+            <path d="M388 260 H294" style="stroke: var(--muted); fill: none" stroke-width="1.6" marker-end="url(#arr-m)"></path>
+            <path d="M155 218 V104" style="stroke: var(--muted); fill: none" stroke-width="1.6" marker-end="url(#arr-m)"></path>
+            <text x="340" y="152" text-anchor="middle" style="fill: var(--muted); font-size: 13px">同样的冲击</text>
+            <text x="340" y="174" text-anchor="middle" style="fill: var(--muted); font-size: 13px">同时打在净值和保证金上</text>
+            <text x="545" y="164" text-anchor="start" style="fill: var(--muted); font-size: 12px">按股价 20%</text>
+            <text x="545" y="182" text-anchor="start" style="fill: var(--muted); font-size: 12px">加期权市值</text>
+            <text x="135" y="164" text-anchor="end" style="fill: var(--muted); font-size: 12px">价差最宽、</text>
+            <text x="135" y="182" text-anchor="end" style="fill: var(--muted); font-size: 12px">IV 最高时</text>
+          </g>
+        </svg></div>
+        <figcaption>四个环节都会自我加强：被迫买回的人越多，期权越贵，下一个账户的保证金要求就越高。做市商卖出期权后通常用标的对冲，他们的卖盘又推动第①步。</figcaption>
+      </figure>
+
+      <h3>用数字走一遍</h3>
+      <p>常见的 Reg T 规则下，裸卖看跌每张的保证金是：期权市值，加上「股价的 20% 减去虚值金额」与「行权价的 10%」两者中较大的一个，再乘 100。把开篇的账户放大到每只股票 3 张（共 30 张 90 看跌）：</p>
+      <div class="tbl compact">
+        <table>
+          <caption>表 13-5　30 张 90 看跌的保证金与净值（账户 $100,000）</caption>
+          <thead><tr><th>状态</th><th>每张看跌</th><th>每张保证金</th><th>保证金合计</th><th>账户净值</th><th>保证金 / 净值</th><th>剩余空间</th></tr></thead>
+          <tbody>
+            <tr><td>开仓：股价 100，IV 40%</td><td class="mono">$1.00</td><td class="mono">$1,100</td><td class="mono">$32,994</td><td class="mono">$100,000</td><td class="mono">33.0%</td><td class="mono pos">$67,006</td></tr>
+            <tr><td>跌 10%，IV 60%（2 天后）</td><td class="mono">$5.81</td><td class="mono">$2,381</td><td class="mono">$71,442</td><td class="mono">$85,553</td><td class="mono">83.5%</td><td class="mono">$14,111</td></tr>
+            <tr class="hl"><td>跌 20%，IV 80%（4 天后）</td><td class="mono">$13.10</td><td class="mono">$2,910</td><td class="mono">$87,310</td><td class="mono">$63,685</td><td class="mono neg">137.1%</td><td class="mono neg">−$23,625</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>股价跌 20%，这个账户亏了 36%，而保证金要求翻了 2.6 倍。到第三行，即使你坚信股票会涨回来，券商也会要求你补 $23,625，否则替你平仓，而平仓的价格就是 IV 80% 时的价格。</p>
+      <p>同一个账户如果遵守 13.3 节「压力亏损合计 ≤ 20%」的规则，每张压力亏损 $1,254，最多只能卖 15 张。开仓时保证金 $16,497（净值的 16.5%）；同样的冲击后亏 $18,158，保证金 $43,655，只占净值的 53.3%，账户可以撑过去。<strong>规模规则的真正作用，是让你在坏日子里还有选择权。</strong>这也是规则卡里「保证金占用不超过净值 35%」的来源。</p>
+
+      <h3>两次真实的螺旋</h3>
+      <p><strong>2018 年 2 月。</strong>此前一年多市场异常平静，做空波动率成了很多人眼中的「稳定收益」。2 月 5 日，VIX 单日涨幅超过一倍，是有记录以来最大的单日百分比涨幅，道琼斯指数录得当时史上最大的单日点数跌幅。做空 VIX 期货的交易所交易产品需要在收盘前后买入期货来再平衡，这些买盘本身又推高了期货价格。其中一只产品一夜之间损失了绝大部分净值，随后被发行方宣布提前终止。卖出指数看跌的账户则同时面对价格下跌、IV 飙升和保证金上调。</p>
+      <p><strong>2020 年 3 月。</strong>疫情冲击下美股在几周内急跌，3 月里多次触发全市场熔断，VIX 收盘价创下历史纪录，超过 2008 年金融危机时的高点。连美国国债市场都一度出现流动性紧张。不少券商上调了保证金要求，期权的买卖价差大幅扩大。很多卖方的看法最终是对的，市场在之后几个月收复了失地，但他们没能撑到那一天。</p>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">13.7</span>流动性、提前指派与钉住风险</h2>
+      <p>压力测试按中间价算，现实中你要按对手价成交；模型按到期结算，现实中美式期权随时可能被行权。这三类风险不在希腊字母里，却经常决定最后的亏损。</p>
+
+      <h3>流动性：坏日子里价差最宽</h3>
+      <p>账户里显示的期权市值通常是中间价。平时一张 $1.00 的看跌，报价可能是 $0.95 × $1.05；急跌时同一张合约涨到 $13.10，报价可能变成 $12.40 × $13.80（两组报价都是假设）。买回 30 张，按对手价比按中间价多付：平时 <span class="num">0.05 × 100 × 30 = $150</span>，急跌时 <span class="num">0.70 × 100 × 30 = $2,100</span>。</p>
+      <ul>
+        <li>只交易买卖价差不超过权利金 10% 的合约；深度虚值的便宜期权，价差常常是权利金的一半</li>
+        <li>期权不用止损市价单：快市里它会以离谱的价格成交，改用限价单或按标的价格触发的提醒</li>
+        <li>压力测试的结果再乘 1.1–1.2，给滑点留余地</li>
+      </ul>
+
+      <h3>提前指派：深度实值的空头腿</h3>
+      <p>美式期权的持有人随时可以行权。看跌期权深度实值、时间价值所剩无几时，持有人提前行权拿到行权款去赚利息，比继续持有更划算。用模型看：95 看跌还剩 14 天、IV 38% 时，欧式价格低于内在价值（时间价值为负）的分界在股价 <span class="num">$84.05</span>；股价 $88 时时间价值还有 $0.41，$85 时只剩 $0.06。</p>
+      <p>第 12 章的 95/90 看跌价差，如果股价跌到 85，空头腿就很可能被提前指派。你会收到 1,000 股、价值 <span class="num">$95,000</span> 的股票。Reg T 账户里正股通常按 50% 收初始保证金，也就是 <span class="num">$47,500</span>；而这组价差的最大亏损只有 <span class="num">(5 − 1.021) × 1,000 = $3,979</span>。经济上你的风险仍被 90 看跌封住，但很多券商在计算保证金时不会把那张多头看跌算作保护，账户可能因此收到追加保证金通知。</p>
+      <p>卖出看涨的风险点在除息日前。如果看涨期权的时间价值小于即将派发的股息，持有人会在除息日前一天行权拿股息。行权价 100、还剩 10 天、IV 25% 的看涨，股价 102、103、104、105、108 时的时间价值分别是 $0.93、$0.67、$0.48、$0.35、$0.16。假设股息是 $0.50，股价在 104 以上时就要预期被指派。</p>
+
+      <h3>钉住风险：收盘价就在行权价上</h3>
+      <p>到期日收盘时股价 $100.10，你卖出了 10 张 100 看涨。会不会被行权，要到周末才知道：持有人在收盘后仍可以根据盘后价格决定是否行权。如果被指派，你周一开盘时空着 1,000 股；周一高开 3%，亏 <span class="num">1,000 × 100.10 × 3% = $3,003</span>。价差也一样：收盘时只有空头腿刚好实值、多头腿作废，你可能被指派而没有保护。规则很简单：<strong>到期日收盘前，平掉离现价 1% 以内的所有空头腿</strong>。</p>
+
+      <div class="note field">
+        <span class="tag">实战观察</span>
+        <p>有交易者在债券 ETF 上卖出看跌信用价差，想着「最多亏几十美元」。之后标的下跌，空头腿被提前指派，账户里突然多出一大笔正股，名义金额是价差最大亏损的上百倍。券商计算保证金时没有认可那条保护腿，账户被要求补钱，他只能卖出正股、另买保护性看跌来善后。几次之后，这类交易者的经验是：做价差前先问清券商怎么算保证金；空头腿进入实值后尽早处理，不要等到期。</p>
+      </div>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">13.8</span>期权仓位规则卡</h2>
+      <p>规则要在亏钱之前写好。下面这张卡是本课程的成果之一：数字是建议的起点，你可以按自己的经验调严，但不建议调松。勾选表示你已经把这条写进了自己的交易计划。</p>
+      <div class="cards rulecard">
+        <div class="card">
+          <h4><span class="num">R1</span>单笔上限</h4>
+          <ul>
+            <li><input type="checkbox" id="r1"><label for="r1">买方：单笔权利金 ≤ 账户 2%</label></li>
+            <li><input type="checkbox" id="r2"><label for="r2">定义风险的卖方：单笔最大亏损 ≤ 3%</label></li>
+            <li><input type="checkbox" id="r3"><label for="r3">未定义风险的卖方：单笔压力亏损 ≤ 5%</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">R2</span>总量上限</h4>
+          <ul>
+            <li><input type="checkbox" id="r4"><label for="r4">买方：同时 ≤ 5 笔，权利金合计 ≤ 10%</label></li>
+            <li><input type="checkbox" id="r5"><label for="r5">全部仓位压力亏损合计 ≤ 20%</label></li>
+            <li><input type="checkbox" id="r6"><label for="r6">卖沽名义敞口 ≤ 账户 1–1.5 倍</label></li>
+            <li><input type="checkbox" id="r7"><label for="r7">保证金占用 ≤ 净值 35%</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">R3</span>集中度</h4>
+          <ul>
+            <li><input type="checkbox" id="r8"><label for="r8">单一标的 ≤ 总压力亏损的 25%</label></li>
+            <li><input type="checkbox" id="r9"><label for="r9">同一行业 ≤ 40%；同一主题的买方仓位合计 ≤ 6%</label></li>
+            <li><input type="checkbox" id="r10"><label for="r10">Beta 加权 Delta 美元在账户的 ±75% 以内</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">R4</span>压力测试</h4>
+          <ul>
+            <li><input type="checkbox" id="r11"><label for="r11">每周五收盘后做一次，加仓前再做一次</label></li>
+            <li><input type="checkbox" id="r12"><label for="r12">三个情景：−20%、IV 翻倍、两者同时；有卖出看涨加测 +15%</label></li>
+            <li><input type="checkbox" id="r13"><label for="r13">超限时先减贡献最大的仓位，当周完成</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">R5</span>禁止事项</h4>
+          <ul>
+            <li><input type="checkbox" id="r14"><label for="r14">不在财报或二元事件前裸卖期权</label></li>
+            <li><input type="checkbox" id="r15"><label for="r15">不为亏损的卖方仓位加张数，不为「收信用」而滚仓</label></li>
+            <li><input type="checkbox" id="r16"><label for="r16">不卖买卖价差超过权利金 10% 的合约</label></li>
+            <li><input type="checkbox" id="r17"><label for="r17">不卖自己不愿意接股票的看跌，到期日不留离现价 1% 以内的空头腿</label></li>
+          </ul>
+        </div>
+      </div>
+      <p>几种情况要把数字调严：账户小于 $25,000、只能持有三五笔仓位时，集中度规则几乎无法满足，这时只做定义风险的结构，单笔最大亏损降到 2%；使用组合保证金（portfolio margin）的账户，券商允许的杠杆更高，保证金占用的上限要相应降低，压力测试的总上限不变；新手的前三个月，所有上限减半。</p>
+      <p>这张卡和第 12 章的调仓规则配合使用：调仓前先过「没有旧仓位，我会开吗」，开仓前先过这张卡。两道关都过了，才轮到方向判断。</p>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">案例</span>两个案例</h2>
+
+      <div class="case">
+        <div class="case-no">案例 1</div>
+        <h3>2018 年 2 月：一个做空波动率的散户账户</h3>
+        <p>先说事实。2018 年初之前，市场经历了很长一段低波动期，「做空波动率」被不少散户当成稳定收益的来源，常见的工具是做空 VIX 期货的交易所交易产品，以及卖出指数看跌期权。2 月 5 日，VIX 单日涨幅超过一倍；这类产品在收盘后的再平衡中损失了绝大部分净值，其中一只随后被发行方宣布提前终止。</p>
+        <p>下面用假设的数字重演一个典型账户（$100,000），看它是怎么在一两天里失去四成的：</p>
+        <ul>
+          <li>$40,000 买入一只「每日反向 1 倍」短期 VIX 期货指数的产品</li>
+          <li>卖出 30 张 30 天到期的指数 ETF 看跌：ETF 价格 $100，行权价 95，IV 只有 12%，每张收 $0.08，共 <span class="num">$241</span></li>
+        </ul>
+        <div class="tbl compact">
+          <table>
+            <caption>表 13-6　冲击前后（假设：ETF 跌 6%，IV 升到 30%，短期 VIX 期货指数单日上涨 80%）</caption>
+            <thead><tr><th>项目</th><th>冲击前</th><th>冲击后</th><th>变化</th></tr></thead>
+            <tbody>
+              <tr><td>反向 VIX 产品</td><td class="mono">$40,000</td><td class="mono">$8,000</td><td class="mono neg">−$32,000</td></tr>
+              <tr><td>30 张 95 看跌（每股）</td><td class="mono">$0.08</td><td class="mono">$3.44</td><td class="mono neg">−$10,090</td></tr>
+              <tr class="hl"><td>账户净值</td><td class="mono">$100,000</td><td class="mono">$57,910</td><td class="mono neg">−42.1%</td></tr>
+              <tr><td>看跌期权的保证金要求</td><td class="mono">$45,241</td><td class="mono">$66,731</td><td class="mono neg">+47.5%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>计算过程：反向 1 倍的产品每天按指数涨幅的相反数变动，指数涨 80%，它跌 80%，$40,000 剩 $8,000。如果指数单日涨 100%，它在理论上归零；现实中那一天的涨幅比本例的假设还要大。看跌期权：ETF 跌到 94、IV 30%、还剩 27 天，每张价值 $3.444，亏损 <span class="num">(3.444 − 0.080) × 100 × 30 = $10,090</span>，是收入的 42 倍。保证金按 13.6 节的公式，从 $45,241 升到 $66,731，已经超过账户净值。</p>
+        <p>按本章的规则卡，这个账户在冲击之前就违反了三条：</p>
+        <ul>
+          <li><strong>压力亏损</strong>：反向产品的设计决定了它在「指数翻倍」时归零，压力亏损就是整个 $40,000（40%），一条仓位就超过了 20% 的总上限。</li>
+          <li><strong>集中度</strong>：两类仓位押的是同一件事（市场继续平静），实际上是一个仓位。</li>
+          <li><strong>保证金</strong>：冲击前看跌期权的保证金已占净值 45%，超过 35% 的上限。</li>
+        </ul>
+        <p>启示：在 IV 12% 的时候卖期权，收到的权利金最少，而 IV 能翻倍的空间最大。低 IV 不是低风险，它常常意味着风险被定价得最便宜。</p>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 2</div>
+        <h3>2018 年 11 月：一家卖天然气期权的顾问公司</h3>
+        <p>先说事实。一家美国投资顾问公司专门替客户卖出商品期货期权，策略以卖出深度虚值期权、收取权利金为主。这类策略的吸引力在于胜率高：大部分深度虚值期权到期作废。2018 年 11 月中旬，天然气期货在很短时间内急涨，而这家公司在客户账户中持有大量卖出的天然气看涨期权。期货清算商强制平仓之后，许多客户不仅亏光了账户，还欠下清算商的钱。公司随后停止运营，负责人公开道歉。</p>
+        <p>下面用假设的数字重演一个账户（$500,000）。天然气期货合约对应 10,000 百万英热单位，价格每变动 $0.01，一张合约变动 $100。期货价格 $3.30 时，卖出 60 张 75 天到期、行权价 $4.50 的看涨（高出现价 36%，IV 45%）。用 Black 模型，每张价值 $0.0217，即 <span class="num">$217</span>，60 张收 <span class="num">$13,032</span>，占账户 2.6%，Delta 只有 0.077。</p>
+        <div class="tbl compact">
+          <table>
+            <caption>表 13-7　期货急涨时的浮亏（假设的价格与 IV 路径）</caption>
+            <thead><tr><th>情景</th><th>期货价格</th><th>IV</th><th>每张看涨价值</th><th>60 张浮亏</th><th>占账户</th><th>单张 Delta</th></tr></thead>
+            <tbody>
+              <tr><td>开仓</td><td class="mono">$3.30</td><td class="mono">45%</td><td class="mono">$217</td><td>—</td><td>—</td><td class="mono">0.077</td></tr>
+              <tr><td>+15%（7 天后）</td><td class="mono">$3.80</td><td class="mono">60%</td><td class="mono">$1,636</td><td class="mono neg">−$85,135</td><td class="mono">17.0%</td><td class="mono">0.298</td></tr>
+              <tr><td>+27%（11 天后）</td><td class="mono">$4.20</td><td class="mono">80%</td><td class="mono">$4,377</td><td class="mono neg">−$249,566</td><td class="mono">49.9%</td><td class="mono">0.481</td></tr>
+              <tr><td>+39%（14 天后）</td><td class="mono">$4.60</td><td class="mono">90%</td><td class="mono">$7,105</td><td class="mono neg">−$413,275</td><td class="mono">82.7%</td><td class="mono">0.592</td></tr>
+              <tr class="hl"><td>+48%（15 天后）</td><td class="mono">$4.90</td><td class="mono">100%</td><td class="mono">$9,650</td><td class="mono neg">−$565,985</td><td class="mono neg">113.2%</td><td class="mono">0.656</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>以最后一行为例：期货 $4.90、IV 100%、还剩 60 天，每张看涨 $0.9650，即 $9,650；60 张合计 $579,018，减去收到的 $13,032，浮亏 $565,985，比整个账户多出 $65,985。这部分就是客户欠清算商的钱。</p>
+        <ul>
+          <li><strong>深度虚值不等于安全。</strong>开仓时 Delta 0.077，看起来「几乎不可能到」；期货涨 48% 后 Delta 变成 0.656。卖方的 Gamma 在急涨中把仓位推成了一个大额空头。</li>
+          <li><strong>商品看涨的尾部在上方。</strong>天气、库存、供给中断都会让价格向上跳，而且空头回补会加速上涨。股票卖方习惯的「下跌才危险」在这里正好相反。</li>
+          <li><strong>期货期权可以亏得比账户还多。</strong>乘数大，保证金按情景（SPAN）计算，价格和 IV 一起上升时要求会急剧增加。清算商平仓的价格就是最差的那一刻。</li>
+          <li><strong>三条规则同时被违反。</strong>单笔：压力亏损远超 5%；总量：一个品种就是全部仓位；集中度：所有客户账户押在同一个商品、同一个方向。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">工具</span>清单与自测</h2>
+      <p>勾选状态只保存在你自己的浏览器里。</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">13-1</span>每周风险例会</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">列出每个仓位的名义敞口、最大亏损、压力亏损</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">跑 −20%、IV 翻倍、两者同时三个情景</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">对照规则卡，标出所有超限项</label></li>
+            <li><input type="checkbox" id="k4"><label for="k4">写下处理办法，当周执行完</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">13-2</span>开新仓之前</h4>
+          <ul>
+            <li><input type="checkbox" id="k5"><label for="k5">用最大亏损或压力亏损定张数，不用权利金</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">检查它和现有仓位是不是同一个赌注</label></li>
+            <li><input type="checkbox" id="k7"><label for="k7">买卖价差不超过权利金 10%</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">查财报日、除息日，确认券商怎么算这笔的保证金</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">13-3</span>到期周</h4>
+          <ul>
+            <li><input type="checkbox" id="k9"><label for="k9">深度实值的空头腿：时间价值是否已接近零</label></li>
+            <li><input type="checkbox" id="k10"><label for="k10">卖出看涨：除息日前时间价值是否小于股息</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">收盘前平掉离现价 1% 以内的空头腿</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>自测五题</h3>
+      <details class="q"><summary><span class="num">1</span><span>股价 $100，你以 $1.00 卖出 1 张 30 天 90 看跌（IV 40%）。它的名义敞口、最大亏损和压力亏损（−20%，IV 翻倍）各是多少？</span></summary>
+        <div class="ans"><p>名义敞口 100 × $100 = $10,000（现金担保需要 $9,000）；最大亏损 (90 − 1.00) × 100 = $8,900；压力亏损约 $1,254，是权利金的 12.5 倍。</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>你估计自己买期权的胜率是 35%，赢时平均赚 2 倍权利金。Kelly 比例是多少？如果真实胜率是 32% 呢？</span></summary>
+        <div class="ans"><p><span class="num">(2 × 0.35 − 0.65) / 2 = 2.5%</span>；胜率 32% 时 <span class="num">(0.64 − 0.68) / 2 = −2%</span>，期望为负，不应该下注。胜率差 3 个点就让结论反转，所以实际比例要远低于 Kelly 上限。</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>账户 $80,000，一组看跌价差最大亏损 $435。按「单笔最大亏损 ≤ 3%」最多开几组？</span></summary>
+        <div class="ans"><p>3% 是 $2,400，<span class="num">2,400 ÷ 435 = 5.5</span>，取 5 组，最大亏损 $2,175。</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>十只股票各卖一张看跌。股票之间的相关性从 0.3 升到 0.9，平均盈亏和最差 1% 的结果分别怎么变？</span></summary>
+        <div class="ans"><p>按图 13-2 的模拟，平均盈亏从 +$277 变成 +$261，几乎不变；最差 1% 从 −$3,986 扩大到 −$9,706，约 2.4 倍。相关性动的是尾部，平均值几乎不受影响。</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>你的 95/90 看跌价差还剩 14 天，股价跌到 $85，95 看跌的时间价值只剩 $0.06。会发生什么？该怎么做？</span></summary>
+        <div class="ans"><p>空头腿很可能被提前指派：10 组价差会让你收到 1,000 股、价值 $95,000 的股票，Reg T 初始保证金约 $47,500，远超价差的最大亏损。应主动处理空头腿：平掉整个价差，或至少平掉空头腿，并先确认券商如何计算保证金。</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="章节翻页"></nav>
+
+    <footer class="end">
+      <p>本章示例由 Black-Scholes 模型（期货期权用其 Black 形式）计算，利率 4%，不派息，一年 365 天；模拟、报价、价格路径与保证金均为文中注明的假设。历史事件只描述定性事实。内容用于教学，不构成投资建议。</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+  const sgn = v => (v > 0 ? "+" : v < 0 ? "−" : "");
+  const kfmt = v => sgn(v) + "$" + (Math.abs(v) >= 1000 ? (Math.abs(v) / 1000).toFixed(Math.abs(v) % 1000 === 0 ? 0 : 1) + "k" : Math.round(Math.abs(v)));
+  const pct = (v, d) => (v < 0 ? "−" : "") + Math.abs(v * 100).toFixed(d === undefined ? 1 : d) + "%";
+  function nice(lo, hi, n) {
+    if (hi - lo < 1e-9) { lo -= 1; hi += 1; }
+    const raw = (hi - lo) / (n || 5), mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    const st = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => s >= raw - 1e-12);
+    const a = Math.floor(lo / st) * st, b = Math.ceil(hi / st) * st, t = [];
+    for (let v = a; v <= b + st * 1e-6; v += st) t.push(+v.toFixed(6));
+    return { lo: a, hi: b, t };
+  }
+
+  // ---------- fig 13-1：最长连亏分布 ----------
+  (function () {
+    const svg = document.getElementById("f1-svg");
+    const w = document.getElementById("f1-w");
+    const btns = document.querySelectorAll("#fig1 .seg button");
+    const N = 100;
+    let f = 0.02;
+    // P(最长连亏 < k)
+    function pLess(k, q) {
+      if (k <= 0) return 0;
+      let st = new Float64Array(k); st[0] = 1;
+      for (let t = 0; t < N; t++) {
+        const nw = new Float64Array(k);
+        for (let j = 0; j < k; j++) { const pr = st[j]; if (!pr) continue; nw[0] += pr * (1 - q); if (j + 1 < k) nw[j + 1] += pr * q; }
+        st = nw;
+      }
+      let s = 0; for (let j = 0; j < k; j++) s += st[j]; return s;
+    }
+    function draw() {
+      const p = +w.value / 100, q = 1 - p;
+      document.getElementById("f1-w-o").textContent = w.value + "%";
+      const K = 60, cdf = [];
+      for (let k = 0; k <= K; k++) cdf.push(pLess(k + 1, q));
+      const pm = cdf.map((c, k) => k ? c - cdf[k - 1] : c);
+      const med = cdf.findIndex(c => c >= 0.5), p95 = cdf.findIndex(c => c >= 0.95), p99 = cdf.findIndex(c => c >= 0.99);
+      const xmax = Math.max(20, p99 + 2);
+      let ymax = 0; for (let k = 1; k <= xmax; k++) ymax = Math.max(ymax, pm[k] * 100);
+      const nt = nice(0, ymax, 4);
+      const step = xmax > 30 ? 10 : 5;
+      plot(svg, {
+        x: [0.3, xmax + 0.7], y: [0, nt.hi], xt: range(step, xmax, step), yt: nt.t,
+        yf: v => v + "%", xlabel: "100 笔中最长的连续亏损（笔）", ylabel: "概率",
+        bars: range(1, xmax, 1).map(k => ({ x: k, y: pm[k] * 100, w: 0.72, color: k >= p95 ? "var(--gamma)" : "var(--delta)" })),
+        vline: med
+      });
+      document.getElementById("f1-r1").textContent = med + " 笔";
+      document.getElementById("f1-r2").textContent = p95 + " 笔";
+      document.getElementById("f1-r3").textContent = "−" + (100 * (1 - Math.pow(1 - f, p95))).toFixed(1) + "%";
+      document.getElementById("f1-r4").textContent = (100 * (1 - cdf[9])).toFixed(1) + "%";
+    }
+    w.addEventListener("input", draw);
+    btns.forEach(b => b.addEventListener("click", () => {
+      f = +b.dataset.f;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    CK.figure(draw);
+  })();
+
+  // ---------- tool 13-A：压力测试器 ----------
+  (function () {
+    const ROWS = [
+      ["A", "p", -2, 150, 140, 30, 35],
+      ["B", "p", -5, 60, 55, 30, 40],
+      ["SPY", "p", -3, 780, 750, 30, 17],
+      ["SPY", "p", 3, 780, 730, 30, 19],
+      ["C", "c", -2, 100, 110, 30, 45],
+      ["D", "p", -4, 50, 45, 45, 50]
+    ];
+    const IDS = ["n", "t", "q", "s", "k", "d", "v"];
+    const tbody = document.querySelector("#s-tbl tbody");
+    tbody.innerHTML = ROWS.map((r, i) => `<tr>
+      <td><input class="name" id="s-n${i}" value="${r[0]}" aria-label="标的"></td>
+      <td><select id="s-t${i}" aria-label="类型"><option value="p"${r[1] === "p" ? " selected" : ""}>看跌</option><option value="c"${r[1] === "c" ? " selected" : ""}>看涨</option></select></td>
+      <td><input id="s-q${i}" type="number" step="1" value="${r[2]}" aria-label="张数"></td>
+      <td><input id="s-s${i}" type="number" step="1" value="${r[3]}" aria-label="标的价格"></td>
+      <td><input id="s-k${i}" type="number" step="1" value="${r[4]}" aria-label="行权价"></td>
+      <td><input id="s-d${i}" type="number" step="1" min="0" value="${r[5]}" aria-label="剩余天数"></td>
+      <td><input id="s-v${i}" type="number" step="1" min="1" value="${r[6]}" aria-label="隐含波动率"></td>
+      <td class="mono" id="s-m${i}">—</td><td class="mono" id="s-p${i}">—</td></tr>`).join("");
+    const $ = (id, i) => document.getElementById("s-" + id + i);
+    const gapS = document.getElementById("s-gap"), ivS = document.getElementById("s-ivm"), acctIn = document.getElementById("s-acct");
+    const svg = document.getElementById("s-svg");
+    function legs() {
+      return ROWS.map((_, i) => ({ n: ($("n", i).value || "?").trim(), t: $("t", i).value, q: +$("q", i).value || 0, S: +$("s", i).value || 0, K: +$("k", i).value || 0, d: Math.max(+$("d", i).value || 0, 0), iv: (+$("v", i).value || 0) / 100 }));
+    }
+    const legVal = (l, gap, m) => (!l.q || l.S <= 0 || l.K <= 0) ? 0 : bs(Math.max(l.S * (1 + gap), 0.01), l.K, l.d / DAY, Math.max(l.iv * m, 0.01), l.t).price * 100 * l.q;
+    function draw() {
+      const L = legs(), gap = +gapS.value / 100, m = +ivS.value, acct = +acctIn.value || 100000;
+      document.getElementById("s-gap-o").textContent = sgn(+gapS.value) + Math.abs(+gapS.value) + "%";
+      document.getElementById("s-ivm-o").textContent = "× " + m.toFixed(1);
+      let tot = 0, prem = 0; const grp = {};
+      L.forEach((l, i) => {
+        const v0 = legVal(l, 0, 1), v1 = legVal(l, gap, m), d = v1 - v0;
+        tot += d; prem -= v0; grp[l.n] = (grp[l.n] || 0) + d;
+        $("m", i).textContent = l.q ? CK.usd(v0) : "—";
+        const c = $("p", i); c.textContent = l.q ? money(d) : "—"; c.className = "mono " + (d < 0 ? "neg" : d > 0 ? "pos" : "");
+      });
+      const pnl = (g, mm) => L.reduce((s, l) => s + legVal(l, g, mm) - legVal(l, 0, 1), 0);
+      const xs = range(-40, 20, 1);
+      const s1 = xs.map(x => [x, pnl(x / 100, 1)]), s2 = xs.map(x => [x, pnl(x / 100, m)]);
+      let lo = -0.2 * acct, hi = 0;
+      s1.concat(s2).forEach(p => { lo = Math.min(lo, p[1]); hi = Math.max(hi, p[1]); });
+      const nt = nice(lo, hi, 5);
+      plot(svg, {
+        x: [-40, 20], y: [nt.lo, nt.hi], xt: range(-40, 20, 10), yt: nt.t,
+        xf: v => sgn(v) + Math.abs(v) + "%", yf: kfmt, xlabel: "所有标的同时跳空", ylabel: "组合盈亏（美元）", zero: 0, vline: +gapS.value,
+        series: [
+          { pts: [[-40, -0.2 * acct], [20, -0.2 * acct]], color: "var(--warn)", w: 1.6, dash: "6 5" },
+          { pts: s1, color: "var(--muted)", w: 2, dash: "6 5" },
+          { pts: s2, color: "var(--gamma)", w: 2.6 }
+        ],
+        dots: [[+gapS.value, tot, "var(--gamma)", 5]]
+      });
+      let worstN = "—", worstV = 0;
+      for (const k in grp) if (grp[k] < worstV) { worstV = grp[k]; worstN = k; }
+      document.getElementById("s-r1").textContent = money(tot);
+      document.getElementById("s-r2").textContent = pct(tot / acct);
+      document.getElementById("s-r3").textContent = worstV < 0 ? worstN + " " + money(worstV) + (tot < 0 ? "（" + Math.round(worstV / tot * 100) + "%）" : "") : "无亏损";
+      document.getElementById("s-r4").textContent = CK.usd(prem);
+    }
+    document.getElementById("calc").addEventListener("input", draw);
+    document.getElementById("calc").addEventListener("change", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 13-2：分散的幻觉 ----------
+  (function () {
+    const svg = document.getElementById("f2-svg");
+    const rhoS = document.getElementById("f2-rho");
+    const NS = 4000, NK = 10, S0 = 100, K = 90, D = 30, IV = 0.40, RV = 0.35;
+    const rand = CK.rng(20180205);
+    const Zm = [], Zi = [];
+    for (let s = 0; s < NS; s++) { Zm.push(CK.gauss(rand)); const row = []; for (let i = 0; i < NK; i++) row.push(CK.gauss(rand)); Zi.push(row); }
+    const prem = bs(S0, K, D / DAY, IV, "p").price;
+    function simulate(rho) {
+      const T = D / 365, sd = RV * Math.sqrt(T), a = Math.sqrt(rho), b = Math.sqrt(1 - rho);
+      const out = new Float64Array(NS);
+      for (let s = 0; s < NS; s++) {
+        let pnl = 0;
+        for (let i = 0; i < NK; i++) {
+          const z = a * Zm[s] + b * Zi[s][i];
+          const ST = S0 * Math.exp(-0.5 * sd * sd + sd * z);
+          pnl += (prem - Math.max(K - ST, 0)) * 100;
+        }
+        out[s] = pnl;
+      }
+      return Array.from(out).sort((x, y) => x - y);
+    }
+    const exceed = (a, x) => { let c = 0; for (let i = 0; i < a.length && a[i] < -x; i++) c++; return c / a.length; };
+    const ref = simulate(0);
+    const xs = range(0, 20000, 250);
+    const refPts = xs.map(x => [x, exceed(ref, x)]);
+    function draw() {
+      const rho = +rhoS.value;
+      document.getElementById("f2-rho-o").textContent = rho.toFixed(2);
+      const a = simulate(rho);
+      plot(svg, {
+        x: [0, 20000], y: [0.0002, 1], ylog: true, xt: range(0, 20000, 5000), yt: [0.001, 0.01, 0.1, 1],
+        xf: v => "$" + (v / 1000) + "k", yf: v => (v * 100 >= 1 ? (v * 100).toFixed(0) : (v * 100).toFixed(1)) + "%",
+        xlabel: "组合亏损超过（美元）", ylabel: "概率（对数刻度）",
+        series: [{ pts: refPts, color: "var(--muted)", w: 2, dash: "6 5" }, { pts: xs.map(x => [x, exceed(a, x)]), color: "var(--gamma)", w: 2.6 }]
+      });
+      const mean = a.reduce((s, v) => s + v, 0) / a.length;
+      document.getElementById("f2-r1").textContent = money(mean);
+      document.getElementById("f2-r2").textContent = money(a[Math.floor(0.05 * NS)]);
+      document.getElementById("f2-r3").textContent = money(a[Math.floor(0.01 * NS)]);
+      document.getElementById("f2-r4").textContent = (100 * exceed(a, 5000)).toFixed(1) + "%";
+    }
+    rhoS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+})();
+</script>
+</body>
+</html>

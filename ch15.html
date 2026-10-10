@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 15 章 心理与常见死法 · 美股期权课</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  td.tw, th.tw { white-space: normal; min-width: 9em; text-align: left; }
+  th.hw { white-space: normal; line-height: 1.4; min-width: 4.6em; }
+  .copyrow { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 4px; }
+  .copy-msg { font-size: 13px; color: var(--muted); }
+  #imp-text { white-space: pre-wrap; word-break: break-all; max-height: 420px; }
+  .tile h4 .tg { font-size: 12px; letter-spacing: .08em; font-weight: 700; margin-right: 6px; }
+  .tile.sig h4 .tg { color: var(--warn); }
+  .tile.rule h4 .tg { color: var(--theta); }
+  .tile ul { margin-bottom: 4px; }
+</style>
+</head>
+<body data-ch="15">
+<div class="topbar"><div class="topbar-inner"><a class="brand" href="index.html">美股期权<span>课</span></a><select id="ck-jump" aria-label="跳转到章节"></select></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">15</div>
+    <div class="eyebrow">美股期权课 · 第五部分 心性与进阶 · 第 15 章</div>
+    <h1>心理与<span class="g">常见死法</span></h1>
+    <p class="deck">期权账户很少死于一次判断错误，多数死于一种可以预见、反复出现的行为模式。本章先拆开买方和卖方各自的心理陷阱，再给出五条最常见的账户死亡路径，每条都写清早期信号和预防规则。</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="本章目录">
+    <p class="toc-title">本章目录</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>开篇：胜率九成二，账户却变小了</span></a></li>
+      <li><a href="#s1"><span class="n">15.1</span><span>期权放大了哪些偏差</span></a></li>
+      <li><a href="#s2"><span class="n">15.2</span><span>买方心理</span></a></li>
+      <li><a href="#s3"><span class="n">15.3</span><span>卖方心理</span></a></li>
+      <li><a href="#s4"><span class="n">15.4</span><span>对 Theta 的执念</span></a></li>
+      <li><a href="#s5"><span class="n">15.5</span><span>社交媒体上的期权文化</span></a></li>
+      <li><a href="#s6"><span class="n">15.6</span><span>账户死亡的五条路径</span></a></li>
+      <li><a href="#s7"><span class="n">15.7</span><span>三件工具</span></a></li>
+      <li><a href="#cases"><span class="n">案例</span><span>两本账</span></a></li>
+      <li><a href="#tools"><span class="n">工具</span><span>清单与自测</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>本章目录</summary>
+      <ol>
+        <li><a href="#open">开篇：胜率九成二，账户却变小了</a></li>
+        <li><a href="#s1">15.1 期权放大了哪些偏差</a></li>
+        <li><a href="#s2">15.2 买方心理</a></li>
+        <li><a href="#s3">15.3 卖方心理</a></li>
+        <li><a href="#s4">15.4 对 Theta 的执念</a></li>
+        <li><a href="#s5">15.5 社交媒体上的期权文化</a></li>
+        <li><a href="#s6">15.6 账户死亡的五条路径</a></li>
+        <li><a href="#s7">15.7 三件工具</a></li>
+        <li><a href="#cases">两本账</a></li>
+        <li><a href="#tools">清单与自测</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>学完本章你能</h4>
+        <ul>
+          <li>算出一张末日期权的真实期望值，看清「彩票」的赔率</li>
+          <li>说明卖方「稳赚」曲线里藏着的尾部，以及仓位如何决定它的杀伤力</li>
+          <li>对照五条死亡路径的早期信号，给自己的账户做一次体检</li>
+        </ul>
+      </div>
+      <div>
+        <h4>前置知识</h4>
+        <ul>
+          <li>第 5 章：Theta；第 8、10 章：卖方策略与 0DTE</li>
+          <li>第 13 章：压力测试与保证金螺旋</li>
+          <li>第 14 章：交易日志与期望值</li>
+        </ul>
+      </div>
+      <div>
+        <h4>本章约定</h4>
+        <ul>
+          <li>示例用 Black-Scholes，利率 4%，不派息，一年 365 天</li>
+          <li>模拟使用固定随机种子，结果可复现</li>
+          <li>账本与账户均为虚构</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">开篇</span>胜率九成二，账户却变小了</h2>
+      <p class="lead">一只 $100 的股票，隐含波动率 30%。你每周一卖出 10 张 7 天后到期的 95 看跌期权，每张收 $0.20，一周进账 $203。</p>
+      <p>这张期权的 Delta 是 <span class="num">−0.10</span>，按期权价格倒推，到期价内的概率是 <span class="num">10.9%</span>。市场的报价其实已经告诉你：平均九周左右会有一周亏钱。</p>
+      <p>前 11 周，股价从来没碰到 95，每周的期权都归零，你稳稳收了 <span class="num">$2,238</span>。第 12 周，公司周末发布了坏消息，股价周一开盘跳到 88，跌了 12%。这一周的亏损是 <span class="num">(95 − 88 − 0.20) × 1,000 = $6,797</span>。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 15-0　每周卖出 10 张 95 看跌，12 周的结果（美元）</caption>
+          <thead><tr><th>周</th><th>结果</th><th>当周盈亏</th><th>累计</th></tr></thead>
+          <tbody>
+            <tr><td>1–11</td><td>每周都归零</td><td class="mono pos">每周 +203</td><td class="mono pos">+2,238</td></tr>
+            <tr class="hl"><td>12</td><td>跳空到 88</td><td class="mono neg">−6,797</td><td class="mono neg">−4,559</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>胜率 11/12，约九成二，账户却少了 $4,559。第 12 周一次亏掉了前 11 周利润的三倍。更麻烦的是前 11 周：每一周都在强化同一个信念「这是稳赚的」，第 12 周来临之前，你没有任何理由怀疑它。</p>
+      <p>这就是期权心理问题的典型样子。收益分布的形状，让人在大部分时间里收到错误的反馈。本章不讲泛泛的交易心理，只讲期权特有的那部分：哪些心理偏差被期权放大了，它们会沿着哪几条路径把账户带向归零，以及在什么时候能看到苗头。</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">15.1</span>期权放大了哪些偏差</h2>
+      <p>期权把收益分布做成了两种极端形状：买方是「经常小亏、偶尔大赚」，卖方是「经常小赚、偶尔大亏」。这两种形状正好对上人最容易犯错的几种倾向。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 15-1　四种头寸的收益分布（每股，美元；定价公平，期望都约等于零）</caption>
+          <thead><tr><th>头寸</th><th>价格</th><th class="hw">赚钱概率</th><th class="hw">赢时平均</th><th class="hw">输时平均</th><th class="hw">赢 ÷ 输</th><th class="hw">最坏 1%</th></tr></thead>
+          <tbody>
+            <tr><td class="tw">买 0DTE 603 看涨（标的 600，剩 6 小时，IV 16%）</td><td class="mono">0.146</td><td class="mono">10.7%</td><td class="mono pos">+1.21</td><td class="mono neg">−0.15</td><td class="mono">8.36</td><td class="mono">−0.15</td></tr>
+            <tr><td class="tw">买 30 天平值看涨（标的 100，IV 30%）</td><td class="mono">3.59</td><td class="mono">34.0%</td><td class="mono pos">+6.21</td><td class="mono neg">−3.17</td><td class="mono">1.96</td><td class="mono">−3.59</td></tr>
+            <tr><td class="tw">卖 7 天 95 看跌（标的 100，IV 30%）</td><td class="mono">0.203</td><td class="mono">90.1%</td><td class="mono pos">+0.20</td><td class="mono neg">−1.83</td><td class="mono">0.11</td><td class="mono neg">−4.01</td></tr>
+            <tr><td class="tw">卖 30 天 93.5 看跌（标的 100，IV 30%）</td><td class="mono">0.963</td><td class="mono">81.5%</td><td class="mono pos">+0.94</td><td class="mono neg">−4.18</td><td class="mono">0.23</td><td class="mono neg">−10.69</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>按 Black-Scholes 的公平定价，这四个头寸的期望都约等于零。形状却天差地别：买 0DTE 的人九成时候亏掉全部，赢时平均赚 8 倍；卖 7 天看跌的人九成时候赚满，最坏 1% 的情况下一次亏掉 20 倍权利金。</p>
+
+      <h3>三种被放大的倾向</h3>
+      <ul>
+        <li><strong>高估小概率。</strong>人对「小概率、大回报」的事件，感受到的分量往往比它的真实概率大。一张 $0.15 可能变成 $1.50 的期权，画面感太强，一成的概率在心里像是三成。这让买方愿意为虚值和末日期权付高价。</li>
+        <li><strong>从小样本里得到确定感。</strong>九成胜率的卖方，经常连赢十几次。人会根据最近的经验推断风险，十几次没出事就觉得「不会出事」。可是那一成的亏损本来就很少出现在十几次的样本里（第 14 章：28 笔里看不到 5% 尾部的概率是 23.8%）。</li>
+        <li><strong>亏损厌恶与处置效应。</strong>人倾向于早早兑现盈利、死扛亏损。股票死扛最多是慢慢跌；期权死扛还要面对到期日和 Gamma：卖方越扛 Delta 越大，买方越扛时间价值越少。</li>
+      </ul>
+
+      <h3>期权特有的四个放大器</h3>
+      <div class="tbl">
+        <table>
+          <caption>表 15-2　同一种倾向，在股票和期权里的不同后果</caption>
+          <thead><tr><th>放大器</th><th class="tw">在股票里</th><th class="tw">在期权里</th></tr></thead>
+          <tbody>
+            <tr><td>杠杆</td><td class="tw">一万美元买一万美元的股票</td><td class="tw">一千美元的权利金背后，可能是十万美元的名义敞口</td></tr>
+            <tr><td>到期日</td><td class="tw">可以等，代价只是机会成本</td><td class="tw">每张合约都有截止时间，制造「现在不做就来不及」的紧迫感</td></tr>
+            <tr><td>非线性</td><td class="tw">亏损随价格线性增加</td><td class="tw">卖方的亏损随价格加速，买方的价值随时间加速流失</td></tr>
+            <tr><td>报价波动</td><td class="tw">一天动 2% 已经算大</td><td class="tw">末日期权二十分钟跌 60% 很平常，情绪跟着剧烈摆动</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">15.2</span>买方心理：彩票、末日期权与小亏累积</h2>
+      <p>买方的问题不在单笔亏损。每一笔都亏得很少，赢的那一次又特别显眼，于是一个期望为负的习惯可以维持很久而不被察觉。</p>
+
+      <h3>彩票心态：只看赔率，不看概率</h3>
+      <p>以一只价格 $600 的指数 ETF 为例（价格为假设）。上午 10 点买入当天到期、行权价 603（虚值 0.5%）的看涨期权，剩约 6 小时，IV 16%。中间价 <span class="num">0.146</span>，按卖价成交多付半个价差 $0.01，成本 <span class="num">0.156</span>。</p>
+      <ul>
+        <li>到期价内的概率：<span class="num">11.8%</span>。</li>
+        <li>赢的那一成里，平均赚成本的 <span class="num">7.8</span> 倍，中位数 <span class="num">6.0</span> 倍。这就是截图上的样子。</li>
+        <li>每笔期望：定价完全公平时，约为成本的 <span class="num">−7.2%</span>。如果当天的实际波动只有隐含的 85%，降到 <span class="num">−49.4%</span>。</li>
+      </ul>
+      <p>−7.2% 大部分来自那 1 美分：$0.01 是 $0.146 的 6.8%。期权越便宜，固定的 1 美分占比越高。同一天行权价 606（虚值 1%）的看涨中间价只有 <span class="num">0.008</span>，加 1 美分后成本翻了一倍多，即使定价公平，每笔期望也是 <span class="num">−57.6%</span>。最便宜的彩票，赔率最差。</p>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">彩票的期望约等于零减成本，但 100 次的结果完全看运气</span><span class="fig-no">图 15-1 · 0DTE 看涨，每次 1 张，模拟 100 次</span></div>
+        <div class="controls">
+          <label class="ctl" for="f1-k">行权价 <input id="f1-k" type="range" min="601" max="609" value="603"> <output id="f1-k-o">603</output></label>
+          <label class="ctl" for="f1-r">实际波动 ÷ 隐含 <input id="f1-r" type="range" min="70" max="120" step="5" value="100"> <output id="f1-r-o">100%</output></label>
+          <button type="button" class="btn" id="f1-seed">换一组随机数</button>
+        </div>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 300" role="img" aria-label="100 次末日期权交易的累计盈亏"></svg>
+        <div class="legend"><span><i style="border-color: var(--ink)"></i>累计盈亏</span><span style="color: var(--theta)">● 赚钱的那几次</span><span><i class="dash" style="border-color: var(--gamma)"></i>理论期望</span></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small>胜率（100 次中）</small></div>
+          <div><b id="f1-r2">—</b><small>赢的那几次平均拿回成本的</small></div>
+          <div><b id="f1-r3">—</b><small>100 次累计盈亏</small></div>
+          <div><b id="f1-r4">—</b><small>理论每笔期望（占成本）</small></div>
+        </div>
+        <figcaption>标的 600、IV 16%、剩 6 小时，按卖价买入（多付 $0.01），到期按内在价值减 $0.01 卖出。默认这组随机数里 100 次赢 9 次，最后亏 $114，中途一度赚过 $490。多按几次「换一组随机数」：有时赚、有时亏，曲线永远是长时间缓慢下滑、偶尔跳一下。把实际波动拖到 85%，下滑的斜率明显变陡；把行权价拖到 605，理论期望已经掉到 −31%。</figcaption>
+      </figure>
+
+      <h3>追末日期权：每天都有新的一期</h3>
+      <p>末日期权每天都有。昨天亏了，今天就有新的一张可以「赢回来」，没有冷静期。按上面的例子，单笔亏损的概率约 88%，连亏五天的概率是 <span class="num">0.882<sup>5</sup> = 53%</span>，连亏十天也有 <span class="num">28.5%</span>。连亏是常态，不是坏运气。</p>
+      <p>真正危险的是亏损之后的反应。「今天必须赢回来」会让单笔金额越来越大，15.6 节的第一条死亡路径就是这样形成的。</p>
+
+      <h3>小亏累积：没有一笔让你疼</h3>
+      <p>每笔 $300，单笔亏损不会触发任何警觉。可是每个交易日一笔，一个月 20 笔，即使定价完全公平，期望也是 <span class="num">20 × 300 × (−7.2%) = −$432</span>；实际波动只有隐含的 85% 时，是 <span class="num">−$2,964</span>，相当于每月预算 $6,000 的一半。</p>
+      <div class="note">
+        <span class="tag">规则</span>
+        <p>彩票式交易按「月度预算」管理，而不是按单笔。先定下一个月最多花多少权利金（例如账户的 2%），花完就停。这把「每一笔都不疼」的小亏，重新加总成一个你能看见的数字。</p>
+      </div>
+
+      <h3>什么时候买虚值期权是合理的</h3>
+      <p>买便宜的虚值期权本身没有错。下面三种情况，它有站得住的理由：</p>
+      <ul>
+        <li><strong>你有理由认为实际波动会高于隐含。</strong>例如 IV 处在低位、催化剂明确而市场还没有定价（第 14 章矩阵的「低 IV」一行）。这时期望值可以为正，前提是你能说清市场漏掉了什么。</li>
+        <li><strong>它是保险，不是彩票。</strong>为持股或卖方仓位买的虚值看跌，目的是截断尾部，略为负的期望是保费（第 11 章）。判断标准是它对应着一个具体的、你承受不起的风险。</li>
+        <li><strong>预算化，并且事先定义为低概率交易。</strong>入场前写下「这笔大概率归零」，金额来自月度彩票预算，不来自本金。</li>
+      </ul>
+      <p>三条都不满足的末日期权，本质上是付费娱乐。这本身没有问题，只要你按娱乐来记账，不把它算进交易系统的业绩里，也不在亏损后用交易的理由去加码。</p>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">15.3</span>卖方心理：「稳赚」错觉</h2>
+      <p>卖方的危险来自反馈太好。连续的小赚让人相信风险不存在，于是在最不该加仓的时候加仓，在最该认错的时候等待。</p>
+
+      <h3>「稳赚」错觉</h3>
+      <p>下图把开篇的例子拉长到一年：每周卖出 Delta −0.15 的 7 天看跌期权，按 IV 30% 定价，平时股价的实际波动只有 20%（卖方有优势），年化漂移 8%。第 47 周，股价一次跳空下跌 18%。张数每周按「名义金额 ÷ 账户净值」的倍数重算，随账户增长自动变大。</p>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">一年的「稳赚」，可以在一周里还回去</span><span class="fig-no">图 15-2 · 每周卖出 7 天看跌，账户 $50,000</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="结构">
+            <button type="button" data-m="naked" aria-pressed="true">裸卖看跌</button>
+            <button type="button" data-m="spread" aria-pressed="false">看跌价差（宽 5）</button>
+          </div>
+          <label class="ctl" for="f2-l">仓位：名义 ÷ 净值 <input id="f2-l" type="range" min="0.5" max="5" step="0.5" value="1.5"> <output id="f2-l-o">1.5 倍</output></label>
+        </div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 300" role="img" aria-label="卖方账户净值曲线与一次跳空"></svg>
+        <div class="legend"><span><i id="f2-lg1" style="border-color: var(--gamma)"></i>当前结构</span><span><i class="dash" style="border-color: var(--muted)"></i>另一种结构（同样张数）</span></div>
+        <div class="readout">
+          <div><b id="f2-r1">—</b><small>赚钱的周数（共 52 周）</small></div>
+          <div><b id="f2-r5">—</b><small>最长连胜</small></div>
+          <div><b id="f2-r2">—</b><small>跳空前的账户高点</small></div>
+          <div><b id="f2-r3">—</b><small>跳空那周亏损（占净值 <span id="f2-r3p">—</span>）</small></div>
+          <div><b id="f2-r4">—</b><small>年末账户</small></div>
+        </div>
+        <figcaption>默认 1.5 倍名义仓位：52 周赚 51 周，最长连胜 46 周，账户从 $50,000 涨到 $62,510；第 47 周一次亏掉 $13,003，年末回到 $50,787。拖到 3 倍，跳空那周亏掉账户的 41%。切换到看跌价差，同样的张数，跳空那周只亏 6%，代价是平时每周少收一点。</figcaption>
+      </figure>
+      <p>这条曲线最有欺骗性的地方，是前 46 周。任何时候截一段，它都像一只低波动、稳定向上的基金。卖方策略的风险集中在很少的几天里，平时的波动率根本反映不了它。用平时的回撤或波动来衡量卖方仓位，会系统性地低估风险。</p>
+
+      <h3>连胜后膨胀仓位</h3>
+      <p>连胜让人觉得「我已经掌握了」，而卖方的连胜几乎是策略结构自带的：九成胜率的策略连赢 10 次的概率是 35%。在连胜之后加仓，等于在下一次亏损来临前把仓位推到最大。15.7 节会用模拟说明它对账户分布的影响。</p>
+
+      <h3>被突破后加仓补救</h3>
+      <p>短腿被突破后，常见的冲动是在更低的行权价再卖一些，「用新收的权利金摊低成本」。看一个例子：卖出 5 张 30 天的 95 看跌，每张收 1.33。第 10 天股价跌到 91，IV 升到 38%，95 看跌涨到 5.53，浮亏 $2,100。你又卖出 5 张 20 天的 90 看跌，收 2.64，进账 $1,322。浮亏和新收的权利金一抵，账面上看起来只亏了 $778。</p>
+      <p>第 20 天股价跌到 86，IV 45%。原来 5 张亏 <span class="num">$3,928</span>，新加的 5 张又亏 <span class="num">$1,185</span>，合计 <span class="num">−$5,112</span>。加仓补救没有降低风险，它把一笔亏损变成了两笔，并且是在方向已经被证明错误之后，用更大的敞口押同一个方向。</p>
+
+      <h3>因为「等到期」而不止损</h3>
+      <p>卖方最常说的一句话是「等到期就好了」。看看等待能换来什么：卖出的 95 看跌，股价 90，剩 10 天，IV 40%，期权价格 5.63，其中内在价值 5.00，时间价值只有 <span class="num">0.63</span>。等到期最多拿回这 0.63，前提是股价一动不动；而 10 天的 1 个标准差是 <span class="num">90 × 0.40 × √(10/365) = ±5.96</span>。你在用 ±6 的风险，去换 0.63 的时间价值。第 14 章的模拟也显示，持有到期比按规则止损，最差 5% 的平均亏损大了将近一倍。</p>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">15.4</span>对 Theta 的执念</h2>
+      <p>Theta 是你承担 Gamma 风险收到的补偿，不是利息。当实际波动等于隐含波动时，它刚好付清你预期要承担的损失。</p>
+      <p>第 4 章推导过：Θ ≈ −½σ²<span class="v">S</span>²Γ。对冲掉 Delta 之后，卖出期权一天的盈亏约为：</p>
+      <div class="formula">
+        <div class="eq">日盈亏 <span class="up">≈</span> |<span class="th">Θ</span>| <span class="up">−</span> <span class="frac"><span>1</span><span>2</span></span> <span class="gm">Γ</span> <span class="up">·</span> (Δ<span class="v">S</span>)<sup>2</sup></div>
+        <p class="where">第一项是每天收的时间价值，第二项是价格移动造成的损失。两者相等时的移动，就是第 4 章的「回本移动」。</p>
+      </div>
+      <p>以卖出 30 天平值跨式为例（股价 $100，IV 30%）：|Θ| = <span class="num">0.114</span>（每组每天 $11.40），Γ = <span class="num">0.0925</span>。回本移动 <span class="num">√(2 × 0.114 ÷ 0.0925) = 1.57</span>，正好等于 1 个日标准差 <span class="num">100 × 0.30 ÷ √365 = 1.57</span>。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 15-3　卖出平值跨式、对冲 Delta 后的一天（每组，美元）</caption>
+          <thead><tr><th>当天移动</th><th>Gamma 损失</th><th>收到的 Theta</th><th>当天盈亏</th><th>相当于几天的 Theta</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">0</td><td class="mono">0</td><td class="mono">+11.4</td><td class="mono pos">+11.4</td><td class="mono">—</td></tr>
+            <tr><td class="mono">±1σ（1.57）</td><td class="mono">−11.4</td><td class="mono">+11.4</td><td class="mono">0</td><td class="mono">1</td></tr>
+            <tr><td class="mono">±2σ（3.14）</td><td class="mono">−45.6</td><td class="mono">+11.4</td><td class="mono neg">−34.2</td><td class="mono">4</td></tr>
+            <tr class="hl"><td class="mono">±3σ（4.71）</td><td class="mono">−102.6</td><td class="mono">+11.4</td><td class="mono neg">−91.2</td><td class="mono">9</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>如果实际波动正好是 30%，平均每天的 Gamma 损失是 <span class="num">½ × 0.0925 × 100² × 0.30² ÷ 365 = 0.114</span>，和 Theta 一分不差。Theta 只是在预付这笔预期损失。卖方真正的优势来自实际波动低于隐含：若实际只有 25%，每天的预期 Gamma 损失降到 0.079，剩下 <span class="num">0.035</span> 才是利润，约占 Theta 的 <span class="num">30.6%</span>。你每天看到的 $11.40 里，七成是在预付将来的亏损。</p>
+
+      <h3>「收租」这个比喻错在哪</h3>
+      <p>卖出 30 天的 93.5 看跌（股价 $100，IV 30%，Delta −0.19），收 <span class="num">0.963</span>，相当于担保金每月 1.03%，年化单利 12.4%，看上去像一份稳定的租金。可是只要一次跳空到 80，每股亏 <span class="num">93.5 − 80 − 0.963 = 12.54</span>，是 13 个月的「租金」。真实的房租不会一次让你赔掉十三个月的租金，卖出看跌会。</p>
+      <div class="note warn">
+        <span class="tag">最后一周的诱惑</span>
+        <p>平值期权在最后一周每天损耗价格的 7.3%，是 30 天时的四倍多（第 14 章表 14-5），这让临近到期的卖方交易看起来效率最高。同一时期 Gamma 也翻了一倍多：同样的价格移动，造成的亏损大一倍。最诱人的 Theta 和最危险的 Gamma，是同一件事的两面。</p>
+      </div>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">15.5</span>社交媒体上的期权文化</h2>
+      <p>你在网上看到的期权收益，是被筛选过的样本：赚钱的人发帖，亏钱的人沉默。所以你看到的平均值，系统性地高于真实的平均值。</p>
+
+      <h3>2021 年的散户期权热潮</h3>
+      <p>2020 年下半年到 2021 年，零佣金和手机交易让散户的期权交易量大幅上升，买入的多是短期虚值看涨期权。2021 年 1 月 GameStop 等「迷因股」的暴涨中，散户买入的看涨期权迫使做市商买股对冲，期权在其中起了放大作用（第 4 章案例 3）。此后几年，指数期权陆续有了每个交易日到期的合约，当天到期期权的成交占比明显上升。</p>
+      <p>这段时期留下的文化影响比价格本身更持久：期权被当作「小钱博大钱」的工具来传播，讨论集中在单笔收益率，而很少有人讨论胜率、期望值和仓位。</p>
+
+      <h3>「卖沽收租」叙事</h3>
+      <p>与买方文化相对的，是「卖沽收租」：卖出你愿意持有的股票的看跌期权，收权利金当租金；被指派就当打折买股，再卖备兑看涨继续收租（第 8 章的轮子策略）。这个叙事说对了一半：如果你本来就打算在这个价位买股，卖沽确实比挂限价单多收一笔钱。它省略的另一半是：</p>
+      <ul>
+        <li>由买卖权平价，现金担保卖沽和备兑看涨是同一个头寸：下跌时和持股一样亏，上涨时收益封顶。</li>
+        <li>「租金」是跳空风险的补偿，上一节算过，一次 20% 的下跌就吃掉 13 个月的租金。</li>
+        <li>「愿意接股」常常是事后的说法。真正被指派时股价往往已经远低于行权价，那时的你未必还愿意持有它。</li>
+      </ul>
+
+      <h3>晒单的幸存者偏差</h3>
+      <p>用 15.2 节的末日期权做一个模拟：1,000 个人，每人一个月做 20 笔，每笔 $300（月预算 $6,000），结果如下。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 15-4　1,000 人各做 20 笔末日期权，一个月后（模拟，美元）</caption>
+          <thead><tr><th>指标</th><th>定价公平</th><th class="hw">实际波动为隐含的 90%</th></tr></thead>
+          <tbody>
+            <tr><td>平均月盈亏</td><td class="mono neg">−517</td><td class="mono neg">−2,251</td></tr>
+            <tr><td>中位数</td><td class="mono neg">−1,367</td><td class="mono neg">−3,056</td></tr>
+            <tr><td>当月赚钱的人</td><td class="mono">39.4%</td><td class="mono">22.8%</td></tr>
+            <tr><td>亏掉一半预算以上的人</td><td class="mono">34.6%</td><td class="mono">50.5%</td></tr>
+            <tr><td>至少有一笔 10 倍的人</td><td class="mono">50.1%</td><td class="mono">36.3%</td></tr>
+            <tr class="hl"><td>赚得最多的 5% 的平均</td><td class="mono pos">+11,435</td><td class="mono pos">+7,181</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>如果只有赚得最多的 5% 发帖，你看到的平均是 +$11,435，真实的平均是 −$517。半数人一个月内至少有一笔 10 倍，截图素材永远不缺。而亏掉一半预算的三分之一的人，几乎不会出现在你的时间线上。</p>
+      <div class="note">
+        <span class="tag">一个换算习惯</span>
+        <p>看到一张 10 倍的截图，把它换算回背后的 20 笔：它的主人这个月大概率只是小赚或小亏，也可能已经亏掉了一半预算。截图告诉你的是「这种结果存在」，不是「这种结果常见」。</p>
+      </div>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">15.6</span>账户死亡的五条路径</h2>
+      <p>大多数期权账户的死亡都能归入五条路径之一。它们的共同点是：每一步单独看都很合理，早期信号都很明显，只是当时没有人在看。</p>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">五条路径都从「看起来合理」开始，被一个放大机制推向终点</span><span class="fig-no">图 15-3 · 示意图</span></div>
+        <div class="scroll-x"><svg class="chart wide" viewBox="0 0 680 370" role="img" aria-label="账户死亡的五条路径：末日期权连续归零、裸卖遇跳空、越滚越大、保证金螺旋、事件日双向亏损">
+          <defs><marker id="a15" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--muted)"></path></marker></defs>
+          <g style="font-family: var(--font-body)">
+            <text x="75" y="22" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">路径</text>
+            <text x="235" y="22" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">开始的样子</text>
+            <text x="415" y="22" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">放大机制</text>
+            <text x="595" y="22" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">结局</text>
+          </g>
+          <g id="f3-rows" style="font-family: var(--font-body)"></g>
+        </svg></div>
+        <figcaption>中间一列是关键。五条路径的起点都是常见的交易：买末日期权、卖看跌、滚仓、用保证金、做事件。让它们致命的是放大机制：加倍、超额名义敞口、增加张数、保证金与净值反向变化、亏损后反手。识别出放大机制，就能在早期打断它。</figcaption>
+      </figure>
+
+      <h3>路径一：末日期权连续归零</h3>
+      <p><strong>怎么发生。</strong>从每天一小笔 0DTE 开始。单笔亏损概率约 88%，连亏 5 天的概率 53%、连亏 6 天的概率 47%。连亏之后开始「加倍追回」：<span class="num">$200 → $400 → $800 → $1,600 → $3,200 → $6,400</span>，6 天累计投入 <span class="num">$12,600</span>，是 $20,000 账户的 63%。即使每次只加到 1.5 倍，6 天也要 $4,156。</p>
+      <div class="grid2">
+        <div class="tile sig"><h4><span class="tg">早期信号</span></h4><ul><li>单笔金额比前一天大，且前一天是亏的</li><li>同一天做了不止一笔末日期权</li><li>用「今天必须赢回来」描述交易</li><li>说不出这笔的胜率和期望值</li></ul></div>
+        <div class="tile rule"><h4><span class="tg">预防规则</span></h4><ul><li>彩票类交易设月度预算（例如账户 2%），用完即停</li><li>单笔金额固定，不随前一笔盈亏变化</li><li>亏损当天不再开新的末日期权</li><li>只用已实现利润的零头</li></ul></div>
+      </div>
+
+      <h3>路径二：裸卖遇跳空</h3>
+      <p><strong>怎么发生。</strong>账户 $50,000，卖出 8 张 30 天的 95 看跌（Delta −0.25），每张收 1.33。名义敞口 $76,000，是净值的 1.5 倍。股价一夜跳空到 80，IV 升到 70%，开盘买回要付 16.57，亏 <span class="num">$12,186</span>，占账户 24%。如果不止损、到期时股价 75，亏 <span class="num">$14,933</span>。止损单在跳空面前不起作用，它只能在下一个可成交的价格成交。</p>
+      <div class="grid2">
+        <div class="tile sig"><h4><span class="tg">早期信号</span></h4><ul><li>卖方仓位的名义敞口超过账户净值</li><li>连续多月没有亏损，开始觉得「这个策略没风险」</li><li>卖出的标的在到期前有财报、监管或诉讼事件</li><li>为了多收一点，行权价越选越近</li></ul></div>
+        <div class="tile rule"><h4><span class="tg">预防规则</span></h4><ul><li>裸卖的名义敞口不超过净值的 1 倍，或者只用价差</li><li>压力测试（第 13 章）：跳空 20% 后，单笔亏损不超过账户的 5%，所有卖方仓位合计不超过 20%</li><li>事件前平仓，或换成定义风险的价差</li></ul></div>
+      </div>
+
+      <h3>路径三：越滚越大</h3>
+      <p><strong>怎么发生。</strong>每次被突破都「滚到更远、更低的行权价，并收到净权利金」。为了收到净权利金，张数只能越滚越多：</p>
+      <div class="tbl">
+        <table>
+          <caption>表 15-5　三次滚仓（每股价格；盈亏与敞口为美元）</caption>
+          <thead><tr><th>时点</th><th>股价</th><th>IV</th><th class="tw">操作</th><th class="hw">这一步已实现</th><th class="hw">名义敞口</th></tr></thead>
+          <tbody>
+            <tr><td>第 0 天</td><td class="mono">100</td><td class="mono">30%</td><td class="tw">卖 5 张 95 看跌（30 天），收 1.33</td><td class="mono">—</td><td class="mono">47,500</td></tr>
+            <tr><td>第 20 天</td><td class="mono">90</td><td class="mono">40%</td><td class="tw">5.63 买回；卖 6 张 90 看跌（45 天），收 4.81，净收 $69</td><td class="mono neg">−2,149</td><td class="mono">54,000</td></tr>
+            <tr><td>第 45 天</td><td class="mono">82</td><td class="mono">50%</td><td class="tw">9.06 买回；卖 10 张 82 看跌（45 天），收 5.52，净收 $87</td><td class="mono neg">−2,551</td><td class="mono">82,000</td></tr>
+            <tr class="hl"><td>到期</td><td class="mono">75</td><td class="mono">—</td><td class="tw">10 张 82 看跌，内在价值 7.00</td><td class="mono neg">−1,478</td><td class="mono">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>每次滚仓在券商的界面上都显示为「净收入」，可三次加起来亏了 <span class="num">$6,178</span>，张数从 5 变成 10，名义敞口从 $47,500 变成 $82,000。如果到期时跌到 72，合计亏 $9,178；即使反弹到 78，也还亏 $3,178。</p>
+      <div class="grid2">
+        <div class="tile sig"><h4><span class="tg">早期信号</span></h4><ul><li>滚仓后张数增加</li><li>用「净收入」描述一次实际上是亏损的滚动</li><li>到期日越拉越远，行权价一路往下追</li><li>已实现亏损没有单独记账</li></ul></div>
+        <div class="tile rule"><h4><span class="tg">预防规则</span></h4><ul><li>同一笔交易最多滚一次，张数不得增加</li><li>每次滚动都把买回的亏损记为已实现亏损</li><li>需要增加张数才能收到净权利金时，直接平仓</li></ul></div>
+      </div>
+
+      <h3>路径四：保证金螺旋</h3>
+      <p><strong>怎么发生。</strong>账户 $50,000，卖出 12 张 30 天的 90 看跌，每张收 0.40，名义敞口 $108,000。下面的保证金按常见的 Reg T 裸卖公式估算（标的价值的 20% 减去虚值部分，不低于行权价的 10%，再加期权现价）；不少券商会自定更高的要求，这里另按 30% 算一列。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 15-6　下跌与 IV 上升同时发生时的保证金（美元）</caption>
+          <thead><tr><th>天</th><th>股价</th><th>IV</th><th>看跌价格</th><th>账户净值</th><th class="hw">按 20% 要求</th><th class="hw">剩余</th><th class="hw">按 30% 要求</th><th class="hw">剩余</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">0</td><td class="mono">100</td><td class="mono">30%</td><td class="mono">0.40</td><td class="mono">50,000</td><td class="mono">12,481</td><td class="mono">37,519</td><td class="mono">24,481</td><td class="mono">25,519</td></tr>
+            <tr><td class="mono">5</td><td class="mono">94</td><td class="mono">42%</td><td class="mono">2.25</td><td class="mono">47,776</td><td class="mono">20,465</td><td class="mono">27,310</td><td class="mono">31,745</td><td class="mono">16,030</td></tr>
+            <tr><td class="mono">8</td><td class="mono">90</td><td class="mono">52%</td><td class="mono">4.47</td><td class="mono">45,120</td><td class="mono">26,961</td><td class="mono">18,158</td><td class="mono">37,761</td><td class="mono">7,358</td></tr>
+            <tr><td class="mono">10</td><td class="mono">86</td><td class="mono">62%</td><td class="mono">7.21</td><td class="mono">41,828</td><td class="mono">29,292</td><td class="mono">12,536</td><td class="mono">39,612</td><td class="mono">2,216</td></tr>
+            <tr class="hl"><td class="mono">12</td><td class="mono">83</td><td class="mono">70%</td><td class="mono">9.44</td><td class="mono">39,153</td><td class="mono">31,248</td><td class="mono">7,905</td><td class="mono">41,208</td><td class="mono neg">−2,055</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>股价跌了 17%，净值跌了 21.7%，按 30% 计算的保证金要求却从 $24,481 涨到 $41,208，涨了 68%。两条线相向而行，第 12 天交叉，追加保证金。这时被迫买回，成交在 IV 70% 的价格上，几乎是整段行情里最差的价位。螺旋的本质是：你最需要时间的时候，保证金要求把时间拿走了。</p>
+      <div class="grid2">
+        <div class="tile sig"><h4><span class="tg">早期信号</span></h4><ul><li>保证金占用超过净值的 50%</li><li>只看最低要求，不知道券商的实际要求</li><li>IV 一上升，可用资金就快速下降</li><li>下跌中在考虑「再卖一些来弥补」</li></ul></div>
+        <div class="tile rule"><h4><span class="tg">预防规则</span></h4><ul><li>保证金占用不超过净值的 30%–50%</li><li>压力测试同时假设下跌和 IV 上升</li><li>主动减仓的触发点设在追保之前</li></ul></div>
+      </div>
+
+      <h3>路径五：事件日双向亏损</h3>
+      <p><strong>怎么发生。</strong>财报前一天，买入 10 组 7 天平值跨式（股价 $100，IV 85%），花 <span class="num">$9,383</span>，隐含的预期变动约 ±9.4%。财报后股价涨 5%，IV 回落到 35%，跨式只值 5.69，亏 <span class="num">$3,689</span>；跌 5% 也亏 $3,882。方向猜对猜错都亏，因为实际变动小于市场已经定价的变动。</p>
+      <p>下一个季度，你吸取「教训」，反过来卖出同样的跨式，收 $9,383。这一次股价跌了 14%，跨式涨到 13.95，亏 <span class="num">$4,567</span>。两次事件，两边各亏一次，合计约 $8,256。问题不在于选了买方还是卖方，而在于两次都没有比较预期变动和历史变动，只是根据上一次的结果反手。</p>
+      <div class="grid2">
+        <div class="tile sig"><h4><span class="tg">早期信号</span></h4><ul><li>事件交易只想方向，不看 IV</li><li>上次事件亏了，这次准备反着做</li><li>说不出这次的预期变动和过去几次的实际变动</li><li>事件后继续持有原结构「再等等」</li></ul></div>
+        <div class="tile rule"><h4><span class="tg">预防规则</span></h4><ul><li>事件交易单独统计、单独限额</li><li>先比较本次预期变动和过去 8 次的实际变动</li><li>事件后第一个交易日处理，不论盈亏</li></ul></div>
+      </div>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">15.7</span>三件工具：冲动记录、信号清单、连胜复核</h2>
+      <p>心理问题很难靠意志力解决。比较可靠的办法，是把它变成下单前必须填写的表格、每月必须回答的问题。</p>
+
+      <h3>一、期权冲动记录</h3>
+      <p>不在计划内、临时想做的交易，先填这张表，再决定做不做。它并不禁止冲动，作用是把冲动和计划分开记账。一个月后统计：有多少次冲动，执行了几次，执行的那几笔和计划内的交易相比表现如何。多数人会发现，冲动交易的期望明显更差，而且集中出现在刚亏完或刚赚完之后。</p>
+      <figure class="plate" id="imp">
+        <div class="fig-head"><span class="fig-title">期权冲动记录</span><span class="fig-no">工具 15-A · 可复制</span></div>
+<pre class="code" id="imp-text">【期权冲动记录】日期 ____  时间 ____
+想做的交易：标的 ____  结构 ____  张数 ____  金额 ____
+触发我的是：价格突然跳动 / 新闻 / 别人的截图或喊单 / 刚亏了一笔 / 刚赚了一笔 / 无聊 / 其他 ____
+它在本周短名单里吗：是 / 否
+三句话写得出来吗：方向 ____  波动率 ____  时间 ____
+距离上一笔交易 ____ 分钟；上一笔：赚 / 亏 ____
+这笔的最大亏损 ____，占本月风险预算 ____%
+如果是末日期权：本月彩票预算已用 ____ / ____
+等 15 分钟后再看：还想做 / 不想做了
+最终：做了 / 没做
+收盘后补填：做了的结果 ____；没做的假设结果 ____</pre>
+        <div class="copyrow"><button type="button" class="btn" id="imp-copy">复制模板</button><span class="copy-msg" id="imp-msg" aria-live="polite"></span></div>
+        <figcaption>「没做的假设结果」很重要：它能告诉你，忍住的那些冲动里，有多少其实会亏钱。浏览器不允许自动复制时，文字会被全部选中，手动复制即可。</figcaption>
+      </figure>
+
+      <p>冲动交易亏了钱，按第 14 章的四类归因，几乎总是「执行错」或「风险管理错」，很少是「判断错」。把它们和计划内交易分开统计，才不会让冲动的亏损污染你对策略本身的评价。</p>
+
+      <h3>二、五种死法的早期信号清单</h3>
+      <p>15.6 节每条路径的早期信号，压缩成本章末尾的清单 15-3。每月底对着它检查一遍，任何一条打勾，就回到对应路径的预防规则。</p>
+
+      <h3>三、连胜复核</h3>
+      <p>连胜之后最危险，因为这时你最想加仓。规定一个触发条件，例如卖方连赢 5 笔、买方连赢 3 笔，或者账户创新高，触发后先做一次复核再交易：仓位比上个月大了吗？这段时间有没有「赚了钱但做错了」的交易？重做一次压力测试。然后停一天。</p>
+      <p>下面的模拟说明为什么。一个卖方式的策略：胜率 80%，赢 0.27R，输 1R，每笔期望 +0.016R，优势很薄，但确实为正。两种仓位规则：固定每笔风险 2%；或者每连赢一次就把仓位放大 1.5 倍，最多 8 倍，输一次回到基础仓位。2,000 个账户各做 100 笔，用同一组随机数。</p>
+
+      <figure class="plate" id="fig4">
+        <div class="fig-head"><span class="fig-title">连胜加码让平均值变好看，让多数人的结局变差</span><span class="fig-no">图 15-4 · 2,000 个账户 × 100 笔</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="策略优势">
+            <button type="button" data-w="0.27" aria-pressed="true">薄优势（赢 0.27R）</button>
+            <button type="button" data-w="0.30" aria-pressed="false">厚优势（赢 0.30R）</button>
+          </div>
+          <label class="ctl" for="f4-m">连胜后加码 <input id="f4-m" type="range" min="1" max="2" step="0.1" value="1.5"> <output id="f4-m-o">1.5 倍</output></label>
+          <label class="ctl" for="f4-f">基础风险 <input id="f4-f" type="range" min="1" max="4" step="0.5" value="2"> <output id="f4-f-o">2%</output></label>
+        </div>
+        <svg class="chart" id="f4-svg" viewBox="0 0 680 300" role="img" aria-label="固定仓位与连胜加码的账户净值分布"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>固定仓位：中位数</span><span><i class="dash" style="border-color: var(--delta)"></i>固定仓位：最差 5%</span><span><i style="border-color: var(--gamma)"></i>连胜加码：中位数</span><span><i class="dash" style="border-color: var(--gamma)"></i>连胜加码：最差 5%</span></div>
+        <div class="readout">
+          <div><b id="f4-r1">—</b><small>固定仓位：中位数结局（亏损概率 <span id="f4-r1p">—</span>）</small></div>
+          <div><b id="f4-r2">—</b><small>连胜加码：中位数结局（亏损概率 <span id="f4-r2p">—</span>）</small></div>
+          <div><b id="f4-r3">—</b><small>连胜加码：中途曾腰斩的概率</small></div>
+          <div><b id="f4-r4">—</b><small>连胜加码：平均结局（固定仓位 <span id="f4-r4p">—</span>）</small></div>
+        </div>
+        <figcaption>默认设置下，固定仓位 100 笔后的中位数是 1.03 倍，三分之一的账户亏钱，没有一个中途腰斩；连胜加码的中位数降到 0.96 倍，过半账户亏钱，12.5% 的账户中途腰斩，平均值却升到 1.16 倍。把加码拖回 1.0，两组曲线重合；切到厚优势，加码的中位数会超过固定仓位，但最差 5% 和腰斩概率仍然明显更差。</figcaption>
+      </figure>
+      <p>为什么会这样？胜率 80% 时，连赢 6 次的概率是 <span class="num">0.8<sup>6</sup> = 26.2%</span>，一点都不罕见。按 1.5 倍加码，这 6 笔的仓位是 1、1.5、2.25、3.38、5.06、7.59 倍，一共赚 <span class="num">20.78 × 0.27 = 5.61R</span>；第 7 笔的仓位已经到 8 倍上限，一次输掉 <span class="num">8R</span>。连胜赚来的全部吐回去，还倒贴 2.39R。连胜之后的那一笔，赢的概率和平时完全一样，仓位却是最大的。</p>
+      <p>平均值变高，是因为少数一直连赢的账户赚得极多；可你只活一条路径。对单个账户来说，重要的是中位数和最差的情况，而这两项都变差了。</p>
+      <div class="note field">
+        <span class="tag">实战观察</span>
+        <p>一些长期存活的交易者处理这些问题的做法很朴素：末日期权只用已实现利润的一小部分（例如一成）去买，从不动用本金；大赚之后停一天，不开新仓；交易日志里单独记一栏「赚了钱但做错了」；判断仓位是否太大的标准，是它会不会影响睡眠和情绪，一旦盯着账户睡不着，就先把仓位缩到能睡着为止。</p>
+      </div>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">案例</span>两本账</h2>
+
+      <div class="case">
+        <div class="case-no">案例 1</div>
+        <h3>卖方账户：11 个月稳定小赚，第 12 个月一次跳空</h3>
+        <p>一个虚构的账户，起始 $60,000。每月卖出一次 30 天到期、Delta 约 −0.20 的看跌期权（标的 XYZ，起始 $100），持有到期。前 4 个月 6 张；连赢 4 个月后加到 8 张；连赢 8 个月后加到 10 张；第 12 个月，「11 连胜，胜率 100%」，加到 14 张。</p>
+        <div class="tbl">
+          <table>
+            <caption>表 15-7　12 个月的完整账本（权利金为每股，其余为美元；保证金按 Reg T 估算）</caption>
+            <thead><tr><th>月</th><th>月初股价</th><th>IV</th><th>行权价</th><th>权利金</th><th>张数</th><th class="hw">保证金占用</th><th>月末股价</th><th class="hw">当月盈亏</th><th>账户</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">1</td><td class="mono">100</td><td class="mono">32%</td><td class="mono">93</td><td class="mono">1.012</td><td class="mono">6</td><td class="mono">8,407</td><td class="mono">103</td><td class="mono pos">+607</td><td class="mono">60,607</td></tr>
+              <tr><td class="mono">2</td><td class="mono">103</td><td class="mono">30%</td><td class="mono">96</td><td class="mono">0.927</td><td class="mono">6</td><td class="mono">8,716</td><td class="mono">101</td><td class="mono pos">+556</td><td class="mono">61,164</td></tr>
+              <tr><td class="mono">3</td><td class="mono">101</td><td class="mono">31%</td><td class="mono">94</td><td class="mono">0.958</td><td class="mono">6</td><td class="mono">8,495</td><td class="mono">106</td><td class="mono pos">+575</td><td class="mono">61,739</td></tr>
+              <tr><td class="mono">4</td><td class="mono">106</td><td class="mono">29%</td><td class="mono">99</td><td class="mono">0.916</td><td class="mono">6</td><td class="mono">9,069</td><td class="mono">104</td><td class="mono pos">+549</td><td class="mono">62,288</td></tr>
+              <tr><td class="mono">5</td><td class="mono">104</td><td class="mono">30%</td><td class="mono">97</td><td class="mono">0.951</td><td class="mono">8</td><td class="mono">11,801</td><td class="mono">109</td><td class="mono pos">+761</td><td class="mono">63,049</td></tr>
+              <tr><td class="mono">6</td><td class="mono">109</td><td class="mono">28%</td><td class="mono">103</td><td class="mono">1.120</td><td class="mono">8</td><td class="mono">13,536</td><td class="mono">107</td><td class="mono pos">+896</td><td class="mono">63,945</td></tr>
+              <tr><td class="mono">7</td><td class="mono">107</td><td class="mono">29%</td><td class="mono">100</td><td class="mono">0.938</td><td class="mono">8</td><td class="mono">12,270</td><td class="mono">111</td><td class="mono pos">+750</td><td class="mono">64,695</td></tr>
+              <tr><td class="mono">8</td><td class="mono">111</td><td class="mono">31%</td><td class="mono">104</td><td class="mono">1.207</td><td class="mono">8</td><td class="mono">13,126</td><td class="mono">108</td><td class="mono pos">+966</td><td class="mono">65,661</td></tr>
+              <tr><td class="mono">9</td><td class="mono">108</td><td class="mono">30%</td><td class="mono">101</td><td class="mono">1.045</td><td class="mono">10</td><td class="mono">15,645</td><td class="mono">113</td><td class="mono pos">+1,045</td><td class="mono">66,706</td></tr>
+              <tr><td class="mono">10</td><td class="mono">113</td><td class="mono">28%</td><td class="mono">106</td><td class="mono">0.986</td><td class="mono">10</td><td class="mono">16,586</td><td class="mono">116</td><td class="mono pos">+986</td><td class="mono">67,692</td></tr>
+              <tr><td class="mono">11</td><td class="mono">116</td><td class="mono">29%</td><td class="mono">109</td><td class="mono">1.145</td><td class="mono">10</td><td class="mono">17,345</td><td class="mono">114</td><td class="mono pos">+1,145</td><td class="mono">68,837</td></tr>
+              <tr class="hl"><td class="mono">12</td><td class="mono">114</td><td class="mono">29%</td><td class="mono">107</td><td class="mono">1.098</td><td class="mono">14</td><td class="mono">23,657</td><td class="mono">87</td><td class="mono neg">−26,463</td><td class="mono">42,374</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>第 12 个月发生了什么。</strong>第 9 天，公司下调全年指引，股价从 114 跳空到 88，跌 22.8%，IV 升到 55%。如果当天开盘就止损，买回 14 张 107 看跌要付 19.16，亏 <span class="num">$25,283</span>；持有到期（股价 87），每股亏 <span class="num">107 − 87 − 1.098 = 18.90</span>，14 张亏 <span class="num">$26,463</span>。止损和不止损只差 $1,180：跳空之后已经没有好的选择了。</p>
+        <p><strong>账本说明了什么。</strong>前 11 个月赚 <span class="num">$8,836</span>（+14.7%），每个月都是正数，保证金占用始终低于净值的 26%，看上去非常稳健。第 12 个月亏掉月初净值的 <span class="num">38.4%</span>，全年 <span class="num">−$17,627</span>（−29.4%）。名义敞口与净值之比从第 1 个月的 0.93 倍升到第 12 个月的 2.18 倍，没有一次是因为风险变小了才加仓。</p>
+        <div class="tbl">
+          <table>
+            <caption>表 15-8　同样的行情，三种做法（美元）</caption>
+            <thead><tr><th>做法</th><th>前 11 个月</th><th>第 12 个月</th><th>全年</th></tr></thead>
+            <tbody>
+              <tr><td>实际：连胜后加到 14 张</td><td class="mono pos">+8,836</td><td class="mono neg">−26,463</td><td class="mono neg">−17,627</td></tr>
+              <tr><td>始终 6 张</td><td class="mono pos">+6,723</td><td class="mono neg">−11,341</td><td class="mono neg">−4,618</td></tr>
+              <tr class="hl"><td>同样张数，改用宽 5 的看跌价差</td><td class="mono pos">+6,215</td><td class="mono neg">−5,945</td><td class="mono pos">+270</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <span class="tag">启示</span>
+          <ul>
+            <li>不加仓，结果仍然是亏的：裸卖看跌的问题首先在结构，其次才是仓位。同样张数的价差，前 11 个月少赚 30%，跳空那个月只亏 $5,945。</li>
+            <li>11 个月的连胜没有提供任何关于第 12 个月的信息。用连胜作为加仓理由，等于用最不相关的数据做最重要的决定。</li>
+            <li>早期信号全都出现过：第 5 个月加到 8 张时，名义敞口 $77,600 已经超过净值；之后连续多月无亏损，仓位继续加大。路径二的清单如果每月检查一次，第 5 个月就该停下来。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 2</div>
+        <h3>买方账户：一个月里连续追末日期权</h3>
+        <p>一个虚构的账户，起始 $30,000，每个交易日上午 10 点买一笔当天到期的指数 ETF 期权（价格为假设，行权价虚值约 0.5%，剩约 6 小时），持有到收盘。方向跟着开盘后半小时的走势「追」。每笔投入的金额，记录了当时的心态。</p>
+        <div class="tbl">
+          <table>
+            <caption>表 15-9　20 个交易日的账本（价格为每股，其余为美元）</caption>
+            <thead><tr><th>日</th><th>方向</th><th>入场时</th><th>行权价</th><th>IV</th><th>成本</th><th>张数</th><th>投入</th><th>收盘</th><th class="hw">当日盈亏</th><th>账户</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">1</td><td>看涨</td><td class="mono">600.0</td><td class="mono">603</td><td class="mono">16%</td><td class="mono">0.16</td><td class="mono">18</td><td class="mono">288</td><td class="mono">600.8</td><td class="mono neg">−288</td><td class="mono">29,712</td></tr>
+              <tr><td class="mono">2</td><td>看跌</td><td class="mono">601.5</td><td class="mono">598</td><td class="mono">16%</td><td class="mono">0.10</td><td class="mono">45</td><td class="mono">450</td><td class="mono">602.4</td><td class="mono neg">−450</td><td class="mono">29,262</td></tr>
+              <tr><td class="mono">3</td><td>看涨</td><td class="mono">603.0</td><td class="mono">606</td><td class="mono">17%</td><td class="mono">0.19</td><td class="mono">34</td><td class="mono">646</td><td class="mono">604.1</td><td class="mono neg">−646</td><td class="mono">28,616</td></tr>
+              <tr><td class="mono">4</td><td>看涨</td><td class="mono">604.5</td><td class="mono">607</td><td class="mono">16%</td><td class="mono">0.23</td><td class="mono">39</td><td class="mono">897</td><td class="mono">607.9</td><td class="mono pos">+2,574</td><td class="mono">31,190</td></tr>
+              <tr><td class="mono">5</td><td>看跌</td><td class="mono">606.0</td><td class="mono">603</td><td class="mono">17%</td><td class="mono">0.19</td><td class="mono">63</td><td class="mono">1,197</td><td class="mono">606.9</td><td class="mono neg">−1,197</td><td class="mono">29,993</td></tr>
+              <tr><td class="mono">6</td><td>看跌</td><td class="mono">605.0</td><td class="mono">602</td><td class="mono">18%</td><td class="mono">0.22</td><td class="mono">68</td><td class="mono">1,496</td><td class="mono">603.6</td><td class="mono neg">−1,496</td><td class="mono">28,497</td></tr>
+              <tr><td class="mono">7</td><td>看涨</td><td class="mono">601.0</td><td class="mono">604</td><td class="mono">18%</td><td class="mono">0.22</td><td class="mono">81</td><td class="mono">1,782</td><td class="mono">601.9</td><td class="mono neg">−1,782</td><td class="mono">26,715</td></tr>
+              <tr><td class="mono">8</td><td>看涨</td><td class="mono">602.0</td><td class="mono">605</td><td class="mono">17%</td><td class="mono">0.19</td><td class="mono">115</td><td class="mono">2,185</td><td class="mono">603.2</td><td class="mono neg">−2,185</td><td class="mono">24,530</td></tr>
+              <tr class="hl"><td class="mono">9</td><td>看跌</td><td class="mono">600.5</td><td class="mono">597</td><td class="mono">19%</td><td class="mono">0.18</td><td class="mono">144</td><td class="mono">2,592</td><td class="mono">596.0</td><td class="mono pos">+11,664</td><td class="mono">36,194</td></tr>
+              <tr><td class="mono">10</td><td>看跌</td><td class="mono">594.0</td><td class="mono">591</td><td class="mono">20%</td><td class="mono">0.28</td><td class="mono">124</td><td class="mono">3,472</td><td class="mono">595.6</td><td class="mono neg">−3,472</td><td class="mono">32,722</td></tr>
+              <tr><td class="mono">11</td><td>看涨</td><td class="mono">595.0</td><td class="mono">598</td><td class="mono">19%</td><td class="mono">0.25</td><td class="mono">140</td><td class="mono">3,500</td><td class="mono">596.1</td><td class="mono neg">−3,500</td><td class="mono">29,222</td></tr>
+              <tr><td class="mono">12</td><td>看涨</td><td class="mono">597.0</td><td class="mono">600</td><td class="mono">18%</td><td class="mono">0.22</td><td class="mono">181</td><td class="mono">3,982</td><td class="mono">598.2</td><td class="mono neg">−3,982</td><td class="mono">25,240</td></tr>
+              <tr><td class="mono">13</td><td>看跌</td><td class="mono">599.0</td><td class="mono">596</td><td class="mono">17%</td><td class="mono">0.18</td><td class="mono">111</td><td class="mono">1,998</td><td class="mono">599.6</td><td class="mono neg">−1,998</td><td class="mono">23,242</td></tr>
+              <tr><td class="mono">14</td><td>看涨</td><td class="mono">600.0</td><td class="mono">603</td><td class="mono">16%</td><td class="mono">0.16</td><td class="mono">125</td><td class="mono">2,000</td><td class="mono">603.9</td><td class="mono pos">+9,125</td><td class="mono">32,367</td></tr>
+              <tr><td class="mono">15</td><td>看涨</td><td class="mono">604.0</td><td class="mono">607</td><td class="mono">16%</td><td class="mono">0.16</td><td class="mono">156</td><td class="mono">2,496</td><td class="mono">604.7</td><td class="mono neg">−2,496</td><td class="mono">29,871</td></tr>
+              <tr><td class="mono">16</td><td>看跌</td><td class="mono">605.0</td><td class="mono">602</td><td class="mono">16%</td><td class="mono">0.15</td><td class="mono">200</td><td class="mono">3,000</td><td class="mono">605.3</td><td class="mono neg">−3,000</td><td class="mono">26,871</td></tr>
+              <tr><td class="mono">17</td><td>看涨</td><td class="mono">603.5</td><td class="mono">606</td><td class="mono">17%</td><td class="mono">0.27</td><td class="mono">129</td><td class="mono">3,483</td><td class="mono">604.2</td><td class="mono neg">−3,483</td><td class="mono">23,388</td></tr>
+              <tr><td class="mono">18</td><td>看跌</td><td class="mono">604.0</td><td class="mono">601</td><td class="mono">17%</td><td class="mono">0.18</td><td class="mono">138</td><td class="mono">2,484</td><td class="mono">603.0</td><td class="mono neg">−2,484</td><td class="mono">20,904</td></tr>
+              <tr><td class="mono">19</td><td>看涨</td><td class="mono">602.0</td><td class="mono">605</td><td class="mono">17%</td><td class="mono">0.19</td><td class="mono">157</td><td class="mono">2,983</td><td class="mono">601.4</td><td class="mono neg">−2,983</td><td class="mono">17,921</td></tr>
+              <tr><td class="mono">20</td><td>看涨</td><td class="mono">600.0</td><td class="mono">603</td><td class="mono">17%</td><td class="mono">0.19</td><td class="mono">210</td><td class="mono">3,990</td><td class="mono">600.5</td><td class="mono neg">−3,990</td><td class="mono">13,931</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>成本 = Black-Scholes 中间价加 $0.01 后取两位小数；赢的那几天按收盘内在价值减 $0.01 卖出。例如第 9 天：<span class="num">(597 − 596.0 − 0.01 − 0.18) × 144 × 100 = +$11,664</span>。</p>
+        <p><strong>心态轨迹。</strong>第 1–3 天连亏，金额从 $288 加到 $646（追）。第 4 天赢了 3.9 倍，第 5–8 天金额从 $1,197 一路加到 $2,185：先是赢了之后的膨胀，接着是连亏之后的追。第 9 天一笔 5.5 倍，账户冲到 $36,194，这是这个月唯一一张会被截图的账面。第 10–12 天每笔 $3,500 左右（「手感来了」），全亏。第 13 天缩到 $1,998（怕了），第 14 天又赢 5.6 倍，于是第 15–20 天重新加到 $2,500–3,990，全亏。</p>
+        <p><strong>结果。</strong>20 天赢 3 天，胜率 15%，和 15.2 节算出的一成左右一致。账户从 $30,000 变成 <span class="num">$13,931</span>，亏 53.6%。一个月投入的权利金合计 <span class="num">$44,921</span>，是起始账户的 1.5 倍。同样的 20 天、同样的方向和行权价，如果每天固定 $300，结果是 <span class="num">−$1,444</span>（−4.8%）。</p>
+        <div class="note">
+          <span class="tag">启示</span>
+          <ul>
+            <li>选择是一样的，胜率也是一样的。−4.8% 和 −53.6% 的差距，全部来自金额怎么随情绪变化。</li>
+            <li>最大的亏损阶段紧跟在两次大赢之后（第 10–12 天、第 15–20 天）。赢之后加仓，比输之后加倍更隐蔽，因为它感觉像是「有底气」。</li>
+            <li>第 9 天的截图是真的，这个月也是真的。只看截图的人，会以为这是一个赚了 $11,664 的月份。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">工具</span>清单与自测</h2>
+      <p>勾选状态只保存在你自己的浏览器里。</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">15-1</span>买方：每月体检</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">本月彩票类权利金合计没有超过预算</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">亏损当天没有再开末日期权</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">单笔金额固定，没有随前一笔盈亏变化</label></li>
+            <li><input type="checkbox" id="k4"><label for="k4">每笔都写了胜率与赔率，算过期望值</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">15-2</span>卖方：每月体检</h4>
+          <ul>
+            <li><input type="checkbox" id="k5"><label for="k5">裸卖名义敞口 ≤ 净值 1 倍，或全部是价差</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">跳空 20% 压力测试：单笔亏损 ≤ 账户 5%，合计 ≤ 20%</label></li>
+            <li><input type="checkbox" id="k7"><label for="k7">没有对被突破的仓位加仓</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">滚仓没有增加张数，亏损已记为已实现</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">15-3</span>五种死法的早期信号（出现就打勾）</h4>
+          <ul>
+            <li><input type="checkbox" id="k9"><label for="k9">连亏之后单笔金额变大</label></li>
+            <li><input type="checkbox" id="k10"><label for="k10">连续多月无亏损，且名义敞口超过净值</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">滚仓后张数增加</label></li>
+            <li><input type="checkbox" id="k12"><label for="k12">保证金占用超过净值的 50%</label></li>
+            <li><input type="checkbox" id="k13"><label for="k13">上次事件亏了，这次准备反着做</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">15-4</span>连胜复核（连赢 5 笔或账户新高时）</h4>
+          <ul>
+            <li><input type="checkbox" id="k14"><label for="k14">仓位没有比上个月大</label></li>
+            <li><input type="checkbox" id="k15"><label for="k15">检查了期间「赚了钱但做错了」的交易</label></li>
+            <li><input type="checkbox" id="k16"><label for="k16">重做了一次压力测试</label></li>
+            <li><input type="checkbox" id="k17"><label for="k17">停了一天再交易</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>自测五题</h3>
+      <details class="q"><summary><span class="num">1</span><span>一张末日看涨期权成本 $0.20，到期价内的概率 12%，价内时平均值 $1.40。每笔期望是多少？每天 10 张、一个月 20 天，预期亏多少？</span></summary>
+        <div class="ans"><p>每笔期望 <span class="num">0.12 × 1.40 − 0.20 = −$0.032</span>，即成本的 −16%。一个月预期 <span class="num">−0.032 × 100 × 10 × 20 = −$640</span>。每一笔都只亏几十美元，加总后才看得见。</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>你每周卖看跌收 $0.25 每股。一次跳空后，扣掉权利金每股净亏 $6。这一次亏掉了多少周的收入？</span></summary>
+        <div class="ans"><p><span class="num">6 ÷ 0.25 = 24</span> 周，接近半年。九成胜率的策略，一年里只要碰上两次这样的跳空，全年就白做了。</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>卖出 10 张 90 看跌，股价 100 时期权价 0.50；股价跌到 88 时期权价 4.00。按 Reg T 公式，保证金要求从多少变成多少？</span></summary>
+        <div class="ans"><p>股价 100：<span class="num">(max(20 − 10, 9) + 0.50) × 1,000 = $10,500</span>。股价 88，已经价内，虚值部分为 0：<span class="num">(max(17.6, 9) + 4.00) × 1,000 = $21,600</span>。股价跌 12%，保证金要求翻倍，同时净值减少了 $3,500。</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>卖出平值跨式每天收 Theta $11.40，Gamma 0.0925。某天股价动了 4.71（3 个日标准差），Delta 对冲后当天盈亏约多少？</span></summary>
+        <div class="ans"><p>Gamma 损失 <span class="num">½ × 0.0925 × 4.71² = 1.026</span> 每股，即 $102.6，约等于 9 天的 Theta。当天盈亏约 <span class="num">11.4 − 102.6 = −$91.2</span>。</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>胜率 80%、赢 0.27R、输 1R 的策略，每连赢一次仓位放大 1.5 倍（上限 8 倍）。连赢 6 次后第 7 笔输了，这 7 笔合计是多少？连赢 6 次的概率多大？</span></summary>
+        <div class="ans"><p>6 笔的仓位合计 <span class="num">1 + 1.5 + 2.25 + 3.38 + 5.06 + 7.59 = 20.78</span>，赚 <span class="num">20.78 × 0.27 = 5.61R</span>；第 7 笔仓位 8 倍，亏 8R。合计 <span class="num">−2.39R</span>。连赢 6 次的概率 <span class="num">0.8⁶ = 26.2%</span>，大约每四段就会遇到一次。</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="章节翻页"></nav>
+
+    <footer class="end">
+      <p>本章期权价格由 Black-Scholes 模型计算（利率 4%，不派息，一年 365 天）；账本、模拟与保证金公式为虚构或文中注明的简化假设，用于教学，不构成投资建议。</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+
+  function nice(lo, hi, n) {
+    if (hi - lo < 1e-9) { hi = lo + 1; }
+    const raw = (hi - lo) / (n || 5);
+    const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    const st = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => s >= raw) || 10 * mag;
+    const a = Math.floor(lo / st) * st, b = Math.ceil(hi / st) * st;
+    const t = []; for (let v = a; v <= b + st * 1e-6; v += st) t.push(+v.toFixed(6));
+    return [a, b, t, st];
+  }
+  const sgn0 = v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(Math.round(v)).toLocaleString("en-US");
+
+  // ---------- fig 15-1 lottery ----------
+  (function () {
+    const svg = document.getElementById("f1-svg");
+    const kS = document.getElementById("f1-k"), rS = document.getElementById("f1-r"), btn = document.getElementById("f1-seed");
+    const S = 600, IV = 0.16, T = 0.25 / DAY, HS = 0.01, NT = 100;
+    let seed = 10;
+    function draw() {
+      const K = +kS.value, ratio = +rS.value / 100, rv = IV * ratio;
+      document.getElementById("f1-k-o").textContent = K + "（虚值 " + ((K - S) / S * 100).toFixed(2) + "%）";
+      document.getElementById("f1-r-o").textContent = rS.value + "%";
+      const cost = bs(S, K, T, IV, "c").price + HS;
+      const rand = CK.rng(seed);
+      let cum = 0, wins = 0, mult = 0;
+      const pts = [[0, 0]], dots = [];
+      for (let i = 1; i <= NT; i++) {
+        const z = CK.gauss(rand);
+        const ST = S * Math.exp((CK.R - 0.5 * rv * rv) * T + rv * Math.sqrt(T) * z);
+        const pay = ST > K ? Math.max(ST - K - HS, 0) : 0;
+        const pl = (pay - cost) * 100;
+        cum += pl; pts.push([i, cum]);
+        if (pl > 0) { wins++; mult += pay / cost; dots.push([i, cum, "var(--theta)", 4]); }
+      }
+      const g = bs(S, K, T, rv, "c");
+      const ev = (g.price * Math.exp(CK.R * T) - HS * CK.N(g.d2) - cost) / cost;
+      const expEnd = ev * cost * 100 * NT;
+      const ys = pts.map(p => p[1]).concat([expEnd, 0]);
+      const [y0, y1, yt] = nice(Math.min(...ys), Math.max(...ys), 5);
+      plot(svg, {
+        x: [0, NT], y: [y0, y1], xt: range(0, NT, 20), yt, yf: sgn0,
+        xlabel: "第几次交易", ylabel: "累计盈亏（美元）", zero: 0,
+        series: [{ pts: [[0, 0], [NT, expEnd]], color: "var(--gamma)", w: 1.8, dash: "6 5" }, { pts, color: "var(--ink)", w: 2 }],
+        dots
+      });
+      document.getElementById("f1-r1").textContent = wins + " / " + NT;
+      document.getElementById("f1-r2").textContent = wins ? (mult / wins).toFixed(1) + " 倍" : "—";
+      document.getElementById("f1-r3").textContent = money(cum);
+      document.getElementById("f1-r4").textContent = (ev >= 0 ? "+" : "−") + Math.abs(ev * 100).toFixed(1) + "%";
+    }
+    kS.addEventListener("input", draw); rS.addEventListener("input", draw);
+    btn.addEventListener("click", () => { seed += 1; draw(); });
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 15-2 seller ----------
+  (function () {
+    const svg = document.getElementById("f2-svg");
+    const lS = document.getElementById("f2-l");
+    const btns = document.querySelectorAll("#fig2 .seg button");
+    const IV = 0.30, RV = 0.20, MU = 0.08, WK = 7, GAPW = 47, GAP = 0.82, SEED = 27, ACCT = 50000;
+    let mode = "naked";
+    function strike(S) {
+      let best = null, bd = 0, K = Math.floor(S * 0.8 * 2) / 2;
+      while (K <= S) {
+        const d = bs(S, K, WK / DAY, IV, "p").delta;
+        if (best === null || Math.abs(d + 0.15) < Math.abs(bd + 0.15)) { best = K; bd = d; }
+        K += 0.5;
+      }
+      return best;
+    }
+    function run(L, md) {
+      const rand = CK.rng(SEED);
+      let S = 100, eq = ACCT, wins = 0, streak = 0, best = 0, peak = ACCT, prePeak = 0, gap = null;
+      const path = [[0, ACCT / 1000]];
+      for (let w = 1; w <= 52; w++) {
+        const K = strike(S);
+        let p = bs(S, K, WK / DAY, IV, "p").price;
+        if (md === "spread") p -= bs(S, K - 5, WK / DAY, IV, "p").price;
+        const n = eq > 0 ? Math.max(1, Math.floor(eq * L / (K * 100))) : 0;
+        const z = CK.gauss(rand), dt = WK / DAY;
+        let S1 = S * Math.exp((MU - 0.5 * RV * RV) * dt + RV * Math.sqrt(dt) * z);
+        if (w === GAPW) S1 = S * GAP;
+        let loss = Math.max(K - S1, 0);
+        if (md === "spread") loss = Math.min(loss, 5);
+        const pl = (p - loss) * 100 * n;
+        if (w === GAPW) { gap = { pl, pct: pl / eq }; prePeak = peak; }
+        eq += pl; path.push([w, eq / 1000]);
+        if (pl > 0) { wins++; streak++; best = Math.max(best, streak); } else streak = 0;
+        peak = Math.max(peak, eq);
+        S = S1;
+      }
+      return { path, wins, best, prePeak, gap, end: eq };
+    }
+    function draw() {
+      const L = +lS.value;
+      document.getElementById("f2-l-o").textContent = L.toFixed(1) + " 倍";
+      const a = run(L, mode), b = run(L, mode === "naked" ? "spread" : "naked");
+      const ys = a.path.concat(b.path).map(p => p[1]);
+      const [y0, y1, yt] = nice(Math.min(...ys), Math.max(...ys), 5);
+      const col = mode === "naked" ? "var(--gamma)" : "var(--theta)";
+      document.getElementById("f2-lg1").style.borderColor = col;
+      plot(svg, {
+        x: [0, 52], y: [y0, y1], xt: [0, 13, 26, 39, 52], yt, yf: v => "$" + Math.round(v) + "k",
+        xlabel: "周", ylabel: "账户净值", vline: GAPW, zero: ACCT / 1000,
+        series: [{ pts: b.path, color: "var(--muted)", w: 1.6, dash: "5 5" }, { pts: a.path, color: col, w: 2.6 }],
+        labels: [[GAPW, y1, "跳空", -6, 14, "end", "var(--muted)"]]
+      });
+      document.getElementById("f2-r1").textContent = a.wins + " 周";
+      document.getElementById("f2-r5").textContent = a.best + " 周";
+      document.getElementById("f2-r2").textContent = CK.usd(a.prePeak);
+      document.getElementById("f2-r3").textContent = money(a.gap.pl);
+      document.getElementById("f2-r3p").textContent = CK.pct(-a.gap.pct);
+      document.getElementById("f2-r4").textContent = CK.usd(a.end);
+    }
+    btns.forEach(bt => bt.addEventListener("click", () => {
+      mode = bt.dataset.m;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === bt ? "true" : "false"));
+      draw();
+    }));
+    lS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 15-3 five paths (static, built from data) ----------
+  (function () {
+    const g = document.getElementById("f3-rows");
+    const rows = [
+      ["末日期权连续归零", ["每天一小笔 0DTE", "单笔胜率约一成"], ["亏了加倍「追回来」", "连亏 5 天的概率 53%"], ["一个月亏掉一半"]],
+      ["裸卖遇跳空", ["长期稳定收权利金", "连续数月没有亏损"], ["名义敞口超过净值", "止损被跳空越过"], ["一夜亏掉一年利润"]],
+      ["越滚越大", ["短腿被突破", "滚仓收「净权利金」"], ["张数 5 → 6 → 10", "已实现亏损被掩盖"], ["敞口失控"]],
+      ["保证金螺旋", ["标的下跌", "同时 IV 上升"], ["保证金要求上升", "净值同时下降"], ["在最差的价位被强平"]],
+      ["事件日双向亏损", ["财报前买跨式", "IV 崩塌后亏损"], ["下次反手卖跨式", "遇上超预期跳空"], ["两边各亏一次"]]
+    ];
+    const txt = (x, y, s, style, anchor) => { const t = el("text", { x, y, "text-anchor": anchor || "middle", style }, g); t.textContent = s; return t; };
+    rows.forEach((r, i) => {
+      const y = 36 + i * 66, h = 54, cy = y + h / 2;
+      el("rect", { x: 10, y, width: 130, height: h, rx: 6, style: "fill: var(--tint-warn); stroke: var(--warn)" }, g);
+      txt(75, cy + 5, r[0], "fill: var(--ink); font-size: 13.5px; font-weight: 700");
+      el("rect", { x: 160, y, width: 150, height: h, rx: 6, style: "fill: none; stroke: var(--rule)" }, g);
+      txt(235, cy - 4, r[1][0], "fill: var(--ink); font-size: 12.5px"); txt(235, cy + 14, r[1][1], "fill: var(--muted); font-size: 12px");
+      el("rect", { x: 330, y, width: 170, height: h, rx: 6, style: "fill: var(--tint-gamma); stroke: var(--gamma)" }, g);
+      txt(415, cy - 4, r[2][0], "fill: var(--ink); font-size: 12.5px"); txt(415, cy + 14, r[2][1], "fill: var(--muted); font-size: 12px");
+      el("rect", { x: 520, y, width: 150, height: h, rx: 6, style: "fill: var(--ink); stroke: var(--ink)" }, g);
+      txt(595, cy + 5, r[3][0], "fill: var(--paper); font-size: 13px; font-weight: 700");
+      [[142, 156], [312, 326], [502, 516]].forEach(([a, b]) => el("path", { d: `M${a} ${cy} H${b}`, style: "stroke: var(--muted)", "stroke-width": 1.4, "marker-end": "url(#a15)" }, g));
+    });
+  })();
+
+  // ---------- fig 15-4 streak sizing ----------
+  (function () {
+    const svg = document.getElementById("f4-svg");
+    const mS = document.getElementById("f4-m"), fS = document.getElementById("f4-f");
+    const btns = document.querySelectorAll("#fig4 .seg button");
+    const NP = 2000, NT = 100, P = 0.8, CAP = 8;
+    const rand = CK.rng(7);
+    const U = new Float64Array(NP * NT);
+    for (let j = 0; j < NP; j++) for (let i = 0; i < NT; i++) U[j * NT + i] = rand();
+    let W = 0.27;
+    function sim(m, f) {
+      const eq = new Float64Array(NP).fill(1), size = new Float64Array(NP).fill(1), mn = new Float64Array(NP).fill(1);
+      const med = [1], p5 = [1];
+      const tmp = new Float64Array(NP);
+      for (let i = 0; i < NT; i++) {
+        for (let j = 0; j < NP; j++) {
+          const risk = f * eq[j] * size[j];
+          if (U[j * NT + i] < P) { eq[j] += risk * W; size[j] = Math.min(size[j] * m, CAP); }
+          else { eq[j] -= risk; size[j] = 1; }
+          if (eq[j] < mn[j]) mn[j] = eq[j];
+        }
+        tmp.set(eq); tmp.sort();
+        med.push((tmp[NP / 2 - 1] + tmp[NP / 2]) / 2); p5.push(tmp[Math.floor(NP * 0.05)]);
+      }
+      let below = 0, halved = 0, sum = 0;
+      for (let j = 0; j < NP; j++) { if (eq[j] < 1) below++; if (mn[j] < 0.5) halved++; sum += eq[j]; }
+      return { med, p5, below: below / NP, halved: halved / NP, mean: sum / NP, fmed: med[NT] };
+    }
+    function draw() {
+      const m = +mS.value, f = +fS.value / 100;
+      document.getElementById("f4-m-o").textContent = m.toFixed(1) + " 倍";
+      document.getElementById("f4-f-o").textContent = fS.value + "%";
+      const a = sim(1, f), b = sim(m, f);
+      const toPts = arr => arr.map((v, i) => [i, v]);
+      const ys = a.med.concat(a.p5, b.med, b.p5);
+      const [y0, y1, yt] = nice(Math.min(...ys), Math.max(...ys), 5);
+      plot(svg, {
+        x: [0, NT], y: [y0, y1], xt: range(0, NT, 20), yt, yf: v => v.toFixed(2),
+        xlabel: "第几笔交易", ylabel: "账户净值（起始 = 1）", zero: 1,
+        series: [
+          { pts: toPts(a.p5), color: "var(--delta)", w: 1.8, dash: "6 4" }, { pts: toPts(a.med), color: "var(--delta)", w: 2.4 },
+          { pts: toPts(b.p5), color: "var(--gamma)", w: 1.8, dash: "6 4" }, { pts: toPts(b.med), color: "var(--gamma)", w: 2.4 }
+        ]
+      });
+      const pc = v => Math.round(v * 1000) / 10 + "%";
+      document.getElementById("f4-r1").textContent = a.fmed.toFixed(2) + " 倍";
+      document.getElementById("f4-r1p").textContent = pc(a.below);
+      document.getElementById("f4-r2").textContent = b.fmed.toFixed(2) + " 倍";
+      document.getElementById("f4-r2p").textContent = pc(b.below);
+      document.getElementById("f4-r3").textContent = pc(b.halved);
+      document.getElementById("f4-r4").textContent = b.mean.toFixed(2) + " 倍";
+      document.getElementById("f4-r4p").textContent = a.mean.toFixed(2) + " 倍";
+    }
+    btns.forEach(bt => bt.addEventListener("click", () => {
+      W = +bt.dataset.w;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === bt ? "true" : "false"));
+      draw();
+    }));
+    mS.addEventListener("input", draw); fS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- tool 15-A copy ----------
+  (function () {
+    const btn = document.getElementById("imp-copy"), pre = document.getElementById("imp-text"), msg = document.getElementById("imp-msg");
+    function selectText() {
+      try {
+        const r = document.createRange(); r.selectNodeContents(pre);
+        const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      } catch (e) {}
+      msg.textContent = "已选中全部文字，请按 Ctrl+C（手机上长按）复制。";
+    }
+    btn.addEventListener("click", () => {
+      const text = pre.textContent;
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => { msg.textContent = "已复制到剪贴板。"; }, selectText);
+      } else {
+        let ok = false;
+        try {
+          const ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", "");
+          ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select();
+          ok = document.execCommand && document.execCommand("copy"); document.body.removeChild(ta);
+        } catch (e) { ok = false; }
+        if (ok) msg.textContent = "已复制到剪贴板。"; else selectText();
+      }
+    });
+  })();
+
+})();
+</script>
+</body>
+</html>

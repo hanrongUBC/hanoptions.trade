@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 7 章 买方策略 · 美股期权课</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  .chart.short { margin-bottom: 4px; }
+</style>
+</head>
+<body data-ch="7">
+<div class="topbar"><div class="topbar-inner"><a class="brand" href="index.html">美股期权<span>课</span></a><select id="ck-jump" aria-label="跳转到章节"></select></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">07</div>
+    <div class="eyebrow">美股期权课 · 第三部分 策略 · 第 7 章</div>
+    <h1><span class="g">买方</span>策略</h1>
+    <p class="deck">买期权最常见的结局是方向看对了，钱却没赚到。本章把一个看涨判断拆成四个选择：行权价、到期日、买入时机和结构，用数字比较每种选择的成本、盈亏平衡和胜率，最后给出下单前就要写好的退出规则。</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="本章目录">
+    <p class="toc-title">本章目录</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>开篇：方向对了，钱没了</span></a></li>
+      <li><a href="#s1"><span class="n">7.1</span><span>买方的三个敌人</span></a></li>
+      <li><a href="#s2"><span class="n">7.2</span><span>行权价：Delta 30、50、70</span></a></li>
+      <li><a href="#s3"><span class="n">7.3</span><span>到期日：给判断留缓冲</span></a></li>
+      <li><a href="#s4"><span class="n">7.4</span><span>买入时机：看 IV</span></a></li>
+      <li><a href="#s5"><span class="n">7.5</span><span>借记价差</span></a></li>
+      <li><a href="#s6"><span class="n">7.6</span><span>LEAPS：用期权替代股票</span></a></li>
+      <li><a href="#s7"><span class="n">7.7</span><span>期权什么时候优于股票</span></a></li>
+      <li><a href="#s8"><span class="n">7.8</span><span>买方的五个常见错误</span></a></li>
+      <li><a href="#s9"><span class="n">7.9</span><span>管理规则</span></a></li>
+      <li><a href="#cases"><span class="n">案例</span><span>三个案例</span></a></li>
+      <li><a href="#tools"><span class="n">工具</span><span>清单与自测</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>本章目录</summary>
+      <ol>
+        <li><a href="#open">开篇：方向对了，钱没了</a></li>
+        <li><a href="#s1">7.1 买方的三个敌人</a></li>
+        <li><a href="#s2">7.2 行权价：Delta 30、50、70</a></li>
+        <li><a href="#s3">7.3 到期日：给判断留缓冲</a></li>
+        <li><a href="#s4">7.4 买入时机：看 IV</a></li>
+        <li><a href="#s5">7.5 借记价差</a></li>
+        <li><a href="#s6">7.6 LEAPS：用期权替代股票</a></li>
+        <li><a href="#s7">7.7 期权什么时候优于股票</a></li>
+        <li><a href="#s8">7.8 买方的五个常见错误</a></li>
+        <li><a href="#s9">7.9 管理规则</a></li>
+        <li><a href="#cases">三个案例</a></li>
+        <li><a href="#tools">清单与自测</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>学完本章你能</h4>
+        <ul>
+          <li>为同一个判断选出行权价和到期日，并算出成本、盈亏平衡和胜率近似</li>
+          <li>用借记价差把 Vega 和 Theta 敞口降到裸买的两成以下，并说清代价</li>
+          <li>下单前写好止盈、时间止损和仓位上限三条规则</li>
+        </ul>
+      </div>
+      <div>
+        <h4>前置知识</h4>
+        <ul>
+          <li>第 4 章：Delta、Gamma 与盈亏近似</li>
+          <li>第 5 章：Theta 的形状与 Vega</li>
+          <li>第 6 章：IV Rank 与事件波动率</li>
+        </ul>
+      </div>
+      <div>
+        <h4>本章约定</h4>
+        <ul>
+          <li>Black-Scholes，利率 4%，不派息，一年 365 天</li>
+          <li>除非注明，标的 $100，IV 30% 且保持不变</li>
+          <li>收益率按所付权利金计算，一张合约 = 100 股</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">开篇</span>方向对了，钱没了</h2>
+      <p class="lead">你判断股票 X（现价 $100，IV 30%）一个月内会涨到 105。为了「杠杆最大」，你买了 10 张 30 天到期的 105 看涨，每张 $1.66，一共 $1,662。</p>
+      <p>两周后股价到了 104，你打开账户，期权只值 <span class="num">$1.88</span>，才赚 13%。股价上涨的同时，IV 从 30% 降到了 26%，14 天的时间价值也流走了。到期那天股价收在 104.5，比买入时涨了 4.5%，方向完全正确，你的 105 看涨却一文不值，$1,662 全部归零。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 7-0　同一个判断，四种表达；30 天后股价 104.5</caption>
+          <thead><tr><th>表达方式</th><th>成本</th><th>第 30 天价值</th><th>盈亏</th></tr></thead>
+          <tbody>
+            <tr><td>10 张 30 天 105 看涨</td><td class="mono">$1,662</td><td class="mono">$0</td><td class="mono neg">−$1,662（−100%）</td></tr>
+            <tr><td>10 张 30 天 100 看涨</td><td class="mono">$3,591</td><td class="mono">$4,500</td><td class="mono pos">+$909（+25%）</td></tr>
+            <tr class="hl"><td>10 张 90 天 100 看涨</td><td class="mono">$6,412</td><td class="mono">$7,346</td><td class="mono pos">+$934（+15%）</td></tr>
+            <tr><td>100 股正股</td><td class="mono">$10,000</td><td class="mono">$10,450</td><td class="mono pos">+$450（+4.5%）</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>第三行按第 30 天 IV 26%、剩余 60 天计算。它赚得不如 30 天平值多，但还留着 60 天的时间，如果判断继续兑现，仓位还活着。第一行的问题有三个：行权价太虚，到期日太近，也没有考虑 IV 会回落。这一章就从这三个问题讲起：先认识买方的三个敌人（7.1），再学会选行权价（7.2）、到期日（7.3）、时机（7.4）和结构（7.5、7.6），最后是错误清单和管理规则。</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">7.1</span>买方的三个敌人</h2>
+      <p>买方每天都在和三个敌人交手：时间、IV 压缩、方向错误。要赚钱，价格变动必须足够大、足够快，盖过另外两个敌人。</p>
+      <p>用一张 30 天平值看涨（3.591）把账拆开。10 天后股价涨了 3%，IV 从 30% 降到 26%，期权变成 4.398，赚 22%。按先价格、再时间、后 IV 的顺序逐项重新定价：</p>
+      <div class="tbl">
+        <table>
+          <caption>表 7-1　30 天平值看涨 10 天后的盈亏拆解（每股）</caption>
+          <thead><tr><th>变化</th><th>期权价格</th><th>这一项的贡献</th><th>占权利金</th></tr></thead>
+          <tbody>
+            <tr><td>买入</td><td class="mono">3.591</td><td></td><td></td></tr>
+            <tr><td>股价 100 → 103（时间、IV 不变）</td><td class="mono">5.390</td><td class="mono pos">+1.799</td><td class="mono pos">+50.1%</td></tr>
+            <tr><td>时间过去 10 天</td><td class="mono">4.735</td><td class="mono neg">−0.656</td><td class="mono neg">−18.3%</td></tr>
+            <tr><td>IV 30% → 26%</td><td class="mono">4.398</td><td class="mono neg">−0.336</td><td class="mono neg">−9.4%</td></tr>
+            <tr class="hl"><td>合计</td><td></td><td class="mono pos">+0.807</td><td class="mono pos">+22.5%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>方向贡献了 50%，时间和 IV 两个敌人拿走了其中的 55%。换一种拆分顺序（先算时间），时间一项是 −0.682，数字略有不同，但结论一样。</p>
+      <h3>敌人一：时间</h3>
+      <p>平值期权每天的 Theta 约是 0.062，相当于权利金的 <span class="num">1.74%</span>。股价不动，这张期权 15 天后就只剩七成价值。时间损耗不是匀速的，越接近到期越快（7.9 节的表 7-14）。</p>
+      <h3>敌人二：IV 压缩</h3>
+      <p>Vega 约 0.114，IV 每降 1 个点，期权少 0.114。最危险的是事件后的 IV 崩塌（第 5、6 章）。还有一个容易被忽视的规律：股指和很多大盘股上涨时 IV 往往下降，下跌时上升。看涨期权的买方常常在判断兑现的时候，正好遇上 IV 回落。</p>
+      <h3>敌人三：方向错误，以及「对得不够」</h3>
+      <p>买方不只是要方向对，还要幅度够。到期时的盈亏平衡价是行权价加权利金。30 天平值看涨的盈亏平衡价是 103.59，股价要涨 <span class="num">3.59%</span> 才不亏。</p>
+      <div class="formula">
+        <div class="eq">到期盈亏平衡价 <span class="up">=</span> <span class="v">K</span> <span class="up">+</span> <span class="v">C</span>　　所需涨幅 <span class="up">=</span> <span class="frac"><span><span class="v">K</span> <span class="up">+</span> <span class="v">C</span> <span class="up">−</span> <span class="v">S</span></span><span><span class="v">S</span></span></span></div>
+        <p class="where"><span class="v">K</span> 是行权价，<span class="v">C</span> 是权利金，<span class="v">S</span> 是买入时股价。</p>
+      </div>
+      <p>按 Black-Scholes 的风险中性概率，这张平值看涨到期在价内的概率是 <span class="num">49.8%</span>，到期超过盈亏平衡价的概率只有 <span class="num">33.9%</span>。买方的胜率天然低于一半，靠的是赚的时候赚得多。这里的概率是市场定价隐含的，没有考虑股票的真实预期收益，作为近似足够用。</p>
+      <h3>哪个敌人最危险，取决于你买了什么</h3>
+      <div class="tbl">
+        <table>
+          <caption>表 7-2　不同合约的主要敌人</caption>
+          <thead><tr><th>你买的是</th><th>最危险的敌人</th><th>数字上的表现</th></tr></thead>
+          <tbody>
+            <tr><td>两周内到期的平值期权</td><td>时间</td><td>每天亏掉权利金的 3.7% 以上（表 7-12）</td></tr>
+            <tr><td>财报、FOMC 前的期权</td><td>IV 压缩</td><td>事件后 IV 常回落几十个点，股价不动可亏一半以上（第 6 章表 6-8）</td></tr>
+            <tr><td>深度虚值期权</td><td>幅度不够</td><td>需要 1.5 个标准差以上的变动才回本（7.8 节）</td></tr>
+            <tr><td>长期实值期权</td><td>方向</td><td>Theta、Vega 占权利金的比例都小，表现接近股票</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>所以控制三个敌人的第一步，是认出这笔交易最怕哪一个，再用行权价、期限和结构去削弱它。下面四节分别对应这几种手段。</p>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">7.2</span>行权价：Delta 30、50、70</h2>
+      <p>行权价决定你押的是什么：实值期权主要押方向，平值押方向加幅度，虚值押幅度加速度。</p>
+      <p>用一个具体判断来比较：股价 $100，你认为三个月内会涨 10%。三张 90 天看涨期权，行权价分别取 Delta 约 0.70、0.50、0.30 的位置（94、102、110）：</p>
+      <div class="tbl">
+        <table>
+          <caption>表 7-3　90 天看涨期权，三个行权价的对比（股价 100，IV 30%）</caption>
+          <thead><tr><th>项目</th><th>94（Δ 0.71）</th><th>102（Δ 0.50）</th><th>110（Δ 0.31）</th></tr></thead>
+          <tbody>
+            <tr><td>权利金（每张）</td><td class="mono">9.84（$984）</td><td class="mono">5.48（$548）</td><td class="mono">2.73（$273）</td></tr>
+            <tr><td>杠杆 Δ × S / C</td><td class="mono">7.2 倍</td><td class="mono">9.2 倍</td><td class="mono">11.3 倍</td></tr>
+            <tr><td>到期盈亏平衡价</td><td class="mono">103.84（+3.8%）</td><td class="mono">107.48（+7.5%）</td><td class="mono">112.73（+12.7%）</td></tr>
+            <tr><td>到期价内概率</td><td class="mono">65.8%</td><td class="mono">44.4%</td><td class="mono">25.8%</td></tr>
+            <tr><td>到期超过盈亏平衡的概率</td><td class="mono">39.7%</td><td class="mono">31.1%</td><td class="mono">20.8%</td></tr>
+            <tr><td>每日 Theta / 权利金</td><td class="mono">0.36%</td><td class="mono">0.69%</td><td class="mono">1.18%</td></tr>
+            <tr><td>Vega / 权利金（每 IV 点）</td><td class="mono">1.72%</td><td class="mono">3.61%</td><td class="mono">6.40%</td></tr>
+            <tr class="hl"><td>股价到期正好 110</td><td class="mono pos">+62.5%</td><td class="mono pos">+46.0%</td><td class="mono neg">−100%</td></tr>
+            <tr><td>第 30 天就到 110</td><td class="mono pos">+74.0%</td><td class="mono pos">+93.0%</td><td class="mono pos">+108.0%</td></tr>
+            <tr><td>买入当天就到 110</td><td class="mono pos">+82.0%</td><td class="mono pos">+114.6%</td><td class="mono pos">+158.1%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>杠杆一行用的是弹性：股价涨 1%，期权大约涨 Δ × <span class="v">S</span> / <span class="v">C</span> 个百分点。虚值期权的杠杆最高，但它的每日时间损耗和 IV 风险（按权利金的比例算）也是实值的三到四倍。</p>
+      <p>换一个角度：同样花 $1,000，三种行权价各能买多少敞口？</p>
+      <div class="tbl">
+        <table>
+          <caption>表 7-4　各花 $1,000（允许零碎张数，便于比较）</caption>
+          <thead><tr><th>行权价</th><th>张数</th><th>等效股数</th><th>每日 Theta（美元）</th><th>Vega（美元 / IV 点）</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">94（Δ 0.71）</td><td class="mono">1.0</td><td class="mono">72</td><td class="mono neg">−3.56</td><td class="mono">17.2</td></tr>
+            <tr><td class="mono">102（Δ 0.50）</td><td class="mono">1.8</td><td class="mono">92</td><td class="mono neg">−6.92</td><td class="mono">36.1</td></tr>
+            <tr><td class="mono">110（Δ 0.31）</td><td class="mono">3.7</td><td class="mono">113</td><td class="mono neg">−11.80</td><td class="mono">64.0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>同样的钱，虚值多拿到 57% 的方向敞口（113 股对 72 股），付出的代价是每天的时间损耗是实值的 3.3 倍，IV 敞口是 3.7 倍。方向敞口多出来的那一点，并不足以抵消另外两项。这也是为什么「钱少就买虚值」是一个常见但吃亏的习惯。</p>
+      <p>最重要的是高亮那一行。你的判断是「涨 10%」，Delta 30 的行权价正好落在 110。判断完全准确、股价到期正好 110，这张期权归零。<strong>虚值期权押的是「比你的目标涨得更多」</strong>，它的盈亏平衡在 112.73。反过来，涨幅来得越早，虚值期权越占优：当天就到 110，它赚 158%。</p>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">越虚值，越依赖速度</span><span class="fig-no">图 7-1 · 90 天看涨，三个行权价，可拖动</span></div>
+        <div class="controls">
+          <label class="ctl" for="f1-d">经过天数 <input id="f1-d" type="range" min="0" max="90" value="30"> <output id="f1-d-o">30 天</output></label>
+          <label class="ctl" for="f1-iv">IV 变化 <input id="f1-iv" type="range" min="-10" max="10" value="0"> <output id="f1-iv-o">0 点</output></label>
+        </div>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 320" role="img" aria-label="三个行权价在不同股价下的收益率"></svg>
+        <div class="legend"><span><i style="border-color: var(--theta)"></i>94 看涨（Δ 0.71）</span><span><i style="border-color: var(--delta)"></i>102 看涨（Δ 0.50）</span><span><i style="border-color: var(--gamma)"></i>110 看涨（Δ 0.31）</span></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small>94 看涨，股价 110 时</small></div>
+          <div><b id="f1-r2">—</b><small>102 看涨，股价 110 时</small></div>
+          <div><b id="f1-r3">—</b><small>110 看涨，股价 110 时</small></div>
+        </div>
+        <figcaption>竖虚线是目标价 110。经过天数拖到 0，三条线在 110 处从高到低是虚值、平值、实值；拖到 45 天左右三者接近；拖到 90 天（到期），虚值那条线在 110 处跌到 −100%。再把 IV 往下拖 5 点，虚值受伤最重，因为它的价格里时间价值占比最高。</figcaption>
+      </figure>
+
+      <h3>怎么选</h3>
+      <ul>
+        <li><strong>方向有把握、时间没把握</strong>：Delta 0.60–0.75。像一只自带止损的股票，时间损耗占比小。</li>
+        <li><strong>有明确催化剂、预期短期内大幅变动</strong>：Delta 0.40–0.50。</li>
+        <li><strong>Delta 0.30 以下</strong>：只在你预期涨幅远超目标、而且来得快时使用，并按彩票的仓位下注。</li>
+      </ul>
+      <p>一个简单的检查：目标价必须明显高于盈亏平衡价，而且在你预期的兑现日期，按表 7-3 的方法重新定价，收益率要足够补偿你承担的风险。</p>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">7.3</span>到期日：给判断留缓冲</h2>
+      <p>到期日要比你预期的兑现时间多买一段缓冲：经验做法是预期时间的 1.5 到 2 倍，或者至少多出 30 天。</p>
+      <p>理由有三个。第一，一个判断里最不可靠的通常就是时间。第二，时间损耗在最后一个月最快。第三，多买时间并不贵：期限越长，每天的时间成本越低。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 7-5　平值 100 看涨，三个期限（股价 100，IV 30%）</caption>
+          <thead><tr><th>期限</th><th>权利金</th><th>每日 Theta</th><th>Theta / 权利金</th><th>横盘 30 天后剩余价值</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">30 天</td><td class="mono">3.59</td><td class="mono">−0.062</td><td class="mono">1.74%</td><td class="mono neg">0%</td></tr>
+            <tr><td class="mono">60 天</td><td class="mono">5.17</td><td class="mono">−0.046</td><td class="mono">0.88%</td><td class="mono">69.5%</td></tr>
+            <tr class="hl"><td class="mono">120 天</td><td class="mono">7.48</td><td class="mono">−0.034</td><td class="mono">0.45%</td><td class="mono">85.7%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>120 天期权的价格是 30 天的 2.1 倍，买到的时间是 4 倍，每天的时间成本只有 30 天期权的 54%。平方根规律在这里起作用：平值期权的价格大致和 √<span class="v">T</span> 成正比，时间加 4 倍，价格只加 2 倍左右。</p>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">判断对了但来得慢，短期期权先死</span><span class="fig-no">图 7-2 · 平值 100 看涨，可拖动</span></div>
+        <div class="controls">
+          <label class="ctl" for="f2-f">先横盘 <input id="f2-f" type="range" min="0" max="80" value="20"> <output id="f2-f-o">20 天</output></label>
+        </div>
+        <svg class="chart short" id="f2-px" viewBox="0 0 680 170" role="img" aria-label="假设的股价路径"></svg>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 300" role="img" aria-label="三个期限的期权收益率随时间变化"></svg>
+        <div class="legend"><span><i style="border-color: var(--gamma)"></i>30 天期权</span><span><i style="border-color: var(--delta)"></i>60 天期权</span><span><i style="border-color: var(--theta)"></i>120 天期权</span></div>
+        <div class="readout">
+          <div><b id="f2-r1">—</b><small id="f2-r1s">30 天期权</small></div>
+          <div><b id="f2-r2">—</b><small id="f2-r2s">60 天期权</small></div>
+          <div><b id="f2-r3">—</b><small id="f2-r3s">120 天期权</small></div>
+        </div>
+        <figcaption>股价先在 100 横盘若干天，再用 20 天匀速涨到 110，之后不动。读数是股价到达 110 那天（若期权已到期，则为到期日）的收益率。横盘 0 天：30 天期权赚 183%，最好。横盘 20 天：30 天期权到期时股价才到 105，只赚 39%；60 天期权赚 103%。横盘 30 天：30 天期权归零。横盘 60 天：只有 120 天期权还活着，赚 51%。</figcaption>
+      </figure>
+
+      <h3>1.5 到 2 倍从哪里来</h3>
+      <p>这个倍数来自两条约束的折中，没有严格的推导。其一，按 7.9 节的数字，一张期权在剩下最后三分之一的时间里损失最快，你希望判断兑现时仍远离这一段；买入 2 倍的期限，兑现时还剩一半时间。其二，买得太长会多付 Vega 和资金，期限翻倍，权利金约增加 44%（接近 √2 倍，多出的一点来自利率）。1.5 到 2 倍落在两者之间。</p>
+      <p>它在三种情况下不适用：交易一个具体事件（如财报），你要的就是覆盖那一天的最近到期日；远月 IV 明显高于近月；资金有限时，宁可减少张数，也不要缩短期限。</p>
+      <h3>展期：把时间续上</h3>
+      <p>判断还没兑现，期权却快到期了，可以展期：卖掉手里的近月，买入更远的到期日。例子：第 7.2 节的 90 天 102 看涨（5.48）。第 60 天股价 104，还剩 30 天，期权值 <span class="num">4.82</span>，其中时间价值 2.82，每天还要掉 0.063。</p>
+      <ul>
+        <li>展期到新的 90 天 104 看涨（平值，Δ 0.56）：价格 <span class="num">6.67</span>，每股要补 1.85。</li>
+        <li>展期到新的 90 天 106 看涨（Δ 0.51）：价格 <span class="num">5.74</span>，每股补 0.92。</li>
+      </ul>
+      <p>展期在账面上是一笔交易，实际上是两笔：平掉旧仓位（实现盈亏），再开一个新仓位。新仓位要按本章的标准重新审查：目标价是否高于新的盈亏平衡价，IV 是否合适，期限是否足够。如果今天让你重新开仓你不会买，就不要用展期的名义买它。尤其不要为了「不实现亏损」而展期，那只是把亏损推迟并加大。</p>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">7.4</span>买入时机：看 IV</h2>
+      <p>IV 高时买期权，你预付了很高的波动，还要承担 IV 回落；IV Rank 低时买，IV 回升会成为额外的顺风。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 7-6　30 天平值看涨，不同 IV 下的成本（股价 100）</caption>
+          <thead><tr><th>IV</th><th>权利金</th><th>到期所需涨幅</th><th>每日 Theta</th><th>Vega（每点）</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">20%</td><td class="mono">2.45</td><td class="mono">+2.45%</td><td class="mono">−0.044</td><td class="mono">0.114</td></tr>
+            <tr><td class="mono">30%</td><td class="mono">3.59</td><td class="mono">+3.59%</td><td class="mono">−0.062</td><td class="mono">0.114</td></tr>
+            <tr><td class="mono">45%</td><td class="mono">5.30</td><td class="mono">+5.30%</td><td class="mono">−0.091</td><td class="mono">0.114</td></tr>
+            <tr><td class="mono">60%</td><td class="mono">7.01</td><td class="mono">+7.01%</td><td class="mono">−0.119</td><td class="mono">0.114</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>平值期权的 Vega 几乎不随 IV 变化，IV 每动 1 个点的美元影响一样大。区别在于方向：IV 在自身历史的高位时，更可能往下回（第 6 章的均值回归）；在低位时，更可能往上回。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 7-7　45 天平值看涨，10 天后股价涨 5%</caption>
+          <thead><tr><th>情形</th><th>买入价</th><th>10 天后</th><th>收益率</th></tr></thead>
+          <tbody>
+            <tr><td>买在 IV 45%（Rank 高），IV 回落到 33%</td><td class="mono">6.53</td><td class="mono">7.40</td><td class="mono pos">+13.3%</td></tr>
+            <tr><td>买在 IV 45%，IV 维持不变</td><td class="mono">6.53</td><td class="mono">8.77</td><td class="mono pos">+34.4%</td></tr>
+            <tr><td>买在 IV 22%，IV 维持不变</td><td class="mono">3.33</td><td class="mono">6.26</td><td class="mono pos">+88.3%</td></tr>
+            <tr class="hl"><td>买在 IV 22%（Rank 低），IV 升到 26%</td><td class="mono">3.33</td><td class="mono">6.65</td><td class="mono pos">+100.1%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>同样的 +5%，第一行只赚 13%。在 IV 45% 买入、IV 回落到 33% 的情形下，股价要涨 <span class="num">3.75%</span> 才能保本。最后一行反过来：IV 从 22% 升到 26%，股价就算一动不动，10 天后期权值 3.40，也比买入价 3.33 高。</p>
+      <h3>第二把尺子：IV 和 RV</h3>
+      <p>IV Rank 告诉你 IV 在自身历史里的位置，IV 与 RV 之比告诉你期权相对这只股票眼下的实际波动贵不贵。第 4 章算过，30 天平值期权在 IV 30% 时，每个日历天大约要动 <span class="num">$1.64</span> 才能用 Gamma 赚回 Theta。如果这只股票最近 20 天的 RV 只有 22%，它平均每个日历天的 1 倍标准差变动只有 <span class="num">$1.15</span>。除非方向判断很强，否则这张期权大概率在慢慢亏钱。对买方来说，理想的组合是 IV Percentile 低，并且 IV 不高于近期 RV。</p>
+      <h3>IV 高时还想表达看涨，怎么办</h3>
+      <ul>
+        <li><strong>改用借记价差</strong>：卖出的那条腿也是高 IV，Vega 大部分抵消（7.5 节）。</li>
+        <li><strong>避开事件</strong>：IV 高是因为财报，就选财报前到期的合约，或者等财报后 IV 回落再买。</li>
+        <li><strong>换一个标的</strong>：用同板块 ETF 或相关性高、IV 更低的股票表达同一个判断。</li>
+        <li><strong>换到卖方</strong>：IV 偏高本身就是卖方的优势，例如卖出现金担保看跌（第 8 章）。</li>
+      </ul>
+      <p>下单前的最低检查：IV Percentile 低于 50，最好低于 30；IV 不明显高于 20 天 RV；到期日之前有没有事件，事件之后 IV 会回落到哪里。</p>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">7.5</span>借记价差</h2>
+      <p>借记价差（debit spread）是买一张期权、同时卖一张同到期、更虚值的同类期权。看涨借记价差也叫牛市看涨价差：成本降低，收益封顶，Vega 和 Theta 敞口大幅缩小。</p>
+      <p>对比 90 天的裸买 100 看涨，和「买 100 看涨、卖 110 看涨」的价差：</p>
+      <div class="tbl">
+        <table>
+          <caption>表 7-8　裸买看涨 vs 100/110 看涨价差（90 天，股价 100，IV 30%）</caption>
+          <thead><tr><th>项目</th><th>裸买 100 看涨</th><th>100/110 价差</th><th>价差 / 裸买</th></tr></thead>
+          <tbody>
+            <tr><td>成本（每张）</td><td class="mono">6.41（$641）</td><td class="mono">3.68（$368）</td><td class="mono">57%</td></tr>
+            <tr><td>最大盈利</td><td class="mono">不封顶</td><td class="mono">6.32（$632）</td><td></td></tr>
+            <tr><td>到期盈亏平衡价</td><td class="mono">106.41</td><td class="mono">103.68</td><td></td></tr>
+            <tr><td>Delta</td><td class="mono">0.556</td><td class="mono">0.247</td><td class="mono">44%</td></tr>
+            <tr><td>Gamma</td><td class="mono">0.0265</td><td class="mono">0.0029</td><td class="mono">11%</td></tr>
+            <tr><td>每日 Theta</td><td class="mono">−0.0381</td><td class="mono">−0.0058</td><td class="mono">15%</td></tr>
+            <tr class="hl"><td>Vega（每点）</td><td class="mono">0.196</td><td class="mono">0.021</td><td class="mono">11%</td></tr>
+            <tr><td>到期股价 110 的收益率</td><td class="mono pos">+56.0%</td><td class="mono pos">+171.8%</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>价差的价值等于两张期权之差。卖出的 110 看涨也有 Theta 和 Vega，而且方向相反，所以价差的 Theta 只有裸买的 15%，Vega 只有 11%：IV 掉 5 个点，裸买亏 0.98，价差只亏 0.11。代价是 Delta 也只剩 44%，股价短期大涨时价差涨得慢，而且最多只能赚到 110 为止。</p>
+      <h3>卖出腿放在哪里</h3>
+      <div class="tbl">
+        <table>
+          <caption>表 7-9　买 100 看涨，卖出腿的位置不同（90 天）</caption>
+          <thead><tr><th>价差</th><th>成本</th><th>最大盈利</th><th>盈亏平衡</th><th>盈利 / 成本</th><th>Vega 占裸买</th><th>Theta 占裸买</th></tr></thead>
+          <tbody>
+            <tr><td>100/105</td><td class="mono">2.14</td><td class="mono">2.86</td><td class="mono">102.14</td><td class="mono">1.34</td><td class="mono">1%</td><td class="mono">4%</td></tr>
+            <tr class="hl"><td>100/110</td><td class="mono">3.68</td><td class="mono">6.32</td><td class="mono">103.68</td><td class="mono">1.72</td><td class="mono">11%</td><td class="mono">15%</td></tr>
+            <tr><td>100/115</td><td class="mono">4.74</td><td class="mono">10.27</td><td class="mono">104.74</td><td class="mono">2.17</td><td class="mono">27%</td><td class="mono">31%</td></tr>
+            <tr><td>100/120</td><td class="mono">5.42</td><td class="mono">14.58</td><td class="mono">105.42</td><td class="mono">2.69</td><td class="mono">44%</td><td class="mono">48%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>规则很简单：<strong>卖出腿放在你的目标价</strong>。你的判断是涨到 110，110 以上的收益本来就不在你的计划里，把它卖掉换成本，这是最便宜的让步。价差越窄，越像一张「押区间」的票，对 IV 和时间越不敏感；越宽，越接近裸买。</p>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">价差放弃了大涨的尾巴，换来更低的盈亏平衡和更小的 IV 风险</span><span class="fig-no">图 7-3 · 每张合约盈亏，可拖动</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="评估时点">
+            <button type="button" data-mode="exp" aria-pressed="true">到期时</button>
+            <button type="button" data-mode="mid" aria-pressed="false">45 天后，IV 降 5 点</button>
+          </div>
+          <label class="ctl" for="f3-k">卖出腿 <input id="f3-k" type="range" min="103" max="130" value="110"> <output id="f3-k-o">110</output></label>
+        </div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 320" role="img" aria-label="裸买看涨与看涨价差的盈亏"></svg>
+        <div class="legend"><span><i class="dash" style="border-color: var(--muted)"></i>裸买 100 看涨</span><span><i style="border-color: var(--delta)"></i>100 / 卖出腿 看涨价差</span></div>
+        <div class="readout">
+          <div><b id="f3-r1">—</b><small id="f3-r1s">价差成本</small></div>
+          <div><b id="f3-r2">—</b><small>价差最大盈利</small></div>
+          <div><b id="f3-r3">—</b><small id="f3-r3s">价差到期盈亏平衡</small></div>
+          <div><b id="f3-r4">—</b><small>Vega：价差占裸买</small></div>
+        </div>
+        <figcaption>在「到期时」模式下，两条线在卖出腿之前，价差在上方：成本低，同样的涨幅赚得多。股价越过两线的交点后，裸买开始领先。把卖出腿拖到 130，价差几乎变回裸买。切到「45 天后，IV 降 5 点」，价差的曲线明显平缓，股价不动时价差亏得比裸买少一半以上。</figcaption>
+      </figure>
+      <h3>裸买还是价差：四个问题</h3>
+      <ol>
+        <li><strong>你有明确的目标价吗？</strong>有，倾向价差，卖出腿放在目标价；没有、只是觉得「会大涨」，倾向裸买。</li>
+        <li><strong>IV 在自身历史里偏高吗？</strong>偏高，倾向价差，让卖出腿替你承担一部分 IV 回落。</li>
+        <li><strong>你预期多快兑现？</strong>几天内的急涨，裸买的 Delta 和 Gamma 更有用；几个月的慢涨，价差的低 Theta 更有用。</li>
+        <li><strong>到期前有事件吗？</strong>有，价差的 Vega 小，事件后的 IV 崩塌对它伤害有限。</li>
+      </ol>
+      <p>四个问题里有三个指向价差，就用价差。这条规则很粗，但它能防止你仅仅因为「裸买不封顶」而多付钱。</p>
+      <h3>看空的镜像：看跌借记价差</h3>
+      <p>看空时结构完全对称：买入较高行权价的看跌，卖出较低行权价的看跌。90 天 100/90 看跌价差成本 <span class="num">3.66</span>，最大盈利 6.34，盈亏平衡 96.34；裸买 100 看跌要 5.43，盈亏平衡 94.57。价差的 Theta 是裸买的 24%，Vega 是 30%。比看涨价差的比例高一些，因为在对数尺度上，90 离平值比 110 更远，卖出的那条腿抵消得少。</p>
+      <h3>价差的麻烦</h3>
+      <ul>
+        <li><strong>必须作为一个订单下</strong>：两条腿分开成交，中间价格变化会让你变成裸露的一边。确认下单界面上是一笔「价差单」，两条腿同时成交。</li>
+        <li><strong>平仓要付两次买卖价差</strong>：流动性差的期权，来回成本能吃掉相当一部分利润。</li>
+        <li><strong>到期时股价落在两个行权价之间</strong>：买入腿被行权、卖出腿作废，你会在周一持有股票。临近到期主动平仓，别把它留到最后一刻。</li>
+        <li><strong>赚得慢</strong>：价差的价值要等接近到期才会接近最大值。第 30 天就涨到 115，价差只赚 107%，离理论最大 172% 还差一截，因为卖出的那条腿还有时间价值。</li>
+      </ul>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">7.6</span>LEAPS：用期权替代股票</h2>
+      <p>到期一年以上、Delta 0.70–0.80 的深度实值看涨期权（LEAPS），可以用两成多的资金拿到接近八成的股票敞口。代价是一笔时间价值，它正好等于「借钱的利息」加「一张保护性看跌」。</p>
+      <p>例子：股价 100，一年期 85 看涨，价格 <span class="num">22.35</span>，Delta <span class="num">0.795</span>。内在价值 15，时间价值 7.35。买一张要 $2,235，拿到约 80 股的敞口；直接买 100 股要 $10,000。</p>
+      <h3>时间价值到底买了什么</h3>
+      <p>由买卖权平价 <span class="v">C</span> = <span class="v">S</span> − <span class="v">K</span>e<sup>−rT</sup> + <span class="v">P</span>，把内在价值 <span class="v">S</span> − <span class="v">K</span> 移到左边：</p>
+      <div class="formula">
+        <div class="eq">时间价值 <span class="up">=</span> <span class="v">C</span> <span class="up">− (</span><span class="v">S</span> <span class="up">−</span> <span class="v">K</span><span class="up">) =</span> <span class="v">P</span> <span class="up">+</span> <span class="v">K</span><span class="up">(1 −</span> e<sup>−rT</sup><span class="up">)</span></div>
+        <p class="where">第一项是同行权价看跌期权的价格，第二项是把 <span class="v">K</span> 借一年的利息。不派息时这个等式精确成立。</p>
+      </div>
+      <p>代入数字：85 看跌值 <span class="num">4.02</span>，利息 85 × (1 − e<sup>−0.04</sup>) = <span class="num">3.33</span>，合计 <span class="num">7.35</span>，正好是时间价值。所以买 LEAPS 等于三件事同时做：买入股票，借入 85 美元（付 4% 利息），再买一张 85 看跌保护。如果你本来就想要一个「最多亏到 85」的多头，LEAPS 是一种打包好的写法。</p>
+      <h3>同样 $10,000 的两种用法</h3>
+      <p>A：买 100 股。B：买 1 张 LEAPS，剩下 $7,765 放短期国债，按 4% 计息（连续复利），一年约 $317。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 7-10　一年后（LEAPS 到期）的盈亏，美元</caption>
+          <thead><tr><th>一年后股价</th><th>70</th><th>80</th><th>90</th><th>100</th><th>110</th><th>120</th><th>130</th></tr></thead>
+          <tbody>
+            <tr><td>A：100 股</td><td class="mono neg">−3,000</td><td class="mono neg">−2,000</td><td class="mono neg">−1,000</td><td class="mono">0</td><td class="mono pos">+1,000</td><td class="mono pos">+2,000</td><td class="mono pos">+3,000</td></tr>
+            <tr class="hl"><td>B：LEAPS + 现金</td><td class="mono neg">−1,918</td><td class="mono neg">−1,918</td><td class="mono neg">−1,418</td><td class="mono neg">−418</td><td class="mono pos">+582</td><td class="mono pos">+1,582</td><td class="mono pos">+2,582</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>B 在 85 以上比 A 少赚 418 美元，这就是那张「保护性看跌」和利息差的成本；在 85 以下亏损封顶 1,918 美元。股价跌 30% 时，A 亏 3,000，B 只亏 1,918。</p>
+
+      <figure class="plate" id="fig4">
+        <div class="fig-head"><span class="fig-title">LEAPS 加现金，像一只自带地板的股票</span><span class="fig-no">图 7-4 · 同样 $10,000，可拖动</span></div>
+        <div class="controls">
+          <label class="ctl" for="f4-m">持有月数 <input id="f4-m" type="range" min="0" max="12" value="6"> <output id="f4-m-o">6 个月</output></label>
+        </div>
+        <svg class="chart" id="f4-svg" viewBox="0 0 680 320" role="img" aria-label="正股与 LEAPS 加现金的盈亏对比"></svg>
+        <div class="legend"><span><i style="border-color: var(--ink)"></i>A：100 股</span><span><i style="border-color: var(--delta)"></i>B：1 张 85 LEAPS + $7,765 现金</span></div>
+        <div class="readout">
+          <div><b id="f4-r1">—</b><small>B 的资金占用（A 为 $10,000）</small></div>
+          <div><b id="f4-r2">—</b><small id="f4-r2s">B：股价 80 时</small></div>
+          <div><b id="f4-r3">—</b><small id="f4-r3s">B：股价 120 时</small></div>
+          <div><b id="f4-r4">—</b><small>B 的盈亏平衡股价</small></div>
+        </div>
+        <figcaption>持有 0 个月时，蓝线比黑线平缓，因为 LEAPS 的 Delta 只有 0.8。往右拖，时间价值逐渐流失，蓝线在高价区下移，低价区的地板越来越平。拖到 12 个月，蓝线在 85 以下变成一条水平线：亏损封顶在 1,918 美元。</figcaption>
+      </figure>
+      <h3>和融资买股比</h3>
+      <p>另一种用较少资金持有 100 股的办法是融资。假设券商融资利率 8%：自己出 $5,000、借 $5,000，一年利息 $400。股价跌到 70，亏 $3,000 再加 $400 利息，跌得更深还会被追加保证金。LEAPS 的时间价值 $735 里，利息部分只有 $333（按 4% 的无风险利率计），另外 $402 买到的是那块地板，最多亏 $2,235，不会被追保。代价是期权的买卖价差通常比股票宽，LEAPS 也拿不到股息。</p>
+      <h3>怎么挑、怎么管</h3>
+      <ul>
+        <li><strong>Delta 0.70–0.80</strong>：再深，时间价值更少但资金占用更多，接近直接买股；再浅，时间价值占比上升，更像投机。</li>
+        <li><strong>期限一年以上</strong>，剩 4–6 个月时考虑展期到更远的到期日，避开时间损耗加速的阶段。</li>
+        <li><strong>注意 IV</strong>：这张 LEAPS 的 Vega 是 0.284，IV 降 10 个点，每张少 $284。不要在 IV 高位买 LEAPS。</li>
+        <li><strong>注意分红</strong>：本课假设不派息。持有 LEAPS 拿不到股息，派息股的看涨期权价格会相应更低，比较时要把股息算进去。</li>
+        <li><strong>别把省下的钱再加杠杆</strong>：B 的好处来自剩下的现金。如果用省下的 $7,765 再买三张 LEAPS，你就从「带地板的股票」变成了约 320 股敞口的杠杆仓位。</li>
+      </ul>
+      <div class="note">
+        <span class="tag">预告：穷人的备兑</span>
+        <p>持有 LEAPS 后，每月卖一张短期虚值看涨，就是常说的 PMCC（Poor Man's Covered Call）。例如卖 30 天 110 看涨（Delta 0.15）收 <span class="num">0.66</span>，大约覆盖 LEAPS 一个月的时间损耗（0.0179 × 30 ≈ <span class="num">0.54</span>）。代价是当月涨过 110 的部分被封顶，而且股价急涨时需要处理那张卖出的看涨。第 8、9 章会详细讲。</p>
+      </div>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">7.7</span>期权什么时候优于股票</h2>
+      <p>期权在四种情况下比股票更好用：你要凸性，你要封顶亏损，你在事件前下注，你在乎资金效率。其余时候，股票往往更省心。</p>
+      <h3>一、凸性：赢在两端</h3>
+      <p>1 张 90 天平值看涨（$641，Delta 0.556），和 Delta 相同的 56 股比较，到期时：</p>
+      <div class="tbl">
+        <table>
+          <caption>表 7-11　Delta 相同的两种仓位，到期盈亏（美元）</caption>
+          <thead><tr><th>到期股价</th><th>70</th><th>80</th><th>90</th><th>100</th><th>110</th><th>120</th><th>130</th></tr></thead>
+          <tbody>
+            <tr><td>56 股</td><td class="mono neg">−1,680</td><td class="mono neg">−1,120</td><td class="mono neg">−560</td><td class="mono">0</td><td class="mono pos">+560</td><td class="mono pos">+1,120</td><td class="mono pos">+1,680</td></tr>
+            <tr><td>1 张平值看涨</td><td class="mono neg">−641</td><td class="mono neg">−641</td><td class="mono neg">−641</td><td class="mono neg">−641</td><td class="mono pos">+359</td><td class="mono pos">+1,359</td><td class="mono pos">+2,359</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>两者的分界点是 88.55 和 114.57：股价落在这两者之间，股票更好；落在两端，期权更好。所以期权适合「要么大涨、要么我认错」的判断，不适合「慢慢涨一点」的判断。</p>
+      <h3>二、封顶亏损：跳空时止损单帮不了你</h3>
+      <p>一夜之间跳空低开 30%。100 股亏 $3,000，止损单会在开盘价成交，挡不住这个缺口。同一天，这张 90 天平值看涨从 6.41 跌到 0.04，亏 <span class="num">$637</span>，最多亏 $641。即使跳空后 IV 升到 45%，它也只值 0.47。</p>
+      <h3>三、事件前：前提是你预期的变动大于隐含变动</h3>
+      <p>沿用第 6 章的财报例子：7 天平值看涨在 IV 80% 时值 4.45。财报后 IV 回到 35%，股价 +10% 时赚 <span class="num">127%</span>，+5% 时赚 21%，+3% 时亏 16%，下跌最多亏 100%。正股涨 10% 就是 10%，跌 15% 就是 15%。买期权表达事件观点的前提是：你有理由相信这次变动明显大于市场隐含的约 8.8%，并且接受最多亏掉全部权利金。</p>
+      <h3>四、资金效率</h3>
+      <p>LEAPS 用 22% 的资金拿到约 80% 的敞口（7.6 节），剩下的钱可以拿利息，也可以分散到其他仓位。对资金不多的学生账户，这意味着可以在不加保证金杠杆的情况下表达对一只高价股的看法。</p>
+      <div class="note warn">
+        <span class="tag">股票更好的时候</span>
+        <ul>
+          <li>预期慢涨、小涨：时间损耗会吃掉大部分收益。</li>
+          <li>持有期在两年以上：期权需要反复展期，每次都付买卖价差和时间价值。</li>
+          <li>IV 处在自身历史高位：你预付了太多波动。</li>
+          <li>高股息股票：期权持有人拿不到股息。</li>
+          <li>期权流动性差：买卖价差占权利金的 5% 以上，进出一次就是一笔不小的成本。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">7.8</span>买方的五个常见错误</h2>
+      <p>买方亏钱，很少是因为方向全错。更常见的原因，是下面五个可以提前避免的错误。</p>
+      <h3>错误一：买太虚值</h3>
+      <p>30 天、Delta 0.10 的看涨（行权价 112）只要 <span class="num">$43</span>，看起来很便宜。它的盈亏平衡价是 112.43，要涨 12.4%；IV 30% 时一个月的 1 倍标准差只有 8.6%，相当于要涨 1.45 个标准差。到期价内的概率 <span class="num">9.3%</span>，超过盈亏平衡的概率 <span class="num">8.6%</span>。按金额它很便宜，按概率它一点也不便宜：十次里大约九次全亏。</p>
+      <h3>错误二：买太短</h3>
+      <div class="tbl">
+        <table>
+          <caption>表 7-12　平值看涨，期限越短，每天亏掉的比例越高</caption>
+          <thead><tr><th>期限</th><th class="mono">7 天</th><th class="mono">14 天</th><th class="mono">30 天</th><th class="mono">60 天</th></tr></thead>
+          <tbody>
+            <tr><td>权利金</td><td class="mono">1.70</td><td class="mono">2.42</td><td class="mono">3.59</td><td class="mono">5.17</td></tr>
+            <tr><td>每日 Theta / 权利金</td><td class="mono neg">7.30%</td><td class="mono">3.68%</td><td class="mono">1.74%</td><td class="mono">0.88%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>7 天期权每天亏掉 7% 的价值，按日历天算，一个周末就扣掉三天。短期期权便宜，是因为它留给你犯错的时间最少。</p>
+      <h3>错误三：高 IV 时买</h3>
+      <p>表 7-7 已经算过：同样涨 5%，在 IV 高位买只赚 13%，在低位买赚 100%。财报前、大跌后、热门题材正热时，IV 通常处在高位。</p>
+      <h3>错误四：仓位过大</h3>
+      <p>买方的胜率通常低于一半。设胜率 35%，连续 5 次亏损的概率是 0.65<sup>5</sup> = <span class="num">11.6%</span>；在 50 笔交易里至少出现一次 5 连亏的概率高达 <span class="num">92.4%</span>，100 笔里至少一次 8 连亏的概率是 <span class="num">69.0%</span>。连亏一定会来，问题是你的账户能不能撑过去。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 7-13　每笔押上账户的一定比例、每次亏光权利金，连亏后的账户</caption>
+          <thead><tr><th>每笔仓位</th><th>20%</th><th>10%</th><th>5%</th><th>2%</th></tr></thead>
+          <tbody>
+            <tr><td>连亏 5 次后剩余</td><td class="mono neg">32.8%</td><td class="mono">59.0%</td><td class="mono">77.4%</td><td class="mono pos">90.4%</td></tr>
+            <tr><td>连亏 10 次后剩余</td><td class="mono neg">10.7%</td><td class="mono">34.9%</td><td class="mono">59.9%</td><td class="mono pos">81.7%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>每笔 20% 的人，连亏 5 次就只剩三分之一，要涨到原来的三倍才能回本。每笔 2% 的人，连亏 10 次还剩八成多。</p>
+      <h3>错误五：盈利后不止盈</h3>
+      <p>买入 60 天平值看涨，5.17。第 20 天股价涨到 108，期权值 <span class="num">9.63</span>，赚 86%。你想「再等等」。第 45 天股价回到 101，期权只剩 <span class="num">3.06</span>，亏 41%；拿到到期，股价 101，只值 1.00，亏 81%。如果第 20 天卖掉一半、第 45 天卖掉另一半，整体还是赚 <span class="num">23%</span>。期权的浮盈会「变质」：时间价值每天在流失，股价回落时 Delta 也在变小。</p>
+    </section>
+
+    <section id="s9">
+      <h2><span class="sn">7.9</span>管理规则</h2>
+      <p>下单之前写好三条退出规则：赚到多少走，过了多久走，标的到哪里走。并且按「这笔钱可能全部归零」来定仓位。</p>
+      <h3>规则一：目标了结</h3>
+      <p>事先写下两种目标，先到哪个就执行哪个：期权收益率目标（例如 +50% 到 +100%），或标的价格目标（例如股价到 110）。到达后至少了结一部分。已经翻倍时卖掉一半，剩下的仓位相当于零成本。也可以把裸买的看涨改成价差，锁住一部分利润，同时保留敞口（案例 3）。</p>
+      <h3>规则二：时间止损</h3>
+      <div class="tbl">
+        <table>
+          <caption>表 7-14　90 天平值看涨，股价一直不动时的价值</caption>
+          <thead><tr><th>剩余天数</th><th class="mono">90</th><th class="mono">60</th><th class="mono">45</th><th class="mono">30</th><th class="mono">21</th><th class="mono">14</th><th class="mono">7</th><th class="mono">1</th></tr></thead>
+          <tbody>
+            <tr><td>期权价值</td><td class="mono">6.41</td><td class="mono">5.17</td><td class="mono">4.44</td><td class="mono">3.59</td><td class="mono">2.98</td><td class="mono">2.42</td><td class="mono">1.70</td><td class="mono">0.63</td></tr>
+            <tr><td>占买入价</td><td class="mono">100%</td><td class="mono">80.6%</td><td class="mono">69.3%</td><td class="mono">56.0%</td><td class="mono">46.5%</td><td class="mono">37.7%</td><td class="mono">26.4%</td><td class="mono">9.9%</td></tr>
+            <tr><td>每日 Theta</td><td class="mono">−0.038</td><td class="mono">−0.046</td><td class="mono">−0.052</td><td class="mono">−0.062</td><td class="mono">−0.074</td><td class="mono">−0.089</td><td class="mono">−0.124</td><td class="mono">−0.319</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>头 30 天只损失 19.4%，最后 30 天损失全部剩余的 56%。规则：剩余时间降到原期限的三分之一（这张是剩 30 天），判断还没开始兑现，就平仓或展期，不要拖进衰减最快的那一段。</p>
+      <h3>规则三：按标的设止损</h3>
+      <p>期权价格会被 IV 变化、买卖价差和时间损耗扭曲，用期权亏损百分比做止损容易被噪声打掉。一张 30 天平值看涨，股价不动，15 天后就跌了 30%；如果你的止损是 −30%，时间本身就会触发它。更稳妥的做法是按标的价格止损：在你的判断失效的价位（例如跌破支撑）离场。期权百分比止损可以作为第二道保险。</p>
+      <h3>规则四：做好归零的准备</h3>
+      <p>买方的最大亏损是全部权利金，而且这件事会经常发生。每笔交易的权利金控制在账户的 1%–3%，同一个方向的多笔交易合并计算。如果一笔亏光会让你睡不着，仓位就太大了。另外，不要给亏损的期权「摊平」：它在亏钱的同时还在失去时间，摊平只会让下一次归零更大。</p>
+      <h3>把规则写成一张交易计划</h3>
+      <p>以案例 1 里最贴合判断的 90 天 94 看涨为例，账户 $50,000：</p>
+      <dl class="kv">
+        <dt>判断</dt><dd>三个月内涨到 110</dd>
+        <dt>合约与仓位</dt><dd>90 天 94 看涨，9.84，1 张，$984，占账户 2.0%</dd>
+        <dt>止盈</dt><dd>股价到 110 或期权 +70%，先卖一半。若第 45 天就到 110，期权约 16.75，正好 +70%</dd>
+        <dt>时间止损</dt><dd>第 60 天（剩 30 天）股价仍未站上 104，平仓。若届时股价 100，期权约 7.39，亏 25%</dd>
+        <dt>标的止损</dt><dd>股价跌破 95，判断失效，平仓。若第 30 天跌到 95，期权约 5.42，亏 45%</dd>
+        <dt>最坏情况</dt><dd>$984 全部归零，账户少 2%</dd>
+      </dl>
+      <p>这张计划里每一个数字都在下单前算好了。持仓期间你只需要对照执行，不需要在行情最紧张的时候临时做决定。</p>
+      <div class="note field">
+        <span class="tag">实战观察</span>
+        <p>交易者里有几种常见的止盈止损写法。止盈：翻倍时卖一半，剩下的当作「白赚的」；赚够了卖掉八成，留两成当彩票；裸买的期权盈利后，卖出一张更虚值的同类期权变成借记价差，把一部分利润锁进口袋。止损：期权单亏到 −30% 左右就砍，拖到 −70% 以上的单子事后看往往是大亏的来源；财报前后改用标的价位分级止损，因为 IV 崩塌会让期权价格暂时失真。</p>
+      </div>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">案例</span>三个案例</h2>
+
+      <div class="case">
+        <div class="case-no">案例 1</div>
+        <h3>同一个判断「三个月内涨 10%」，六种表达</h3>
+        <p>股价 100，IV 30% 不变。四种结果：A 快，第 30 天就涨到 110，当天平仓；B 准时，匀速上涨，第 90 天才到 110；C 只对一半，第 90 天到 104；D 错了，第 90 天跌到 95。期权在第 90 天评估，30 天期权在它的到期日评估。</p>
+        <div class="tbl">
+          <table>
+            <caption>表 7-15　六种表达的收益率</caption>
+            <thead><tr><th>表达</th><th>行权价</th><th>成本</th><th>A 快</th><th>B 准时</th><th>C 一半</th><th>D 错</th></tr></thead>
+            <tbody>
+              <tr><td>30 天 Δ0.50</td><td class="mono">101</td><td class="mono">$312</td><td class="mono pos">+188.7%</td><td class="mono neg">−25.2%</td><td class="mono neg">−89.3%</td><td class="mono neg">−100%</td></tr>
+              <tr class="hl"><td>90 天 Δ0.70</td><td class="mono">94</td><td class="mono">$984</td><td class="mono pos">+74.0%</td><td class="mono pos">+62.5%</td><td class="mono pos">+1.6%</td><td class="mono neg">−89.8%</td></tr>
+              <tr><td>90 天 Δ0.50</td><td class="mono">102</td><td class="mono">$548</td><td class="mono pos">+93.0%</td><td class="mono pos">+46.0%</td><td class="mono neg">−63.5%</td><td class="mono neg">−100%</td></tr>
+              <tr><td>90 天 Δ0.30</td><td class="mono">110</td><td class="mono">$273</td><td class="mono pos">+108.0%</td><td class="mono neg">−100%</td><td class="mono neg">−100%</td><td class="mono neg">−100%</td></tr>
+              <tr class="hl"><td>180 天 Δ0.50</td><td class="mono">104</td><td class="mono">$752</td><td class="mono pos">+66.8%</td><td class="mono pos">+38.8%</td><td class="mono neg">−11.4%</td><td class="mono neg">−63.8%</td></tr>
+              <tr><td>180 天 Δ0.30</td><td class="mono">115</td><td class="mono">$395</td><td class="mono pos">+79.1%</td><td class="mono pos">+23.7%</td><td class="mono neg">−31.9%</td><td class="mono neg">−78.8%</td></tr>
+              <tr><td>100 股正股</td><td></td><td class="mono">$10,000</td><td class="mono pos">+10%</td><td class="mono pos">+10%</td><td class="mono pos">+4%</td><td class="mono neg">−5%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li><strong>30 天期权押的是「快」</strong>：快就赚 189%，否则几乎全亏。它表达的是「一个月内涨 10%」，和你的判断不是一回事。</li>
+          <li><strong>90 天 Δ0.30 押的是「多于 10%」</strong>：只要判断恰好准确，它就归零。</li>
+          <li><strong>90 天 Δ0.70 和 180 天 Δ0.50 最贴合这个判断</strong>：四种结果里没有一种是灾难性的，C（只对一半）时一个持平、一个小亏。</li>
+          <li>180 天期权在 D 情形下只亏 64%，因为还剩 90 天，留有残值。多买的时间在判断失误时也能少亏。</li>
+        </ul>
+        <p>启示：先把判断写成「多少、多久」，再选能表达它的合约。表达比判断更多的东西（更快、更多），就是在为你没有的观点付钱。</p>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 2</div>
+        <h3>借记价差 vs 裸买看涨，七种情景</h3>
+        <p>90 天，裸买 100 看涨 $641，100/110 看涨价差 $368。下表是每张合约的盈亏：</p>
+        <div class="tbl">
+          <table>
+            <caption>表 7-16　两种结构在不同情景下的盈亏</caption>
+            <thead><tr><th>情景</th><th>裸买 100 看涨</th><th>100/110 价差</th><th>谁更好</th></tr></thead>
+            <tbody>
+              <tr><td>第 30 天大涨到 115</td><td class="mono pos">+$997（+155%）</td><td class="mono pos">+$393（+107%）</td><td>裸买</td></tr>
+              <tr><td>到期涨到 120</td><td class="mono pos">+$1,359（+212%）</td><td class="mono pos">+$632（+172%）</td><td>裸买</td></tr>
+              <tr><td>第 45 天到 110，IV 降 5 点</td><td class="mono pos">+$466（+73%）</td><td class="mono pos">+$327（+89%）</td><td>价差（按收益率）</td></tr>
+              <tr class="hl"><td>到期正好 110</td><td class="mono pos">+$359（+56%）</td><td class="mono pos">+$632（+172%）</td><td>价差</td></tr>
+              <tr class="hl"><td>到期 105</td><td class="mono neg">−$141（−22%）</td><td class="mono pos">+$132（+36%）</td><td>价差</td></tr>
+              <tr><td>第 45 天横盘，IV 降 5 点</td><td class="mono neg">−$267（−42%）</td><td class="mono neg">−$66（−18%）</td><td>价差</td></tr>
+              <tr><td>第 45 天跌到 95</td><td class="mono neg">−$419（−65%）</td><td class="mono neg">−$190（−52%）</td><td>价差</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>裸买只在「又快又大」的情景里胜出。只要涨幅温和、来得慢，或者 IV 回落，价差都更好。到期 105 这一行最能说明问题：方向对了、幅度一般，裸买亏 22%，价差赚 36%。</p>
+        <p>启示：如果你的判断有明确的目标价，价差几乎总是更好的表达；只有当你认为目标价之上还有很大空间、并且 IV 不高时，才值得为裸买多付那 $273。</p>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 3</div>
+        <h3>盈利之后怎么办：四种处理</h3>
+        <p>买入 60 天平值 100 看涨，$517。第 20 天股价到 108，期权值 $963，浮盈 $447。四种处理：</p>
+        <ul>
+          <li>甲：继续持有裸买。</li>
+          <li>乙：全部平仓，锁定 +$447。</li>
+          <li>丙：卖一半，另一半持有。</li>
+          <li>丁：卖出一张 40 天后到期的 105 看涨，收 $616，变成 100/105 看涨价差。收到的钱已经超过当初的成本 $517，最差也赚 <span class="num">$99</span>，最多赚 <span class="num">$599</span>。</li>
+        </ul>
+        <div class="tbl">
+          <table>
+            <caption>表 7-17　之后不同走势下的总盈亏（美元）</caption>
+            <thead><tr><th>之后的走势</th><th>甲 持有</th><th>乙 全平</th><th>丙 卖一半</th><th>丁 改价差</th></tr></thead>
+            <tbody>
+              <tr><td>到期跌到 95</td><td class="mono neg">−517</td><td class="mono pos">+447</td><td class="mono neg">−35</td><td class="mono pos">+99</td></tr>
+              <tr><td>第 45 天回到 101 时平仓</td><td class="mono neg">−211</td><td class="mono pos">+447</td><td class="mono pos">+118</td><td class="mono pos">+302</td></tr>
+              <tr><td>到期 101</td><td class="mono neg">−417</td><td class="mono pos">+447</td><td class="mono pos">+15</td><td class="mono pos">+199</td></tr>
+              <tr><td>到期 108</td><td class="mono pos">+283</td><td class="mono pos">+447</td><td class="mono pos">+365</td><td class="mono pos">+599</td></tr>
+              <tr><td>到期 115</td><td class="mono pos">+983</td><td class="mono pos">+447</td><td class="mono pos">+715</td><td class="mono pos">+599</td></tr>
+              <tr><td>到期 125</td><td class="mono pos">+1,983</td><td class="mono pos">+447</td><td class="mono pos">+1,215</td><td class="mono pos">+599</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>没有一种处理在所有情景里都最好。甲的结果从 −517 到 +1,983，波动最大；乙最稳，但放弃了后面的一切；丙和丁都在中间。丁的特点是任何情况下都不亏，并在股价停在 105 以上时拿到最多的 $599。</p>
+        <p>启示：盈利后的处理是在「保住已有的」和「保留剩下的」之间分配。事先决定用哪一种，比事后凭感觉选更重要。最差的选择是什么都不想、一直拿着，然后看着 +86% 变成 −81%。</p>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">工具</span>清单与自测</h2>
+      <p>勾选状态只保存在你自己的浏览器里。</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">7-1</span>下单前：三个敌人体检</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">到期盈亏平衡所需涨幅，小于我的目标涨幅</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">每日 Theta 占权利金不超过 1%</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">IV Percentile 低于 50，到期前的事件已列出</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">7-2</span>选合约</h4>
+          <ul>
+            <li><input type="checkbox" id="k4"><label for="k4">把判断写成「涨多少、多久」</label></li>
+            <li><input type="checkbox" id="k5"><label for="k5">到期日 ≥ 预期时间的 1.5–2 倍</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">Delta 与判断类型匹配，Δ0.30 以下只放小仓位</label></li>
+            <li><input type="checkbox" id="k7"><label for="k7">有目标价：考虑价差，卖出腿放在目标价</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">7-3</span>结构与执行</h4>
+          <ul>
+            <li><input type="checkbox" id="k8"><label for="k8">IV 偏高：用价差或换标的，或者不做</label></li>
+            <li><input type="checkbox" id="k9"><label for="k9">价差确认是一笔两腿的组合单</label></li>
+            <li><input type="checkbox" id="k10"><label for="k10">买卖价差不超过权利金的 5%</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">7-4</span>退出规则（下单前写好）</h4>
+          <ul>
+            <li><input type="checkbox" id="k11"><label for="k11">止盈：收益率目标或标的目标价，到了先了结一部分</label></li>
+            <li><input type="checkbox" id="k12"><label for="k12">时间止损：剩三分之一期限仍未兑现就离场</label></li>
+            <li><input type="checkbox" id="k13"><label for="k13">止损：判断失效的标的价位</label></li>
+            <li><input type="checkbox" id="k14"><label for="k14">这笔权利金归零时，亏损不超过账户的 3%</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>自测五题</h3>
+      <details class="q"><summary><span class="num">1</span><span>股价 100，你花 1.66 买了 30 天的 105 看涨。到期时股价至少要到多少才不亏？</span></summary>
+        <div class="ans"><p>盈亏平衡价 = <span class="num">105 + 1.66 = 106.66</span>，需要涨 6.66%。如果你的目标是涨到 105，这张期权就算判断完全正确也会亏光。</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>30 天平值看涨 3.59，Theta −0.062。股价不动，10 天后它大约值多少？用 Theta × 10 估算准吗？</span></summary>
+        <div class="ans"><p>重新定价是 <span class="num">2.91</span>，损失 0.68。用 Theta 估算是 0.062 × 10 = 0.62，略为低估，因为 Theta 越接近到期越大。</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>100/110 看涨价差花 3.68。最大盈利、盈亏平衡价各是多少？到期股价 115 时收益率多少？</span></summary>
+        <div class="ans"><p>最大盈利 <span class="num">10 − 3.68 = 6.32</span>；盈亏平衡 <span class="num">103.68</span>；到期 115 时价差值 10，收益率 <span class="num">6.32 / 3.68 = +171.8%</span>，和到期 110 时一样。</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>股价 100，一年期 85 看涨 22.35。它的时间价值是多少？其中利息占多少？</span></summary>
+        <div class="ans"><p>时间价值 <span class="num">22.35 − 15 = 7.35</span>。利息 <span class="num">85 × (1 − e<sup>−0.04</sup>) = 3.33</span>，其余 <span class="num">4.02</span> 是 85 看跌期权的价值，也就是那块「地板」的价格。</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>你的买方策略胜率 35%，每笔押账户的 10%，每次亏光权利金。连续亏 5 次后账户还剩多少？任意连续 5 笔都亏的概率是多少？</span></summary>
+        <div class="ans"><p><span class="num">0.9<sup>5</sup> = 59.0%</span>，亏掉 41%。任意连续 5 笔全亏的概率 <span class="num">0.65<sup>5</sup> = 11.6%</span>；交易 50 笔，至少遇到一次的概率约 92%。把每笔降到 2%，连亏 5 次后还剩 90.4%。</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="章节翻页"></nav>
+
+    <footer class="end">
+      <p>本章示例全部由 Black-Scholes 模型计算（利率 4%，不派息，一年 365 天），价格路径与 IV 变化均为假设，概率为风险中性近似，用于教学，不构成投资建议。</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+  const sp = v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(1) + "%";
+  const usd0 = v => (v < 0 ? "−$" : "+$") + Math.abs(Math.round(v)).toLocaleString("en-US");
+
+  // ---------- fig 7-1：行权价选择 ----------
+  (function () {
+    const KS = [94, 102, 110], COL = ["var(--theta)", "var(--delta)", "var(--gamma)"];
+    const C0 = KS.map(K => bs(100, K, 90 / DAY, 0.30, "c").price);
+    const dS = document.getElementById("f1-d"), ivS = document.getElementById("f1-iv");
+    const svg = document.getElementById("f1-svg");
+    function draw() {
+      const d = +dS.value, dv = +ivS.value;
+      document.getElementById("f1-d-o").textContent = d + " 天";
+      document.getElementById("f1-iv-o").textContent = (dv > 0 ? "+" : dv < 0 ? "−" : "") + Math.abs(dv) + " 点";
+      const rem = (90 - d) / DAY, s = 0.30 + dv / 100;
+      const val = (S, K) => rem > 0 ? bs(S, K, rem, s, "c").price : Math.max(S - K, 0);
+      const xs = range(85, 120, 0.25);
+      plot(svg, {
+        x: [85, 120], y: [-100, 400], xt: range(85, 120, 5), yt: [-100, 0, 100, 200, 300, 400],
+        yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%", xlabel: "评估时的股价", ylabel: "收益率（按权利金）",
+        zero: 0, vline: 110,
+        series: KS.map((K, i) => ({ pts: xs.map(S => [S, (val(S, K) - C0[i]) / C0[i] * 100]), color: COL[i], w: 2.4 })),
+        dots: KS.map((K, i) => [110, (val(110, K) - C0[i]) / C0[i] * 100, COL[i], 4.5])
+      });
+      ["f1-r1", "f1-r2", "f1-r3"].forEach((id, i) => {
+        document.getElementById(id).textContent = sp((val(110, KS[i]) - C0[i]) / C0[i] * 100);
+      });
+    }
+    dS.addEventListener("input", draw); ivS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 7-2：期限选择 ----------
+  (function () {
+    const TS = [30, 60, 120], COL = ["var(--gamma)", "var(--delta)", "var(--theta)"];
+    const C0 = TS.map(T => bs(100, 100, T / DAY, 0.30, "c").price);
+    const fS = document.getElementById("f2-f");
+    const svgP = document.getElementById("f2-px"), svg = document.getElementById("f2-svg");
+    function draw() {
+      const F = +fS.value, hit = F + 20;
+      document.getElementById("f2-f-o").textContent = F + " 天";
+      const path = d => d <= F ? 100 : d <= hit ? 100 + 10 * (d - F) / 20 : 110;
+      const days = range(0, 120, 1);
+      plot(svgP, {
+        x: [0, 120], y: [98, 112], xt: range(0, 120, 30), yt: [100, 105, 110], xf: v => "", ylabel: "股价", xlabel: "",
+        vline: hit, series: [{ pts: days.map(d => [d, path(d)]), color: "var(--ink)", w: 2 }]
+      });
+      const series = [], dots = [];
+      const out = TS.map((T, i) => {
+        const pts = [];
+        for (let d = 0; d <= Math.min(T, 120); d++) {
+          const rem = (T - d) / DAY;
+          const v = rem > 0 ? bs(path(d), 100, rem, 0.30, "c").price : Math.max(path(d) - 100, 0);
+          pts.push([d, (v - C0[i]) / C0[i] * 100]);
+        }
+        series.push({ pts, color: COL[i], w: 2.4 });
+        const dd = Math.min(hit, T);
+        const r = pts[dd][1];
+        dots.push([dd, r, COL[i], 4.5]);
+        return { dd, r, expired: T < hit };
+      });
+      plot(svg, {
+        x: [0, 120], y: [-100, 250], xt: range(0, 120, 20), yt: [-100, -50, 0, 50, 100, 150, 200, 250],
+        xf: v => v + "天", yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%",
+        xlabel: "买入后天数", ylabel: "收益率（按权利金）", zero: 0, vline: hit, series, dots
+      });
+      out.forEach((o, i) => {
+        document.getElementById("f2-r" + (i + 1)).textContent = sp(o.r);
+        document.getElementById("f2-r" + (i + 1) + "s").textContent = TS[i] + " 天期权，" + (o.expired ? "第 " + o.dd + " 天到期时" : "第 " + o.dd + " 天到 110 时");
+      });
+    }
+    fS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 7-3：裸买 vs 借记价差 ----------
+  (function () {
+    const T = 90 / DAY, s0 = 0.30;
+    const L = bs(100, 100, T, s0, "c");
+    const kS = document.getElementById("f3-k"), svg = document.getElementById("f3-svg");
+    const btns = document.querySelectorAll("#fig3 .seg button");
+    let mode = "exp";
+    function draw() {
+      const KS = +kS.value;
+      document.getElementById("f3-k-o").textContent = KS;
+      const Sh = bs(100, KS, T, s0, "c");
+      const cost = L.price - Sh.price;
+      const rem = mode === "exp" ? 0 : 45 / DAY, s = mode === "exp" ? s0 : 0.25;
+      const cv = (S, K) => rem > 0 ? bs(S, K, rem, s, "c").price : Math.max(S - K, 0);
+      const xs = range(80, 130, 0.25);
+      plot(svg, {
+        x: [80, 130], y: [-800, 2400], xt: range(80, 130, 10), yt: [-800, 0, 800, 1600, 2400],
+        yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v),
+        xlabel: mode === "exp" ? "到期股价" : "第 45 天的股价", ylabel: "每张盈亏（美元）", zero: 0, vline: KS,
+        series: [
+          { pts: xs.map(S => [S, (cv(S, 100) - L.price) * 100]), color: "var(--muted)", w: 2, dash: "6 5" },
+          { pts: xs.map(S => [S, (cv(S, 100) - cv(S, KS) - cost) * 100]), color: "var(--delta)", w: 2.6 }
+        ]
+      });
+      document.getElementById("f3-r1").textContent = "$" + Math.round(cost * 100);
+      document.getElementById("f3-r1s").textContent = "价差成本（裸买 $" + Math.round(L.price * 100) + "）";
+      document.getElementById("f3-r2").textContent = "$" + Math.round((KS - 100 - cost) * 100).toLocaleString("en-US");
+      document.getElementById("f3-r3").textContent = (100 + cost).toFixed(2);
+      document.getElementById("f3-r3s").textContent = "价差到期盈亏平衡（裸买 " + (100 + L.price).toFixed(2) + "）";
+      document.getElementById("f3-r4").textContent = Math.round((L.vega - Sh.vega) / L.vega * 100) + "%";
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      mode = b.dataset.mode;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    kS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 7-4：LEAPS vs 正股 ----------
+  (function () {
+    const K = 85, T = 1, s = 0.30, r = CK.R;
+    const C0 = bs(100, K, T, s, "c").price;
+    const cash = 10000 - C0 * 100;
+    const mS = document.getElementById("f4-m"), svg = document.getElementById("f4-svg");
+    function draw() {
+      const m = +mS.value, t = m / 12, rem = T - t;
+      document.getElementById("f4-m-o").textContent = m + " 个月";
+      const intr = cash * (Math.exp(r * t) - 1);
+      const B = S => ((rem > 1e-9 ? bs(S, K, rem, s, "c").price : Math.max(S - K, 0)) - C0) * 100 + intr;
+      const A = S => (S - 100) * 100;
+      const xs = range(60, 140, 0.5);
+      plot(svg, {
+        x: [60, 140], y: [-4000, 4000], xt: range(60, 140, 10), yt: [-4000, -2000, 0, 2000, 4000],
+        yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toLocaleString("en-US"),
+        xlabel: "股价", ylabel: "盈亏（美元）", zero: 0, vline: K,
+        series: [{ pts: xs.map(S => [S, A(S)]), color: "var(--ink)", w: 2 }, { pts: xs.map(S => [S, B(S)]), color: "var(--delta)", w: 2.6 }]
+      });
+      let lo = 60, hi = 140;
+      for (let i = 0; i < 60; i++) { const mid = (lo + hi) / 2; if (B(mid) < 0) lo = mid; else hi = mid; }
+      document.getElementById("f4-r1").textContent = "$" + Math.round(C0 * 100).toLocaleString("en-US");
+      document.getElementById("f4-r2").textContent = usd0(B(80));
+      document.getElementById("f4-r2s").textContent = "B：股价 80 时（A 为 " + usd0(A(80)) + "）";
+      document.getElementById("f4-r3").textContent = usd0(B(120));
+      document.getElementById("f4-r3s").textContent = "B：股价 120 时（A 为 " + usd0(A(120)) + "）";
+      document.getElementById("f4-r4").textContent = ((lo + hi) / 2).toFixed(2);
+    }
+    mS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+})();
+</script>
+</body>
+</html>

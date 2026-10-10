@@ -1,0 +1,909 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 10 章 事件交易 · 美股期权课</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  .calc .spy input { width: 5.5em; }
+  .calc .msg { font-size: 13.5px; color: var(--warn); margin: 6px 0 0; min-height: 1.2em; }
+  .calc .inrow { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 14px; color: var(--muted); margin: 0 0 8px; align-items: center; }
+  .calc .inrow label { display: inline-flex; gap: 6px; align-items: center; }
+  .seg { flex-wrap: wrap; max-width: 100%; }
+  .seg button { white-space: nowrap; }
+  .calc .inrow input { font-family: var(--font-mono); width: 5.5em; padding: 4px 6px; border: 1px solid var(--rule); border-radius: 4px; background: var(--paper); color: var(--ink); }
+</style>
+</head>
+<body data-ch="10">
+<div class="topbar"><div class="topbar-inner"><a class="brand" href="index.html">美股期权<span>课</span></a><select id="ck-jump" aria-label="跳转到章节"></select></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">10</div>
+    <div class="eyebrow">美股期权课 · 第三部分 策略 · 第 10 章</div>
+    <h1>事件<span class="g">交易</span></h1>
+    <p class="deck">财报、FOMC、CPI 这些日子，期权价格里已经写好了市场预期的波动幅度。本章教你把这个幅度读出来，和历史比较，再决定是买、是卖，还是干脆不碰。</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="本章目录">
+    <p class="toc-title">本章目录</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>开篇：跨式里的预期</span></a></li>
+      <li><a href="#s1"><span class="n">10.1</span><span>财报的 IV 周期</span></a></li>
+      <li><a href="#s2"><span class="n">10.2</span><span>隐含移动与历史移动</span></a></li>
+      <li><a href="#s3"><span class="n">10.3</span><span>剥离事件 IV</span></a></li>
+      <li><a href="#s4"><span class="n">10.4</span><span>财报结构怎么选</span></a></li>
+      <li><a href="#s5"><span class="n">10.5</span><span>宏观事件日</span></a></li>
+      <li><a href="#s6"><span class="n">10.6</span><span>0DTE：压缩到几小时</span></a></li>
+      <li><a href="#s7"><span class="n">10.7</span><span>SPX 与 SPY</span></a></li>
+      <li><a href="#s8"><span class="n">10.8</span><span>VIX 期权与周期性事件</span></a></li>
+      <li><a href="#s9"><span class="n">10.9</span><span>事件日历与 IV 仪表盘</span></a></li>
+      <li><a href="#cases"><span class="n">案例</span><span>三个案例</span></a></li>
+      <li><a href="#tools"><span class="n">工具</span><span>清单与自测</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>本章目录</summary>
+      <ol>
+        <li><a href="#open">开篇：跨式里的预期</a></li>
+        <li><a href="#s1">10.1 财报的 IV 周期</a></li>
+        <li><a href="#s2">10.2 隐含移动与历史移动</a></li>
+        <li><a href="#s3">10.3 剥离事件 IV</a></li>
+        <li><a href="#s4">10.4 财报结构怎么选</a></li>
+        <li><a href="#s5">10.5 宏观事件日</a></li>
+        <li><a href="#s6">10.6 0DTE：压缩到几小时</a></li>
+        <li><a href="#s7">10.7 SPX 与 SPY</a></li>
+        <li><a href="#s8">10.8 VIX 期权与周期性事件</a></li>
+        <li><a href="#s9">10.9 事件日历与 IV 仪表盘</a></li>
+        <li><a href="#cases">三个案例</a></li>
+        <li><a href="#tools">清单与自测</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>学完本章你能</h4>
+        <ul>
+          <li>从平值跨式的价格读出隐含的财报移动，并和过去 8 次的实际移动比较</li>
+          <li>用前后两个到期日的 IV 剥离出事件本身的移动和「事件日 IV」</li>
+          <li>按「隐含 ÷ 历史」和最大亏损选出财报结构，说清 SPX 与 SPY 的差别</li>
+        </ul>
+      </div>
+      <div>
+        <h4>前置知识</h4>
+        <ul>
+          <li>第 5 章：Vega 与 IV 崩塌</li>
+          <li>第 6 章：期限结构与 IV Rank</li>
+          <li>第 9 章：跨式、铁鹰与日历价差</li>
+        </ul>
+      </div>
+      <div>
+        <h4>本章约定</h4>
+        <ul>
+          <li>Black-Scholes，利率 4%，不派息</li>
+          <li>日历天，一年 365 天；0DTE 按交易小时（10.6 节）</li>
+          <li>一张合约 = 100 股；市场数据均为假设</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">开篇</span>一张跨式里写着市场的预期</h2>
+      <p class="lead">股价 $200 的 XYZ 今晚收盘后公布财报。本周五到期（还剩 2 天）的平值 200 跨式报价 $11.81，这个到期日的 IV 是 100%。你觉得这次财报会有大动静，买了 1 组。</p>
+      <p>第二天股价跳涨 5%，收在 $210。方向和幅度都不算小，可这组跨式只值 <span class="num">$10.02</span>，每组亏 <span class="num">$178</span>。要是股价纹丝不动，会亏 <span class="num">$930</span>。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 10-0　第二天收盘（剩 1 天，IV 回落到 30%）时，买入 1 组 200 跨式的盈亏</caption>
+          <thead><tr><th>股价移动</th><th>股价</th><th>跨式价值</th><th>每组盈亏（美元）</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">−10%</td><td class="mono">180.0</td><td class="mono">19.98</td><td class="mono pos">+817</td></tr>
+            <tr><td class="mono">−5%</td><td class="mono">190.0</td><td class="mono">9.98</td><td class="mono neg">−183</td></tr>
+            <tr><td class="mono">0</td><td class="mono">200.0</td><td class="mono">2.51</td><td class="mono neg">−930</td></tr>
+            <tr class="hl"><td class="mono">+5%</td><td class="mono">210.0</td><td class="mono">10.02</td><td class="mono neg">−178</td></tr>
+            <tr><td class="mono">+5.9%</td><td class="mono">211.8</td><td class="mono">11.82</td><td class="mono">0</td></tr>
+            <tr><td class="mono">+10%</td><td class="mono">220.0</td><td class="mono">20.02</td><td class="mono pos">+821</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>你付的 $11.81 就是市场给这次财报移动开出的价：<span class="num">11.81 ÷ 200 = 5.9%</span>。实际移动小于约 5.9%，买方亏、卖方赚；大于它，反过来。事件交易真正要回答的只有一个问题：市场隐含的移动，和这只股票真实会走的移动相比，是贵还是便宜。这一章先教你读出隐含移动，再教你把它拆干净，最后才谈结构、宏观事件和 0DTE。</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">10.1</span>财报的 IV 周期</h2>
+      <p>财报前 IV 一路抬升、公布后瞬间压缩，这个周期的大部分来自算术，市场情绪只是叠加在上面的一层。</p>
+      <p>把一只股票的方差拆成两块：每天都有的<strong>基础方差</strong>，加上财报那一夜额外的一次<strong>跳跃方差</strong>。任何在财报之后到期的期权，都要为这次跳跃付钱。</p>
+      <div class="formula">
+        <div class="eq">σ<sub>到期</sub><sup>2</sup> <span class="v">T</span> <span class="up">=</span> σ<sub>b</sub><sup>2</sup> <span class="v">T</span> <span class="up">+</span> <span class="v">v</span><sub>e</sub> <span class="up">　⇒　</span> σ<sub>到期</sub> <span class="up">=</span> √<span class="up">(</span>σ<sub>b</sub><sup>2</sup> <span class="up">+</span> <span class="v">v</span><sub>e</sub> <span class="up">/</span> <span class="v">T</span><span class="up">)</span></div>
+        <p class="where">σ<sub>b</sub> 是基础波动率；<span class="v">v</span><sub>e</sub> 是跳跃的方差，例如市场预期 1 个标准差跳 7%，<span class="v">v</span><sub>e</sub> = 0.07² = 0.0049；<span class="v">T</span> 是剩余时间（年）。</p>
+      </div>
+      <p>关键在 <span class="v">v</span><sub>e</sub> / <span class="v">T</span> 这一项。跳跃的大小不变，可离到期越近，<span class="v">T</span> 越小，同样一次跳跃被摊到越少的天数里，折算成年化 IV 就越高。所以即使没有任何人改变对财报的看法，前月 IV 也会自己往上爬。财报一公布，跳跃已经发生，<span class="v">v</span><sub>e</sub> 从公式里消失，IV 一步回到 σ<sub>b</sub>。</p>
+      <p>举个数：基础波动率 30%，市场预期财报跳 7%（1 个标准差），第 21 天收盘后公布。前月期权在第 25 天到期，后月在第 53 天到期。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 10-1　同一次财报，两个到期日的 IV 走势（模型计算）</caption>
+          <thead><tr><th>时点</th><th>前月剩余天数</th><th>前月 IV</th><th>后月 IV</th></tr></thead>
+          <tbody>
+            <tr><td>今天（第 0 天）</td><td class="mono">25</td><td class="mono">40.2%</td><td class="mono">35.2%</td></tr>
+            <tr><td>第 14 天</td><td class="mono">11</td><td class="mono">50.3%</td><td class="mono">36.9%</td></tr>
+            <tr><td>第 20 天</td><td class="mono">5</td><td class="mono">66.9%</td><td class="mono">38.0%</td></tr>
+            <tr class="hl"><td>第 21 天收盘，公布前</td><td class="mono">4</td><td class="mono">73.3%</td><td class="mono">38.2%</td></tr>
+            <tr><td>公布后</td><td class="mono">3</td><td class="mono">30.0%</td><td class="mono">30.0%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">前月 IV 越临近财报涨得越快，公布后一夜跳水</span><span class="fig-no">图 10-1 · 模型示意，可拖动</span></div>
+        <div class="controls">
+          <label class="ctl" for="f1-base">基础波动率 <input id="f1-base" type="range" min="15" max="60" value="30"> <output id="f1-base-o">30%</output></label>
+          <label class="ctl" for="f1-ev">预期跳跃（1σ） <input id="f1-ev" type="range" min="2" max="14" step="0.5" value="7"> <output id="f1-ev-o">7%</output></label>
+        </div>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 320" role="img" aria-label="前月与后月隐含波动率随时间的走势"></svg>
+        <div class="legend"><span><i style="border-color: var(--gamma)"></i>前月（第 25 天到期）</span><span><i style="border-color: var(--delta)"></i>后月（第 53 天到期）</span><span><i class="dash" style="border-color: var(--muted)"></i>财报公布</span></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small>前月 IV，今天</small></div>
+          <div><b id="f1-r2">—</b><small>前月 IV，公布前收盘</small></div>
+          <div><b id="f1-r3">—</b><small>公布后前月 IV 下跌</small></div>
+          <div><b id="f1-r4">—</b><small>后月 IV，公布前收盘</small></div>
+        </div>
+        <figcaption>把预期跳跃拖到 12% 以上，前月 IV 在公布前会冲过 100%，后月却只升到 50% 左右：同一次跳跃在后月里被摊到了 32 天上。把基础波动率调高，两条线一起上移，但公布后的「跳水」幅度变小，因为跳跃在总方差里的占比下降了。</figcaption>
+      </figure>
+
+      <p>三个读法：</p>
+      <ul>
+        <li><strong>前月涨得多，后月涨得少。</strong>前月 IV 高于后月的倒挂（第 6 章的期限结构），本身就是市场在给事件定价的证据。</li>
+        <li><strong>公布后前月跌得最狠。</strong>表里前月从 73.3% 跌到 30%，掉了 43 个点；后月只掉 8 个点。卖出前月、买入后月的日历价差，赚的就是这个差。</li>
+        <li><strong>真实世界会再加一层需求。</strong>投机买盘会把 IV 推得比模型更高，财报季里 IV 也常常提前几周开始爬。模型给你的是「如果跳跃预期不变，IV 本该在哪里」，高出来的部分才是情绪。</li>
+      </ul>
+      <div class="note warn">
+        <span class="tag">模型失灵的时候</span>
+        <ul>
+          <li>财报日期还没确认：期权可能押错了到期日，IV 周期会出现在错误的位置</li>
+          <li>同一个到期日里有两件事（财报加投资者日、监管裁决）：跳跃不止一次，后面的方法会高估「财报」本身</li>
+          <li>公司提前发布业绩预告：跳跃提前发生，IV 也会提前回落</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">10.2</span>隐含移动与历史移动</h2>
+      <p>平值跨式的价格约等于市场预期的「平均绝对移动」，1 个标准差的移动大约是它的 1.25 倍。</p>
+      <p>推导只要一行。平值看涨和看跌的价格都约等于 0.4 × <span class="v">S</span>σ√<span class="v">T</span>（第 3 章的心算法则），两张加起来约 0.8 × <span class="v">S</span>σ√<span class="v">T</span>。而正态分布的绝对值均值恰好是 √(2/π) ≈ 0.798 个标准差。两个 0.8 是同一个数，所以：</p>
+      <div class="formula">
+        <div class="eq">跨式 <span class="up">≈</span> √<span class="up">(</span>2/π<span class="up">)</span> <span class="up">·</span> <span class="v">S</span>σ√<span class="v">T</span> <span class="up">=</span> 预期绝对移动<span class="up">　　</span>1σ 移动 <span class="up">≈</span> 跨式 <span class="up">÷ 0.8 ≈ 1.25 ×</span> 跨式</div>
+        <p class="where">开篇的 XYZ：0.798 × 200 × 1.00 × √(2/365) = $11.81，与跨式报价一致。隐含平均移动 5.9%，1σ 约 7.4%。</p>
+      </div>
+      <p>由此还能读出一个常被忽略的概率：在正态假设下，实际移动超过跨式价格的概率是 <span class="num">2 × (1 − N(0.798)) = 42.5%</span>。跨式买方到期赚钱的次数不到一半，赢的时候赢得多；卖方正好相反。</p>
+      <h3>拿什么和它比</h3>
+      <p>历史移动用「财报前最后一个收盘价」到「财报后第一个收盘价」的涨跌幅，因为期权也是按收盘估值的。取最近 8 次，看两个数：绝对值的平均和中位数。下面是 XYZ 过去 8 个季度的假设数据。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 10-2　XYZ 过去 8 次财报的收盘到收盘移动（假设数据）</caption>
+          <thead><tr><th>季度</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Q5</th><th>Q6</th><th>Q7</th><th>Q8</th></tr></thead>
+          <tbody>
+            <tr><td>移动</td><td class="mono">+3.2%</td><td class="mono">−5.1%</td><td class="mono">+2.4%</td><td class="mono">−8.9%</td><td class="mono">+4.0%</td><td class="mono">−1.7%</td><td class="mono">+6.3%</td><td class="mono">−2.6%</td></tr>
+            <tr><td>超过 5.9%？</td><td></td><td></td><td></td><td class="mono neg">是</td><td></td><td></td><td class="mono neg">是</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>绝对值平均 <span class="num">4.28%</span>，中位数 <span class="num">3.6%</span>，8 次里只有 2 次超过 5.9%。隐含 ÷ 历史 = <span class="num">5.90 ÷ 4.28 = 1.38</span>：市场开的价比过去的平均水平贵了近四成。</p>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">隐含移动比 8 次历史中的 6 次都大</span><span class="fig-no">图 10-2 · 隐含 vs 历史对比器，可编辑</span></div>
+        <div class="controls">
+          <label class="ctl" for="f2-s">股价 <input id="f2-s" type="number" value="200" step="1" min="1"></label>
+          <label class="ctl" for="f2-st">平值跨式价格 <input id="f2-st" type="number" value="11.81" step="0.1" min="0.01"></label>
+        </div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 300" role="img" aria-label="历史财报移动柱状图与隐含移动横线"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>上涨季度</span><span><i style="border-color: var(--gamma)"></i>下跌季度</span><span><i style="border-color: var(--ink)"></i>隐含平均移动</span><span><i class="dash" style="border-color: var(--muted)"></i>隐含 1σ</span></div>
+        <div class="readout">
+          <div><b id="f2-r1">—</b><small>隐含平均移动</small></div>
+          <div><b id="f2-r2">—</b><small>隐含 ÷ 历史平均（4.28%）</small></div>
+          <div><b id="f2-r3">—</b><small>超过隐含移动的次数</small></div>
+          <div><b id="f2-r4">—</b><small>卖跨式 8 次平均盈亏（到期估算）</small></div>
+        </div>
+        <figcaption>浅色带是卖方赢的区域：柱子低于横实线，卖跨式到期就赚。把跨式价格改成 8.5，隐含移动降到约 4.3%，比值接近 1，8 次里有 3 次超出，卖方的平均盈利几乎消失。改成 14，比值升到 1.6 以上，但这时你要问：市场是不是知道一些历史数据里没有的事。</figcaption>
+      </figure>
+
+      <h3>比值的门槛从哪里来</h3>
+      <p>常见的经验门槛是：隐含 ÷ 历史超过 1.2 才考虑卖，低于 0.9 才考虑买，中间不做。这个门槛的来源是样本误差。8 个绝对移动的标准差是 <span class="num">2.40</span> 个百分点，平均值的标准误是 <span class="num">2.40 ÷ √8 = 0.85</span>。也就是说「历史平均 4.28%」本身就可能在 3.4% 到 5.1% 之间，对应的比值区间是 1.15 到 1.72。比值只有 1.1 时，你看到的「贵」很可能只是噪音。</p>
+      <p>门槛在这些情况下不适用：公司刚经历重大变化（并购、换 CEO、行业周期反转），过去 8 次已经不代表未来；历史里有一次极端值主导了平均数；或者期权流动性差，跨式的买卖价差本身就占了价格的一成以上。</p>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">10.3</span>剥离事件 IV</h2>
+      <p>两个到期日的 IV 就能解出两件事：普通日子的基础波动率，和财报那一夜的跳跃幅度。</p>
+      <p>跨式价格里混着普通日子的时间价值。前月剩 2 天，问题不大；如果前月还剩 10 天，混进来的就多了。干净的做法是用两个都包含财报的到期日，解 10.1 节的方程组。总方差 <span class="v">w</span> = σ²<span class="v">T</span> 是 <span class="v">T</span> 的一条直线：斜率是基础方差，截距是跳跃方差。两个点确定一条直线。</p>
+      <div class="formula">
+        <div class="eq">σ<sub>b</sub><sup>2</sup> <span class="up">=</span> <span class="frac"><span>σ<sub>2</sub><sup>2</sup><span class="v">T</span><sub>2</sub> <span class="up">−</span> σ<sub>1</sub><sup>2</sup><span class="v">T</span><sub>1</sub></span><span><span class="v">T</span><sub>2</sub> <span class="up">−</span> <span class="v">T</span><sub>1</sub></span></span><span class="up">　　</span><span class="v">v</span><sub>e</sub> <span class="up">=</span> <span class="up">(</span>σ<sub>1</sub><sup>2</sup> <span class="up">−</span> σ<sub>b</sub><sup>2</sup><span class="up">)</span> <span class="v">T</span><sub>1</sub></div>
+        <div class="eq">事件 1σ <span class="up">=</span> √<span class="v">v</span><sub>e</sub><span class="up">　　</span>预期绝对移动 <span class="up">≈ 0.8</span> √<span class="v">v</span><sub>e</sub><span class="up">　　</span>事件日 IV <span class="up">=</span> √<span class="up">(</span>σ<sub>b</sub><sup>2</sup> <span class="up">+ 365 ×</span> <span class="v">v</span><sub>e</sub><span class="up">)</span></div>
+        <p class="where">下标 1 是较近的到期日，2 是较远的；<span class="v">T</span> 用年。「事件日 IV」是把那一天单独拿出来、折成年化后的波动率，用来和普通日子比较。</p>
+      </div>
+      <h3>数字例子</h3>
+      <p>XYZ 周三收盘：周五到期（<span class="v">T</span><sub>1</sub> = 2 天）IV 100%，下周五到期（<span class="v">T</span><sub>2</sub> = 9 天）IV 54%。</p>
+      <ol>
+        <li>总方差：<span class="num">1.00² × 2/365 = 0.005479</span>；<span class="num">0.54² × 9/365 = 0.007190</span>。</li>
+        <li>基础方差：<span class="num">(0.007190 − 0.005479) ÷ (7/365) = 0.0892</span>，σ<sub>b</sub> = <span class="num">29.9%</span>。</li>
+        <li>跳跃方差：<span class="num">(1.00 − 0.0892) × 2/365 = 0.004991</span>，事件 1σ = <span class="num">7.06%</span>（$14.13），预期绝对移动 <span class="num">5.64%</span>（$11.27）。</li>
+        <li>事件日 IV：<span class="num">√(0.0892 + 365 × 0.004991) = 138%</span>，是普通日子的 4.6 倍。</li>
+      </ol>
+      <p>跨式直接读出来的是 5.90%，剥离后的事件本身是 5.64%，差的 0.26 个点是那两天普通日子的时间价值。和历史比较时应该用 5.64%：比值是 <span class="num">5.64 ÷ 4.28 = 1.32</span>，仍然偏贵，但没有 1.38 那么夸张。公布后前月 IV 的合理落点是 σ<sub>b</sub> ≈ 30%，这就是开篇表格里假设的「回落到 30%」。</p>
+
+      <figure class="plate calc" id="calc">
+        <div class="fig-head"><span class="fig-title">两个到期日连成一条直线，截距就是财报跳跃</span><span class="fig-no">工具 10-A · 事件 IV 剥离计算器</span></div>
+        <div class="inrow">
+          <label for="c-s">股价 <input id="c-s" type="number" value="200" step="1"></label>
+          <label for="c-t1">近月天数 <input id="c-t1" type="number" value="2" step="1" min="1"></label>
+          <label for="c-iv1">近月 IV % <input id="c-iv1" type="number" value="100" step="1"></label>
+          <label for="c-t2">远月天数 <input id="c-t2" type="number" value="9" step="1" min="2"></label>
+          <label for="c-iv2">远月 IV % <input id="c-iv2" type="number" value="54" step="1"></label>
+        </div>
+        <svg class="chart" id="c-svg" viewBox="0 0 680 300" role="img" aria-label="累计方差随时间的直线与事件跳跃"></svg>
+        <div class="legend"><span><i style="border-color: var(--gamma)"></i>含财报的累计方差</span><span><i class="dash" style="border-color: var(--muted)"></i>只有基础波动率</span><span style="color: var(--ink)">● 两个到期日的报价</span></div>
+        <div class="readout">
+          <div><b id="c-r1">—</b><small>基础波动率 σ<sub>b</sub></small></div>
+          <div><b id="c-r2">—</b><small>事件 1σ 移动</small></div>
+          <div><b id="c-r3">—</b><small>预期绝对移动</small></div>
+          <div><b id="c-r4">—</b><small>事件日 IV</small></div>
+        </div>
+        <p class="msg" id="c-msg"></p>
+        <figcaption>纵轴是累计方差（以「百分比的平方」计，√ 之后就是百分比移动）。两个圆点是两个到期日的 σ²<span class="v">T</span>，连线往左延伸到第 0 天，截距就是跳跃方差。把远月 IV 改小到 40%，远月的总方差比近月还小，算出的基础方差变成负数：说明远月报价和近月不一致，或者两个到期日之间还有别的事件。</figcaption>
+      </figure>
+
+      <div class="note warn">
+        <span class="tag">这套方法的前提</span>
+        <ul>
+          <li><strong>两个到期日之间没有别的事件。</strong>否则斜率被抬高，基础波动率偏大，事件被低估。</li>
+          <li><strong>基础波动率在两个到期日之间不变。</strong>市场整体在恐慌期时，近端基础波动率往往更高，方法会高估事件。</li>
+          <li><strong>日历天还是交易日。</strong>远月跨过周末时，按交易日重算（2 天和 7 天，一年 252 天），事件 1σ 从 7.06% 变成 6.92%。事件估计变化不大，基础 IV 的数值则不能和日历天的结果直接比较。</li>
+          <li>算出的 σ<sub>b</sub>² 或 <span class="v">v</span><sub>e</sub> 是负数，先检查报价是否用了同一个平值行权价、是否是盘中稀疏报价。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">10.4</span>财报结构怎么选</h2>
+      <p>选结构的顺序是：先看隐含 ÷ 历史的比值，再定自己能承受的最大亏损，最后才挑具体的腿。</p>
+      <p>下面把五种常见结构放在同一个场景里：XYZ 周三收盘建仓，前月（2 天）IV 100%，后月（9 天）IV 54%；周四收盘估值，两个到期日的 IV 都回落到 30%。铁鹰和反向铁鹰的行权价是 190/180 与 210/220，日历是卖周五 200 看涨、买下周五 200 看涨。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 10-3　五种财报结构，公布后第一天收盘的每组盈亏（美元）</caption>
+          <thead><tr><th>结构</th><th>建仓</th><th>−8.9%</th><th>−5.6%</th><th>不动</th><th>+5.6%</th><th>+8.9%</th><th>盈亏平衡</th><th>最大亏损</th></tr></thead>
+          <tbody>
+            <tr><td>卖跨式</td><td class="mono">收 1,181</td><td class="mono neg">−597</td><td class="mono pos">+55</td><td class="mono pos">+930</td><td class="mono pos">+51</td><td class="mono neg">−601</td><td class="mono">±5.9%</td><td class="mono">无上限</td></tr>
+            <tr><td>卖铁鹰</td><td class="mono">收 319</td><td class="mono neg">−424</td><td class="mono pos">+127</td><td class="mono pos">+319</td><td class="mono pos">+112</td><td class="mono neg">−409</td><td class="mono">−6.4% / +6.5%</td><td class="mono">681</td></tr>
+            <tr><td>日历（看涨）</td><td class="mono">付 93</td><td class="mono neg">−88</td><td class="mono neg">−53</td><td class="mono pos">+143</td><td class="mono neg">−32</td><td class="mono neg">−69</td><td class="mono">−3.8% / +4.4%</td><td class="mono">93</td></tr>
+            <tr><td>买跨式</td><td class="mono">付 1,181</td><td class="mono pos">+597</td><td class="mono neg">−55</td><td class="mono neg">−930</td><td class="mono neg">−51</td><td class="mono pos">+601</td><td class="mono">±5.9%</td><td class="mono">1,181</td></tr>
+            <tr><td>反向铁鹰</td><td class="mono">付 319</td><td class="mono pos">+424</td><td class="mono neg">−127</td><td class="mono neg">−319</td><td class="mono neg">−112</td><td class="mono pos">+409</td><td class="mono">−6.4% / +6.5%</td><td class="mono">319</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>±5.6% 就是 10.3 节剥离出来的预期绝对移动，±8.9% 是 XYZ 历史上最大的一次。读这张表时注意三件事：</p>
+      <ul>
+        <li>卖跨式在「不动」时赚得最多（$930），但在 ±8.9% 时一次亏掉 $600，在 −15% 时会亏 $1,817。</li>
+        <li>卖铁鹰在不动时只赚 $319，盈亏平衡反而比跨式宽（短腿在 ±5% 之外，再加上收到的权利金），最大亏损锁死在 $681。</li>
+        <li>日历的盈亏都很小，最大亏损就是付出的 $93。它对事后 IV 很敏感：事后 IV 若是 25%，不动时只赚 $105；若是 40%，能赚 $220。</li>
+      </ul>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">同一场财报，五种结构押的是五件不同的事</span><span class="fig-no">图 10-3 · 公布后第一天收盘，每组盈亏</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="选择结构">
+            <button type="button" data-k="ss" aria-pressed="true">卖跨式</button>
+            <button type="button" data-k="ic" aria-pressed="false">卖铁鹰</button>
+            <button type="button" data-k="cal" aria-pressed="false">日历</button>
+            <button type="button" data-k="ls" aria-pressed="false">买跨式</button>
+            <button type="button" data-k="lic" aria-pressed="false">反向铁鹰</button>
+          </div>
+          <label class="ctl" for="f3-iv">事后 IV <input id="f3-iv" type="range" min="20" max="50" value="30"> <output id="f3-iv-o">30%</output></label>
+        </div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 320" role="img" aria-label="财报后各结构的盈亏曲线"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>选中的结构</span><span><i style="border-color: var(--muted); opacity: .45"></i>其他结构</span><span><i style="border-color: var(--tint-gamma); border-top-width: 8px"></i>±5.6% 预期移动</span></div>
+        <div class="readout">
+          <div><b id="f3-r1">—</b><small>建仓（每组）</small></div>
+          <div><b id="f3-r2">—</b><small>股价不动时</small></div>
+          <div><b id="f3-r3">—</b><small>移动 ±8.9%，取较差一边</small></div>
+          <div><b id="f3-r4">—</b><small>±15% 范围内最大亏损</small></div>
+        </div>
+        <figcaption>切到「日历」再把事后 IV 从 20% 拖到 50%：曲线整体上移，因为你持有的后月期权保住了更多价值。切到「卖跨式」时纵轴会拉得很长，这是它的尾部；切到「卖铁鹰」，两端被翅膀压平。</figcaption>
+      </figure>
+
+      <div class="tbl">
+        <table>
+          <caption>表 10-4　五种结构的适用条件</caption>
+          <thead><tr><th>结构</th><th>你的判断</th><th>什么时候用</th><th>什么时候别用</th></tr></thead>
+          <tbody>
+            <tr><td>卖跨式</td><td>动得比隐含小</td><td>比值 &gt; 1.2，流动性好，仓位极小</td><td>账户承受不了 3 倍于收入的亏损</td></tr>
+            <tr><td>卖铁鹰</td><td>动得比隐含小</td><td>同上，但要限定最大亏损</td><td>翅膀太窄，收入不够覆盖手续费和滑点</td></tr>
+            <tr><td>日历</td><td>动得小，且远月 IV 能守住</td><td>前月 IV 远高于后月，想用小钱做</td><td>远月也含另一个事件，或预期大动</td></tr>
+            <tr><td>买跨式</td><td>动得比隐含大</td><td>比值 &lt; 0.9，或这次有历史里没有的新变量</td><td>IV 已经被炒到 IV Rank 顶部</td></tr>
+            <tr><td>反向铁鹰</td><td>动得大，但不会极端</td><td>想做多波动、又嫌跨式太贵</td><td>只能接受 10% 以上移动才赚钱时</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>建仓时间、行权价与退出</h3>
+      <ul>
+        <li><strong>建仓时间。</strong>卖方通常在财报前最后一个交易日的收盘前建仓：这时前月 IV 最高，剩下的普通日子最少。提前几天建仓，要多扛几天普通日子的 Gamma，还可能看着 IV 继续往上爬。</li>
+        <li><strong>短腿放在哪。</strong>表 10-3 的铁鹰短腿在 ±5%，比预期绝对移动（5.64%）还近，是偏激进的设置：按市场隐含的分布，股价移动超过 5% 的概率约 <span class="num">50%</span>。把短腿挪到 185/215（约 1σ 之外），超过的概率降到约 <span class="num">31%</span>，代价是收入从 $319 降到 <span class="num">$184</span>，最大亏损从 $681 升到 <span class="num">$816</span>。没有免费的安全边际，只有不同的取舍。</li>
+        <li><strong>退出。</strong>默认在公布后第一天开盘 15–30 分钟后整组平仓：开盘时买卖价差最宽，等它收窄；这时 IV 已经压下来，事件交易该赚的钱已经赚到。把事件仓位拖成普通持仓，等于换了一笔你没有分析过的交易。</li>
+        <li><strong>日历要整组处理。</strong>前月腿临近到期时，要么整组平仓，要么提前处理近月腿，避免被指派后只剩一条孤零零的远月腿。</li>
+      </ul>
+      <div class="note field">
+        <span class="tag">实战观察</span>
+        <p>不少交易者把财报当「彩票」来做，但彩票有规矩：只用很小的仓位做日历价差或蝶式，最大亏损就是付出的权利金；在收盘前十分钟左右才下单，让价格和 IV 尽量接近公布前的最终状态；亏了就整组平掉或让它到期，不在事后单独砍掉其中一条腿，以免把一个有限风险的结构变成裸仓。如果某只股票的 IV 高到「买卖都不划算」，就换成同板块的 ETF 表达观点。另一个常见做法是事件前给重仓方向加一笔短期对冲：手上空头很多，就在财报或 FOMC 前买一点指数或杠杆 ETF 的短期看涨价差，事件过后拆掉。</p>
+      </div>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">10.5</span>宏观事件日</h2>
+      <p>宏观事件对指数的冲击比个股财报小得多，却会同时打到组合里的每一个仓位。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 10-5　三类宏观事件的时间与影响方式（美东时间）</caption>
+          <thead><tr><th>事件</th><th>发布时间</th><th>价格怎么反应</th><th>主要影响哪个到期日</th></tr></thead>
+          <tbody>
+            <tr><td>CPI</td><td>8:30，开盘前</td><td>以开盘跳空为主</td><td>前一晚就包含该日的到期日</td></tr>
+            <tr><td>非农就业</td><td>8:30，通常是每月第一个周五</td><td>以开盘跳空为主</td><td>当周五到期的周度期权</td></tr>
+            <tr><td>FOMC</td><td>14:00 声明，14:30 发布会</td><td>盘中两段波动，常常方向相反</td><td>当天到期的 0DTE 与当周期权</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>为什么 VIX 在 CPI 前几乎不动</h3>
+      <p>用 10.3 节的框架算一下。假设标普 500 的基础波动率 14%，市场预期 CPI 当天额外跳 1%（1σ）。</p>
+      <ul>
+        <li>1 天后到期的期权：IV = <span class="num">√(0.14² + 0.01² × 365 / 1) = 23.7%</span>，几乎翻倍。</li>
+        <li>30 天期的 IV（VIX 的口径）：<span class="num">√(0.14² + 0.01² × 365 / 30) = 14.43%</span>，只多了 0.4 个点。</li>
+      </ul>
+      <p>同一次跳跃，在 1 天里显得巨大，在 30 天里被稀释掉了。所以看 VIX 判断「市场怕不怕 CPI」会严重低估事件溢价，要看当天或次日到期的跨式。SPX 在 7,800 时，1 天期平值跨式在普通日子约 <span class="num">$45.6</span>（0.58%），在这个 CPI 日约 <span class="num">$77.2</span>（0.99%）。</p>
+      <h3>事件前对冲：按天算很贵，按次算不贵</h3>
+      <p>假设你的组合相当于 300 股 SPY（第 4 章的 Beta 加权），想在 CPI 前一晚加保护，SPY 780。</p>
+      <ul>
+        <li>3 张次日到期的 780 看跌，IV 23.7%：每张 $382，共 <span class="num">$1,145</span>，只管这一天。</li>
+        <li>3 张 30 天的 780 看跌，IV 14.43%：每张 $1,161，共 <span class="num">$3,483</span>，折合每天 <span class="num">$116</span>。</li>
+      </ul>
+      <p>单日对冲按天算贵了近 10 倍（<span class="num">1,145 ÷ 116 ≈ 9.9</span>），因为它的价格几乎全是事件溢价；好处是你只在需要的那一天付钱。反过来，如果你本来就打算持有一个月的保护，就在事件前买 30 天的，事件溢价在它的价格里只占很小一部分。</p>
+      <h3>事件后的指数 IV</h3>
+      <p>结果不出意外时，指数的短期 IV 在公布后往往会回落，逻辑和财报一样：跳跃已经发生。区别在于幅度小，而且宏观事件会改变后面几周的基础波动率。比如 FOMC 释放出新的政策方向，市场可能在接下来几天持续重新定价，基础波动率反而上升。</p>
+      <p>这类事件真正的风险在组合层面：所有股票同时朝一个方向动，个股之间的分散在这一天基本失效。事件前该做的是检查组合的 Beta 加权 Delta（第 4 章），必要时用短期指数期权加一笔反向仓位；事件中少动，等发布会结束、价格稳定后再处理。</p>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">10.6</span>0DTE：把一天压缩到几小时</h2>
+      <p>0DTE 是当天到期的期权，它把一整天的风险压进几个小时，Gamma 和 Theta 都被推到极端值。SPX、SPY、QQQ 等主要指数产品现在每个交易日都有到期。</p>
+      <div class="note">
+        <span class="tag">本节约定</span>
+        <p>日内的时间按交易时间折算：一个交易日 6.5 小时，一年 252 个交易日，剩余时间 <span class="v">T</span> = 剩余小时 ÷ (6.5 × 252)。IV 15% 也按这个口径理解。盘后和隔夜不计入。</p>
+      </div>
+      <div class="tbl">
+        <table>
+          <caption>表 10-6　SPY 780 平值看涨（IV 15%），离收盘不同时刻的数值（每股）</caption>
+          <thead><tr><th>离收盘</th><th>看涨价格</th><th>跨式价格</th><th>Gamma</th><th>每小时 Theta</th></tr></thead>
+          <tbody>
+            <tr><td>6.5 小时（开盘）</td><td class="mono">3.00</td><td class="mono">5.88</td><td class="mono">0.054</td><td class="mono">−0.24</td></tr>
+            <tr><td>4 小时</td><td class="mono">2.34</td><td class="mono">4.61</td><td class="mono">0.069</td><td class="mono">−0.30</td></tr>
+            <tr><td>2 小时</td><td class="mono">1.65</td><td class="mono">3.26</td><td class="mono">0.098</td><td class="mono">−0.42</td></tr>
+            <tr class="hl"><td>1 小时</td><td class="mono">1.16</td><td class="mono">2.31</td><td class="mono">0.138</td><td class="mono">−0.59</td></tr>
+            <tr><td>30 分钟</td><td class="mono">0.82</td><td class="mono">1.63</td><td class="mono">0.195</td><td class="mono">−0.83</td></tr>
+            <tr><td>15 分钟</td><td class="mono">0.58</td><td class="mono">1.15</td><td class="mono">0.276</td><td class="mono">−1.16</td></tr>
+            <tr><td>对照：21 个交易日</td><td class="mono">14.79</td><td class="mono">—</td><td class="mono">0.012</td><td class="mono">−0.06</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>几个值得记住的数：</p>
+      <ul>
+        <li>最后一小时的平值 Gamma 是一个月期权的 <span class="num">11.7</span> 倍，最后 15 分钟是 <span class="num">23.5</span> 倍。</li>
+        <li>平值期权的价值和剩余时间的平方根成正比。开盘时的 $3.00，到最后一小时还剩 $1.16，约 <span class="num">√(1/6.5) = 39%</span>：时间损耗前慢后快，最后一小时要吃掉开盘价值的近四成。</li>
+        <li>最后一小时里，SPY 涨 0.2%（$1.56）就让平值看涨从 $1.16 涨到 $2.11，涨 <span class="num">82%</span>；同样的移动在开盘时只让它涨 29%。</li>
+        <li>虚值 0.5% 的 784 看涨，Gamma 在离收盘不到 2 小时时最大，之后迅速衰减，最后 15 分钟只剩 0.006：它要么归零，要么被股价「抓住」变成平值。</li>
+      </ul>
+
+      <figure class="plate" id="fig4">
+        <div class="fig-head"><span class="fig-title">平值 0DTE 的 Gamma 和 Theta 在收盘前一起爆炸</span><span class="fig-no">图 10-4 · SPY 780，IV 15%，交易时间</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="选择指标">
+            <button type="button" data-m="g" aria-pressed="true">Gamma</button>
+            <button type="button" data-m="t" aria-pressed="false">每小时 Theta</button>
+          </div>
+          <label class="ctl" for="f4-k">虚值距离 <input id="f4-k" type="range" min="0.1" max="1.5" step="0.1" value="0.5"> <output id="f4-k-o">0.5%</output></label>
+        </div>
+        <svg class="chart" id="f4-svg" viewBox="0 0 680 320" role="img" aria-label="0DTE 期权的 Gamma 或 Theta 随剩余小时的变化"></svg>
+        <div class="legend"><span><i style="border-color: var(--gamma)"></i>平值 780</span><span><i style="border-color: var(--delta)"></i>虚值看涨</span><span><i class="dash" style="border-color: var(--muted)"></i>对照：21 个交易日的平值期权</span></div>
+        <div class="readout">
+          <div><b id="f4-r1">—</b><small>平值 Gamma，开盘</small></div>
+          <div><b id="f4-r2">—</b><small>平值 Gamma，最后 15 分钟</small></div>
+          <div><b id="f4-r3">—</b><small>虚值 Gamma，最后 15 分钟</small></div>
+          <div><b id="f4-r4">—</b><small>平值 Theta，最后 1 小时（每小时）</small></div>
+        </div>
+        <figcaption>横轴从左往右是离收盘越来越近。粉线在最后一小时陡然上翘；蓝线先升后降；把行权价距离拖到 1% 以上，蓝线从开盘起就一路下降，下午几乎贴着零：这样的行权价在 0DTE 里从一开始就是彩票。切到 Theta，平值期权最后 15 分钟每小时的损耗是开盘时的近五倍。</figcaption>
+      </figure>
+
+      <h3>机构和散户怎么用</h3>
+      <div class="grid2">
+        <div class="tile">
+          <h4>机构与专业交易者</h4>
+          <ul>
+            <li>系统化卖出 0DTE 价差收权利金，按最大亏损定仓</li>
+            <li>给单日事件做精确对冲：只为 CPI 或 FOMC 这一天买保护，不用为后面几周付钱</li>
+            <li>做市商在日内管理大量短期 Gamma</li>
+          </ul>
+        </div>
+        <div class="tile">
+          <h4>散户</h4>
+          <ul>
+            <li>买便宜的虚值期权博方向，价格低、杠杆高</li>
+            <li>常见错误：按期权价格设止损，按张数而不是最大亏损定仓</li>
+            <li>赢了之后加大仓位，把一次运气当成能力</li>
+          </ul>
+        </div>
+      </div>
+      <h3>它对日内走势的影响</h3>
+      <ul>
+        <li>日内 Gamma 集中在最后两三个小时，做市商的对冲流量也集中在这段时间，正 Gamma 时更容易被「钉」在大额行权价附近，负 Gamma 时更容易加速（第 4 章 4.8 节）。</li>
+        <li>0DTE 多数当天开、当天平，每天只更新一次的未平仓量看不到这部分仓位，基于 OI 的 Gamma 估算会漏掉它。</li>
+        <li>公开研究对 0DTE 是否系统性放大了市场波动还没有一致结论。比较稳妥的看法是：它改变了日内波动的分布，事件日尤其明显。</li>
+      </ul>
+      <div class="note warn">
+        <span class="tag">止损要按标的价位</span>
+        <p>最后一小时里 SPY 动 0.2% 就能让平值期权的价格涨八成或跌一半。按「期权亏 50% 止损」等于按 0.1%–0.2% 的价格噪音止损，几乎一定会被打到。0DTE 的退出规则要写成标的价位（例如「SPY 跌破 776 平仓」），仓位按最坏情况的最大亏损来定。</p>
+      </div>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">10.7</span>SPX 与 SPY：同一个指数，两种合约</h2>
+      <p>SPX 和 SPY 期权跟踪的是同一个标普 500，可在行权方式、结算和税务上完全不同，在事件交易里这些差别会直接变成钱。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 10-7　SPX 与 SPY 期权对比（指数 7,800、SPY 780 时）</caption>
+          <thead><tr><th>项目</th><th>SPX</th><th>SPY</th></tr></thead>
+          <tbody>
+            <tr><td>行权方式</td><td>欧式，只在到期时行权</td><td>美式，随时可以行权</td></tr>
+            <tr><td>结算</td><td>现金结算</td><td>实物交割，收付股票</td></tr>
+            <tr><td>每张名义金额</td><td class="mono">约 $780,000</td><td class="mono">约 $78,000</td></tr>
+            <tr><td>提前指派</td><td>不会发生</td><td>可能，尤其除息日前的实值看涨</td></tr>
+            <tr><td>到期日风险</td><td>无股票交割；AM 结算的月度合约有开盘价风险</td><td>收盘后多头仍可决定行权，可能带着意外的股票仓位过周末</td></tr>
+            <tr><td>美国税务</td><td>第 1256 条合约：60% 按长期、40% 按短期，年底按市值计</td><td>按持有期计，一年内为短期</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>XSP 是迷你 SPX，大小是 SPX 的十分之一，名义金额和 SPY 相近，同样是欧式、现金结算，也适用第 1256 条。</p>
+      <h3>1256 条能省多少</h3>
+      <p>假设一年内的期权净收益 $10,000，短期资本利得税率 32%，长期 15%（假设税率，仅说明计算方法）。</p>
+      <ul>
+        <li>SPY：全部按短期，<span class="num">10,000 × 32% = $3,200</span>。</li>
+        <li>SPX：<span class="num">10,000 × (60% × 15% + 40% × 32%) = 10,000 × 21.8% = $2,180</span>，少缴 $1,020。</li>
+      </ul>
+      <p>实际税负取决于个人情况和所在地，请以税务专业人士的意见为准。</p>
+      <h3>两种到期日风险</h3>
+      <ul>
+        <li><strong>SPX 的 AM 结算。</strong>每月第三个周五到期的标准 SPX 合约在周四收盘就停止交易，结算价按周五各成分股的开盘价计算。持有它过周四夜，周五开盘的跳空直接决定结算价，中途无法平仓。周度和每日到期的 SPXW 是按收盘价结算的 PM 合约，没有这个问题。</li>
+        <li><strong>SPY 的盘后行权。</strong>到期的 SPY 期权在 16:00 停止交易，但多头在收盘后仍有一段时间可以决定是否行权。周五收盘时 SPY 在你卖出的 780 看涨下方一点点，盘后一条消息把它推到 783，对方可能行权，你周一开盘时就多了一笔空头股票。</li>
+      </ul>
+      <p>怎么选：名义金额大、在意税务、做事件价差，优先 SPX；账户小、需要更细的仓位、或者本来就想收付股票，用 SPY 或 XSP。卖出 SPY 实值看涨时，要留意除息日前被提前指派。</p>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">10.8</span>VIX 期权与周期性事件</h2>
+      <p>VIX 期权按 VIX 期货定价，结算方式也很特殊；月度到期、三巫日和指数再平衡则是日历上早就写好的流动性事件。</p>
+      <h3>VIX 期权的三个特殊之处</h3>
+      <ol>
+        <li><strong>标的是期货。</strong>VIX 指数本身不能交易，VIX 期权按同一到期月的 VIX 期货定价。平静时期货通常高于现货，现货 VIX 15 时，同月期货可能在 17 左右，看涨期权的虚实值要按期货算。</li>
+        <li><strong>结算价是一个特别开盘报价。</strong>VIX 期权是欧式、现金结算，到期日（通常是周三）早上用 SPX 期权的开盘价计算一个特别报价（代码 VRO）作为结算价。它可能和前一天收盘的 VIX 相差很大，到期前一天收盘时你并不知道结算价。</li>
+        <li><strong>到期日跟着 SPX 走。</strong>VIX 结算日一般是下一个月 SPX 标准到期日之前 30 天，所以不是每月第三个周五。把 VIX 结算周三单独标在日历上。</li>
+      </ol>
+      <p>VIX 有很强的均值回归：冲高之后往往很快回落。这让 VIX 看涨成为一种「必须及时变现」的保护，第 11 章会展开。</p>
+      <h3>日历上写好的事件</h3>
+      <div class="tbl">
+        <table>
+          <caption>表 10-8　周期性事件与它们对期权的影响</caption>
+          <thead><tr><th>事件</th><th>时间</th><th>对期权的影响</th></tr></thead>
+          <tbody>
+            <tr><td>月度到期</td><td>每月第三个周五</td><td>大量未平仓到期；到期前容易被钉在大额行权价，到期后做市商的对冲盘释放</td></tr>
+            <tr><td>三巫日</td><td>3、6、9、12 月第三个周五</td><td>股票期权、指数期权、指数期货同日到期，收盘集合竞价成交量很大</td></tr>
+            <tr><td>指数再平衡</td><td>S&amp;P 季度再平衡在三巫日收盘时执行；Russell 重组日</td><td>被调入调出的股票在生效日收盘集中成交，个股可能出现异常波动</td></tr>
+            <tr><td>VIX 结算</td><td>通常为周三早上</td><td>VIX 期权和期货到期，结算价来自开盘报价</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>月度到期前后的价格行为和第 4 章的 Charm、Vanna 有关：临近到期的虚值期权 Delta 快速归零，对冲用的股票被平掉；到期后，曾经「钉住」价格的那批仓位消失，下一周的走势常常更自由。实务上的规则很简单：在这些日子的收盘前，不要持有大量临近到期、平值附近的短 Gamma 仓位；到期后的第一周，重新看一次期限结构和 Gamma 分布。</p>
+    </section>
+
+    <section id="s9">
+      <h2><span class="sn">10.9</span>事件日历与 IV 仪表盘</h2>
+      <p>把每个事件写成表格里的一行，下单前就把隐含、历史、结构、最大亏损和退出规则填满。填不满的那一行，就是不该做的交易。</p>
+      <p>这是本课的一个成果：一张每周日更新的事件仪表盘。下面的模板用本章的例子填了三行，XYZ、ABC 的数字来自 10.3 节的剥离公式，SPX 那一行来自 10.5 节。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 10-9　事件日历与 IV 仪表盘模板（示例数据均为假设）</caption>
+          <thead><tr><th>事件与时间</th><th>标的</th><th>近 / 远到期 IV</th><th>跨式隐含</th><th>剥离后事件移动</th><th>历史均值（8 次）</th><th>比值</th><th>计划</th><th>最大亏损</th><th>退出规则</th></tr></thead>
+          <tbody>
+            <tr><td>XYZ 财报，周三盘后</td><td class="mono">$200</td><td class="mono">100%（2 天）/ 54%（9 天）</td><td class="mono">5.90%</td><td class="mono">1σ 7.06%，均值 5.64%</td><td class="mono">4.28%</td><td class="mono">1.32</td><td>卖铁鹰 190/180–210/220，1 组</td><td class="mono">$681</td><td>次日开盘 30 分钟后平仓</td></tr>
+            <tr><td>ABC 财报，周一盘后</td><td class="mono">$80</td><td class="mono">70%（4 天）/ 46%（11 天）</td><td class="mono">5.84%</td><td class="mono">1σ 6.92%，均值 5.52%</td><td class="mono">7.00%</td><td class="mono">0.79</td><td>买跨式或反向铁鹰，小仓位</td><td class="mono">付出的权利金</td><td>次日收盘前不论盈亏平仓</td></tr>
+            <tr><td>CPI，周二 8:30</td><td class="mono">SPX 7,800</td><td class="mono">1 天 23.7% / 基础 14%</td><td class="mono">0.99%</td><td class="mono">1σ 1.0%</td><td class="mono">—</td><td class="mono">—</td><td>不新开方向仓；持仓加短期指数看跌对冲</td><td class="mono">对冲成本</td><td>数据公布、价格稳定后拆除对冲</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>每一列都对应本章的一个检查点：</p>
+      <ul>
+        <li><strong>近 / 远到期 IV</strong>：用来剥离事件，也顺便看期限结构是否倒挂。</li>
+        <li><strong>跨式隐含与剥离后事件移动</strong>：前者是快速估计，后者用来和历史比较。</li>
+        <li><strong>比值</strong>：大于 1.2 考虑卖，小于 0.9 考虑买，中间留空。ABC 的 0.79 说明市场这次开价比它过去的平均移动便宜。</li>
+        <li><strong>最大亏损</strong>：先写这一列，再算张数。建议单次事件的最大亏损不超过账户的 1%–2%。</li>
+        <li><strong>退出规则</strong>：事件交易赌的是一个晚上。公布后第一天平仓是默认选项，继续持有需要一个新的理由。</li>
+      </ul>
+      <p>可以再加几列：IV Rank（第 6 章）、跨式买卖价差占价格的比例（超过 10% 就放弃）、财报日期是否已确认、同一到期日内是否还有别的事件。</p>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">案例</span>三个案例</h2>
+
+      <div class="case">
+        <div class="case-no">案例 1</div>
+        <h3>八个季度的利润，一次大跌能吃掉多少</h3>
+        <p>假设你每个季度都在 XYZ 财报前一天建仓，条件和 10.4 节相同（前月 IV 100%、后月 54%，事后 IV 30%），把过去 8 次的实际移动代进去，再加一个假想的第 9 季：股价跌 15%。</p>
+        <div class="tbl">
+          <table>
+            <caption>表 10-10　每季 1 组，公布后第一天收盘的盈亏（美元）</caption>
+            <thead><tr><th>季度</th><th>移动</th><th>卖跨式</th><th>卖铁鹰</th></tr></thead>
+            <tbody>
+              <tr><td>Q1</td><td class="mono">+3.2%</td><td class="mono pos">+533</td><td class="mono pos">+296</td></tr>
+              <tr><td>Q2</td><td class="mono">−5.1%</td><td class="mono pos">+163</td><td class="mono pos">+191</td></tr>
+              <tr><td>Q3</td><td class="mono">+2.4%</td><td class="mono pos">+681</td><td class="mono pos">+311</td></tr>
+              <tr><td>Q4</td><td class="mono">−8.9%</td><td class="mono neg">−597</td><td class="mono neg">−424</td></tr>
+              <tr><td>Q5</td><td class="mono">+4.0%</td><td class="mono pos">+377</td><td class="mono pos">+264</td></tr>
+              <tr><td>Q6</td><td class="mono">−1.7%</td><td class="mono pos">+799</td><td class="mono pos">+318</td></tr>
+              <tr><td>Q7</td><td class="mono">+6.3%</td><td class="mono neg">−81</td><td class="mono pos">+18</td></tr>
+              <tr><td>Q8</td><td class="mono">−2.6%</td><td class="mono pos">+651</td><td class="mono pos">+312</td></tr>
+              <tr class="hl"><td>8 季合计</td><td></td><td class="mono pos">+2,526</td><td class="mono pos">+1,287</td></tr>
+              <tr><td>第 9 季（假想）</td><td class="mono">−15%</td><td class="mono neg">−1,817</td><td class="mono neg">−681</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>8 个季度里，卖跨式赚了铁鹰的两倍。可第 9 季一次 −15% 就吃掉了卖跨式 8 季利润的 72%；如果跌 20%，跨式会亏约 $2,820，8 季全部白干，而铁鹰仍然只亏 $681。</p>
+        <ul>
+          <li><strong>历史数据里没有的那一次，决定了卖方的结局。</strong>8 个样本里最大的是 8.9%，不代表下一次不会是 15%。</li>
+          <li><strong>按最大亏损定仓。</strong>账户 $50,000、单次事件最多亏 2%（$1,000）：铁鹰可以做 1 组（最大亏损 $681）；卖跨式没有最大亏损，只能按「−15% 情景亏 $1,817」来算，一组都超标。</li>
+        </ul>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 2</div>
+        <h3>FOMC 日的 0DTE 铁鹰：两边都被打止损</h3>
+        <p>FOMC 当天 13:30，SPY 780，离收盘 2.5 小时。0DTE 的 IV 因为含着事件被抬到 24%（交易时间口径）。你卖出 10 组铁鹰：785/790 看涨价差和 775/770 看跌价差，规则是任何一边的价差价格涨到收入的 2 倍就止损。</p>
+        <div class="tbl">
+          <table>
+            <caption>表 10-11　一个下午的路径（每股，10 组 = 1,000 股）</caption>
+            <thead><tr><th>时间</th><th>SPY</th><th>假设 IV</th><th>看涨价差</th><th>看跌价差</th><th>动作</th></tr></thead>
+            <tbody>
+              <tr><td>13:30 建仓</td><td class="mono">780.0</td><td class="mono">24%</td><td class="mono">0.794</td><td class="mono">0.778</td><td>收 $1,572</td></tr>
+              <tr><td>14:05 声明后</td><td class="mono">785.0</td><td class="mono">20%</td><td class="mono">1.641</td><td class="mono">0.058</td><td>看涨边止损，亏 $847</td></tr>
+              <tr><td>14:40 发布会中</td><td class="mono">774.9</td><td class="mono">22%</td><td class="mono">—</td><td class="mono">1.586</td><td>看跌边止损，亏 $808</td></tr>
+              <tr class="hl"><td>16:00 收盘</td><td class="mono">779.5</td><td class="mono">—</td><td class="mono">0</td><td class="mono">0</td><td>原仓位本可全部归零</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>两次止损合计 <span class="num">−$847 − $808 = −$1,655</span>。如果什么都不做，收盘时四条腿全部作废，你会赚满 <span class="num">$1,572</span>。同一个收盘价，一个是 −$1,655，一个是 +$1,572，差别全在路径。</p>
+        <ul>
+          <li><strong>FOMC 有两段。</strong>14:00 的声明和 14:30 的发布会经常给出相反的方向，任何按价格止损的仓位都要准备被来回扫两次。</li>
+          <li><strong>止损线太近。</strong>在 IV 24% 下，2.5 小时的 1σ 移动是 $7.3，而短腿离现价只有 $5。用期权价格翻倍作止损，等于在 1σ 以内就认输。</li>
+          <li><strong>三种更好的做法：</strong>按最大亏损定仓并接受不止损（每组最大亏损 <span class="num">5 − 1.572 = $3.43</span>，10 组 $3,428，能接受才做）；等发布会结束、价格稳定后再开仓；或者干脆不在 14:00–15:00 之间持有短 Gamma。</li>
+        </ul>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 3</div>
+        <h3>2024 年 8 月 5 日：VIX 的读数和期权的价格</h3>
+        <p>背景是几件事叠在一起：日本央行 7 月底加息，日元套息交易开始平仓；8 月 2 日美国公布的 7 月就业数据偏弱，衰退担忧升温。8 月 5 日周一，日本股市暴跌，美股开盘前后 VIX 一度冲到 2020 年 3 月以来的最高水平，随后在同一天大幅回落。</p>
+        <p>事后不少分析指出了几个和期权定价直接相关的事实：</p>
+        <ul>
+          <li>VIX 是用 SPX 期权报价算出来的。开盘前后 SPX 期权报价稀疏、买卖价差极宽，算法把这种报价状态放大成了一个极端读数。</li>
+          <li>VIX 期货的涨幅明显小于现货 VIX，期限结构深度倒挂：市场认为恐慌是短暂的。</li>
+          <li>标普 500 当天的跌幅远没有 VIX 读数显示的那样夸张。之后几周 VIX 回落到接近事件前的区间。</li>
+        </ul>
+        <p>用一个假设的例子看在峰值附近买保护是什么滋味（以下数字是假设，用来说明机制，不是当天的真实报价）。指数 100，30 天平值看跌在 IV 15% 时值 <span class="num">1.55</span>，IV 冲到 40% 时值 <span class="num">4.40</span>，贵了 2.8 倍。一周后指数反弹 2%、IV 回到 20%，这张看跌只值 <span class="num">1.09</span>，亏 75%。就算指数一周后又跌了 3%、IV 回到 25%，它也只值 <span class="num">4.08</span>，仍然亏 7%：IV 回落的损失抵消了方向上的收益。</p>
+        <ul>
+          <li><strong>现货 VIX 不可交易。</strong>你能买到的是 VIX 期货和期权，它们在恐慌峰值的涨幅比现货小得多。</li>
+          <li><strong>恐慌峰值买保护最贵。</strong>保护应该在 IV 低的时候买（第 11 章的尾部预算）。</li>
+          <li><strong>卖方在峰值附近面临的是按市值计价和保证金。</strong>就算最后结果是赚钱的，也可能在中途被迫平仓。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">工具</span>清单与自测</h2>
+      <p>勾选状态只保存在你自己的浏览器里。</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">10-1</span>财报前：读出预期</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">找到包含财报的最近到期日，算 跨式 ÷ 股价</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">用前后两个到期日剥离事件移动</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">和过去 8 次收盘到收盘的移动比较，写下比值</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">10-2</span>选结构与定仓位</h4>
+          <ul>
+            <li><input type="checkbox" id="k4"><label for="k4">比值 &gt; 1.2 才考虑卖，&lt; 0.9 才考虑买，中间不做</label></li>
+            <li><input type="checkbox" id="k5"><label for="k5">先写最大亏损（账户的 1%–2%），再算张数</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">压力测试：事后 IV 回到基础水平，股价动 ±1.5 倍隐含移动</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">10-3</span>宏观日与 0DTE</h4>
+          <ul>
+            <li><input type="checkbox" id="k7"><label for="k7">标出 8:30 和 14:00 的事件，FOMC 记得还有 14:30</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">0DTE 的退出写成标的价位，不写期权价格</label></li>
+            <li><input type="checkbox" id="k9"><label for="k9">事件前检查 Beta 加权 Delta，必要时加短期反向对冲</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">10-4</span>合约与日历</h4>
+          <ul>
+            <li><input type="checkbox" id="k10"><label for="k10">名义大、在意税务用 SPX 或 XSP；需要股票或小仓位用 SPY</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">卖出 SPY 实值看涨前查除息日</label></li>
+            <li><input type="checkbox" id="k12"><label for="k12">日历上标出月度到期、三巫日、再平衡与 VIX 结算周三</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>自测五题</h3>
+      <details class="q"><summary><span class="num">1</span><span>股价 $150，包含财报的周度平值跨式 $9。隐含的平均移动和 1σ 移动各是多少？</span></summary>
+        <div class="ans"><p>平均移动 <span class="num">9 ÷ 150 = 6.0%</span>。1σ ≈ <span class="num">6.0% ÷ 0.798 = 7.5%</span>，约 $11.3。</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>近月 3 天到期 IV 90%，远月 10 天到期 IV 55%，两者都包含财报。基础波动率和事件 1σ 移动是多少？</span></summary>
+        <div class="ans"><p>总方差：<span class="num">0.81 × 3/365 = 0.006658</span>，<span class="num">0.3025 × 10/365 = 0.008288</span>。基础方差 <span class="num">(0.008288 − 0.006658) ÷ (7/365) = 0.0850</span>，σ<sub>b</sub> ≈ 29.2%。跳跃方差 <span class="num">(0.81 − 0.0850) × 3/365 = 0.005959</span>，事件 1σ ≈ 7.7%，预期绝对移动约 6.2%。</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>一张平值 0DTE 期权开盘时值 $3.00。股价和 IV 都不变，到离收盘 1 小时时大约值多少？为什么？</span></summary>
+        <div class="ans"><p>约 <span class="num">3.00 × √(1/6.5) ≈ $1.18</span>（精确计算是 $1.16，差别来自利率项）。平值期权的价值大致与剩余时间的平方根成正比，所以时间损耗越到后面越快。</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>你卖出了周五到期的 SPY 780 看涨，SPY 收在 779.9，盘后一条消息把它推到 783。你面临什么风险？换成 SPX 呢？</span></summary>
+        <div class="ans"><p>SPY 是美式、实物交割，多头在收盘后仍可决定行权。对方很可能行权，你周一开盘时每张多出 100 股空头股票，暴露在周末的跳空里。PM 结算的 SPX 按收盘价现金结算，收盘后的消息不影响结算。</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>一个 CPI 日让 1 天期 IV 从 14% 升到 23.7%，为什么 VIX 几乎不动？</span></summary>
+        <div class="ans"><p>VIX 衡量的是 30 天的 IV。同样 1% 的跳跃方差摊到 30 天里，30 天 IV 只从 <span class="num">14%</span> 变成 <span class="num">√(0.14² + 0.0001 × 365/30) = 14.43%</span>。判断单日事件的溢价，要看当天或次日到期的跨式。</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="章节翻页"></nav>
+
+    <footer class="end">
+      <p>本章示例由 Black-Scholes 模型和文中注明的假设计算（利率 4%，不派息；0DTE 按交易时间），所有市场数据均为假设，用于教学，不构成投资建议。</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+  const sgn = (v, d) => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(d || 0);
+  function niceTicks(lo, hi, n) {
+    const span = hi - lo, raw = span / (n || 5);
+    const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    const st = [1, 2, 2.5, 5, 10].map(f => f * mag).find(s => s >= raw) || raw;
+    const a = Math.floor(lo / st) * st, b = Math.ceil(hi / st) * st;
+    const ticks = []; for (let v = a; v <= b + st * 1e-6; v += st) ticks.push(+v.toFixed(6));
+    return { lo: a, hi: b, ticks, st };
+  }
+
+  // ---------- fig 10-1: IV cycle ----------
+  (function () {
+    const svg = document.getElementById("f1-svg");
+    const bS = document.getElementById("f1-base"), eS = document.getElementById("f1-ev");
+    const E = 21, XF = 25, XB = 53;
+    const ivAt = (t, X, sb, ve) => t > E ? sb : Math.sqrt(sb * sb + ve / ((X - t) / DAY));
+    function draw() {
+      const sb = +bS.value / 100, mv = +eS.value / 100, ve = mv * mv;
+      document.getElementById("f1-base-o").textContent = bS.value + "%";
+      document.getElementById("f1-ev-o").textContent = (+eS.value) + "%";
+      const front = range(0, 24, 1).map(t => [t, ivAt(t, XF, sb, ve) * 100]);
+      const back = range(0, 30, 1).map(t => [t, ivAt(t, XB, sb, ve) * 100]);
+      const peak = ivAt(E, XF, sb, ve) * 100;
+      const nt = niceTicks(0, peak * 1.08, 5);
+      plot(svg, {
+        x: [0, 30], y: [0, nt.hi], xt: [0, 7, 14, 21, 28], yt: nt.ticks, yf: v => v.toFixed(0),
+        xlabel: "距今天数（第 21 天收盘后公布财报）", ylabel: "隐含波动率（%）", vline: 21.5,
+        series: [{ pts: back, color: "var(--delta)", w: 2.4 }, { pts: front, color: "var(--gamma)", w: 2.6 }],
+        dots: [[E, peak, "var(--gamma)", 4]],
+        labels: [[E, peak, peak.toFixed(1) + "%", -6, -8, "end", "var(--gamma)"]]
+      });
+      document.getElementById("f1-r1").textContent = (ivAt(0, XF, sb, ve) * 100).toFixed(1) + "%";
+      document.getElementById("f1-r2").textContent = peak.toFixed(1) + "%";
+      document.getElementById("f1-r3").textContent = "−" + (peak - sb * 100).toFixed(1) + " 点";
+      document.getElementById("f1-r4").textContent = (ivAt(E, XB, sb, ve) * 100).toFixed(1) + "%";
+    }
+    bS.addEventListener("input", draw); eS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 10-2: implied vs historical ----------
+  (function () {
+    const svg = document.getElementById("f2-svg");
+    const sIn = document.getElementById("f2-s"), stIn = document.getElementById("f2-st");
+    const hist = [3.2, -5.1, 2.4, -8.9, 4.0, -1.7, 6.3, -2.6];
+    const histMean = hist.reduce((a, h) => a + Math.abs(h), 0) / hist.length;
+    function draw() {
+      const S = Math.max(+sIn.value || 0, 0.01), st = Math.max(+stIn.value || 0, 0);
+      const imp = st / S * 100, one = imp / Math.sqrt(2 / Math.PI);
+      const ymax = niceTicks(0, Math.max(10, one * 1.12, 9.5), 5);
+      plot(svg, {
+        x: [0.4, 8.6], y: [0, ymax.hi], xt: [1, 2, 3, 4, 5, 6, 7, 8], xf: v => "Q" + v,
+        yt: ymax.ticks, yf: v => v + "%", xlabel: "过去 8 次财报（绝对移动）", ylabel: "移动幅度（%）",
+        hband: [0, imp, "var(--tint-theta)"],
+        bars: hist.map((h, i) => ({ x: i + 1, y: Math.abs(h), w: 0.56, color: h > 0 ? "var(--delta)" : "var(--gamma)" })),
+        series: [{ pts: [[0.4, imp], [8.6, imp]], color: "var(--ink)", w: 2 }, { pts: [[0.4, one], [8.6, one]], color: "var(--muted)", w: 1.6, dash: "5 5" }],
+        labels: hist.map((h, i) => [i + 1, Math.abs(h), Math.abs(h).toFixed(1), 0, -6, "middle", "var(--muted)"])
+      });
+      const over = hist.filter(h => Math.abs(h) > imp).length;
+      const avgPL = hist.reduce((a, h) => a + (st - Math.abs(h) / 100 * S), 0) / hist.length * 100;
+      document.getElementById("f2-r1").textContent = imp.toFixed(1) + "%";
+      document.getElementById("f2-r2").textContent = (imp / histMean).toFixed(2);
+      document.getElementById("f2-r3").textContent = over + " / 8";
+      document.getElementById("f2-r4").textContent = money(avgPL) + " / 组";
+    }
+    sIn.addEventListener("input", draw); stIn.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- tool 10-A: event IV stripping ----------
+  (function () {
+    const svg = document.getElementById("c-svg");
+    const ids = ["c-s", "c-t1", "c-iv1", "c-t2", "c-iv2"].map(id => document.getElementById(id));
+    const msg = document.getElementById("c-msg");
+    const outs = ["c-r1", "c-r2", "c-r3", "c-r4"].map(id => document.getElementById(id));
+    function draw() {
+      const [S, t1, iv1, t2, iv2] = ids.map(i => +i.value);
+      const T1 = t1 / DAY, T2 = t2 / DAY, s1 = iv1 / 100, s2 = iv2 / 100;
+      const w1 = s1 * s1 * T1, w2 = s2 * s2 * T2;
+      let sb2 = NaN, ve = NaN, ok = t2 > t1 && t1 > 0 && S > 0;
+      if (ok) { sb2 = (w2 - w1) / (T2 - T1); ve = (s1 * s1 - sb2) * T1; }
+      const good = ok && sb2 > 0 && ve > 0;
+      const k = 1e4; // variance in %^2
+      const xmax = Math.max(t2 * 1.15, t2 + 2);
+      const series = [], dots = [], labels = [];
+      let ymaxv = Math.max(w1, w2) * k * 1.25;
+      if (good) {
+        const ev = 0.5; // event happens half a day in
+        const path = [[0, 0], [ev, sb2 * ev / DAY * k], [ev, (sb2 * ev / DAY + ve) * k], [xmax, (sb2 * xmax / DAY + ve) * k]];
+        const baseOnly = [[0, 0], [xmax, sb2 * xmax / DAY * k]];
+        const ext = [[0, ve * k], [t1, w1 * k]];
+        series.push({ pts: baseOnly, color: "var(--muted)", w: 1.6, dash: "5 5" });
+        series.push({ pts: ext, color: "var(--gamma)", w: 1.4, dash: "2 4", op: 0.7 });
+        series.push({ pts: path, color: "var(--gamma)", w: 2.6 });
+        labels.push([ev, (sb2 * ev / DAY + ve / 2) * k, "跳跃 √=" + (Math.sqrt(ve) * 100).toFixed(2) + "%", 8, 4, "start", "var(--gamma)"]);
+        ymaxv = Math.max(ymaxv, (sb2 * xmax / DAY + ve) * k * 1.08);
+      }
+      dots.push([t1, w1 * k, "var(--ink)", 5], [t2, w2 * k, "var(--ink)", 5]);
+      labels.push([t1, w1 * k, "近月", 0, 18, "middle", "var(--ink)"], [t2, w2 * k, "远月", 0, -10, "middle", "var(--ink)"]);
+      const nt = niceTicks(0, ymaxv || 1, 5);
+      const xt = niceTicks(0, xmax, 5);
+      plot(svg, {
+        x: [0, xmax], y: [0, nt.hi], xt: xt.ticks.filter(v => v <= xmax), yt: nt.ticks, yf: v => v.toFixed(0),
+        xlabel: "到期天数", ylabel: "累计方差（%²）", series, dots, labels
+      });
+      if (good) {
+        outs[0].textContent = (Math.sqrt(sb2) * 100).toFixed(1) + "%";
+        outs[1].textContent = (Math.sqrt(ve) * 100).toFixed(2) + "%（$" + (Math.sqrt(ve) * S).toFixed(2) + "）";
+        outs[2].textContent = (Math.sqrt(2 / Math.PI) * Math.sqrt(ve) * 100).toFixed(2) + "%";
+        outs[3].textContent = (Math.sqrt(sb2 + ve * DAY) * 100).toFixed(0) + "%";
+        msg.textContent = "";
+      } else {
+        outs.forEach(o => o.textContent = "—");
+        msg.textContent = !ok ? "远月天数要大于近月天数。" : sb2 <= 0 ? "算出的基础方差不为正：远月的总方差小于近月，报价不一致。" : "近月 IV 不高于基础波动率：看不到事件溢价。";
+      }
+    }
+    ids.forEach(i => i.addEventListener("input", draw));
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 10-3: earnings structures ----------
+  (function () {
+    const svg = document.getElementById("f3-svg");
+    const ivS = document.getElementById("f3-iv");
+    const btns = document.querySelectorAll("#fig3 .seg button");
+    const S0 = 200, F0 = 2 / DAY, B0 = 9 / DAY, F1 = 1 / DAY, B1 = 8 / DAY, ivF = 1.0, ivB = 0.54;
+    const S = {
+      ss: [[-1, "c", 200, "F"], [-1, "p", 200, "F"]],
+      ic: [[-1, "p", 190, "F"], [1, "p", 180, "F"], [-1, "c", 210, "F"], [1, "c", 220, "F"]],
+      cal: [[-1, "c", 200, "F"], [1, "c", 200, "B"]],
+      ls: [[1, "c", 200, "F"], [1, "p", 200, "F"]],
+      lic: [[1, "p", 190, "F"], [-1, "p", 180, "F"], [1, "c", 210, "F"], [-1, "c", 220, "F"]]
+    };
+    const val = (legs, Sp, tf, tb, sf, sbk) => legs.reduce((a, l) => a + l[0] * bs(Sp, l[2], l[3] === "F" ? tf : tb, l[3] === "F" ? sf : sbk, l[1]).price, 0);
+    let cur = "ss";
+    function curve(k, post) {
+      const legs = S[k], v0 = val(legs, S0, F0, B0, ivF, ivB);
+      return { v0, pts: range(-15, 15, 0.25).map(m => [m, 100 * (val(legs, S0 * (1 + m / 100), F1, B1, post, post) - v0)]) };
+    }
+    function draw() {
+      const post = +ivS.value / 100;
+      document.getElementById("f3-iv-o").textContent = ivS.value + "%";
+      const all = {}; Object.keys(S).forEach(k => all[k] = curve(k, post));
+      const sel = all[cur];
+      const ys = sel.pts.map(p => p[1]);
+      const lo = Math.min(...ys), hi = Math.max(...ys);
+      const pad = (hi - lo) * 0.12 || 50;
+      const nt = niceTicks(lo - pad, hi + pad, 6);
+      const series = Object.keys(S).filter(k => k !== cur).map(k => ({ pts: all[k].pts, color: "var(--muted)", w: 1.4, op: 0.35 }));
+      series.push({ pts: sel.pts, color: "var(--delta)", w: 2.8 });
+      plot(svg, {
+        x: [-15, 15], y: [nt.lo, nt.hi], xt: range(-15, 15, 5), yt: nt.ticks,
+        xf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%", yf: v => sgn(v),
+        xlabel: "公布后股价移动", ylabel: "每组盈亏（美元）", zero: 0, band: [-5.64, 5.64, "var(--tint-gamma)"], series
+      });
+      const v0 = sel.v0 * 100;
+      document.getElementById("f3-r1").textContent = (v0 < 0 ? "收 " : "付 ") + CK.usd(Math.abs(v0));
+      const at = m => 100 * (val(S[cur], S0 * (1 + m / 100), F1, B1, post, post) - sel.v0);
+      document.getElementById("f3-r2").textContent = money(at(0));
+      document.getElementById("f3-r3").textContent = money(Math.min(at(8.9), at(-8.9)));
+      document.getElementById("f3-r4").textContent = money(Math.min(0, lo));
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      cur = b.dataset.k;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    ivS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 10-4: 0DTE gamma / theta ----------
+  (function () {
+    const svg = document.getElementById("f4-svg");
+    const kS = document.getElementById("f4-k");
+    const btns = document.querySelectorAll("#fig4 .seg button");
+    const HY = 6.5 * 252, S = 780, iv = 0.15;
+    let mode = "g";
+    const g = (K, h) => bs(S, K, h / HY, iv, "c");
+    const thHr = r => r.theta * DAY / HY;
+    function draw() {
+      const dist = +kS.value;
+      document.getElementById("f4-k-o").textContent = dist.toFixed(1) + "%";
+      const K2 = Math.round(S * (1 + dist / 100));
+      const hs = range(0.1, 6.5, 0.05);
+      const ref = g(780, 21 * 6.5);
+      let cfg;
+      if (mode === "g") {
+        cfg = {
+          y: [0, 0.45], yt: [0, 0.1, 0.2, 0.3, 0.4], yf: v => v.toFixed(1), ylabel: "Gamma（每 $1）",
+          series: [
+            { pts: [[6.5, ref.gamma], [0, ref.gamma]], color: "var(--muted)", w: 1.6, dash: "5 5" },
+            { pts: hs.map(h => [h, g(K2, h).gamma]), color: "var(--delta)", w: 2.4 },
+            { pts: hs.map(h => [h, g(780, h).gamma]), color: "var(--gamma)", w: 2.6 }
+          ]
+        };
+      } else {
+        cfg = {
+          y: [-2, 0], yt: [-2, -1.5, -1, -0.5, 0], yf: v => v === 0 ? "0" : "−" + Math.abs(v).toFixed(1), ylabel: "每小时 Theta（每股，美元）",
+          series: [
+            { pts: [[6.5, thHr(ref)], [0, thHr(ref)]], color: "var(--muted)", w: 1.6, dash: "5 5" },
+            { pts: hs.map(h => [h, thHr(g(K2, h))]), color: "var(--delta)", w: 2.4 },
+            { pts: hs.map(h => [h, thHr(g(780, h))]), color: "var(--gamma)", w: 2.6 }
+          ]
+        };
+      }
+      plot(svg, Object.assign({ x: [6.5, 0], xt: [6, 5, 4, 3, 2, 1, 0], xlabel: "离收盘的小时数" }, cfg));
+      document.getElementById("f4-r1").textContent = g(780, 6.5).gamma.toFixed(3);
+      document.getElementById("f4-r2").textContent = g(780, 0.25).gamma.toFixed(3);
+      document.getElementById("f4-r3").textContent = g(K2, 0.25).gamma.toFixed(3) + "（" + K2 + "）";
+      document.getElementById("f4-r4").textContent = "−$" + Math.abs(thHr(g(780, 1))).toFixed(2);
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      mode = b.dataset.m;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    kS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+})();
+</script>
+</body>
+</html>

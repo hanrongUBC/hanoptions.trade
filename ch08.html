@@ -1,0 +1,985 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 8 章 卖方策略 · 美股期权课</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  #f4-tbl tr.on td { background: var(--tint-theta); }
+  #f3-tbl td:nth-child(3), #f3-tbl td:nth-child(6) { font-family: var(--font-body); text-align: left; }
+  #t810 td:nth-child(2), #t810 th:nth-child(2) { text-align: left; }
+</style>
+</head>
+<body data-ch="8">
+<div class="topbar"><div class="topbar-inner"><a class="brand" href="index.html">美股期权<span>课</span></a><select id="ck-jump" aria-label="跳转到章节"></select></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">08</div>
+    <div class="eyebrow">美股期权课 · 第三部分 策略 · 第 8 章</div>
+    <h1><span class="g">卖方</span>策略</h1>
+    <p class="deck">卖期权就是卖保险：先收一笔确定的钱，再承担一笔不确定、偶尔很大的赔付。本章把备兑、卖沽、轮子、信用价差和裸卖放在同一套账上算：最大亏损多少、真实胜率多少、期望是正是负，以及什么时候该离场。</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="本章目录">
+    <p class="toc-title">本章目录</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>开篇：两年的权利金</span></a></li>
+      <li><a href="#s1"><span class="n">8.1</span><span>卖方的本质：出售保险</span></a></li>
+      <li><a href="#s2"><span class="n">8.2</span><span>备兑开仓</span></a></li>
+      <li><a href="#s3"><span class="n">8.3</span><span>现金担保卖沽</span></a></li>
+      <li><a href="#s4"><span class="n">8.4</span><span>轮子策略</span></a></li>
+      <li><a href="#s5"><span class="n">8.5</span><span>信用价差</span></a></li>
+      <li><a href="#s6"><span class="n">8.6</span><span>裸卖与保证金</span></a></li>
+      <li><a href="#s7"><span class="n">8.7</span><span>三条经验管理规则</span></a></li>
+      <li><a href="#s8"><span class="n">8.8</span><span>仓位与跳空测试</span></a></li>
+      <li><a href="#s9"><span class="n">8.9</span><span>高胜率与负期望</span></a></li>
+      <li><a href="#cases"><span class="n">案例</span><span>三个案例</span></a></li>
+      <li><a href="#tools"><span class="n">工具</span><span>清单与自测</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>本章目录</summary>
+      <ol>
+        <li><a href="#open">开篇：两年的权利金</a></li>
+        <li><a href="#s1">8.1 卖方的本质：出售保险</a></li>
+        <li><a href="#s2">8.2 备兑开仓</a></li>
+        <li><a href="#s3">8.3 现金担保卖沽</a></li>
+        <li><a href="#s4">8.4 轮子策略</a></li>
+        <li><a href="#s5">8.5 信用价差</a></li>
+        <li><a href="#s6">8.6 裸卖与保证金</a></li>
+        <li><a href="#s7">8.7 三条经验管理规则</a></li>
+        <li><a href="#s8">8.8 仓位与跳空测试</a></li>
+        <li><a href="#s9">8.9 高胜率与负期望</a></li>
+        <li><a href="#cases">三个案例</a></li>
+        <li><a href="#tools">清单与自测</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>学完本章你能</h4>
+        <ul>
+          <li>给任何卖方仓位写出最大亏损、盈亏平衡点和 −20% 跳空下的亏损</li>
+          <li>用胜率与平均盈亏算出期望，识别「高胜率、负期望」的策略</li>
+          <li>说清 50% 止盈、21 天、两倍止损各自在防什么，什么时候不适用</li>
+        </ul>
+      </div>
+      <div>
+        <h4>前置知识</h4>
+        <ul>
+          <li>第 4 章：Delta 的概率读法、触及概率、负 Gamma</li>
+          <li>第 5 章：Theta 的形状</li>
+          <li>第 6 章：波动率风险溢价与 IV Rank</li>
+        </ul>
+      </div>
+      <div>
+        <h4>本章约定</h4>
+        <ul>
+          <li>Black-Scholes，利率 4%，不派息，一年 365 天</li>
+          <li>默认标的：股价 $100、IV 30% 的假设股票</li>
+          <li>一张合约 = 100 股；未计手续费，另有说明除外</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">开篇</span>两年的权利金，一天还回去</h2>
+      <p class="lead">股价 $100，IV 30%。你卖出一张 30 天后到期、行权价 90 的看跌期权，收 $40。</p>
+      <p>这张期权的 Delta 是 <span class="num">−0.096</span>，市场隐含的到期价内概率约 <span class="num">11%</span>。十次里大约九次它会作废，$40 落袋。听起来像一份稳定的月收入。</p>
+      <p>再看另一边。某天财报不及预期，股价开盘跳空到 80。到期时你要按 90 买入一只值 80 的股票，每股亏 $10，扣掉收到的 $0.40，一张亏 <span class="num">$960</span>，相当于 <span class="num">24</span> 个月的权利金。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 8-0　卖一张 30 天 90 看跌（收 $40.1），到期股价与盈亏</caption>
+          <thead><tr><th>到期股价</th><th>100</th><th>90</th><th>88</th><th>85</th><th>80</th><th>75</th><th>70</th></tr></thead>
+          <tbody>
+            <tr><td>每张盈亏</td><td class="mono pos">+40</td><td class="mono pos">+40</td><td class="mono neg">−160</td><td class="mono neg">−460</td><td class="mono neg">−960</td><td class="mono neg">−1,460</td><td class="mono neg">−1,960</td></tr>
+            <tr class="hl"><td>相当于几个月的权利金</td><td class="mono">—</td><td class="mono">—</td><td class="mono">4.0</td><td class="mono">11.5</td><td class="mono">23.9</td><td class="mono">36.4</td><td class="mono">48.9</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>卖方的问题从来不在「会不会赢」。真正要回答的是：输的那一次有多大，隔多久来一次，你能不能活着等到下一次。本章所有的工具都围绕这三个问题。</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">8.1</span>卖方的本质：出售保险</h2>
+      <p>卖期权赚两样东西：时间价值，以及隐含波动率通常高出实际波动率的那一截溢价。代价是负凸性：涨时赚得越来越慢，跌时亏得越来越快。</p>
+
+      <h3>保费、赔付和赔付率</h3>
+      <p>保险公司的利润等于保费减赔付，卖方也一样。卖一张 30 天、行权价 95 的看跌，你收 $1.33；到期时要赔 max(95 − <span class="v">S<sub>T</sub></span>, 0)。这笔赔付的期望取决于股价在接下来 30 天里实际波动多大，和你卖出时的 IV 无关。</p>
+      <div class="formula">
+        <div class="eq">卖方期望盈亏 <span class="up">≈</span> 期权价格<span class="up">(</span>IV<span class="up">)</span> <span class="up">−</span> 期权价格<span class="up">(</span>实际波动率<span class="up">)</span></div>
+        <p class="where">两项都用 Black-Scholes 计算，只是波动率参数不同。这里假设股价的漂移等于无风险利率，也就是不押方向。严格地说前面还要乘 e<sup>rT</sup>，30 天约 1.003，可以忽略。</p>
+      </div>
+      <div class="tbl">
+        <table>
+          <caption>表 8-1　卖一张 30 天看跌（按 IV 30% 成交），不同实际波动率下的期望盈亏（每张，美元）</caption>
+          <thead><tr><th>行权价</th><th>收到权利金</th><th>实际 22%</th><th>实际 25%</th><th>实际 30%</th><th>实际 35%</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">90</td><td class="mono">40</td><td class="mono pos">+30</td><td class="mono pos">+21</td><td class="mono">0</td><td class="mono neg">−27</td></tr>
+            <tr><td class="mono">95</td><td class="mono">133</td><td class="mono pos">+68</td><td class="mono pos">+44</td><td class="mono">0</td><td class="mono neg">−47</td></tr>
+            <tr><td class="mono">100</td><td class="mono">326</td><td class="mono pos">+92</td><td class="mono pos">+57</td><td class="mono">0</td><td class="mono neg">−57</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>这张表说明三件事。第一，实际波动率等于隐含波动率时，期望是零：期权被公平定价，卖方没有优势。第二，卖方的全部优势来自 IV 与实际波动率之差，也就是第 6 章的波动率风险溢价。第三，这个优势占权利金的比例，虚值越深越高：实际波动 25% 时，95 看跌的期望占权利金的 <span class="num">33%</span>，90 看跌占 <span class="num">52%</span>，但绝对金额只有 $21。用保险的话说，深虚值保单的赔付率更低，可每张只收几十美元。</p>
+      <p>指数期权的隐含波动率在多数时间高于随后实现的波动率，这是卖方策略能长期存在的原因。这个差会在少数时期反转，而且反转时往往一次反转很多，表里最右一列就是那种时期。</p>
+
+      <h3>负凸性：同样的幅度，跌比涨伤得多</h3>
+      <div class="tbl">
+        <table>
+          <caption>表 8-2　卖一张 30 天 95 看跌（收 $133），次日股价跳动后的盈亏（每张，IV 不变）</caption>
+          <thead><tr><th>次日移动</th><th>−20%</th><th>−10%</th><th>−5%</th><th>−2%</th><th>+2%</th><th>+5%</th><th>+10%</th></tr></thead>
+          <tbody>
+            <tr><td>重新定价</td><td class="mono neg">−1,343</td><td class="mono neg">−468</td><td class="mono neg">−172</td><td class="mono neg">−53</td><td class="mono pos">+47</td><td class="mono pos">+88</td><td class="mono pos">+120</td></tr>
+            <tr><td>只按 Delta 估算</td><td class="mono">−498</td><td class="mono">−249</td><td class="mono">−125</td><td class="mono">−50</td><td class="mono">+50</td><td class="mono">+125</td><td class="mono">+249</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>涨 10% 只多赚 $120，因为最多也就赚 $133；跌 10% 亏 $468，跌 20% 亏 $1,343，是 Delta 估算的近三倍。这就是负 Gamma：仓位在下跌中自动变大，在上涨中自动变小（第 4 章 4.4 节）。</p>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">胜率可以随意调高，期望只取决于波动率差</span><span class="fig-no">图 8-1 · 30 天，按 IV 30% 成交</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="结构">
+            <button type="button" data-mode="put" aria-pressed="true">卖看跌</button>
+            <button type="button" data-mode="spread" aria-pressed="false">看跌信用价差（宽 $5）</button>
+          </div>
+          <label class="ctl" for="f1-d">卖出 Delta <input id="f1-d" type="range" min="5" max="50" value="16"> <output id="f1-d-o">0.16</output></label>
+          <label class="ctl" for="f1-rv">实际波动率 <input id="f1-rv" type="range" min="15" max="45" value="30"> <output id="f1-rv-o">30%</output></label>
+        </div>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 320" role="img" aria-label="卖方到期盈亏与股价分布"></svg>
+        <div class="legend"><span><i style="border-color: var(--theta)"></i>到期盈亏（每张）</span><span><i style="border-color: var(--delta); opacity: .5"></i>到期股价分布（按实际波动率，高度仅示意）</span><span><i style="border-color: var(--tint-gamma); border-top-width: 8px"></i>亏损区</span></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small>行权价 · 收到权利金</small></div>
+          <div><b id="f1-r2">—</b><small>到期盈利概率</small></div>
+          <div><b id="f1-r3">—</b><small>每张期望盈亏</small></div>
+          <div><b id="f1-r4">—</b><small id="f1-r4s">到期股价 80 时</small></div>
+        </div>
+        <figcaption>实际波动率停在 30%（等于 IV）时，无论把 Delta 拖到哪里，期望都是 0：卖看跌的胜率从 Delta 0.05 时的 95% 降到 0.50 时的 63%，这个变化正好被盈亏比的变化抵消。把实际波动率拖到 25%，所有 Delta 的期望都转正；拖到 35%，全部转负。切到信用价差，最大亏损从九千多美元缩到四五百美元，胜率几乎不变。</figcaption>
+      </figure>
+      <div class="note gam">
+        <span class="tag">一句话</span>
+        <p>选 Delta 是在选「赢的频率」和「输的大小」怎么分配，不改变期望。卖方真正的下注只有一个：未来的实际波动会低于今天的隐含波动。</p>
+      </div>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">8.2</span>备兑开仓（Covered Call）</h2>
+      <p>备兑开仓把一部分未来涨幅提前卖成现金，下跌时它只多给你权利金那一点缓冲。</p>
+      <p>结构：持有 100 股，卖出一张看涨期权。到期股价低于行权价，期权作废，你留下股票和权利金；高于行权价，股票按行权价被买走。由买卖权平价（第 3 章）可知，备兑开仓和同一行权价的现金担保卖沽到期盈亏完全相同。两者是同一笔风险，备兑并不更「保守」。</p>
+
+      <h3>行权价与到期日怎么选</h3>
+      <div class="tbl">
+        <table>
+          <caption>表 8-3　持股 $100，卖 30 天看涨（IV 30%）</caption>
+          <thead><tr><th>行权价</th><th>权利金</th><th>Delta</th><th>被行权概率*</th><th>不被行权时收益</th><th>被行权时总收益</th><th>下跌缓冲到</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">100</td><td class="mono">3.59</td><td class="mono">0.53</td><td class="mono">50%</td><td class="mono">3.6%</td><td class="mono">3.6%</td><td class="mono">96.41</td></tr>
+            <tr><td class="mono">103</td><td class="mono">2.31</td><td class="mono">0.40</td><td class="mono">36%</td><td class="mono">2.3%</td><td class="mono">5.3%</td><td class="mono">97.69</td></tr>
+            <tr class="hl"><td class="mono">105</td><td class="mono">1.66</td><td class="mono">0.31</td><td class="mono">28%</td><td class="mono">1.7%</td><td class="mono">6.7%</td><td class="mono">98.34</td></tr>
+            <tr><td class="mono">110</td><td class="mono">0.66</td><td class="mono">0.15</td><td class="mono">13%</td><td class="mono">0.7%</td><td class="mono">10.7%</td><td class="mono">99.34</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 14px; color: var(--muted);">* 风险中性下的到期价内概率 N(d₂)。</p>
+      <p>选行权价，是在三件事之间分配：现在收多少，最多能涨多少，多大概率失去股票。可操作的规则：</p>
+      <ul>
+        <li><strong>想长期留住股票</strong>：卖 Delta 0.15–0.25，被行权概率一到两成，涨幅空间留得多。</li>
+        <li><strong>不介意被买走、想把股票换成现金收益</strong>：卖平值或 Delta 0.40 以上，权利金厚，被行权是常态。</li>
+        <li><strong>到期日</strong>：30–45 天是常见折中。45 天 105 看涨收 2.42，折合每 30 天 1.61，略低于 30 天那张的 1.66；更短的期权每天的 Theta 更高，但要更频繁地下单，Gamma 也更大。</li>
+        <li><strong>财报与除息</strong>：财报会让股价一步跳过行权价；有股息时，实值看涨在除息前一天可能被提前行权。本章例子不派息。</li>
+      </ul>
+
+      <h3>「卖掉上涨」的真实代价</h3>
+      <div class="tbl">
+        <table>
+          <caption>表 8-4　一个月后不同股价：备兑 105 与只持股（每股，美元）</caption>
+          <thead><tr><th>到期股价</th><th>只持股</th><th>备兑 105</th><th>差额</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">90</td><td class="mono neg">−10.00</td><td class="mono neg">−8.34</td><td class="mono pos">+1.66</td></tr>
+            <tr><td class="mono">100</td><td class="mono">0.00</td><td class="mono pos">+1.66</td><td class="mono pos">+1.66</td></tr>
+            <tr><td class="mono">110</td><td class="mono pos">+10.00</td><td class="mono pos">+6.66</td><td class="mono neg">−3.34</td></tr>
+            <tr class="hl"><td class="mono">120</td><td class="mono pos">+20.00</td><td class="mono pos">+6.66</td><td class="mono neg">−13.34</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>小涨小跌时，备兑每月多赚 $1.66；股价涨 20% 时少赚 $13.34，相当于八个月的权利金。备兑把收益分布的右尾削掉了，而股票的长期收益偏偏集中在少数几个大涨的月份。案例 2 用一整年的路径演示这一点。</p>
+
+      <h3>被指派之后怎么办</h3>
+      <p>股价涨过行权价时，你有三个选择。</p>
+      <ol>
+        <li><strong>接受被行权</strong>。按 105 卖出，加上 1.66 的权利金，等于卖在 106.66。如果这本来就是你满意的卖出价，什么都不用做。</li>
+        <li><strong>向上、向后滚动</strong>。还剩 5 天、股价 108 时，105 看涨值 3.49，其中时间价值只剩 0.49。买回它，再卖 35 天的 110 看涨收 3.29，净付 0.20，上限从 105 提到 110；改卖 63 天的 110 看涨收 4.80，净收 1.31，但股票被多锁两个月。滚动不是免费的，你在用更长的时间换更高的上限。</li>
+        <li><strong>被买走后重新买入</strong>。如果仍想持有，被行权后再买回来，这就是轮子策略的后半圈（8.4 节）。买回价通常高于卖出价，这部分差价是备兑的真实成本。</li>
+      </ol>
+      <p>不派息时，美式看涨很少被提前行权，因为持有人行权会丢掉剩余的时间价值。只有时间价值接近零（深度实值、临近到期）或次日除息时，提前指派的概率才明显上升。</p>
+
+      <h3>卖实值看涨「压低成本」：账要分开算</h3>
+      <p>有的交易者对一只成本很低的股票反复卖实值看涨，称为「压低持仓成本」。拆开看：股价 15，卖 18 天的 14 看涨（IV 80%，假设），收 1.62。其中 1.00 是内在价值，0.62 是时间价值。账面成本确实降了 1.62，但内在价值那 1.00 只是你提前按 14 卖出股票的钱，真正的收入只有 0.62。</p>
+      <p>这张期权的 Delta 是 <span class="num">0.69</span>，卖出后方向敞口只剩约三成。所以它的实质是「减仓七成 + 收时间价值」，适合本来就打算在 14 附近减持的人。如果你想继续满仓持有，卖实值看涨等于悄悄卖掉了大部分仓位。</p>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">8.3</span>现金担保卖沽（Cash-Secured Put）</h2>
+      <p>现金担保卖沽像一张「带返现的限价买单」，但在最坏的情形里，它比真正的限价单更差。</p>
+      <p>结构：卖出一张看跌，同时在账户里留足按行权价买入 100 股的现金。股价 100 时卖 30 天 95 看跌，收 $133，冻结 $9,500。到期股价低于 95，你按 95 买入，实际成本 <span class="num">95 − 1.33 = 93.67</span>；否则权利金落袋，现金解冻。</p>
+      <p>「以愿意持有的价格买入」听起来很合理：反正想在 95 买，不如先卖沽收钱。把它和直接挂一张 95 的限价买单放在一起比：</p>
+      <div class="tbl">
+        <table>
+          <caption>表 8-5　股价 $100 时的三种做法（每股，30 天后按到期价计）</caption>
+          <thead><tr><th>情形</th><th>现在买入</th><th>挂 95 限价买单</th><th>卖 95 看跌</th></tr></thead>
+          <tbody>
+            <tr><td>到期 110</td><td class="mono pos">+10.00</td><td class="mono">未成交 0</td><td class="mono pos">+1.33</td></tr>
+            <tr><td>到期 100</td><td class="mono">0.00</td><td class="mono">未成交 0</td><td class="mono pos">+1.33</td></tr>
+            <tr><td>中途跌到 93，到期回到 100</td><td class="mono">0.00</td><td class="mono pos">成交 95：+5.00</td><td class="mono pos">+1.33</td></tr>
+            <tr><td>到期 93</td><td class="mono neg">−7.00</td><td class="mono neg">成交 95：−2.00</td><td class="mono neg">接股 93.67：−0.67</td></tr>
+            <tr class="hl"><td>跳空到 80 并停在 80</td><td class="mono neg">−20.00</td><td class="mono">开盘成交 80：0.00</td><td class="mono neg">接股 93.67：−13.67</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>前两行是卖沽的「返现」：只要到期时股价在 95 之上，你都多拿 1.33。最后一行是陷阱：股价跳空到 80，限价单会在 80 附近的开盘价成交（你挂的是「95 或更低」），卖沽者却必须按 95 买。跳空越大，卖沽比限价单越吃亏。第三行则说明卖沽只看到期那一刻：中途的低点它一概接不到。</p>
+
+      <h3>四个常见陷阱</h3>
+      <ol>
+        <li><strong>「愿意在 95 持有」有前提</strong>。你想的是股票正常回调到 95，但被指派往往发生在坏消息之后，那时的 95 未必还是你愿意的价格。下单前问自己：如果它因为财报暴雷跌到 80，我还愿意按 95 买吗？</li>
+        <li><strong>年化收益的错觉</strong>。$133 ÷ $9,500 = 每月 1.4%，单利年化约 17%。这个数字假设每个月都不出事，它是保费收入率，不是收益率。</li>
+        <li><strong>「担保」要真的留现金</strong>。保证金账户里裸卖 95 看跌只要求约 $1,633（公式见 8.6 节），一不小心就能卖出五倍数量，仓位从「担保」变成了「裸卖」。</li>
+        <li><strong>因为权利金高而卖</strong>。权利金高意味着 IV 高，意味着市场预期它会大动。高 IV 的股票更容易跌穿行权价。</li>
+      </ol>
+      <p>规则只有一条：只对你愿意按全仓持有的股票卖沽，张数按「被指派后的持仓市值」来定，而不是按保证金。</p>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">8.4</span>轮子策略（Wheel）</h2>
+      <p>轮子策略在横盘和缓涨中表现最好；在持续下跌中，它会卡在一只亏损的股票上，收到的权利金越来越少。</p>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">轮子的每一格都在卖看跌风险</span><span class="fig-no">图 8-2 · 示意图</span></div>
+        <div class="scroll-x"><svg class="chart wide" viewBox="0 0 680 236" role="img" aria-label="轮子策略流程：现金、卖看跌、持股、卖看涨，循环">
+          <defs>
+            <marker id="w-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--muted)"></path></marker>
+            <marker id="w-arr-t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--theta)"></path></marker>
+            <marker id="w-arr-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--gamma)"></path></marker>
+          </defs>
+          <g style="font-family: var(--font-body); font-size: 13.5px">
+            <rect x="16" y="64" width="120" height="52" rx="6" style="fill: var(--tint-delta); stroke: var(--delta)"></rect>
+            <text x="76" y="95" text-anchor="middle" style="fill: var(--ink)">持有现金</text>
+            <rect x="184" y="64" width="146" height="52" rx="6" style="fill: none; stroke: var(--rule)"></rect>
+            <text x="257" y="95" text-anchor="middle" style="fill: var(--ink)">卖现金担保看跌</text>
+            <rect x="378" y="64" width="120" height="52" rx="6" style="fill: var(--tint-delta); stroke: var(--delta)"></rect>
+            <text x="438" y="95" text-anchor="middle" style="fill: var(--ink)">持有 100 股</text>
+            <rect x="546" y="64" width="120" height="52" rx="6" style="fill: none; stroke: var(--rule)"></rect>
+            <text x="606" y="95" text-anchor="middle" style="fill: var(--ink)">卖备兑看涨</text>
+            <path d="M136 90 H182" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#w-arr)"></path>
+            <path d="M330 90 H376" style="stroke: var(--gamma)" stroke-width="1.6" marker-end="url(#w-arr-g)"></path>
+            <text x="353" y="132" text-anchor="middle" style="fill: var(--gamma); font-size: 12.5px">被指派</text>
+            <path d="M498 90 H544" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#w-arr)"></path>
+            <path d="M606 64 V30 H76 V62" style="fill: none; stroke: var(--gamma)" stroke-width="1.6" marker-end="url(#w-arr-g)"></path>
+            <text x="341" y="22" text-anchor="middle" style="fill: var(--gamma); font-size: 12.5px">被行权：按行权价卖出股票，回到现金</text>
+            <path d="M226 116 C 220 160, 294 160, 288 118" style="fill: none; stroke: var(--theta)" stroke-width="1.5" marker-end="url(#w-arr-t)"></path>
+            <text x="257" y="172" text-anchor="middle" style="fill: var(--theta); font-size: 12.5px">作废：收下权利金，再卖</text>
+            <path d="M576 116 C 570 160, 644 160, 638 118" style="fill: none; stroke: var(--theta)" stroke-width="1.5" marker-end="url(#w-arr-t)"></path>
+            <text x="606" y="172" text-anchor="middle" style="fill: var(--theta); font-size: 12.5px">作废：收权利金再卖</text>
+            <text x="341" y="214" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">持股 + 卖看涨 = 合成卖看跌。整个循环里，你始终是看跌风险的卖方。</text>
+          </g>
+        </svg></div>
+        <figcaption>两个「卖」的格子各有两种结局：作废就留在原地再卖一次，价内就转到下一格。只有被指派或被行权时，轮子才转动。</figcaption>
+      </figure>
+
+      <p>下面用三条假设的 12 个月路径模拟。规则：初始现金 $10,000；空仓时卖 30 天、Delta 约 0.30 的看跌（行权价取整数）；持股时卖 30 天、Delta 约 0.30 的看涨，但行权价不低于接股价，避免一卖出就锁定亏损。IV 恒为 30%，现金不计利息，不计手续费。</p>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">轮子赢在横盘，输在单边</span><span class="fig-no">图 8-3 · 三条假设路径，每月结算</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="选择路径">
+            <button type="button" data-path="up" aria-pressed="false">上涨</button>
+            <button type="button" data-path="flat" aria-pressed="true">横盘</button>
+            <button type="button" data-path="down" aria-pressed="false">下跌</button>
+          </div>
+        </div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 280" role="img" aria-label="轮子策略与持股不动的资金曲线"></svg>
+        <div class="legend"><span><i style="border-color: var(--theta)"></i>轮子策略权益</span><span><i class="dash" style="border-color: var(--muted)"></i>一开始买入 100 股并持有</span><span style="color: var(--gamma)">● 被指派接股</span><span style="color: var(--delta)">● 被行权卖出</span></div>
+        <div class="tbl" style="margin-bottom: 8px;">
+          <table id="f3-tbl">
+            <thead><tr><th>月</th><th>月初股价</th><th>动作</th><th>权利金（每张）</th><th>月末股价</th><th>结果</th><th>月末权益</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="readout">
+          <div><b id="f3-r1">—</b><small id="f3-r1s">轮子年末权益</small></div>
+          <div><b id="f3-r2">—</b><small id="f3-r2s">持股不动年末</small></div>
+          <div><b id="f3-r3">—</b><small>全年权利金合计</small></div>
+          <div><b id="f3-r4">—</b><small>接股 / 被买走次数</small></div>
+        </div>
+        <figcaption>上涨路径里看跌从未被指派，轮子退化成每月卖沽，收 $2,355，年末 $12,355，落后于持股的 $13,600。横盘是轮子的主场：两次接股、一次被行权，年末 $11,847，持股只回到 $10,000。下跌路径第 1 个月就在 96 接股，此后按规则只能卖 96 的看涨，权利金从每张 $151 一路降到 $0，年末 $7,670。</figcaption>
+      </figure>
+
+      <p>下跌路径揭示了轮子的核心缺陷。接股之后，你面对两个都不好的选择：</p>
+      <ul>
+        <li><strong>坚持行权价不低于成本</strong>：股价跌远之后，96 的看涨几乎一文不值，轮子停转。你变成一个普通持股人，承担 −35% 的下跌，只被 $770 的权利金缓冲，年末 −23.3%。</li>
+        <li><strong>照样卖 Delta 0.30 的看涨</strong>：同一条路径能多收权利金，年末 $8,492。但只要股价从低位反弹穿过一个低于成本的行权价，比如在 74 被行权，你就把 96 买来的股票卖在了 74，每股锁定 −22，还错过了后面的反弹。</li>
+      </ul>
+      <p>轮子的本质是持续卖出看跌风险：空仓时卖看跌，持股时卖看涨（持股 + 卖看涨 = 合成卖看跌），整个循环你一直是看跌期权的卖方，换路径不会改变这一点。它适合你本来就愿意长期持有、波动适中、没有趋势性下跌风险的标的。</p>
+      <h3>让轮子少出事的四条规则</h3>
+      <ul>
+        <li>只对你愿意持有一年以上的股票启动轮子，资金按一张合约的全额买入金额准备。</li>
+        <li>接股后先问：如果今天空仓，我会买它吗？答案是否定的，就直接卖出，不要让备兑看涨替你做决定。</li>
+        <li>下跌中卖看涨的行权价，按「你愿意卖出的价格」定，而不是机械地按成本或 Delta。</li>
+        <li>财报前暂停一轮，或者把卖沽改成看跌价差，避免在跳空里接股。</li>
+      </ul>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">8.5</span>信用价差</h2>
+      <p>信用价差在卖出一张期权的同时，买入一张更虚值的同类期权，把最大亏损从「几乎全部本金」限定为「宽度减权利金」。</p>
+      <div class="formula">
+        <div class="eq">最大盈利 <span class="up">=</span> <span class="v">C</span>　　最大亏损 <span class="up">=</span> <span class="v">W</span> <span class="up">−</span> <span class="v">C</span>　　盈亏平衡 <span class="up">=</span> <span class="v">K</span><sub>短</sub> <span class="up">∓</span> <span class="v">C</span></div>
+        <p class="where"><span class="v">C</span> 是收到的净权利金，<span class="v">W</span> 是两个行权价之差。看跌信用价差的盈亏平衡在短腿行权价减 <span class="v">C</span>，看涨信用价差在短腿行权价加 <span class="v">C</span>。</p>
+      </div>
+      <p>例：股价 100，卖 45 天 91 看跌、买 86 看跌，净收 0.631。最大亏损 <span class="num">5 − 0.631 = 4.369</span>，每张 $437；到期股价在 90.37 以上就盈利。</p>
+
+      <h3>Delta 怎么选：0.10、0.16、0.30</h3>
+      <div class="tbl">
+        <table>
+          <caption>表 8-6　45 天看跌信用价差，宽 $5，IV 30%</caption>
+          <thead><tr><th>短腿 Delta</th><th>0.10</th><th>0.16</th><th>0.30</th></tr></thead>
+          <tbody>
+            <tr><td>行权价</td><td class="mono">88 / 83</td><td class="mono">91 / 86</td><td class="mono">96 / 91</td></tr>
+            <tr><td>收权利金（每股）</td><td class="mono">0.36</td><td class="mono">0.63</td><td class="mono">1.32</td></tr>
+            <tr><td>最大亏损（每股）</td><td class="mono">4.64</td><td class="mono">4.37</td><td class="mono">3.68</td></tr>
+            <tr><td>亏损 : 盈利</td><td class="mono">13.0 : 1</td><td class="mono">6.9 : 1</td><td class="mono">2.8 : 1</td></tr>
+            <tr><td>到期盈利概率*</td><td class="mono">89.4%</td><td class="mono">83.0%</td><td class="mono">69.6%</td></tr>
+            <tr><td>期间触及短腿的概率*</td><td class="mono">22.7%</td><td class="mono">37.3%</td><td class="mono">70.0%</td></tr>
+            <tr><td>每日 Theta（每张）</td><td class="mono">+$1.08</td><td class="mono">+$1.29</td><td class="mono">+$1.12</td></tr>
+            <tr><td>期望，实际波动 30%（每张）</td><td class="mono">$0</td><td class="mono">$0</td><td class="mono">$0</td></tr>
+            <tr><td>期望，实际波动 25%（每张）</td><td class="mono pos">+$16</td><td class="mono pos">+$22</td><td class="mono pos">+$22</td></tr>
+            <tr class="hl"><td>期望 ÷ 最大亏损（实际 25%）</td><td class="mono">3.5%</td><td class="mono">5.0%</td><td class="mono">6.0%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 14px; color: var(--muted);">* 按 IV 30%、漂移等于无风险利率计算。触及概率用几何布朗运动的反射公式，约等于到期价内概率的两倍（第 4 章表 4-1）。</p>
+      <ul>
+        <li><strong>Delta 0.10</strong>：胜率最高，但每赢一次只拿 $36，输一次最多亏 $464。很少需要管理，可一旦被打到，往往已经接近最大亏损，没有调整空间。它对估计误差最敏感：真实胜率只要比 89.4% 低一两个点，期望就变负（8.9 节）。</li>
+        <li><strong>Delta 0.16</strong>：约一个标准差之外，是最常见的折中。Theta 最高，触及概率不到四成。</li>
+        <li><strong>Delta 0.30</strong>：收得多、盈亏比好，单位风险的期望最高；代价是七成概率在持有期间被触及，需要频繁管理，Gamma 风险也来得更早。</li>
+      </ul>
+      <p>在 IV 平坦的模型里，三者的期望都只由实际波动与 IV 之差决定，越靠近平值，单位风险的期望越高。现实中看跌期权有偏度（第 6 章）：虚值越深，IV 越高。这会让 0.10 的价差收得比表中更多，但深虚值的高 IV 本身就是市场给跳空的定价，并不全是可以拿走的溢价。</p>
+
+      <h3>定义风险也会出意外：提前指派</h3>
+      <p>价差的短腿是美式期权，可能在到期前被指派。看跌价差的短腿深度实值、时间价值接近零时，持有人提前行权是合理的选择（案例 3 有完整数字）。被指派后，你手里多了每张 100 股的股票，保护腿仍在，最终亏损依然以宽度为限；麻烦在资金：股票要全额或按保证金买入，账户可能当天就收到追加保证金通知。</p>
+
+      <div class="note field">
+        <span class="tag">实战观察</span>
+        <p>在交易者的实盘记录里，常能看到几种成熟的卖方用法。一是只对打算长期持有的股票卖看跌，下单时就写明「准备接股票」，仓位按接股后的市值控制在账户的一两成，被指派就照单全收。二是对成本已经很低的持股卖实值看涨，用较厚的权利金继续压低账面成本，代价是放弃大部分上行（见 8.2 节的拆账）。三是持有空头正股时卖出备兑看跌收权利金，股价上涨时改卖更实值的看跌，相当于把空头的平均卖出价往上抬。四是信用价差在急涨急跌后被提前行权：有的券商计算保证金时不认保护腿，账户被要求补钱，只好在不利价位整体平仓。这些做法的共同点是，下单前都先回答了「如果被指派，我手里会是什么，我能不能接受」。</p>
+      </div>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">8.6</span>裸卖：保证金与无限风险</h2>
+      <p>裸卖期权的保证金只覆盖「正常」波动，跳空时亏损可以超过保证金本身；裸卖看涨的亏损在理论上没有上限。</p>
+      <div class="formula">
+        <div class="eq">裸卖看跌保证金<span class="up">（每股）=</span> 权利金 <span class="up">+ max(</span>20% <span class="up">×</span> <span class="v">S</span> <span class="up">−</span> 虚值额<span class="up">,</span> 10% <span class="up">×</span> <span class="v">K</span><span class="up">)</span></div>
+        <p class="where">裸卖看涨把 10% × <span class="v">K</span> 换成 10% × <span class="v">S</span>。这是交易所规定的最低标准，券商通常会再加码，并在波动大时临时提高。</p>
+      </div>
+      <p>例：股价 100，裸卖 30 天 90 看跌，收 0.40。保证金 <span class="num">0.40 + max(20 − 10, 9) = 10.40</span>，每张 $1,040。如果到期作废，保证金回报 3.85%，单利年化 47%。这个数字让裸卖看起来非常诱人。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 8-7　裸卖 90 看跌后，次日股价跳动（每张；跳动后的 IV 为假设）</caption>
+          <thead><tr><th>次日股价</th><th>假设 IV</th><th>期权价格</th><th>亏损</th><th>新的保证金要求</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">100（开仓）</td><td class="mono">30%</td><td class="mono">0.40</td><td class="mono">—</td><td class="mono">$1,040</td></tr>
+            <tr><td class="mono">90</td><td class="mono">30%</td><td class="mono">2.89</td><td class="mono neg">−$249</td><td class="mono">$2,089</td></tr>
+            <tr><td class="mono">85</td><td class="mono">40%</td><td class="mono">6.73</td><td class="mono neg">−$633</td><td class="mono">$2,373</td></tr>
+            <tr class="hl"><td class="mono">80</td><td class="mono">45%</td><td class="mono">10.79</td><td class="mono neg">−$1,038</td><td class="mono">$2,679</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>跌 20% 时，一张亏 $1,038，已经吃光当初的全部保证金；与此同时保证金要求涨到 $2,679。假设一个 $20,000 的账户用一半资金做保证金卖了 10 张：次日权益剩 $9,620，保证金要求却是 $26,790。券商会强制平仓，而且是在最差的价格。</p>
+      <p>裸卖看涨更极端。卖 30 天 110 看涨收 0.66，保证金 $1,066。一则收购消息让股价跳到 140（假设 IV 升到 50%），这张期权值 30.64，一张亏 $2,999；跳到 150，亏 $3,978。股价没有上限，亏损也没有。</p>
+      <h3>为什么机构可以做，个人不宜</h3>
+      <ul>
+        <li><strong>分散</strong>：机构的卖方账本分布在成千上万个行权价和标的上，单一跳空只伤一小部分；个人往往集中在几只熟悉的股票。</li>
+        <li><strong>对冲</strong>：做市商持续对冲 Delta，并买入虚值翅膀控制尾部；个人通常无法在夜里对冲。</li>
+        <li><strong>保证金与风控</strong>：机构用基于情景的组合保证金和独立风控，事先知道 −20% 时会亏多少；多数个人是在跳空之后才第一次算这笔账。</li>
+        <li><strong>生存</strong>：机构收的是做市价差加波动率溢价，是一门有资本缓冲的生意；个人一次爆仓就没有下一次。</li>
+      </ul>
+      <p>个人卖方的默认选择应该是定义风险的结构（信用价差、铁鹰，见第 9 章）或真正的现金担保。裸卖只适合小仓位、流动性好的指数产品，并且事先做完 8.8 节的压力测试。</p>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">8.7</span>三条经验管理规则</h2>
+      <p>「盈利 50% 了结、到期前 21 天处理、亏损达到权利金两倍止损」是经验法则，它们改变收益分布的形状，并不凭空创造期望。</p>
+      <p>这三条规则流传很广，主要来自对美股指数期权的回测与期权券商的交易教育，回测对象多是 45 天左右开仓的卖沽、宽跨式和铁鹰。具体数字在不同年份、不同标的上并不稳定。下面先讲每条规则背后的机制，再用模拟检验。</p>
+
+      <h3>50% 止盈：剩下的一半不值得等</h3>
+      <div class="tbl">
+        <table>
+          <caption>表 8-8　45 天 91/86 看跌价差（收 0.631），股价停在 100 时的价值</caption>
+          <thead><tr><th>剩余天数</th><th>45</th><th>35</th><th>30</th><th>24</th><th>21</th><th>14</th><th>7</th></tr></thead>
+          <tbody>
+            <tr><td>价差价值</td><td class="mono">0.631</td><td class="mono">0.489</td><td class="mono">0.408</td><td class="mono">0.301</td><td class="mono">0.245</td><td class="mono">0.113</td><td class="mono">0.015</td></tr>
+            <tr><td>已赚比例</td><td class="mono">0%</td><td class="mono">22%</td><td class="mono">35%</td><td class="mono">52%</td><td class="mono">61%</td><td class="mono">82%</td><td class="mono">98%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>股价不动时，赚到一半大约用了 21 天。此时还能赚的只剩 0.315，你却仍然承担最多 4.685 的亏损。开仓时盈亏比是 <span class="num">0.631 : 4.369 ≈ 1 : 6.9</span>，赚到一半后变成 <span class="num">0.315 : 4.685 ≈ 1 : 14.9</span>。继续持有，等于用差一倍的条件重新开一笔仓；平掉后把资金投入新的 45 天仓位，你重新拿回 1 : 6.9。</p>
+
+      <h3>21 天：躲开最后三周的「二元化」</h3>
+      <div class="tbl">
+        <table>
+          <caption>表 8-9　同一张价差，股价跌到短腿 91 时（每张）</caption>
+          <thead><tr><th>剩余天数</th><th>45</th><th>21</th><th>7</th><th>2</th></tr></thead>
+          <tbody>
+            <tr><td>Gamma（每股）</td><td class="mono">−0.0074</td><td class="mono">−0.0185</td><td class="mono">−0.0658</td><td class="mono">−0.1900</td></tr>
+            <tr><td>Delta（每股）</td><td class="mono">0.198</td><td class="mono">0.276</td><td class="mono">0.404</td><td class="mono">0.486</td></tr>
+            <tr class="hl"><td>次日再跌 3% 的亏损</td><td class="mono neg">−$56</td><td class="mono neg">−$81</td><td class="mono neg">−$129</td><td class="mono neg">−$191</td></tr>
+            <tr><td>每日 Theta</td><td class="mono">+$0.5</td><td class="mono">+$1.6</td><td class="mono">+$6.3</td><td class="mono">+$18.9</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>同样一次 −3% 的跳动，45 天时亏 $56，2 天时亏 $191。Theta 也在同步放大，这是第 4 章 4.6 节的 Gamma–Theta 交换：在没有跳空的模型里，最后几天的「风险对收入」并没有变得不公平。真正变化的是两件事：</p>
+      <ul>
+        <li><strong>仓位变成二元的</strong>。剩 2 天时，股价在 95，价差 Delta 只有 0.025；跌到 91，Delta 变成 0.486。股价动 4%，仓位就从「几乎没有风险」变成「接近满额敞口」，你来不及反应。</li>
+        <li><strong>跳空不给你按天收 Theta 的机会</strong>。Theta 是一天一天收的，跳空的亏损是一次到来的。离到期越近，一次跳空吃掉的权利金占比越大。</li>
+      </ul>
+      <p>21 天规则的意思是：在 Gamma 陡增之前离场，把最后三周「收 Theta、赌不出事」的部分让给别人。剩余的权利金这时也已经不多（表 8-8 中只剩 0.245，最大亏损却还是 4.76）。</p>
+
+      <h3>两倍止损：把单笔亏损钉在一个已知的数</h3>
+      <p>止损线设在「亏损 = 2 × 权利金」，也就是价差价值涨到 <span class="num">3 × 0.631 = 1.89</span> 时平仓，单笔最多亏约 $126，而不是 $437。配合 50% 止盈，一笔赢 0.315、一笔输 1.262，盈亏平衡胜率是 <span class="num">1.262 ÷ (1.262 + 0.315) = 80%</span>，与权利金大小无关。</p>
+      <p>这条规则源自裸卖宽跨式：那里没有最大亏损，必须人为画一条线。用在价差上要按结构换算。0.30 的 96/91 价差收 1.321，两倍止损对应亏损 2.64，而最大亏损本来只有 3.68：止损省下的有限，却容易在来回震荡中被打掉。另外，止损单在隔夜跳空时会直接穿过，实际成交价可能远差于止损线。</p>
+
+      <h3>用模拟检验这三条规则</h3>
+      <figure class="plate" id="fig4">
+        <div class="fig-head"><span class="fig-title">管理规则收窄了分布，期望的正负仍由波动率差决定</span><span class="fig-no">图 8-4 · 1,000 条可复现路径，45 天看跌价差</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="短腿 Delta">
+            <button type="button" data-d="0.16" aria-pressed="true">短腿 Δ0.16</button>
+            <button type="button" data-d="0.30" aria-pressed="false">短腿 Δ0.30</button>
+          </div>
+          <div class="seg" role="group" aria-label="跳空">
+            <button type="button" data-j="0" aria-pressed="true">无跳空</button>
+            <button type="button" data-j="1" aria-pressed="false">有跳空</button>
+          </div>
+          <label class="ctl" for="f4-rv">实际波动率 <input id="f4-rv" type="range" min="15" max="40" value="25"> <output id="f4-rv-o">25%</output></label>
+          <div class="seg" role="group" aria-label="显示规则">
+            <button type="button" data-r="A" aria-pressed="false">A</button>
+            <button type="button" data-r="B" aria-pressed="false">B</button>
+            <button type="button" data-r="C" aria-pressed="true">C</button>
+            <button type="button" data-r="D" aria-pressed="false">D</button>
+          </div>
+        </div>
+        <svg class="chart" id="f4-svg" viewBox="0 0 680 300" role="img" aria-label="单笔盈亏分布"></svg>
+        <div class="legend"><span><i style="border-color: var(--theta); border-top-width: 8px"></i>所选规则：盈利</span><span><i style="border-color: var(--gamma); border-top-width: 8px"></i>所选规则：亏损</span><span><i class="dash" style="border-color: var(--muted)"></i>规则 A（持有到期）</span></div>
+        <div class="tbl" style="margin-bottom: 8px;">
+          <table id="f4-tbl">
+            <thead><tr><th>规则</th><th>胜率</th><th>平均每笔</th><th>最差 5% 分位</th><th>最差一笔</th><th>平均持有</th><th>每持仓日</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="readout">
+          <div><b id="f4-r1">—</b><small>所选规则：胜率</small></div>
+          <div><b id="f4-r2">—</b><small>平均每笔（每张）</small></div>
+          <div><b id="f4-r3">—</b><small>最差 5% 分位</small></div>
+          <div><b id="f4-r4">—</b><small>每持仓日期望</small></div>
+        </div>
+        <figcaption>A 持有到期；B 盈利 50% 止盈；C 在 B 的基础上剩 21 天时平仓；D 在 C 的基础上加两倍止损。价差每天按 IV 30% 重新定价，路径用 CK.rng 种子 2026 生成，每次打开都一样。把实际波动率拖到 30%（等于 IV），四条规则的平均每笔都落在 0 附近；拖到 35%，全部为负。打开「有跳空」（平均每 250 天一次 −12%），C、D 的每持仓日期望和尾部都明显好于 A。</figcaption>
+      </figure>
+
+      <div class="tbl">
+        <table id="t810">
+          <caption>表 8-10　模拟结果摘要（短腿 Δ0.16，每张）</caption>
+          <thead><tr><th>情景</th><th>规则</th><th>胜率</th><th>平均每笔</th><th>最差 5% 分位</th><th>平均持有</th><th>每持仓日</th></tr></thead>
+          <tbody>
+            <tr><td>实际 25%，无跳空</td><td>A 持有到期</td><td class="mono">87.6%</td><td class="mono pos">+$20.4</td><td class="mono neg">−$368</td><td class="mono">45.0 天</td><td class="mono">+$0.45</td></tr>
+            <tr><td></td><td>B 50% 止盈</td><td class="mono">90.8%</td><td class="mono pos">+$7.1</td><td class="mono neg">−$293</td><td class="mono">18.6 天</td><td class="mono">+$0.38</td></tr>
+            <tr><td></td><td>C B + 21 天</td><td class="mono">76.7%</td><td class="mono pos">+$6.7</td><td class="mono neg">−$141</td><td class="mono">14.6 天</td><td class="mono">+$0.46</td></tr>
+            <tr><td></td><td>D C + 两倍止损</td><td class="mono">75.8%</td><td class="mono pos">+$4.7</td><td class="mono neg">−$143</td><td class="mono">13.7 天</td><td class="mono">+$0.34</td></tr>
+            <tr><td>实际 20% + 跳空</td><td>A 持有到期</td><td class="mono">87.3%</td><td class="mono pos">+$16.6</td><td class="mono neg">−$437</td><td class="mono">45.0 天</td><td class="mono">+$0.37</td></tr>
+            <tr><td></td><td>B 50% 止盈</td><td class="mono">93.6%</td><td class="mono pos">+$13.1</td><td class="mono neg">−$202</td><td class="mono">18.5 天</td><td class="mono">+$0.71</td></tr>
+            <tr class="hl"><td></td><td>C B + 21 天</td><td class="mono">81.8%</td><td class="mono pos">+$9.0</td><td class="mono neg">−$120</td><td class="mono">14.9 天</td><td class="mono">+$0.61</td></tr>
+            <tr><td></td><td>D C + 两倍止损</td><td class="mono">81.2%</td><td class="mono pos">+$8.2</td><td class="mono neg">−$147</td><td class="mono">14.1 天</td><td class="mono">+$0.58</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>读这张表要分三层。</p>
+      <ol>
+        <li><strong>没有波动率溢价，规则救不了你</strong>。实际波动 30% 时，四条规则的平均每笔分别是 −$1.3、−$4.9、−$1.2、−$2.2，都在随机误差之内（标准误约 $2–5）。管理规则不能把一个零期望的交易变成正期望。</li>
+        <li><strong>有溢价、没有跳空时，持有到期每笔赚得最多</strong>。规则把每笔期望从 $20 降到 $5–7，换来持有天数从 45 天降到 14 天，最差 5% 分位从 −$368 改善到 −$141。按每持仓日算，A 和 C 差不多。</li>
+        <li><strong>有跳空时，规则才显出价值</strong>。B 和 C 的每持仓日期望（$0.71、$0.61）比 A（$0.37）高出六成以上，尾部也小得多。这正是规则设计时面对的世界：真实市场有跳空，Black-Scholes 没有。</li>
+      </ol>
+      <div class="note warn">
+        <span class="tag">适用条件</span>
+        <ul>
+          <li>适用：卖的是有溢价的期权；市场有跳空；平仓释放的资金能马上投入下一笔同样条件的仓位</li>
+          <li>不适用：IV 低于你预期的实际波动（没有溢价可收）；仓位跨过财报等已知事件（跳空已经在 IV 里，规则帮不了你）；交易成本高或期权买卖价差宽，频繁开平仓会吃掉优势</li>
+          <li>还要注意：两倍止损在价差上要按「宽度 − 权利金」换算，不要照抄裸卖的数字</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">8.8</span>仓位：按最大亏损算，做 −20% 跳空测试</h2>
+      <p>卖方仓位的大小由「最坏情况会亏多少」决定，收到多少权利金不能作为依据。</p>
+      <p>同一个 $50,000 账户、同一只 $100 的股票，三种卖沽方式，次日跳空 −20%、IV 升到 45%：</p>
+      <div class="tbl">
+        <table>
+          <caption>表 8-11　三种卖沽方式的跳空测试（30 天到期）</caption>
+          <thead><tr><th>做法</th><th>张数</th><th>收权利金</th><th>名义风险</th><th>跳空亏损</th><th>占账户</th></tr></thead>
+          <tbody>
+            <tr><td>现金担保卖 95 看跌</td><td class="mono">5</td><td class="mono">$667</td><td class="mono">接股 $47,500</td><td class="mono neg">−$6,918</td><td class="mono neg">−13.8%</td></tr>
+            <tr class="hl"><td>裸卖 90 看跌（一半资金做保证金）</td><td class="mono">24</td><td class="mono">$961</td><td class="mono">保证金 $24,960</td><td class="mono neg">−$24,924</td><td class="mono neg">−49.8%</td></tr>
+            <tr><td>95/90 看跌价差（最大亏损 ≤ 5%）</td><td class="mono">6</td><td class="mono">$560</td><td class="mono">最大亏损 $2,440</td><td class="mono neg">−$2,071</td><td class="mono neg">−4.1%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>三种做法收的权利金相差不到一倍（$560 到 $961），跳空亏损却差了十二倍。裸卖那一行在跳空后的保证金要求是 $64,285，账户已经无法维持，券商会替你平仓。</p>
+      <h3>一套可执行的仓位规则</h3>
+      <ol>
+        <li><strong>单笔上限</strong>：定义风险的仓位，最大亏损不超过账户的 2%–5%。没有定义风险的仓位（裸卖、现金担保卖沽），用「跳空 −20% 的亏损」代替最大亏损。</li>
+        <li><strong>组合压力测试</strong>：把所有卖方仓位放进同一个情景（所有标的同时 −20%，IV 同时升到 45%），合计亏损不超过账户的 15%–20%。同一板块、都是高 Beta 的标的，在跳空时视为一个仓位。</li>
+        <li><strong>反推张数</strong>：允许的亏损 ÷ 单张在压力情景下的亏损。按 10% 预算（$5,000），现金担保卖 95 看跌最多 3 张（5,000 ÷ 1,384 = 3.6），裸卖 90 看跌最多 4 张（5,000 ÷ 1,038 = 4.8）。</li>
+        <li><strong>保证金也要压力测试</strong>：压力情景下的保证金要求（而不是今天的）也要付得起，否则你会在最差的时点被迫平仓。</li>
+      </ol>
+      <p>这些百分比是常见的起点，没有理论上的最优值。原则是：最坏的那一天过去之后，你还有足够的资金和心态继续交易。−20% 是个股的常用情景；指数可以用 −10%；跨过财报的个股，用它历史上最大的财报日跳动。</p>
+    </section>
+
+    <section id="s9">
+      <h2><span class="sn">8.9</span>「90% 胜率」可能是负期望</h2>
+      <p>胜率本身说明不了任何问题，决定策略长期赚不赚钱的只有期望。</p>
+      <div class="formula">
+        <div class="eq"><span class="v">E</span> <span class="up">=</span> <span class="v">p</span> <span class="up">·</span> <span class="v">W̄</span> <span class="up">−</span> <span class="up">(1 −</span> <span class="v">p</span><span class="up">) ·</span> <span class="v">L̄</span>　　<span class="v">p</span>* <span class="up">=</span> <span class="frac"><span><span class="v">L̄</span></span><span><span class="v">W̄</span> <span class="up">+</span> <span class="v">L̄</span></span></span></div>
+        <p class="where"><span class="v">p</span> 是胜率，<span class="v">W̄</span>、<span class="v">L̄</span> 是盈利笔和亏损笔的平均金额，<span class="v">p</span>* 是盈亏平衡胜率。注意用平均亏损，不是最大亏损。</p>
+      </div>
+      <p>一个策略胜率 90%，平均每次赚 $50，平均每次亏 $500：<span class="num">E = 0.9 × 50 − 0.1 × 500 = −$5</span>。它需要 <span class="num">500 ÷ 550 = 90.9%</span> 的胜率才能打平。</p>
+      <p>回到 8.5 节的 0.10 价差。按市场定价，它的到期盈利概率是 89.4%，盈利时平均赚 $35.7，亏损时平均亏 $299.7，盈亏平衡胜率 <span class="num">299.7 ÷ (35.7 + 299.7) = 89.4%</span>，正好等于胜率本身。这不是巧合：在公平定价下，任何期权策略的期望都是零，「胜率」和「盈亏比」只是同一个零的两种分法。</p>
+      <p>优势很薄。真实胜率如果是 88%：<span class="num">0.88 × 35.7 − 0.12 × 299.7 = −$4.6</span>。如果每笔往返的手续费加滑点合计 $3（假设），盈亏平衡胜率升到 <span class="num">(299.7 + 3) ÷ (35.7 + 299.7) = 90.2%</span>。一两个百分点的胜率，就决定了一个高胜率策略的正负。</p>
+
+      <figure class="plate" id="fig5">
+        <div class="fig-head"><span class="fig-title">胜率九成的策略，盈亏比低于 1 : 9 就是负期望</span><span class="fig-no">图 8-5 · 期望值热区，可拖动</span></div>
+        <div class="controls">
+          <label class="ctl" for="f5-p">胜率 <input id="f5-p" type="range" min="50" max="99" value="90"> <output id="f5-p-o">90%</output></label>
+          <label class="ctl" for="f5-r">平均盈利 ÷ 平均亏损 <input id="f5-r" type="range" min="0" max="100" value="19"> <output id="f5-r-o">0.10</output></label>
+          <div class="seg" role="group" aria-label="策略点">
+            <button type="button" data-s="fair" aria-pressed="true">价差：公平定价</button>
+            <button type="button" data-s="vrp" aria-pressed="false">价差：实际波动 25%</button>
+          </div>
+        </div>
+        <svg class="chart" id="f5-svg" viewBox="0 0 680 320" role="img" aria-label="胜率与盈亏比的期望值热区图"></svg>
+        <div class="legend"><span><i style="border-color: var(--ink)"></i>盈亏平衡线</span><span><i style="border-color: color-mix(in srgb, var(--theta) 60%, var(--plate)); border-top-width: 8px"></i>正期望</span><span><i style="border-color: color-mix(in srgb, var(--gamma) 60%, var(--plate)); border-top-width: 8px"></i>负期望</span><span style="color: var(--delta)">● 你选的点</span></div>
+        <div class="readout">
+          <div><b id="f5-r1">—</b><small>每承担 $100 平均亏损的期望</small></div>
+          <div><b id="f5-r2">—</b><small>这个盈亏比的盈亏平衡胜率</small></div>
+          <div><b id="f5-r3">—</b><small>胜率高估 3 个点后的期望</small></div>
+        </div>
+        <figcaption>颜色越绿期望越高，越红越低，黑线是盈亏平衡线。三个黑点是 8.5 节的三种价差（标签为短腿 Delta）：按公平定价，它们全部落在线上；切到实际波动 25%，它们一起移到线的上方，但离线很近。把胜率拖到 95% 以上再看黑线：它变得很陡，盈亏比稍微估错一点就会落到线下。</figcaption>
+      </figure>
+      <h3>你的胜率估计可信吗</h3>
+      <ul>
+        <li>样本要覆盖不同市况：只在平静年份统计出来的胜率，没见过跳空。</li>
+        <li>把最大的那笔亏损单独拿出来看，它往往是平均亏损的好几倍。用它重算一次期望。</li>
+        <li>与 Delta 隐含的概率对比。如果你的实际胜率长期明显高于市场隐含，最可能的解释是样本期里还没遇到那次跳空。</li>
+      </ul>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">案例</span>三个案例</h2>
+
+      <div class="case">
+        <div class="case-no">案例 1</div>
+        <h3>一年卖沽的模拟账本：十一个月小赚，一次跳空吞掉全年</h3>
+        <p>假设：账户 $50,000，每月初卖 4 张 30 天、Delta 约 0.20 的现金担保看跌，到期结算；被指派时按到期价卖出接到的股票，亏损记在当月。前 9 个月 IV 25%；第 9 个月股价从 108.1 跳空到 85.0（−21.4%），之后四个月的 IV 依次为 45%、38%、33%、30%。</p>
+        <div class="tbl">
+          <table>
+            <caption>表 8-12　12 个月的卖沽账本（4 张，美元）</caption>
+            <thead><tr><th>月</th><th>月初股价</th><th>IV</th><th>行权价</th><th>Delta</th><th>收权利金</th><th>月末股价</th><th>赔付</th><th>当月盈亏</th><th>累计</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">1</td><td class="mono">100.0</td><td class="mono">25%</td><td class="mono">95</td><td class="mono">−0.21</td><td class="mono">359</td><td class="mono">102.1</td><td class="mono">0</td><td class="mono pos">+359</td><td class="mono pos">+359</td></tr>
+              <tr><td class="mono">2</td><td class="mono">102.1</td><td class="mono">25%</td><td class="mono">97</td><td class="mono">−0.21</td><td class="mono">367</td><td class="mono">103.5</td><td class="mono">0</td><td class="mono pos">+367</td><td class="mono pos">+726</td></tr>
+              <tr><td class="mono">3</td><td class="mono">103.5</td><td class="mono">25%</td><td class="mono">98</td><td class="mono">−0.20</td><td class="mono">342</td><td class="mono">101.2</td><td class="mono">0</td><td class="mono pos">+342</td><td class="mono pos">+1,068</td></tr>
+              <tr><td class="mono">4</td><td class="mono">101.2</td><td class="mono">25%</td><td class="mono">96</td><td class="mono">−0.21</td><td class="mono">350</td><td class="mono">104.0</td><td class="mono">0</td><td class="mono pos">+350</td><td class="mono pos">+1,418</td></tr>
+              <tr><td class="mono">5</td><td class="mono">104.0</td><td class="mono">25%</td><td class="mono">98</td><td class="mono">−0.18</td><td class="mono">304</td><td class="mono">105.3</td><td class="mono">0</td><td class="mono pos">+304</td><td class="mono pos">+1,722</td></tr>
+              <tr><td class="mono">6</td><td class="mono">105.3</td><td class="mono">25%</td><td class="mono">100</td><td class="mono">−0.21</td><td class="mono">374</td><td class="mono">103.9</td><td class="mono">0</td><td class="mono pos">+374</td><td class="mono pos">+2,096</td></tr>
+              <tr><td class="mono">7</td><td class="mono">103.9</td><td class="mono">25%</td><td class="mono">98</td><td class="mono">−0.18</td><td class="mono">311</td><td class="mono">106.8</td><td class="mono">0</td><td class="mono pos">+311</td><td class="mono pos">+2,407</td></tr>
+              <tr><td class="mono">8</td><td class="mono">106.8</td><td class="mono">25%</td><td class="mono">101</td><td class="mono">−0.19</td><td class="mono">342</td><td class="mono">108.1</td><td class="mono">0</td><td class="mono pos">+342</td><td class="mono pos">+2,749</td></tr>
+              <tr class="hl"><td class="mono">9</td><td class="mono">108.1</td><td class="mono">25%</td><td class="mono">102</td><td class="mono">−0.19</td><td class="mono">327</td><td class="mono">85.0</td><td class="mono neg">−6,800</td><td class="mono neg">−6,473</td><td class="mono neg">−3,724</td></tr>
+              <tr><td class="mono">10</td><td class="mono">85.0</td><td class="mono">45%</td><td class="mono">77</td><td class="mono">−0.20</td><td class="mono">508</td><td class="mono">87.6</td><td class="mono">0</td><td class="mono pos">+508</td><td class="mono neg">−3,216</td></tr>
+              <tr><td class="mono">11</td><td class="mono">87.6</td><td class="mono">38%</td><td class="mono">81</td><td class="mono">−0.21</td><td class="mono">481</td><td class="mono">90.3</td><td class="mono">0</td><td class="mono pos">+481</td><td class="mono neg">−2,735</td></tr>
+              <tr><td class="mono">12</td><td class="mono">90.3</td><td class="mono">33%</td><td class="mono">84</td><td class="mono">−0.20</td><td class="mono">396</td><td class="mono">92.0</td><td class="mono">0</td><td class="mono pos">+396</td><td class="mono neg">−2,339</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>全年收权利金 $4,461，赢了 11 个月，胜率 92%，比 Delta 0.20 隐含的约 80% 还高。账本却是 <span class="num">−$2,339</span>。第 9 个月的赔付是 <span class="num">(102 − 85) × 400 = $6,800</span>，这一个月的亏损是前 8 个月累计盈利的 2.4 倍。</p>
+        <p>同样的 12 个月，如果每月卖的是宽 $5 的看跌价差（短腿同样 Delta 0.20，4 张），每月收的权利金少了约四分之一，全年收 $3,343；跳空那个月最多赔 <span class="num">5 × 400 = $2,000</span>，当月亏 $1,748，全年结果是 <span class="num">+$1,343</span>。</p>
+        <ul>
+          <li><strong>启示一</strong>：卖方的年度结果由最差的那一个月决定。评估策略时，先问「最差的一个月会亏多少」，再问「平常每月赚多少」。</li>
+          <li><strong>启示二</strong>：跳空后 IV 升高，权利金明显变肥（第 10 个月一个月收 $508），这时很容易为了回本加大张数。跳空之后恰恰是最需要按 8.8 节重新做压力测试的时候。</li>
+          <li><strong>启示三</strong>：买入一张便宜的保护腿，让「最坏的一个月」从 −$6,473 变成 −$1,748。这份保险每月花掉约 $93 的权利金，在这条路径上换回了 $3,682。</li>
+        </ul>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 2</div>
+        <h3>备兑开仓在大涨行情中的机会成本</h3>
+        <p>假设：一只高成长股，IV 45%，一年从 100 涨到 260。每月卖 30 天、Delta 约 0.30 的看涨；被行权时按到期价买回股票继续（不计摩擦）。</p>
+        <div class="tbl">
+          <table>
+            <caption>表 8-13　每股结果（美元）</caption>
+            <thead><tr><th>月</th><th>月初</th><th>行权价</th><th>权利金</th><th>月末</th><th>持股当月</th><th>备兑当月</th><th>被截掉的涨幅</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">1</td><td class="mono">100</td><td class="mono">108</td><td class="mono">2.36</td><td class="mono">112</td><td class="mono">+12</td><td class="mono">+10.36</td><td class="mono neg">4</td></tr>
+              <tr><td class="mono">2</td><td class="mono">112</td><td class="mono">121</td><td class="mono">2.64</td><td class="mono">125</td><td class="mono">+13</td><td class="mono">+11.64</td><td class="mono neg">4</td></tr>
+              <tr><td class="mono">3</td><td class="mono">125</td><td class="mono">135</td><td class="mono">2.95</td><td class="mono">121</td><td class="mono">−4</td><td class="mono">−1.05</td><td class="mono">0</td></tr>
+              <tr class="hl"><td class="mono">4</td><td class="mono">121</td><td class="mono">131</td><td class="mono">2.78</td><td class="mono">150</td><td class="mono">+29</td><td class="mono">+12.78</td><td class="mono neg">19</td></tr>
+              <tr><td class="mono">5</td><td class="mono">150</td><td class="mono">162</td><td class="mono">3.54</td><td class="mono">162</td><td class="mono">+12</td><td class="mono">+15.54</td><td class="mono">0</td></tr>
+              <tr><td class="mono">6</td><td class="mono">162</td><td class="mono">175</td><td class="mono">3.82</td><td class="mono">158</td><td class="mono">−4</td><td class="mono">−0.18</td><td class="mono">0</td></tr>
+              <tr class="hl"><td class="mono">7</td><td class="mono">158</td><td class="mono">171</td><td class="mono">3.64</td><td class="mono">190</td><td class="mono">+32</td><td class="mono">+16.64</td><td class="mono neg">19</td></tr>
+              <tr><td class="mono">8</td><td class="mono">190</td><td class="mono">206</td><td class="mono">4.28</td><td class="mono">205</td><td class="mono">+15</td><td class="mono">+19.28</td><td class="mono">0</td></tr>
+              <tr><td class="mono">9</td><td class="mono">205</td><td class="mono">222</td><td class="mono">4.69</td><td class="mono">199</td><td class="mono">−6</td><td class="mono">−1.31</td><td class="mono">0</td></tr>
+              <tr class="hl"><td class="mono">10</td><td class="mono">199</td><td class="mono">215</td><td class="mono">4.68</td><td class="mono">230</td><td class="mono">+31</td><td class="mono">+20.68</td><td class="mono neg">15</td></tr>
+              <tr><td class="mono">11</td><td class="mono">230</td><td class="mono">249</td><td class="mono">5.28</td><td class="mono">242</td><td class="mono">+12</td><td class="mono">+17.28</td><td class="mono">0</td></tr>
+              <tr><td class="mono">12</td><td class="mono">242</td><td class="mono">262</td><td class="mono">5.55</td><td class="mono">260</td><td class="mono">+18</td><td class="mono">+23.55</td><td class="mono">0</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>全年持股赚 $160，备兑赚 $145.22，落后 <span class="num">$14.78</span>，每 100 股约 $1,478。权利金一共收了 $46.22，被截掉的涨幅是 $61.00，其中 $53 集中在第 4、7、10 三个月：这三个月股价各涨了 24%、20%、16%，正是全年最好的三段。</p>
+        <p>真正的机会成本往往更大，因为人在被行权后很少立刻追高买回。如果第 4 个月在 131 被买走后就等回调、不再买入，全年只拿到 <span class="num">$33.73</span>，大约是持股收益的五分之一。同一条路径改卖 Delta 约 0.15 的看涨，全年 $161.76，与持股基本持平：权利金只收 $18.76，被截掉的也只有 $17。</p>
+        <ul>
+          <li><strong>启示一</strong>：备兑在趋势里吃亏，原因是漂移，不是波动。期权按无风险利率的漂移定价，股票真实的强趋势收益全部归了看涨期权的买方。这条路径的实际波动只有约 28%，比 45% 的 IV 低得多，卖方在「波动」上是赚的，在「方向」上输得更多。</li>
+          <li><strong>启示二</strong>：越看好一只股票，越应该卖更虚值的看涨，或者干脆不卖。</li>
+          <li><strong>启示三</strong>：被行权之后买不买回，要在开仓前就定好规则，不要留到股价已经涨上去之后再凭情绪决定。</li>
+        </ul>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 3</div>
+        <h3>定义风险的价差被提前指派：亏损有上限，资金没有</h3>
+        <p>假设：账户 $20,000，股价 100 时卖出 10 张 30 天 97/92 看跌价差，收 1.294，最大亏损 <span class="num">(5 − 1.294) × 1,000 = $3,706</span>。25 天后股价跌到 88，剩 5 天，IV 35%。</p>
+        <ul>
+          <li>97 看跌的欧式理论价是 8.958，低于内在价值 9.00，时间价值为 <span class="num">−0.042</span>。美式期权的持有人这时行权更划算：立刻按 97 卖出股票，还能多拿 5 天利息（约 0.053）。提前指派是理性的结果。</li>
+          <li>当晚你被指派 10 张，按 97 买入 1,000 股，付出 $97,000。账户权益 <span class="num">20,000 + 1,294 + 88,000 − 97,000 + 4,217 = $16,511</span>（最后一项是 10 张 92 看跌的价值，每张 4.217，Delta −0.853）。</li>
+          <li>88,000 美元的股票按 50% 初始保证金需要 $44,000，账户权益只有 $16,511，追加保证金通知随之而来。</li>
+        </ul>
+        <p><strong>正确的处理</strong>：次日开盘把 1,000 股和 10 张 92 看跌一起卖掉。结果是 <span class="num">1.294 − (97 − 88) + 4.217 = −3.489</span>，每张 −$349，合计 −$3,489；如果没有被指派、直接平掉价差，结果是 −$3,447，几乎一样。卖出 92 看跌比行权更好，因为它还有 0.217 的时间价值。</p>
+        <p><strong>错误的处理</strong>：为了「回笼现金」先卖掉 92 看跌，留着股票等反弹。这时你持有 1,000 股完全没有保护的股票，再跌 5% 就是 <span class="num">−$4,400</span>，亏损已经超过了原来的最大亏损。</p>
+        <ul>
+          <li><strong>启示一</strong>：「定义风险」定义的是盈亏，不是资金占用。被指派后股票和保护腿是一个整体，要一起处理。</li>
+          <li><strong>启示二</strong>：短腿深度实值、时间价值接近零时，就是提前平仓的信号，不要等到最后一周。</li>
+          <li><strong>启示三</strong>：开仓前查清券商对价差保证金和指派后处理的规定，包括它会不会在你来得及处理之前自动强平。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">工具</span>清单与自测</h2>
+      <p>勾选状态只保存在你自己的浏览器里。</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">8-1</span>开仓前：先算坏的一面</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">写下最大亏损；没有上限的，写跳空 −20% 的亏损</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">算盈亏平衡胜率 L̄ ÷ (W̄ + L̄)，和你的估计比较</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">回答：如果被指派，我手里会是什么，能否接受</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">8-2</span>仓位：按最坏情况定张数</h4>
+          <ul>
+            <li><input type="checkbox" id="k4"><label for="k4">单笔最大亏损 ≤ 账户 2%–5%</label></li>
+            <li><input type="checkbox" id="k5"><label for="k5">全部卖方仓位同时 −20%，合计亏损 ≤ 15%–20%</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">压力情景下的保证金要求也付得起</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">8-3</span>持仓中：三条规则</h4>
+          <ul>
+            <li><input type="checkbox" id="k7"><label for="k7">盈利达到权利金 50%：考虑了结，换新仓</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">剩 21 天仍未了结：平仓或滚动</label></li>
+            <li><input type="checkbox" id="k9"><label for="k9">亏损达到止损线（价差按宽度换算）：执行，不讨价还价</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">8-4</span>被指派前后</h4>
+          <ul>
+            <li><input type="checkbox" id="k10"><label for="k10">短腿深度实值、时间价值近零：提前平仓</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">被指派后，股票和保护腿一起处理</label></li>
+            <li><input type="checkbox" id="k12"><label for="k12">接到的股票：如果今天空仓，我会买它吗</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>自测五题</h3>
+      <details class="q"><summary><span class="num">1</span><span>股价 100 时卖一张 30 天 90 看跌，收 0.40。到期股价 82，这张亏多少？相当于几个月的权利金？</span></summary>
+        <div class="ans"><p><span class="num">(90 − 82 − 0.40) × 100 = $760</span>，约 <span class="num">760 ÷ 40 = 19</span> 个月的权利金。</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>看跌信用价差 96/91 收 1.32。最大亏损、盈亏平衡点、亏损对盈利的比各是多少？</span></summary>
+        <div class="ans"><p>最大亏损 <span class="num">5 − 1.32 = 3.68</span>，每张 $368；盈亏平衡 <span class="num">96 − 1.32 = 94.68</span>；亏损 : 盈利 = <span class="num">3.68 : 1.32 ≈ 2.8 : 1</span>。</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>一个策略胜率 85%，平均每笔赚 $60，平均每笔亏 $400。期望是多少？盈亏平衡胜率是多少？</span></summary>
+        <div class="ans"><p><span class="num">E = 0.85 × 60 − 0.15 × 400 = 51 − 60 = −$9</span>；盈亏平衡胜率 <span class="num">400 ÷ 460 = 87.0%</span>。胜率 85% 也是负期望。</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>账户 $40,000，想裸卖 30 天 90 看跌（股价 100）。要求「次日 −20% 跳空的亏损不超过账户 10%」，最多卖几张？</span></summary>
+        <div class="ans"><p>表 8-7：跳到 80、IV 升到 45% 时每张亏 $1,038。<span class="num">4,000 ÷ 1,038 = 3.85</span>，最多 3 张。按保证金能卖 30 多张，按压力测试只能卖 3 张。</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>股价不动时备兑每月多赚权利金，为什么在强趋势里一年下来会落后于持股？</span></summary>
+        <div class="ans"><p>备兑截掉了收益的右尾，而强趋势的收益集中在少数大涨月。期权按无风险利率的漂移定价，真实的趋势收益归了看涨期权的买方。案例 2 中权利金收了 $46.22，被截掉的涨幅是 $61.00，全年落后 $14.78 每股。</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="章节翻页"></nav>
+
+    <footer class="end">
+      <p>本章示例由 Black-Scholes 模型（利率 4%，不派息，一年 365 天）及文中注明的假设路径计算，用于教学，不构成投资建议。</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY, R = CK.R;
+  const signedK = v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toLocaleString("en-US");
+  const probAbove = (S, X, T, sig) => X <= 0 ? 1 : CK.N((Math.log(S / X) + (R - sig * sig / 2) * T) / (sig * Math.sqrt(T)));
+  const seg = (selector, onPick) => {
+    const btns = document.querySelectorAll(selector);
+    btns.forEach(b => b.addEventListener("click", () => {
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      onPick(b);
+    }));
+  };
+
+  // ---------- fig 8-1 ----------
+  (function () {
+    const svg = document.getElementById("f1-svg");
+    const dS = document.getElementById("f1-d"), rvS = document.getElementById("f1-rv");
+    const T = 30 / DAY, IV = 0.30;
+    let mode = "put";
+    function strikeFor(t) {
+      let best = null;
+      for (let k = 60; k <= 110; k++) { const d = Math.abs(bs(100, k, T, IV, "p").delta); if (!best || Math.abs(d - t) < best[1]) best = [k, Math.abs(d - t)]; }
+      return best[0];
+    }
+    function draw() {
+      const tgt = +dS.value / 100, rv = +rvS.value / 100;
+      document.getElementById("f1-d-o").textContent = tgt.toFixed(2);
+      document.getElementById("f1-rv-o").textContent = rvS.value + "%";
+      const sp = mode === "spread";
+      const K = strikeFor(tgt), KL = K - 5;
+      const prem = bs(100, K, T, IV, "p").price - (sp ? bs(100, KL, T, IV, "p").price : 0);
+      const fair = bs(100, K, T, rv, "p").price - (sp ? bs(100, KL, T, rv, "p").price : 0);
+      const pnl = S => (prem - Math.max(K - S, 0) + (sp ? Math.max(KL - S, 0) : 0)) * 100;
+      const be = K - prem;
+      const win = probAbove(100, be, T, rv);
+      const ev = Math.exp(R * T) * (prem - fair) * 100;
+      const maxLoss = sp ? (5 - prem) * 100 : (K - prem) * 100;
+      const y = sp ? [-600, 300] : [-3600, 700];
+      const yt = sp ? [-600, -400, -200, 0, 200] : [-3000, -2000, -1000, 0];
+      const xs = range(65, 115, 0.25);
+      const sT = rv * Math.sqrt(T), mu = Math.log(100) + (R - rv * rv / 2) * T;
+      const pdf = S => Math.exp(-Math.pow(Math.log(S) - mu, 2) / (2 * sT * sT)) / (S * sT * Math.sqrt(2 * Math.PI));
+      const pm = Math.max(...xs.map(pdf));
+      const dens = xs.map(S => [S, y[0] + pdf(S) / pm * 0.36 * (y[1] - y[0])]);
+      plot(svg, {
+        x: [65, 115], y, xt: [70, 80, 90, 100, 110], yt,
+        yf: v => sp ? signedK(v) : (v === 0 ? "0" : "−" + Math.abs(v / 1000) + "k"), xlabel: "到期股价（美元）", ylabel: "到期盈亏（每张，美元）", zero: 0, vline: 100,
+        band: [65, be, "var(--tint-gamma)"],
+        series: [
+          { pts: dens, color: "var(--delta)", w: 1.2, op: 0.5, fill: y[0], fillOp: 0.10 },
+          { pts: xs.map(S => [S, pnl(S)]), color: "var(--theta)", w: 2.6 }
+        ],
+        dots: [[be, 0, "var(--gamma)", 4.5]],
+        labels: [[be, 0, "盈亏平衡 " + be.toFixed(2), -6, -10, "end", "var(--gamma)"]]
+      });
+      document.getElementById("f1-r1").textContent = K + " · $" + Math.round(prem * 100);
+      document.getElementById("f1-r2").textContent = (win * 100).toFixed(1) + "%";
+      document.getElementById("f1-r3").textContent = Math.abs(ev) < 0.5 ? "$0" : money(ev);
+      document.getElementById("f1-r4").textContent = money(pnl(80));
+      document.getElementById("f1-r4s").textContent = "到期股价 80 时（最大亏损 " + CK.usd(-maxLoss) + "）";
+    }
+    seg("#fig1 .seg button", b => { mode = b.dataset.mode; draw(); });
+    dS.addEventListener("input", draw); rvS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 8-3 wheel ----------
+  (function () {
+    const D = {
+      up: { path: [100,104,103,109,112,110,116,121,119,126,131,129,136], eq: [10000,10163,10338,10509,10699,10897,11090,11300,11492,11711,11918,12139,12355],
+        rows: [[1,100,"卖 96 看跌",1.63,104,"作废"],[2,104,"卖 100 看跌",1.75,103,"作废"],[3,103,"卖 99 看跌",1.72,109,"作废"],[4,109,"卖 105 看跌",1.89,112,"作废"],[5,112,"卖 108 看跌",1.98,110,"作废"],[6,110,"卖 106 看跌",1.92,116,"作废"],[7,116,"卖 112 看跌",2.10,121,"作废"],[8,121,"卖 116 看跌",1.92,119,"作废"],[9,119,"卖 115 看跌",2.19,126,"作废"],[10,126,"卖 121 看跌",2.07,131,"作废"],[11,131,"卖 126 看跌",2.21,129,"作废"],[12,129,"卖 124 看跌",2.15,136,"作废"]],
+        prem: 2355, n: "0 / 0" },
+      flat: { path: [100,104,97,101,106,98,95,102,105,99,103,97,100], eq: [10000,10163,10038,10595,11264,10621,10481,11132,11301,11279,11842,11390,11847],
+        rows: [[1,100,"卖 96 看跌",1.63,104,"作废"],[2,104,"卖 100 看跌",1.75,97,"被指派，100 接股"],[3,97,"卖 102 看涨",1.57,101,"作废"],[4,101,"卖 106 看涨",1.69,106,"作废"],[5,106,"卖 112 看涨",1.57,98,"作废"],[6,98,"卖 103 看涨",1.60,95,"作废"],[7,95,"卖 100 看涨",1.51,102,"被行权，100 卖出"],[8,102,"卖 98 看跌",1.69,105,"作废"],[9,105,"卖 101 看跌",1.78,99,"被指派，101 接股"],[10,99,"卖 104 看涨",1.63,103,"作废"],[11,103,"卖 109 看涨",1.48,97,"作废"],[12,97,"卖 102 看涨",1.57,100,"作废"]],
+        prem: 1947, n: "2 / 1" },
+      down: { path: [100,95,97,91,87,89,82,78,80,73,70,72,65], eq: [10000,10063,10414,9971,9710,9963,9352,8963,9165,8470,8170,8370,7670],
+        rows: [[1,100,"卖 96 看跌",1.63,95,"被指派，96 接股"],[2,95,"卖 100 看涨",1.51,97,"作废"],[3,97,"卖 102 看涨",1.57,91,"作废"],[4,91,"卖 96 看涨",1.39,87,"作废"],[5,87,"卖 96 看涨（Δ0.30 应为 92）",0.53,89,"作废"],[6,89,"卖 96 看涨（应为 94）",0.88,82,"作废"],[7,82,"卖 96 看涨（应为 86）",0.11,78,"作废"],[8,78,"卖 96 看涨（应为 82）",0.02,80,"作废"],[9,80,"卖 96 看涨（应为 84）",0.05,73,"作废"],[10,73,"卖 96 看涨（应为 77）",0.00,70,"作废"],[11,70,"卖 96 看涨（应为 74）",0.00,72,"作废"],[12,72,"卖 96 看涨（应为 76）",0.00,65,"作废"]],
+        prem: 770, n: "1 / 0" }
+    };
+    const svg = document.getElementById("f3-svg");
+    const tbody = document.querySelector("#f3-tbl tbody");
+    let cur = "flat";
+    function draw() {
+      const d = D[cur];
+      const months = range(0, 12, 1);
+      const dots = [];
+      d.rows.forEach((r, i) => {
+        if (r[5].indexOf("接股") >= 0) dots.push([i + 1, d.eq[i + 1], "var(--gamma)", 5]);
+        if (r[5].indexOf("卖出") >= 0) dots.push([i + 1, d.eq[i + 1], "var(--delta)", 5]);
+      });
+      plot(svg, {
+        x: [0, 12], y: [6000, 14000], xt: [0, 2, 4, 6, 8, 10, 12], yt: [6000, 8000, 10000, 12000, 14000],
+        xf: v => v === 0 ? "开始" : v + " 月", yf: v => "$" + (v / 1000) + "k", xlabel: "", ylabel: "账户权益（美元）", zero: 10000,
+        series: [
+          { pts: months.map(m => [m, d.path[m] * 100]), color: "var(--muted)", w: 1.8, dash: "6 5" },
+          { pts: months.map(m => [m, d.eq[m]]), color: "var(--theta)", w: 2.6 }
+        ],
+        dots
+      });
+      tbody.innerHTML = d.rows.map((r, i) => `<tr><td class="mono">${r[0]}</td><td class="mono">${r[1]}</td><td>${r[2]}</td><td class="mono">${Math.round(r[3] * 100)}</td><td class="mono">${r[4]}</td><td>${r[5]}</td><td class="mono">${CK.usd(d.eq[i + 1])}</td></tr>`).join("");
+      const ret = v => "（" + (v >= 10000 ? "+" : "−") + Math.abs((v / 10000 - 1) * 100).toFixed(1) + "%）";
+      document.getElementById("f3-r1").textContent = CK.usd(d.eq[12]);
+      document.getElementById("f3-r1s").textContent = "轮子年末权益" + ret(d.eq[12]);
+      document.getElementById("f3-r2").textContent = CK.usd(d.path[12] * 100);
+      document.getElementById("f3-r2s").textContent = "持股不动年末" + ret(d.path[12] * 100);
+      document.getElementById("f3-r3").textContent = CK.usd(d.prem);
+      document.getElementById("f3-r4").textContent = d.n;
+    }
+    seg("#fig3 .seg button", b => { cur = b.dataset.path; draw(); });
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 8-4 management rules ----------
+  (function () {
+    const N = 1000, D = 45, IV = 0.30, W = 5, LAM = 1 / 250, JUMP = Math.log(0.88);
+    const Z = new Float64Array(N * D), U = new Float64Array(N * D);
+    const r1 = CK.rng(2026); for (let i = 0; i < N * D; i++) Z[i] = CK.gauss(r1);
+    const r2 = CK.rng(2027); for (let i = 0; i < N * D; i++) U[i] = r2();
+    const svg = document.getElementById("f4-svg"), rvS = document.getElementById("f4-rv");
+    const tbody = document.querySelector("#f4-tbl tbody");
+    let target = 0.16, jump = false, rule = "C", cache = null, cacheKey = "";
+    const NAMES = { A: "A 持有到期", B: "B 50% 止盈", C: "C B + 21 天", D: "D C + 两倍止损" };
+    function sim(rv) {
+      const T0 = D / DAY;
+      let best = null;
+      for (let k = 1; k < 300; k++) { const d = Math.abs(bs(100, k, T0, IV, "p").delta); if (!best || Math.abs(d - target) < best[1]) best = [k, Math.abs(d - target)]; }
+      const Ks = best[0], Kl = Ks - W;
+      const credit = bs(100, Ks, T0, IV, "p").price - bs(100, Kl, T0, IV, "p").price;
+      const dt = 1 / DAY, comp = jump ? -LAM * (Math.exp(JUMP) - 1) : 0, sq = rv * Math.sqrt(dt), drift = (R - 0.5 * rv * rv) * dt;
+      const out = { A: [], B: [], C: [], D: [] };
+      const vals = new Float64Array(D);
+      for (let i = 0; i < N; i++) {
+        let S = 100;
+        for (let d = 1; d <= D; d++) {
+          const ix = i * D + d - 1;
+          S *= Math.exp(drift + comp + sq * Z[ix] + (jump && U[ix] < LAM ? JUMP : 0));
+          vals[d - 1] = d === D ? Math.max(Ks - S, 0) - Math.max(Kl - S, 0) : bs(S, Ks, (D - d) / DAY, IV, "p").price - bs(S, Kl, (D - d) / DAY, IV, "p").price;
+        }
+        out.A.push([credit - vals[D - 1], D]);
+        let b = null; for (let d = 1; d <= D; d++) if (vals[d - 1] <= 0.5 * credit) { b = [credit - vals[d - 1], d]; break; }
+        out.B.push(b || [credit - vals[D - 1], D]);
+        let c = null; for (let d = 1; d <= D; d++) { const v = vals[d - 1]; if (v <= 0.5 * credit || d === D - 21) { c = [credit - v, d]; break; } }
+        out.C.push(c);
+        let e = null; for (let d = 1; d <= D; d++) { const v = vals[d - 1]; if (v >= 3 * credit || v <= 0.5 * credit || d === D - 21) { e = [credit - v, d]; break; } }
+        out.D.push(e);
+      }
+      const stats = {};
+      for (const k of ["A", "B", "C", "D"]) {
+        const p = out[k].map(x => x[0] * 100), days = out[k].map(x => x[1]);
+        const sorted = p.slice().sort((a, b) => a - b);
+        const mean = p.reduce((a, b) => a + b, 0) / N, md = days.reduce((a, b) => a + b, 0) / N;
+        stats[k] = { p, win: p.filter(x => x > 0).length / N, mean, p5: sorted[Math.floor(0.05 * N)], worst: sorted[0], days: md, perday: mean / md };
+      }
+      return { Ks, Kl, credit, stats };
+    }
+    function hist(p) {
+      const lo = -450, w = 25, nb = 24, h = new Array(nb).fill(0);
+      p.forEach(v => { let i = Math.floor((v - lo) / w); i = Math.max(0, Math.min(nb - 1, i)); h[i]++; });
+      return h.map((c, i) => [lo + (i + 0.5) * w, c / p.length * 100]);
+    }
+    function draw() {
+      const rv = +rvS.value / 100;
+      document.getElementById("f4-rv-o").textContent = rvS.value + "%";
+      const key = target + "|" + jump + "|" + rv;
+      if (key !== cacheKey) { cache = sim(rv); cacheKey = key; }
+      const st = cache.stats, s = st[rule];
+      const hs = hist(s.p), ha = hist(st.A.p);
+      const ymax = Math.max(...hs.map(x => x[1]), ...ha.map(x => x[1]));
+      const top = Math.ceil(ymax * 1.12 / 10) * 10;
+      const step = [];
+      ha.forEach(([x, y]) => { step.push([x - 12.5, y]); step.push([x + 12.5, y]); });
+      const yt = []; for (let v = 0; v <= top + 1e-9; v += top > 60 ? 20 : 10) yt.push(v);
+      plot(svg, {
+        x: [-450, 150], y: [0, top], xt: [-400, -300, -200, -100, 0, 100], yt,
+        xf: v => signedK(v), yf: v => v + "%", xlabel: "单笔盈亏（每张，美元）", ylabel: "占全部交易的比例", vline: 0,
+        bars: hs.map(([x, y]) => ({ x, y, w: 21, color: x > 0 ? "var(--theta)" : "var(--gamma)" })),
+        series: rule === "A" ? [] : [{ pts: step, color: "var(--muted)", w: 1.6, dash: "5 4" }],
+        labels: [[-450, top, "短腿 " + cache.Ks + " / 长腿 " + cache.Kl + "，收 " + cache.credit.toFixed(3), 8, 16, "start", "var(--muted)"]]
+      });
+      tbody.innerHTML = ["A", "B", "C", "D"].map(k => {
+        const v = st[k];
+        return `<tr class="${k === rule ? "on" : ""}"><td>${NAMES[k]}</td><td class="mono">${(v.win * 100).toFixed(1)}%</td><td class="mono ${v.mean >= 0 ? "pos" : "neg"}">${money(v.mean, 1)}</td><td class="mono neg">${money(v.p5)}</td><td class="mono neg">${money(v.worst)}</td><td class="mono">${v.days.toFixed(1)} 天</td><td class="mono">${money(v.perday, 2)}</td></tr>`;
+      }).join("");
+      document.getElementById("f4-r1").textContent = (s.win * 100).toFixed(1) + "%";
+      document.getElementById("f4-r2").textContent = money(s.mean, 1);
+      document.getElementById("f4-r3").textContent = money(s.p5);
+      document.getElementById("f4-r4").textContent = money(s.perday, 2);
+    }
+    seg("#fig4 .seg button[data-d]", b => { target = +b.dataset.d; draw(); });
+    seg("#fig4 .seg button[data-j]", b => { jump = b.dataset.j === "1"; draw(); });
+    seg("#fig4 .seg button[data-r]", b => { rule = b.dataset.r; draw(); });
+    rvS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 8-5 heatmap ----------
+  (function () {
+    const svg = document.getElementById("f5-svg");
+    const pS = document.getElementById("f5-p"), rS = document.getElementById("f5-r");
+    const R0 = 0.05, RSPAN = 40;
+    const rOf = v => R0 * Math.pow(RSPAN, v / 100);
+    const PTS = {
+      fair: [[0.894, 0.119, "0.10"], [0.830, 0.204, "0.16"], [0.696, 0.437, "0.30"]],
+      vrp: [[0.935, 0.137, "0.10"], [0.878, 0.228, "0.16"], [0.737, 0.465, "0.30"]]
+    };
+    let which = "fair";
+    const cells = [];
+    for (let i = 0; i < 20; i++) for (let j = 0; j < 20; j++) {
+      const p0 = 0.5 + i * 0.025, rLo = R0 * Math.pow(RSPAN, j / 20), rHi = R0 * Math.pow(RSPAN, (j + 1) / 20);
+      const pc = p0 + 0.0125, rc = Math.sqrt(rLo * rHi), ev = pc * rc - (1 - pc);
+      const k = Math.round(10 + 62 * Math.min(Math.abs(ev) / 0.6, 1));
+      cells.push({ x: pc, y: rHi, y0: rLo, w: 0.0245, color: `color-mix(in srgb, ${ev >= 0 ? "var(--theta)" : "var(--gamma)"} ${k}%, var(--plate))` });
+    }
+    const curve = range(0.5, 0.995, 0.005).map(p => [p, (1 - p) / p]);
+    function draw() {
+      const p = +pS.value / 100, r = rOf(+rS.value);
+      document.getElementById("f5-p-o").textContent = pS.value + "%";
+      document.getElementById("f5-r-o").textContent = r.toFixed(2);
+      const pts = PTS[which];
+      plot(svg, {
+        x: [0.5, 1.0], y: [R0, R0 * RSPAN], ylog: true, xt: [0.5, 0.6, 0.7, 0.8, 0.9, 1.0], yt: [0.05, 0.1, 0.2, 0.5, 1, 2],
+        xf: v => Math.round(v * 100) + "%", yf: v => String(v), xlabel: "胜率", ylabel: "平均盈利 ÷ 平均亏损（对数）",
+        bars: cells,
+        series: [{ pts: curve, color: "var(--ink)", w: 2.2 }],
+        dots: pts.map(q => [q[0], q[1], "var(--ink)", 4.5]).concat([[p, r, "var(--delta)", 6.5]]),
+        labels: pts.map(q => [q[0], q[1], q[2], -8, 4, "end", "var(--ink)"])
+      });
+      const ev = (p * r - (1 - p)) * 100, ev3 = ((p - 0.03) * r - (1 - p + 0.03)) * 100;
+      document.getElementById("f5-r1").textContent = money(ev, 1);
+      document.getElementById("f5-r2").textContent = (100 / (1 + r)).toFixed(1) + "%";
+      document.getElementById("f5-r3").textContent = money(ev3, 1);
+    }
+    seg("#fig5 .seg button", b => { which = b.dataset.s; draw(); });
+    pS.addEventListener("input", draw); rS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+})();
+</script>
+</body>
+</html>

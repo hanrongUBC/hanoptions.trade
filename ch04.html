@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 4 章 Delta 与 Gamma · 美股期权课</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+</head>
+<body data-ch="4">
+<div class="topbar"><div class="topbar-inner"><a class="brand" href="index.html">美股期权<span>课</span></a><select id="ck-jump" aria-label="跳转到章节"></select></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">04</div>
+    <div class="eyebrow">美股期权课 · 第二部分 核心变量 · 第 4 章</div>
+    <h1>Delta 与 <span class="g">Gamma</span></h1>
+    <p class="deck">Delta 告诉你此刻押了多少方向，Gamma 告诉你这个押注会以多快的速度自己变大或变小。读懂这两个数，就能在下单前算清「涨了赚多少、跌了亏多少、什么都不做又会怎样」。</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="本章目录">
+    <p class="toc-title">本章目录</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>开篇：仓位自己长大了</span></a></li>
+      <li><a href="#s1"><span class="n">4.1</span><span>Delta 的三种读法</span></a></li>
+      <li><a href="#s2"><span class="n">4.2</span><span>Delta 怎么变</span></a></li>
+      <li><a href="#s3"><span class="n">4.3</span><span>组合 Delta 与 Beta 加权</span></a></li>
+      <li><a href="#s4"><span class="n">4.4</span><span>Gamma：Delta 的速度</span></a></li>
+      <li><a href="#s5"><span class="n">4.5</span><span>Delta–Gamma 盈亏近似</span></a></li>
+      <li><a href="#s6"><span class="n">4.6</span><span>Gamma 与 Theta 的交换</span></a></li>
+      <li><a href="#s7"><span class="n">4.7</span><span>Gamma scalping 演练</span></a></li>
+      <li><a href="#s8"><span class="n">4.8</span><span>做市商 Gamma 与市场</span></a></li>
+      <li><a href="#cases"><span class="n">案例</span><span>三个案例</span></a></li>
+      <li><a href="#tools"><span class="n">工具</span><span>清单与自测</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>本章目录</summary>
+      <ol>
+        <li><a href="#open">开篇：仓位自己长大了</a></li>
+        <li><a href="#s1">4.1 Delta 的三种读法</a></li>
+        <li><a href="#s2">4.2 Delta 怎么变</a></li>
+        <li><a href="#s3">4.3 组合 Delta 与 Beta 加权</a></li>
+        <li><a href="#s4">4.4 Gamma：Delta 的速度</a></li>
+        <li><a href="#s5">4.5 Delta–Gamma 盈亏近似</a></li>
+        <li><a href="#s6">4.6 Gamma 与 Theta 的交换</a></li>
+        <li><a href="#s7">4.7 Gamma scalping 演练</a></li>
+        <li><a href="#s8">4.8 做市商 Gamma 与市场</a></li>
+        <li><a href="#cases">三个案例</a></li>
+        <li><a href="#tools">清单与自测</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>学完本章你能</h4>
+        <ul>
+          <li>把任何期权仓位换算成「相当于多少股」</li>
+          <li>下单前估算 ±3%、±5% 的盈亏</li>
+          <li>算出持有期权每天至少要「动多少」才回本</li>
+        </ul>
+      </div>
+      <div>
+        <h4>前置知识</h4>
+        <ul>
+          <li>第 1 章：四种基本头寸与到期盈亏图</li>
+          <li>第 3 章：权利金的六个输入</li>
+        </ul>
+      </div>
+      <div>
+        <h4>本章约定</h4>
+        <ul>
+          <li>示例用 Black-Scholes，利率 4%，不派息</li>
+          <li>天数为日历天，一年 365 天</li>
+          <li>一张合约 = 100 股</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">开篇</span>仓位自己长大了</h2>
+      <p class="lead">你买了 10 张平值看涨期权：股价 $100，行权价 100，还有 5 天到期，隐含波动率 30%。之后几天你一张都没加，股价也只涨了 2%。</p>
+      <p>买入那天，每张期权的 Delta 是 <span class="num">0.513</span>，10 张相当于持有 <span class="num">513</span> 股。到最后一天，股价 $102，离到期只剩 1 天，Delta 变成 <span class="num">0.899</span>，相当于 <span class="num">899</span> 股。你什么都没做，方向敞口却放大了 75%。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 4-0　10 张 100 看涨期权，到期前五天的「等效股数」</caption>
+          <thead><tr><th>时点</th><th>股价</th><th>剩余天数</th><th>单张 Delta</th><th>相当于持股</th><th>期权价格</th></tr></thead>
+          <tbody>
+            <tr><td>第 1 天</td><td class="mono">100.0</td><td class="mono">5</td><td class="mono">0.513</td><td class="mono">513</td><td class="mono">1.43</td></tr>
+            <tr><td>第 2 天</td><td class="mono">100.8</td><td class="mono">4</td><td class="mono">0.612</td><td class="mono">612</td><td class="mono">1.72</td></tr>
+            <tr><td>第 3 天</td><td class="mono">101.2</td><td class="mono">3</td><td class="mono">0.679</td><td class="mono">679</td><td class="mono">1.82</td></tr>
+            <tr><td>第 4 天</td><td class="mono">101.6</td><td class="mono">2</td><td class="mono">0.769</td><td class="mono">769</td><td class="mono">1.93</td></tr>
+            <tr class="hl"><td>第 5 天</td><td class="mono">102.0</td><td class="mono">1</td><td class="mono">0.899</td><td class="mono">899</td><td class="mono">2.09</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>这就是 Gamma 在起作用：它让 Delta 随价格和时间自动变化。股票没有这个性质，100 股永远是 100 股。期权的风险是会「自己长大」的，这一章就是教你提前看见它。</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">4.1</span>Delta 的三种读法</h2>
+      <p>同一个 Delta 数字，有三种用法。哪一种都对，但每种都有适用边界。</p>
+
+      <h3>读法一：价格敏感度</h3>
+      <p>标的涨 $1，期权价格大约变动 Delta 美元。Delta <span class="num">0.53</span> 的看涨期权，股价从 100 涨到 101，期权大约从 <span class="num">3.59</span> 涨到 <span class="num">4.12</span>。看涨期权 Delta 在 0 到 1 之间，看跌期权在 −1 到 0 之间。</p>
+
+      <h3>读法二：对冲比率与「等效股数」</h3>
+      <p>Delta × 100 就是一张合约相当于多少股。这是最实用的读法，因为它让股票和不同期权可以直接相加。</p>
+      <div class="formula">
+        <div class="eq">仓位 Delta <span class="up">=</span> Σ <span class="up">(</span>单张 Delta <span class="up">× 100 ×</span> 张数 <span class="up">× 方向)</span></div>
+        <p class="where">方向：买入为 +1，卖出为 −1。正股的单股 Delta 恒为 1。</p>
+      </div>
+      <ul>
+        <li>买 2 张 Delta 0.40 的看涨：<span class="num">+0.40 × 100 × 2 = +80</span> 股</li>
+        <li>卖 3 张 Delta −0.30 的看跌：<span class="num">−0.30 × 100 × 3 × (−1) = +90</span> 股</li>
+        <li>两者合计 <span class="num">+170</span>：方向上相当于持有 170 股。卖出看跌和买入看涨一样是看多</li>
+      </ul>
+
+      <h3>读法三：到期在价内的概率（近似）</h3>
+      <p>Delta 常被当成「到期价内概率」来用。这只是近似：Black-Scholes 里 Delta 是 <span class="v">N</span>(<span class="v">d</span><sub>1</sub>)，而风险中性下的价内概率是 <span class="v">N</span>(<span class="v">d</span><sub>2</sub>)，前者总是略大。另外，这是市场定价隐含的概率，不是真实世界的概率。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 4-1　股价 $100、30 天、IV 30% 时，Delta 与概率的差别</caption>
+          <thead><tr><th>看涨期权行权价</th><th>Delta N(d₁)</th><th>到期价内概率 N(d₂)</th><th>期间触及过行权价的概率 ≈ 2 × N(d₂)</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">105</td><td class="mono">0.313</td><td class="mono">0.284</td><td class="mono">≈ 0.57</td></tr>
+            <tr><td class="mono">110</td><td class="mono">0.152</td><td class="mono">0.133</td><td class="mono">≈ 0.27</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <span class="tag">要点</span>
+        <p>「触及概率约是价内概率的两倍」对卖方特别重要：一张 Delta 0.15 的看涨，到期价内的概率只有一成多，但在这 30 天里股价碰到 110 的概率接近三成。卖方的止损往往在「触及」时就被打到，而不是等到到期。</p>
+      </div>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">4.2</span>Delta 怎么变</h2>
+      <p>Delta 受三样东西推动：价格、时间、波动率。价格对 Delta 的影响就是 Gamma（4.4 节）；时间和波动率的影响各有名字，叫 Charm 和 Vanna。先用下面的图直观感受一下。</p>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">Delta 随股价变化的 S 形曲线</span><span class="fig-no">图 4-1 · 行权价 100，可拖动</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="期权类型">
+            <button type="button" data-kind="c" aria-pressed="true">看涨</button>
+            <button type="button" data-kind="p" aria-pressed="false">看跌</button>
+          </div>
+          <label class="ctl" for="f1-dte">剩余天数 <input id="f1-dte" type="range" min="1" max="120" value="30"> <output id="f1-dte-o">30 天</output></label>
+          <label class="ctl" for="f1-iv">隐含波动率 <input id="f1-iv" type="range" min="10" max="80" value="30"> <output id="f1-iv-o">30%</output></label>
+        </div>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 320" role="img" aria-label="Delta 随股价变化的曲线"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>当前设置</span><span><i class="dash" style="border-color: var(--muted)"></i>参照：30 天、IV 30%</span></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small>股价 95 时</small></div>
+          <div><b id="f1-r2">—</b><small>股价 100 时</small></div>
+          <div><b id="f1-r3">—</b><small>股价 105 时</small></div>
+        </div>
+        <figcaption>把剩余天数拖到 1–3 天，曲线会变成接近竖直的台阶：平值附近一点点价格变化就让 Delta 从 0.2 跳到 0.8。把隐含波动率调高，曲线会变平：虚值期权的 Delta 被抬高，实值期权的 Delta 被压低。</figcaption>
+      </figure>
+
+      <h3>价格：越接近平值，Delta 变化越快</h3>
+      <div class="tbl">
+        <table>
+          <caption>表 4-2　股价 $100、IV 30%，不同行权价的看涨 Delta</caption>
+          <thead><tr><th>行权价</th><th>85</th><th>90</th><th>95</th><th>100</th><th>105</th><th>110</th><th>115</th></tr></thead>
+          <tbody>
+            <tr><td>30 天看涨</td><td class="mono">0.98</td><td class="mono">0.90</td><td class="mono">0.75</td><td class="mono">0.53</td><td class="mono">0.31</td><td class="mono">0.15</td><td class="mono">0.06</td></tr>
+            <tr><td>5 天看涨</td><td class="mono">1.00</td><td class="mono">1.00</td><td class="mono">0.93</td><td class="mono">0.51</td><td class="mono">0.09</td><td class="mono">0.00</td><td class="mono">0.00</td></tr>
+            <tr><td>30 天看跌</td><td class="mono">−0.02</td><td class="mono">−0.10</td><td class="mono">−0.25</td><td class="mono">−0.47</td><td class="mono">−0.69</td><td class="mono">−0.85</td><td class="mono">−0.94</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>看跌 Delta 等于看涨 Delta 减 1（同行权价、同到期）。所以平值看涨约 0.53、平值看跌约 −0.47，并不是各占一半：d₁ 里含有利率和波动率的漂移项，平值看涨的 Delta 会略高于 0.5。</p>
+
+      <h3>时间：Charm 把 Delta 推向 0 或 1</h3>
+      <p>什么都不变，只过一天，Delta 也会变。这个变化率叫 <strong>Charm</strong>。虚值期权的 Delta 每天往 0 漂，实值期权往 1 漂。110 看涨从 30 天到 29 天，Delta 从 <span class="num">0.152</span> 掉到 <span class="num">0.148</span>；到剩 10 天时只剩 <span class="num">0.031</span>。90 看涨则从 <span class="num">0.904</span> 涨到 10 天时的 <span class="num">0.985</span>。</p>
+      <div class="note warn">
+        <span class="tag">注意</span>
+        <p>周五收盘前，做市商为大量临近到期的期权调整对冲。虚值期权的 Delta 迅速归零，对应的对冲股票被平掉，这股资金流就是 Charm 带来的。很多「到期日下午的莫名波动」与此有关。</p>
+      </div>
+
+      <h3>波动率：Vanna 改变 Delta</h3>
+      <p>隐含波动率每变动 1 个点，Delta 的变化叫 <strong>Vanna</strong>。110 看涨（30 天）在 IV 30% 时 Delta 是 <span class="num">0.152</span>；IV 升到 31%，变成 <span class="num">0.161</span>；升到 40%，变成 <span class="num">0.228</span>；降到 20%，只剩 <span class="num">0.057</span>。</p>
+      <p>这意味着财报后 IV 崩塌时，你手里虚值期权的价格和 Delta 会同时缩水：方向判断即使对了，能吃到的涨幅也变少了。</p>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">4.3</span>组合 Delta 与 Beta 加权</h2>
+      <p>持有好几只股票和期权时，单看每个仓位的 Delta 没法回答「我整体押了多少大盘」。办法是把每个仓位都换算成「相当于多少股 SPY」。</p>
+      <div class="formula">
+        <div class="eq">SPY 等效股数 <span class="up">=</span> 仓位 Delta <span class="up">×</span> <span class="frac"><span>个股价格</span><span>SPY 价格</span></span> <span class="up">×</span> β</div>
+        <p class="where">仓位 Delta 用股数表示；β 是个股相对标普 500 的 Beta。价格比把「股数」换成「美元」再换回 SPY 的股数。</p>
+      </div>
+      <p>例子：SPY 在 $780。A 股 200 股、股价 $150、β 1.3，等于 <span class="num">200 × 150 / 780 × 1.3 = 50</span> 股 SPY。下面的计算器已经填好三个仓位，你可以改成自己的。</p>
+
+      <figure class="plate calc" id="calc">
+        <div class="fig-head"><span class="fig-title">Beta 加权 Delta 计算器</span><span class="fig-no">工具 4-A · 可编辑</span></div>
+        <div class="spy"><label for="c-spy">SPY 价格</label><input id="c-spy" type="number" value="780" step="1"><span>对冲用 SPY 看跌期权的 Delta</span><input id="c-hd" type="number" value="-0.40" step="0.05" aria-label="对冲期权 Delta"></div>
+        <div class="tbl" style="margin: 0;">
+          <table id="c-tbl">
+            <thead><tr><th>仓位</th><th>类型</th><th>数量</th><th>单位 Delta</th><th>标的价格</th><th>β</th><th>SPY 等效股数</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="readout">
+          <div><b id="c-total">—</b><small>组合合计：SPY 等效股数</small></div>
+          <div><b id="c-usd">—</b><small>等效于持有 SPY 市值</small></div>
+          <div><b id="c-hedge">—</b><small>完全对冲需买入的 SPY 看跌张数</small></div>
+        </div>
+        <figcaption>类型选「期权」时，数量填张数（卖出填负数），单位 Delta 填单张 Delta；选「股票」时数量填股数，单位 Delta 固定为 1。</figcaption>
+      </figure>
+      <div class="note warn">
+        <span class="tag">注意单位</span>
+        <p>上面的组合合计约 300 股 SPY。要对冲它，是卖空约 300 <strong>股</strong> SPY，或买入约 7–8 <strong>张</strong> Delta −0.40 的 SPY 看跌（每张 −40 股）。把「300」误当成合约数，对冲规模就差了 100 倍。</p>
+      </div>
+      <p>Beta 加权常常暴露「隐藏的集中」：三只看起来不相关的科技股和一张 QQQ 看涨，换算后可能全是同一个方向的大盘敞口。多个科技、高 Beta、小盘和看涨期权仓位，往往是同一个方向的风险，不能凭代码个数认为已经分散。</p>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">4.4</span>Gamma：Delta 的速度</h2>
+      <p>Gamma 是标的每涨 $1 时 Delta 的变化量。如果说 Delta 是你的速度，Gamma 就是油门。</p>
+      <ul>
+        <li><strong>符号</strong>：买入期权（无论看涨看跌）Gamma 为正；卖出为负；正股 Gamma 为零。</li>
+        <li><strong>正 Gamma</strong>：涨的时候 Delta 变大（越涨越多），跌的时候 Delta 变小（越跌越少）。盈亏曲线向上弯。</li>
+        <li><strong>负 Gamma</strong>：正好相反。涨的时候你越来越空，跌的时候越来越多，盈亏曲线向下弯。</li>
+      </ul>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">Gamma 在平值处达到峰值，临近到期急剧变尖</span><span class="fig-no">图 4-2 · 行权价 100，IV 30%</span></div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 320" role="img" aria-label="不同剩余天数的 Gamma 曲线"></svg>
+        <div class="legend" id="f2-legend"></div>
+        <figcaption>同一张平值期权，剩 60 天时 Gamma 约 0.033，剩 2 天时约 0.18，放大了五倍多。而虚值 110 的 Gamma 在临近到期时几乎归零：它离得太远，已经很难再影响 Delta。</figcaption>
+      </figure>
+
+      <div class="tbl">
+        <table>
+          <caption>表 4-3　平值期权（股价与行权价都是 100，IV 30%）的 Gamma 与 Theta</caption>
+          <thead><tr><th>剩余天数</th><th>Gamma</th><th>每张涨 $1 后 Delta 增加（股）</th><th>每日 Theta（每股，美元）</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">365</td><td class="mono">0.0128</td><td class="mono">1.3</td><td class="mono">−0.021</td></tr>
+            <tr><td class="mono">90</td><td class="mono">0.0265</td><td class="mono">2.7</td><td class="mono">−0.038</td></tr>
+            <tr><td class="mono">30</td><td class="mono">0.0462</td><td class="mono">4.6</td><td class="mono">−0.062</td></tr>
+            <tr><td class="mono">7</td><td class="mono">0.0960</td><td class="mono">9.6</td><td class="mono">−0.124</td></tr>
+            <tr><td class="mono">2</td><td class="mono">0.1796</td><td class="mono">18.0</td><td class="mono">−0.227</td></tr>
+            <tr class="hl"><td class="mono">1</td><td class="mono">0.2540</td><td class="mono">25.4</td><td class="mono">−0.319</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>注意 Gamma 和 Theta 是一起变大的。这不是巧合，4.6 节会说明：Gamma 的价格就是 Theta。</p>
+
+      <h3>跨标的比较：用「美元 Gamma」</h3>
+      <p>Gamma 的单位是「每 $1 的 Delta 变化」。$10 的股票动 $1 是 10%，$800 的股票动 $1 只是 0.1%，所以不同价格的标的不能直接比 Gamma。实务上常用 <strong>1% 美元 Gamma</strong>：股价变动 1% 时，你的 Delta 变化相当于多少美元的股票。</p>
+      <div class="formula">
+        <div class="eq">1% 美元 Gamma <span class="up">=</span> Γ <span class="up">× 100 ×</span> 张数 <span class="up">×</span> <span class="v">S</span> <span class="up">× (1% ×</span> <span class="v">S</span><span class="up">)</span></div>
+        <p class="where">4.8 节估算做市商 Gamma 敞口用的就是这个量。</p>
+      </div>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">4.5</span>Delta–Gamma 盈亏近似</h2>
+      <p>下单前最有用的一个公式：用当前的 Delta 和 Gamma，估算股价移动 Δ<span class="v">S</span> 后的盈亏。</p>
+      <div class="formula">
+        <div class="eq">盈亏 <span class="up">≈</span> <span class="d">Δ</span> <span class="up">·</span> Δ<span class="v">S</span> <span class="up">+</span> <span class="frac"><span>1</span><span>2</span></span> <span class="gm">Γ</span> <span class="up">·</span> (Δ<span class="v">S</span>)<sup>2</sup> <span class="up">+</span> <span class="v">Vega</span> <span class="up">·</span> Δσ <span class="up">+</span> <span class="th">Θ</span> <span class="up">·</span> Δ<span class="v">t</span></div>
+        <p class="where">前两项就是常说的 Delta–Gamma 近似。后两项分别是波动率和时间的影响，常被忽略，但在财报前后它们往往才是主角（见案例 2）。</p>
+      </div>
+      <p>以 30 天平值看涨为例：Delta <span class="num">0.532</span>，Gamma <span class="num">0.0462</span>，价格 <span class="num">3.591</span>。股价涨 $5，近似值 <span class="num">0.532 × 5 + ½ × 0.0462 × 25 = 3.24</span>；用 Black-Scholes 重新定价是 <span class="num">3.207</span>。跌 $5，近似 <span class="num">−2.084</span>，实际 <span class="num">−2.082</span>。同样 $5，涨赚的比跌亏的多：这就是正 Gamma 的不对称。</p>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">近似公式在小幅移动时几乎完美，大幅移动时开始偏离</span><span class="fig-no">图 4-3 · 30 天平值看涨，每股盈亏</span></div>
+        <div class="controls">
+          <label class="ctl" for="f3-iv">IV 变化 <input id="f3-iv" type="range" min="-25" max="25" value="0"> <output id="f3-iv-o">0 点</output></label>
+          <label class="ctl" for="f3-t">经过天数 <input id="f3-t" type="range" min="0" max="20" value="0"> <output id="f3-t-o">0 天</output></label>
+        </div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 320" role="img" aria-label="真实盈亏与近似盈亏对比"></svg>
+        <div class="legend"><span><i style="border-color: var(--ink)"></i>真实盈亏（重新定价）</span><span><i class="dash" style="border-color: var(--delta)"></i>只用 Delta</span><span><i style="border-color: var(--gamma)"></i>Delta + Gamma</span></div>
+        <figcaption>两个滑块都为 0 时，粉色线和黑色线在 ±5 以内几乎重合。把 IV 往下拖 20 点，黑色线整体下沉，近似公式却纹丝不动，这就是财报后「方向对了还亏钱」的来源。把经过天数往右拖，可以看到 Theta 一天天吃掉权利金。</figcaption>
+      </figure>
+
+      <div class="tbl">
+        <table>
+          <caption>表 4-4　近似值与重新定价的差距（每股，IV 与时间不变）</caption>
+          <thead><tr><th>股价移动</th><th>真实盈亏</th><th>只用 Delta</th><th>Delta + Gamma</th><th>误差</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">−10</td><td class="mono">−3.122</td><td class="mono">−5.324</td><td class="mono">−3.012</td><td class="mono">+0.110</td></tr>
+            <tr><td class="mono">−5</td><td class="mono">−2.082</td><td class="mono">−2.662</td><td class="mono">−2.084</td><td class="mono">−0.002</td></tr>
+            <tr><td class="mono">−3</td><td class="mono">−1.387</td><td class="mono">−1.597</td><td class="mono">−1.389</td><td class="mono">−0.002</td></tr>
+            <tr><td class="mono">+3</td><td class="mono">+1.799</td><td class="mono">+1.597</td><td class="mono">+1.805</td><td class="mono">+0.006</td></tr>
+            <tr><td class="mono">+5</td><td class="mono">+3.207</td><td class="mono">+2.662</td><td class="mono">+3.240</td><td class="mono">+0.033</td></tr>
+            <tr><td class="mono">+10</td><td class="mono">+7.300</td><td class="mono">+5.324</td><td class="mono">+7.635</td><td class="mono">+0.335</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <span class="tag">什么时候能信</span>
+        <ul>
+          <li>移动在 1 个日标准差以内（约 <span class="v">S</span> × IV ÷ 19）：误差可以忽略</li>
+          <li>移动超过 2–3 个标准差，或离到期不到一周：Gamma 本身也在剧烈变化，误差迅速放大</li>
+          <li>有事件（财报、FOMC）：必须把 Vega 项加进去，最好直接重新定价</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">4.6</span>Gamma 与 Theta 的交换</h2>
+      <p>买期权得到正 Gamma，代价是每天付 Theta；卖期权收 Theta，代价是承担负 Gamma。两者不是独立的，Black-Scholes 方程把它们绑在了一起。</p>
+      <div class="formula">
+        <div class="eq"><span class="th">Θ</span> <span class="up">+</span> <span class="frac"><span>1</span><span>2</span></span> σ<sup>2</sup><span class="v">S</span><sup>2</sup><span class="gm">Γ</span> <span class="up">+</span> <span class="v">rS</span><span class="d">Δ</span> <span class="up">−</span> <span class="v">rV</span> <span class="up">= 0</span></div>
+        <p class="where">忽略利率项，就得到 Θ ≈ −½ σ² S² Γ：Theta 的大小正比于 Gamma。Gamma 越大的期权，每天的时间损耗也越大。</p>
+      </div>
+      <h3>每天要动多少才回本</h3>
+      <p>如果你买入期权，并用股票把 Delta 对冲到零，一天的盈亏只剩两项：Gamma 带来的 ½Γ(Δ<span class="v">S</span>)²，减去 Theta。令两者相等，得到回本所需的每日移动：</p>
+      <div class="formula">
+        <div class="eq">|Δ<span class="v">S</span>|<sub>回本</sub> <span class="up">=</span> √<span class="up">(</span>2|<span class="th">Θ</span>| / <span class="gm">Γ</span><span class="up">)</span> <span class="up">≈</span> <span class="frac"><span><span class="v">S</span> <span class="up">×</span> σ</span><span>√365</span></span> <span class="up">≈</span> <span class="frac"><span><span class="v">S</span> <span class="up">×</span> σ</span><span>19</span></span></div>
+        <p class="where">按日历天计算是除以 √365 ≈ 19。交易员常说「除以 16」，那是按交易日计（√252 ≈ 15.9，取 16）：周末两天的时间损耗被摊进周五，所以每个交易日要求的移动更大。</p>
+      </div>
+      <p>30 天平值看涨：Theta <span class="num">−0.0624</span>，Gamma <span class="num">0.0462</span>，回本移动 <span class="num">√(2 × 0.0624 / 0.0462) = $1.64</span>。简化公式给出 <span class="num">100 × 0.30 / 19.1 = $1.57</span>，差的那一点来自利率项。按交易日约定则是 <span class="num">100 × 0.30 / 16 ≈ $1.88</span>。</p>
+
+      <figure class="plate" id="fig4">
+        <div class="fig-head"><span class="fig-title">对冲后的每日盈亏是一条抛物线</span><span class="fig-no">图 4-4 · 平值看涨 + 股票对冲，每股</span></div>
+        <div class="controls">
+          <label class="ctl" for="f4-dte">剩余天数 <input id="f4-dte" type="range" min="2" max="90" value="30"> <output id="f4-dte-o">30 天</output></label>
+          <label class="ctl" for="f4-iv">隐含波动率 <input id="f4-iv" type="range" min="10" max="80" value="30"> <output id="f4-iv-o">30%</output></label>
+        </div>
+        <svg class="chart" id="f4-svg" viewBox="0 0 680 320" role="img" aria-label="对冲后每日盈亏随股价移动的抛物线"></svg>
+        <div class="readout">
+          <div><b id="f4-r1">—</b><small>回本所需每日移动</small></div>
+          <div><b id="f4-r2">—</b><small>简化公式 S·σ/√365</small></div>
+          <div><b id="f4-r3">—</b><small>股价不动时的每日损失</small></div>
+        </div>
+        <figcaption>抛物线与横轴的两个交点之间（阴影区）是亏损区：股价动得不够大，Gamma 赚的钱补不上 Theta。把剩余天数调小，抛物线变窄变深：Gamma 更大，但 Theta 也更贵。</figcaption>
+      </figure>
+      <div class="note gam">
+        <span class="tag">一句话</span>
+        <p>买期权本质上是在押「实际波动率会高于隐含波动率」，卖期权是押相反。方向只是这笔交易的一部分。</p>
+      </div>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">4.7</span>Gamma scalping 演练</h2>
+      <p>Gamma scalping 是把 4.6 节的结论变成操作：买入期权得到正 Gamma，然后每当股价移动，就用股票把 Delta 调回零。正 Gamma 让这个过程自动「高卖低买」：涨了 Delta 变大，你卖股票；跌了 Delta 变小，你买回来。</p>
+      <p>下面用一个具体仓位走五天：买入 10 张 30 天平值跨式（10 张看涨 + 10 张看跌，行权价 100，IV 30%），每天收盘对冲到零，每股滑点按 $0.02 计。初始仓位 Gamma 约 92.5 股/美元，每天 Theta 约 −$114。</p>
+
+      <figure class="plate" id="fig5">
+        <div class="fig-head"><span class="fig-title">同一个仓位，两种行情</span><span class="fig-no">图 4-5 · 10 张跨式，每日收盘对冲</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="选择行情">
+            <button type="button" data-path="A" aria-pressed="true">行情 A：来回大幅震荡</button>
+            <button type="button" data-path="B" aria-pressed="false">行情 B：几乎不动</button>
+          </div>
+        </div>
+        <svg class="chart" id="f5-svg" viewBox="0 0 680 260" role="img" aria-label="价格路径与对冲交易"></svg>
+        <div class="legend"><span><i style="border-color: var(--ink)"></i>收盘价</span><span style="color: var(--gamma)">▼ 卖出股票</span><span style="color: var(--theta)">▲ 买入股票</span></div>
+        <div class="tbl" style="margin-bottom: 8px;">
+          <table id="f5-tbl">
+            <thead><tr><th>天</th><th>收盘</th><th>移动</th><th>期权盈亏</th><th>对冲盈亏</th><th>调仓（股）</th><th>当日合计</th><th>累计</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="readout">
+          <div><b id="f5-r1">—</b><small>五天对冲后累计盈亏</small></div>
+          <div><b id="f5-r2">—</b><small>同期不对冲、只拿跨式</small></div>
+          <div><b id="f5-r3">—</b><small>这段路径的实际波动率</small></div>
+        </div>
+        <figcaption>行情 A 第五天收在 101.9，几乎回到原点，只拿跨式不对冲会亏 $304。对冲后每天都在高处卖、低处买，五天赚了 $797。行情 B 波动太小，每天赚的 Gamma 只有十几美元，Theta 却要扣 $114，五天亏 $542。两种结果的分界线，就是实际波动率是否高于买入时的 30% 隐含波动率。</figcaption>
+      </figure>
+      <h3>真实世界里多出来的成本</h3>
+      <ul>
+        <li><strong>对冲频率</strong>：对冲越勤，越接近理论值，但手续费和滑点越高。实务中常按 Delta 偏离的阈值（例如超过 ±50 股）来对冲，而不是固定时间。</li>
+        <li><strong>跳空</strong>：隔夜跳空时你来不及调仓。正 Gamma 在跳空中受益，负 Gamma 在跳空中最危险。</li>
+        <li><strong>IV 变化</strong>：演练假设 IV 不变。如果你买入后 IV 下跌，跨式价值会额外缩水，scalping 的利润可能被 Vega 损失吞掉。</li>
+      </ul>
+      <div class="note warn">
+        <span class="tag">对个人交易者</span>
+        <p>这套方法对做市商是日常工作，对个人来说成本和精力要求都很高。更现实的用法是反过来理解：当你卖期权收 Theta 时，你就站在这张表的对手位置，赚的是「行情 B」，怕的是「行情 A」。</p>
+      </div>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">4.8</span>做市商 Gamma 与市场</h2>
+      <p>做市商卖出期权后通常会对冲 Delta，他们持有的 Gamma 决定了这些对冲会推动还是压制价格。</p>
+
+      <figure class="plate" id="fig6">
+        <div class="fig-head"><span class="fig-title">做市商的 Gamma 符号决定了对冲方向</span><span class="fig-no">图 4-6 · 示意图</span></div>
+        <div class="scroll-x"><svg class="chart wide" viewBox="0 0 680 300" role="img" aria-label="正 Gamma 环境压制波动，负 Gamma 环境放大波动">
+          <g class="ax" font-size="12">
+            <text x="170" y="26" text-anchor="middle" style="fill: var(--theta); font-family: var(--font-body); font-weight: 700; font-size: 15px">做市商净多 Gamma（正 Gamma）</text>
+            <text x="510" y="26" text-anchor="middle" style="fill: var(--gamma); font-family: var(--font-body); font-weight: 700; font-size: 15px">做市商净空 Gamma（负 Gamma）</text>
+          </g>
+          <line x1="340" y1="12" x2="340" y2="288" style="stroke: var(--rule)" stroke-width="1"></line>
+          <defs>
+            <marker id="arr-t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--theta)"></path></marker>
+            <marker id="arr-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--gamma)"></path></marker>
+            <marker id="arr-i" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--muted)"></path></marker>
+          </defs>
+          <!-- left: dampening -->
+          <g style="font-family: var(--font-body); font-size: 13.5px">
+            <rect x="40" y="52" width="260" height="44" rx="6" style="fill: var(--tint-theta); stroke: var(--theta)"></rect>
+            <text x="170" y="79" text-anchor="middle" style="fill: var(--ink)">股价上涨 → 做市商 Delta 变大</text>
+            <path d="M170 96 V122" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#arr-i)"></path>
+            <rect x="40" y="124" width="260" height="44" rx="6" style="fill: none; stroke: var(--rule)"></rect>
+            <text x="170" y="151" text-anchor="middle" style="fill: var(--ink)">为回到中性：卖出股票</text>
+            <path d="M170 168 V194" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#arr-i)"></path>
+            <rect x="40" y="196" width="260" height="44" rx="6" style="fill: none; stroke: var(--rule)"></rect>
+            <text x="170" y="223" text-anchor="middle" style="fill: var(--ink)">卖压抵消涨势，价格被「钉住」</text>
+            <path d="M60 272 C 110 252, 140 290, 180 270 S 250 260, 290 270" style="fill: none; stroke: var(--theta)" stroke-width="2.2"></path>
+            <text x="170" y="294" text-anchor="middle" style="fill: var(--muted); font-size: 12px">波动收窄、均值回归</text>
+          </g>
+          <!-- right: amplifying -->
+          <g style="font-family: var(--font-body); font-size: 13.5px">
+            <rect x="380" y="52" width="260" height="44" rx="6" style="fill: var(--tint-gamma); stroke: var(--gamma)"></rect>
+            <text x="510" y="79" text-anchor="middle" style="fill: var(--ink)">股价下跌 → 做市商 Delta 变多</text>
+            <path d="M510 96 V122" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#arr-i)"></path>
+            <rect x="380" y="124" width="260" height="44" rx="6" style="fill: none; stroke: var(--rule)"></rect>
+            <text x="510" y="151" text-anchor="middle" style="fill: var(--ink)">为回到中性：继续卖出股票</text>
+            <path d="M510 168 V194" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#arr-i)"></path>
+            <rect x="380" y="196" width="260" height="44" rx="6" style="fill: none; stroke: var(--rule)"></rect>
+            <text x="510" y="223" text-anchor="middle" style="fill: var(--ink)">卖压追着跌势，跌幅被放大</text>
+            <path d="M400 252 L 450 256 L 490 264 L 540 262 L 580 272 L 630 280" style="fill: none; stroke: var(--gamma)" stroke-width="2.2"></path>
+            <text x="510" y="294" text-anchor="middle" style="fill: var(--muted); font-size: 12px">追涨杀跌、趋势加速</text>
+          </g>
+        </svg></div>
+        <figcaption>在正 Gamma 环境里做市商的对冲是「逆势」的，市场容易横盘、被钉在大额持仓的行权价附近。在负 Gamma 环境里对冲是「顺势」的，涨跌都会被放大。两种环境的分界价位就是常说的 Gamma Flip。</figcaption>
+      </figure>
+
+      <h3>怎么估算做市商的 Gamma 敞口</h3>
+      <p>没有人能直接看到做市商的仓位，市面上的 GEX（Gamma 敞口）数据都是估算，最常见的做法分三步：</p>
+      <ol>
+        <li>对每个行权价，用未平仓合约数（OI）乘以该行权价期权的 Gamma，再按 4.4 节换成 1% 美元 Gamma。</li>
+        <li>假设做市商在看涨期权上净多、在看跌期权上净空（客户多为卖出备兑看涨、买入保护性看跌）。于是看涨贡献正号，看跌贡献负号。</li>
+        <li>把所有行权价加总得到净 GEX；在不同的假设股价下重复计算，净值由正转负的价位就是 Gamma Flip。</li>
+      </ol>
+      <div class="tbl">
+        <table>
+          <caption>表 4-5　假设的两个行权价（SPY $780，7 天到期，IV 16%）</caption>
+          <thead><tr><th>合约</th><th>未平仓量</th><th>单张 Gamma</th><th>1% 美元 Gamma</th><th>做市商视角符号</th></tr></thead>
+          <tbody>
+            <tr><td>780 看涨</td><td class="mono">60,000</td><td class="mono">0.0231</td><td class="mono">$842M</td><td class="mono pos">+</td></tr>
+            <tr><td>770 看跌</td><td class="mono">80,000</td><td class="mono">0.0190</td><td class="mono">$922M</td><td class="mono neg">−</td></tr>
+            <tr class="hl"><td>净值</td><td></td><td></td><td class="mono">−$80M</td><td>略偏负 Gamma</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>读法：如果做市商真的是这样持仓，SPY 每跌 1%，他们需要额外卖出约 8,000 万美元的股票来维持中性。数字是假设的，用来说明计算方法。</p>
+      <div class="note warn">
+        <span class="tag">估算的局限</span>
+        <ul>
+          <li>「做市商多看涨、空看跌」只是平均假设，个别行权价可能完全相反</li>
+          <li>OI 每天只更新一次，看不到当天的 0DTE 流量</li>
+          <li>Vanna 和 Charm 同样驱动对冲，单看 Gamma 会漏掉 IV 和时间带来的资金流</li>
+        </ul>
+      </div>
+      <div class="note field">
+        <span class="tag">实战观察</span>
+        <p>不少交易者的盘前笔记都用这套框架。例如在一次三巫日前，判断跌破 SPY 760 偏向买 Put、守在 760 上方偏向买 Call，理由是 760 以上由正 Gamma 主导。又如把某次 MU 的急拉归因于次日到期的大量看涨期权引发的做市商对冲，而不是基本面改善；或者提醒连涨的芯片股要等期权到期日过后再下结论：到期后如果回撤，说明上涨主要是对冲盘推上去的。Barchart 的 Gamma 页面是一个常用的免费查看入口。</p>
+      </div>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">案例</span>三个案例</h2>
+
+      <div class="case">
+        <div class="case-no">案例 1</div>
+        <h3>同样的 ±3%，在最后几天完全是另一种仓位</h3>
+        <p>平值 100 看涨，IV 30%。比较股价在 97、100、103 时，不同剩余天数下的 Delta：</p>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>剩余天数</th><th>股价 97</th><th>股价 100</th><th>股价 103</th><th>97 到 103 的 Delta 落差</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">30</td><td class="mono">0.392</td><td class="mono">0.532</td><td class="mono">0.665</td><td class="mono">0.27</td></tr>
+              <tr><td class="mono">10</td><td class="mono">0.286</td><td class="mono">0.519</td><td class="mono">0.740</td><td class="mono">0.45</td></tr>
+              <tr><td class="mono">5</td><td class="mono">0.202</td><td class="mono">0.513</td><td class="mono">0.809</td><td class="mono">0.61</td></tr>
+              <tr><td class="mono">3</td><td class="mono">0.137</td><td class="mono">0.510</td><td class="mono">0.867</td><td class="mono">0.73</td></tr>
+              <tr class="hl"><td class="mono">1</td><td class="mono">0.027</td><td class="mono">0.506</td><td class="mono">0.971</td><td class="mono">0.94</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>剩 30 天时，股价在 97 到 103 之间晃动，Delta 只在 0.39 到 0.67 之间变化，仓位像一只稳定的股票。剩 1 天时，同样的晃动让 Delta 在 0.03 和 0.97 之间来回跳：前一刻几乎没有仓位，下一刻像满仓持股。</p>
+        <ul>
+          <li><strong>对买方</strong>：最后几天的平值期权是彩票。赢面在于跳跃，Theta 却按 Gamma 同步加价（表 4-3）。</li>
+          <li><strong>对卖方</strong>：最后几天收的权利金最多，但一根大阳线就可能让你从「几乎没风险」变成「满仓做空」。这就是很多卖方账户在到期周出事的原因。</li>
+        </ul>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 2</div>
+        <h3>财报前用 Delta–Gamma 做压力测试，结果漏掉了最大的一项</h3>
+        <p>你在财报前买了 20 张 30 天平值 100 看涨。财报前 IV 被抬到 60%，仓位 Delta <span class="num">+1,084</span> 股，Gamma <span class="num">46.1</span>，Vega 每个 IV 点约 <span class="num">$227</span>。财报后第二天，IV 回落到 35%。</p>
+        <div class="tbl">
+          <table>
+            <caption>表 4-6　20 张看涨，财报后一天的仓位盈亏（美元）</caption>
+            <thead><tr><th>股价移动</th><th>Delta–Gamma 近似</th><th>重新定价，IV 不变</th><th>重新定价，IV 降到 35%</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">−8</td><td class="mono neg">−7,194</td><td class="mono neg">−7,360</td><td class="mono neg">−11,798</td></tr>
+              <tr><td class="mono">−5</td><td class="mono neg">−4,842</td><td class="mono neg">−5,053</td><td class="mono neg">−10,147</td></tr>
+              <tr><td class="mono">0</td><td class="mono">0</td><td class="mono neg">−240</td><td class="mono neg">−5,839</td></tr>
+              <tr class="hl"><td class="mono">+5</td><td class="mono pos">+5,995</td><td class="mono pos">+5,739</td><td class="mono pos">+445</td></tr>
+              <tr><td class="mono">+8</td><td class="mono pos">+10,146</td><td class="mono pos">+9,835</td><td class="mono pos">+5,025</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>前两列很接近，说明 Delta–Gamma 对价格的估计没问题。差距全在第三列：IV 掉 25 个点，乘以每点 $227，约 $5,700 的 Vega 损失。股价如期涨了 5%，你只赚 $445。</p>
+        <div class="note">
+          <span class="tag">要点</span>
+          <p>事件前的压力测试至少要做两组：价格 × IV 不变，价格 × IV 回落到事件前的正常水平。如果第二组里「看对方向」也不赚钱，这笔交易的结构就选错了，可以考虑价差（两条腿的 Vega 部分抵消）或日历价差。</p>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 3</div>
+        <h3>当一只股票被期权「推着走」</h3>
+        <p>2021 年 1 月的 GameStop 是负 Gamma 放大效应最有名的例子。散户大量买入短期虚值看涨期权，卖出这些期权的做市商被迫买股对冲。股价上涨让这些虚值期权的 Delta 快速变大（Gamma），同时 IV 飙升又进一步抬高 Delta（Vanna），做市商需要买入的股票越来越多，买盘推高股价，形成循环。</p>
+        <p>你不需要等到这种极端情况才用得上这个逻辑。日常里更常见的是它的小规模版本：某个临近到期的行权价上堆积了大量看涨期权，做市商为对冲而买股，把股价推向那个行权价。这类上涨来自「期权效应」，不是基本面改善。验证方法也一样：看到期日过后，对冲需求消失，价格是否回落。</p>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">工具</span>清单与自测</h2>
+      <p>勾选状态只保存在你自己的浏览器里。</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">4-1</span>下单前：换算方向敞口</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">每条腿的 Delta × 100 × 张数 × 方向，加总成股数</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">多个标的用 β 换算成 SPY 等效股数</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">对冲时确认单位：股还是张</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">4-2</span>下单前：压力测试</h4>
+          <ul>
+            <li><input type="checkbox" id="k4"><label for="k4">±1 个日标准差（S × IV ÷ 19）的盈亏</label></li>
+            <li><input type="checkbox" id="k5"><label for="k5">±3 个标准差直接重新定价，不用近似</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">有事件：加一组 IV 回落的情景</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">4-3</span>持仓中：Gamma 体检</h4>
+          <ul>
+            <li><input type="checkbox" id="k7"><label for="k7">离到期不到一周的平值仓位，Delta 每天都要重算</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">卖方仓位：股价触及行权价时的 Delta 是多少</label></li>
+            <li><input type="checkbox" id="k9"><label for="k9">到期日下午不要被 Charm 带来的波动吓到</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">4-4</span>买还是卖：Gamma–Theta 平衡</h4>
+          <ul>
+            <li><input type="checkbox" id="k10"><label for="k10">算出回本移动 S × IV ÷ 19（日历天）</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">对比近期的实际日均波动</label></li>
+            <li><input type="checkbox" id="k12"><label for="k12">实际波动明显更大才买；明显更小才考虑卖</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>自测五题</h3>
+      <details class="q"><summary><span class="num">1</span><span>你买了 5 张 Delta 0.40 的看涨，又卖了 2 张 Delta −0.30 的看跌。仓位相当于多少股？</span></summary>
+        <div class="ans"><p><span class="num">5 × 40 + 2 × 30 = 260</span> 股。卖出看跌的 Delta 是 −0.30 × (−1) = +0.30，同样是看多。</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>同一行权价的平值期权，剩 2 天和剩 60 天，哪个 Gamma 更大？大约差几倍？</span></summary>
+        <div class="ans"><p>剩 2 天的更大。IV 30% 时约 0.180 对 0.033，相差五倍多。平值 Gamma 大致与剩余时间的平方根成反比。</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>股价 $200、IV 40%，买入平值期权并做 Delta 对冲，每天大约要动多少才回本？</span></summary>
+        <div class="ans"><p>按日历天：<span class="num">200 × 0.40 / 19.1 ≈ $4.2</span>；按交易日约定：<span class="num">200 × 0.40 / 16 = $5.0</span>。</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>股价没动，IV 从 30% 升到 40%，你手里的 110 看涨（30 天）Delta 会怎样？这叫什么？</span></summary>
+        <div class="ans"><p>从 0.152 升到 0.228。这是 Vanna：波动率变化引起 Delta 变化。虚值期权的 Delta 随 IV 上升而变大。</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>财报后股价如你所料涨了 5%，Delta–Gamma 估算你该赚 $6,000，实际只赚了几百。最可能的原因？</span></summary>
+        <div class="ans"><p>IV 崩塌。近似公式没有 Vega 项，财报后 IV 大幅回落带来的损失吃掉了大部分方向收益（案例 2）。</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="章节翻页"></nav>
+
+    <footer class="end">
+      <p>本章示例全部由 Black-Scholes 模型计算（利率 4%，不派息，一年 365 天），用于教学，不构成投资建议。</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+
+  // ---------- fig 4-1 ----------
+  (function () {
+    const svg = document.getElementById("f1-svg");
+    const dte = document.getElementById("f1-dte"), iv = document.getElementById("f1-iv");
+    const segBtns = document.querySelectorAll("#fig1 .seg button");
+    let kind = "c";
+    function draw() {
+      const d = +dte.value, s = +iv.value / 100;
+      document.getElementById("f1-dte-o").textContent = d + " 天";
+      document.getElementById("f1-iv-o").textContent = iv.value + "%";
+      const xs = range(70, 130, 0.25);
+      const cur = xs.map(S => [S, bs(S, 100, d / DAY, s, kind).delta]);
+      const ref = xs.map(S => [S, bs(S, 100, 30 / DAY, 0.30, kind).delta]);
+      const y = kind === "c" ? [0, 1] : [-1, 0];
+      plot(svg, {
+        x: [70, 130], y, xt: range(70, 130, 10), yt: kind === "c" ? [0, 0.25, 0.5, 0.75, 1] : [-1, -0.75, -0.5, -0.25, 0],
+        yf: v => v.toFixed(2).replace("-", "−"), xlabel: "股价（美元）", ylabel: "Delta", vline: 100,
+        series: [{ pts: ref, color: "var(--muted)", w: 1.6, dash: "5 5" }, { pts: cur, color: "var(--delta)", w: 2.6 }]
+      });
+      ["f1-r1", "f1-r2", "f1-r3"].forEach((id, i) => {
+        document.getElementById(id).textContent = fmt(bs([95, 100, 105][i], 100, d / DAY, s, kind).delta, 3);
+      });
+    }
+    segBtns.forEach(b => b.addEventListener("click", () => {
+      kind = b.dataset.kind;
+      segBtns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    dte.addEventListener("input", draw); iv.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 4-2 ----------
+  (function () {
+    const svg = document.getElementById("f2-svg");
+    const days = [60, 30, 7, 2], ops = [0.35, 0.55, 0.78, 1];
+    const xs = range(80, 120, 0.2);
+    const series = days.map((d, i) => ({ pts: xs.map(S => [S, bs(S, 100, d / DAY, 0.30, "c").gamma]), color: "var(--gamma)", w: 2.3, op: ops[i] }));
+    const draw = () => plot(svg, {
+      x: [80, 120], y: [0, 0.2], xt: range(80, 120, 10), yt: [0, 0.05, 0.10, 0.15, 0.20], yf: v => v.toFixed(2),
+      xlabel: "股价（美元）", ylabel: "Gamma", vline: 100, series
+    });
+    CK.figure(draw);
+    document.getElementById("f2-legend").innerHTML = days.map((d, i) => `<span><i style="border-color: var(--gamma); opacity: ${ops[i]}"></i>剩 ${d} 天</span>`).join("");
+  })();
+
+  // ---------- fig 4-3 ----------
+  (function () {
+    const svg = document.getElementById("f3-svg");
+    const ivS = document.getElementById("f3-iv"), tS = document.getElementById("f3-t");
+    const base = bs(100, 100, 30 / DAY, 0.30, "c");
+    function draw() {
+      const div = +ivS.value / 100, dt = +tS.value;
+      document.getElementById("f3-iv-o").textContent = (div > 0 ? "+" : div < 0 ? "−" : "") + Math.abs(+ivS.value) + " 点";
+      document.getElementById("f3-t-o").textContent = dt + " 天";
+      const xs = range(-15, 15, 0.25);
+      const actual = xs.map(m => [m, bs(100 + m, 100, (30 - dt) / DAY, 0.30 + div, "c").price - base.price]);
+      const dOnly = xs.map(m => [m, base.delta * m]);
+      const dg = xs.map(m => [m, base.delta * m + 0.5 * base.gamma * m * m]);
+      plot(svg, {
+        x: [-15, 15], y: [-8, 14], xt: range(-15, 15, 5), yt: [-8, -4, 0, 4, 8, 12],
+        xf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v), yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v),
+        xlabel: "股价移动（美元）", ylabel: "每股盈亏（美元）", zero: 0, vline: 0,
+        series: [{ pts: dOnly, color: "var(--delta)", w: 2, dash: "6 5" }, { pts: dg, color: "var(--gamma)", w: 2.4 }, { pts: actual, color: "var(--ink)", w: 2.2 }]
+      });
+    }
+    ivS.addEventListener("input", draw); tS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 4-4 ----------
+  (function () {
+    const svg = document.getElementById("f4-svg");
+    const dS = document.getElementById("f4-dte"), ivS = document.getElementById("f4-iv");
+    function draw() {
+      const d = +dS.value, s = +ivS.value / 100;
+      document.getElementById("f4-dte-o").textContent = d + " 天";
+      document.getElementById("f4-iv-o").textContent = ivS.value + "%";
+      const g = bs(100, 100, d / DAY, s, "c");
+      const be = Math.sqrt(2 * Math.abs(g.theta) / g.gamma);
+      const xs = range(-6, 6, 0.05);
+      const pts = xs.map(x => [x, 0.5 * g.gamma * x * x + g.theta]);
+      const ymin = Math.min(-0.2, g.theta * 1.4);
+      const ymax = Math.max(0.6, 0.5 * g.gamma * 36 * 0.6);
+      const step = ymax - ymin > 1.6 ? 0.5 : 0.2;
+      const yt = []; for (let v = Math.ceil(ymin / step) * step; v <= ymax + 1e-9; v += step) yt.push(+v.toFixed(2));
+      plot(svg, {
+        x: [-6, 6], y: [ymin, ymax], xt: range(-6, 6, 2), yt,
+        xf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v), yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(step < 0.5 ? 1 : 1),
+        xlabel: "当日股价移动（美元）", ylabel: "对冲后当日盈亏（每股）", zero: 0,
+        band: [-be, be, "var(--tint-gamma)"],
+        series: [{ pts, color: "var(--theta)", w: 2.6 }],
+        dots: [[-be, 0, "var(--gamma)"], [be, 0, "var(--gamma)"]]
+      });
+      document.getElementById("f4-r1").textContent = "±$" + be.toFixed(2);
+      document.getElementById("f4-r2").textContent = "±$" + (100 * s / Math.sqrt(365)).toFixed(2);
+      document.getElementById("f4-r3").textContent = "−$" + Math.abs(g.theta).toFixed(3);
+    }
+    dS.addEventListener("input", draw); ivS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 4-5 ----------
+  (function () {
+    const data = {
+      A: { path: [100, 102.4, 99.9, 102.3, 99.6, 101.9], rows: [
+        [1, 102.40, 2.40, 303, -156, -216, 143, 143], [2, 99.90, -2.50, -540, 702, 228, 157, 300],
+        [3, 102.30, 2.40, 280, -127, -225, 149, 449], [4, 99.60, -2.70, -531, 751, 258, 214, 663],
+        [5, 101.90, 2.30, 185, -46, -226, 134, 797]], total: 797, naked: -304, rv: "46.6%" },
+      B: { path: [100, 100.5, 100.0, 100.6, 100.1, 100.5], rows: [
+        [1, 100.50, 0.50, -71, -32, -45, -105, -105], [2, 100.00, -0.50, -160, 55, 47, -106, -211],
+        [3, 100.60, 0.60, -65, -38, -57, -104, -315], [4, 100.10, -0.50, -169, 60, 50, -110, -425],
+        [5, 100.50, 0.40, -88, -28, -40, -117, -542]], total: -542, naked: -554, rv: "9.6%" }
+    };
+    const svg = document.getElementById("f5-svg");
+    const tbody = document.querySelector("#f5-tbl tbody");
+    const btns = document.querySelectorAll("#fig5 .seg button");
+    const signed = (v, d) => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(d || 0);
+    function draw(key) {
+      const D = data[key];
+      const pts = D.path.map((p, i) => [i, p]);
+      const r = plot(svg, {
+        x: [-0.3, 5.3], y: [98.5, 103.5], xt: [0, 1, 2, 3, 4, 5], yt: [99, 100, 101, 102, 103],
+        xf: v => v === 0 ? "建仓" : "第" + v + "天", xlabel: "", ylabel: "股价",
+        series: [{ pts, color: "var(--ink)", w: 2.2 }],
+        dots: pts.map(p => [p[0], p[1], "var(--ink)", 3.5])
+      });
+      D.rows.forEach(row => {
+        const x = r.X(row[0]), y = r.Y(row[1]);
+        const sell = row[5] < 0;
+        const t = el("text", { x, y: sell ? y - 12 : y + 22, "text-anchor": "middle", style: `fill: ${sell ? "var(--gamma)" : "var(--theta)"}; font-size: 12px; font-family: var(--font-mono)` }, r.g);
+        t.textContent = (sell ? "▼ 卖" : "▲ 买") + Math.abs(row[5]);
+      });
+      tbody.innerHTML = D.rows.map(rw => `<tr><td class="mono">${rw[0]}</td><td class="mono">${rw[1].toFixed(2)}</td><td class="mono">${signed(rw[2], 2)}</td><td class="mono ${rw[3] >= 0 ? "pos" : "neg"}">${signed(rw[3])}</td><td class="mono ${rw[4] >= 0 ? "pos" : "neg"}">${signed(rw[4])}</td><td class="mono">${signed(rw[5])}</td><td class="mono ${rw[6] >= 0 ? "pos" : "neg"}">${signed(rw[6])}</td><td class="mono ${rw[7] >= 0 ? "pos" : "neg"}">${signed(rw[7])}</td></tr>`).join("");
+      document.getElementById("f5-r1").textContent = money(D.total);
+      document.getElementById("f5-r2").textContent = money(D.naked);
+      document.getElementById("f5-r3").textContent = D.rv + "（买入 IV 30%）";
+    }
+    let cur = "A";
+    btns.forEach(b => b.addEventListener("click", () => {
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      cur = b.dataset.path; draw(cur);
+    }));
+    CK.figure(() => draw(cur));
+  })();
+
+  // ---------- calculator ----------
+  (function () {
+    const rows = [
+      { name: "A 股", type: "s", qty: 200, delta: 1, px: 150, beta: 1.3 },
+      { name: "B 股", type: "s", qty: 100, delta: 1, px: 60, beta: 0.7 },
+      { name: "C 看涨", type: "o", qty: 5, delta: 0.6, px: 400, beta: 1.6 }
+    ];
+    const tbody = document.querySelector("#c-tbl tbody");
+    const spy = document.getElementById("c-spy"), hd = document.getElementById("c-hd");
+    tbody.innerHTML = rows.map((r, i) => `<tr>
+      <td><input class="name" id="c-n${i}" value="${r.name}" aria-label="仓位名称"></td>
+      <td><select id="c-t${i}" aria-label="类型"><option value="s"${r.type === "s" ? " selected" : ""}>股票</option><option value="o"${r.type === "o" ? " selected" : ""}>期权</option></select></td>
+      <td><input id="c-q${i}" type="number" value="${r.qty}" aria-label="数量"></td>
+      <td><input id="c-d${i}" type="number" step="0.05" value="${r.delta}" aria-label="单位 Delta"></td>
+      <td><input id="c-p${i}" type="number" value="${r.px}" aria-label="标的价格"></td>
+      <td><input id="c-b${i}" type="number" step="0.1" value="${r.beta}" aria-label="Beta"></td>
+      <td class="mono" id="c-o${i}">—</td></tr>`).join("");
+    function calc() {
+      const S = +spy.value || 1; let total = 0;
+      rows.forEach((_, i) => {
+        const t = document.getElementById("c-t" + i).value;
+        const dIn = document.getElementById("c-d" + i);
+        if (t === "s") { dIn.value = 1; dIn.disabled = true; } else dIn.disabled = false;
+        const q = +document.getElementById("c-q" + i).value || 0;
+        const dl = +dIn.value || 0, p = +document.getElementById("c-p" + i).value || 0, b = +document.getElementById("c-b" + i).value || 0;
+        const shares = t === "o" ? q * 100 * dl : q * dl;
+        const eq = shares * p / S * b;
+        total += eq;
+        document.getElementById("c-o" + i).textContent = eq.toFixed(1);
+      });
+      document.getElementById("c-total").textContent = total.toFixed(1) + " 股";
+      document.getElementById("c-usd").textContent = "$" + Math.round(total * S).toLocaleString("en-US");
+      const h = Math.abs(+hd.value || 0.4) * 100;
+      document.getElementById("c-hedge").textContent = (total / h).toFixed(1) + " 张";
+    }
+    document.getElementById("calc").addEventListener("input", calc);
+    document.getElementById("calc").addEventListener("change", calc);
+    calc();
+  })();
+
+})();
+</script>
+</body>
+</html>

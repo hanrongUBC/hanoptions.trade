@@ -1,0 +1,926 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 5 章 Theta 与 Vega · 美股期权课</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  #fig4 .seg, #fig1 .seg, #fig3 .seg { flex-wrap: wrap; }
+  #fig4 .controls + .controls { margin-top: 2px; }
+</style>
+</head>
+<body data-ch="5">
+<div class="topbar"><div class="topbar-inner"><a class="brand" href="index.html">美股期权<span>课</span></a><select id="ck-jump" aria-label="跳转到章节"></select></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">05</div>
+    <div class="eyebrow">美股期权课 · 第二部分 核心变量 · 第 5 章</div>
+    <h1>Theta 与 <span class="g">Vega</span></h1>
+    <p class="deck">Theta 是持有期权每天要付的房租，Vega 是你对波动率下的注。读懂这两个数，才能回答「什么都没发生为什么亏钱」和「方向看对了为什么还亏钱」。</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="本章目录">
+    <p class="toc-title">本章目录</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>开篇：一周什么都没发生</span></a></li>
+      <li><a href="#s1"><span class="n">5.1</span><span>Theta：每天付的房租</span></a></li>
+      <li><a href="#s2"><span class="n">5.2</span><span>时间损耗的形状</span></a></li>
+      <li><a href="#s3"><span class="n">5.3</span><span>周末与假日：两种时钟</span></a></li>
+      <li><a href="#s4"><span class="n">5.4</span><span>Vega：一个波动率点值多少钱</span></a></li>
+      <li><a href="#s5"><span class="n">5.5</span><span>IV 崩塌</span></a></li>
+      <li><a href="#s6"><span class="n">5.6</span><span>Rho 与高利率下的 LEAPS</span></a></li>
+      <li><a href="#s7"><span class="n">5.7</span><span>二阶希腊字母</span></a></li>
+      <li><a href="#s8"><span class="n">5.8</span><span>读一张完整的 Greeks 表</span></a></li>
+      <li><a href="#cases"><span class="n">案例</span><span>三个案例</span></a></li>
+      <li><a href="#tools"><span class="n">工具</span><span>清单与自测</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>本章目录</summary>
+      <ol>
+        <li><a href="#open">开篇：一周什么都没发生</a></li>
+        <li><a href="#s1">5.1 Theta：每天付的房租</a></li>
+        <li><a href="#s2">5.2 时间损耗的形状</a></li>
+        <li><a href="#s3">5.3 周末与假日：两种时钟</a></li>
+        <li><a href="#s4">5.4 Vega：一个波动率点值多少钱</a></li>
+        <li><a href="#s5">5.5 IV 崩塌</a></li>
+        <li><a href="#s6">5.6 Rho 与高利率下的 LEAPS</a></li>
+        <li><a href="#s7">5.7 二阶希腊字母</a></li>
+        <li><a href="#s8">5.8 读一张完整的 Greeks 表</a></li>
+        <li><a href="#cases">三个案例</a></li>
+        <li><a href="#tools">清单与自测</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>学完本章你能</h4>
+        <ul>
+          <li>估算一张期权未来一周、一个月的时间损耗，说出平值和虚值的损耗节奏有何不同</li>
+          <li>用 Vega 算出事件后 IV 回落的损失，下单前判断「方向对了能不能赚钱」</li>
+          <li>读懂一张完整的 Greeks 表，说出这个仓位最怕什么</li>
+        </ul>
+      </div>
+      <div>
+        <h4>前置知识</h4>
+        <ul>
+          <li>第 3 章：六个输入、买卖权平价与 0.8 法则</li>
+          <li>第 4 章：Delta、Gamma 与 Gamma–Theta 交换</li>
+        </ul>
+      </div>
+      <div>
+        <h4>本章约定</h4>
+        <ul>
+          <li>示例用 Black-Scholes，利率 4%，不派息</li>
+          <li>Theta 按每个日历天；Vega 按 IV 变 1 个百分点；Rho 按利率变 1 个百分点</li>
+          <li>一张合约 = 100 股</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">开篇</span>一周什么都没发生</h2>
+      <p class="lead">你和三个朋友在同一天各买了一张行权价 100 的看涨期权。股价 $100，IV 30%，唯一的区别是到期时间：7 天、30 天、90 天和 365 天。一周之后，股价还是 $100。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 5-0　四张平值看涨，一周后股价不变（每股，美元）</caption>
+          <thead><tr><th>到期</th><th>买入价</th><th>一周后，IV 不变</th><th>变化</th><th>一周后，IV 降到 25%</th><th>变化</th></tr></thead>
+          <tbody>
+            <tr><td>7 天</td><td class="mono">1.695</td><td class="mono">0.000</td><td class="mono neg">−100%</td><td class="mono">0.000</td><td class="mono neg">−100%</td></tr>
+            <tr><td>30 天</td><td class="mono">3.591</td><td class="mono">3.127</td><td class="mono neg">−12.9%</td><td class="mono">2.628</td><td class="mono neg">−26.8%</td></tr>
+            <tr><td>90 天</td><td class="mono">6.412</td><td class="mono">6.141</td><td class="mono neg">−4.2%</td><td class="mono">5.198</td><td class="mono neg">−18.9%</td></tr>
+            <tr><td>365 天</td><td class="mono">13.753</td><td class="mono">13.606</td><td class="mono neg">−1.1%</td><td class="mono">11.707</td><td class="mono neg">−14.9%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>股价一分没动，四个人都亏了。7 天那张直接归零：到期时平值期权没有内在价值。只看「IV 不变」那一列，期限越短亏得越多，这是 <strong>Theta</strong>。再看 IV 降了 5 个点的那一列：365 天那张每股多亏了 $1.90，按每张算它亏了 $205，是四张里亏得最多的；30 天那张只亏了 $96。这是 <strong>Vega</strong>。</p>
+      <p>一句话概括：短期期权怕时间，长期期权怕波动率。这一章先把这两个敏感度拆开讲清楚，再补上利率敏感度 Rho 和几个二阶希腊字母，最后把它们放进一张完整的表里读一遍。</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">5.1</span>Theta：每天付的房租</h2>
+      <p>Theta 是其他条件都不变时，期权价格每过一天的变化。买方的 Theta 为负，卖方为正。它只吃时间价值，碰不到内在价值。</p>
+      <div class="formula">
+        <div class="eq"><span class="th">Θ</span><sub>看涨</sub> <span class="up">=</span> <span class="up">−</span><span class="frac"><span><span class="v">S</span><span class="up">·</span><span class="v">n</span>(<span class="v">d</span><sub>1</sub>)<span class="up">·</span>σ</span><span>2√<span class="v">T</span></span></span> <span class="up">−</span> <span class="v">rK</span><span class="v">e</span><sup>−<span class="v">rT</span></sup><span class="v">N</span>(<span class="v">d</span><sub>2</sub>)</div>
+        <p class="where">这是年化值，除以 365 得到每日 Theta。第一项是「波动率项」，第二项是「利率项」。看跌的利率项符号相反：+<span class="v">rK</span>e<sup>−<span class="v">rT</span></sup><span class="v">N</span>(−<span class="v">d</span><sub>2</sub>)。</p>
+      </div>
+      <p>拿 30 天平值看涨（股价、行权价都是 100，IV 30%）拆开看：每日 Theta <span class="num">−0.0624</span>，其中波动率项 <span class="num">−0.0570</span>，利率项 <span class="num">−0.0054</span>。同一行权价的看跌：波动率项一样是 <span class="num">−0.0570</span>，利率项变成 <span class="num">+0.0055</span>，合计 <span class="num">−0.0515</span>。看跌的利率项为正，因为看跌行权时你收到 <span class="v">K</span>，离到期越近，这笔钱的现值越高。</p>
+      <p>波动率项占了九成以上，所以 Theta 本质上是「为波动付的费用」。第 4 章已经推导过，它和 Gamma 被 Black-Scholes 方程绑在一起：Θ ≈ −½σ²<span class="v">S</span>²Γ。买期权拿到正 Gamma，就要付 Theta，这里不再重复，见第 4 章 4.6 节。</p>
+
+      <h3>三个容易忽略的细节</h3>
+      <ul>
+        <li><strong>Theta 是瞬时变化率。</strong>30 天平值看涨真正过一天损失 <span class="num">0.0629</span>，略多于 Theta 给出的 0.0624，因为 Theta 本身也在随时间变大。估算十天的损耗：<span class="num">0.0624 × 10 = 0.62</span>，实际是 <span class="num">0.68</span>。越接近到期，这个低估越明显。</li>
+        <li><strong>IV 越高，房租越贵。</strong>波动率项和 σ 成正比。30 天平值看涨在 IV 15%、30%、60% 时的 Theta 分别是 <span class="num">−0.034</span>、<span class="num">−0.062</span>、<span class="num">−0.119</span>，几乎同比例放大。高 IV 的期权不只是贵，每天的租金也更高。</li>
+        <li><strong>Theta 可以为正。</strong>第 3 章提到，深度实值的欧式看跌期限越长反而越便宜，换个角度看就是它的 Theta 为正：股价 $100、行权价 150 的 30 天欧式看跌，Theta 是 <span class="num">+0.0164</span>/天。美式看跌会被提前行权，不会出现这种情况。</li>
+      </ul>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">5.2</span>时间损耗的形状</h2>
+      <p>平值期权的时间价值按 √<span class="v">T</span> 衰减，越临近到期掉得越快；虚值期权在早期就开始大块流失，它的 Theta 在离到期还很远时就已经见顶。</p>
+      <p>第 3 章的 0.4 法则告诉我们，平值看涨 ≈ 0.4 × <span class="v">S</span> × σ × √<span class="v">T</span>。价格正比于 √<span class="v">T</span>，所以每天的损耗正比于 1/√<span class="v">T</span>：剩余时间缩短到四分之一，Theta 就翻一倍。90 天时 Theta 是 <span class="num">−0.038</span>，30 天时 <span class="num">−0.062</span>，7 天时 <span class="num">−0.124</span>，最后一天 <span class="num">−0.319</span>。</p>
+      <p>同一个关系还给出一条心算规则：<strong>平值期权每天损失约 1 / (2 × 剩余天数) 的价值。</strong>价格正比于 √<span class="v">T</span>，对 <span class="v">T</span> 求相对变化率就是 1/(2<span class="v">T</span>)。剩 30 天时每天约 1/60 ≈ 1.7%（Black-Scholes 是 1.74%），剩 7 天时约 7.1%（实际 7.3%），剩 365 天时约 0.14%（实际 0.15%）。实际值略高一点，来自利率项。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 5-1　股价 $100、IV 30%：三个行权价的价格与每日 Theta</caption>
+          <thead><tr><th>剩余天数</th><th>100 看涨</th><th>Theta</th><th>105 看涨</th><th>Theta</th><th>110 看涨</th><th>Theta</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">90</td><td class="mono">6.412</td><td class="mono">−0.038</td><td class="mono">4.276</td><td class="mono">−0.037</td><td class="mono">2.733</td><td class="mono">−0.032</td></tr>
+            <tr><td class="mono">60</td><td class="mono">5.168</td><td class="mono">−0.046</td><td class="mono">3.093</td><td class="mono">−0.043</td><td class="mono">1.726</td><td class="mono">−0.035</td></tr>
+            <tr><td class="mono">30</td><td class="mono">3.591</td><td class="mono">−0.062</td><td class="mono">1.662</td><td class="mono">−0.054</td><td class="mono">0.655</td><td class="mono">−0.035</td></tr>
+            <tr><td class="mono">14</td><td class="mono">2.419</td><td class="mono">−0.089</td><td class="mono">0.718</td><td class="mono">−0.064</td><td class="mono">0.144</td><td class="mono">−0.025</td></tr>
+            <tr><td class="mono">7</td><td class="mono">1.695</td><td class="mono">−0.124</td><td class="mono">0.261</td><td class="mono">−0.064</td><td class="mono">0.017</td><td class="mono">−0.009</td></tr>
+            <tr><td class="mono">3</td><td class="mono">1.101</td><td class="mono">−0.186</td><td class="mono">0.042</td><td class="mono">−0.038</td><td class="mono">0.000</td><td class="mono">−0.000</td></tr>
+            <tr class="hl"><td class="mono">1</td><td class="mono">0.632</td><td class="mono">−0.319</td><td class="mono">0.000</td><td class="mono">−0.003</td><td class="mono">0.000</td><td class="mono">−0.000</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>把 90 天切成「前 60 天」和「最后 30 天」两段，看每段吃掉多少时间价值：</p>
+      <ul>
+        <li><strong>100 看涨（平值）</strong>：前 60 天损失 44%，最后 30 天损失 56%。时间越往后掉得越快。</li>
+        <li><strong>105 看涨</strong>：前 60 天损失 61%，最后 30 天 39%。</li>
+        <li><strong>110 看涨（虚值约一个标准差）</strong>：前 60 天就损失 76%，到最后一个月只剩四分之一。</li>
+      </ul>
+      <p>虚值期权的价值来自「股价有机会走到行权价」。时间一少，这个机会下降得比平值期权快得多，所以它的价值在早期就大块蒸发。临近到期时它已经接近 0，每天也就没什么可掉的了。</p>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">平值期权最后一个月掉得最快，虚值期权前两个月就掉了大半</span><span class="fig-no">图 5-1 · 股价 $100，时间价值，可拖动</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="纵轴单位">
+            <button type="button" data-mode="usd" aria-pressed="true">美元</button>
+            <button type="button" data-mode="pct" aria-pressed="false">占 90 天时的比例</button>
+          </div>
+          <label class="ctl" for="f1-iv">隐含波动率 <input id="f1-iv" type="range" min="10" max="80" value="30"> <output id="f1-iv-o">30%</output></label>
+        </div>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 320" role="img" aria-label="不同行权价期权的时间价值随剩余天数衰减"></svg>
+        <div class="legend" id="f1-legend"></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small>平值：最后 30 天损失的比例</small></div>
+          <div><b id="f1-r2">—</b><small>110 看涨：前 60 天损失的比例</small></div>
+          <div><b id="f1-r3">—</b><small>平值最后一天的 Theta</small></div>
+          <div><b id="f1-r4">—</b><small>110 看涨 Theta 最大时</small></div>
+        </div>
+        <figcaption>切到「占 90 天时的比例」看形状：蓝色的平值线前段平缓、最后陡降；品红的 110 线一开始就往下走。把 IV 拖低到 15%，110 线更早贴近 0，Theta 峰值也往远处挪：低波动时，虚值期权更早变得「没希望」。橙色的 95 看涨（实值）只画时间价值，形状和平值接近。</figcaption>
+      </figure>
+
+      <h3>虚值期权的 Theta 什么时候最大</h3>
+      <p>有一个可以推出来的规则：虚值期权的 Theta 在「行权价恰好离现价约一个标准差」时最大。</p>
+      <div class="formula">
+        <div class="eq">|<span class="th">Θ</span>| <span class="up">∝</span> <span class="frac"><span><span class="v">n</span>(<span class="v">d</span><sub>1</sub>)</span><span>√<span class="v">T</span></span></span> <span class="up">≈</span> <span class="frac"><span><span class="v">e</span><sup>−<span class="v">x</span>²/(2<span class="v">u</span>²)</sup></span><span><span class="v">u</span></span></span></div>
+        <div class="eq"><span class="v">x</span> <span class="up">=</span> ln(<span class="v">K</span>/<span class="v">S</span>)<span class="up">，</span> <span class="v">u</span> <span class="up">=</span> σ√<span class="v">T</span></div>
+        <p class="where">对 <span class="v">u</span> 求导并令其为 0，得到 <span class="v">u</span> = <span class="v">x</span>：σ√<span class="v">T</span> = ln(<span class="v">K</span>/<span class="v">S</span>)。平值期权 <span class="v">x</span> = 0，所以它的 Theta 一直增大到到期那一刻。推导忽略了 <span class="v">d</span><sub>1</sub> 里的漂移项，实际峰值会晚一点出现。</p>
+      </div>
+      <div class="tbl">
+        <table>
+          <caption>表 5-2　IV 30% 时，看涨 Theta 达到最大的剩余天数</caption>
+          <thead><tr><th>行权价</th><th>近似规则 (ln(K/S)/σ)² × 365</th><th>Black-Scholes 实际</th><th>峰值 Theta</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">100</td><td class="mono">0（到期日）</td><td class="mono">到期前最后一天</td><td class="mono">−0.319</td></tr>
+            <tr><td class="mono">105</td><td class="mono">10 天</td><td class="mono">10 天</td><td class="mono">−0.066</td></tr>
+            <tr><td class="mono">110</td><td class="mono">37 天</td><td class="mono">40 天</td><td class="mono">−0.036</td></tr>
+            <tr><td class="mono">115</td><td class="mono">79 天</td><td class="mono">88 天</td><td class="mono">−0.026</td></tr>
+            <tr><td class="mono">120</td><td class="mono">135 天</td><td class="mono">154 天</td><td class="mono">−0.021</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>怎么用</h3>
+      <ul>
+        <li><strong>买方</strong>：尽量让持有期避开 Theta 最陡的那一段。平值期权避开最后两三周；买虚值期权时，到期日最好比「离行权价一个标准差」的时点再远一些。</li>
+        <li><strong>卖方</strong>：卖平值期权的最后几周能收到加速的 Theta，但同时承担最大的 Gamma（第 4 章案例 1）。卖虚值期权的人，其实在 30 到 60 天时收的 Theta 最多。</li>
+        <li><strong>按比例看</strong>：最后一周里，虚值期权每天损失的比例最大。105 看涨剩 7 天时每天掉 24%，平值只掉 7%。美元损失小，不代表比例小。</li>
+      </ul>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">5.3</span>周末与假日：两种时钟</h2>
+      <p>Black-Scholes 只有一个时间变量。按日历天算，周末两天照样扣 Theta；按交易日算，周末不扣，但每个交易日扣得更多。一周下来总损耗相同，只是分布不同。</p>
+      <p>本课程的约定是日历天，一年 365 天。另一种约定是交易日，一年约 252 天，周末和假日不计时间。两种时钟下，同一个价格对应的 IV 数字略有不同：要让总方差 σ²<span class="v">T</span> 相等，交易日 IV = 日历天 IV × √(日历天 / 365) ÷ √(交易日 / 252)。</p>
+      <p>例子：今天周五收盘，期权 4 周后的周五到期，还剩 28 个日历天、20 个交易日。按日历天 IV 30% 定价，换成交易日约定就是 IV 29.49%，两边今天的价格都是 <span class="num">$3.464</span>。股价不动，接下来一周每天收盘时的价格：</p>
+      <div class="tbl">
+        <table>
+          <caption>表 5-3　同一张平值看涨，两种时钟下的一周（股价不动，每股）</caption>
+          <thead><tr><th>收盘</th><th>日历天：剩余</th><th>价格</th><th>当日损耗</th><th>交易日：剩余</th><th>价格</th><th>当日损耗</th></tr></thead>
+          <tbody>
+            <tr><td>周五</td><td class="mono">28</td><td class="mono">3.464</td><td class="mono">—</td><td class="mono">20</td><td class="mono">3.464</td><td class="mono">—</td></tr>
+            <tr class="hl"><td>周一</td><td class="mono">25</td><td class="mono">3.266</td><td class="mono neg">−0.198</td><td class="mono">19</td><td class="mono">3.364</td><td class="mono neg">−0.100</td></tr>
+            <tr><td>周二</td><td class="mono">24</td><td class="mono">3.197</td><td class="mono neg">−0.069</td><td class="mono">18</td><td class="mono">3.273</td><td class="mono neg">−0.091</td></tr>
+            <tr><td>周三</td><td class="mono">23</td><td class="mono">3.127</td><td class="mono neg">−0.070</td><td class="mono">17</td><td class="mono">3.179</td><td class="mono neg">−0.094</td></tr>
+            <tr><td>周四</td><td class="mono">22</td><td class="mono">3.056</td><td class="mono neg">−0.071</td><td class="mono">16</td><td class="mono">3.083</td><td class="mono neg">−0.096</td></tr>
+            <tr><td>周五</td><td class="mono">21</td><td class="mono">2.983</td><td class="mono neg">−0.073</td><td class="mono">15</td><td class="mono">2.983</td><td class="mono neg">−0.099</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">一周总损耗相同，日历天时钟把周末压在了周一</span><span class="fig-no">图 5-2 · 表 5-3 的每日损耗</span></div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 260" role="img" aria-label="两种时钟下每日时间损耗的对比"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta); border-top-width: 8px"></i>日历天时钟</span><span><i style="border-color: var(--theta); border-top-width: 8px"></i>交易日时钟</span></div>
+        <figcaption>两组柱子各自加总都是 0.481。日历天时钟在周一一次扣掉三天（0.198），其余每天约 0.07；交易日时钟每天均匀扣 0.09–0.10，周末不扣。两边在每个周五收盘时的价格完全相同。</figcaption>
+      </figure>
+
+      <h3>市场实际用哪种</h3>
+      <p>股价的波动基本发生在交易时段，周末只有新闻风险，没有连续的价格变化。所以在描述波动时，交易日时钟更接近现实；在计算利息时，日历天才是对的。很多做市商会在周五就把周末的损耗提前反映进报价，常见做法是周五下调定价用的波动率，或者直接按交易时间计时。结果是：</p>
+      <ul>
+        <li>周五下午的期权报价，按日历天模型看常常「偏便宜」，周一开盘也看不到日历天模型预期的那一大跳。</li>
+        <li>「周五卖出、周一买回，白赚周末两天 Theta」的想法，大部分利润在周五收盘前已经被定价了。剩下的部分，是你为周末跳空风险收的保险费。</li>
+        <li>假日同理：感恩节、圣诞节这类休市日在交易日时钟里不算时间，节前的期权会提前反映。</li>
+      </ul>
+      <h3>超短期期权上的扭曲</h3>
+      <p>期限越短，两种时钟的差别越大。假设一只股票按交易日计的真实波动率是 30%。周五买一张周一到期的期权：交易日时钟下只剩 1 天，日历天时钟下剩 3 天。如果平台用日历天反推 IV，显示的会是 <span class="num">30% × √(1/252) ÷ √(3/365) ≈ 20.8%</span>。周一买一张周二到期的期权，显示的又会是 <span class="num">30% × √(365/252) ≈ 36.1%</span>。同一只股票、同样的真实波动，周五看到的超短期 IV 偏低，周中偏高，这是计时方式造成的，跟市场情绪无关。比较短期期权的 IV 时，先确认平台用的是哪种时钟。</p>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">5.4</span>Vega：一个波动率点值多少钱</h2>
+      <p>Vega 是 IV 变动 1 个百分点时期权价格的变化。期限越长、越接近平值，Vega 越大；但按占价格的比例算，虚值期权对 IV 更敏感。</p>
+      <div class="formula">
+        <div class="eq"><span class="v">Vega</span> <span class="up">=</span> <span class="frac"><span><span class="v">S</span><span class="up">·</span><span class="v">n</span>(<span class="v">d</span><sub>1</sub>)<span class="up">·</span>√<span class="v">T</span></span><span>100</span></span></div>
+        <div class="eq"><span class="up">≈</span> <span class="frac"><span>0.4 <span class="up">×</span> <span class="v">S</span> <span class="up">×</span> √<span class="v">T</span></span><span>100</span></span> <span class="up">（平值）</span></div>
+        <p class="where">看涨和看跌（同一行权价、同一到期）的 Vega 相同，这同样是平价的结果。平值近似来自第 3 章的 0.4 法则：<span class="v">C</span> ≈ 0.4<span class="v">S</span>σ√<span class="v">T</span>，对 σ 求导就是 0.4<span class="v">S</span>√<span class="v">T</span>。</p>
+      </div>
+      <div class="tbl">
+        <table>
+          <caption>表 5-4　股价 $100、IV 30%：看涨期权的 Vega（每股）与 Vega 占价格的比例</caption>
+          <thead><tr><th>行权价</th><th>7 天</th><th>30 天</th><th>90 天</th><th>365 天</th></tr></thead>
+          <tbody>
+            <tr><td>90（实值）</td><td class="mono">0.002 · 0.0%</td><td class="mono">0.049 · 0.5%</td><td class="mono">0.138 · 1.1%</td><td class="mono">0.326 · 1.7%</td></tr>
+            <tr class="hl"><td>100（平值）</td><td class="mono">0.055 · 3.3%</td><td class="mono">0.114 · 3.2%</td><td class="mono">0.196 · 3.1%</td><td class="mono">0.383 · 2.8%</td></tr>
+            <tr><td>110（虚值）</td><td class="mono">0.004 · 25.4%</td><td class="mono">0.068 · 10.3%</td><td class="mono">0.175 · 6.4%</td><td class="mono">0.399 · 4.1%</td></tr>
+            <tr><td>平值近似 0.4·S·√T/100</td><td class="mono">0.055</td><td class="mono">0.115</td><td class="mono">0.199</td><td class="mono">0.400</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>四个观察：</p>
+      <ol>
+        <li><strong>Vega 与 √<span class="v">T</span> 成正比。</strong>365 天平值的 Vega（0.383）是 7 天的 7 倍。这正好和 Theta 反过来：Theta 正比于 1/√<span class="v">T</span>。期限越长，仓位越像一个波动率仓位；期限越短，越像一个时间仓位（案例 1）。</li>
+        <li><strong>峰值略高于现价。</strong>Vega 最大的行权价是 <span class="v">S</span>e<sup>(<span class="v">r</span>+σ²/2)<span class="v">T</span></sup>：30 天时是 100.7，一年时是 108.9。所以一年期的 110 看涨，Vega（0.399）比平值（0.383）还大。</li>
+        <li><strong>美元看平值，比例看虚值。</strong>30 天 110 看涨的 Vega 只有 0.068，但这占它价格的 10.3%。IV 从 30% 涨到 35%，它从 0.655 涨到 <span class="num">1.022</span>，涨了 56%；同期平值从 3.591 涨到 4.161，只涨了 16%。想用小钱押 IV 上升，虚值期权的弹性最大；反过来，IV 下跌时它也缩水得最狠。</li>
+        <li><strong>平值 Vega 几乎不随 IV 变。</strong>30 天平值看涨在 IV 15%、30%、60% 时的 Vega 分别是 0.1138、0.1140、0.1137。虚值 110 看涨却从 0.012 变到 0.068 再到 0.103。这个差别就是 5.7 节的 Volga。</li>
+      </ol>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">期限越长、越接近平值，Vega 越大</span><span class="fig-no">图 5-3 · 股价 $100，可拖动</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="纵轴单位">
+            <button type="button" data-mode="usd" aria-pressed="true">美元 Vega</button>
+            <button type="button" data-mode="pct" aria-pressed="false">Vega ÷ 价格</button>
+          </div>
+          <label class="ctl" for="f3-iv">隐含波动率 <input id="f3-iv" type="range" min="10" max="80" value="30"> <output id="f3-iv-o">30%</output></label>
+        </div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 320" role="img" aria-label="不同期限的看涨期权 Vega 随行权价变化"></svg>
+        <div class="legend" id="f3-legend"></div>
+        <div class="readout">
+          <div><b id="f3-r1">—</b><small>7 天平值 · 每张每点</small></div>
+          <div><b id="f3-r2">—</b><small>30 天平值 · 每张每点</small></div>
+          <div><b id="f3-r3">—</b><small>90 天平值 · 每张每点</small></div>
+          <div><b id="f3-r4">—</b><small>365 天平值 · 每张每点</small></div>
+        </div>
+        <figcaption>「美元 Vega」视图里，四条曲线的峰都在 100 附近，期限越长越高越宽，一年期的峰明显偏向 109 左右。切到「Vega ÷ 价格」，形状倒过来：越虚值、越短期，比例越高。把 IV 调高，美元曲线变宽，远处的行权价也开始有 Vega。</figcaption>
+      </figure>
+      <p>用 Vega 做的第一件事，是在买入前问一句：「如果 IV 回到这只股票的常态水平，我会亏多少？」假设一张 30 天平值看涨现在 IV 45%，这只股票平时的 IV 是 30%，那么光是 IV 回归就要亏掉约 <span class="num">15 × 0.114 = 1.71</span>/股（重新定价也是 1.71），相当于这张期权 19 天的 Theta（IV 45% 时每天 −0.091）。这笔潜在损失要和你的方向判断放在一起算。</p>
+      <h3>一个 IV 点在不同期限上并不等价</h3>
+      <p>Vega 回答的是「IV 变 1 点值多少钱」，但不同到期日的 IV 不会同样幅度地变。市场受惊时，30 天 IV 可能跳 10 个点，一年期 IV 只动三四个点：短期 IV 像浪花，长期 IV 像潮水。直接把一年期的 Vega 0.383 和 30 天的 0.114 相比，会高估长期期权的 IV 风险。</p>
+      <p>一种常见的修正是「时间加权 Vega」：Vega × √(30 / 天数)，相当于假设 <span class="v">T</span> 天期限的 IV 变动幅度是 30 天 IV 的 √(30/<span class="v">T</span>) 倍。平值期权按这个口径算，7、30、90、365 天分别是 <span class="num">0.114</span>、<span class="num">0.114</span>、<span class="num">0.113</span>、<span class="num">0.110</span>，几乎一样。也就是说，30 天 IV 涨 10 点（平值看涨 +1.14）、一年期 IV 只涨 2.9 点时，一年期平值看涨涨 +1.10，两者的美元影响相当；如果一年期 IV 也涨满 10 点，它会涨 3.83。平方根关系只是经验近似，不同时期短期和长期 IV 的联动比例差别很大，第 6 章讲期限结构时再细看。</p>
+      <h3>仓位的 Vega</h3>
+      <p>仓位 Vega = 单张 Vega × 100 × 张数 × 方向。买入期权 Vega 为正，卖出为负。价差的两条腿会部分抵消：30 天 100/110 看涨价差（买 100、卖 110）的 Vega 是 <span class="num">0.114 − 0.068 = 0.046</span>，只有单买平值看涨的四成。这就是为什么事件前很多人用价差代替单腿：方向敞口保留了一部分，IV 风险削掉了一大半。</p>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">5.5</span>IV 崩塌</h2>
+      <p>事件前 IV 被抬高，事件一过就塌回正常水平。只要塌陷的幅度够大，方向看对的买方也会亏钱。</p>
+      <p>设定一个财报场景（IV 为假设值）：股价 $100，今晚发财报。7 天后到期的平值期权 IV 80%，看涨 <span class="num">$4.454</span>，看跌 <span class="num">$4.378</span>，跨式 <span class="num">$8.832</span>。明天，期权还剩 6 天，IV 回落到这只股票平时的 35%。</p>
+      <h3>先读出市场为财报定的价</h3>
+      <p>方差可以按天相加。7 天的总方差 = 6 个普通日的方差 + 财报日的方差：</p>
+      <div class="formula">
+        <div class="eq">0.80<sup>2</sup> <span class="up">×</span> <span class="frac"><span>7</span><span>365</span></span> <span class="up">=</span> 0.35<sup>2</sup> <span class="up">×</span> <span class="frac"><span>6</span><span>365</span></span> <span class="up">+</span> σ<sub>事件</sub><sup>2</sup></div>
+        <div class="eq"><span class="up">⇒</span> σ<sub>事件</sub> <span class="up">≈ 10.1%</span></div>
+        <p class="where">市场为财报当天定价的标准差约 10.1%，对应的平均绝对变动约 0.8 × 10.1% ≈ 8.1%（第 3 章的 0.8 法则）。</p>
+      </div>
+      <div class="tbl">
+        <table>
+          <caption>表 5-5　财报次日的盈亏（每股，IV 从 80% 落到 35%，剩 6 天）</caption>
+          <thead><tr><th>股价</th><th>看涨价格</th><th>看涨盈亏</th><th>若 IV 不变</th><th>跨式价格</th><th>跨式盈亏</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">90</td><td class="mono">0.014</td><td class="mono neg">−4.440</td><td class="mono neg">−3.676</td><td class="mono">9.963</td><td class="mono pos">+1.131</td></tr>
+            <tr><td class="mono">95</td><td class="mono">0.284</td><td class="mono neg">−4.171</td><td class="mono neg">−2.459</td><td class="mono">5.501</td><td class="mono neg">−3.331</td></tr>
+            <tr><td class="mono">100</td><td class="mono">1.823</td><td class="mono neg">−2.632</td><td class="mono neg">−0.333</td><td class="mono">3.579</td><td class="mono neg">−5.253</td></tr>
+            <tr class="hl"><td class="mono">103</td><td class="mono">3.746</td><td class="mono neg">−0.708</td><td class="mono pos">+1.407</td><td class="mono">4.426</td><td class="mono neg">−4.406</td></tr>
+            <tr><td class="mono">105</td><td class="mono">5.380</td><td class="mono pos">+0.926</td><td class="mono pos">+2.747</td><td class="mono">5.694</td><td class="mono neg">−3.138</td></tr>
+            <tr><td class="mono">108</td><td class="mono">8.145</td><td class="mono pos">+3.691</td><td class="mono pos">+4.992</td><td class="mono">8.224</td><td class="mono neg">−0.608</td></tr>
+            <tr><td class="mono">110</td><td class="mono">10.093</td><td class="mono pos">+5.639</td><td class="mono pos">+6.622</td><td class="mono">10.120</td><td class="mono pos">+1.288</td></tr>
+            <tr><td class="mono">115</td><td class="mono">15.067</td><td class="mono pos">+10.613</td><td class="mono pos">+11.043</td><td class="mono">15.068</td><td class="mono pos">+6.236</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>逐行读：</p>
+      <ul>
+        <li><strong>涨 3%，看涨仍亏 16%。</strong>如果 IV 不变，同样的涨幅本该赚 $1.41/股。看涨的盈亏平衡点是 <span class="num">+3.90%</span>：涨幅不到这个数，方向对了也亏钱。</li>
+        <li><strong>股价不动时的亏损怎么拆。</strong>−2.632 = 一天的时间损耗 −0.333 + IV 回落 −2.299。后者 ≈ 剩 6 天时的 Vega 0.051 × 45 个点 = 2.30。用建仓时的 Vega（0.055）去乘会高估一点，因为 Vega 也在随时间缩小。</li>
+        <li><strong>跨式要动超过 8.7% 才回本。</strong>盈亏平衡在 <span class="num">−8.83%</span> 和 <span class="num">+8.65%</span>，和市场定价的 8.1% 平均绝对变动差不多。买跨式等于押「这次的波动会比市场预期的还大」。</li>
+      </ul>
+      <div class="note">
+        <span class="tag">事件交易的盈亏算式</span>
+        <p>事件后的盈亏 ≈ Delta × Δ<span class="v">S</span> + ½ Gamma × Δ<span class="v">S</span>² − Vega × IV 回落点数 − 一天的 Theta。买方要赚钱，前两项必须超过后两项。下单前把「IV 回落到平时水平」代进去算一遍，就能知道需要多大的涨幅。</p>
+      </div>
+
+      <h3>事件前的 IV 爬升，和被推迟的 Theta</h3>
+      <p>IV 在事件前一路上升，一部分是恐慌，另一部分纯粹是算术。事件当天的方差是固定的一块，剩余天数越少，这块方差摊到每一天上就越多，年化 IV 自然越高。沿用上面的设定（平时 IV 35%，财报日标准差 10.1%），看一张在财报后 3 天到期的平值看涨，假设股价一直不动：</p>
+      <div class="tbl">
+        <table>
+          <caption>表 5-6　同一张期权在财报前后的 IV 与价格（股价不变，每股）</caption>
+          <thead><tr><th>距财报</th><th>剩余天数</th><th>隐含波动率</th><th>平值看涨</th><th>按 IV 不变算的 Theta</th></tr></thead>
+          <tbody>
+            <tr><td>30 天</td><td class="mono">33</td><td class="mono">48.2%</td><td class="mono">5.948</td><td class="mono">−0.092</td></tr>
+            <tr><td>17 天</td><td class="mono">20</td><td class="mono">55.1%</td><td class="mono">5.247</td><td class="mono">−0.134</td></tr>
+            <tr><td>7 天</td><td class="mono">10</td><td class="mono">69.6%</td><td class="mono">4.647</td><td class="mono">−0.235</td></tr>
+            <tr><td>3 天</td><td class="mono">6</td><td class="mono">85.2%</td><td class="mono">4.388</td><td class="mono">−0.368</td></tr>
+            <tr><td>1 天</td><td class="mono">4</td><td class="mono">101.4%</td><td class="mono">4.254</td><td class="mono">−0.534</td></tr>
+            <tr class="hl"><td>财报后</td><td class="mono">3</td><td class="mono">35.0%</td><td class="mono">1.282</td><td class="mono">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>从财报前 30 天到前 1 天，这张期权 29 天只掉了 1.69，平均每天 0.058，远小于平台按「IV 不变」显示的 Theta。财报一过，一夜掉了 2.97，占剩余价值的 70%。事件那一天的时间价值不会提前流失，它被「存」在 IV 里，在事件发生的那一刻一次性兑现。从这个角度看，IV 崩塌就是被推迟的 Theta。</p>
+      <p>两个推论：事件前看到的高 Theta 读数会高估每天的损耗，因为它假设 IV 不变；提前一两周买入事件期权，付出的日常 Theta 不多，真正的成本是最后那一夜。</p>
+      <figure class="plate" id="fig4">
+        <div class="fig-head"><span class="fig-title">IV 崩塌让方向正确的买方也亏钱</span><span class="fig-no">图 5-4 · 7 天平值，财报次日，每张盈亏</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="选择仓位">
+            <button type="button" data-k="c" aria-pressed="true">买看涨</button>
+            <button type="button" data-k="p" aria-pressed="false">买看跌</button>
+            <button type="button" data-k="s" aria-pressed="false">买跨式</button>
+          </div>
+          <label class="ctl" for="f4-pre">事前 IV <input id="f4-pre" type="range" min="40" max="120" value="80"> <output id="f4-pre-o">80%</output></label>
+        </div>
+        <div class="controls">
+          <label class="ctl" for="f4-mv">次日股价变动 <input id="f4-mv" type="range" min="-15" max="15" step="0.5" value="3"> <output id="f4-mv-o">+3.0%</output></label>
+          <label class="ctl" for="f4-post">事后 IV <input id="f4-post" type="range" min="10" max="100" value="35"> <output id="f4-post-o">35%</output></label>
+        </div>
+        <svg class="chart" id="f4-svg" viewBox="0 0 680 340" role="img" aria-label="股价变动与事后 IV 组合下的盈亏热区"></svg>
+        <div class="legend"><span><i style="border-color: var(--theta); border-top-width: 8px"></i>盈利区</span><span><i style="border-color: var(--gamma); border-top-width: 8px"></i>亏损区</span><span><i style="border-color: var(--ink)"></i>盈亏平衡线</span><span><i class="dash" style="border-color: var(--muted)"></i>事前 IV</span></div>
+        <div class="readout">
+          <div><b id="f4-r1">—</b><small>此点盈亏（每张）</small></div>
+          <div><b id="f4-r2">—</b><small>同样涨跌、IV 不变时</small></div>
+          <div><b id="f4-r3">—</b><small>此 IV 下的盈亏平衡变动</small></div>
+          <div><b id="f4-r4">—</b><small>建仓成本（每张）</small></div>
+        </div>
+        <figcaption>颜色越深，盈亏越大。默认的圆点在「涨 3%、IV 落到 35%」：方向对了，却在品红色的亏损区里。沿着虚线（IV 不变）往右走，涨 0.6% 就进了绿色区。把事后 IV 往下拖，盈亏平衡线向右移；切到「买跨式」，中间那条亏损带的宽度，就是你需要的波动幅度。</figcaption>
+      </figure>
+
+      <h3>怎么应对</h3>
+      <ul>
+        <li><strong>用价差</strong>：两条腿的 Vega 部分抵消（5.4 节），IV 崩塌的伤害小得多，代价是收益有上限。</li>
+        <li><strong>拉开期限</strong>：事件的方差摊在更多天里，远月期权的 IV 只被抬高几个点。同样的设定下，60 天平值看涨事前 IV 约 42.8%，股价不动时次日亏 18%；7 天的那张亏 59%。</li>
+        <li><strong>换工具</strong>：判断的是方向而非波动，可以考虑正股，或在事件后再进场。</li>
+        <li><strong>站到另一边</strong>：卖方收的正是这笔 IV 溢价，但要承担跳空风险。第 10 章专门讨论事件交易的结构选择。</li>
+      </ul>
+      <div class="note field">
+        <span class="tag">实战观察</span>
+        <p>交易者处理 IV 的几个常见做法：开盘时 IV 往往偏高，更适合卖期权，不适合追买；财报期间用借方价差代替单腿，让两条腿的 IV 崩塌互相抵消一部分；想押某只股票的方向、它的 IV 又太高时，换一个走势相关但 IV 较低的替代标的（比如同行业的 ETF）；判断需要较长时间兑现时，宁可买远月期权或直接用正股，因为近月期权的时间价值会让对的判断也亏钱。</p>
+      </div>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">5.6</span>Rho 与高利率下的 LEAPS</h2>
+      <p>Rho 是利率变动 1 个百分点时期权价格的变化。它与期限成正比：对 30 天期权几乎可以忽略，对两年期的 LEAPS 却相当于两个月的 Theta。</p>
+      <div class="formula">
+        <div class="eq"><span class="v">Rho</span><sub>看涨</sub> <span class="up">=</span> <span class="frac"><span><span class="v">K</span><span class="v">T</span><span class="v">e</span><sup>−<span class="v">rT</span></sup><span class="v">N</span>(<span class="v">d</span><sub>2</sub>)</span><span>100</span></span></div>
+        <div class="eq"><span class="v">Rho</span><sub>看跌</sub> <span class="up">=</span> <span class="up">−</span><span class="frac"><span><span class="v">K</span><span class="v">T</span><span class="v">e</span><sup>−<span class="v">rT</span></sup><span class="v">N</span>(−<span class="v">d</span><sub>2</sub>)</span><span>100</span></span></div>
+        <p class="where">公式里有一个 <span class="v">T</span>，所以 Rho 随期限线性增长。直觉来自平价 <span class="v">C</span> − <span class="v">P</span> = <span class="v">S</span> − <span class="v">K</span>e<sup>−<span class="v">rT</span></sup>：利率越高，行权价的现值越低，看涨相对看跌越贵。买看涨相当于「先锁定价格、到期再付钱」，利率越高，晚付钱越值钱。</p>
+      </div>
+      <div class="tbl">
+        <table>
+          <caption>表 5-7　平值期权（股价 = 行权价 = 100，IV 30%）在不同利率下的价格</caption>
+          <thead><tr><th>期限</th><th>看涨 @1%</th><th>@4%</th><th>@6%</th><th>看跌 @1%</th><th>@4%</th><th>@6%</th><th>看涨 Rho @4%</th></tr></thead>
+          <tbody>
+            <tr><td>30 天</td><td class="mono">3.470</td><td class="mono">3.591</td><td class="mono">3.673</td><td class="mono">3.388</td><td class="mono">3.263</td><td class="mono">3.181</td><td class="mono">0.041</td></tr>
+            <tr><td>1 年</td><td class="mono">12.368</td><td class="mono">13.753</td><td class="mono">14.717</td><td class="mono">11.373</td><td class="mono">9.832</td><td class="mono">8.894</td><td class="mono">0.474</td></tr>
+            <tr class="hl"><td>2 年</td><td class="mono">17.642</td><td class="mono">20.280</td><td class="mono">22.123</td><td class="mono">15.661</td><td class="mono">12.591</td><td class="mono">10.815</td><td class="mono">0.906</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li><strong>短期期权</strong>：利率从 4% 升到 6%，30 天看涨只涨 0.082，相当于一天多的 Theta。可以放心忽略。</li>
+        <li><strong>LEAPS</strong>：同样的利率变化，2 年期看涨涨 <span class="num">1.84</span>，看跌跌 <span class="num">1.78</span>。2 年期平值看涨的 Rho 是每张 $90.6，Theta 是每天 $1.57：利率变动 1 个百分点，相当于 58 天的时间损耗。</li>
+        <li><strong>低利率和高利率环境的差别</strong>：利率 1% 时，2 年期平值看涨和看跌只差 2 美元；利率 6% 时差 11 美元。同样一张 LEAPS 看涨，在高利率环境里要贵出一截，看跌则便宜一截。</li>
+      </ul>
+
+      <figure class="plate" id="fig5">
+        <div class="fig-head"><span class="fig-title">利率几乎不影响短期期权，却明显改变 LEAPS 的价格</span><span class="fig-no">图 5-5 · 股价 $100，IV 30%，可拖动</span></div>
+        <div class="controls">
+          <label class="ctl" for="f5-d">LEAPS 期限 <input id="f5-d" type="range" min="180" max="1095" step="5" value="730"> <output id="f5-d-o">730 天</output></label>
+          <label class="ctl" for="f5-k">行权价 <input id="f5-k" type="range" min="70" max="130" step="1" value="100"> <output id="f5-k-o">100</output></label>
+        </div>
+        <svg class="chart" id="f5-svg" viewBox="0 0 680 320" role="img" aria-label="期权价格随利率变化：LEAPS 与 30 天期权对比"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>LEAPS 看涨</span><span><i style="border-color: var(--gamma)"></i>LEAPS 看跌</span><span><i class="dash" style="border-color: var(--delta)"></i>30 天看涨</span><span><i class="dash" style="border-color: var(--gamma)"></i>30 天看跌</span></div>
+        <div class="readout">
+          <div><b id="f5-r1">—</b><small>LEAPS 看涨 Rho（每张每 1%）</small></div>
+          <div><b id="f5-r2">—</b><small>30 天看涨 Rho（每张每 1%）</small></div>
+          <div><b id="f5-r3">—</b><small>利率 4% → 6%：LEAPS 看涨</small></div>
+          <div><b id="f5-r4">—</b><small>利率 4% → 6%：LEAPS 看跌</small></div>
+        </div>
+        <figcaption>两条虚线几乎是水平的：30 天期权对利率不敏感。实线斜率就是 Rho，期限拖到 1095 天（3 年）时最陡。把行权价拖到 70，LEAPS 看涨的 Rho 反而比平值更大（每张 $102），看跌则变得很便宜：深度实值时，看涨对利率的敏感度几乎全部来自行权价的折现（案例 3）。</figcaption>
+      </figure>
+      <h3>股息：LEAPS 的另一个「利率」</h3>
+      <p>股息对期权的作用方向和利率相反：持股的人拿得到股息，看涨期权的持有人拿不到。对 30 天期权，2% 的股息率只让平值看涨便宜 0.09（第 3 章表 3-2）；对 2 年期平值看涨，股息率从 0 升到 1% 再到 2%，价格从 <span class="num">20.28</span> 降到 <span class="num">19.00</span> 再到 <span class="num">17.78</span>，看跌则从 12.59 升到 14.01。用 LEAPS 看涨代替高股息股票时，你放弃的两年股息已经从权利金里扣掉了；公司如果意外提高或削减股息，LEAPS 的价格也会随之变化。</p>
+      <p>持有 LEAPS 期间利率下降会带来损失：利率从 6% 降回 4%，2 年期平值看涨每张少 $184，股价和 IV 都不用动。长期持有 LEAPS 时，Rho 和 Delta、Vega 一样是需要盯的风险。</p>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">5.7</span>二阶希腊字母</h2>
+      <p>一阶希腊字母本身也会变。Vanna 连接 Delta 和 Vega，Charm 连接 Delta 和 Theta，Volga 描述 Vega 自己随 IV 怎么变。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 5-8　四个常用的二阶希腊字母</caption>
+          <thead><tr><th>名称</th><th style="text-align:left">定义</th><th style="text-align:left">另一种读法</th><th style="text-align:left">什么时候重要</th></tr></thead>
+          <tbody>
+            <tr><td>Vanna</td><td class="mono" style="text-align:left">∂Delta/∂σ</td><td style="text-align:left">= ∂Vega/∂S：股价变动时 Vega 怎么变</td><td style="text-align:left">虚值期权遇上 IV 大幅变化</td></tr>
+            <tr><td>Charm</td><td class="mono" style="text-align:left">∂Delta/∂t</td><td style="text-align:left">= ∂Theta/∂S：股价变动时 Theta 怎么变</td><td style="text-align:left">临近到期，到期日的对冲流</td></tr>
+            <tr><td>Volga（Vomma）</td><td class="mono" style="text-align:left">∂Vega/∂σ</td><td style="text-align:left">Vega 的「Gamma」：价格对 IV 的弯曲程度</td><td style="text-align:left">远虚值期权在 IV 飙升时</td></tr>
+            <tr><td>Veta</td><td class="mono" style="text-align:left">∂Vega/∂t</td><td style="text-align:left">Vega 随时间缩小的速度</td><td style="text-align:left">长期持有波动率仓位</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Vanna：同一个数的两种读法</h3>
+      <p>第 4 章算过，30 天 110 看涨的 Delta 随 IV 上升而变大，IV 每升 1 点 Delta 增加约 0.009。换个角度：股价从 100 涨到 101，这张期权的 Vega 从 <span class="num">0.0675</span> 变成 <span class="num">0.0763</span>，增加 0.0087。两个数用中心差分算都是 <span class="num">0.00873</span>，完全相等。这不是巧合：两者都是价格对 <span class="v">S</span> 和 σ 的交叉二阶导数，求导顺序可以交换。</p>
+      <p>实务意义：股价朝虚值期权的行权价走过去时，它的 IV 敞口在变大。平值期权的 Vanna 接近 0；实值的 90 看涨 Vanna 为负（−0.0069），股价上涨时它的 Vega 反而在变小。</p>
+
+      <h3>Charm：Theta 和 Delta 的同一件事</h3>
+      <p>110 看涨（30 天）过一天，Delta 从 0.152 掉了 <span class="num">0.0047</span>。同时，股价每涨 $1，它每天的 Theta 多扣 <span class="num">0.0047</span>。这又是同一个交叉导数。实值的 90 看涨正好相反，Delta 每天往 1 漂 0.0033。第 4 章讲过 Charm 带来的到期日对冲流，这里补充的是它和 Theta 的关系：一个仓位的 Theta 对股价越敏感，它的 Delta 随时间漂得越快。</p>
+
+      <h3>Volga：虚值期权在 IV 飙升时「超额」上涨</h3>
+      <p>Vega 是按 IV 变化 1 点线性外推的。平值期权价格对 IV 几乎是直线，外推很准；虚值期权的价格对 IV 是向上弯的曲线，IV 大涨时实际涨幅远超 Vega 的预测。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 5-9　30 天期权，IV 从 30% 跳升时：Vega 线性估算 vs 实际价格</caption>
+          <thead><tr><th>合约</th><th>IV 30% 价格</th><th>Vega</th><th>IV 50%：估算</th><th>实际</th><th>IV 60%：估算</th><th>实际</th></tr></thead>
+          <tbody>
+            <tr><td>100 看涨（平值）</td><td class="mono">3.591</td><td class="mono">0.114</td><td class="mono">5.871</td><td class="mono">5.870</td><td class="mono">7.011</td><td class="mono">7.008</td></tr>
+            <tr><td>90 看跌（虚值）</td><td class="mono">0.401</td><td class="mono">0.049</td><td class="mono">1.375</td><td class="mono">1.754</td><td class="mono">1.863</td><td class="mono">2.604</td></tr>
+            <tr class="hl"><td>85 看跌（远虚值）</td><td class="mono">0.081</td><td class="mono">0.016</td><td class="mono">0.409</td><td class="mono">0.807</td><td class="mono">0.573</td><td class="mono">1.409</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>IV 从 30% 翻倍到 60%，85 看跌的实际价格是 Vega 估算的 2.5 倍。这就是远虚值看跌被当作崩盘保险的原因之一：危机里它同时吃到 Delta、Gamma、Vega 和 Volga。也是卖远虚值期权的人在危机中亏损远超预期的原因：负 Volga 意味着 IV 涨得越多，你的 Vega 敞口越大。举个数字：卖 10 张 30 天 85 看跌收 $81，股价不动、IV 从 30% 翻倍到 60%，亏损是 <span class="num">$1,328</span>，而按 Vega 估算只有 <span class="num">0.0164 × 30 × 1,000 = $492</span>。用 Vega 给卖方仓位做压力测试，会把尾部风险低估一半以上，必须直接重新定价。</p>
+      <h3>Veta：Vega 也会老化</h3>
+      <p>30 天平值看涨的 Vega 过一天从 0.1140 降到 0.1121。持有一个长期的正 Vega 仓位，即使 IV 不变，你的 IV 敞口也在一天天缩小。5.5 节用「剩 6 天时的 Vega」去估算 IV 崩塌的损失，用的就是这一点。</p>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">5.8</span>读一张完整的 Greeks 表</h2>
+      <p>读 Greeks 表分三步：先看符号判断仓位的形状，再把每个数换成美元情景，最后用二阶项检查这些数会怎么变。</p>
+      <p>例子是一个常见的对角价差（常被叫作「穷人的备兑」）：股价 $100、IV 30%，买 5 张 365 天的 85 看涨（代替正股），卖 5 张 30 天的 105 看涨（收租）。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 5-10　对角价差的完整 Greeks（仓位合计，美元或股数）</caption>
+          <thead><tr><th>项目</th><th>买 5 张 365 天 85 看涨</th><th>卖 5 张 30 天 105 看涨</th><th>合计</th></tr></thead>
+          <tbody>
+            <tr><td>每股价格</td><td class="mono">22.347</td><td class="mono">1.662</td><td class="mono">—</td></tr>
+            <tr><td>仓位价值</td><td class="mono">+11,174</td><td class="mono">−831</td><td class="mono">+10,343</td></tr>
+            <tr><td>Delta（股）</td><td class="mono">+397.7</td><td class="mono">−156.7</td><td class="mono">+240.9</td></tr>
+            <tr><td>Gamma（股 / 美元）</td><td class="mono">+4.7</td><td class="mono">−20.6</td><td class="mono neg">−15.9</td></tr>
+            <tr><td>Theta（美元 / 天）</td><td class="mono">−8.97</td><td class="mono">+27.03</td><td class="mono pos">+18.07</td></tr>
+            <tr><td>Vega（美元 / IV 点）</td><td class="mono">+141.9</td><td class="mono">−50.8</td><td class="mono">+91.1</td></tr>
+            <tr><td>Rho（美元 / 1% 利率）</td><td class="mono">+285.9</td><td class="mono">−12.2</td><td class="mono">+273.7</td></tr>
+            <tr><td>Vanna（Vega 美元 / 股价 $1）</td><td class="mono" colspan="2" style="text-align:center">—</td><td class="mono">−5.9</td></tr>
+            <tr><td>Charm（股 / 天）</td><td class="mono" colspan="2" style="text-align:center">—</td><td class="mono">+2.0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>逐项读</h3>
+      <ol>
+        <li><strong>Delta +241</strong>：方向上相当于持有 241 股，占用资金 $10,343。买 241 股要 $24,100。</li>
+        <li><strong>Gamma −15.9</strong>：股价每涨 $1，Delta 少 15.9 股，涨得越多越不像股票；跌的时候 Delta 反而变大，越跌亏得越快。负 Gamma 意味着大涨大跌都不受欢迎，它来自卖出的那张短期看涨。</li>
+        <li><strong>Theta +$18/天</strong>：每天净收 $18。短腿每天给 $27，长腿每天扣 $9。</li>
+        <li><strong>Vega +$91/点</strong>：IV 每降 1 点亏 $91，约等于 5 天的 Theta。长腿的 Vega 远大于短腿（5.4 节：Vega 正比于 √<span class="v">T</span>），所以这个「收租」仓位其实是做多波动率的。</li>
+        <li><strong>Rho +$274/1%</strong>：利率升 1 个百分点赚 $274，约 15 天的 Theta。原因是长腿是一年期期权（5.6 节）。</li>
+        <li><strong>Vanna −5.9</strong>：股价每涨 $1，仓位 Vega 少 $5.9。股价涨向 105 时，短腿越来越接近平值，它的负 Vega 在变大。</li>
+        <li><strong>Charm +2.0</strong>：什么都不变，Delta 每天增加约 2 股。短腿是虚值期权，它的 Delta 每天往 0 漂，对冲掉的部分越来越少。</li>
+      </ol>
+      <h3>把数字换成情景</h3>
+      <div class="tbl">
+        <table>
+          <caption>表 5-11　Greeks 估算与重新定价（仓位盈亏，美元）</caption>
+          <thead><tr><th>情景</th><th>Greeks 估算</th><th>重新定价</th><th style="text-align:left">差别来自</th></tr></thead>
+          <tbody>
+            <tr><td>股价 +5</td><td class="mono pos">+1,006</td><td class="mono pos">+990</td><td style="text-align:left">Gamma 本身在变</td></tr>
+            <tr><td>股价 −5</td><td class="mono neg">−1,403</td><td class="mono neg">−1,374</td><td style="text-align:left">同上</td></tr>
+            <tr><td>股价 +10</td><td class="mono pos">+1,615</td><td class="mono pos">+1,539</td><td style="text-align:left">高阶项</td></tr>
+            <tr class="hl"><td>股价 −10</td><td class="mono neg">−3,203</td><td class="mono neg">−2,945</td><td style="text-align:left">短腿 Gamma 跌远后迅速消失</td></tr>
+            <tr><td>IV −5 点</td><td class="mono neg">−456</td><td class="mono neg">−432</td><td style="text-align:left">Volga</td></tr>
+            <tr><td>过 7 天</td><td class="mono pos">+126</td><td class="mono pos">+133</td><td style="text-align:left">短腿 Theta 加速</td></tr>
+            <tr><td>利率 +1%</td><td class="mono pos">+274</td><td class="mono pos">+275</td><td style="text-align:left">几乎线性</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note warn">
+        <span class="tag">读券商 Greeks 时先确认单位</span>
+        <ul>
+          <li>是每股还是每张，是单张还是整个仓位：同一个 Theta 可能显示为 −0.06、−6 或 −30。</li>
+          <li>Theta 按日历天还是交易日，周五是否已经计入周末（5.3 节）。</li>
+          <li>Vega 按 IV 变 1 个百分点（本课程的约定），有的平台按 1%（相对变化）或按 0.01 的小数显示。</li>
+          <li>卖出仓位的符号有没有翻转：有的平台列出的是单张合约本身的 Greeks，需要自己乘以 −1。</li>
+        </ul>
+      </div>
+      <div class="note gam">
+        <span class="tag">一句话总结这个仓位</span>
+        <p>它最怕短期内急跌（正 Delta 加负 Gamma，跌 $10 亏掉近三成本金）和 IV 回落（正 Vega）；最希望股价缓慢涨到 105 附近、IV 平稳。每天 $18 的 Theta 收入，抵不过 IV 降 1 点或股价跌 $0.1 左右的损失，所以「收租」只是这个仓位的次要收益来源。</p>
+      </div>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">案例</span>三个案例</h2>
+
+      <div class="case">
+        <div class="case-no">案例 1</div>
+        <h3>同一行权价，7、30、90、365 天：时间仓位还是波动率仓位</h3>
+        <p>股价 $100、IV 30%，比较行权价 100 的看涨期权在不同期限下的 Theta 和 Vega：</p>
+        <div class="tbl">
+          <table>
+            <caption>表 5-12　平值看涨（每股）</caption>
+            <thead><tr><th>期限</th><th>价格</th><th>Theta</th><th>Theta 占价格 / 天</th><th>Vega</th><th>抵消一天 Theta 需要 IV 上升</th><th>一个 IV 点 = 几天 Theta</th></tr></thead>
+            <tbody>
+              <tr><td>7 天</td><td class="mono">1.695</td><td class="mono">−0.124</td><td class="mono">7.3%</td><td class="mono">0.055</td><td class="mono">2.24 点</td><td class="mono">0.45</td></tr>
+              <tr><td>30 天</td><td class="mono">3.591</td><td class="mono">−0.062</td><td class="mono">1.74%</td><td class="mono">0.114</td><td class="mono">0.55 点</td><td class="mono">1.8</td></tr>
+              <tr><td>90 天</td><td class="mono">6.412</td><td class="mono">−0.038</td><td class="mono">0.59%</td><td class="mono">0.196</td><td class="mono">0.19 点</td><td class="mono">5.2</td></tr>
+              <tr class="hl"><td>365 天</td><td class="mono">13.753</td><td class="mono">−0.021</td><td class="mono">0.15%</td><td class="mono">0.383</td><td class="mono">0.05 点</td><td class="mono">18.3</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>从 7 天到 365 天，Theta 缩小到六分之一，Vega 放大到七倍。两者的比值 |Θ| / Vega 正比于 1/<span class="v">T</span>，所以差距是平方级的：</p>
+        <ul>
+          <li><strong>7 天</strong>：IV 每天要涨 2.24 个点才能抵消 Theta。几乎不可能靠 IV 赚钱，这是一个纯粹的「时间 + Gamma」仓位：要么股价马上大动，要么亏掉时间价值。</li>
+          <li><strong>365 天</strong>：一个 IV 点就值 18 天的 Theta。IV 从 30% 掉到 25%，相当于约三个月的时间损耗一次性发生（开篇表 5-0 的最后一行）。这是一个波动率仓位，方向和时间反而是次要的。</li>
+        </ul>
+        <p>行权价换成虚值的 110，结论不变，只是比例更极端：30 天 110 看涨每天掉 5.4%，Vega 占价格 10.3%；365 天时分别是 0.21% 和 4.1%。</p>
+        <div class="note gam">
+          <span class="tag">启示</span>
+          <p>选期限就是在选你押的是什么。押「马上会有大动作」用短期，押「波动率会上升」用长期。用长期期权押方向时，记得 IV 下跌几个点就能抹掉好几个月的收益；用短期期权押 IV 上升，几乎总是被 Theta 打败。</p>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 2</div>
+        <h3>2020 年 3 月：VIX 创纪录之后再买看跌</h3>
+        <p>2020 年 3 月中旬，美股连续暴跌，VIX 收盘创下历史纪录。很多人在这时才开始买看跌期权「保护」。之后的走势是：标普 500 在 3 月下旬见底，4 月大幅反弹，隐含波动率在随后几个月里逐步回落。高位买入的看跌期权，大多同时遭遇了方向和波动率两重打击。</p>
+        <p>用假设的数字演示（指数归一为 100）：在 IV 70% 时买入 30 天平值看跌，价格 <span class="num">$7.817</span>。作为对比，同样的平值看跌在 IV 16% 的平静时期只要 <span class="num">$1.667</span>，同样的保护贵了 4.7 倍。十天后（剩 20 天）的几种情景：</p>
+        <div class="tbl">
+          <table>
+            <caption>表 5-13　IV 70% 买入的 30 天平值看跌，十天后（每股）</caption>
+            <thead><tr><th style="text-align:left">情景</th><th>指数</th><th>IV</th><th>看跌价格</th><th>盈亏</th></tr></thead>
+            <tbody>
+              <tr><td style="text-align:left">再跌 5%，IV 维持 70%</td><td class="mono">95</td><td class="mono">70%</td><td class="mono">9.033</td><td class="mono pos">+15.6%</td></tr>
+              <tr class="hl"><td style="text-align:left">再跌 5%，IV 回落到 50%</td><td class="mono">95</td><td class="mono">50%</td><td class="mono">7.329</td><td class="mono neg">−6.2%</td></tr>
+              <tr><td style="text-align:left">横盘，IV 回落到 45%</td><td class="mono">100</td><td class="mono">45%</td><td class="mono">4.087</td><td class="mono neg">−47.7%</td></tr>
+              <tr><td style="text-align:left">反弹 8%，IV 回落到 35%</td><td class="mono">108</td><td class="mono">35%</td><td class="mono">0.755</td><td class="mono neg">−90.3%</td></tr>
+              <tr><td style="text-align:left">再跌 10%，IV 60%</td><td class="mono">90</td><td class="mono">60%</td><td class="mono">11.571</td><td class="mono pos">+48.0%</td></tr>
+              <tr><td style="text-align:left">再跌 15%，IV 升到 75%</td><td class="mono">85</td><td class="mono">75%</td><td class="mono">16.362</td><td class="mono pos">+109.3%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>第二行最能说明问题：方向判断对了，指数又跌了 5%，但只要 IV 从 70% 落到 50%，看跌仍然亏钱。算盈亏平衡：如果十天后 IV 落到 50%，指数必须跌到 <span class="num">94.25</span>（再跌 5.75%）才能回本；如果 IV 能维持 70%，只需跌到 97.18。</p>
+        <p>为什么 IV 高位之后大概率回落？波动率有均值回归的倾向，极端值很难长期维持（第 6 章）。这张看跌建仓时的 Theta 是每天 <span class="num">−0.127</span>，是 IV 16% 时同类期权（−0.025）的五倍；Vega 是 0.114，IV 每降 1 点再亏 0.11。</p>
+        <div class="note gam">
+          <span class="tag">启示</span>
+          <ul>
+            <li>保险要在平静时买。危机中买保护，买的是全年最贵的波动率，它需要「继续大跌」和「恐慌维持」同时发生才能赚钱。</li>
+            <li>高 IV 时想表达看空，可以用看跌价差（卖出更低行权价的看跌，抵消一部分 Vega），或者直接减少正股仓位；这时单腿看跌是最吃亏的选择。</li>
+            <li>下单前把「IV 回落 20 个点」代进去算一次，就能看出你需要多大的跌幅。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 3</div>
+        <h3>高利率下，LEAPS 的时间价值大部分是利息</h3>
+        <p>股价 $100，IV 30%，买一张 2 年期 70 看涨（深度实值，常被用来代替正股）。用第 3 章的平价把它的时间价值拆开：<span class="v">C</span> = (<span class="v">S</span> − <span class="v">K</span>) + <span class="v">K</span>(1 − e<sup>−<span class="v">rT</span></sup>) + <span class="v">P</span>，即「内在价值 + 行权价的利息 + 同一行权价看跌的价格」。</p>
+        <div class="tbl">
+          <table>
+            <caption>表 5-14　2 年期 70 看涨的价格拆解（每股）</caption>
+            <thead><tr><th>利率</th><th>看涨价格</th><th>内在价值</th><th>时间价值</th><th>其中：利息</th><th>其中：看跌保险</th><th>Delta</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">4%</td><td class="mono">38.030</td><td class="mono">30</td><td class="mono">8.030</td><td class="mono">5.382</td><td class="mono">2.648</td><td class="mono">0.893</td></tr>
+              <tr class="hl"><td class="mono">6%</td><td class="mono">40.073</td><td class="mono">30</td><td class="mono">10.073</td><td class="mono">7.916</td><td class="mono">2.157</td><td class="mono">0.909</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>利率 6% 时，时间价值的 79% 是利息。买这张看涨，相当于用 $4,007 控制约 91 股，同时「借」了行权价 $7,000 两年，利息已经预付在权利金里。</p>
+        <p>这笔利息算不算损失，取决于省下来的钱放在哪里：</p>
+        <ul>
+          <li><strong>省下的现金买了短期国债</strong>：买股票要 $10,000，买看涨只要 $4,007，剩下 $5,993 按 6% 计息。平价保证两者最终打平，利息并没有白付。</li>
+          <li><strong>省下的现金躺在账户里不计息</strong>：两年白付 <span class="num">70 × (1 − e<sup>−0.12</sup>) × 100 ≈ $792</span>（利率 4% 时是 $538）。</li>
+          <li><strong>拿省下的钱再买更多 LEAPS</strong>：这就是在加杠杆，Delta 敞口会远超你的本金。</li>
+        </ul>
+        <div class="note gam">
+          <span class="tag">启示</span>
+          <p>高利率环境下，LEAPS 看涨的价格里有一大块是融资成本。用它代替正股时，要么让省下的现金去赚同样的利息，要么接受这笔成本；同时要知道，持有期间利率下降会让这张期权贬值（Rho 约每张 $102/1%）。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">工具</span>清单与自测</h2>
+      <p>勾选状态只保存在你自己的浏览器里。</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">5-1</span>买入前：时间</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">算持有期的累计 Theta，临近到期要按加速放大</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">平值避开最后两三周；虚值避开「离行权价一个标准差」那一段</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">确认平台的 Theta 按日历天还是交易日</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">5-2</span>买入前：波动率</h4>
+          <ul>
+            <li><input type="checkbox" id="k4"><label for="k4">查当前 IV 在它自己历史里的位置（第 6 章）</label></li>
+            <li><input type="checkbox" id="k5"><label for="k5">有事件：算「事后 IV 回到平时水平」的盈亏平衡点</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">Vega 过大时考虑价差，让两条腿互相抵消</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">5-3</span>持仓中：Greeks 体检</h4>
+          <ul>
+            <li><input type="checkbox" id="k7"><label for="k7">把 Theta、Vega、Rho 都换成每天、每点、每 1% 的美元数</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">算 Vega ÷ |Theta|：一个 IV 点值几天的 Theta</label></li>
+            <li><input type="checkbox" id="k9"><label for="k9">持有 LEAPS：把利率变动列入情景</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">5-4</span>卖方：收 Theta 之前</h4>
+          <ul>
+            <li><input type="checkbox" id="k10"><label for="k10">这笔 Theta 对应多少负 Gamma（第 4 章）</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">IV 飙升 10 点、20 点时直接重新定价，不用 Vega 外推</label></li>
+            <li><input type="checkbox" id="k12"><label for="k12">远虚值看 Vega 占价格的比例，而不只看美元 Vega</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>自测五题</h3>
+      <details class="q"><summary><span class="num">1</span><span>30 天平值看涨的 Theta 是 −0.062。十天后（股价、IV 不变）大约损失多少？实际会更多还是更少？</span></summary>
+        <div class="ans"><p>按 Theta 估算 <span class="num">0.062 × 10 ≈ 0.62</span>；实际是 <span class="num">3.591 − 2.909 = 0.68</span>，更多。平值期权的 Theta 随到期临近而变大，用当前 Theta 外推会低估。</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>30 天 110 看涨价格 0.655，Vega 0.0675。IV 从 30% 升到 35%，用 Vega 估算新价格和涨幅，实际又是多少？</span></summary>
+        <div class="ans"><p>估算 <span class="num">0.655 + 5 × 0.0675 = 0.993</span>，涨 52%。实际是 <span class="num">1.022</span>，涨 56%，多出来的部分来自 Volga。同期平值看涨只涨 16%。</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>财报前 7 天平值跨式 $8.83（IV 80%），预计财报后 IV 回到 35%。股价第二天要动多少，跨式才回本？市场为财报日定价的标准差大约多少？</span></summary>
+        <div class="ans"><p>盈亏平衡约 <span class="num">+8.65% / −8.83%</span>。财报日标准差：<span class="num">√(0.80² × 7 − 0.35² × 6) / √365 ≈ 10.1%</span>，对应平均绝对变动约 8.1%。</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>2 年期平值看涨 Rho 0.906，平值看跌 Rho −0.940。利率从 4% 升到 6%，两者大约怎么变？</span></summary>
+        <div class="ans"><p>看涨约 <span class="num">+0.906 × 2 ≈ +1.81</span>（实际 +1.84），看跌约 <span class="num">−0.940 × 2 ≈ −1.88</span>（实际 −1.78）。Rho 本身也随利率变，所以线性估算有一点偏差。每张分别约 +$184 和 −$178。</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>一个仓位：Delta +241 股，Gamma −15.9，Theta +$18/天，Vega +$91/点。它最怕的两种情景是什么？</span></summary>
+        <div class="ans"><p>一是短期内急跌：正 Delta 带来亏损，负 Gamma 让 Delta 随下跌变大，越跌越快（跌 $10 约亏 $2,945）。二是 IV 回落：每降 1 点亏 $91，降 5 点约亏 $432，相当于三周多的 Theta。</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="章节翻页"></nav>
+
+    <footer class="end">
+      <p>本章示例由 Black-Scholes 模型计算（利率 4%，不派息，一年 365 天；5.3 节另用交易日时钟作对比），财报与 2020 年情景中的 IV 为假设值，用于教学，不构成投资建议。</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+  const signed = (v, d) => (v > 0.0000001 ? "+" : v < -0.0000001 ? "−" : "") + Math.abs(v).toFixed(d === undefined ? 2 : d);
+  function niceStep(span, n) {
+    const raw = span / n, p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p;
+    return (f < 1.5 ? 1 : f < 3 ? 2 : f < 7 ? 5 : 10) * p;
+  }
+  function axis(lo, hi, n) {
+    const st = niceStep(hi - lo, n || 5);
+    const a = Math.floor(lo / st + 1e-9) * st, b = Math.ceil(hi / st - 1e-9) * st;
+    const t = []; for (let v = a; v <= b + st * 1e-6; v += st) t.push(+v.toFixed(6));
+    return { lo: a, hi: b, t };
+  }
+
+  // ---------- fig 5-1 时间价值衰减 ----------
+  (function () {
+    const svg = document.getElementById("f1-svg");
+    const ivS = document.getElementById("f1-iv");
+    const btns = document.querySelectorAll("#fig1 .seg button");
+    const Ks = [95, 100, 105, 110], cols = ["var(--warn)", "var(--delta)", "var(--theta)", "var(--gamma)"], ws = [1.8, 2.8, 2.2, 2.4];
+    const names = ["95 看涨（实值）", "100 看涨（平值）", "105 看涨", "110 看涨"];
+    let mode = "usd";
+    const tv = (K, d, s) => d <= 0 ? 0 : bs(100, K, d / DAY, s, "c").price - Math.max(100 - K, 0);
+    function draw() {
+      const s = +ivS.value / 100;
+      document.getElementById("f1-iv-o").textContent = ivS.value + "%";
+      const rems = range(0, 90, 0.5);
+      const series = Ks.map((K, i) => {
+        const v90 = tv(K, 90, s);
+        return { pts: rems.map(r => [90 - r, mode === "usd" ? tv(K, r, s) : (v90 > 1e-9 ? tv(K, r, s) / v90 * 100 : 0)]), color: cols[i], w: ws[i] };
+      });
+      let y, yt, yf, ylabel;
+      if (mode === "usd") {
+        const ya = axis(0, Math.max(...series.flatMap(q => q.pts.map(p => p[1]))) * 1.05, 5);
+        y = [0, ya.hi]; yt = ya.t; yf = v => (+v.toFixed(2)).toString(); ylabel = "时间价值（美元/股）";
+      } else { y = [0, 105]; yt = [0, 25, 50, 75, 100]; yf = v => v + "%"; ylabel = "占 90 天时的比例"; }
+      plot(svg, {
+        x: [0, 90], y, xt: [0, 15, 30, 45, 60, 75, 90], yt, yf, xf: v => 90 - v,
+        xlabel: "剩余天数", ylabel, vline: 60, series
+      });
+      document.getElementById("f1-legend").innerHTML = Ks.map((K, i) => `<span><i style="border-color: ${cols[i]}"></i>${names[i]}</span>`).join("") + `<span><i class="dash" style="border-color: var(--muted)"></i>剩 30 天</span>`;
+      const a90 = tv(100, 90, s), a30 = tv(100, 30, s), o90 = tv(110, 90, s), o30 = tv(110, 30, s);
+      document.getElementById("f1-r1").textContent = (a30 / a90 * 100).toFixed(1) + "%";
+      document.getElementById("f1-r2").textContent = o90 > 1e-9 ? ((1 - o30 / o90) * 100).toFixed(1) + "%" : "—";
+      document.getElementById("f1-r3").textContent = fmt(bs(100, 100, 1 / DAY, s, "c").theta, 3);
+      let best = 1, bv = 0;
+      for (let d = 1; d <= 400; d++) { const th = -bs(100, 110, d / DAY, s, "c").theta; if (th > bv) { bv = th; best = d; } }
+      document.getElementById("f1-r4").textContent = "剩 " + best + " 天";
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      mode = b.dataset.mode;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    ivS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 5-2 周末（静态） ----------
+  (function () {
+    const svg = document.getElementById("f2-svg");
+    const cal = [0.198, 0.069, 0.070, 0.071, 0.073], trd = [0.100, 0.091, 0.094, 0.096, 0.099];
+    const days = ["周一", "周二", "周三", "周四", "周五"];
+    function draw() {
+      const narrow = (svg.getBoundingClientRect().width || 680) < 560;
+      const bars = [], labels = [];
+      cal.forEach((v, i) => {
+        bars.push({ x: i + 1 - 0.19, y: v, w: 0.34, color: "var(--delta)" });
+        bars.push({ x: i + 1 + 0.19, y: trd[i], w: 0.34, color: "var(--theta)" });
+        labels.push([i + 1 - 0.19, v, narrow ? v.toFixed(2).slice(1) : v.toFixed(3), 0, -6, "middle", "var(--delta)"]);
+        labels.push([i + 1 + 0.19, trd[i], narrow ? trd[i].toFixed(2).slice(1) : trd[i].toFixed(3), 0, -6, "middle", "var(--theta)"]);
+      });
+      const res = plot(svg, {
+        x: [0.45, 5.55], y: [0, 0.23], xt: [], yt: [0, 0.05, 0.10, 0.15, 0.20], yf: v => v.toFixed(2),
+        xlabel: "", ylabel: "当日损耗（美元/股）", bars, labels
+      });
+      const ax = svg.querySelector("g.ax");
+      days.forEach((t, i) => { el("text", { x: res.X(i + 1), y: res.H - res.m.b + 18, "text-anchor": "middle", style: "fill: var(--muted); font-family: var(--font-body); font-size: 12.5px" }, ax).textContent = t; });
+    }
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 5-3 Vega 随行权价与期限 ----------
+  (function () {
+    const svg = document.getElementById("f3-svg");
+    const ivS = document.getElementById("f3-iv");
+    const btns = document.querySelectorAll("#fig3 .seg button");
+    const days = [7, 30, 90, 365], ops = [0.35, 0.55, 0.78, 1];
+    let mode = "usd";
+    function draw() {
+      const s = +ivS.value / 100;
+      document.getElementById("f3-iv-o").textContent = ivS.value + "%";
+      const xs = range(70, 130, 0.25);
+      const series = days.map((d, i) => {
+        const pts = [];
+        xs.forEach(K => {
+          const g = bs(100, K, d / DAY, s, "c");
+          if (mode === "usd") pts.push([K, g.vega]);
+          else if (g.price > 0.02) pts.push([K, Math.min(g.vega / g.price * 100, 60)]);
+        });
+        return { pts, color: "var(--delta)", w: 2.4, op: ops[i] };
+      });
+      if (mode === "usd") {
+        const top = Math.max(...series.map(q => Math.max(...q.pts.map(p => p[1])))) * 1.08;
+        const ya = axis(0, top, 5);
+        plot(svg, { x: [70, 130], y: [0, ya.hi], xt: range(70, 130, 10), yt: ya.t, yf: v => v.toFixed(2), xlabel: "行权价（美元）", ylabel: "Vega（美元/股/点）", vline: 100, series });
+      } else {
+        plot(svg, { x: [70, 130], y: [0, 30], xt: range(70, 130, 10), yt: [0, 5, 10, 15, 20, 25, 30], yf: v => v + "%", xlabel: "行权价（美元）", ylabel: "Vega ÷ 价格", vline: 100, series });
+      }
+      ["f3-r1", "f3-r2", "f3-r3", "f3-r4"].forEach((id, i) => {
+        document.getElementById(id).textContent = "$" + (bs(100, 100, days[i] / DAY, s, "c").vega * 100).toFixed(2);
+      });
+    }
+    document.getElementById("f3-legend").innerHTML = days.map((d, i) => `<span><i style="border-color: var(--delta); opacity: ${ops[i]}"></i>剩 ${d} 天</span>`).join("");
+    btns.forEach(b => b.addEventListener("click", () => {
+      mode = b.dataset.mode;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    ivS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 5-4 IV 崩塌热区 ----------
+  (function () {
+    const svg = document.getElementById("f4-svg");
+    const preS = document.getElementById("f4-pre"), mvS = document.getElementById("f4-mv"), postS = document.getElementById("f4-post");
+    const btns = document.querySelectorAll("#fig4 .seg button");
+    let kind = "c";
+    const T0 = 7 / DAY, T1 = 6 / DAY, K = 100;
+    function val(S, T, s) {
+      if (kind === "s") return bs(S, K, T, s, "c").price + bs(S, K, T, s, "p").price;
+      return bs(S, K, T, s, kind).price;
+    }
+    function root(f, a, b) {
+      let fa = f(a), fb = f(b);
+      if (fa * fb > 0) return null;
+      for (let i = 0; i < 40; i++) { const m = (a + b) / 2, fm = f(m); if (fa * fm <= 0) { b = m; fb = fm; } else { a = m; fa = fm; } }
+      return (a + b) / 2;
+    }
+    function bes(v0, sPost) {
+      const f = m => val(100 * (1 + m / 100), T1, sPost) - v0;
+      if (kind === "s") return [root(f, -15, 0), root(f, 0, 15)];
+      return [root(f, -15, 15)];
+    }
+    function draw() {
+      const pre = +preS.value / 100, mv = +mvS.value, post = +postS.value / 100;
+      document.getElementById("f4-pre-o").textContent = preS.value + "%";
+      document.getElementById("f4-mv-o").textContent = signed(mv, 1) + "%";
+      document.getElementById("f4-post-o").textContent = postS.value + "%";
+      const v0 = val(100, T0, pre);
+      const res = plot(svg, {
+        x: [-15, 15], y: [10, 100], xt: range(-15, 15, 5), yt: [10, 25, 40, 55, 70, 85, 100],
+        xf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%", yf: v => v + "%",
+        xlabel: "次日股价变动", ylabel: "事后隐含波动率"
+      });
+      const g = res.g, X = res.X, Y = res.Y;
+      const dx = 1, dy = 3;
+      for (let m = -15; m <= 15 + 1e-9; m += dx) {
+        for (let iv = 10; iv <= 100 + 1e-9; iv += dy) {
+          const pnl = val(100 * (1 + m / 100), T1, iv / 100) - v0;
+          const a = Math.min(1, Math.abs(pnl) / v0);
+          const x0 = X(Math.max(-15, m - dx / 2)), x1 = X(Math.min(15, m + dx / 2));
+          const y0 = Y(Math.min(100, iv + dy / 2)), y1 = Y(Math.max(10, iv - dy / 2));
+          el("rect", { x: x0, y: y0, width: Math.max(0, x1 - x0), height: Math.max(0, y1 - y0), "shape-rendering": "crispEdges", style: `fill: ${pnl >= 0 ? "var(--theta)" : "var(--gamma)"}; fill-opacity: ${(0.08 + 0.5 * a).toFixed(3)}` }, g);
+        }
+      }
+      // breakeven lines
+      const lineA = [], lineB = [];
+      for (let iv = 10; iv <= 100; iv += 1) {
+        const r = bes(v0, iv / 100);
+        if (r[0] !== null) lineA.push([r[0], iv]);
+        if (r.length > 1 && r[1] !== null) lineB.push([r[1], iv]);
+      }
+      const path = pts => pts.map((p, i) => (i ? "L" : "M") + X(p[0]).toFixed(1) + " " + Y(p[1]).toFixed(1)).join("");
+      [lineA, lineB].forEach(pts => { if (pts.length > 1) el("path", { d: path(pts), style: "fill: none; stroke: var(--ink); stroke-width: 2.2" }, g); });
+      if (pre * 100 >= 10 && pre * 100 <= 100) el("path", { d: `M${X(-15)} ${Y(pre * 100)}L${X(15)} ${Y(pre * 100)}`, style: "fill: none; stroke: var(--muted); stroke-width: 1.6; stroke-dasharray: 6 5" }, g);
+      el("circle", { cx: X(mv), cy: Y(post * 100), r: 6, style: "fill: var(--ink); stroke: var(--plate); stroke-width: 2" }, g);
+      const pnl = (val(100 * (1 + mv / 100), T1, post) - v0) * 100;
+      const pnlSame = (val(100 * (1 + mv / 100), T1, pre) - v0) * 100;
+      document.getElementById("f4-r1").textContent = money(pnl);
+      document.getElementById("f4-r1").className = pnl >= 0 ? "pos" : "neg";
+      document.getElementById("f4-r2").textContent = money(pnlSame);
+      const r = bes(v0, post).filter(v => v !== null);
+      document.getElementById("f4-r3").textContent = r.length ? r.map(v => signed(v, r.length > 1 ? 1 : 2) + "%").join(" / ") : "±15% 内无";
+      document.getElementById("f4-r4").textContent = "$" + (v0 * 100).toFixed(0);
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      kind = b.dataset.k;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    [preS, mvS, postS].forEach(x => x.addEventListener("input", draw));
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 5-5 Rho ----------
+  (function () {
+    const svg = document.getElementById("f5-svg");
+    const dS = document.getElementById("f5-d"), kS = document.getElementById("f5-k");
+    function draw() {
+      const d = +dS.value, K = +kS.value, s = 0.30;
+      document.getElementById("f5-d-o").textContent = d + " 天";
+      document.getElementById("f5-k-o").textContent = K;
+      const rs = range(0, 8, 0.1);
+      const L = d / DAY, S30 = 30 / DAY;
+      const lc = rs.map(r => [r, bs(100, K, L, s, "c", r / 100).price]);
+      const lp = rs.map(r => [r, bs(100, K, L, s, "p", r / 100).price]);
+      const sc = rs.map(r => [r, bs(100, K, S30, s, "c", r / 100).price]);
+      const sp = rs.map(r => [r, bs(100, K, S30, s, "p", r / 100).price]);
+      const all = [lc, lp, sc, sp].flat().map(p => p[1]);
+      const ya = axis(0, Math.max(...all) * 1.05, 5);
+      plot(svg, {
+        x: [0, 8], y: [0, ya.hi], xt: [0, 1, 2, 3, 4, 5, 6, 7, 8], yt: ya.t, xf: v => v + "%", yf: v => (+v.toFixed(2)).toString(),
+        xlabel: "无风险利率", ylabel: "期权价格（美元/股）", vline: 4,
+        series: [
+          { pts: sc, color: "var(--delta)", w: 1.8, dash: "6 5" }, { pts: sp, color: "var(--gamma)", w: 1.8, dash: "6 5" },
+          { pts: lc, color: "var(--delta)", w: 2.6 }, { pts: lp, color: "var(--gamma)", w: 2.6 }
+        ],
+        dots: [[4, bs(100, K, L, s, "c").price, "var(--delta)", 4.5], [4, bs(100, K, L, s, "p").price, "var(--gamma)", 4.5]]
+      });
+      document.getElementById("f5-r1").textContent = "$" + (bs(100, K, L, s, "c").rho * 100).toFixed(1);
+      document.getElementById("f5-r2").textContent = "$" + (bs(100, K, S30, s, "c").rho * 100).toFixed(1);
+      document.getElementById("f5-r3").textContent = money((bs(100, K, L, s, "c", 0.06).price - bs(100, K, L, s, "c", 0.04).price) * 100);
+      document.getElementById("f5-r4").textContent = money((bs(100, K, L, s, "p", 0.06).price - bs(100, K, L, s, "p", 0.04).price) * 100);
+    }
+    dS.addEventListener("input", draw); kS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+})();
+</script>
+</body>
+</html>

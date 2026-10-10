@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 2 章 美股期权实务 · 美股期权课</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  .chain table { font-size: 13px; }
+  .chain th, .chain td { padding: 7px 9px; }
+  .chain th:first-child, .chain td:first-child { text-align: right; }
+  .chain tr.grp th { text-align: center; color: var(--ink); font-weight: 700; letter-spacing: .08em; border-bottom: 1px solid var(--rule); }
+  .chain td.itm { background: var(--tint-theta); }
+  .chain th.k, .chain td.k { text-align: center; font-weight: 700; background: var(--grid); }
+  .chain td.iv { color: var(--muted); }
+  .chain tr.spot td { text-align: center; font-size: 12px; color: var(--delta); background: var(--tint-delta); padding: 3px 8px; font-family: var(--font-mono); }
+  .tbl.txt th, .tbl.txt td { white-space: normal; text-align: left; vertical-align: top; min-width: 5.5em; }
+  .mk { font-family: var(--font-mono); font-size: 11px; color: var(--gamma); margin-left: 2px; }
+  .calc .ins { display: grid; grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); gap: 10px 14px; margin: 8px 0 8px; }
+  .calc .ins label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); min-width: 0; }
+  .calc .ins input { font-family: var(--font-mono); font-size: 14px; padding: 5px 8px; border: 1px solid var(--rule); border-radius: 4px; background: var(--paper); color: var(--ink); width: 100%; min-width: 0; }
+</style>
+</head>
+<body data-ch="2">
+<div class="topbar"><div class="topbar-inner"><a class="brand" href="index.html">美股期权<span>课</span></a><select id="ck-jump" aria-label="跳转到章节"></select></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">02</div>
+    <div class="eyebrow">美股期权课 · 第一部分 基础 · 第 2 章</div>
+    <h1>美股期权<span class="g">实务</span></h1>
+    <p class="deck">从下单到到期，一张期权要经过券商、交易所和清算所。这一章讲清楚游戏规则：什么时候会被行权、账户允许你做什么、每笔交易被价差吃掉多少，以及税务上有哪些特殊待遇。</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="本章目录">
+    <p class="toc-title">本章目录</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>开篇：还有两周，今晚被行权</span></a></li>
+      <li><a href="#s1"><span class="n">2.1</span><span>美式与欧式</span></a></li>
+      <li><a href="#s2"><span class="n">2.2</span><span>到期日体系</span></a></li>
+      <li><a href="#s3"><span class="n">2.3</span><span>行权与指派</span></a></li>
+      <li><a href="#s4"><span class="n">2.4</span><span>提前指派的两个原因</span></a></li>
+      <li><a href="#s5"><span class="n">2.5</span><span>读懂期权链</span></a></li>
+      <li><a href="#s6"><span class="n">2.6</span><span>账户、权限与保证金</span></a></li>
+      <li><a href="#s7"><span class="n">2.7</span><span>下单与流动性</span></a></li>
+      <li><a href="#s8"><span class="n">2.8</span><span>税务概念</span></a></li>
+      <li><a href="#s9"><span class="n">2.9</span><span>指数敞口怎么选</span></a></li>
+      <li><a href="#cases"><span class="n">案例</span><span>三个案例</span></a></li>
+      <li><a href="#tools"><span class="n">工具</span><span>清单与自测</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>本章目录</summary>
+      <ol>
+        <li><a href="#open">开篇：还有两周，今晚被行权</a></li>
+        <li><a href="#s1">2.1 美式与欧式</a></li>
+        <li><a href="#s2">2.2 到期日体系</a></li>
+        <li><a href="#s3">2.3 行权与指派</a></li>
+        <li><a href="#s4">2.4 提前指派的两个原因</a></li>
+        <li><a href="#s5">2.5 读懂期权链</a></li>
+        <li><a href="#s6">2.6 账户、权限与保证金</a></li>
+        <li><a href="#s7">2.7 下单与流动性</a></li>
+        <li><a href="#s8">2.8 税务概念</a></li>
+        <li><a href="#s9">2.9 指数敞口怎么选</a></li>
+        <li><a href="#cases">三个案例</a></li>
+        <li><a href="#tools">清单与自测</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>学完本章你能</h4>
+        <ul>
+          <li>判断一张价内看涨在除息日前会不会被提前指派，并算出差额</li>
+          <li>读懂期权链的每一列，用三个指标判断流动性、算出往返成本</li>
+          <li>按合约规模、结算方式和税务，在 SPX、SPY、XSP 之间做选择</li>
+        </ul>
+      </div>
+      <div>
+        <h4>前置知识</h4>
+        <ul>
+          <li>第 1 章：合约六要素与四种基本头寸</li>
+          <li>第 1 章：内在价值、时间价值与利息的关系</li>
+        </ul>
+      </div>
+      <div>
+        <h4>本章约定</h4>
+        <ul>
+          <li>规则按美国上市期权的通行做法，细节以交易所和你的券商为准</li>
+          <li>示例用 Black-Scholes，利率 4%，一年 365 天</li>
+          <li>税务只讲概念，不构成税务建议</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">开篇</span>还有两周，今晚被行权</h2>
+      <p class="lead">你持有 500 股 XYZ，股价 $110。为了多一点收入，你卖出了 5 张两周后到期、行权价 100 的看涨期权。周四晚上，券商发来通知：5 张全部被指派，500 股已按 $100 卖出。</p>
+      <p>期权明明还有两周才到期，对方为什么现在就行权？因为第二天是除息日，每股股息 <span class="num">$1.20</span>。对方如果继续持有期权，除息后这张看涨只剩 <span class="num">0.235</span> 的时间价值；今晚行权拿到股票，明天就能领 1.20 的股息。每股多得 <span class="num">0.965</span>，5 张一共 <span class="num">$483</span>。</p>
+      <p>这 $483 是从你这里拿走的。你本来能领的 $600 股息没了，换来的只是提前两周收到 $50,000 的货款，以及不再需要等剩余的时间价值归零。这件事并不意外：只要知道规则，周四收盘前你就能算出来，并提前把期权买回或者移到更高的行权价。</p>
+      <p>这一章讲的就是这类规则。它们不决定你的方向判断对不对，却经常决定你最后拿到多少钱。</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">2.1</span>美式与欧式</h2>
+      <p>个股和 ETF 期权是美式、实物交割，任何一个交易日都可能被行权并换成股票；SPX 这类指数期权是欧式、现金结算，只在到期时按差价结算现金。</p>
+      <div class="tbl txt">
+        <table>
+          <caption>表 2-1　两类期权的规则对照</caption>
+          <thead><tr><th>维度</th><th>个股、ETF 期权（AAPL、SPY、QQQ）</th><th>指数期权（SPX、XSP、NDX）</th></tr></thead>
+          <tbody>
+            <tr><td>行权方式</td><td>美式：到期前任何交易日都可行权</td><td>欧式：只在到期时结算</td></tr>
+            <tr><td>交割物</td><td>100 股股票或 ETF 份额</td><td>现金 = 内在价值 × 100</td></tr>
+            <tr><td>卖方被提前指派</td><td>可能</td><td>不可能</td></tr>
+            <tr><td>到期后的仓位</td><td>可能变成股票多头或空头</td><td>只剩现金</td></tr>
+            <tr><td>结算价</td><td>到期日收盘价</td><td>PM 结算：到期日收盘；AM 结算：到期日开盘特别结算价</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>「美式」「欧式」只是名称，与交易地点无关。美式期权多了一项权利，所以价值不会低于同样条件的欧式期权，两者的差额叫提前行权价值。对不派息股票的看涨期权，这项价值是零，提前行权永远不划算；对派息股票的看涨和深度价内的看跌，它可能相当可观（2.4 节）。</p>
+
+      <h3>实物交割：期权会变成股票</h3>
+      <p>持有 1 张 SPY 780 看涨，到期时 SPY 收在 785，期权自动行权，你以 $78,000 买入 100 股 SPY。账户里如果只有几千美元，就会立刻出现保证金不足。反过来，卖出的看跌被行权，你就要按行权价买入 100 股；卖出的看涨被行权而你没有股票，你就成了 100 股的空头。</p>
+
+      <h3>现金结算：只交割差价</h3>
+      <p>持有 1 张 SPX 7,800 看涨，到期结算价 7,850，账户直接收到 <span class="num">(7,850 − 7,800) × 100 = $5,000</span> 现金，没有任何股票进出，也没有到期后的周末风险。需要注意的是结算价的时点：SPX 标准月度合约是 AM 结算，最后交易日是周四，结算价取周五开盘时各成分股的开盘价。周四收盘到周五开盘之间的跳空，你在场内无法应对。SPX 的周度和每日合约（代码 SPXW）是 PM 结算，用到期日收盘价。</p>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">2.2</span>到期日体系</h2>
+      <p>到期日分月度、周度、每日三层；到期日收盘时只要价内 $0.01，期权就会被自动行权。</p>
+      <ul>
+        <li><strong>月度</strong>：每月第三个星期五。遇到交易所休市（例如耶稣受难日），提前到周四。月度合约挂牌最久，对流动性一般的个股，未平仓量往往集中在月度合约上。</li>
+        <li><strong>周度</strong>：大多数热门个股和 ETF 每个星期五都有到期合约，通常提前几周挂出。</li>
+        <li><strong>每日</strong>：SPX、XSP、SPY、QQQ 等少数品种周一到周五每天都有合约到期。当天到期的合约常被称为 0DTE（第 10 章）。</li>
+        <li><strong>长期</strong>：到期时间超过一年的合约叫 LEAPS，常见于一月份到期。</li>
+      </ul>
+
+      <h3>到期日下午 4 点之后发生了什么</h3>
+      <p>个股期权在到期日美东时间 16:00 停止交易（部分指数、ETF 期权的收盘时间不同，以交易所规则为准）。但交易停止不等于事情结束：股票在盘后继续交易，期权持有人还可以改变主意。</p>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">交易在 16:00 结束，指派结果要到下一个交易日才知道</span><span class="fig-no">图 2-1 · 实物交割期权到期流程示意</span></div>
+        <div class="scroll-x"><svg class="chart wide" viewBox="0 0 680 330" role="img" aria-label="到期日下午四点之后多头与空头各自经历的四个步骤">
+          <defs>
+            <marker id="a2-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--delta)"></path></marker>
+            <marker id="a2-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--gamma)"></path></marker>
+          </defs>
+          <g style="font-family: var(--font-mono); font-size: 12px">
+            <line x1="24" y1="42" x2="658" y2="42" style="stroke: var(--rule)" stroke-width="1.5"></line>
+            <circle cx="96.5" cy="42" r="4" style="fill: var(--ink)"></circle>
+            <circle cx="259.5" cy="42" r="4" style="fill: var(--ink)"></circle>
+            <circle cx="422.5" cy="42" r="4" style="fill: var(--ink)"></circle>
+            <circle cx="585.5" cy="42" r="4" style="fill: var(--ink)"></circle>
+            <text x="96.5" y="28" text-anchor="middle" style="fill: var(--muted)">16:00 收盘</text>
+            <text x="259.5" y="28" text-anchor="middle" style="fill: var(--muted)">16:00–17:30</text>
+            <text x="422.5" y="28" text-anchor="middle" style="fill: var(--muted)">当晚</text>
+            <text x="585.5" y="28" text-anchor="middle" style="fill: var(--muted)">下一交易日开盘前</text>
+          </g>
+          <g style="font-family: var(--font-body); font-size: 12.5px">
+            <text x="24" y="68" style="fill: var(--delta); font-weight: 700; font-size: 13.5px">期权多头（持有人）</text>
+            <rect x="24" y="78" width="145" height="62" rx="6" style="fill: var(--tint-delta); stroke: var(--delta)"></rect>
+            <rect x="187" y="78" width="145" height="62" rx="6" style="fill: var(--tint-delta); stroke: var(--delta)"></rect>
+            <rect x="350" y="78" width="145" height="62" rx="6" style="fill: var(--tint-delta); stroke: var(--delta)"></rect>
+            <rect x="513" y="78" width="145" height="62" rx="6" style="fill: var(--tint-delta); stroke: var(--delta)"></rect>
+            <text x="96.5" y="104" text-anchor="middle" style="fill: var(--ink)">期权停止交易</text>
+            <text x="96.5" y="124" text-anchor="middle" style="fill: var(--ink)">按收盘价判断价内外</text>
+            <text x="259.5" y="104" text-anchor="middle" style="fill: var(--ink)">股票盘后仍在交易</text>
+            <text x="259.5" y="124" text-anchor="middle" style="fill: var(--ink)">可提交「不行权」指令</text>
+            <text x="422.5" y="104" text-anchor="middle" style="fill: var(--ink)">价内 ≥ $0.01 且无指令</text>
+            <text x="422.5" y="124" text-anchor="middle" style="fill: var(--ink)">自动行权</text>
+            <text x="585.5" y="104" text-anchor="middle" style="fill: var(--ink)">看涨：按行权价买股</text>
+            <text x="585.5" y="124" text-anchor="middle" style="fill: var(--ink)">看跌：按行权价卖股</text>
+            <path d="M171 109 H184" style="stroke: var(--delta)" stroke-width="1.5" marker-end="url(#a2-d)"></path>
+            <path d="M334 109 H347" style="stroke: var(--delta)" stroke-width="1.5" marker-end="url(#a2-d)"></path>
+            <path d="M497 109 H510" style="stroke: var(--delta)" stroke-width="1.5" marker-end="url(#a2-d)"></path>
+
+            <text x="24" y="174" style="fill: var(--gamma); font-weight: 700; font-size: 13.5px">期权空头（卖方）</text>
+            <rect x="24" y="184" width="145" height="62" rx="6" style="fill: var(--tint-gamma); stroke: var(--gamma)"></rect>
+            <rect x="187" y="184" width="145" height="62" rx="6" style="fill: var(--tint-gamma); stroke: var(--gamma)"></rect>
+            <rect x="350" y="184" width="145" height="62" rx="6" style="fill: var(--tint-gamma); stroke: var(--gamma)"></rect>
+            <rect x="513" y="184" width="145" height="62" rx="6" style="fill: var(--tint-gamma); stroke: var(--gamma)"></rect>
+            <text x="96.5" y="210" text-anchor="middle" style="fill: var(--ink)">无法再平仓</text>
+            <text x="96.5" y="230" text-anchor="middle" style="fill: var(--ink)">敞口在此锁定</text>
+            <text x="259.5" y="210" text-anchor="middle" style="fill: var(--ink)">看不到对手方</text>
+            <text x="259.5" y="230" text-anchor="middle" style="fill: var(--ink)">会怎样决定</text>
+            <text x="422.5" y="210" text-anchor="middle" style="fill: var(--ink)">清算所随机指派</text>
+            <text x="422.5" y="230" text-anchor="middle" style="fill: var(--ink)">券商再分到账户</text>
+            <text x="585.5" y="210" text-anchor="middle" style="fill: var(--ink)">收到指派通知</text>
+            <text x="585.5" y="230" text-anchor="middle" style="fill: var(--ink)">仓位变成股票</text>
+            <path d="M171 215 H184" style="stroke: var(--gamma)" stroke-width="1.5" marker-end="url(#a2-g)"></path>
+            <path d="M334 215 H347" style="stroke: var(--gamma)" stroke-width="1.5" marker-end="url(#a2-g)"></path>
+            <path d="M497 215 H510" style="stroke: var(--gamma)" stroke-width="1.5" marker-end="url(#a2-g)"></path>
+
+            <rect x="24" y="266" width="634" height="52" rx="6" style="fill: var(--tint-warn); stroke: var(--warn)"></rect>
+            <text x="341" y="287" text-anchor="middle" style="fill: var(--ink)">收盘价离行权价很近时，卖方要到最后一步才知道自己是否被指派；</text>
+            <text x="341" y="307" text-anchor="middle" style="fill: var(--ink)">中间隔着盘后交易和周末，这段不确定就是「钉住风险」（案例 2）。</text>
+          </g>
+        </svg></div>
+        <figcaption>17:30 是清算所接受行权决定的通行截止时间，券商的内部截止时间往往更早。持有人既可以对价内期权提交「不行权」，也可以对价外期权主动行权，所以收盘时价外不等于一定作废。指数期权现金结算，第四步只是现金入账。</figcaption>
+      </figure>
+
+      <h3>自动行权的门槛只有一分钱</h3>
+      <p>清算所对到期合约实行「例外行权」：只要按收盘价价内 $0.01 或以上，且持有人没有提交相反指令，就自动行权。这个门槛对个人交易者是一个陷阱。</p>
+      <p>例子：你持有 5 张 100 看涨，打算到期前卖掉却忘了。周五收盘价 100.03，期权价内 3 分钱，自动行权。周一你的账户里多了 500 股，需要支付 <span class="num">$50,015</span>，而这次行权的内在价值一共只有 <span class="num">0.03 × 500 = $15</span>。为了 $15，你背着 $50,000 的股票过了一个周末；账户资金不够，还要面对追缴或被强制卖出。</p>
+      <div class="note warn">
+        <span class="tag">到期日下午的三个动作</span>
+        <ul>
+          <li>价内的多头仓位，如果不想要股票，收盘前卖掉，或者向券商提交「不行权」指令。</li>
+          <li>收盘价可能落在行权价附近的空头仓位，收盘前花一点钱买回来（案例 2）。</li>
+          <li>不要假设「收盘价外就一定作废」：盘后出了消息，持有人可以主动行权价外期权。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">2.3</span>行权与指派</h2>
+      <p>行权是买方的决定，指派是随机落到卖方头上的结果。卖方既不能选择，也不能提前知道。</p>
+      <ol>
+        <li>持有人通过券商提交行权指令（或在到期时被自动行权）。</li>
+        <li>指令汇总到期权清算公司（OCC）。它是所有美国上市期权的中央对手方，每一笔交易的买卖双方实际上都在和它结算。</li>
+        <li>OCC 在持有该合约空头的清算会员之间<strong>随机</strong>分配指派。</li>
+        <li>清算会员（你的券商或其清算商）再按随机或先进先出的规则，分配到具体客户账户，规则需要向客户披露。</li>
+        <li>卖方通常在下一个交易日开盘前收到通知，账户里的期权空头变成股票的买入或卖出。</li>
+      </ol>
+      <div class="tbl txt">
+        <table>
+          <caption>表 2-2　行权与指派之后，股票往哪里走</caption>
+          <thead><tr><th>合约</th><th>多头行权</th><th>空头被指派</th></tr></thead>
+          <tbody>
+            <tr><td>看涨</td><td>按行权价买入 100 股</td><td>按行权价卖出 100 股；没有股票就变成空头</td></tr>
+            <tr><td>看跌</td><td>按行权价卖出 100 股；没有股票就变成空头</td><td>按行权价买入 100 股</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>为什么提前行权通常不划算</h3>
+      <p>提前行权只能拿到内在价值，时间价值随之作废。股价 $100 时，30 天 95 看涨值 6.65：行权得到 5.00，直接卖掉期权得到 6.65，相差 <span class="num">1.65</span>，每张 $165。所以对持有人来说，想要退出，卖出期权几乎总比行权划算。</p>
+      <p>对不派息股票的看涨期权，这个结论是严格成立的。第 1 章说过，价内看涨的时间价值里至少包含「行权价的利息」这一块，它永远大于零。提前行权等于提前付出行权价，白白损失这笔利息。只有两种情况能推翻这个结论，下一节讲。</p>
+      <div class="note">
+        <span class="tag">要点</span>
+        <p>流动性差的期权是个例外：如果买价远低于理论价值，例如一张内在价值 5.00 的看涨只有 4.80 的买价，卖出反而吃亏。这时可以考虑行权并同时卖出股票，前提是算清两边的成本。</p>
+      </div>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">2.4</span>提前指派的两个原因</h2>
+      <p>只有两种情况值得提前行权：看涨期权在除息日前，股息大于剩余时间价值；看跌期权深度价内时，行权价的利息大于它剩下的「反弹价值」。</p>
+
+      <h3>原因一：股息</h3>
+      <p>除息日开盘时，股价大约会按股息金额下跌，而期权持有人领不到股息。站在除息日前一天收盘，看涨持有人有两个选择：</p>
+      <ul>
+        <li><strong>今天行权</strong>：拿到股票，价值 <span class="v">S</span> − <span class="v">K</span>，明天还能领到股息。</li>
+        <li><strong>继续持有</strong>：明天股价变成 <span class="v">S</span> − <span class="v">D</span>，期权价值等于新的内在价值加上剩余时间价值。</li>
+      </ul>
+      <p>两者相减，股票价格本身的部分抵消了，剩下的比较非常简洁：</p>
+      <div class="formula">
+        <div class="eq">提前行权更划算 <span class="up">⟺</span> <span class="v">D</span> <span class="up">&gt;</span> <span class="v">P</span>(<span class="v">S</span> <span class="up">−</span> <span class="v">D</span>, <span class="v">K</span>) <span class="up">+</span> <span class="v">K</span>(1 <span class="up">−</span> <span class="v">e</span><sup>−<span class="v">rT</span></sup>)</div>
+        <p class="where">右边就是看涨期权在除息后剩余的时间价值，由两块组成：同行权价看跌期权的价值（股价跌回行权价以下时的保护），以及晚付行权价省下的利息。<span class="v">T</span> 是除息日到到期日的时间。推导用到了买卖权平价：除息之后不再有股息，美式看涨等同于欧式看涨。</p>
+      </div>
+      <div class="tbl">
+        <table>
+          <caption>表 2-3　行权价 100、股息 1.50、除息后剩 20 天、IV 30%：要不要提前行权</caption>
+          <thead><tr><th>除息前股价</th><th>看跌价值</th><th>利息</th><th>剩余时间价值</th><th>股息 − 时间价值</th><th>结论</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">105</td><td class="mono">1.365</td><td class="mono">0.219</td><td class="mono">1.584</td><td class="mono neg">−0.084</td><td>继续持有</td></tr>
+            <tr><td class="mono">110</td><td class="mono">0.416</td><td class="mono">0.219</td><td class="mono">0.635</td><td class="mono pos">+0.865</td><td>提前行权</td></tr>
+            <tr><td class="mono">115</td><td class="mono">0.098</td><td class="mono">0.219</td><td class="mono">0.317</td><td class="mono pos">+1.183</td><td>提前行权</td></tr>
+            <tr><td class="mono">120</td><td class="mono">0.018</td><td class="mono">0.219</td><td class="mono">0.237</td><td class="mono pos">+1.263</td><td>提前行权</td></tr>
+            <tr class="hl"><td class="mono">125</td><td class="mono">0.003</td><td class="mono">0.219</td><td class="mono">0.222</td><td class="mono pos">+1.278</td><td>提前行权</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>临界股价约为 <span class="num">105.30</span>：高于它，行权更划算。临界点会随条件移动：股息只有 0.50 时，临界价升到 <span class="num">110.44</span>；除息后还剩 60 天时，临界价升到 <span class="num">115.41</span>，因为剩余时间越长，时间价值越大，越不值得为股息放弃它。股价越深度价内，看跌价值越接近零，时间价值趋近于利息这个下限 0.219。</p>
+      <p>时点也有讲究。美股现在是 T+1 结算，除息日就是股权登记日，要领股息，必须在除息日前一个交易日行权，股票才能在登记日到账。所以提前指派几乎都发生在<strong>除息日前一晚</strong>。</p>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">股息高过时间价值的地方，提前行权更划算</span><span class="fig-no">图 2-2 · 行权价 100 的看涨，除息日前一天</span></div>
+        <div class="controls">
+          <label class="ctl" for="f2-s">股价 <input id="f2-s" type="range" min="95" max="140" step="0.5" value="115"> <output id="f2-s-o">115.0</output></label>
+          <label class="ctl" for="f2-d">每股股息 <input id="f2-d" type="range" min="0.1" max="3" step="0.05" value="1.5"> <output id="f2-d-o">1.50</output></label>
+          <label class="ctl" for="f2-t">除息后剩余 <input id="f2-t" type="range" min="1" max="120" step="1" value="20"> <output id="f2-t-o">20 天</output></label>
+          <label class="ctl" for="f2-iv">隐含波动率 <input id="f2-iv" type="range" min="10" max="80" step="1" value="30"> <output id="f2-iv-o">30%</output></label>
+        </div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 300" role="img" aria-label="除息后剩余时间价值与股息的比较"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>除息后剩余时间价值</span><span><i class="dash" style="border-color: var(--warn)"></i>股息</span><span><i style="border-color: var(--warn); border-top-width: 8px; opacity: .4"></i>提前行权区</span></div>
+        <div class="readout">
+          <div><b id="f2-r1">—</b><small>当前股价下的剩余时间价值</small></div>
+          <div><b id="f2-r2">—</b><small>提前行权每张多得</small></div>
+          <div><b id="f2-r3">—</b><small>临界股价</small></div>
+        </div>
+        <figcaption>蓝线是除息后剩余的时间价值，股价越高越低，最后贴近利息这条下限。把股息拖到 0.2 以下，虚线落到下限以下，无论股价多高都不会提前行权。把剩余天数拖长或把波动率调高，蓝线整体上移，临界股价右移。</figcaption>
+      </figure>
+
+      <div class="note">
+        <span class="tag">卖方的快速检查</span>
+        <p>你卖出的看涨在价内、明天除息，怎么判断今晚会不会被指派？看同行权价、同到期日的看跌期权报价。如果看跌价格加上一点利息还小于股息，就按「今晚会被指派」来准备。备兑仓位会失去股息；裸卖看涨或价差的空头腿会在除息日变成股票空头，还要替你借来的股票支付股息（案例 1）。并不是每个持有人都会精确计算，所以指派不是百分之百，但你不能赌它不发生。</p>
+      </div>
+
+      <h3>原因二：利息</h3>
+      <p>深度价内的看跌期权，提前行权能立刻按行权价收到现金，开始赚利息；代价是放弃「股价反弹到行权价以上」的可能，这部分价值恰好等于同行权价看涨期权的价格。由买卖权平价，欧式看跌的时间价值等于：</p>
+      <div class="formula">
+        <div class="eq">欧式看跌的时间价值 <span class="up">=</span> <span class="v">C</span>(<span class="v">S</span>, <span class="v">K</span>) <span class="up">−</span> <span class="v">K</span>(1 <span class="up">−</span> <span class="v">e</span><sup>−<span class="v">rT</span></sup>)</div>
+        <p class="where">当同行权价看涨的价格低于行权价的利息时，欧式看跌的时间价值变成负数，第 1 章表 1-2 里的 115 看跌就是这样。美式看跌的持有人不会接受负的时间价值，他会提前行权。</p>
+      </div>
+      <p>用数字看：行权价 100，剩 60 天，IV 30%，利率 4%，行权价的利息是 <span class="num">100 × (1 − e<sup>−0.04×60/365</sup>) = 0.655</span>。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 2-4　行权价 100、60 天、IV 30% 的看跌：欧式与美式的时间价值</caption>
+          <thead><tr><th>股价</th><th>同行权价看涨</th><th>欧式时间价值</th><th>美式时间价值（二叉树）</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">95</td><td class="mono">2.854</td><td class="mono">2.199</td><td class="mono">2.291</td></tr>
+            <tr><td class="mono">90</td><td class="mono">1.352</td><td class="mono">0.696</td><td class="mono">0.867</td></tr>
+            <tr><td class="mono">85</td><td class="mono">0.528</td><td class="mono neg">−0.127</td><td class="mono">0.169</td></tr>
+            <tr><td class="mono">82</td><td class="mono">0.269</td><td class="mono neg">−0.387</td><td class="mono">0.018</td></tr>
+            <tr class="hl"><td class="mono">80</td><td class="mono">0.162</td><td class="mono neg">−0.493</td><td class="mono">0（立即行权）</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>欧式时间价值在股价约 <span class="num">86.05</span> 以下转负，这是一个「开始值得考虑」的信号。但美式期权的最优边界更低，约在 <span class="num">80.6</span>：在 80.6 到 86 之间，再等一等、到更深时再行权，仍然比立刻行权好。精确边界需要用二叉树这类美式定价方法计算，Black-Scholes 公式本身给不出来。</p>
+      <p>利率决定了这件事有多常见。同样 60 天，利率 1% 时美式边界降到 <span class="num">75.3</span>；利率接近零时，深度价内看跌几乎没有提前行权的理由。期限越短，边界越靠近行权价：利率 4%、剩 30 天时，边界在 <span class="num">84.7</span>。</p>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">利率越高，深度价内看跌越早被行权</span><span class="fig-no">图 2-3 · 行权价 100 的看跌，IV 30%</span></div>
+        <div class="controls">
+          <label class="ctl" for="f3-r">利率 <input id="f3-r" type="range" min="0" max="8" step="0.25" value="4"> <output id="f3-r-o">4.00%</output></label>
+          <label class="ctl" for="f3-t">剩余天数 <input id="f3-t" type="range" min="10" max="180" step="1" value="60"> <output id="f3-t-o">60 天</output></label>
+        </div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 300" role="img" aria-label="欧式与美式看跌期权的时间价值"></svg>
+        <div class="legend"><span><i class="dash" style="border-color: var(--delta)"></i>欧式时间价值</span><span><i style="border-color: var(--theta)"></i>美式时间价值</span><span><i style="border-color: var(--warn); border-top-width: 8px; opacity: .4"></i>美式最优提前行权区</span></div>
+        <div class="readout">
+          <div><b id="f3-r1">—</b><small>行权价的利息</small></div>
+          <div><b id="f3-r2">—</b><small>欧式时间价值转负的股价</small></div>
+          <div><b id="f3-r3">—</b><small>美式最优行权边界</small></div>
+        </div>
+        <figcaption>把利率拖到 0，虚线不再低于零，琥珀色区域消失：没有利息可赚，就没有理由提前行权。把利率拖到 6% 以上，边界向右移动，更多「普通的」价内看跌进入提前行权区。卖出深度价内看跌的一方，要随时准备按行权价接股。</figcaption>
+      </figure>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">2.5</span>读懂期权链</h2>
+      <p>期权链是一张按到期日分页、按行权价排列的报价表。先看买卖价，再看成交量和未平仓量，最后才看理论指标。</p>
+      <p>下面是一张模拟的期权链：XYZ 现价 102.35，30 天后到期。报价由 Black-Scholes 加上假设的波动率偏斜和买卖价差生成，成交量和未平仓量为虚构数据。</p>
+      <div class="tbl chain">
+        <table>
+          <caption>表 2-5　模拟期权链（XYZ 102.35，30 天到期；阴影为价内）</caption>
+          <thead>
+            <tr class="grp"><th colspan="5">看涨 Calls</th><th class="k"></th><th></th><th colspan="5">看跌 Puts</th></tr>
+            <tr><th>买价<span class="mk">①</span></th><th>卖价<span class="mk">②</span></th><th>成交量<span class="mk">③</span></th><th>未平仓<span class="mk">④</span></th><th>Delta<span class="mk">⑤</span></th><th class="k">行权价<span class="mk">⑥</span></th><th>IV<span class="mk">⑦</span></th><th>买价</th><th>卖价</th><th>成交量</th><th>未平仓</th><th>Delta</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="mono itm">10.65</td><td class="mono itm">10.85</td><td class="mono itm">12</td><td class="mono itm">150</td><td class="mono itm">0.88</td><td class="mono k">92.5</td><td class="mono iv">32.7%</td><td class="mono">0.55</td><td class="mono">0.66</td><td class="mono">640</td><td class="mono">4,100</td><td class="mono">−0.12</td></tr>
+            <tr><td class="mono itm">8.55</td><td class="mono itm">8.70</td><td class="mono itm">38</td><td class="mono itm">880</td><td class="mono itm">0.82</td><td class="mono k">95</td><td class="mono iv">31.6%</td><td class="mono">0.92</td><td class="mono">1.01</td><td class="mono">1,820</td><td class="mono">9,600</td><td class="mono">−0.18</td></tr>
+            <tr><td class="mono itm">6.60</td><td class="mono itm">6.75</td><td class="mono itm">61</td><td class="mono itm">410</td><td class="mono itm">0.74</td><td class="mono k">97.5</td><td class="mono iv">30.6%</td><td class="mono">1.46</td><td class="mono">1.54</td><td class="mono">930</td><td class="mono">2,700</td><td class="mono">−0.26</td></tr>
+            <tr><td class="mono itm">4.85</td><td class="mono itm">5.00</td><td class="mono itm">420</td><td class="mono itm">5,200</td><td class="mono itm">0.64</td><td class="mono k">100</td><td class="mono iv">29.7%</td><td class="mono">2.22</td><td class="mono">2.29</td><td class="mono">2,050</td><td class="mono">7,300</td><td class="mono">−0.36</td></tr>
+            <tr class="spot"><td colspan="12">现价 102.35</td></tr>
+            <tr><td class="mono">3.45</td><td class="mono">3.55</td><td class="mono">1,310</td><td class="mono">3,100</td><td class="mono">0.53</td><td class="mono k">102.5</td><td class="mono iv">29.0%</td><td class="mono itm">3.25</td><td class="mono itm">3.35</td><td class="mono itm">770</td><td class="mono itm">1,500</td><td class="mono itm">−0.47</td></tr>
+            <tr><td class="mono">2.28</td><td class="mono">2.35</td><td class="mono">2,240</td><td class="mono">8,400</td><td class="mono">0.41</td><td class="mono k">105</td><td class="mono iv">28.3%</td><td class="mono itm">4.55</td><td class="mono itm">4.70</td><td class="mono itm">160</td><td class="mono itm">1,200</td><td class="mono itm">−0.59</td></tr>
+            <tr><td class="mono">1.41</td><td class="mono">1.49</td><td class="mono">980</td><td class="mono">2,600</td><td class="mono">0.30</td><td class="mono k">107.5</td><td class="mono iv">27.7%</td><td class="mono itm">6.15</td><td class="mono itm">6.35</td><td class="mono itm">22</td><td class="mono itm">260</td><td class="mono itm">−0.70</td></tr>
+            <tr><td class="mono">0.81</td><td class="mono">0.90</td><td class="mono">1,650</td><td class="mono">11,800</td><td class="mono">0.20</td><td class="mono k">110</td><td class="mono iv">27.1%</td><td class="mono itm">8.05</td><td class="mono itm">8.25</td><td class="mono itm">15</td><td class="mono itm">430</td><td class="mono itm">−0.80</td></tr>
+            <tr><td class="mono">0.41</td><td class="mono">0.52</td><td class="mono">310</td><td class="mono">1,900</td><td class="mono">0.12</td><td class="mono k">112.5</td><td class="mono iv">26.7%</td><td class="mono itm">10.15</td><td class="mono itm">10.35</td><td class="mono itm">3</td><td class="mono itm">40</td><td class="mono itm">−0.88</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <dl class="kv">
+        <dt>① 买价 Bid</dt><dd>市场上最高的买单。你<strong>卖出</strong>时能立刻成交的价格。</dd>
+        <dt>② 卖价 Ask</dt><dd>市场上最低的卖单。你<strong>买入</strong>时能立刻成交的价格。两者的中点叫中间价（Mid），有的券商显示为 Mark。</dd>
+        <dt>③ 成交量</dt><dd>今天到目前为止成交的张数，每天从零开始。</dd>
+        <dt>④ 未平仓量</dt><dd>市场上还没有平仓的合约总数，清算所每天收盘后更新一次，盘中不变。</dd>
+        <dt>⑤ Delta</dt><dd>一张合约相当于多少股（乘以 100），也可近似当作到期价内的概率（第 4 章）。</dd>
+        <dt>⑥ 行权价</dt><dd>链条的中轴。现价所在的位置用横条标出，上方的看涨和下方的看跌是价内。</dd>
+        <dt>⑦ 隐含波动率</dt><dd>用中间价反推出的波动率。这里低行权价的 IV 更高，这种「偏斜」是股票期权的常态（第 6 章）。</dd>
+      </dl>
+
+      <h3>同一张链，三种流动性</h3>
+      <ul>
+        <li><strong>105 看涨</strong>：买价 2.28、卖价 2.35，价差 0.07，只占中间价的 <span class="num">3.0%</span>；今天成交 2,240 张，未平仓 8,400 张。流动性好，用中间价挂单很可能成交。</li>
+        <li><strong>112.5 看涨</strong>：0.41 / 0.52，价差 0.11 看起来不大，却占中间价的 <span class="num">23.7%</span>。买入后马上卖出，接近四分之一的钱就没了。</li>
+        <li><strong>92.5 看涨</strong>：10.65 / 10.85，价差占比只有 <span class="num">1.9%</span>，但今天只成交 12 张、未平仓 150 张。比例好看，实际每张往返要付 $20，而且报价背后可能没有几个真实的对手。</li>
+      </ul>
+      <p>界面上常见的另一列是最新成交价（Last）。对成交稀少的合约，它可能是几个小时前的价格，与当前报价毫无关系。估值和下单都应该以买卖价和中间价为准。</p>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">2.6</span>账户、权限与保证金</h2>
+      <p>你能做什么交易由两件事决定：券商批给你的期权权限等级，以及账户是现金账户还是保证金账户。</p>
+      <div class="tbl txt">
+        <table>
+          <caption>表 2-6　常见的期权权限分级（名称和级数因券商而异）</caption>
+          <thead><tr><th>等级</th><th>允许的交易</th><th>账户要求</th><th>最大亏损的性质</th></tr></thead>
+          <tbody>
+            <tr><td>1 级</td><td>备兑看涨、保护性看跌</td><td>现金或保证金</td><td>与持有股票相当</td></tr>
+            <tr><td>2 级</td><td>买入看涨、看跌；现金担保卖出看跌</td><td>现金或保证金</td><td>权利金；或按行权价接股</td></tr>
+            <tr><td>3 级</td><td>价差：借方、贷方、铁鹰、蝶式</td><td>通常需要保证金账户</td><td>有限，取决于价差宽度</td></tr>
+            <tr><td>4 级</td><td>裸卖看跌</td><td>保证金账户</td><td>接近行权价 × 100</td></tr>
+            <tr><td>5 级</td><td>裸卖看涨</td><td>保证金账户</td><td>理论上无限</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>有的券商把现金担保卖出看跌放在 1 级，有的把两种裸卖合并成一级。审批通常参考你申报的交易经验、收入、净资产和投资目标。分级的逻辑很清楚：越往上，最大亏损越难界定。</p>
+
+      <h3>现金账户与保证金账户</h3>
+      <ul>
+        <li><strong>现金账户</strong>：买期权全额付款；卖出看跌要预留足额现金，例如卖 1 张 90 看跌、收 $40，需要冻结 <span class="num">90 × 100 − 40 = $8,960</span>；备兑看涨要持有 100 股。大多数券商不允许在现金账户里做价差。卖出所得要等结算完成（期权为 T+1）才能再次使用。</li>
+        <li><strong>保证金账户</strong>：可以借钱买股票（Reg T 初始保证金 50%），可以做价差和裸卖。期权本身一般不能借钱买：9 个月内到期的期权必须全额付款，期限更长的期权最多可以借 25%。</li>
+      </ul>
+
+      <h3>Reg T 与组合保证金</h3>
+      <p>美国券商默认使用 Reg T 规则，对每个仓位按固定公式计算保证金。裸卖个股期权的标准公式是：</p>
+      <div class="formula">
+        <div class="eq">裸卖看跌保证金 <span class="up">=</span> 权利金 <span class="up">+</span> max(20% <span class="up">×</span> <span class="v">S</span> <span class="up">−</span> 价外金额, 10% <span class="up">×</span> <span class="v">K</span>)</div>
+        <p class="where">按每股计算，乘以 100 为每张。裸卖看涨把最后一项换成 10% × <span class="v">S</span>。宽基指数期权把 20% 换成 15%。收到的权利金可以抵扣这部分要求，券商还可以在此基础上加码。</p>
+      </div>
+      <p>例子：股价 100，卖出 30 天 90 看跌（0.40）。保证金 <span class="num">0.40 + max(20 − 10, 9) = 10.40</span>，每张 $1,040，扣掉收到的 $40，实际占用 $1,000。同一笔交易在现金账户里要冻结 $8,960。</p>
+      <p><strong>组合保证金</strong>（Portfolio Margin）换了一种思路：把整个组合在一组价格情景下重新定价，取最大亏损作为保证金。个股的情景范围是 ±15%，大盘指数约为 −8% 到 +6%。只考虑价格冲击、波动率不变时，上面这张 90 看跌在股价跌 15% 时值 5.92，组合保证金约为 <span class="num">5.92 − 0.40 = 5.52</span>，每张 $552，大约是 Reg T 的一半。组合保证金一般要求账户净值至少 10 万美元，门槛因券商而异。</p>
+
+      <figure class="plate" id="fig4">
+        <div class="fig-head"><span class="fig-title">股价跌向行权价时，两种保证金都在上升</span><span class="fig-no">图 2-4 · 裸卖 1 张 30 天 90 看跌，IV 30%</span></div>
+        <svg class="chart" id="f4-svg" viewBox="0 0 680 300" role="img" aria-label="Reg T 与组合保证金随股价变化"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>Reg T（不含期权市值）</span><span><i style="border-color: var(--theta)"></i>组合保证金（±15% 情景）</span></div>
+        <figcaption>两条线都按「账户净值需要覆盖的金额」计算：期权的市值已经从净值中扣掉，所以 Reg T 这里只画公式的第二项。在股价 100 时，Reg T 要 $1,000，组合保证金要 $552；股价跌到 92，前者升到 $1,640。深度价内之后 Reg T 略有回落，因为亏损已经计入了净值。</figcaption>
+      </figure>
+
+      <h3>保证金追缴</h3>
+      <p>账户净值低于保证金要求时，券商会发出追缴通知。下面这个例子说明它来得有多快。</p>
+      <p>你的账户有 $20,000，卖出 15 张上面那种 90 看跌，收 0.40。Reg T 要求 <span class="num">15 × $1,000 = $15,000</span>，看起来还有余量。两天后股价跌到 92，市场恐慌让 IV 升到 40%，看跌涨到 <span class="num">2.98</span>：</p>
+      <ul>
+        <li>浮亏 <span class="num">(2.98 − 0.40) × 1,500 = $3,870</span>，账户净值降到 <span class="num">$16,130</span>。</li>
+        <li>保证金要求升到 <span class="num">15 × (20% × 92 − 2) × 100 = $24,600</span>。</li>
+        <li>缺口 <span class="num">$8,470</span>。股价只跌了 8%，你就要追加相当于本金四成多的资金。</li>
+      </ul>
+      <div class="note warn">
+        <span class="tag">追缴的三个事实</span>
+        <ul>
+          <li>保证金要求和亏损是同时增加的，而且往往发生在波动率飙升、流动性最差的时候。</li>
+          <li>券商通常给很短的补足期限，但开户协议一般保留不经通知直接平仓的权利，平在哪个价格由券商决定，亏损由你承担。</li>
+          <li>组合保证金在平静时更省，在剧烈行情中上升得也更快。保证金占用越接近上限，追缴越早来。第 13 章会讨论保证金螺旋。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">2.7</span>下单与流动性</h2>
+      <p>期权下单只用限价单，多腿交易用组合单。判断流动性看三个数：价差占权利金的比例、未平仓量、成交量。</p>
+
+      <h3>订单类型</h3>
+      <ul>
+        <li><strong>市价单</strong>：期权上尽量不用。价差宽、开盘前几分钟报价不稳时，市价单可能在离谱的价格成交。</li>
+        <li><strong>限价单</strong>：标准做法是从中间价挂起，没有成交就每隔半分钟到一分钟向对手价让一到几分钱。这个过程叫「走单」。</li>
+        <li><strong>组合单</strong>：价差、跨式等多腿交易，作为一张订单按净价提交，交易所撮合时所有腿同时成交。分开下单（俗称「腿进」）可能出现一条腿成交、另一条腿价格跑掉的情况。</li>
+        <li><strong>止损单</strong>：期权的止损单通常按期权自身的价格触发，价差一时变宽就可能被误触发并以很差的价格成交。不少交易者改用标的股价的提醒，再手动下限价单。</li>
+      </ul>
+
+      <h3>买卖价差是真实成本</h3>
+      <p>如果买入时付卖价、卖出时拿买价，一次往返的成本就是整个价差：</p>
+      <div class="formula">
+        <div class="eq">往返成本 <span class="up">=</span> (<span class="v">Ask</span> <span class="up">−</span> <span class="v">Bid</span>) <span class="up">× 100 ×</span> 张数　　股价需额外移动 <span class="up">=</span> <span class="frac"><span><span class="v">Ask</span> <span class="up">−</span> <span class="v">Bid</span></span><span><span class="d">Δ</span></span></span></div>
+        <p class="where">第二个式子换了一种说法：要靠股价移动把价差赚回来，股价需要额外走多少。Delta 越小，需要的移动越大，所以价外期权的价差格外昂贵。</p>
+      </div>
+
+      <figure class="plate calc" id="calc">
+        <div class="fig-head"><span class="fig-title">买卖价差成本计算器</span><span class="fig-no">工具 2-A · 可编辑</span></div>
+        <div class="ins">
+          <label for="c-bid">买价 Bid<input id="c-bid" type="number" step="0.01" value="2.28"></label>
+          <label for="c-ask">卖价 Ask<input id="c-ask" type="number" step="0.01" value="2.35"></label>
+          <label for="c-n">张数<input id="c-n" type="number" step="1" value="10"></label>
+          <label for="c-dl">Delta<input id="c-dl" type="number" step="0.01" value="0.41"></label>
+          <label for="c-s">股价<input id="c-s" type="number" step="0.01" value="102.35"></label>
+        </div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="成交方式">
+            <button type="button" data-f="1" aria-pressed="true">两次都按对手价</button>
+            <button type="button" data-f="0.5" aria-pressed="false">各让一半</button>
+            <button type="button" data-f="0" aria-pressed="false">都按中间价</button>
+          </div>
+        </div>
+        <svg class="chart" id="c-svg" viewBox="0 0 680 260" role="img" aria-label="往返成本占权利金比例随中间价变化"></svg>
+        <div class="legend"><span><i style="border-color: var(--gamma)"></i>同样价差宽度下，往返成本占中间价的比例</span></div>
+        <div class="readout">
+          <div><b id="c-r1">—</b><small>中间价</small></div>
+          <div><b id="c-r2">—</b><small>往返成本</small></div>
+          <div><b id="c-r3">—</b><small>占权利金比例</small></div>
+          <div><b id="c-r4">—</b><small>股价需额外移动</small></div>
+        </div>
+        <figcaption>默认值是表 2-5 里的 105 看涨。把买价、卖价改成 0.41 和 0.52（112.5 看涨），Delta 改成 0.12，往返成本占比跳到约 24%，股价要额外走 $0.92 才能把价差赚回来。曲线说明同一个价差宽度落在越便宜的期权上，比例越高。</figcaption>
+      </figure>
+
+      <h3>流动性的三个指标</h3>
+      <div class="tbl txt">
+        <table>
+          <caption>表 2-7　流动性三指标的经验门槛</caption>
+          <thead><tr><th>指标</th><th>经验门槛</th><th>什么时候会失灵</th></tr></thead>
+          <tbody>
+            <tr><td>价差 / 中间价</td><td>5% 以下好；5–10% 耐心挂限价；10% 以上谨慎</td><td>权利金很低时，最小报价单位让比例天然偏高</td></tr>
+            <tr><td>未平仓量</td><td>数百张以上，最好上千</td><td>每天只更新一次；新挂出的合约为零</td></tr>
+            <tr><td>当日成交量</td><td>你的下单量不超过它的十分之一</td><td>开盘初期和事件当天变化很大</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>这些门槛来自一个简单的算术：一笔期权交易真实的预期优势，往往只有权利金的百分之十几甚至更少。往返价差如果占到 10%，大部分优势就被吃掉了。所以门槛不是绝对的：打算持有到期、不准备中途平仓的交易，只付一次价差；频繁进出的交易，价差的影响要乘以交易次数（案例 3）。</p>
+      <p>报价的最小单位也影响价差。参与「一分钱报价」计划的品种，权利金 $3 以下按 $0.01 报价，$3 以上按 $0.05；SPY、QQQ、IWM 在所有价位都按 $0.01 报价。不在计划内的品种，最小单位分别是 $0.05 和 $0.10。一张只值 0.20 的期权，哪怕只差一个最小单位，价差也已经占到 5% 以上。</p>
+      <div class="note field">
+        <span class="tag">实战观察</span>
+        <p>交易者处理流动性的几种常见做法：标的本身不够活跃时，选月度到期合约而不是周度合约，因为未平仓量集中在月度上；避开开盘后的头几分钟和盘前时段，那时价差最宽；下价差单前确认订单是「一张两条腿的组合单」，没有被拆成两张独立的单；价差很宽的仓位要退出时，不一次性砸出去，而是一张一张按限价减。还有一条与指派有关：价差的空头腿被指派后，不要单独卖掉作为保护的多头腿，否则最大亏损就不再有上限。</p>
+      </div>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">2.8</span>税务概念</h2>
+      <p>期权的税务处理取决于标的：宽基指数期权适用 1256 条款的 60/40 待遇，个股和 ETF 期权按普通资本利得处理；洗售规则对期权同样有效。</p>
+      <div class="note warn">
+        <span class="tag">先读这一条</span>
+        <p>本节只介绍美国税务居民适用的一般概念，帮助你理解为什么交易者会在意这些区别。具体处理取决于你的身份、收入、所在州和当年的法规；如果你不是美国税务居民，规则可能完全不同。涉及真实申报，请咨询税务专业人士。</p>
+      </div>
+
+      <h3>1256 合约与 60/40</h3>
+      <p>SPX、XSP、NDX、RUT 这类宽基指数期权（以及期货）属于「1256 合约」，有两条特殊规则：</p>
+      <ul>
+        <li><strong>60/40</strong>：无论持有多久，盈亏都按 60% 长期资本利得、40% 短期资本利得计税。</li>
+        <li><strong>年底按市值计价</strong>：12 月最后一个交易日仍然持有的仓位，按当天市值视同卖出，未实现的盈亏也计入当年。</li>
+      </ul>
+      <p>SPY、QQQ 这些 ETF 的期权，一般不属于 1256 合约，持有一年以内的盈亏按短期资本利得计税。对频繁交易、持有期很短的人，这个差别可能很大。</p>
+      <p>举例（税率为假设）：短期资本利得适用 32%，长期 15%。60/40 的综合税率是 <span class="num">0.6 × 15% + 0.4 × 32% = 21.8%</span>。同样 $10,000 的短线盈利，SPX 期权约缴 $2,180，SPY 期权约缴 $3,200，差 $1,020。在联邦最高税率档，两者分别是 <span class="num">26.8%</span> 和 37%（不含州税和其他附加税）。</p>
+
+      <h3>洗售规则</h3>
+      <p>如果你卖出证券实现亏损，并在卖出前后各 30 天内买入「实质相同」的证券，这笔亏损当期不能抵税，而是加到新仓位的成本里递延。期权在这里有两层含义：</p>
+      <ul>
+        <li>亏损卖出股票后 30 天内买入同一股票的看涨期权，属于取得买入该股票的期权，一般会触发洗售。</li>
+        <li>期权自身之间也可能触发：亏损平掉一张看涨后，30 天内又买入同一标的、条件相近的看涨。哪些期权算「实质相同」，有些情况并没有明确界定。</li>
+      </ul>
+      <p>例子：10 月 1 日你亏 $1,500 卖出 100 股 XYZ，10 月 15 日买入 1 张 XYZ 看涨。这 $1,500 亏损通常不能在当期抵扣，而是加到这张看涨的成本里。另外，被指派得到的股票，成本里要算上权利金：以 90 卖出看跌、收 0.40 后被指派，股票的计税成本是 89.60。</p>
+    </section>
+
+    <section id="s9">
+      <h2><span class="sn">2.9</span>指数敞口怎么选</h2>
+      <p>SPY、QQQ 适合小账户和需要股票交割的策略；SPX、XSP、NDX 适合不想被提前指派、希望现金结算或在意税务的交易者。</p>
+      <p>下表的名义金额按假设的价位计算：SPX 7,800、SPY 780、NDX 30,000、QQQ 740。</p>
+      <div class="tbl txt">
+        <table>
+          <caption>表 2-8　五个常用的大盘期权</caption>
+          <thead><tr><th>品种</th><th>每张名义金额</th><th>行权方式</th><th>结算</th><th>提前指派</th><th>税务（美国税务居民）</th></tr></thead>
+          <tbody>
+            <tr><td>SPX</td><td class="mono">≈ $780,000</td><td>欧式</td><td>现金；月度 AM，SPXW 为 PM</td><td>无</td><td>1256，60/40</td></tr>
+            <tr><td>XSP</td><td class="mono">≈ $78,000</td><td>欧式</td><td>现金；PM</td><td>无</td><td>1256，60/40</td></tr>
+            <tr><td>SPY</td><td class="mono">≈ $78,000</td><td>美式</td><td>100 股 SPY</td><td>有，除息前需留意</td><td>一般为普通资本利得</td></tr>
+            <tr><td>NDX</td><td class="mono">≈ $3,000,000</td><td>欧式</td><td>现金；月度 AM，周度 PM</td><td>无</td><td>1256，60/40</td></tr>
+            <tr><td>QQQ</td><td class="mono">≈ $74,000</td><td>美式</td><td>100 股 QQQ</td><td>有，除息前需留意</td><td>一般为普通资本利得</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>规模差别直接体现在价格上。按 IV 16% 计算，30 天平值看涨在 SPY 上每张约 <span class="num">$1,557</span>，在 SPX 上约 <span class="num">$15,566</span>。1 张 SPX 的敞口相当于 10 张 SPY 或 10 张 XSP。</p>
+      <h3>怎么选</h3>
+      <ul>
+        <li><strong>账户较小，或策略本身需要股票</strong>（备兑看涨、卖出看跌准备接股）：用 SPY、QQQ。SPY、QQQ 的流动性在所有期权里名列前茅。</li>
+        <li><strong>做价差、不想被提前指派</strong>：用 SPX、XSP。现金结算让案例 1、案例 2 那类「一条腿变成股票」的事故不会发生。</li>
+        <li><strong>美国税务居民、短线交易多</strong>：SPX、XSP 的 60/40 待遇在一年里可能省下可观的税款。</li>
+        <li><strong>想要 SPX 的规则但账户小</strong>：XSP 只有 SPX 的十分之一。代价是它的成交没有 SPX、SPY 活跃，价差占权利金的比例通常更高，下单要更有耐心。</li>
+        <li><strong>纳斯达克 100</strong>：NDX 每张名义金额约 300 万美元，主要是机构在用；个人交易者多用 QQQ。</li>
+      </ul>
+      <div class="note warn">
+        <span class="tag">AM 结算的特殊风险</span>
+        <p>SPX 和 NDX 的标准月度合约在周四停止交易，结算价取周五开盘价。持有到期，就要承担周四收盘到周五开盘之间的跳空，而且无法在周五平仓。不想承担这段风险，就在周四收盘前平仓，或者改用 PM 结算的周度合约。</p>
+      </div>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">案例</span>三个案例</h2>
+
+      <div class="case">
+        <div class="case-no">案例 1</div>
+        <h3>除息日前，价差的一条腿被指派</h3>
+        <p>你持有 10 张 XYZ 100/110 看涨价差（买入 100 看涨、卖出 110 看涨），股价已经涨到 125，两张都深度价内，价差接近最大价值 $10。明天除息，每股股息 <span class="num">$1.50</span>，除息后离到期还有 20 天，IV 30%。</p>
+        <p>先按 2.4 节的公式检查两条腿。除息后股价约 123.50，利率 4%、20 天：</p>
+        <div class="tbl">
+          <table>
+            <caption>表 2-9　两条腿除息后的剩余时间价值</caption>
+            <thead><tr><th>腿</th><th>同行权价看跌</th><th>行权价的利息</th><th>剩余时间价值</th><th>股息</th><th>结论</th></tr></thead>
+            <tbody>
+              <tr><td>卖出 110 看涨</td><td class="mono">0.157</td><td class="mono">0.241</td><td class="mono">0.398</td><td class="mono">1.50</td><td>对方会行权</td></tr>
+              <tr><td>买入 100 看涨</td><td class="mono">0.003</td><td class="mono">0.219</td><td class="mono">0.222</td><td class="mono">1.50</td><td>你也该行权</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>你没有做这个检查，当晚什么也没做。第二天早上，你发现 10 张 110 看涨全部被指派：账户里多了 1,000 股 XYZ 空头，成交价 110。今天是除息日，空头要支付 <span class="num">1.50 × 1,000 = $1,500</span> 的股息。</p>
+        <ul>
+          <li><strong>你实际的结果</strong>：按开盘价 123.50 买回 1,000 股，卖出 10 张 100 看涨（每张约 23.72）。合计 <span class="num">110,000 − 1,500 − 123,500 + 23,722 = $8,722</span>。</li>
+          <li><strong>如果前一晚也行权了 100 看涨</strong>：按 100 买入 1,000 股，正好交付给 110 的指派，拿到最大价值 <span class="num">$10,000</span>，不涉及股息。</li>
+          <li>差额 <span class="num">$1,278</span>，约等于股息减去 100 看涨剩余的时间价值：<span class="num">(1.50 − 0.22) × 1,000</span>。</li>
+        </ul>
+        <p>还有一个隐患：在被指派到你处理完之间，账户里挂着一笔 $123,500 的股票空头。小账户可能因此收到追缴，甚至在开盘时被强制平仓。</p>
+        <div class="note">
+          <span class="tag">启示</span>
+          <ul>
+            <li>持有个股价差时，把除息日写进日历。除息前一天，对每条价内空头腿检查一次「股息 &gt; 看跌价格 + 利息」。</li>
+            <li>处理办法有三种：收盘前把整个价差平掉；行权你的多头腿去对冲；或者把空头腿移到时间价值更高的位置。用 SPX 这类欧式指数期权，则根本不会遇到这个问题。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 2</div>
+        <h3>周五下午的钉住风险</h3>
+        <p>30 天前，股价 103，你卖出 10 张 100/95 看跌信用价差（卖出 100 看跌、买入 95 看跌），收 <span class="num">1.33</span>，共 $1,330。按设计，最大亏损是 <span class="num">(5 − 1.33) × 1,000 = $3,670</span>。</p>
+        <p>到期日周五，股价整个下午在 100 上下徘徊，最后收在 <span class="num">99.95</span>。100 看跌价内 5 分钱，95 看跌价外。你觉得差不多是「平手」，没有处理。</p>
+        <ul>
+          <li>100 看跌价内 $0.01 以上，持有人不提交指令就会自动行权。假设 10 张全部被行权：周一早上，你被指派买入 1,000 股，按 $100 成交，花费 $100,000。</li>
+          <li>保护你的 95 看跌已经作废。现在你持有的是 1,000 股裸露的多头股票。</li>
+          <li>周末公司公布坏消息，周一开盘 94。股票亏 <span class="num">(94 − 100) × 1,000 = −$6,000</span>，加上当初收的 $1,330，合计 <span class="num">−$4,670</span>，比价差「最大亏损」多出 $1,000。</li>
+        </ul>
+        <p>反过来，如果周五盘后股价反弹到 100.40，很多持有人会提交「不行权」，你可能一张都不被指派。问题在于，你在周五晚上无法知道是哪种情况，也许 10 张里被指派 6 张。这就是钉住风险：收盘价离行权价太近，你的仓位在周末处于未知状态。</p>
+        <p>解决成本有多高？周五 15:50，离收盘 10 分钟，股价 99.95，100 看跌的理论价约 <span class="num">0.08</span>。即使按 0.10 买回，10 张也只要 $100。</p>
+        <div class="note warn">
+          <span class="tag">启示</span>
+          <ul>
+            <li>价差的「最大亏损」只在两条腿同时存在时成立。到期时一条腿价内、一条腿价外，它就失效了。</li>
+            <li>规则：到期日收盘前，空头腿离行权价不到约 1% 的，花几分钱买回来。这几分钱是最便宜的保险。</li>
+            <li>现金结算的指数期权按结算价直接算差价，不会留下股票仓位，钉住风险小得多。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 3</div>
+        <h3>一年下来，价差吃掉了多少</h3>
+        <p>假设你的账户 $20,000，每个月做 8 笔交易，每笔 5 张，开仓、平仓各一次，全年 96 次往返。比较两类合约（都按对手价成交）：</p>
+        <div class="tbl">
+          <table>
+            <caption>表 2-10　一年的价差成本（每笔 5 张，96 次往返）</caption>
+            <thead><tr><th>合约</th><th>平均价差</th><th>每次往返</th><th>全年</th><th>占账户</th></tr></thead>
+            <tbody>
+              <tr><td>流动性差的个股期权</td><td class="mono">$0.15</td><td class="mono">$75</td><td class="mono neg">$7,200</td><td class="mono neg">36%</td></tr>
+              <tr><td>流动性好的 ETF 期权</td><td class="mono">$0.03</td><td class="mono">$15</td><td class="mono">$1,440</td><td class="mono">7.2%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>计算：<span class="num">0.15 × 100 × 5 = $75</span>，<span class="num">75 × 96 = $7,200</span>。如果再假设每张单边手续费 $0.65，全年还要加 <span class="num">5 × 2 × 0.65 × 96 = $624</span>。</p>
+        <p>流动性差的那一行意味着：你的交易需要在扣除成本之前就赚到本金的 36%，才能打平。即使改用中间价挂单、平均只让出一半价差，也还有 18%。很多账户就是被这种看不见的成本慢慢磨掉的，判断再准也补不回来。</p>
+        <div class="note">
+          <span class="tag">启示</span>
+          <ul>
+            <li>每月统计一次自己的价差成本：成交价与当时中间价的差，乘以张数和 100。</li>
+            <li>交易越频繁，越要选择流动性好的合约；流动性差的标的，减少进出次数，或者只做打算持有到期的交易。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">工具</span>清单与自测</h2>
+      <p>勾选状态只保存在你自己的浏览器里。</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">2-1</span>下单前：流动性检查</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">价差占中间价不超过 10%，否则减少进出次数</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">未平仓量和成交量足够承接我的张数</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">用限价单从中间价开始；多腿用组合单</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">2-2</span>持仓中：除息日检查</h4>
+          <ul>
+            <li><input type="checkbox" id="k4"><label for="k4">标出持仓标的的除息日</label></li>
+            <li><input type="checkbox" id="k5"><label for="k5">价内看涨空头：股息是否大于看跌价格加利息</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">深度价内看跌空头：准备好接股的资金</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">2-3</span>到期日下午</h4>
+          <ul>
+            <li><input type="checkbox" id="k7"><label for="k7">不想要股票的价内多头：收盘前卖掉</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">离行权价 1% 以内的空头腿：收盘前买回</label></li>
+            <li><input type="checkbox" id="k9"><label for="k9">确认账户能承受可能出现的股票仓位</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">2-4</span>账户与品种</h4>
+          <ul>
+            <li><input type="checkbox" id="k10"><label for="k10">知道自己的权限等级和账户类型</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">卖方仓位：算出股价跌 10% 时的保证金要求</label></li>
+            <li><input type="checkbox" id="k12"><label for="k12">指数敞口：按规模、结算和税务选 SPY、SPX 或 XSP</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>自测五题</h3>
+      <details class="q"><summary><span class="num">1</span><span>你卖出的 XYZ 50 看涨在价内，股价 58，明天除息，股息 0.80。除息后离到期 30 天，同行权价看跌按除息后股价 57.20 计算值 0.04。今晚会不会被指派？</span></summary>
+        <div class="ans"><p>利息 <span class="num">50 × (1 − e<sup>−0.04×30/365</sup>) = 0.164</span>，剩余时间价值 <span class="num">0.04 + 0.164 = 0.20</span>，小于股息 0.80。持有人行权每股多得约 0.60，你应该按「今晚会被指派」来准备。</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>一张期权买价 1.20、卖价 1.40，Delta 0.35。你买 10 张、之后按对手价卖出，往返成本多少？占权利金多少？股价要额外走多少？</span></summary>
+        <div class="ans"><p>往返成本 <span class="num">0.20 × 100 × 10 = $200</span>；中间价 1.30，占比 <span class="num">0.20 / 1.30 = 15.4%</span>；股价需额外移动 <span class="num">0.20 / 0.35 = $0.57</span>。</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>股价 50，你在保证金账户裸卖 1 张 45 看跌，收 0.60。按 Reg T 公式，保证金要求是多少？</span></summary>
+        <div class="ans"><p><span class="num">0.60 + max(20% × 50 − 5, 10% × 45) = 0.60 + max(5, 4.5) = 5.60</span>，每张 $560；扣除收到的 $60，实际占用 $500。现金账户则要冻结 <span class="num">45 × 100 − 60 = $4,440</span>。</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>你持有 2 张 SPY 780 看涨，到期日收盘 SPY 为 780.02，你没有做任何操作。会发生什么？</span></summary>
+        <div class="ans"><p>价内 0.02，超过 $0.01 的门槛，自动行权。下一个交易日你以 $780 买入 200 股 SPY，需要 <span class="num">$156,000</span>，而行权的内在价值只有 <span class="num">0.02 × 200 = $4</span>。资金不够会被追缴或强制卖出。应该在收盘前卖出期权，或提交「不行权」指令。</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>假设短期资本利得税率 32%、长期 15%。一位美国税务居民一年里短线赚了 $20,000，分别来自 SPX 期权和 SPY 期权时，联邦税各约多少？</span></summary>
+        <div class="ans"><p>SPX 按 60/40：<span class="num">20,000 × (0.6 × 15% + 0.4 × 32%) = 20,000 × 21.8% = $4,360</span>。SPY 按短期：<span class="num">20,000 × 32% = $6,400</span>。相差 $2,040。真实申报请咨询税务专业人士。</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="章节翻页"></nav>
+
+    <footer class="end">
+      <p>本章示例由 Black-Scholes 模型（利率 4%，一年 365 天）、二叉树模型和文中注明的假设计算；交易规则以交易所、清算所和券商的现行规定为准，税务内容只介绍概念。用于教学，不构成投资或税务建议。</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+
+  // 美式看跌（CRR 二叉树）
+  function amerPut(S, K, T, s, r, n) {
+    const dt = T / n, u = Math.exp(s * Math.sqrt(dt)), d = 1 / u, disc = Math.exp(-r * dt), p = (Math.exp(r * dt) - d) / (u - d);
+    const v = new Float64Array(n + 1), pw = new Float64Array(2 * n + 1);
+    for (let k = -n; k <= n; k++) pw[k + n] = S * Math.pow(u, k);
+    for (let j = 0; j <= n; j++) v[j] = Math.max(K - pw[2 * j], 0);
+    for (let i = n - 1; i >= 0; i--) {
+      for (let j = 0; j <= i; j++) {
+        const cont = disc * (p * v[j + 1] + (1 - p) * v[j]);
+        const ex = K - pw[2 * j - i + n];
+        v[j] = cont > ex ? cont : ex;
+      }
+    }
+    return v[0];
+  }
+
+  // ---------- fig 2-2：股息与提前行权 ----------
+  (function () {
+    const svg = document.getElementById("f2-svg");
+    const sS = document.getElementById("f2-s"), dS = document.getElementById("f2-d"), tS = document.getElementById("f2-t"), vS = document.getElementById("f2-iv");
+    const K = 100;
+    function draw() {
+      const S = +sS.value, D = +dS.value, days = +tS.value, iv = +vS.value / 100, T = days / DAY;
+      document.getElementById("f2-s-o").textContent = S.toFixed(1);
+      document.getElementById("f2-d-o").textContent = D.toFixed(2);
+      document.getElementById("f2-t-o").textContent = days + " 天";
+      document.getElementById("f2-iv-o").textContent = vS.value + "%";
+      const intr = K * (1 - Math.exp(-CK.R * T));
+      const tv = x => bs(x - D, K, T, iv, "p").price + intr;
+      let crit = null;
+      if (D > intr + 1e-9) {
+        let lo = K * 0.5, hi = K * 4;
+        if (tv(lo) <= D) crit = lo; else {
+          for (let i = 0; i < 60; i++) { const m = (lo + hi) / 2; if (tv(m) > D) lo = m; else hi = m; }
+          crit = (lo + hi) / 2;
+        }
+      }
+      const xs = range(95, 140, 0.25);
+      plot(svg, {
+        x: [95, 140], y: [0, 3.5], xt: range(95, 140, 5), yt: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5], yf: v => v.toFixed(1),
+        xlabel: "除息前一天的股价（美元）", ylabel: "每股（美元）",
+        band: crit !== null && crit < 140 ? [Math.max(95, crit), 140, "var(--tint-warn)"] : undefined,
+        series: [
+          { pts: [[95, D], [140, D]], color: "var(--warn)", w: 1.8, dash: "6 5" },
+          { pts: [[95, intr], [140, intr]], color: "var(--muted)", w: 1, dash: "2 4" },
+          { pts: xs.map(x => [x, tv(x)]), color: "var(--delta)", w: 2.6 }
+        ],
+        dots: [[S, tv(S), "var(--ink)", 4.5]].concat(crit !== null && crit < 140 && crit > 95 ? [[crit, D, "var(--warn)", 4.5]] : []),
+        labels: [[139, D, "股息 " + D.toFixed(2), 0, D >= intr ? -8 : 15, "end", "var(--warn)"], [139, intr, "利息下限 " + intr.toFixed(3), 0, D >= intr ? 15 : -8, "end", "var(--muted)"]]
+      });
+      const t = tv(S), gain = (D - t) * 100;
+      document.getElementById("f2-r1").textContent = t.toFixed(3);
+      document.getElementById("f2-r2").textContent = gain > 0 ? "+$" + gain.toFixed(0) : "持有更好";
+      document.getElementById("f2-r3").textContent = crit === null ? "不会提前行权" : crit.toFixed(2);
+    }
+    [sS, dS, tS, vS].forEach(x => x.addEventListener("input", draw));
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 2-3：利息与看跌提前行权 ----------
+  (function () {
+    const svg = document.getElementById("f3-svg");
+    const rS = document.getElementById("f3-r"), tS = document.getElementById("f3-t");
+    const K = 100, iv = 0.30;
+    function draw() {
+      const r = +rS.value / 100, days = +tS.value, T = days / DAY;
+      document.getElementById("f3-r-o").textContent = (+rS.value).toFixed(2) + "%";
+      document.getElementById("f3-t-o").textContent = days + " 天";
+      const intr = K * (1 - Math.exp(-r * T));
+      const xs = range(60, 110, 1);
+      const eu = xs.map(S => [S, bs(S, K, T, iv, "p", r).price - (K - S)]);
+      const am = xs.map(S => [S, amerPut(S, K, T, iv, r, 150) - Math.max(K - S, 0)]);
+      // 欧式时间价值转负的股价：C(S) = 利息
+      let euCross = null;
+      if (r > 0) {
+        let lo = 1, hi = K;
+        for (let i = 0; i < 60; i++) { const m = (lo + hi) / 2; if (bs(m, K, T, iv, "c", r).price < intr) lo = m; else hi = m; }
+        euCross = (lo + hi) / 2;
+      }
+      // 美式边界：二分
+      let bnd = null;
+      if (r > 0) {
+        let lo = 20, hi = K;
+        for (let i = 0; i < 22; i++) { const m = (lo + hi) / 2; if (amerPut(m, K, T, iv, r, 400) - (K - m) < 1e-5) lo = m; else hi = m; }
+        bnd = lo > 20.5 ? (lo + hi) / 2 : null;
+      }
+      plot(svg, {
+        x: [60, 110], y: [-1.5, 3], xt: range(60, 110, 10), yt: [-1, 0, 1, 2, 3], yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v),
+        xlabel: "股价（美元）", ylabel: "时间价值（每股）", zero: 0, vline: 100,
+        band: bnd !== null && bnd > 60 ? [60, bnd, "var(--tint-warn)"] : undefined,
+        series: [
+          { pts: eu, color: "var(--delta)", w: 2, dash: "6 5" },
+          { pts: am, color: "var(--theta)", w: 2.6 }
+        ],
+        dots: (bnd !== null && bnd > 60 ? [[bnd, 0, "var(--warn)", 4.5]] : []).concat(euCross !== null && euCross > 60 ? [[euCross, 0, "var(--delta)", 4]] : [])
+      });
+      document.getElementById("f3-r1").textContent = intr.toFixed(3);
+      document.getElementById("f3-r2").textContent = euCross !== null && euCross > 1.5 ? euCross.toFixed(1) : "不会转负";
+      document.getElementById("f3-r3").textContent = bnd !== null ? bnd.toFixed(1) : "不提前行权";
+    }
+    rS.addEventListener("input", draw); tS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 2-4：保证金 ----------
+  (function () {
+    const svg = document.getElementById("f4-svg");
+    const K = 90, T = 30 / DAY, iv = 0.30;
+    const regt = S => Math.max(0.2 * S - Math.max(S - K, 0), 0.1 * K) * 100;
+    const pm = S => {
+      const base = bs(S, K, T, iv, "p").price; let w = 0;
+      for (let m = -0.15; m <= 0.1501; m += 0.03) w = Math.max(w, bs(S * (1 + m), K, T, iv, "p").price - base);
+      return w * 100;
+    };
+    const xs = range(80, 115, 0.25);
+    const draw = () => plot(svg, {
+      x: [80, 115], y: [0, 2000], xt: range(80, 115, 5), yt: [0, 500, 1000, 1500, 2000],
+      xlabel: "股价（美元）", ylabel: "每张保证金（美元）", vline: 90,
+      series: [{ pts: xs.map(S => [S, regt(S)]), color: "var(--delta)", w: 2.6 }, { pts: xs.map(S => [S, pm(S)]), color: "var(--theta)", w: 2.6 }],
+      dots: [[100, regt(100), "var(--delta)", 4.5], [100, pm(100), "var(--theta)", 4.5], [92, regt(92), "var(--delta)", 4.5]],
+      labels: [[100, regt(100), "$1,000", 8, -8, "start", "var(--delta)"], [100, pm(100), "$" + Math.round(pm(100)), -8, 18, "end", "var(--theta)"], [92, regt(92), "$1,640", 8, -8, "start", "var(--delta)"]]
+    });
+    CK.figure(draw);
+  })();
+
+  // ---------- 工具 2-A：价差成本 ----------
+  (function () {
+    const svg = document.getElementById("c-svg");
+    const ids = ["c-bid", "c-ask", "c-n", "c-dl", "c-s"];
+    const btns = document.querySelectorAll("#calc .seg button");
+    let frac = 1;
+    function draw() {
+      const bid = +document.getElementById("c-bid").value || 0, ask = +document.getElementById("c-ask").value || 0;
+      const n = +document.getElementById("c-n").value || 0, dl = Math.abs(+document.getElementById("c-dl").value || 0), S = +document.getElementById("c-s").value || 0;
+      const spread = Math.max(ask - bid, 0), mid = (bid + ask) / 2;
+      const cost = spread * frac;
+      const pctAt = m => m > 0 ? cost / m * 100 : NaN;
+      const xs = range(0.1, 10, 0.05);
+      const ymax = Math.max(40, Math.min(100, Math.ceil(pctAt(Math.max(mid, 0.1)) / 20) * 20 + 10));
+      const yt = []; for (let v = 0; v <= ymax + 1e-9; v += ymax > 60 ? 20 : 10) yt.push(v);
+      plot(svg, {
+        x: [0, 10], y: [0, ymax], xt: [0, 2, 4, 6, 8, 10], yt, yf: v => v + "%",
+        xlabel: "期权中间价（美元）", ylabel: "往返成本 / 权利金",
+        series: [{ pts: xs.map(m => [m, pctAt(m)]), color: "var(--gamma)", w: 2.4 }],
+        dots: mid > 0 && mid <= 10 ? [[mid, pctAt(mid), "var(--ink)", 5]] : [],
+        labels: mid > 0 && mid <= 10 ? [[mid, pctAt(mid), "当前 " + pctAt(mid).toFixed(1) + "%", 8, -8, "start", "var(--ink)"]] : []
+      });
+      document.getElementById("c-r1").textContent = mid.toFixed(3);
+      document.getElementById("c-r2").textContent = "$" + Math.round(cost * 100 * n).toLocaleString("en-US");
+      document.getElementById("c-r3").textContent = mid > 0 ? (cost / mid * 100).toFixed(1) + "%" : "—";
+      document.getElementById("c-r4").textContent = dl > 0 ? "$" + (cost / dl).toFixed(2) + (S > 0 ? "（" + (cost / dl / S * 100).toFixed(2) + "%）" : "") : "—";
+    }
+    ids.forEach(id => document.getElementById(id).addEventListener("input", draw));
+    btns.forEach(b => b.addEventListener("click", () => {
+      frac = +b.dataset.f;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    CK.figure(draw);
+  })();
+})();
+</script>
+</body>
+</html>

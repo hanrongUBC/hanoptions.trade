@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 6 章 波动率 · 美股期权课</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  .vixcalc .ctl input[type="number"] { width: 7em; }
+  .chart.short { margin-bottom: 4px; }
+</style>
+</head>
+<body data-ch="6">
+<div class="topbar"><div class="topbar-inner"><a class="brand" href="index.html">美股期权<span>课</span></a><select id="ck-jump" aria-label="跳转到章节"></select></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">06</div>
+    <div class="eyebrow">美股期权课 · 第二部分 核心变量 · 第 6 章</div>
+    <h1><span class="g">波动率</span></h1>
+    <p class="deck">期权定价的六个输入里，只有波动率需要「猜」，一个 IV 数字单独拿出来几乎说明不了贵贱。本章把它放进四个坐标里看：和实际波动比、和自身历史比、和其他期限比、和其他行权价比，最后用 VIX 把这套读法用到整个市场上。</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="本章目录">
+    <p class="toc-title">本章目录</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>开篇：同一个 32%，三种结论</span></a></li>
+      <li><a href="#s1"><span class="n">6.1</span><span>实际波动率的算法</span></a></li>
+      <li><a href="#s2"><span class="n">6.2</span><span>隐含与实际：预期和结果</span></a></li>
+      <li><a href="#s3"><span class="n">6.3</span><span>波动率风险溢价</span></a></li>
+      <li><a href="#s4"><span class="n">6.4</span><span>IV Rank 与 IV Percentile</span></a></li>
+      <li><a href="#s5"><span class="n">6.5</span><span>期限结构</span></a></li>
+      <li><a href="#s6"><span class="n">6.6</span><span>偏度与波动率曲面</span></a></li>
+      <li><a href="#s7"><span class="n">6.7</span><span>VIX 与它的产品</span></a></li>
+      <li><a href="#s8"><span class="n">6.8</span><span>事件波动率</span></a></li>
+      <li><a href="#cases"><span class="n">案例</span><span>三个案例</span></a></li>
+      <li><a href="#tools"><span class="n">工具</span><span>清单与自测</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>本章目录</summary>
+      <ol>
+        <li><a href="#open">开篇：同一个 32%，三种结论</a></li>
+        <li><a href="#s1">6.1 实际波动率的算法</a></li>
+        <li><a href="#s2">6.2 隐含与实际：预期和结果</a></li>
+        <li><a href="#s3">6.3 波动率风险溢价</a></li>
+        <li><a href="#s4">6.4 IV Rank 与 IV Percentile</a></li>
+        <li><a href="#s5">6.5 期限结构</a></li>
+        <li><a href="#s6">6.6 偏度与波动率曲面</a></li>
+        <li><a href="#s7">6.7 VIX 与它的产品</a></li>
+        <li><a href="#s8">6.8 事件波动率</a></li>
+        <li><a href="#cases">三个案例</a></li>
+        <li><a href="#tools">清单与自测</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>学完本章你能</h4>
+        <ul>
+          <li>用收盘价算出实际波动率，并在日、周、月、年之间换算</li>
+          <li>算出 IV Rank 与 IV Percentile，说清两者何时给出相反信号</li>
+          <li>由 VIX 算出标普 500 一个月的 1 倍标准差区间，并解释做多 VIX 产品为什么长期损耗</li>
+        </ul>
+      </div>
+      <div>
+        <h4>前置知识</h4>
+        <ul>
+          <li>第 3 章：六个输入与 Black-Scholes 的直觉</li>
+          <li>第 4 章：Gamma 与 Theta 的交换</li>
+          <li>第 5 章：Vega 与 IV 崩塌</li>
+        </ul>
+      </div>
+      <div>
+        <h4>本章约定</h4>
+        <ul>
+          <li>期权示例用 Black-Scholes，利率 4%，不派息，一年 365 天</li>
+          <li>实际波动率按交易日计，一年 252 个交易日</li>
+          <li>文中的 IV、VIX 期货报价、价格序列均为假设或模拟</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">开篇</span>同一个 32%，三种结论</h2>
+      <p class="lead">股票 X 现价 $100，30 天平值期权的隐含波动率（IV）是 32%。平值跨式，也就是同时买入 100 看涨和 100 看跌，要 $7.31。三位同学看着同一个报价，给出了三个结论。</p>
+      <ul>
+        <li><strong>甲</strong>：过去 20 个交易日，X 的实际波动率只有 22%。按 22% 定价，同一个跨式只值 <span class="num">$5.03</span>。期权贵了 <span class="num">45%</span>，应该卖。</li>
+        <li><strong>乙</strong>：过去一年 X 的 IV 在 25% 到 60% 之间波动。32% 只处在这个区间从下往上 <span class="num">20%</span> 的位置，期权很便宜，应该买。</li>
+        <li><strong>丙</strong>：12 天后 X 发财报。没有财报的话，30 天 IV 大约是 26%。多出来的那部分，相当于市场给财报当天定了约 <span class="num">±5.3%</span> 的一倍标准差变动。真正该问的是：你觉得这次财报会动多大？</li>
+      </ul>
+      <div class="tbl">
+        <table>
+          <caption>表 6-0　同一个报价的三种读法</caption>
+          <thead><tr><th>读法</th><th>比较对象</th><th>结论</th><th>漏掉了什么</th></tr></thead>
+          <tbody>
+            <tr><td>甲：和实际比</td><td>过去 20 天实际波动 22%</td><td>贵，卖</td><td>财报还没发生</td></tr>
+            <tr><td>乙：和历史比</td><td>一年 IV 区间 25%–60%</td><td>便宜，买</td><td>区间可能被一次尖峰拉宽</td></tr>
+            <tr class="hl"><td>丙：拆出事件</td><td>无事件时的 IV 约 26%</td><td>看你对财报的判断</td><td>需要该股历次财报的实际变动</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>三个人的计算都没错，结论却互相矛盾。原因在于一个 IV 数字本身不说明贵贱，它要放进坐标系里才有意义。本章依次建立这几个坐标：和实际波动比（6.1–6.3），和自身历史比（6.4），和其他期限比（6.5、6.8），和其他行权价比（6.6），最后用 VIX（6.7）把这些读法用在整个市场上。</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">6.1</span>实际波动率的算法</h2>
+      <p>实际波动率（也叫已实现波动率、历史波动率，记作 RV）就是对数收益率的标准差，再按时间的平方根放大到一年。</p>
+      <div class="formula">
+        <div class="eq"><span class="v">r<sub>t</sub></span> <span class="up">=</span> ln<span class="up">(</span><span class="v">S<sub>t</sub></span> <span class="up">/</span> <span class="v">S</span><sub>t−1</sub><span class="up">)，</span>　σ<sub>年</sub> <span class="up">=</span> σ<sub>日</sub> <span class="up">×</span> √252</div>
+        <p class="where">σ<sub>日</sub> 是一段时间内每日对数收益率的样本标准差（除以 n − 1）。252 是一年的交易日数。</p>
+      </div>
+      <h3>手算一遍</h3>
+      <p>连续 6 个收盘价：100、101.5、100.8、102.2、101.0、101.9。五个对数收益率分别是 <span class="num">+1.489%</span>、<span class="num">−0.692%</span>、<span class="num">+1.379%</span>、<span class="num">−1.181%</span>、<span class="num">+0.887%</span>，平均 <span class="num">+0.376%</span>。样本标准差 <span class="num">1.232%</span>，乘以 √252 ≈ <span class="num">15.87</span>，年化实际波动率 <span class="num">19.56%</span>。</p>
+      <p>很多平台和交易员会假设均值为零，直接用 √(Σ<span class="v">r</span>²/<span class="v">n</span>)。这组数据得到日波动 <span class="num">1.164%</span>，年化 <span class="num">18.49%</span>。短窗口里的均值多半是噪声，假设为零反而更稳；只有在趋势很强的时候，两种算法才会明显分开。比较不同来源的 RV 时，先确认用的是哪一种。</p>
+
+      <h3>为什么乘以平方根</h3>
+      <p>如果每天的收益率互相独立，<span class="v">n</span> 天累计收益的方差就是单日方差的 <span class="v">n</span> 倍，标准差是 √<span class="v">n</span> 倍。所以年化时乘 √252，换算到一周乘 √5，一个月（约 21 个交易日）乘 √21。这个前提在两种情况下会失效：价格有明显的趋势或均值回归（收益率前后相关），以及有跳空（一天的方差远大于其他日子）。失效时，平方根换算会低估或高估长周期的波动。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 6-1　年化波动率与各周期 1 倍标准差的换算</caption>
+          <thead><tr><th>年化波动率</th><th>每交易日（÷15.87）</th><th>每周（÷7.21）</th><th>每月（÷3.46）</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">10%</td><td class="mono">0.63%</td><td class="mono">1.39%</td><td class="mono">2.89%</td></tr>
+            <tr class="hl"><td class="mono">16%</td><td class="mono">1.01%</td><td class="mono">2.22%</td><td class="mono">4.62%</td></tr>
+            <tr><td class="mono">20%</td><td class="mono">1.26%</td><td class="mono">2.77%</td><td class="mono">5.77%</td></tr>
+            <tr><td class="mono">30%</td><td class="mono">1.89%</td><td class="mono">4.16%</td><td class="mono">8.66%</td></tr>
+            <tr><td class="mono">50%</td><td class="mono">3.15%</td><td class="mono">6.93%</td><td class="mono">14.43%</td></tr>
+            <tr><td class="mono">80%</td><td class="mono">5.04%</td><td class="mono">11.09%</td><td class="mono">23.09%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>交易员常说的「16 法则」就来自第二行：年化 16% 大约等于每天 1%。反过来，一只股票平时每天动 2% 左右，年化波动率就在 32% 附近。</p>
+      <div class="note">
+        <span class="tag">交易日与日历天</span>
+        <p>Black-Scholes 里的 IV 按日历天计时（<span class="v">T</span> = 天数 / 365），RV 按交易日年化（× √252）。两者都是「年化」数字，可以直接相比。换算到「每天」时才要区分：每交易日用 ÷√252，每日历天用 ÷√365。周末几乎没有价格变动，所以按交易日算的日波动更接近你在盘面上看到的样子。这也是第 4 章「除以 16」和「除以 19」的来源。</p>
+      </div>
+
+      <h3>窗口长度：反应速度和噪声的取舍</h3>
+      <p>用 10 天算的 RV 反应快，但样本少，噪声大；用 60 天算的稳定，却总是慢半拍。噪声有多大可以估算：对正态分布的数据，样本标准差的误差约为 σ / √(2<span class="v">n</span>)。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 6-2　真实波动率为 20% 时，不同窗口估计值的 1 倍标准误差</caption>
+          <thead><tr><th>窗口（交易日）</th><th>10</th><th>20</th><th>60</th><th>120</th><th>252</th></tr></thead>
+          <tbody>
+            <tr><td>误差系数 1/√(2n)</td><td class="mono">0.224</td><td class="mono">0.158</td><td class="mono">0.091</td><td class="mono">0.065</td><td class="mono">0.045</td></tr>
+            <tr><td>估计值的 ±1 标准误差</td><td class="mono">±4.5 点</td><td class="mono">±3.2 点</td><td class="mono">±1.8 点</td><td class="mono">±1.3 点</td><td class="mono">±0.9 点</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>也就是说，一只真实波动率 20% 的股票，算出 20 天 RV 为 17% 或 23% 都很正常。看到 IV 比 20 天 RV 高 3 个点，不足以说明期权贵了。</p>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">窗口越短，RV 反应越快，噪声也越大</span><span class="fig-no">图 6-1 · 模拟价格，可拖动</span></div>
+        <div class="controls">
+          <label class="ctl" for="f1-w">计算窗口 <input id="f1-w" type="range" min="5" max="60" value="20"> <output id="f1-w-o">20 天</output></label>
+        </div>
+        <svg class="chart short" id="f1-px" viewBox="0 0 680 190" role="img" aria-label="模拟股价走势"></svg>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 280" role="img" aria-label="滚动实际波动率与真实波动率"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>滚动 RV（年化）</span><span><i class="dash" style="border-color: var(--muted)"></i>模拟时设定的真实波动率</span><span><i style="border-color: var(--tint-gamma); border-top-width: 8px"></i>冲击期（第 121–150 天）</span></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small>最后一天的 RV</small></div>
+          <div><b id="f1-r2">—</b><small id="f1-r2s">期间最高 RV</small></div>
+          <div><b id="f1-r3">—</b><small>冲击开始后几天升破 30%</small></div>
+          <div><b id="f1-r4">—</b><small>冲击结束后几天回落到 30% 以下</small></div>
+        </div>
+        <figcaption>这段价格由固定随机种子模拟：前 120 天真实波动率 18%，接着 30 天升到 45% 并伴随下跌，之后回到 24%。把窗口拖到 10 天：平静期的 RV 在 9.0% 到 26.5% 之间乱跳，冲击开始 8 天后就升破 30%。拖到 60 天：平静期稳定在 16.7% 到 19.8%，冲击却要 18 天才被识别，结束后还要 45 天才回落，最高也只到 37.1%。</figcaption>
+      </figure>
+      <p>实务上常同时看 20 天和 60 天两个窗口：20 天告诉你最近怎样，60 天告诉你常态如何。IV 预期的是未来 30 个日历天，约 21 个交易日，所以 20 天 RV 是最自然的对照。但要记住，RV 是过去，IV 是未来。拿过去去比未来，本身就有误差。</p>
+      <p>除了收盘价，还有用每日最高最低价的估计方法（如 Parkinson、Garman-Klass），在同样的样本长度下误差更小。它们的缺点是对数据质量敏感，盘中的一笔异常成交就能扭曲结果。入门阶段用收盘价算法足够。</p>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">6.2</span>隐含与实际：预期和结果</h2>
+      <p>隐含波动率是你买入时就定下的价格，实际波动率是持有期间才揭晓的结果；做了 Delta 对冲的期权，盈亏几乎只取决于两者之差。</p>
+      <p>把第 4 章的结论接着往下推。买入期权并每天对冲 Delta，一天的盈亏是 Gamma 收益减去 Theta：</p>
+      <div class="formula">
+        <div class="eq">当日盈亏 <span class="up">≈</span> <span class="frac"><span>1</span><span>2</span></span> <span class="gm">Γ</span><span class="v">S</span><sup>2</sup> <span class="up">[ (</span>Δ<span class="v">S</span><span class="up">/</span><span class="v">S</span><span class="up">)</span><sup>2</sup> <span class="up">−</span> σ<sub>I</sub><sup>2</sup>Δ<span class="v">t</span> <span class="up">]</span></div>
+        <p class="where">方括号里第一项是当天实际的价格变动平方，第二项是 IV 「预付」的变动平方。实际动得比 IV 预期的多，当天就赚；动得少就亏。</p>
+      </div>
+      <p>把持有期每天加起来，(Δ<span class="v">S</span>/<span class="v">S</span>)² 的总和就是 σ<sub>R</sub>²<span class="v">T</span>。再用 Black-Scholes 里的一个恒等式 Vega = Γ<span class="v">S</span>²σ<span class="v">T</span>，可以把 Gamma 换成 Vega：</p>
+      <div class="formula">
+        <div class="eq">总盈亏 <span class="up">≈</span> Vega <span class="up">×</span> <span class="frac"><span>σ<sub>R</sub><sup>2</sup> <span class="up">−</span> σ<sub>I</sub><sup>2</sup></span><span>2σ<sub>I</sub></span></span> <span class="up">≈</span> Vega <span class="up">× (</span>σ<sub>R</sub> <span class="up">−</span> σ<sub>I</sub><span class="up">)</span></div>
+        <p class="where">σ<sub>R</sub> 是持有期的实际波动率，σ<sub>I</sub> 是买入时的隐含波动率，Vega 按每 1 个波动率点计、差值按点数计。两者接近时第一种写法约等于第二种。对平值跨式做模拟检验，第二种写法反而更准，因为 Gamma 会随价格和时间变化，平均下来接近线性。</p>
+      </div>
+      <p>一句话：对冲后的期权仓位，就是一张以 IV 为成交价、以 RV 为结算价的合约，每个波动率点值一个 Vega。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 6-3　买入 10 张 30 天平值跨式（股价 100，IV 30%），每日对冲，到期时的盈亏</caption>
+          <thead><tr><th>持有期实际波动率</th><th>公式估算（每股）</th><th>10 张合计</th><th>模拟平均（每股）</th><th>模拟 5%–95% 区间</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">20%</td><td class="mono neg">−2.28</td><td class="mono neg">−$2,280</td><td class="mono neg">−2.29</td><td class="mono">−4.05 至 −0.81</td></tr>
+            <tr><td class="mono">25%</td><td class="mono neg">−1.14</td><td class="mono neg">−$1,140</td><td></td><td></td></tr>
+            <tr class="hl"><td class="mono">30%</td><td class="mono">0.00</td><td class="mono">$0</td><td></td><td></td></tr>
+            <tr><td class="mono">35%</td><td class="mono pos">+1.14</td><td class="mono pos">+$1,140</td><td></td><td></td></tr>
+            <tr><td class="mono">40%</td><td class="mono pos">+2.28</td><td class="mono pos">+$2,280</td><td class="mono pos">+2.28</td><td class="mono">+0.11 至 +5.64</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>跨式价格 <span class="num">6.854</span>，Vega 每点 <span class="num">0.228</span>（两条腿合计）。模拟用了 20,000 条价格路径，每天收盘对冲一次。平均值和公式几乎一样，但单条路径的结果分散得很开：同样是 20% 的实际波动，运气差时每股亏 4 美元以上，运气好时只亏 0.8 美元。原因是 Gamma 集中在平值附近：大波动如果发生在股价远离行权价的时候，赚到的就少。</p>
+      <div class="note gam">
+        <span class="tag">买卖双方的战场</span>
+        <p>买方押「实际会比隐含动得多」，卖方押相反。没有对冲的买方还多押了一个方向，但底层那场关于波动率的比赛照样在进行：方向判断对了，如果期间的实际波动远低于买入时的 IV，赚到的也会被 Theta 吃掉一大截。</p>
+      </div>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">6.3</span>波动率风险溢价</h2>
+      <p>长期看，指数期权的隐含波动率高于随后的实际波动率。这个差额叫波动率风险溢价（VRP），它是卖方的收入来源，也是卖方承担尾部风险的报酬。</p>
+      <p>以标普 500 为例，长期平均下来，VIX 比随后 30 天的实际波动率高出几个百分点。这只是平均：在危机爆发的月份，实际波动会远远超过事前的隐含波动。</p>
+      <h3>溢价从哪里来</h3>
+      <ul>
+        <li><strong>保险需求</strong>：养老金、基金等机构持有大量股票，需要持续买入指数看跌期权保护组合。这部分需求对价格不太敏感。</li>
+        <li><strong>厌恶崩盘</strong>：人们愿意为避免大亏付出高于期望损失的价格，就像买房屋保险。</li>
+        <li><strong>卖方要资本</strong>：卖出期权的一方要占用保证金，并承担偶发的巨额亏损。没有足够的补偿，就没有人愿意站在这一边。</li>
+      </ul>
+      <h3>卖方像保险公司</h3>
+      <p>保险公司收的保费高于平均理赔，所以长期赚钱。但理赔会扎堆出现：一场飓风就能吃掉好几年的利润。卖期权也一样。下面用一个假设的模型算一下：每个月卖一个指数 30 天平值跨式，IV 18%；每个月的实际波动按四种情况出现。</p>
+      <p>计算方法：如果持有期实际波动率是 σ<sub>R</sub>，到期时 |<span class="v">S<sub>T</sub></span> − <span class="v">K</span>| 的平均值约等于用 σ<sub>R</sub> 定价的跨式价格。所以卖方的平均盈亏约为「按 IV 定价的跨式」减去「按 RV 定价的跨式」。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 6-4　卖出 30 天平值跨式（指数 100，IV 18%，收权利金 4.12），四种月份的平均盈亏（假设的概率）</caption>
+          <thead><tr><th>月份类型</th><th>假设概率</th><th>实际波动率</th><th>按 RV 定价的跨式</th><th>卖方每股盈亏</th><th>对期望值的贡献</th></tr></thead>
+          <tbody>
+            <tr><td>平静</td><td class="mono">70%</td><td class="mono">11%</td><td class="mono">2.53</td><td class="mono pos">+1.59</td><td class="mono pos">+1.12</td></tr>
+            <tr><td>普通</td><td class="mono">20%</td><td class="mono">16%</td><td class="mono">3.66</td><td class="mono pos">+0.46</td><td class="mono pos">+0.09</td></tr>
+            <tr><td>动荡</td><td class="mono">7%</td><td class="mono">26%</td><td class="mono">5.94</td><td class="mono neg">−1.82</td><td class="mono neg">−0.13</td></tr>
+            <tr><td>危机</td><td class="mono">3%</td><td class="mono">55%</td><td class="mono">12.55</td><td class="mono neg">−8.43</td><td class="mono neg">−0.25</td></tr>
+            <tr class="hl"><td>合计</td><td class="mono">100%</td><td class="mono">平均 14.4%</td><td></td><td></td><td class="mono pos">+0.83</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>平均实际波动率 <span class="num">14.4%</span>，比 IV 低 3.6 个点，卖方每月平均赚 <span class="num">0.83</span>，约为权利金的五分之一。可是一个危机月就亏 <span class="num">8.43</span>，相当于 <span class="num">5.3</span> 个平静月的利润。现实里危机月的亏损还常常更大，因为价格跳空、对冲来不及做、保证金被追加，这些都没有算进上表。</p>
+      <div class="note warn">
+        <span class="tag">什么时候不成立</span>
+        <ul>
+          <li><strong>个股</strong>：VRP 比指数小，也更不稳定。个股期权没有指数那样大的保护需求，有时 IV 反而低于随后的 RV。</li>
+          <li><strong>事件前后</strong>：财报前的 IV 有时定得不够，事件后实际变动超过隐含（6.8 节）。</li>
+          <li><strong>危机进行中</strong>：IV 已经很高，但实际波动可能继续上升。这时卖「贵」的期权，等于在飓风登陆时卖保险。</li>
+        </ul>
+      </div>
+      <p>对买方来说，VRP 意味着「平均而言你付的是贵价」。要赢，就得在 IV 相对自身历史偏低时买（6.4 节），或者在你有理由相信实际波动会明显超过隐含的时候买。第 7 章会把这条变成具体的买方规则；第 8 章会讲卖方如何控制仓位，熬过危机月。</p>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">6.4</span>IV Rank 与 IV Percentile</h2>
+      <p>绝对 IV 的高低意义有限，有意义的是它在自己历史里的位置。IV Rank 量的是当前值在一年高低点之间的位置，IV Percentile 量的是一年里有多少天比现在低。</p>
+      <p>不同股票的「正常」波动率差别很大。一只生物科技股 IV 60% 可能是它一年里最平静的时候，一只公用事业股 IV 25% 可能已是罕见的高位。直接比较 60% 和 25% 得不出任何结论，必须拿每只股票和它自己比。</p>
+      <div class="formula">
+        <div class="eq">IV Rank <span class="up">=</span> <span class="frac"><span>当前 IV <span class="up">−</span> 一年最低</span><span>一年最高 <span class="up">−</span> 一年最低</span></span> <span class="up">× 100</span></div>
+        <div class="eq" style="margin-top: 10px">IV Percentile <span class="up">=</span> <span class="frac"><span>过去一年 IV 低于当前值的天数</span><span>总天数</span></span> <span class="up">× 100</span></div>
+        <p class="where">「一年」通常是过去 252 个交易日；IV 通常取 30 天平值 IV 或平台自己的 IV 指数。不同平台的定义不完全一样，比较前先确认。</p>
+      </div>
+      <h3>同一个 IV，两个数字为什么差很多</h3>
+      <p>Rank 只用了两个点：最高和最低。只要过去一年有过一次极端尖峰，分母就被拉大，之后很长时间 Rank 都显得很低。Percentile 用了每一天的数据，一次尖峰只占几天，影响很小。</p>
+      <p>下图是一段模拟的一年 IV：大部分时间在 20%–30% 之间，第 59 天因为一次暴跌冲到 <span class="num">62.5%</span>，几周后回落。一年最低 <span class="num">19.2%</span>。当前 IV 30% 时：</p>
+      <ul>
+        <li>IV Rank = (30 − 19.2) / (62.5 − 19.2) × 100 = <span class="num">24.9</span>，看起来偏低</li>
+        <li>IV Percentile：252 天里有 <span class="num">208</span> 天低于 30%，即 <span class="num">82.5</span>，实际上偏高</li>
+      </ul>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">一次尖峰会让 IV Rank 长期偏低，Percentile 不受影响</span><span class="fig-no">图 6-2 · 模拟一年 IV，可拖动</span></div>
+        <div class="controls">
+          <label class="ctl" for="f2-iv">当前 IV <input id="f2-iv" type="range" min="15" max="65" step="0.5" value="30"> <output id="f2-iv-o">30.0%</output></label>
+        </div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 300" role="img" aria-label="一年 IV 序列与当前 IV"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>过去一年的 30 天 IV</span><span><i style="border-color: var(--gamma)"></i>当前 IV</span></div>
+        <div class="readout">
+          <div><b id="f2-r1">—</b><small>IV Rank</small></div>
+          <div><b id="f2-r2">—</b><small>IV Percentile</small></div>
+          <div><b id="f2-r3">—</b><small>一年最低 / 最高</small></div>
+          <div><b id="f2-r4">—</b><small>IV 高于当前值的天数</small></div>
+        </div>
+        <figcaption>拖到 30%：Rank 只有 24.9，Percentile 却是 82.5，两个指标给出相反的信号。拖到 40%：Rank 48.0，像是中等水平；Percentile 96.8，一年里只有 8 天比这更高。拖到 24%，Rank 11.1、Percentile 26.2，两者才一起落到低位。</figcaption>
+      </figure>
+
+      <h3>怎么用</h3>
+      <div class="tbl">
+        <table>
+          <caption>表 6-5　IV Rank 与 IV Percentile 的组合读法</caption>
+          <thead><tr><th>情形</th><th>含义</th><th>倾向</th></tr></thead>
+          <tbody>
+            <tr><td>两者都高（&gt; 50）</td><td>IV 在自身历史中偏贵</td><td>对卖方有利，再叠加 VRP</td></tr>
+            <tr><td>两者都低（&lt; 20）</td><td>IV 在自身历史中便宜</td><td>买方的朋友（第 7 章）</td></tr>
+            <tr class="hl"><td>Rank 低、Percentile 高</td><td>过去一年有过一次尖峰</td><td>以 Percentile 和 RV 对比为准</td></tr>
+            <tr><td>Rank 高、Percentile 中等</td><td>一年里 IV 很平，高低点很近</td><td>Rank 被放大了，差几个点就跳很多</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>这两个指标之所以有用，是因为 IV 有均值回归的倾向：偏高的 IV 通常会往常态回落，偏低的会往上回。均值回归只是倾向。市场切换到新的状态时（比如一场持续数月的熊市），高 IV 可以更高，并且维持很久。</p>
+      <div class="note warn">
+        <span class="tag">使用前检查三件事</span>
+        <ul>
+          <li><strong>财报尖峰</strong>：个股每季度财报前 IV 都会上冲，把一年最高拉上去。比较时最好用不含财报的到期日，或者排除财报前后几天。</li>
+          <li><strong>回看窗口</strong>：252 天和 120 天算出的 Rank 可能差几十。尖峰一旦滚出窗口，同一个 IV 的 Rank 会突然跳高（案例 2）。</li>
+          <li><strong>结构变化</strong>：公司被收购传闻缠身、刚上市、业务彻底转型，过去一年的 IV 就失去了参照意义。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">6.5</span>期限结构</h2>
+      <p>把同一标的不同到期日的平值 IV 连成一条线，就是期限结构。平静时它向上倾斜，叫正向（contango）；恐慌时近端高于远端，叫倒挂（backwardation）。</p>
+      <p>形状来自均值回归。波动率有一个长期常态水平。当前波动低于常态时，市场预期未来会往上回，期限越长，包含的「回升」越多，曲线向上；当前波动远高于常态时，市场预期它会慢慢平息，近端高、远端低，曲线倒挂。</p>
+      <h3>远期波动率：从曲线里读出「以后」</h3>
+      <p>方差可以按时间相加。30 天 IV 覆盖的是第 0 到 30 天，90 天 IV 覆盖第 0 到 90 天，两者一减，就得到市场对第 30 到 90 天这段的定价：</p>
+      <div class="formula">
+        <div class="eq">σ<sub>远期</sub> <span class="up">=</span> √<span class="up">[ (</span>σ<sub>2</sub><sup>2</sup><span class="v">T</span><sub>2</sub> <span class="up">−</span> σ<sub>1</sub><sup>2</sup><span class="v">T</span><sub>1</sub><span class="up">) / (</span><span class="v">T</span><sub>2</sub> <span class="up">−</span> <span class="v">T</span><sub>1</sub><span class="up">) ]</span></div>
+        <p class="where">σ<sub>1</sub>、σ<sub>2</sub> 是到期日 <span class="v">T</span><sub>1</sub> &lt; <span class="v">T</span><sub>2</sub> 的 IV。括号里必须为正，否则两个报价之间存在矛盾。</p>
+      </div>
+      <ul>
+        <li>正向：30 天 15%、90 天 18%。远期 = √[(0.18² × 90 − 0.15² × 30) / 60] = <span class="num">19.3%</span>。市场认为一个月之后会比现在更动荡。</li>
+        <li>倒挂：30 天 35%、90 天 28%。远期 = √[(0.28² × 90 − 0.35² × 30) / 60] = <span class="num">23.7%</span>。市场认为眼下很危险，但一个月后会明显平静。</li>
+      </ul>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">期限结构的三种形状</span><span class="fig-no">图 6-3 · 假设的平值 IV</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="期限结构形状">
+            <button type="button" data-mode="calm" aria-pressed="true">正向：平静</button>
+            <button type="button" data-mode="stress" aria-pressed="false">倒挂：恐慌</button>
+            <button type="button" data-mode="earn" aria-pressed="false">个股：财报驼峰</button>
+          </div>
+        </div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 300" role="img" aria-label="不同到期日的平值 IV"></svg>
+        <div class="legend" id="f3-legend"></div>
+        <div class="readout">
+          <div><b id="f3-r1">—</b><small>30 天 IV</small></div>
+          <div><b id="f3-r2">—</b><small>90 天 IV</small></div>
+          <div><b id="f3-r3">—</b><small>30 天 / 90 天</small></div>
+          <div><b id="f3-r4">—</b><small>第 30–90 天的远期波动率</small></div>
+        </div>
+        <figcaption>正向时 30 天 / 90 天之比是 0.86，小于 1。切到倒挂，比值升到 1.22，近端 IV 比远端高出 6 个点以上。切到财报驼峰：财报在第 10 天，7 天期权不含财报，IV 只有 30%；14 天期权含财报，跳到 46.7%；越往后，财报那一天被摊得越薄。算出的第 30–90 天远期波动率是 29.9%，几乎正好等于不含事件的基础波动率 30%。</figcaption>
+      </figure>
+
+      <h3>怎么读，怎么用</h3>
+      <ul>
+        <li><strong>指数</strong>：常用 VIX 与 VIX3M（3 个月期的同类指数）之比。比值小于 1 是常态；升到 1 以上说明近端恐慌压过了远端。</li>
+        <li><strong>个股</strong>：先找驼峰。某个到期日的 IV 突然高出相邻月份，通常是那段时间里有财报或其他已知事件。</li>
+        <li><strong>近端动得更多</strong>：市场受冲击时，30 天 IV 可能涨 10 个点，1 年 IV 只涨 3 个点。所以「Vega 一样」的两个仓位，如果到期日不同，实际承受的 IV 风险并不一样。</li>
+        <li><strong>策略含义</strong>：正向结构里，卖近月、买远月的日历价差赚的是曲线滚动；倒挂时近月期权相对昂贵，买方更适合用远月表达观点。第 9 章会展开。</li>
+      </ul>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">6.6</span>偏度与波动率曲面</h2>
+      <p>同一到期日，不同行权价的 IV 并不相同。股指的虚值看跌 IV 系统性地高于虚值看涨，这叫看跌偏度（put skew）。</p>
+      <p>Black-Scholes 假设所有行权价共用一个波动率。如果市场真这样定价，把每个行权价的 IV 画出来应该是一条水平线。实际画出来，股指是一条左高右低的斜线，个股多半是一条浅浅的微笑，题材股有时右边翘得更高。</p>
+
+      <figure class="plate" id="fig4">
+        <div class="fig-head"><span class="fig-title">偏度让虚值看跌期权比「平坦假设」贵出几倍</span><span class="fig-no">图 6-4 · 30 天到期，标的 100，假设的曲线</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="偏度形状">
+            <button type="button" data-mode="index" aria-pressed="true">股指</button>
+            <button type="button" data-mode="stock" aria-pressed="false">普通个股</button>
+            <button type="button" data-mode="meme" aria-pressed="false">题材股</button>
+          </div>
+          <label class="ctl" for="f4-k">行权价 <input id="f4-k" type="range" min="80" max="120" step="1" value="90"> <output id="f4-k-o">90</output></label>
+        </div>
+        <svg class="chart" id="f4-svg" viewBox="0 0 680 300" role="img" aria-label="不同行权价的隐含波动率"></svg>
+        <div class="legend"><span><i style="border-color: var(--gamma)"></i>各行权价的 IV</span><span><i class="dash" style="border-color: var(--muted)"></i>平坦假设：全部等于平值 IV</span></div>
+        <div class="readout">
+          <div><b id="f4-r1">—</b><small>该行权价的 IV</small></div>
+          <div><b id="f4-r2">—</b><small id="f4-r2s">按曲线定价</small></div>
+          <div><b id="f4-r3">—</b><small>按平值 IV 定价</small></div>
+          <div><b id="f4-r5">—</b><small>曲线价 ÷ 平坦价</small></div>
+          <div><b id="f4-r4">—</b><small>25 Delta 风险逆转</small></div>
+        </div>
+        <figcaption>股指模式下行权价拖到 90：IV 25.2%，比平值高 10 个点，这张看跌期权按曲线值 0.197，按平坦假设只值 0.008，贵了二十多倍。拖到 105：看涨 IV 只有 12.2%，价格不到平坦假设的一半。切到题材股，曲线右边翘起，风险逆转变成正的 +10.2 点：市场更怕错过暴涨。</figcaption>
+      </figure>
+
+      <h3>股指为什么是看跌偏度</h3>
+      <ul>
+        <li><strong>崩盘的记忆</strong>：1987 年 10 月的股灾之后，股指期权的看跌偏度变得持续而明显。真实收益率的左尾比正态分布厚得多，市场把这一点直接定进了价格。</li>
+        <li><strong>保护需求</strong>：机构持续买入虚值指数看跌期权给组合上保险，卖给他们的做市商要求更高的价格。</li>
+        <li><strong>跌的时候波动变大</strong>：股价下跌时公司杠杆上升、情绪恐慌，波动率往往同步上升。一张看跌期权在下跌中既赚方向，又赚 IV 上升，自然更值钱。</li>
+        <li><strong>看涨期权的供给</strong>：大量备兑策略常年卖出指数和个股的虚值看涨，把看涨这一侧的 IV 压低。</li>
+      </ul>
+      <p>个股的偏度通常比指数平缓，因为个股既可能暴跌，也可能因为收购、新药数据、业绩超预期而暴涨。题材股、被大量散户追捧的股票，虚值看涨的需求很旺，曲线会右侧上翘，形成看涨偏度。</p>
+
+      <h3>怎么量化偏度</h3>
+      <p>最常用的是 <strong>25 Delta 风险逆转</strong>：25 Delta 看涨期权的 IV 减去 25 Delta 看跌期权的 IV。负值越大，看跌偏度越陡。上图三种假设曲线分别是 <span class="num">−4.1</span>、<span class="num">−1.7</span> 和 <span class="num">+10.2</span> 个点。另一个直观的度量是 90% 行权价和 110% 行权价的 IV 之差。偏度和 IV 一样，要和它自己的历史比才有意义。</p>
+
+      <h3>偏度对交易的影响</h3>
+      <ul>
+        <li><strong>买虚值指数看跌很贵</strong>：上图的 90 看跌，你付的价格里绝大部分是偏度溢价。</li>
+        <li><strong>价差可以「卖回」偏度</strong>：买 95 看跌（0.457）、卖 90 看跌（0.197），卖出的那条腿收回了买入成本的 <span class="num">43%</span>。如果曲线是平的，90 看跌只值 0.008，只能收回 <span class="num">3.7%</span>。看跌价差在偏度陡峭时格外划算。</li>
+        <li><strong>卖虚值看跌收的是偏度溢价</strong>：长期看有补偿，代价是在崩盘里首当其冲。</li>
+      </ul>
+
+      <h3>波动率曲面</h3>
+      <p>把期限结构（横向看到期日）和偏度（横向看行权价）合起来，就是一张波动率曲面：每个行权价、每个到期日各有一个 IV。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 6-6　一张假设的股指波动率曲面（标的 100，单位 %）</caption>
+          <thead><tr><th>到期 \ 行权价</th><th>80</th><th>90</th><th>95</th><th>100</th><th>105</th><th>110</th><th>90 与 110 之差</th></tr></thead>
+          <tbody>
+            <tr><td>30 天</td><td class="mono">43.1</td><td class="mono">25.2</td><td class="mono">19.2</td><td class="mono">15.0</td><td class="mono">12.2</td><td class="mono">10.6</td><td class="mono">14.6</td></tr>
+            <tr><td>90 天</td><td class="mono">33.0</td><td class="mono">22.7</td><td class="mono">19.3</td><td class="mono">16.8</td><td class="mono">15.2</td><td class="mono">14.3</td><td class="mono">8.4</td></tr>
+            <tr><td>180 天</td><td class="mono">29.5</td><td class="mono">22.1</td><td class="mono">19.7</td><td class="mono">18.0</td><td class="mono">16.8</td><td class="mono">16.2</td><td class="mono">5.9</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>读这张表有两个方向。竖着看平值那一列，15.0、16.8、18.0，是正向的期限结构。横着看，近月的偏度最陡，90 和 110 相差 14.6 个点；到 180 天只差 5.9 个点。原因是短期里一次暴跌就能让价格跌到 90，长期里股价有更多路径到达各个价位，行权价之间的差别被摊平了。</p>
+      <p>曲面会整体移动。股指下跌时，整张曲面通常上移，近端上移最多。股价从 100 跌到 95，原来 95 行权价的 IV（19.2%）就变成了新的平值附近的 IV，你持有的平值期权 IV 会沿着偏度「滑」上去。这就是为什么股指下跌时，平值 IV 几乎总会上升。</p>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">6.7</span>VIX 与它的产品</h2>
+      <p>VIX 是用一揽子标普 500 指数期权的价格算出来的未来 30 天隐含波动率，用年化百分比表示。</p>
+      <p>它的算法和单个期权的 IV 不同。芝加哥期权交易所选取到期日在 30 天前后的两组 SPX 期权，把大量虚值看涨和虚值看跌的价格按行权价加权（权重与行权价的平方成反比）汇总成方差，再插值到正好 30 天，开方后乘以 100。因为用到了大量虚值看跌，VIX 包含了偏度，通常略高于 SPX 的平值 IV。</p>
+      <h3>VIX / √12：一个月的预期变动</h3>
+      <p>年化波动率 σ 换算到 <span class="v">T</span> 年，乘以 √<span class="v">T</span>。30 天约等于 1/12 年，所以：</p>
+      <div class="formula">
+        <div class="eq">一个月的 1 倍标准差 <span class="up">≈</span> <span class="frac"><span>VIX</span><span>√12</span></span> <span class="up">=</span> <span class="frac"><span>VIX</span><span>3.46</span></span> <span class="up">（%）</span></div>
+        <p class="where">按日历天精确算是 √(30/365) = 0.2867，√(1/12) = 0.2887，两者差不到 1%，心算用 3.46 即可。同理，每周 ÷ √52 ≈ 7.21，每个交易日 ÷ √252 ≈ 15.87。</p>
+      </div>
+      <p>例子：VIX 16，假设标普 500 在 7,800 点。一个月的 1 倍标准差是 16 / 3.46 = <span class="num">4.62%</span>，约 <span class="num">±360</span> 点，区间大致是 7,440 到 8,160。如果收益率服从正态分布，指数一个月后落在这个区间里的概率约 68%，落在 ±2 倍（±9.2%）里的概率约 95%。每天的 1 倍标准差是 16 / 15.87 ≈ <span class="num">1.01%</span>，约 79 点。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 6-7　VIX 与标普 500 的预期变动（指数假设为 7,800 点）</caption>
+          <thead><tr><th>VIX</th><th>一个月（%）</th><th>一个月（点）</th><th>一周（%）</th><th>一个交易日（%）</th><th>一个交易日（点）</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">12</td><td class="mono">3.46</td><td class="mono">±270</td><td class="mono">1.66</td><td class="mono">0.76</td><td class="mono">±59</td></tr>
+            <tr class="hl"><td class="mono">16</td><td class="mono">4.62</td><td class="mono">±360</td><td class="mono">2.22</td><td class="mono">1.01</td><td class="mono">±79</td></tr>
+            <tr><td class="mono">20</td><td class="mono">5.77</td><td class="mono">±450</td><td class="mono">2.77</td><td class="mono">1.26</td><td class="mono">±98</td></tr>
+            <tr><td class="mono">30</td><td class="mono">8.66</td><td class="mono">±675</td><td class="mono">4.16</td><td class="mono">1.89</td><td class="mono">±147</td></tr>
+            <tr><td class="mono">45</td><td class="mono">12.99</td><td class="mono">±1,013</td><td class="mono">6.24</td><td class="mono">2.83</td><td class="mono">±221</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note warn">
+        <span class="tag">这个区间什么时候不准</span>
+        <ul>
+          <li><strong>含有风险溢价</strong>：VIX 是风险中性下的数字，平均高于随后的实际波动（6.3 节）。平静时期，这个区间往往偏宽。</li>
+          <li><strong>尾部更厚</strong>：真实收益率的极端月份比正态分布预测的多。超过 2 倍标准差的月份，频率明显高于 5%。</li>
+          <li><strong>不对称</strong>：VIX 里包含偏度，下跌方向的风险被定得更重。把区间对称地画在两边只是简化。</li>
+        </ul>
+      </div>
+
+      <figure class="plate calc vixcalc" id="calc">
+        <div class="fig-head"><span class="fig-title">VIX 与预期变动换算器</span><span class="fig-no">工具 6-A · 可编辑</span></div>
+        <div class="controls">
+          <label class="ctl" for="c-vix">VIX <input id="c-vix" type="number" value="16" step="0.5" min="1"></label>
+          <label class="ctl" for="c-idx">标普 500 点位 <input id="c-idx" type="number" value="7800" step="10" min="1"></label>
+        </div>
+        <div class="readout">
+          <div><b id="c-r1">—</b><small>一个月 1 倍标准差</small></div>
+          <div><b id="c-r2">—</b><small>一个月 ±1 倍区间（约 68%）</small></div>
+          <div><b id="c-r3">—</b><small>一个月 ±2 倍区间（约 95%）</small></div>
+          <div><b id="c-r4">—</b><small>一周 1 倍标准差</small></div>
+          <div><b id="c-r5">—</b><small>一个交易日 1 倍标准差</small></div>
+        </div>
+        <figcaption>区间按「点位 ×（1 ± 变动百分比）」对称计算，概率按正态分布近似。也可以把任意个股的 30 天 IV 填进 VIX 一栏、把股价填进点位一栏，得到这只股票的一个月预期变动。</figcaption>
+      </figure>
+
+      <h3>VIX 期货：你买不到「现货 VIX」</h3>
+      <p>VIX 本身是一个计算出来的指数，不能直接买卖。能交易的是 VIX 期货和期权，以及跟踪 VIX 期货的 ETF / ETN（统称 ETP）。VIX 期货到期时结算到当天早上的一个特别开盘报价，到期前，期货价格反映的是市场对「那一天 VIX 会是多少」的定价，和现货可以差很远。</p>
+      <p>平静时期，VIX 期货通常也是正向结构：现货最低，越远的合约越贵。原因同样是均值回归，再加上买保险的人愿意多付一点。</p>
+      <h3>展期损耗：做多 VIX 产品的陷阱</h3>
+      <p>做多 VIX 的 ETP 为了维持约 30 天的期限，每天卖出一部分近月期货、买入次月期货。在正向结构里，这相当于不停地卖便宜的、买贵的。如果曲线形状不变，每张期货随着到期日临近，价格会一路「滑」向较低的现货。</p>
+      <p>用一组假设的报价算一下：现货 VIX 15，近月期货（15 天后到期）16.0，次月期货（45 天后到期）17.2。你买入次月，持有 30 天，它变成只剩 15 天的近月。如果期间现货和曲线形状都不变，它的价格会从 17.2 滑到 16.0，下跌 <span class="num">7.0%</span>，而 VIX 本身一动没动。同样的情形持续 12 个月，累计跌掉 1 − (16.0 / 17.2)<sup>12</sup> = <span class="num">58%</span>。</p>
+      <p>现实里曲线不会一成不变，恐慌爆发时这些产品会暴涨。但长期持有做多 VIX 期货的 ETP，历史上净值一路向下，多次需要并股。它们适合短期交易或短期对冲，不适合长期持有。</p>
+      <h3>反向产品：平时赚展期，一天还回去</h3>
+      <p>做空 VIX 期货的反向 ETP 正好相反，平静时期赚取展期收益。但它们每天按固定倍数重新平衡，在 VIX 暴涨的一天会被迫买回大量期货。重新平衡的规模可以算出来：</p>
+      <div class="formula">
+        <div class="eq">需要买入的期货市值 <span class="up">=</span> <span class="v">L</span><span class="up">(</span><span class="v">L</span> <span class="up">− 1) ×</span> <span class="v">r</span> <span class="up">×</span> 期初净值</div>
+        <p class="where"><span class="v">L</span> 是目标倍数（反向 −1 倍、做多 2 倍等），<span class="v">r</span> 是当天期货的涨幅。<span class="v">L</span>(<span class="v">L</span> − 1) 对 −1 倍和 +2 倍都等于 2，所以两类产品在 VIX 上涨时都要买入，买盘叠加在一起，会进一步推高期货价格。</p>
+      </div>
+      <p>例子：一只 −1 倍产品净值 100，期货当天上涨 50%。它亏掉 50，净值剩 50，但空头敞口变成了 150。要回到 −1 倍，只能留 50 的空头，需要买回 100，正好是 (−1) × (−2) × 50% × 100。期货当天涨 100%，这类产品净值归零。−0.5 倍的产品在同样情形下需要买回 0.375 × 100 = 37.5，压力小得多。</p>
+      <div class="note field">
+        <span class="tag">实战观察</span>
+        <p>一些交易者把 VIX 当作对冲的「价格标签」来用：VIX 和自身历史相比偏低时，提前买入指数看跌价差，为已知的风险窗口（CPI、FOMC、季节性弱势期）上保险；等 VIX 已经冲高，就不再追买保护，转而考虑卖出看跌价差。另一个常见做法是把 VIX、10 年期美债收益率和油价放在一起看：三者在数据公布后一起回落，才把风险视为解除；只要有一个还在往上冲，就不急于加仓。</p>
+      </div>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">6.8</span>事件波动率</h2>
+      <p>财报、FOMC、CPI 这类日期确定的事件，会在事件前抬高包含它的期权的 IV，事件一过 IV 就被压回去。这部分 IV 可以拆出来，换算成市场给事件定的价。</p>
+      <h3>把事件从 IV 里拆出来</h3>
+      <p>还是用方差可加：一个包含事件的期权，总方差 = 平常每天的方差 × 天数 + 事件当天额外的方差。</p>
+      <div class="formula">
+        <div class="eq">σ<sub>含事件</sub><sup>2</sup><span class="v">T</span> <span class="up">=</span> σ<sub>基础</sub><sup>2</sup><span class="v">T</span> <span class="up">+</span> <span class="v">m</span><sup>2</sup>　<span class="up">⇒</span>　<span class="v">m</span> <span class="up">=</span> √<span class="up">[ (</span>σ<sub>含事件</sub><sup>2</sup> <span class="up">−</span> σ<sub>基础</sub><sup>2</sup><span class="up">) ×</span> <span class="v">T</span> <span class="up">]</span></div>
+        <p class="where"><span class="v">m</span> 是市场给事件当天定的 1 倍标准差变动。σ<sub>基础</sub> 可以用不含事件的相邻到期日的 IV 来估计。</p>
+      </div>
+      <p>例子：财报前，7 天后到期的周度期权 IV 80%，不含财报的基础 IV 约 35%。<span class="v">m</span> = √[(0.80² − 0.35²) × 7/365] = <span class="num">9.96%</span>。市场给这次财报定了大约 ±10% 的一倍标准差。开篇丙同学的 ±5.3% 也是这样算的：√[(0.32² − 0.26²) × 30/365]。</p>
+      <h3>跨式价格 ≈ 平均变动幅度</h3>
+      <p>平值跨式的价格有一个好记的近似：</p>
+      <div class="formula">
+        <div class="eq">平值跨式 <span class="up">≈</span> 0.8 <span class="up">×</span> σ√<span class="v">T</span> <span class="up">×</span> <span class="v">S</span></div>
+        <p class="where">0.8 来自 √(2/π) ≈ 0.798：正态分布下，平均的绝对变动约是标准差的 0.8 倍。所以跨式价格对应的是「平均动多少」，比 1 倍标准差小约两成。</p>
+      </div>
+      <p>上例 7 天跨式按 80% 定价是 <span class="num">8.83</span>，近似公式给出 0.8 × 0.80 × √(7/365) × 100 = <span class="num">8.86</span>。市场常把「跨式价格 ÷ 股价」叫作预期变动（expected move），这里是 8.8%。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 6-8　财报前买入 7 天平值跨式（8.83），财报后一天 IV 回到 35%，不同变动下的价值</caption>
+          <thead><tr><th>财报后股价变动</th><th>跨式价值</th><th>买方每股盈亏</th><th>买方收益率</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">0%</td><td class="mono">3.58</td><td class="mono neg">−5.25</td><td class="mono neg">−59%</td></tr>
+            <tr><td class="mono">±4%</td><td class="mono">4.83 / 5.00</td><td class="mono neg">−4.01 / −3.83</td><td class="mono neg">约 −44%</td></tr>
+            <tr><td class="mono">±8%</td><td class="mono">8.04 / 8.22</td><td class="mono neg">−0.79 / −0.61</td><td class="mono neg">约 −8%</td></tr>
+            <tr class="hl"><td class="mono">±10%</td><td class="mono">9.96 / 10.12</td><td class="mono pos">+1.13 / +1.29</td><td class="mono pos">约 +14%</td></tr>
+            <tr><td class="mono">±16%</td><td class="mono">15.93 / 16.07</td><td class="mono pos">+7.10 / +7.24</td><td class="mono pos">约 +81%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>每格里斜线前是下跌、后是上涨的情形。买方的盈亏平衡点是上涨 <span class="num">8.65%</span> 或下跌 <span class="num">8.83%</span>。股价不动，一夜之间亏掉 59%：财报前那部分事件方差瞬间清零，剩下的只是 6 天的基础时间价值。</p>
+      <h3>怎么判断事件定价贵不贵</h3>
+      <ul>
+        <li>把预期变动和这家公司过去 8–12 次财报后的实际变动比较（取绝对值）。历次平均明显小于预期变动，历史上对卖方有利；明显更大，则对买方有利。</li>
+        <li>样本很小，一年只有 4 次。公司业务变了、市场关注度变了，过去的数字就要打折扣。</li>
+        <li>看分布，不只看平均。8 次里有 1 次巨大的变动，卖方的平均利润可能就被吃掉一大半（案例 3）。</li>
+      </ul>
+      <h3>宏观事件</h3>
+      <p>同样的方法也适用于指数。假设 CPI 公布前，2 天后到期的 SPX 期权 IV 18%，平常约 13%。事件当天的 1 倍标准差 = √[(0.18² − 0.13²) × 2/365] = <span class="num">0.92%</span>。FOMC 决议日也能这样拆。宏观事件的驼峰比财报小得多，但它们影响所有股票，而且在一年里反复出现。事件后的 IV 压缩就是第 5 章讲的 IV 崩塌；第 10 章会专门讲事件交易。</p>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">案例</span>三个案例</h2>
+
+      <div class="case">
+        <div class="case-no">案例 1</div>
+        <h3>2018 年 2 月：期限结构一夜倒挂</h3>
+        <p>2017 年是一个异常平静的年份，VIX 长期处在历史低位，多次收在 10 以下。VIX 期货曲线保持着陡峭的正向结构，做空 VIX 期货的反向 ETP 靠展期收益连续上涨，吸引了大量资金。</p>
+        <p>2018 年 1 月底股市开始回落。2 月 5 日，标普 500 单日下跌约 4%，VIX 当天上涨超过一倍，创下单日最大百分比涨幅的纪录。VIX 期货曲线从正向变成倒挂：近月期货大幅高于远月。</p>
+        <p>当天收盘后，反向 VIX 产品按规则重新平衡，需要买回大量 VIX 期货。市场普遍认为这股买盘进一步推高了期货价格。其中跟踪「每日 −1 倍短期 VIX 期货指数」的 ETN（代码 XIV）指示净值损失超过 90%，发行方随后宣布提前终止这只产品。另一只反向产品 SVXY 之后把目标倍数从 −1 倍调整为 −0.5 倍。</p>
+        <p>用 6.7 节的公式看这个机制（以下为示意数字）：</p>
+        <div class="tbl">
+          <table>
+            <caption>表 6-9　净值 100 的反向产品，期货单日上涨时的结果</caption>
+            <thead><tr><th>期货单日涨幅</th><th>−1 倍产品净值</th><th>−1 倍需买回的期货</th><th>−0.5 倍产品净值</th><th>−0.5 倍需买回的期货</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">+20%</td><td class="mono">80</td><td class="mono">40</td><td class="mono">90</td><td class="mono">15</td></tr>
+              <tr><td class="mono">+50%</td><td class="mono">50</td><td class="mono">100</td><td class="mono">75</td><td class="mono">37.5</td></tr>
+              <tr class="hl"><td class="mono">+100%</td><td class="mono">0</td><td class="mono">200（已无力执行）</td><td class="mono">50</td><td class="mono">75</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>规模越大的产品，收盘前要买的期货越多，买得越多期货涨得越高，涨得越高需要买的又越多。这个循环在平静年份看不见，在冲击日集中爆发。</p>
+        <ul>
+          <li><strong>启示一</strong>：正向结构下稳定的展期收益，本质是卖保险的保费。期限结构倒挂的那一刻，就是保险赔付的时候。</li>
+          <li><strong>启示二</strong>：每日重新平衡、带杠杆或反向的产品，可以在一天内亏光。持有这类产品，要按「可能归零」来定仓位。</li>
+          <li><strong>启示三</strong>：VIX 处在极低水平本身就是风险信号之一。IV Rank 很低时，卖波动率的回报空间小，而尾部风险一点没少。</li>
+        </ul>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 2</div>
+        <h3>IV Rank 的两次误导</h3>
+        <p>回到图 6-2 那只股票。现在它的 30 天 IV 是 30%，过去 20 个交易日的实际波动率 22%（假设）。</p>
+        <p><strong>第一次误导</strong>：一位同学看到 IV Rank 只有 <span class="num">24.9</span>，认为期权便宜，买入 10 张 30 天平值跨式，打算每天对冲赚 Gamma。他没看 Percentile（<span class="num">82.5</span>），也没比较 RV。按 6.2 节的公式，如果下个月实际波动率仍是 22%，这笔交易每股亏约 Vega × (22 − 30)，用两个跨式的价差精确算是 6.854 − 5.030 = <span class="num">1.82</span>，10 张亏 <span class="num">$1,824</span>，占权利金的 27%。</p>
+        <p><strong>第二次误导</strong>：另一位同学用的平台只回看 150 个交易日。暴跌那段落在窗口外，最高 IV 只有 33.9%、最低 19.4%。同样是 30% 的 IV，他看到的 Rank 是 <span class="num">73.1</span>，Percentile <span class="num">89.5</span>。两位同学看着同一个 IV，一个觉得便宜，一个觉得贵。</p>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>指标</th><th>回看 252 天</th><th>回看 150 天</th></tr></thead>
+            <tbody>
+              <tr><td>区间最低 / 最高</td><td class="mono">19.2% / 62.5%</td><td class="mono">19.4% / 33.9%</td></tr>
+              <tr><td>IV Rank</td><td class="mono">24.9</td><td class="mono">73.1</td></tr>
+              <tr><td>IV Percentile</td><td class="mono">82.5</td><td class="mono">89.5</td></tr>
+              <tr class="hl"><td>IV / 20 天 RV</td><td class="mono">1.36</td><td class="mono">1.36</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>启示：Percentile 对窗口和尖峰都更稳健；IV 与 RV 之比则完全不受回看窗口影响。三个指标里，Rank 最容易被一次极端事件带偏。用 Rank 做决定之前，至少再看一眼另外两个。</p>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 3</div>
+        <h3>财报：从期权价格读出市场的预期，再和历史比</h3>
+        <p>沿用 6.8 节的例子：财报前 7 天跨式 8.83，预期变动 8.8%；拆出的事件 1 倍标准差约 10%。假设这家公司过去 8 次财报后的绝对变动是：4.1%、6.3%、12.5%、3.2%、7.8%、5.0%、9.4%、2.7%，平均 <span class="num">6.4%</span>。</p>
+        <p>平均变动比预期变动低 2.4 个点，看起来卖方有优势。逐次算一下卖出跨式（财报后一天 IV 回到 35% 时平仓）的每股盈亏：</p>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>历次变动</th><th class="mono">4.1%</th><th class="mono">6.3%</th><th class="mono">12.5%</th><th class="mono">3.2%</th><th class="mono">7.8%</th><th class="mono">5.0%</th><th class="mono">9.4%</th><th class="mono">2.7%</th></tr></thead>
+            <tbody>
+              <tr><td>卖方盈亏</td><td class="mono pos">+3.76</td><td class="mono pos">+2.11</td><td class="mono neg">−3.75</td><td class="mono pos">+4.30</td><td class="mono pos">+0.79</td><td class="mono pos">+3.14</td><td class="mono neg">−0.71</td><td class="mono pos">+4.55</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>8 次里赚 6 次，平均每次 <span class="num">+1.77</span>。但 12.5% 那一次亏 3.75，几乎抵掉两次普通的盈利。如果下一次是 20% 的变动，卖方每股要亏 11 美元以上。</p>
+        <p>启示：「预期变动 vs 历史变动」是判断事件定价的好起点，但 8 个样本很少，必须看最坏的那几次，并按最坏情形定仓位。买方则要想清楚：只有当你有具体理由相信这次会比 8.8% 动得更多时，财报前买跨式才有意义。</p>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">工具</span>清单与自测</h2>
+      <p>勾选状态只保存在你自己的浏览器里。</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">6-1</span>判断 IV 贵还是便宜</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">IV 与 20 天、60 天 RV 之比</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">IV Rank 和 IV Percentile 都看，分歧时查有没有尖峰</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">这个到期日之前有没有财报或宏观事件</label></li>
+            <li><input type="checkbox" id="k4"><label for="k4">确认平台的 IV 和回看窗口定义</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">6-2</span>读期限结构与偏度</h4>
+          <ul>
+            <li><input type="checkbox" id="k5"><label for="k5">30 天 / 90 天 IV 之比，大于 1 是倒挂</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">算一段远期波动率，看市场对「以后」的定价</label></li>
+            <li><input type="checkbox" id="k7"><label for="k7">找驼峰：哪个到期日包含事件</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">25 Delta 风险逆转和它自己的历史比</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">6-3</span>用 VIX 估算区间</h4>
+          <ul>
+            <li><input type="checkbox" id="k9"><label for="k9">一个月：VIX ÷ 3.46；一天：VIX ÷ 16</label></li>
+            <li><input type="checkbox" id="k10"><label for="k10">记住区间里含风险溢价，平静时偏宽</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">按厚尾准备：2 倍标准差之外的月份比 5% 多</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">6-4</span>碰 VIX 产品之前</h4>
+          <ul>
+            <li><input type="checkbox" id="k12"><label for="k12">它跟踪的是期货，不是现货 VIX</label></li>
+            <li><input type="checkbox" id="k13"><label for="k13">看期货曲线：正向时做多产品每月都在损耗</label></li>
+            <li><input type="checkbox" id="k14"><label for="k14">反向和杠杆产品按「可能归零」定仓位</label></li>
+            <li><input type="checkbox" id="k15"><label for="k15">定好持有期限，不当作长期资产</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>自测五题</h3>
+      <details class="q"><summary><span class="num">1</span><span>一只股票过去 20 天的日收益率标准差是 1.5%。年化实际波动率大约是多少？</span></summary>
+        <div class="ans"><p><span class="num">1.5% × √252 = 1.5% × 15.87 ≈ 23.8%</span>。注意 20 天窗口的估计误差约为 23.8% × 0.158 ≈ ±3.8 个点。</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>过去一年某股 IV 最低 20%、最高 80%，当前 35%，一年里有 70% 的交易日 IV 低于 35%。IV Rank 和 IV Percentile 各是多少？该信哪个？</span></summary>
+        <div class="ans"><p>IV Rank = (35 − 20) / (80 − 20) × 100 = <span class="num">25</span>；IV Percentile = <span class="num">70</span>。两者分歧说明 80% 那个高点很可能是一次短暂的尖峰。更可靠的是 Percentile，再配合 IV 与 RV 之比做判断。</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>VIX 是 25，标普 500 在 7,000 点。一个月的 1 倍标准差区间是多少？</span></summary>
+        <div class="ans"><p><span class="num">25 / 3.46 = 7.22%</span>，约 <span class="num">±505</span> 点，区间大致是 6,495 到 7,505。正态近似下约 68% 的概率落在其中。</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>某股 30 天 IV 40%，60 天 IV 32%。市场对第 30–60 天这段的波动率定价是多少？说明了什么？</span></summary>
+        <div class="ans"><p>远期 = √[(0.32² × 60 − 0.40² × 30) / 30] = √[(6.144 − 4.8) / 30] = <span class="num">21.2%</span>。期限结构倒挂，市场认为高波动集中在第一个月，很可能这段时间里有财报或其他事件；事件过后，波动率会回到 20% 出头。</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>你买入做多 VIX 的产品，它持有的期货从 18.0 开始，一个月后 VIX 现货没变、曲线形状也没变，那张期货变成了近月，报价 16.5。你亏了多少？为什么？</span></summary>
+        <div class="ans"><p><span class="num">16.5 / 18.0 − 1 = −8.3%</span>。这是展期损耗：正向结构里，期货随着到期日临近向较低的现货靠拢，VIX 不动你也在亏。</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="章节翻页"></nav>
+
+    <footer class="end">
+      <p>本章期权示例由 Black-Scholes 模型计算（利率 4%，不派息，一年 365 天），价格序列、IV 序列与期货报价为模拟或假设数据，历史事件只陈述定性事实；内容用于教学，不构成投资建议。</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+  const pct1 = v => v.toFixed(1) + "%";
+
+  // ---------- fig 6-1：滚动实际波动率 ----------
+  (function () {
+    const PX = [100.0,99.13,99.16,97.66,96.76,97.77,98.97,99.19,98.6,97.52,96.46,97.13,95.88,95.28,94.54,95.61,95.27,94.37,94.77,95.02,95.84,96.41,96.09,95.91,95.31,95.25,92.08,94.6,95.8,95.76,95.58,95.23,94.93,95.49,93.69,94.07,94.78,94.79,93.82,93.11,93.55,92.27,93.0,92.63,93.39,94.37,96.12,95.57,97.66,97.85,96.66,96.67,97.14,100.0,99.68,99.14,98.23,97.93,97.57,98.92,97.16,98.69,98.52,95.72,95.94,95.73,94.49,95.25,94.42,94.91,96.65,96.67,96.12,95.35,94.85,95.95,97.32,98.09,97.58,99.63,99.62,99.33,99.36,99.64,99.45,100.37,100.64,99.56,98.41,99.76,100.28,99.98,99.94,100.27,101.36,101.38,103.79,102.7,101.1,100.68,103.14,101.47,102.96,105.29,105.02,105.14,103.26,104.23,101.9,101.77,102.73,104.79,107.19,107.64,105.51,105.07,105.17,104.24,104.27,104.83,105.02,104.82,105.01,103.85,106.38,110.14,110.02,112.18,108.09,105.13,103.18,105.0,102.29,109.42,105.55,102.01,98.64,96.64,92.47,91.11,89.6,91.15,89.62,89.41,86.51,80.94,81.81,81.58,79.95,82.95,82.07,83.76,83.92,84.93,85.63,86.95,86.31,84.98,84.13,85.15,84.79,85.26,86.58,88.58,88.3,89.76,91.63,91.92,91.36,88.35,90.47,88.92,90.32,93.27,93.26,93.29,94.49,94.02,92.54,92.4,93.1,95.0,96.59,96.09,96.33,95.25,94.58,93.81,93.74,93.22,92.66,95.25,96.01,96.81,98.0,98.08,98.78,99.1,97.45,97.79,100.29,99.7,99.84,100.27,97.71,98.98,98.89,100.39,99.08,100.17,101.58,100.29,98.49,97.21,96.66,95.88,98.21,97.21,98.57,102.07,99.16,99.2,97.87,95.65,93.17,91.56,91.22,93.27,93.15,92.04,91.86,89.58,90.94,93.9,93.48,95.83,94.69,91.64,92.0,92.33,93.99,95.97,94.33,93.51,92.64,91.25,90.67,90.93,92.32,92.69,93.09,93.4,92.53,90.05,91.07,93.15,96.16,98.35,99.05,100.58,101.58];
+    const LR = PX.slice(1).map((p, i) => Math.log(p / PX[i]));
+    const ND = LR.length;
+    const wS = document.getElementById("f1-w");
+    const svgP = document.getElementById("f1-px"), svg = document.getElementById("f1-svg");
+    function rvAt(w, end) {
+      let m = 0; for (let i = end - w; i < end; i++) m += LR[i]; m /= w;
+      let v = 0; for (let i = end - w; i < end; i++) v += (LR[i] - m) * (LR[i] - m);
+      return Math.sqrt(v / (w - 1)) * Math.sqrt(252);
+    }
+    function draw() {
+      const w = +wS.value;
+      document.getElementById("f1-w-o").textContent = w + " 天";
+      plot(svgP, {
+        x: [0, ND], y: [75, 115], xt: range(0, 250, 50), yt: [80, 90, 100, 110],
+        xf: v => "", ylabel: "股价", xlabel: "",
+        band: [120, 150, "var(--tint-gamma)"],
+        series: [{ pts: PX.map((p, i) => [i, p]), color: "var(--ink)", w: 1.6 }]
+      });
+      const pts = [];
+      for (let e = w; e <= ND; e++) pts.push([e, rvAt(w, e) * 100]);
+      const truth = [[0, 18], [120, 18], [120, 45], [150, 45], [150, 24], [ND, 24]];
+      plot(svg, {
+        x: [0, ND], y: [0, 80], xt: range(0, 250, 50), yt: [0, 20, 40, 60, 80],
+        xf: v => v, yf: v => v + "%", xlabel: "交易日序号", ylabel: "年化波动率",
+        band: [120, 150, "var(--tint-gamma)"],
+        series: [{ pts: truth, color: "var(--muted)", w: 1.6, dash: "5 5" }, { pts, color: "var(--delta)", w: 2.2 }]
+      });
+      const last = pts[pts.length - 1][1];
+      let mx = pts[0]; pts.forEach(p => { if (p[1] > mx[1]) mx = p; });
+      const up = pts.find(p => p[0] > 120 && p[1] > 30);
+      const dn = pts.find(p => p[0] > 150 && p[1] < 30);
+      document.getElementById("f1-r1").textContent = pct1(last);
+      document.getElementById("f1-r2").textContent = pct1(mx[1]);
+      document.getElementById("f1-r2s").textContent = "期间最高 RV（第 " + mx[0] + " 天）";
+      document.getElementById("f1-r3").textContent = up ? (up[0] - 120) + " 天" : "未升破";
+      document.getElementById("f1-r4").textContent = dn ? (dn[0] - 150) + " 天" : "未回落";
+    }
+    wS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 6-2：IV Rank 与 IV Percentile ----------
+  (function () {
+    const IV = [26.0,24.6,22.5,19.3,19.2,20.9,21.2,22.0,23.5,22.4,26.1,24.8,25.4,29.5,29.0,28.9,27.9,28.2,24.9,24.0,26.5,26.7,26.2,26.7,27.2,27.3,28.0,25.4,26.2,25.2,26.3,26.2,24.7,24.6,23.3,24.8,24.7,25.9,24.3,26.7,26.1,28.1,29.2,27.3,27.6,26.6,27.1,29.2,30.1,31.5,29.2,29.2,29.5,31.0,29.6,30.2,30.6,27.8,62.5,60.1,53.0,47.0,47.2,45.9,43.4,42.0,39.6,37.2,35.3,35.1,36.9,35.0,34.0,32.9,30.1,30.1,31.2,29.3,30.3,29.0,30.5,32.2,31.0,27.4,26.7,24.6,22.9,22.6,24.5,24.4,24.1,21.8,21.3,19.9,20.7,20.3,20.5,20.7,20.7,22.1,22.9,22.6,22.9,23.7,25.6,25.8,27.9,26.8,26.3,24.2,25.3,23.9,22.7,23.9,23.2,22.4,23.7,23.6,24.9,24.3,25.4,26.9,26.9,29.6,28.6,28.1,28.0,29.4,28.6,27.7,27.9,29.7,28.8,26.6,26.3,27.1,26.2,26.3,23.7,23.8,24.0,24.9,25.3,26.4,24.9,25.8,23.5,22.9,24.4,25.6,23.1,24.0,23.5,22.6,23.0,23.3,25.2,23.3,22.8,22.8,20.7,22.3,24.8,23.9,24.5,24.2,24.6,23.7,24.9,23.4,25.3,25.8,29.4,26.6,26.3,24.5,24.3,24.9,23.7,22.0,20.1,20.7,22.4,24.1,24.2,23.0,22.6,20.9,19.4,20.9,20.8,21.4,21.3,23.1,25.1,24.1,23.6,22.9,24.7,26.5,26.0,29.4,29.2,27.0,24.1,23.9,24.4,23.7,24.2,25.9,25.8,27.0,29.4,29.9,28.7,29.1,29.7,33.1,31.8,28.8,29.0,29.2,28.3,29.0,29.2,31.0,29.2,27.8,27.6,26.7,28.5,29.2,28.9,31.2,31.6,32.9,33.9,33.0,32.2,31.7,29.4,28.6,29.7,29.9,28.1,31.8,29.6,30.3,31.2,33.0,31.0,30.6];
+    const lo = Math.min(...IV), hi = Math.max(...IV);
+    const iLo = IV.indexOf(lo), iHi = IV.indexOf(hi);
+    const svg = document.getElementById("f2-svg"), s = document.getElementById("f2-iv");
+    function draw() {
+      const cur = +s.value;
+      document.getElementById("f2-iv-o").textContent = cur.toFixed(1) + "%";
+      const rank = (cur - lo) / (hi - lo) * 100;
+      const below = IV.filter(v => v < cur).length, above = IV.filter(v => v > cur).length;
+      const pctl = below / IV.length * 100;
+      plot(svg, {
+        x: [0, IV.length], y: [10, 70], xt: [0, 63, 126, 189, 252], yt: [10, 20, 30, 40, 50, 60, 70],
+        xf: v => v === 0 ? "一年前" : v === 252 ? "今天" : "第" + v + "天", yf: v => v + "%",
+        xlabel: "过去 252 个交易日", ylabel: "30 天平值 IV",
+        hband: [lo, hi, "var(--tint-delta)"],
+        series: [{ pts: IV.map((v, i) => [i + 1, v]), color: "var(--delta)", w: 1.8 }, { pts: [[0, cur], [IV.length, cur]], color: "var(--gamma)", w: 2.2 }],
+        dots: [[iHi + 1, hi, "var(--delta)", 4], [iLo + 1, lo, "var(--delta)", 4]],
+        labels: [[iHi + 1, hi, "最高 " + hi.toFixed(1), 8, 4, "start", "var(--muted)"], [iLo + 1, lo, "最低 " + lo.toFixed(1), 8, 16, "start", "var(--muted)"]]
+      });
+      document.getElementById("f2-r1").textContent = Math.max(0, Math.min(100, rank)).toFixed(1);
+      document.getElementById("f2-r2").textContent = pctl.toFixed(1);
+      document.getElementById("f2-r3").textContent = lo.toFixed(1) + "% / " + hi.toFixed(1) + "%";
+      document.getElementById("f2-r4").textContent = above + " 天";
+    }
+    s.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 6-3：期限结构 ----------
+  (function () {
+    const D = [7, 14, 30, 60, 90, 120, 180, 270, 365];
+    const M = {
+      calm: { iv: [11.5, 12.4, 13.6, 14.9, 15.8, 16.4, 17.3, 18.0, 18.5], y: [0, 50], name: "股指，平静时期" },
+      stress: { iv: [44.0, 40.0, 35.0, 31.0, 28.8, 27.5, 26.0, 25.0, 24.5], y: [0, 50], name: "股指，恐慌时期" },
+      earn: { iv: [30.0, 46.7, 38.7, 34.6, 33.1, 32.4, 31.6, 31.1, 30.8], y: [0, 50], name: "个股，第 10 天发财报", base: 30 }
+    };
+    const svg = document.getElementById("f3-svg");
+    const btns = document.querySelectorAll("#fig3 .seg button");
+    let mode = "calm";
+    const fwd = (s1, t1, s2, t2) => Math.sqrt((s2 * s2 * t2 - s1 * s1 * t1) / (t2 - t1));
+    function draw() {
+      const m = M[mode];
+      const pts = D.map((d, i) => [d, m.iv[i]]);
+      const series = [];
+      if (m.base) series.push({ pts: [[0, m.base], [370, m.base]], color: "var(--muted)", w: 1.6, dash: "5 5" });
+      series.push({ pts, color: "var(--delta)", w: 2.4 });
+      plot(svg, {
+        x: [0, 370], y: m.y, xt: [7, 30, 90, 180, 270, 365], yt: [0, 10, 20, 30, 40, 50],
+        xf: v => v + "天", yf: v => v + "%", xlabel: "到期天数", ylabel: "平值 IV",
+        series, dots: pts.map(p => [p[0], p[1], "var(--delta)", 3.8]),
+        labels: [[30, m.iv[2], m.iv[2].toFixed(1), 0, -10], [90, m.iv[4], m.iv[4].toFixed(1), 0, -10]]
+      });
+      document.getElementById("f3-legend").innerHTML = `<span><i style="border-color: var(--delta)"></i>${m.name}</span>` + (m.base ? `<span><i class="dash" style="border-color: var(--muted)"></i>不含事件的基础 IV 30%</span>` : "");
+      const s30 = m.iv[2] / 100, s90 = m.iv[4] / 100;
+      document.getElementById("f3-r1").textContent = pct1(m.iv[2]);
+      document.getElementById("f3-r2").textContent = pct1(m.iv[4]);
+      document.getElementById("f3-r3").textContent = (s30 / s90).toFixed(2);
+      document.getElementById("f3-r4").textContent = pct1(fwd(s30, 30, s90, 90) * 100);
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      mode = b.dataset.mode;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 6-4：偏度 ----------
+  (function () {
+    const T = 30 / DAY;
+    const M = {
+      index: { p: [0.15, -0.70, 2.5], y: [0, 60], yt: [0, 10, 20, 30, 40, 50, 60] },
+      stock: { p: [0.32, -0.15, 1.2], y: [25, 50], yt: [25, 30, 35, 40, 45, 50] },
+      meme: { p: [0.70, 0.30, 0.8], y: [60, 85], yt: [60, 65, 70, 75, 80, 85] }
+    };
+    const svg = document.getElementById("f4-svg"), kS = document.getElementById("f4-k");
+    const btns = document.querySelectorAll("#fig4 .seg button");
+    let mode = "index";
+    const sig = (K) => { const [a, b, c] = M[mode].p; const k = Math.log(K / 100); return a + b * k + c * k * k; };
+    function kForDelta(target, kind) {
+      let lo = 50, hi = 200;
+      for (let i = 0; i < 80; i++) {
+        const K = (lo + hi) / 2, d = bs(100, K, T, sig(K), kind).delta;
+        if (kind === "c") { if (d > target) lo = K; else hi = K; }
+        else { if (d < target) hi = K; else lo = K; }
+      }
+      return (lo + hi) / 2;
+    }
+    function draw() {
+      const K = +kS.value, m = M[mode];
+      document.getElementById("f4-k-o").textContent = K;
+      const xs = range(75, 125, 0.5);
+      const atm = sig(100) * 100;
+      plot(svg, {
+        x: [75, 125], y: m.y, xt: range(75, 125, 5), yt: m.yt, yf: v => v + "%",
+        xlabel: "行权价（标的 100）", ylabel: "隐含波动率", vline: K,
+        series: [{ pts: [[75, atm], [125, atm]], color: "var(--muted)", w: 1.6, dash: "5 5" }, { pts: xs.map(x => [x, sig(x) * 100]), color: "var(--gamma)", w: 2.6 }],
+        dots: [[K, sig(K) * 100, "var(--gamma)", 5]]
+      });
+      const kind = K < 100 ? "p" : "c";
+      const pS = bs(100, K, T, sig(K), kind).price, pF = bs(100, K, T, sig(100), kind).price;
+      const kc = kForDelta(0.25, "c"), kp = kForDelta(-0.25, "p");
+      const rr = (sig(kc) - sig(kp)) * 100;
+      document.getElementById("f4-r1").textContent = pct1(sig(K) * 100);
+      document.getElementById("f4-r2").textContent = pS.toFixed(3);
+      document.getElementById("f4-r2s").textContent = "按曲线定价（" + (kind === "p" ? "看跌" : "看涨") + "）";
+      document.getElementById("f4-r3").textContent = pF.toFixed(3);
+      document.getElementById("f4-r5").textContent = "× " + (pS / pF).toFixed(2);
+      document.getElementById("f4-r4").textContent = (rr > 0 ? "+" : "−") + Math.abs(rr).toFixed(1) + " 点";
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      mode = b.dataset.mode;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    kS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- tool 6-A：VIX 换算 ----------
+  (function () {
+    const vI = document.getElementById("c-vix"), xI = document.getElementById("c-idx");
+    const n0 = v => Math.round(v).toLocaleString("en-US");
+    function calc() {
+      const v = Math.max(+vI.value || 0, 0), x = Math.max(+xI.value || 0, 0);
+      const m = v / Math.sqrt(12) / 100, w = v / Math.sqrt(52) / 100, d = v / Math.sqrt(252) / 100;
+      document.getElementById("c-r1").textContent = (m * 100).toFixed(2) + "% · ±" + n0(x * m);
+      document.getElementById("c-r2").textContent = n0(x * (1 - m)) + " – " + n0(x * (1 + m));
+      document.getElementById("c-r3").textContent = n0(x * (1 - 2 * m)) + " – " + n0(x * (1 + 2 * m));
+      document.getElementById("c-r4").textContent = (w * 100).toFixed(2) + "% · ±" + n0(x * w);
+      document.getElementById("c-r5").textContent = (d * 100).toFixed(2) + "% · ±" + n0(x * d);
+    }
+    vI.addEventListener("input", calc); xI.addEventListener("input", calc);
+    calc();
+  })();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>美股期权课</title>
+<meta name="description" content="从零开始到能管理一个期权账户：十六章加附录，每章配可拖动参数的图表、清单与自测。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+.home-mast { border-bottom: 1px solid var(--rule); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 24px 24px; background-position: -1px -1px; }
+.home-hero .eyebrow { font-size: 13px; letter-spacing: .08em; color: var(--muted); }
+.home-hero h1 .g { color: var(--gamma); }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0; margin-top: 28px; border-top: 1px solid var(--rule); max-width: 760px; }
+.stats div { padding: 14px 0 0; min-width: 0; }
+.stats b { display: block; font-family: var(--font-mono); font-size: 28px; font-weight: 500; color: var(--ink); line-height: 1.2; }
+.stats small { font-size: 13px; color: var(--muted); }
+.start { display: inline-block; margin-top: 26px; background: var(--delta); color: var(--plate); text-decoration: none; padding: 11px 22px; border-radius: 8px; font-weight: 500; }
+.start:hover { opacity: .9; }
+.dims { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 14px; margin: 8px 0 8px; }
+.dim { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; min-width: 0; }
+.dim h3 { margin: 0 0 4px; font-size: 17px; }
+.dim h3 span { font-family: var(--font-mono); font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 8px; }
+.dim p { margin: 0; font-size: 14.5px; color: var(--muted); line-height: 1.7; }
+.dim.d1 h3 { color: var(--delta); } .dim.d2 h3 { color: var(--theta); } .dim.d3 h3 { color: var(--gamma); }
+.intro-title { font-family: var(--font-display); font-size: 24px; margin: 8px 0 6px; }
+.intro-lead { color: var(--muted); max-width: 46em; margin-bottom: 16px; }
+.paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px; margin-top: 8px; }
+.path { border-top: 2px solid var(--ink); padding-top: 10px; min-width: 0; }
+.path h3 { margin: 0 0 6px; font-size: 16px; }
+.path p { margin: 0; font-size: 14.5px; color: var(--muted); line-height: 1.75; }
+.path a { white-space: nowrap; }
+.companion { margin-top: 48px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px 24px; align-items: center; background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 20px 22px; }
+.companion h3 { margin: 0 0 4px; font-size: 18px; }
+.companion p { margin: 0; font-size: 14.5px; color: var(--muted); }
+.companion a.go { text-decoration: none; border: 1px solid var(--delta); color: var(--delta); padding: 8px 16px; border-radius: 8px; white-space: nowrap; }
+@media (max-width: 560px) { .companion { grid-template-columns: minmax(0, 1fr); } }
+.companion + .companion { margin-top: 14px; }
+.home-foot { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--muted); }
+.home-foot p { max-width: none; margin: 0 0 6px; }
+</style>
+</head>
+<body>
+<header class="home-mast">
+  <div class="home-hero">
+    <div class="eyebrow">从零开始，到能管理一个期权账户</div>
+    <h1>美股期权<span class="g">课</span></h1>
+    <p>十六章加一个附录。每一章都从一个带数字的小场景讲起，配可以拖动参数的图表，结尾有清单和自测。所有期权价格、希腊字母和概率都由模型实际算出，你在图上拖到哪里，就能看到对应的结果。</p>
+    <div class="stats">
+      <div><b>16 + 1</b><small>章节与附录</small></div>
+      <div><b>14 万</b><small>字正文</small></div>
+      <div><b>77</b><small>个图表与计算工具</small></div>
+      <div><b>4</b><small>份可复制的模板</small></div>
+    </div>
+    <a class="start" href="ch01.html">从第 1 章开始</a>
+  </div>
+</header>
+
+<main class="home-body">
+  <section class="part" id="idea">
+    <h2 class="intro-title">整门课只讲一件事</h2>
+    <p class="intro-lead">股票只有一个维度：涨或跌。期权有三个维度，每一种策略都是这三个维度的不同组合，每一笔亏损都来自某个你没意识到的维度。</p>
+    <div class="dims">
+      <div class="dim d1"><h3>方向<span>Delta · Gamma</span></h3><p>标的往哪走、走多快。第 4 章讲清楚它，第 7、8 章用它选结构。</p></div>
+      <div class="dim d2"><h3>时间<span>Theta</span></h3><p>每过一天谁在付钱、谁在收钱。第 5 章讲损耗的形状，第 8 章讲卖方怎么靠它吃饭。</p></div>
+      <div class="dim d3"><h3>波动率<span>Vega · IV</span></h3><p>市场预期的波动和最后实际的波动之差。第 6、9、10 章围绕它展开。</p></div>
+    </div>
+  </section>
+
+  <section class="part" id="how">
+    <h2 class="intro-title">三种读法</h2>
+    <div class="paths">
+      <div class="path"><h3>完全没接触过期权</h3><p>按顺序读。第 1–3 章打基础，第 4–6 章是全课最重要的部分，不要跳。每章的自测题都做一遍再往下读。</p></div>
+      <div class="path"><h3>已经在交易期权</h3><p>先读 <a href="ch04.html">第 4 章</a>、<a href="ch06.html">第 6 章</a>、<a href="ch13.html">第 13 章</a>和<a href="ch15.html">第 15 章</a>，用压力测试和「五条死法」检查自己现在的账户，再回头补其他章节。</p></div>
+      <div class="path"><h3>只想查一个东西</h3><p>去<a href="appendix.html">附录</a>：一百多个术语、二十多种结构的速查表和盈亏图集，以及可以直接复制的模板。</p></div>
+    </div>
+  </section>
+
+    <section class="part" id="p1">
+      <div class="part-head"><span class="pn">第一部分</span><h2>基础</h2><p>合约是什么、怎么交易、价格从哪来。</p></div>
+      <div class="ch-grid">
+      <a class="ch-card" href="ch01.html"><span class="cn">01</span><h3>期权是什么，钱从哪里来</h3><p>合约六要素、四种基本头寸、到期盈亏图，以及期权利润的五种来源。</p></a>
+      <a class="ch-card" href="ch02.html"><span class="cn">02</span><h3>美股期权实务</h3><p>美式与欧式、到期日体系、行权与指派、账户与保证金、下单与流动性。</p></a>
+      <a class="ch-card" href="ch03.html"><span class="cn">03</span><h3>期权定价的直觉</h3><p>六个输入、Black-Scholes 的直觉、买卖权平价、概率读法与心算法则。</p></a>
+      </div>
+    </section>
+    <section class="part" id="p2">
+      <div class="part-head"><span class="pn">第二部分</span><h2>核心变量</h2><p>四个希腊字母和波动率：期权价格变化的全部来源。</p></div>
+      <div class="ch-grid">
+      <a class="ch-card" href="ch04.html"><span class="cn">04</span><h3>Delta 与 Gamma</h3><p>方向敞口与它的速度：等效股数、Beta 加权、盈亏近似与 Gamma scalping。</p></a>
+      <a class="ch-card" href="ch05.html"><span class="cn">05</span><h3>Theta 与 Vega</h3><p>时间损耗的形状、波动率敏感度、IV 崩塌，以及 Rho 和二阶希腊字母。</p></a>
+      <a class="ch-card" href="ch06.html"><span class="cn">06</span><h3>波动率</h3><p>实际与隐含、波动率风险溢价、IV Rank、期限结构、偏度与 VIX。</p></a>
+      </div>
+    </section>
+    <section class="part" id="p3">
+      <div class="part-head"><span class="pn">第三部分</span><h2>策略</h2><p>买方、卖方、中性、事件与对冲，每种结构押的是什么。</p></div>
+      <div class="ch-grid">
+      <a class="ch-card" href="ch07.html"><span class="cn">07</span><h3>买方策略</h3><p>买方的三个敌人、行权价与期限的选择、借记价差、LEAPS 与管理规则。</p></a>
+      <a class="ch-card" href="ch08.html"><span class="cn">08</span><h3>卖方策略</h3><p>卖出保险的本质：备兑、现金担保卖沽、轮子策略、信用价差与仓位压力测试。</p></a>
+      <a class="ch-card" href="ch09.html"><span class="cn">09</span><h3>中性与波动率策略</h3><p>跨式、宽跨式、铁鹰、蝶式、日历与对角，什么时候买波动率、什么时候卖。</p></a>
+      <a class="ch-card" href="ch10.html"><span class="cn">10</span><h3>事件交易</h3><p>财报的 IV 周期、预期变动与历史变动、宏观事件日、0DTE 与到期日效应。</p></a>
+      <a class="ch-card" href="ch11.html"><span class="cn">11</span><h3>对冲与组合保护</h3><p>保护性看跌、领口、看跌价差保护、尾部预算，以及用期权重塑组合。</p></a>
+      </div>
+    </section>
+    <section class="part" id="p4">
+      <div class="part-head"><span class="pn">第四部分</span><h2>组合与风险管理</h2><p>从单笔交易到整个账户：汇总、压力测试、流程。</p></div>
+      <div class="ch-grid">
+      <a class="ch-card" href="ch12.html"><span class="cn">12</span><h3>组合 Greeks 与调仓</h3><p>汇总组合的四个希腊字母、判断组合形状、滚仓的三种方向与何时直接平仓。</p></a>
+      <a class="ch-card" href="ch13.html"><span class="cn">13</span><h3>期权的风险管理</h3><p>三种仓位度量、买方与卖方规则、压力测试、分散的幻觉与保证金螺旋。</p></a>
+      <a class="ch-card" href="ch14.html"><span class="cn">14</span><h3>系统与流程</h3><p>九步流程、观点三维化、策略选择矩阵、交易日志与期望值统计。</p></a>
+      </div>
+    </section>
+    <section class="part" id="p5">
+      <div class="part-head"><span class="pn">第五部分</span><h2>心性与进阶</h2><p>期权账户是怎么死的，以及之后往哪里走。</p></div>
+      <div class="ch-grid">
+      <a class="ch-card" href="ch15.html"><span class="cn">15</span><h3>心理与常见死法</h3><p>买方与卖方的心理陷阱、账户死亡的五条路径和它们的早期信号。</p></a>
+      <a class="ch-card" href="ch16.html"><span class="cn">16</span><h3>进阶方向与总结</h3><p>波动率交易的进阶方向、策略总表、九十天练习计划与全课总结。</p></a>
+      </div>
+    </section>
+    <section class="part" id="p6">
+      <div class="part-head"><span class="pn">附录</span><h2>速查</h2><p>术语、策略、盈亏图、模板与数据源。</p></div>
+      <div class="ch-grid">
+      <a class="ch-card" href="appendix.html"><span class="cn">附</span><h3>附录：术语、速查与模板</h3><p>术语表、策略速查表、盈亏图集、四份模板、数据源与工具。</p></a>
+      </div>
+    </section>
+
+  <div class="companion">
+    <div><h3>配套阅读：交易心理学</h3><p>十一章的研习手册，讲概率思维、认知偏差、仓位数学、连败概率和复盘。和本课第 13–15 章一起读效果最好。</p></div>
+    <a class="go" href="https://claude.ai/artifact/Kd2wGSVLDXMSneLoeJV9go" target="_blank" rel="noopener">打开手册</a>
+  </div>
+  <div class="companion">
+    <div><h3>配套阅读：宏观交易框架</h3><p>十二章的研习手册，讲跨资产仪表盘、利率与估值、市场体制、广度与资金流、事件剧本和从观点到交易。和本课第 10–11 章一起读效果最好。</p></div>
+    <a class="go" href="https://claude.ai/artifact/29qfXoSJvxQgSSBYHPdY4v" target="_blank" rel="noopener">打开手册</a>
+  </div>
+
+  <footer class="home-foot">
+    <p>课程的章节结构参考了 emacrotrading.com《美股期权交易》的大纲，正文、案例、图表与数字均为重新撰写和计算。</p>
+    <p>示例默认使用 Black-Scholes 模型：利率 4%，不派息，一年 365 天，一张合约 100 股；需要假设的市场数据在文中注明。本课程用于学习，不构成投资建议。</p>
+  </footer>
+</main>
+
+</body></html>

@@ -1,0 +1,950 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 3 章 期权定价的直觉 · 美股期权课</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  #fig1 .seg, #fig4 .seg, #fig5 .seg { flex-wrap: wrap; }
+  #fig1 .controls + .controls { margin-top: 2px; }
+  .readout small b { display: inline; font-size: inherit; font-family: var(--font-mono); font-weight: 500; }
+</style>
+</head>
+<body data-ch="3">
+<div class="topbar"><div class="topbar-inner"><a class="brand" href="index.html">美股期权<span>课</span></a><select id="ck-jump" aria-label="跳转到章节"></select></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">03</div>
+    <div class="eyebrow">美股期权课 · 第一部分 基础 · 第 3 章</div>
+    <h1>期权定价的<span class="g">直觉</span></h1>
+    <p class="deck">权利金由六个输入决定，其中五个写在报价单上，只有波动率要靠市场来报。本章不做严格推导，只讲清 Black-Scholes 在算什么、买卖权平价为什么必须成立，以及两条下单前就能心算的规则。</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="本章目录">
+    <p class="toc-title">本章目录</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>开篇：同样是平值，价格差七倍</span></a></li>
+      <li><a href="#s1"><span class="n">3.1</span><span>六个输入与影响方向</span></a></li>
+      <li><a href="#s2"><span class="n">3.2</span><span>Black-Scholes 在算什么</span></a></li>
+      <li><a href="#s3"><span class="n">3.3</span><span>到期价格的分布</span></a></li>
+      <li><a href="#s4"><span class="n">3.4</span><span>正态假设的局限</span></a></li>
+      <li><a href="#s5"><span class="n">3.5</span><span>买卖权平价</span></a></li>
+      <li><a href="#s6"><span class="n">3.6</span><span>合成头寸</span></a></li>
+      <li><a href="#s7"><span class="n">3.7</span><span>概率读法</span></a></li>
+      <li><a href="#s8"><span class="n">3.8</span><span>心算一：预期变动</span></a></li>
+      <li><a href="#s9"><span class="n">3.9</span><span>心算二：跨式的 0.8</span></a></li>
+      <li><a href="#cases"><span class="n">案例</span><span>三个案例</span></a></li>
+      <li><a href="#tools"><span class="n">工具</span><span>清单与自测</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>本章目录</summary>
+      <ol>
+        <li><a href="#open">开篇：同样是平值，价格差七倍</a></li>
+        <li><a href="#s1">3.1 六个输入与影响方向</a></li>
+        <li><a href="#s2">3.2 Black-Scholes 在算什么</a></li>
+        <li><a href="#s3">3.3 到期价格的分布</a></li>
+        <li><a href="#s4">3.4 正态假设的局限</a></li>
+        <li><a href="#s5">3.5 买卖权平价</a></li>
+        <li><a href="#s6">3.6 合成头寸</a></li>
+        <li><a href="#s7">3.7 概率读法</a></li>
+        <li><a href="#s8">3.8 心算一：预期变动</a></li>
+        <li><a href="#s9">3.9 心算二：跨式的 0.8</a></li>
+        <li><a href="#cases">三个案例</a></li>
+        <li><a href="#tools">清单与自测</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>学完本章你能</h4>
+        <ul>
+          <li>说出六个输入各自让看涨、看跌变贵还是变便宜，并说明原因</li>
+          <li>用买卖权平价从看涨价格推出看跌价格，认出合成头寸</li>
+          <li>不用计算器估出一个标准差的预期变动和平值跨式的价格</li>
+        </ul>
+      </div>
+      <div>
+        <h4>前置知识</h4>
+        <ul>
+          <li>第 1 章：内在价值、时间价值与到期盈亏图</li>
+          <li>第 2 章：美式与欧式、行权与指派</li>
+        </ul>
+      </div>
+      <div>
+        <h4>本章约定</h4>
+        <ul>
+          <li>示例用 Black-Scholes，利率 4%，不派息（3.1 节单独演示股息）</li>
+          <li>天数为日历天，一年 365 天</li>
+          <li>一张合约 = 100 股</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">开篇</span>同样是平值，价格差七倍</h2>
+      <p class="lead">三只股票今天都收在 $100。你在期权链上各找了一张行权价 100 的看涨期权，报价分别是 $1.88、$7.01 和 $13.75。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 3-0　三张平值看涨期权（股价 = 行权价 = 100）</caption>
+          <thead><tr><th>合约</th><th>剩余天数</th><th>隐含波动率</th><th>看涨价格</th><th>占股价</th></tr></thead>
+          <tbody>
+            <tr><td>A</td><td class="mono">30</td><td class="mono">15%</td><td class="mono">1.88</td><td class="mono">1.9%</td></tr>
+            <tr><td>B</td><td class="mono">30</td><td class="mono">60%</td><td class="mono">7.01</td><td class="mono">7.0%</td></tr>
+            <tr><td>C</td><td class="mono">365</td><td class="mono">30%</td><td class="mono">13.75</td><td class="mono">13.8%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>A 和 B 的股价、行权价、到期日完全一样，B 却贵了 <span class="num">3.7</span> 倍。差别全在波动率：市场认为 B 未来一个月的波动幅度是 A 的四倍。C 的美元价格最高，但它买的是一整年的不确定性，单看 $13.75 说不出它是贵还是便宜。</p>
+      <p>这说明期权的美元价格本身不说明贵贱。要判断贵贱，先得知道价格是怎么来的。这一章回答三个问题：权利金由哪些输入决定；这些输入怎样被组合成一个价格；不打开计算器时，怎样估出一个大致合理的价格。</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">3.1</span>六个输入与影响方向</h2>
+      <p>六个输入里，标的价格、行权价、到期时间、利率和股息都能直接查到，只有波动率需要从市场价格里反推。先看每个输入变大时，看涨和看跌往哪个方向走。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 3-1　输入变大时，期权价格的变化方向</caption>
+          <thead><tr><th>输入变大</th><th>看涨</th><th>看跌</th><th style="text-align:left">原因</th></tr></thead>
+          <tbody>
+            <tr><td>标的价格 <span class="v">S</span></td><td class="mono pos">↑</td><td class="mono neg">↓</td><td style="text-align:left">看涨离价内更近，看跌离价内更远</td></tr>
+            <tr><td>行权价 <span class="v">K</span></td><td class="mono neg">↓</td><td class="mono pos">↑</td><td style="text-align:left">买入的价格更高，卖出的价格也更高</td></tr>
+            <tr><td>到期时间 <span class="v">T</span></td><td class="mono pos">↑</td><td class="mono pos">↑（通常）</td><td style="text-align:left">时间越长，股价能走得越远</td></tr>
+            <tr><td>波动率 σ</td><td class="mono pos">↑</td><td class="mono pos">↑</td><td style="text-align:left">收益不对称：多出来的有利波动有用，不利波动被权利金封底</td></tr>
+            <tr><td>无风险利率 <span class="v">r</span></td><td class="mono pos">↑</td><td class="mono neg">↓</td><td style="text-align:left">行权价的现值变小：晚付钱更划算，晚收钱更吃亏</td></tr>
+            <tr><td>股息 <span class="v">q</span></td><td class="mono neg">↓</td><td class="mono pos">↑</td><td style="text-align:left">除息时股价下跌，期权持有人拿不到股息</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>波动率那一行最值得多想一下。股价跌破行权价之后，看涨期权最多亏掉权利金，跌得再深也一样；涨过行权价之后，涨多少赚多少。所以波动变大时，看涨持有人只是多了「大涨」的机会，「大跌」的代价已经被封住。看跌期权同理。这就是期权价格对波动率永远单调上升的原因。</p>
+
+      <h3>用数字验证</h3>
+      <p>下面以「股价 100、行权价 100、30 天、IV 30%、利率 4%、不派息」为基准，每次只改一个输入。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 3-2　每次只改变一个输入（每股，美元）</caption>
+          <thead><tr><th>变动</th><th>看涨</th><th>变化</th><th>看跌</th><th>变化</th></tr></thead>
+          <tbody>
+            <tr class="hl"><td>基准</td><td class="mono">3.591</td><td class="mono">—</td><td class="mono">3.263</td><td class="mono">—</td></tr>
+            <tr><td>股价 100 → 105</td><td class="mono">6.798</td><td class="mono pos">+3.207</td><td class="mono">1.470</td><td class="mono neg">−1.793</td></tr>
+            <tr><td>行权价 100 → 105</td><td class="mono">1.662</td><td class="mono neg">−1.929</td><td class="mono">6.317</td><td class="mono pos">+3.054</td></tr>
+            <tr><td>天数 30 → 60</td><td class="mono">5.168</td><td class="mono pos">+1.577</td><td class="mono">4.513</td><td class="mono pos">+1.250</td></tr>
+            <tr><td>IV 30% → 35%</td><td class="mono">4.161</td><td class="mono pos">+0.570</td><td class="mono">3.833</td><td class="mono pos">+0.570</td></tr>
+            <tr><td>利率 4% → 6%</td><td class="mono">3.673</td><td class="mono pos">+0.082</td><td class="mono">3.181</td><td class="mono neg">−0.082</td></tr>
+            <tr><td>股息率 0 → 2%</td><td class="mono">3.504</td><td class="mono neg">−0.087</td><td class="mono">3.340</td><td class="mono pos">+0.077</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>三个观察：</p>
+      <ul>
+        <li><strong>股价和行权价的影响最大。</strong>股价每变动 $1 带来的期权价格变化就是 Delta（第 4 章）。</li>
+        <li><strong>IV 让看涨和看跌涨了完全一样的 0.570。</strong>这不是巧合。3.5 节的买卖权平价说明，看涨减看跌的差额只由股价、行权价、利率和时间决定，和波动率无关。所以波动率变化时两者必须同步涨跌。</li>
+        <li><strong>利率和股息对 30 天期权的影响很小</strong>，只有几美分。对一两年的长期期权（LEAPS）就不能忽略了，第 5 章会算给你看。</li>
+      </ul>
+      <div class="note warn">
+        <span class="tag">例外：时间不一定让期权更值钱</span>
+        <p>对欧式看跌，深度实值时期限越长反而越便宜。股价 $100 时，行权价 150 的欧式看跌：30 天值 <span class="num">49.51</span>，365 天只值 <span class="num">46.05</span>，都低于内在价值 50。原因是看跌的最好结果就是拿到 $150，而这笔钱越晚拿到，现值越低。美式看跌可以随时行权，价格不会低于 50，所以美股个股期权没有这个反常。但它解释了为什么深度实值的美式看跌常被提前行权（第 2 章）：继续持有的时间价值已经抵不过早拿现金的利息。</p>
+      </div>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">六个输入里，只有时间和波动率让看涨、看跌一起变贵</span><span class="fig-no">图 3-1 · 敏感度实验台，可拖动</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="横轴变量">
+            <button type="button" data-v="S" aria-pressed="true">股价</button>
+            <button type="button" data-v="K" aria-pressed="false">行权价</button>
+            <button type="button" data-v="T" aria-pressed="false">天数</button>
+            <button type="button" data-v="s" aria-pressed="false">IV</button>
+            <button type="button" data-v="r" aria-pressed="false">利率</button>
+            <button type="button" data-v="q" aria-pressed="false">股息</button>
+          </div>
+          <button type="button" class="btn" id="f1-reset">恢复基准</button>
+        </div>
+        <div class="controls">
+          <label class="ctl" for="f1-S">股价 <input id="f1-S" type="range" min="70" max="130" step="1" value="100"> <output id="f1-S-o">$100</output></label>
+          <label class="ctl" for="f1-K">行权价 <input id="f1-K" type="range" min="70" max="130" step="1" value="100"> <output id="f1-K-o">$100</output></label>
+          <label class="ctl" for="f1-T">剩余天数 <input id="f1-T" type="range" min="1" max="365" step="1" value="30"> <output id="f1-T-o">30 天</output></label>
+          <label class="ctl" for="f1-s">隐含波动率 <input id="f1-s" type="range" min="5" max="100" step="1" value="30"> <output id="f1-s-o">30%</output></label>
+          <label class="ctl" for="f1-r">无风险利率 <input id="f1-r" type="range" min="0" max="10" step="0.25" value="4"> <output id="f1-r-o">4.00%</output></label>
+          <label class="ctl" for="f1-q">股息率 <input id="f1-q" type="range" min="0" max="8" step="0.25" value="0"> <output id="f1-q-o">0.00%</output></label>
+        </div>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 320" role="img" aria-label="看涨与看跌价格随所选输入变化的曲线"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>看涨期权</span><span><i style="border-color: var(--gamma)"></i>看跌期权</span><span>圆点：当前设置</span></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small id="f1-r1s">看涨价格</small></div>
+          <div><b id="f1-r2">—</b><small id="f1-r2s">看跌价格</small></div>
+          <div><b id="f1-r3">—</b><small>看涨 − 看跌</small></div>
+          <div><b id="f1-r4">—</b><small>S·e<sup>−qT</sup> − K·e<sup>−rT</sup></small></div>
+        </div>
+        <figcaption>先点「IV」：两条线同步上升，而且上下间距处处不变，这个间距就是右边两个读数，它们永远相等（3.5 节）。再点「股价」，把剩余天数拖到 1–3 天，曲线会弯成接近到期盈亏图的折线。把股价拖到 70 再点「天数」，看跌那条线会随天数增加而下降：这就是上面说的深度实值欧式看跌的例外。</figcaption>
+      </figure>
+
+      <h3>唯一看不见的输入：隐含波动率</h3>
+      <p>前五个输入都是事实，波动率却是对未来的估计，没有人能直接观察到。实务中的做法是反过来：拿市场成交的期权价格，代入公式，解出让公式价格等于市场价格的那个 σ，这就是<strong>隐含波动率（IV）</strong>。</p>
+      <p>例如股价 $100、30 天平值看涨的市场价是 $4.20，反解得到 IV <span class="num">35.3%</span>。这个价格比基准（IV 30%、$3.591）贵，贵在市场预期的波动更大。所以交易员报价时常常直接说「这张期权 35 个波动率」，而不说 $4.20：IV 把不同股价、不同期限的期权放到了同一把尺子上。第 6 章会专门讲 IV 的高低怎么判断。</p>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">3.2</span>Black-Scholes 在算什么</h2>
+      <p>Black-Scholes 给出的价格有两种读法：到期收益的期望值再折现；或者用股票和现金复制这张期权的成本。两种读法算出同一个数。</p>
+      <div class="formula">
+        <div class="eq"><span class="v">C</span> <span class="up">=</span> <span class="v">S</span><span class="up">·</span><span class="v">N</span>(<span class="v">d</span><sub>1</sub>) <span class="up">−</span> <span class="v">K</span><span class="v">e</span><sup>−<span class="v">rT</span></sup><span class="up">·</span><span class="v">N</span>(<span class="v">d</span><sub>2</sub>)</div>
+        <div class="eq"><span class="v">d</span><sub>1</sub> <span class="up">=</span> <span class="frac"><span>ln(<span class="v">S</span>/<span class="v">K</span>) <span class="up">+</span> (<span class="v">r</span> <span class="up">+</span> σ<sup>2</sup>/2)<span class="v">T</span></span><span>σ√<span class="v">T</span></span></span></div>
+        <div class="eq"><span class="v">d</span><sub>2</sub> <span class="up">=</span> <span class="v">d</span><sub>1</sub> <span class="up">−</span> σ√<span class="v">T</span></div>
+        <p class="where"><span class="v">N</span>(·) 是标准正态分布的累积概率。看跌价格可以由 3.5 节的平价直接得到，不必另记公式。</p>
+      </div>
+
+      <h3>读法一：期望到期收益，再折现</h3>
+      <p>看涨期权到期时的收益是 max(<span class="v">S<sub>T</sub></span> − <span class="v">K</span>, 0)。如果知道到期股价的分布，算出这个收益的平均值，再按利率折回今天，就是期权价格。公式的两项正好对应这件事：</p>
+      <ul>
+        <li><strong>第二项</strong> <span class="v">K</span>e<sup>−<span class="v">rT</span></sup><span class="v">N</span>(<span class="v">d</span><sub>2</sub>)：到期价内时你要付出行权价 <span class="v">K</span>。<span class="v">N</span>(<span class="v">d</span><sub>2</sub>) 是到期价内的概率，乘上去再折现。基准例子里是 <span class="num">99.672 × 0.498 = 49.646</span>。</li>
+        <li><strong>第一项</strong> <span class="v">S</span><span class="v">N</span>(<span class="v">d</span><sub>1</sub>)：到期价内时你得到一股股票。价内时的股价都在 100 以上，平均约 <span class="num">$107.23</span>，按价内概率加权再折现就是 <span class="num">100 × 0.532 = 53.237</span>。</li>
+        <li>两项相减：<span class="num">53.237 − 49.646 = 3.591</span>。用数值积分直接对对数正态分布求期望，再折现，得到的也是 <span class="num">3.591</span>。</li>
+      </ul>
+      <p>这里的「概率」和「期望」有个前提：它们是在<strong>风险中性</strong>的分布下算的，也就是假设股票的期望收益率恰好等于无风险利率 4%。为什么可以这样假设？要看第二种读法。</p>
+
+      <h3>读法二：复制组合</h3>
+      <p>用一个最简单的例子：股价 $100，一个月后只有两种可能，涨到 110 或跌到 90。行权价 100 的看涨期权到期收益是 10 或 0。</p>
+      <p>现在买 0.5 股，同时借入 <span class="num">$44.85</span>（一个月后连本带息还 45）。一个月后：股价 110 时，0.5 股值 55，还掉 45 剩 10；股价 90 时，0.5 股值 45，还掉 45 剩 0。这个组合在两种情形下的收益都和看涨期权一模一样，成本是 <span class="num">50 − 44.85 = $5.15</span>。所以看涨期权就值 $5.15。</p>
+      <div class="note">
+        <span class="tag">要点：涨跌概率没有出现</span>
+        <p>整个计算没有用到「股价上涨的概率」。哪怕你确信九成会涨，这张看涨在这个模型里也只值 $5.15。如果有人卖得更贵，任何人都可以卖出期权，再用 0.5 股加借款复制它，锁定无风险利润。反过来，让「期望收益再折现」也等于 $5.15 的那个上涨概率是 <span class="num">0.516</span>，这就是风险中性概率：它由价格反推而来，并不预测真实的涨跌。</p>
+      </div>
+      <p>Black-Scholes 就是把这一步拆成无数个小步，每一小步都按当时的比例重新调整股票数量。这个比例就是 <span class="v">N</span>(<span class="v">d</span><sub>1</sub>)，也就是 Delta。所以 Delta 既出现在价格公式里，又是对冲比率（第 4 章）。</p>
+      <p>这给交易带来一个重要推论：<strong>期权价格不包含你对方向的看法，只包含对波动大小的看法。</strong>你看涨还是看跌，要通过「买还是卖、选哪个行权价」来表达；而一张期权贵不贵，只取决于它隐含的波动率和你预期的实际波动相比是高还是低。</p>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">3.3</span>到期价格的分布</h2>
+      <p>Black-Scholes 假设股价的对数收益服从正态分布，所以到期股价服从右偏的对数正态分布：最多跌到 0，涨没有上限。</p>
+      <div class="formula">
+        <div class="eq">ln<span class="up">(</span><span class="v">S<sub>T</sub></span> / <span class="v">S</span><span class="up">)</span> <span class="up">~</span> <span class="v">N</span><span class="up">(</span>(<span class="v">r</span> <span class="up">−</span> σ<sup>2</sup>/2)<span class="v">T</span><span class="up">,</span> σ<sup>2</sup><span class="v">T</span><span class="up">)</span></div>
+        <p class="where">均值里的 −σ²/2 是对数和百分比之间的换算项：波动越大，中位数越低于均值。</p>
+      </div>
+      <p>这个假设有三个直接后果：</p>
+      <ol>
+        <li><strong>中位数低于均值。</strong>均值是 <span class="v">S</span>e<sup><span class="v">rT</span></sup>，中位数是 <span class="v">S</span>e<sup>(<span class="v">r</span>−σ²/2)<span class="v">T</span></sup>。30 天、IV 30% 时两者是 <span class="num">100.33</span> 和 <span class="num">99.96</span>，几乎一样。一年、IV 60% 时变成 <span class="num">104.08</span> 和 <span class="num">86.94</span>：一年后股价低于今天的概率是 <span class="num">59.2%</span>，平均值却比今天高。高波动的股票「多数时候跌、少数时候大涨」，就是这个形状。</li>
+        <li><strong>±1 个标准差的区间不对称。</strong>30 天、IV 30% 时，包含 68% 概率的区间是 <span class="num">[91.72, 108.94]</span>：向上 +8.94，向下 −8.28。</li>
+        <li><strong>对称的距离，不对称的概率。</strong>同样离现价 $10，到期高于 110 的概率是 <span class="num">13.3%</span>，低于 90 的概率是 <span class="num">11.1%</span>。</li>
+      </ol>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">波动越大、期限越长，到期价格的分布越右偏</span><span class="fig-no">图 3-2 · 股价 $100，可拖动</span></div>
+        <div class="controls">
+          <label class="ctl" for="f2-d">剩余天数 <input id="f2-d" type="range" min="7" max="365" value="30"> <output id="f2-d-o">30 天</output></label>
+          <label class="ctl" for="f2-iv">隐含波动率 <input id="f2-iv" type="range" min="10" max="80" value="30"> <output id="f2-iv-o">30%</output></label>
+        </div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 300" role="img" aria-label="到期股价的对数正态分布与正态近似"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>对数正态分布（Black-Scholes）</span><span><i class="dash" style="border-color: var(--muted)"></i>同均值、同标准差的正态分布</span><span><i style="border-color: var(--tint-delta); border-top-width: 8px"></i>68% 区间</span></div>
+        <div class="readout">
+          <div><b id="f2-r1">—</b><small>68% 区间（±1σ）</small></div>
+          <div><b id="f2-r2">—</b><small>中位数 / 均值</small></div>
+          <div><b id="f2-r3">—</b><small>到期高于 110 的概率</small></div>
+          <div><b id="f2-r4">—</b><small>到期低于 90 的概率</small></div>
+        </div>
+        <figcaption>默认 30 天、IV 30% 时，实线和虚线几乎重合，用正态分布近似完全够用。把天数拖到 365、IV 拖到 60%，实线的峰明显左移、右尾拉长：中位数降到 $87，均值仍是 $104。虚线这时会给负股价留出约 6% 的概率（琥珀色区域），这是正态假设在长期限、高波动下的明显错误。</figcaption>
+      </figure>
+      <p>这张图也说明了为什么期权按「对数」来定价。股价从 100 涨到 200 是 +100%，从 100 跌到 50 是 −50%，但在对数尺度上两者距离相同（都是 ln 2）。对数正态分布把这种「乘法式」的涨跌处理得很自然，并且保证股价永远为正。</p>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">3.4</span>正态假设的局限</h2>
+      <p>真实的股价收益有两个特征是对数正态分布描述不了的：极端涨跌比模型说的频繁得多（肥尾），而且大跌往往比大涨更常见、更猛烈（负偏）。</p>
+      <p>先看正态分布对极端日子有多「乐观」。假设日收益服从正态分布，一年 252 个交易日：</p>
+      <div class="tbl">
+        <table>
+          <caption>表 3-3　单日跌幅超过 k 个标准差，平均多久出现一次</caption>
+          <thead><tr><th>k</th><th>正态：单日概率</th><th>正态：平均间隔</th><th>肥尾示意：t 分布（自由度 3）</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">3σ</td><td class="mono">0.135%</td><td class="mono">2.9 年</td><td class="mono">0.6 年</td></tr>
+            <tr><td class="mono">4σ</td><td class="mono">0.0032%</td><td class="mono">125 年</td><td class="mono">1.3 年</td></tr>
+            <tr><td class="mono">5σ</td><td class="mono">2.9 × 10⁻⁷</td><td class="mono">1.4 万年</td><td class="mono">2.5 年</td></tr>
+            <tr><td class="mono">6σ</td><td class="mono">9.9 × 10⁻¹⁰</td><td class="mono">400 万年</td><td class="mono">4.2 年</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>t 分布一列只是示意：把它缩放到和正态分布相同的标准差，差别只在尾部的厚度。真实市场的尾部厚度随时期变化，没有一个固定的数。但方向是确定的：以长期平均的日波动为标准，美股指数在过去几十年里多次出现超过 5 个标准差的单日跌幅；按正态分布，这类日子一万年也轮不到一次。</p>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">肥尾分布下，「万年一遇」的跌幅几年就来一次</span><span class="fig-no">图 3-3 · 纵轴为对数刻度（年）</span></div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 300" role="img" aria-label="正态分布与肥尾分布下极端跌幅的平均间隔"></svg>
+        <div class="legend"><span><i style="border-color: var(--muted); border-top-width: 8px"></i>正态分布</span><span><i style="border-color: var(--warn); border-top-width: 8px"></i>t 分布（自由度 3，同标准差）</span></div>
+        <figcaption>纵轴每一格相差十倍。从 3σ 到 6σ，正态分布的间隔从几年暴涨到几百万年；肥尾分布只是从半年变成四年。卖出远虚值期权的风险，几乎全部藏在这两组柱子的差距里。</figcaption>
+      </figure>
+
+      <h3>这对期权价格意味着什么</h3>
+      <ul>
+        <li><strong>远虚值看跌被市场加价。</strong>Black-Scholes 用同一个 σ 给所有行权价定价。如果尾部更厚，保护大跌的远虚值看跌就应该更贵。市场确实这样做：同一到期日，虚值看跌的隐含波动率通常高于平值，这叫波动率偏斜（第 6 章）。例如 30 天 90 看跌按 IV 30% 值 <span class="num">$0.40</span>，若市场按 36% 报价就是 <span class="num">$0.74</span>，贵了八成多。</li>
+        <li><strong>波动率本身会变。</strong>模型假设 σ 不变，现实中大跌时波动率会跳升，平静时又慢慢回落。这正是第 5 章 Vega 要处理的问题。</li>
+        <li><strong>股价会跳空。</strong>财报、并购、监管消息会让股价一步跳过很多价位。3.2 节的复制论证需要连续调仓，跳空时做不到，期权卖方在跳空中承担的风险比模型算出的大。</li>
+      </ul>
+      <div class="note">
+        <span class="tag">怎么用 Black-Scholes</span>
+        <p>把它当成「报价语言」和「尺子」：用它把价格换成 IV，再比较不同期权的 IV 高低；用它算 Delta、Gamma 这些敏感度。不要把它算出的概率当作真实世界的概率，尤其是尾部概率。</p>
+      </div>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">3.5</span>买卖权平价</h2>
+      <p>同一行权价、同一到期日的看涨和看跌，价格被一个等式锁在一起：看涨 − 看跌 = 股票 − 行权价现值。</p>
+      <div class="formula">
+        <div class="eq"><span class="v">C</span> <span class="up">−</span> <span class="v">P</span> <span class="up">=</span> <span class="v">S</span> <span class="up">−</span> <span class="v">K</span><span class="v">e</span><sup>−<span class="v">rT</span></sup></div>
+        <p class="where">适用于不派息的欧式期权。<span class="v">K</span>e<sup>−<span class="v">rT</span></sup> 是行权价的现值：今天存入这么多钱，按利率 <span class="v">r</span> 到期正好长成 <span class="v">K</span>。</p>
+      </div>
+      <h3>为什么必须成立</h3>
+      <p>比较两个组合。组合 A：买 1 份看涨，再存入 <span class="v">K</span>e<sup>−<span class="v">rT</span></sup> 的现金。组合 B：买 1 份看跌，再持有 1 股股票。看到期时各值多少（行权价 100）：</p>
+      <div class="tbl">
+        <table>
+          <caption>表 3-4　两个组合的到期价值（每股，行权价 100）</caption>
+          <thead><tr><th>到期股价</th><th>A：看涨收益</th><th>A：现金</th><th>A 合计</th><th>B：看跌收益</th><th>B：股票</th><th>B 合计</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">80</td><td class="mono">0</td><td class="mono">100</td><td class="mono">100</td><td class="mono">20</td><td class="mono">80</td><td class="mono">100</td></tr>
+            <tr><td class="mono">90</td><td class="mono">0</td><td class="mono">100</td><td class="mono">100</td><td class="mono">10</td><td class="mono">90</td><td class="mono">100</td></tr>
+            <tr><td class="mono">100</td><td class="mono">0</td><td class="mono">100</td><td class="mono">100</td><td class="mono">0</td><td class="mono">100</td><td class="mono">100</td></tr>
+            <tr><td class="mono">110</td><td class="mono">10</td><td class="mono">100</td><td class="mono">110</td><td class="mono">0</td><td class="mono">110</td><td class="mono">110</td></tr>
+            <tr><td class="mono">120</td><td class="mono">20</td><td class="mono">100</td><td class="mono">120</td><td class="mono">0</td><td class="mono">120</td><td class="mono">120</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>不论股价到哪里，两个组合到期都等于 max(<span class="v">S<sub>T</sub></span>, <span class="v">K</span>)。到期价值完全相同的两个组合，今天的价格也必须相同：<span class="v">C</span> + <span class="v">K</span>e<sup>−<span class="v">rT</span></sup> = <span class="v">P</span> + <span class="v">S</span>，移项就是平价公式。</p>
+      <p>用基准数字检查：<span class="num">3.591 − 3.263 = 0.328</span>，<span class="num">100 − 99.672 = 0.328</span>。注意整个推导没有用到波动率、分布或 Black-Scholes。只要能自由买卖和借贷，平价就成立。这也是 3.1 节里 IV 变化让看涨、看跌同涨 0.570 的原因。</p>
+
+      <h3>违反平价时会发生什么</h3>
+      <p>假设看涨被报到 3.80，看跌仍是 3.263。卖出看涨、买入看跌、买入股票（这个组合叫 conversion）：支出 <span class="num">100 + 3.263 − 3.80 = 99.463</span>。到期时无论股价多少，你都以 100 卖出股票：涨了被看涨叫走，跌了用看跌卖出。今天付 99.463，一个月后确定拿回 100，扣掉 4% 的利息成本还多赚 <span class="num">$0.21</span>/股，每张 $21。做市商和套利程序会立刻做这笔交易，直到价格回到平价附近。对个人交易者来说，平价的用处是检查报价和理解头寸，套利就留给做市商。</p>
+
+      <h3>美式期权与股息</h3>
+      <ul>
+        <li><strong>美式期权</strong>：美股个股期权是美式，可以提前行权，平价从等式变成区间。不派息时 <span class="v">S</span> − <span class="v">K</span> ≤ <span class="v">C</span> − <span class="v">P</span> ≤ <span class="v">S</span> − <span class="v">K</span>e<sup>−<span class="v">rT</span></sup>。30 天平值期权的区间是 0 到 0.328，非常窄；1 年平值是 0 到 3.92。</li>
+        <li><strong>有股息</strong>：<span class="v">C</span> − <span class="v">P</span> = <span class="v">S</span> − PV(股息) − <span class="v">K</span>e<sup>−<span class="v">rT</span></sup>。到期前要派 $1 股息，看涨相对看跌就便宜约 $1。这也是除息日前实值看涨容易被提前行权的原因（第 2 章）。</li>
+        <li><strong>难借券的股票</strong>：卖空需要付借券费时，看跌会相对看涨贵出这部分成本，平价看起来「失灵」。实际上是公式里多了一项成本。</li>
+      </ul>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">3.6</span>合成头寸</h2>
+      <p>把平价等式移项，就得到四组「换一种形式持有同一风险」的等价头寸。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 3-5　平价的四种移项（同一行权价、同一到期日）</caption>
+          <thead><tr><th>你要的头寸</th><th style="text-align:left">等价的组合</th><th style="text-align:left">等式</th></tr></thead>
+          <tbody>
+            <tr><td>持有股票</td><td style="text-align:left">买看涨 + 卖看跌 + 现金</td><td class="mono" style="text-align:left">S = C − P + Ke⁻ʳᵀ</td></tr>
+            <tr><td>卖空股票</td><td style="text-align:left">卖看涨 + 买看跌 + 借款</td><td class="mono" style="text-align:left">−S = P − C − Ke⁻ʳᵀ</td></tr>
+            <tr><td>备兑开仓</td><td style="text-align:left">卖看跌 + 现金</td><td class="mono" style="text-align:left">S − C = Ke⁻ʳᵀ − P</td></tr>
+            <tr><td>保护性看跌</td><td style="text-align:left">买看涨 + 现金</td><td class="mono" style="text-align:left">S + P = C + Ke⁻ʳᵀ</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>合成多头与合成空头</h3>
+      <p>买 1 张 100 看涨（3.591）、卖 1 张 100 看跌（3.263），净付 <span class="num">$0.328</span>/股。这个组合的 Delta 是 <span class="num">0.532 + 0.468 = 1.000</span>，Gamma 正好抵消（同一行权价的看涨和看跌 Gamma 相同）：它的风险和 100 股股票完全一样，到期盈亏也一样。区别只在资金：买股票要付 $10,000，合成多头只付 $32.8 外加卖出看跌所需的保证金。省下来的钱如果存起来赚利息，结果和买股票分毫不差；如果拿去加更多张数，那就是加杠杆。</p>
+      <p>合成空头反过来：卖看涨、买看跌。它常用在借券困难或借券费很高的股票上，代价是此时看跌已经被市场加了价（见上节）。</p>
+
+      <figure class="plate" id="fig4">
+        <div class="fig-head"><span class="fig-title">移项之后，两种持有方式的到期盈亏是同一条线</span><span class="fig-no">图 3-4 · 30 天，IV 30%，可拖动</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="选择等价组合">
+            <button type="button" data-p="long" aria-pressed="true">合成多头</button>
+            <button type="button" data-p="short" aria-pressed="false">合成空头</button>
+            <button type="button" data-p="cc" aria-pressed="false">备兑 = 卖沽</button>
+            <button type="button" data-p="pp" aria-pressed="false">保护性看跌 = 看涨</button>
+          </div>
+          <label class="ctl" for="f4-k">行权价 <input id="f4-k" type="range" min="90" max="110" step="1" value="100"> <output id="f4-k-o">100</output></label>
+        </div>
+        <svg class="chart" id="f4-svg" viewBox="0 0 680 320" role="img" aria-label="等价组合的到期盈亏对比"></svg>
+        <div class="legend" id="f4-legend"></div>
+        <div class="readout">
+          <div><b id="f4-r1">—</b><small id="f4-r1s">组合 A 期初</small></div>
+          <div><b id="f4-r2">—</b><small id="f4-r2s">组合 B 期初</small></div>
+          <div><b id="f4-r3">—</b><small>两边期初之差（= 行权价现值）</small></div>
+          <div><b id="f4-r4">—</b><small>到期盈亏之差（任意股价）</small></div>
+        </div>
+        <figcaption>四种组合里，粗实线和虚线完全重合；细线是组合 A 的两条腿。拖动行权价，看第三个读数：两边期初资金的差额永远等于行权价的现值 K·e<sup>−rT</sup>。也就是说，两种持有方式的全部差别只是一笔现金。盈亏按「期初资金按 4% 计息」计算，现金不计息时的差别见案例 1。</figcaption>
+      </figure>
+
+      <h3>备兑开仓 = 卖出看跌</h3>
+      <p>第三行最常被忽视。持股并卖出看涨（备兑开仓），和卖出同一行权价的看跌并备足现金（现金担保卖沽），到期盈亏完全相同：涨过行权价时都拿到固定的最大收益，跌下去时都承担股价下跌的损失。案例 1 会逐点对比。</p>
+      <h3>保护性看跌 = 买入看涨</h3>
+      <p>持股并买看跌保险，等价于把大部分钱存起来、只买一张看涨。两者下跌时的最大损失和上涨时的收益都一样。这也说明「买保险」的成本可以直接用看涨期权的时间价值来衡量。</p>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">3.7</span>概率读法</h2>
+      <p>期权价格里藏着市场对到期分布的看法：Delta 近似价内概率，期间触及行权价的概率约为价内概率的两倍。</p>
+      <p>第 4 章已经讲过：Delta 是 <span class="v">N</span>(<span class="v">d</span><sub>1</sub>)，风险中性下的到期价内概率是 <span class="v">N</span>(<span class="v">d</span><sub>2</sub>)。看涨的 Delta 略高于价内概率；看跌则相反，|Delta| = <span class="v">N</span>(−<span class="v">d</span><sub>1</sub>) 略低于价内概率 <span class="v">N</span>(−<span class="v">d</span><sub>2</sub>)。下表把两边放在一起：</p>
+      <div class="tbl">
+        <table>
+          <caption>表 3-6　股价 $100、30 天、IV 30%：Delta、价内概率与触及概率</caption>
+          <thead><tr><th>合约</th><th>Delta</th><th>到期价内概率</th><th>2 × 价内概率</th><th>触及概率（精确）</th></tr></thead>
+          <tbody>
+            <tr><td>105 看涨</td><td class="mono">0.313</td><td class="mono">0.284</td><td class="mono">0.567</td><td class="mono">0.569</td></tr>
+            <tr><td>110 看涨</td><td class="mono">0.152</td><td class="mono">0.133</td><td class="mono">0.266</td><td class="mono">0.266</td></tr>
+            <tr><td>115 看涨</td><td class="mono">0.061</td><td class="mono">0.052</td><td class="mono">0.103</td><td class="mono">0.103</td></tr>
+            <tr><td>95 看跌</td><td class="mono">−0.249</td><td class="mono">0.277</td><td class="mono">0.554</td><td class="mono">0.552</td></tr>
+            <tr><td>90 看跌</td><td class="mono">−0.096</td><td class="mono">0.111</td><td class="mono">0.222</td><td class="mono">0.222</td></tr>
+            <tr><td>85 看跌</td><td class="mono">−0.024</td><td class="mono">0.030</td><td class="mono">0.059</td><td class="mono">0.059</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>为什么触及概率约是两倍</h3>
+      <p>设想股价在到期前的某一刻碰到了 110。从那一刻起，剩下的路径涨和跌的机会差不多各占一半，因为短期内的漂移很小。所以「到期收在 110 上方」大约只占「碰到过 110」的一半。反过来说，触及概率 ≈ 2 × 价内概率。这个思路在数学上叫反射原理；加上漂移修正后的精确公式，和「两倍」的近似在上表里差别不到 0.003。</p>
+      <p>这个近似在三种情况下会走样：</p>
+      <ul>
+        <li><strong>漂移变大</strong>：期限很长或利率很高时，「涨跌各一半」不再成立。</li>
+        <li><strong>只看收盘价</strong>：表里的触及概率按连续盯盘计算。如果只在每天收盘检查一次（模拟 30 个观察点），110 的触及概率从 0.266 降到约 0.22，105 从 0.57 降到约 0.50。盘中触及后又收回的情况不算。</li>
+        <li><strong>真实分布有肥尾和跳空</strong>：这时两种概率都会被低估。</li>
+      </ul>
+
+      <h3>在期权链上找「一个标准差」</h3>
+      <p>常听到「16 Delta 约等于一个标准差」。来源是标准正态分布里 <span class="v">N</span>(−1) = 0.159。30 天、IV 30% 时，一个标准差对应的行权价是 <span class="num">100 × e<sup>±0.086</sup></span>，即 108.98 和 91.76。在这两个行权价上，价内概率确实约为 0.16；但 Delta 分别是看涨 <span class="num">0.179</span>、看跌 <span class="num">−0.140</span>，因为 <span class="v">d</span><sub>1</sub> 和 <span class="v">d</span><sub>2</sub> 差了一个 σ√<span class="v">T</span>。所以在期权链上找一个标准差的位置，看涨找 0.18 左右，看跌找 0.14 左右。IV 越高、期限越长，偏离越大。</p>
+      <div class="note warn">
+        <span class="tag">注意：这是市场定价的概率</span>
+        <p>这些概率由期权价格反推而来，含有风险中性假设和市场给尾部的加价。长期来看，指数虚值看跌的价格通常高于它们事后的平均赔付，所以期权隐含的下跌概率往往高于真实发生的频率（第 6 章的波动率风险溢价）。拿它做参考可以，当成预测就错了。</p>
+      </div>
+      <div class="note field">
+        <span class="tag">实战观察</span>
+        <p>不少卖备兑看涨的交易者用 Delta 选行权价：卖 Delta 0.2 左右、一到一个半月到期的看涨，权利金只剩三成左右时买回。按本节的读法，Delta 0.2 意味着到期价内的概率不到两成，但持有期内被触及的概率接近四成。所以「股价冲到行权价时怎么处理」（展期、买回还是让股票被叫走）需要在开仓时就想好，别等到被触及时再临场决定。</p>
+      </div>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">3.8</span>心算一：预期变动</h2>
+      <p>一个标准差的预期变动 ≈ 股价 × IV × √(天数/365)。IV 是一整年的标准差，按时间的平方根缩放到你关心的期限。</p>
+      <div class="formula">
+        <div class="eq">预期变动 <span class="up">≈</span> <span class="v">S</span> <span class="up">×</span> σ <span class="up">×</span> √<span class="up">(</span><span class="frac"><span>天数</span><span>365</span></span><span class="up">)</span></div>
+        <p class="where">σ 用年化隐含波动率。约有 68% 的概率，到期股价落在 ±1 个预期变动之内。</p>
+      </div>
+      <p>为什么是平方根？每天的收益近似独立，独立变量的方差可以相加：30 天的方差是 1 天的 30 倍，标准差就是 √30 倍。IV 30% 对应的日标准差是 <span class="num">30% ÷ √365 = 1.57%</span>，30 天就是 <span class="num">1.57% × √30 = 8.6%</span>。</p>
+      <div class="tbl">
+        <table>
+          <caption>表 3-7　常用期限的乘数</caption>
+          <thead><tr><th>期限</th><th>√(天数/365)</th><th>记法</th></tr></thead>
+          <tbody>
+            <tr><td>1 天</td><td class="mono">0.052</td><td>IV ÷ 19（按交易日约定是 ÷ 16，见第 4 章）</td></tr>
+            <tr><td>1 周</td><td class="mono">0.139</td><td>IV ÷ 7.2</td></tr>
+            <tr><td>30 天</td><td class="mono">0.287</td><td>IV ÷ 3.5</td></tr>
+            <tr><td>90 天</td><td class="mono">0.497</td><td>IV ÷ 2</td></tr>
+            <tr><td>1 年</td><td class="mono">1.000</td><td>IV 本身</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>例：股价 $200、IV 40%、两周（14 天）：<span class="num">200 × 0.40 × √(14/365) = 200 × 0.40 × 0.196 = $15.7</span>。市场认为两周后股价大约有 68% 的概率在 184 到 216 之间。</p>
+
+      <h3>心算有多准</h3>
+      <p>心算给的是对称的 ±，而对数正态分布的区间上宽下窄，还会随 −σ²/2 整体下移。两者的差距取决于 σ√<span class="v">T</span> 的大小：</p>
+      <div class="tbl">
+        <table>
+          <caption>表 3-8　心算与对数正态 68% 区间（股价 $100）</caption>
+          <thead><tr><th>天数</th><th>IV</th><th>σ√T</th><th>心算 ±</th><th>精确上沿</th><th>精确下沿</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">7</td><td class="mono">30%</td><td class="mono">0.04</td><td class="mono">4.16</td><td class="mono">+4.23</td><td class="mono">−4.08</td></tr>
+            <tr><td class="mono">30</td><td class="mono">30%</td><td class="mono">0.09</td><td class="mono">8.60</td><td class="mono">+8.94</td><td class="mono">−8.28</td></tr>
+            <tr><td class="mono">90</td><td class="mono">30%</td><td class="mono">0.15</td><td class="mono">14.90</td><td class="mono">+15.92</td><td class="mono">−13.95</td></tr>
+            <tr><td class="mono">30</td><td class="mono">60%</td><td class="mono">0.17</td><td class="mono">17.20</td><td class="mono">+17.41</td><td class="mono">−16.77</td></tr>
+            <tr><td class="mono">365</td><td class="mono">30%</td><td class="mono">0.30</td><td class="mono">30.00</td><td class="mono">+34.31</td><td class="mono">−26.29</td></tr>
+            <tr class="hl"><td class="mono">365</td><td class="mono">60%</td><td class="mono">0.60</td><td class="mono">60.00</td><td class="mono">+58.41</td><td class="mono">−52.29</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>σ√<span class="v">T</span> 在 0.2 以内（例如 IV 30% 的三个月以内、IV 60% 的一个月以内），心算值基本落在精确上沿和下沿之间，误差在 1 美元左右。超过 0.3 以后要小心：最后一行里，上沿反而低于心算值，因为整个区间被 −σ²/2 拉低了。</p>
+
+      <figure class="plate" id="fig5">
+        <div class="fig-head"><span class="fig-title">期限短、IV 低时，心算和精确值几乎一样</span><span class="fig-no">图 3-5 · 股价 $100，可拖动</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="选择视图">
+            <button type="button" data-view="move" aria-pressed="true">一个标准差的变动</button>
+            <button type="button" data-view="strad" aria-pressed="false">平值跨式价格</button>
+          </div>
+        </div>
+        <div class="controls">
+          <label class="ctl" for="f5-iv">隐含波动率 <input id="f5-iv" type="range" min="10" max="100" value="30"> <output id="f5-iv-o">30%</output></label>
+          <label class="ctl" for="f5-d">读数位置 <input id="f5-d" type="range" min="1" max="365" value="30"> <output id="f5-d-o">30 天</output></label>
+        </div>
+        <svg class="chart" id="f5-svg" viewBox="0 0 680 320" role="img" aria-label="心算预期变动与精确值随期限的变化"></svg>
+        <div class="legend" id="f5-legend"></div>
+        <div class="readout">
+          <div><b id="f5-r1">—</b><small id="f5-r1s">心算</small></div>
+          <div><b id="f5-r2">—</b><small id="f5-r2s">精确</small></div>
+          <div><b id="f5-r3">—</b><small id="f5-r3s">差距</small></div>
+        </div>
+        <figcaption>在「一个标准差的变动」视图里，把 IV 拖到 60% 以上，可以看到精确上沿在一年附近掉到心算线下面。切到「平值跨式价格」视图，两条线在任何 IV 下都几乎重合：IV 100%、一年期时误差也只有 6% 左右，这就是 3.9 节的 0.8 法则。</figcaption>
+      </figure>
+      <div class="note warn">
+        <span class="tag">什么时候不能用</span>
+        <p>财报、FDA 结果这类事件前，IV 里包含了事件当天的大幅波动。把它平均摊到每一天去算「明天会动多少」是错的：事件之前每天的波动比 IV 说的小，事件当天比 IV 说的大得多。拆法见案例 3 和第 10 章。</p>
+      </div>
+    </section>
+
+    <section id="s9">
+      <h2><span class="sn">3.9</span>心算二：跨式的 0.8</h2>
+      <p>平值跨式（同一行权价各买一张看涨和看跌）的价格 ≈ 0.8 × 一个标准差的预期变动。0.8 来自正态分布的平均绝对值 √(2/π) ≈ 0.798。</p>
+      <h3>推导一：平均绝对变动</h3>
+      <p>平值跨式到期的收益是 |<span class="v">S<sub>T</sub></span> − <span class="v">K</span>|，也就是股价变动的绝对值。如果股价变动近似服从标准差为 <span class="v">M</span> = <span class="v">S</span>σ√<span class="v">T</span> 的正态分布，它的绝对值的平均数是：</p>
+      <div class="formula">
+        <div class="eq"><span class="v">E</span>|<span class="v">Z</span>| <span class="up">=</span> 2<span class="up">∫</span><sub>0</sub><sup>∞</sup> <span class="v">z</span> <span class="frac"><span><span class="v">e</span><sup>−<span class="v">z</span>²/2</sup></span><span>√(2π)</span></span> <span class="v">dz</span></div>
+        <div class="eq"><span class="up">=</span> <span class="frac"><span>2</span><span>√(2π)</span></span> <span class="up">=</span> √<span class="up">(</span>2/π<span class="up">)</span> <span class="up">≈ 0.798</span></div>
+        <p class="where">所以 <span class="v">E</span>|Δ<span class="v">S</span>| ≈ 0.798 × <span class="v">M</span>。跨式的价格就是平均绝对变动（折现后），约为一个标准差的 80%。</p>
+      </div>
+      <h3>推导二：从 Black-Scholes 出发</h3>
+      <p>平值时 <span class="v">S</span> = <span class="v">K</span>，忽略利率，<span class="v">d</span><sub>1</sub> = σ√<span class="v">T</span>/2，<span class="v">d</span><sub>2</sub> = −σ√<span class="v">T</span>/2，看涨价格变成</p>
+      <div class="formula">
+        <div class="eq"><span class="v">C</span> <span class="up">=</span> <span class="v">S</span><span class="up">[</span><span class="v">N</span>(σ√<span class="v">T</span>/2) <span class="up">−</span> <span class="v">N</span>(−σ√<span class="v">T</span>/2)<span class="up">]</span></div>
+        <div class="eq"><span class="up">≈</span> <span class="v">S</span> <span class="up">·</span> σ√<span class="v">T</span> <span class="up">·</span> <span class="frac"><span>1</span><span>√(2π)</span></span> <span class="up">≈ 0.4 ×</span> <span class="v">S</span>σ√<span class="v">T</span></div>
+        <p class="where">中括号是标准正态密度在 0 附近一段宽为 σ√T 的面积，近似为宽度 × 峰值 0.399。看跌同理，跨式 = 看涨 + 看跌 ≈ 0.8 × <span class="v">S</span>σ√<span class="v">T</span>。</p>
+      </div>
+      <p>顺带得到一个更常用的规则：<strong>平值看涨 ≈ 0.4 × 股价 × IV × √(天数/365)</strong>。基准例子：<span class="num">0.4 × 100 × 0.30 × 0.287 = 3.44</span>，Black-Scholes 是 3.591。差的 0.15 来自利率：平价告诉我们看涨比看跌贵 0.328，看涨分到其中一半。把这一半加回去就是 <span class="num">3.60</span>。这个规则在 3.1 节反推 IV 时也能用：<span class="num">(4.20 − 0.16) ÷ (0.4 × 100 × 0.287) ≈ 35.2%</span>，精确值是 35.3%。</p>
+
+      <h3>用数字验证误差</h3>
+      <div class="tbl">
+        <table>
+          <caption>表 3-9　平值跨式：Black-Scholes 与 0.8 法则（股价 $100）</caption>
+          <thead><tr><th>天数</th><th>IV</th><th>BS 跨式价格</th><th>0.8 × 心算变动</th><th>法则误差</th><th>跨式 ÷ 心算变动</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">1</td><td class="mono">30%</td><td class="mono">1.253</td><td class="mono">1.256</td><td class="mono">+0.3%</td><td class="mono">0.798</td></tr>
+            <tr><td class="mono">7</td><td class="mono">30%</td><td class="mono">3.314</td><td class="mono">3.324</td><td class="mono">+0.3%</td><td class="mono">0.798</td></tr>
+            <tr><td class="mono">30</td><td class="mono">30%</td><td class="mono">6.854</td><td class="mono">6.881</td><td class="mono">+0.4%</td><td class="mono">0.797</td></tr>
+            <tr><td class="mono">90</td><td class="mono">30%</td><td class="mono">11.843</td><td class="mono">11.918</td><td class="mono">+0.6%</td><td class="mono">0.795</td></tr>
+            <tr><td class="mono">30</td><td class="mono">60%</td><td class="mono">13.688</td><td class="mono">13.761</td><td class="mono">+0.5%</td><td class="mono">0.796</td></tr>
+            <tr><td class="mono">365</td><td class="mono">30%</td><td class="mono">23.585</td><td class="mono">24.000</td><td class="mono">+1.8%</td><td class="mono">0.786</td></tr>
+            <tr><td class="mono">365</td><td class="mono">60%</td><td class="mono">46.340</td><td class="mono">48.000</td><td class="mono">+3.6%</td><td class="mono">0.772</td></tr>
+            <tr class="hl"><td class="mono">365</td><td class="mono">100%</td><td class="mono">75.139</td><td class="mono">80.000</td><td class="mono">+6.5%</td><td class="mono">0.751</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>法则总是略微高估，而且误差随 σ√<span class="v">T</span> 变大。原因是推导二用「宽度 × 峰值」近似了曲线下的面积，而正态密度在峰值两侧是往下弯的。更精确的展开是 <span class="v">N</span>(<span class="v">x</span>/2) − <span class="v">N</span>(−<span class="v">x</span>/2) ≈ 0.399<span class="v">x</span>(1 − <span class="v">x</span>²/24)，<span class="v">x</span> = σ√<span class="v">T</span>。<span class="v">x</span> = 0.3 时修正不到 0.4%，<span class="v">x</span> = 1 时约 4%。日常用到的期限和 IV 下（σ√<span class="v">T</span> &lt; 0.3），误差不到 1%，完全可以放心心算。</p>
+      <h3>两个反向用法</h3>
+      <ul>
+        <li><strong>从跨式读预期变动</strong>：一个标准差 ≈ 跨式 ÷ 0.8 = 1.25 × 跨式。</li>
+        <li><strong>从跨式反推 IV</strong>：IV ≈ 跨式 ÷ (0.8 × 股价 × √(天数/365))。</li>
+      </ul>
+      <div class="note">
+        <span class="tag">口径要先对齐</span>
+        <p>有的平台把平值跨式的价格直接标成「预期变动」。那个数对应平均绝对变动，大约是一个标准差的 80%。两种说法都有人用，拿去和历史数据比较之前，先确认双方是同一个口径：跨式价格对应「平均涨跌幅的绝对值」，跨式 ÷ 0.8 对应「一个标准差」。</p>
+      </div>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">案例</span>三个案例</h2>
+
+      <div class="case">
+        <div class="case-no">案例 1</div>
+        <h3>用买卖权平价证明「备兑开仓 = 卖出看跌」</h3>
+        <p>股价 $100，30 天，IV 30%。两个人做了两笔看起来不同的交易：</p>
+        <ul>
+          <li><strong>甲（备兑开仓）</strong>：买 100 股，卖 1 张 105 看涨，收权利金 $1.662/股。期初净支出 <span class="num">100 − 1.662 = $98.338</span>/股。</li>
+          <li><strong>乙（现金担保卖沽）</strong>：卖 1 张 105 看跌，收权利金 $6.317/股，同时把 <span class="num">105 × e<sup>−0.04×30/365</sup> = $104.655</span>/股 放进短期国债，到期正好长成 105。期初净支出 <span class="num">104.655 − 6.317 = $98.338</span>/股。</li>
+        </ul>
+        <p>两人期初拿出的钱一分不差，这正是平价的移项 <span class="v">S</span> − <span class="v">C</span> = <span class="v">K</span>e<sup>−<span class="v">rT</span></sup> − <span class="v">P</span>。再逐点看到期：</p>
+        <div class="tbl">
+          <table>
+            <caption>表 3-10　到期价值与盈亏逐点对比（每张，美元）</caption>
+            <thead><tr><th>到期股价</th><th>甲：股票</th><th>甲：看涨义务</th><th>甲合计</th><th>乙：国债</th><th>乙：看跌义务</th><th>乙合计</th><th>盈亏（两人相同）</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">85</td><td class="mono">8,500</td><td class="mono">0</td><td class="mono">8,500</td><td class="mono">10,500</td><td class="mono">−2,000</td><td class="mono">8,500</td><td class="mono neg">−1,334</td></tr>
+              <tr><td class="mono">90</td><td class="mono">9,000</td><td class="mono">0</td><td class="mono">9,000</td><td class="mono">10,500</td><td class="mono">−1,500</td><td class="mono">9,000</td><td class="mono neg">−834</td></tr>
+              <tr><td class="mono">95</td><td class="mono">9,500</td><td class="mono">0</td><td class="mono">9,500</td><td class="mono">10,500</td><td class="mono">−1,000</td><td class="mono">9,500</td><td class="mono neg">−334</td></tr>
+              <tr><td class="mono">100</td><td class="mono">10,000</td><td class="mono">0</td><td class="mono">10,000</td><td class="mono">10,500</td><td class="mono">−500</td><td class="mono">10,000</td><td class="mono pos">+166</td></tr>
+              <tr><td class="mono">105</td><td class="mono">10,500</td><td class="mono">0</td><td class="mono">10,500</td><td class="mono">10,500</td><td class="mono">0</td><td class="mono">10,500</td><td class="mono pos">+666</td></tr>
+              <tr><td class="mono">110</td><td class="mono">11,000</td><td class="mono">−500</td><td class="mono">10,500</td><td class="mono">10,500</td><td class="mono">0</td><td class="mono">10,500</td><td class="mono pos">+666</td></tr>
+              <tr><td class="mono">120</td><td class="mono">12,000</td><td class="mono">−1,500</td><td class="mono">10,500</td><td class="mono">10,500</td><td class="mono">0</td><td class="mono">10,500</td><td class="mono pos">+666</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>盈亏 = 到期合计 − 期初的 $9,833.8。两人的盈亏平衡点都是 $98.34，最大收益都是 $666（股价到 105 及以上），下跌时每跌 $1 都亏 $100。现实中会让两者出现差别的只有四件事：</p>
+        <ol>
+          <li><strong>现金利息</strong>：乙的现金如果躺在账户里不计息，就比甲少赚 <span class="num">105 × (1 − e<sup>−rT</sup>) = $0.345</span>/股，每张 $34.5。看涨比看跌「贵」的那部分，就是这笔利息。</li>
+          <li><strong>股息</strong>：甲能拿到股息，乙拿不到。但有股息时看涨会更便宜、看跌会更贵，平价已经把它算进去了。</li>
+          <li><strong>提前指派</strong>：美式期权下，甲的看涨在除息日前可能被提前行权，乙的看跌在深度实值时可能被提前指派，两人提前离场的时点不同。</li>
+          <li><strong>成本与税务</strong>：甲有两笔成交（股票和期权），乙只有一笔；两者的税务处理也可能不同。</li>
+        </ol>
+        <div class="note gam">
+          <span class="tag">启示</span>
+          <p>「备兑开仓保守、卖出看跌激进」是一种错觉。现金担保的卖出看跌和备兑开仓风险完全相同。真正危险的是用保证金把张数放大到现金担保不住的程度，那是杠杆的问题，和选哪种形式无关。</p>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 2</div>
+        <h3>2020 年 3 月：正态假设失效的那几周</h3>
+        <p>2020 年 2 月下旬起，新冠疫情在全球扩散，美股快速下跌。3 月中旬，标普 500 多次因盘中跌幅达到 7% 而触发全市场熔断；3 月 16 日的单日跌幅是 1987 年以来最大；VIX 的收盘值创下了历史纪录。</p>
+        <p>用正态分布来衡量这些日子会得出荒谬的结论。假设危机前指数的日收益标准差约 1%（年化约 16%）：</p>
+        <div class="tbl">
+          <table>
+            <caption>表 3-11　按危机前的 1% 日标准差，正态分布给出的频率</caption>
+            <thead><tr><th>单日跌幅</th><th>相当于</th><th>正态下单日概率</th><th>平均间隔</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">5%</td><td class="mono">5σ</td><td class="mono">2.9 × 10⁻⁷</td><td class="mono">约 1.4 万年</td></tr>
+              <tr><td class="mono">7%</td><td class="mono">7σ</td><td class="mono">1.3 × 10⁻¹²</td><td class="mono">约 31 亿年</td></tr>
+              <tr><td class="mono">10%</td><td class="mono">10σ</td><td class="mono">7.6 × 10⁻²⁴</td><td class="mono">约 5 × 10²⁰ 年</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>宇宙的年龄大约 140 亿年，而这几类日子在几周之内都出现了。问题出在两处：一是收益的尾部本来就比正态厚（3.4 节）；二是标准差本身不是常数。危机中的日波动是平静时的好几倍，用平静时期的 σ 去衡量危机，本身就是错误的。</p>
+        <p>再看这对期权卖方意味着什么（以下数字为假设情景）。指数 100，IV 16%，卖出 30 天 95 看跌，收 <span class="num">$0.256</span>/股，每张 $25.6。Black-Scholes 说它到期价内的概率只有 <span class="num">12.2%</span>。第二天指数跌 7%、IV 升到 60%：这张看跌值 <span class="num">$7.21</span>，每张亏 <span class="num">$695</span>，是所收权利金的 <span class="num">28</span> 倍。如果 IV 还停在 16%，它只值 $2.67。也就是说，6.95 美元的亏损里有 4.54 美元来自 IV 跳升，超过六成。</p>
+        <div class="note gam">
+          <span class="tag">启示</span>
+          <ul>
+            <li>Black-Scholes 的概率是平静市场的概率，用它来决定卖方仓位的大小会严重低估尾部风险。</li>
+            <li>卖方的风险评估要用情景：「跌 7%、IV 翻几倍」时亏多少。Delta 和价内概率只能作参考。</li>
+            <li>市场用波动率偏斜给远虚值看跌加价，正是因为参与者都记得这样的日子。觉得「虚值看跌太贵、白捡权利金」之前，先算一遍上面的情景。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-no">案例 3</div>
+        <h3>财报前的 30 秒心算</h3>
+        <p>股价 $250，财报在本周发布。7 天后到期的平值跨式报价 $15（假设）。不打开定价软件，能读出什么？</p>
+        <ol>
+          <li><strong>平均绝对变动</strong>：<span class="num">15 ÷ 250 = 6%</span>。市场预期到期时股价平均偏离现价约 6%。</li>
+          <li><strong>一个标准差</strong>：<span class="num">15 ÷ 0.8 = $18.75</span>，即 7.5%。大约 68% 的概率，到期价在 231 到 269 之间。</li>
+          <li><strong>隐含波动率</strong>：<span class="num">7.5% ÷ √(7/365) = 7.5% ÷ 0.139 ≈ 54%</span>。用 Black-Scholes 精确反推是 <span class="num">54.3%</span>，心算差 0.1 个点。</li>
+          <li><strong>拆出财报日</strong>：假设这只股票平时的 IV 是 35%，其余 6 天贡献的标准差是 <span class="num">35% × √(6/365) = 4.49%</span>。方差可以相加，财报当天的标准差就是 <span class="num">√(7.52%² − 4.49%²) ≈ 6.0%</span>，对应的平均绝对变动约 <span class="num">0.8 × 6.0% ≈ 4.8%</span>。</li>
+          <li><strong>和历史比</strong>：拿这只股票过去若干次财报后首日的<strong>平均绝对涨跌幅</strong>来比，不要拿最大值，也不要拿标准差。如果历史平均只有 3% 左右，这次的期权定价偏贵；如果历史平均有 7%，就偏便宜。</li>
+        </ol>
+        <div class="note gam">
+          <span class="tag">启示</span>
+          <p>跨式价格、一个标准差、隐含波动率三个数可以互相换算：跨式 ÷ 0.8 得到一个标准差，再除以 √(天数/365) 和股价得到 IV。事件前最常见的错误是口径混用：拿跨式价格和历史标准差比，或者把包含事件的 IV 平摊到每一天。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">工具</span>清单与自测</h2>
+      <p>勾选状态只保存在你自己的浏览器里。</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">3-1</span>看一张报价：六个输入</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">确认股价、行权价、到期日，剩余天数按日历天数</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">记下 IV，用 IV 而不是美元价格比较贵贱</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">有股息的标的，查除息日是否在到期前</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">3-2</span>平价检查</h4>
+          <ul>
+            <li><input type="checkbox" id="k4"><label for="k4">看涨 − 看跌 ≈ 股价 − 行权价现值（减去股息现值）</label></li>
+            <li><input type="checkbox" id="k5"><label for="k5">偏离太多时先查：股息、借券难度、报价是否过时</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">现金担保卖沽：现金是否在赚利息</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">3-3</span>读概率</h4>
+          <ul>
+            <li><input type="checkbox" id="k7"><label for="k7">Delta ≈ 价内概率：看涨略高估，看跌略低估</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">触及概率 ≈ 2 × 价内概率，卖方按「触及」做预案</label></li>
+            <li><input type="checkbox" id="k9"><label for="k9">尾部风险不信模型概率，改用情景测试</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">3-4</span>心算</h4>
+          <ul>
+            <li><input type="checkbox" id="k10"><label for="k10">一个标准差 ≈ 股价 × IV × √(天数/365)</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">平值跨式 ≈ 0.8 × 一个标准差；平值看涨 ≈ 0.4 ×</label></li>
+            <li><input type="checkbox" id="k12"><label for="k12">有事件时，把事件日的方差单独拆出来</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>自测五题</h3>
+      <details class="q"><summary><span class="num">1</span><span>股价不变，IV 从 30% 升到 35%，30 天平值看涨涨了 $0.57。同一行权价、同一到期日的看跌涨多少？为什么？</span></summary>
+        <div class="ans"><p>也是 $0.57。平价 <span class="num">C − P = S − K·e^{−rT}</span> 里没有波动率，σ 变化时差额不变，两者必须同涨同跌。</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>股价 $50，60 天平值看涨 $2.10，利率 4%，不派息。同一行权价的欧式看跌大约多少？</span></summary>
+        <div class="ans"><p><span class="num">P = C − S + K·e^{−rT} = 2.10 − 50 + 50 × e^{−0.04×60/365} = 2.10 − 50 + 49.67 ≈ $1.77</span>。美式看跌会略高一点，但不派息的平值期权差别很小。</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>股价 $80，IV 50%，还有 45 天到期。一个标准差的预期变动大约多少？平值跨式大约多少？</span></summary>
+        <div class="ans"><p>预期变动 <span class="num">80 × 0.50 × √(45/365) = 40 × 0.351 ≈ $14.0</span>；跨式 <span class="num">≈ 0.8 × 14.0 = $11.2</span>。Black-Scholes 精确值是 $11.17，误差约 0.6%。</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>30 天的 110 看涨 Delta 是 0.152。到期价内的概率大约多少？这 30 天里股价碰到 110 的概率呢？</span></summary>
+        <div class="ans"><p>价内概率略低于 Delta，约 13%（<span class="num">N(d₂) = 0.133</span>）。触及概率约为两倍，约 27%。如果只按每日收盘价判断是否触及，大约 22%。</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>有人说「备兑开仓比现金担保卖沽安全」。用平价说明两者风险为什么相同，并举出两个让它们在现实中不完全一样的因素。</span></summary>
+        <div class="ans"><p>平价移项得 <span class="num">S − C = K·e^{−rT} − P</span>：持股卖看涨，与持有行权价现值的现金并卖看跌，期初成本和到期收益完全相同。现实差别：卖沽的现金若不计息，少赚行权价的利息；美式期权的提前指派时点不同；股息归属、交易笔数和税务处理也不同。</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="章节翻页"></nav>
+
+    <footer class="end">
+      <p>本章示例由 Black-Scholes 模型计算（利率 4%，不派息，一年 365 天）；t 分布、历史情景和财报报价中的数字为文中注明的假设，用于教学，不构成投资建议。</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+  const signed = (v, d) => (v > 0.0000001 ? "+" : v < -0.0000001 ? "−" : "") + Math.abs(v).toFixed(d === undefined ? 2 : d);
+  function niceStep(span, n) {
+    const raw = span / n, p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p;
+    return (f < 1.5 ? 1 : f < 3 ? 2 : f < 7 ? 5 : 10) * p;
+  }
+  /* axis(lo, hi, n): 把 hi 扩到下一个刻度，返回 {lo, hi, t} */
+  function axis(lo, hi, n) {
+    const st = niceStep(hi - lo, n || 5);
+    const a = Math.floor(lo / st + 1e-9) * st, b = Math.ceil(hi / st - 1e-9) * st;
+    const t = []; for (let v = a; v <= b + st * 1e-6; v += st) t.push(+v.toFixed(6));
+    return { lo: a, hi: b, t };
+  }
+
+  // ---------- fig 3-1 敏感度实验台 ----------
+  (function () {
+    const svg = document.getElementById("f1-svg");
+    const ids = ["S", "K", "T", "s", "r", "q"];
+    const inp = {}; ids.forEach(k => { inp[k] = document.getElementById("f1-" + k); });
+    const spec = {
+      S: { lab: "股价（美元）", f: v => "$" + v },
+      K: { lab: "行权价（美元）", f: v => "$" + v },
+      T: { lab: "剩余天数", f: v => v + " 天" },
+      s: { lab: "隐含波动率（%）", f: v => v + "%" },
+      r: { lab: "无风险利率（%）", f: v => (+v).toFixed(2) + "%" },
+      q: { lab: "股息率（%）", f: v => (+v).toFixed(2) + "%" }
+    };
+    const base = { S: 100, K: 100, T: 30, s: 30, r: 4, q: 0 };
+    const btns = document.querySelectorAll("#fig1 .seg button");
+    let xv = "S";
+    const price = (o, kind) => bs(o.S, o.K, o.T / DAY, o.s / 100, kind, o.r / 100, o.q / 100).price;
+    const c0 = price(base, "c"), p0 = price(base, "p");
+    function draw() {
+      const o = {};
+      ids.forEach(k => { o[k] = +inp[k].value; document.getElementById("f1-" + k + "-o").textContent = spec[k].f(inp[k].value); });
+      const lo = +inp[xv].min, hi = +inp[xv].max;
+      const xs = range(lo, hi, (hi - lo) / 240);
+      const cs = xs.map(x => [x, price(Object.assign({}, o, { [xv]: x }), "c")]);
+      const ps = xs.map(x => [x, price(Object.assign({}, o, { [xv]: x }), "p")]);
+      const c = price(o, "c"), p = price(o, "p");
+      const top = Math.max(1, ...cs.map(v => v[1]), ...ps.map(v => v[1])) * 1.06;
+      const ya = axis(0, top, 5), xa = axis(lo, hi, 6);
+      plot(svg, {
+        x: [lo, hi], y: [0, ya.hi], xt: xa.t.filter(v => v >= lo - 1e-9 && v <= hi + 1e-9), yt: ya.t,
+        yf: v => (+v.toFixed(2)).toString(), xlabel: spec[xv].lab, ylabel: "期权价格（美元）", vline: o[xv],
+        series: [{ pts: cs, color: "var(--delta)", w: 2.6 }, { pts: ps, color: "var(--gamma)", w: 2.6 }],
+        dots: [[o[xv], c, "var(--delta)", 5], [o[xv], p, "var(--gamma)", 5]]
+      });
+      const T = o.T / DAY;
+      document.getElementById("f1-r1").textContent = c.toFixed(3);
+      document.getElementById("f1-r2").textContent = p.toFixed(3);
+      document.getElementById("f1-r1s").innerHTML = "看涨 · 较基准 <b>" + signed(c - c0, 3) + "</b>";
+      document.getElementById("f1-r2s").innerHTML = "看跌 · 较基准 <b>" + signed(p - p0, 3) + "</b>";
+      document.getElementById("f1-r3").textContent = fmt(c - p, 3);
+      document.getElementById("f1-r4").textContent = fmt(o.S * Math.exp(-o.q / 100 * T) - o.K * Math.exp(-o.r / 100 * T), 3);
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      xv = b.dataset.v;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    ids.forEach(k => inp[k].addEventListener("input", draw));
+    document.getElementById("f1-reset").addEventListener("click", () => { ids.forEach(k => { inp[k].value = base[k]; }); draw(); });
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 3-2 对数正态分布 ----------
+  (function () {
+    const svg = document.getElementById("f2-svg");
+    const dS = document.getElementById("f2-d"), ivS = document.getElementById("f2-iv");
+    const S = 100, r = CK.R;
+    function draw() {
+      const d = +dS.value, s = +ivS.value / 100, T = d / DAY;
+      document.getElementById("f2-d-o").textContent = d + " 天";
+      document.getElementById("f2-iv-o").textContent = ivS.value + "%";
+      const m = (r - s * s / 2) * T, sd = s * Math.sqrt(T);
+      const M = S * Math.exp(r * T), V = M * Math.sqrt(Math.exp(sd * sd) - 1);
+      const lo = Math.max(-50, Math.min(S * Math.exp(m - 3.2 * sd), M - 2.8 * V));
+      const hi = Math.min(320, Math.max(S * Math.exp(m + 2.6 * sd), M + 2.8 * V));
+      const xs = range(lo, hi, (hi - lo) / 320);
+      const pdf = x => x <= 0 ? 0 : Math.exp(-Math.pow(Math.log(x / S) - m, 2) / (2 * sd * sd)) / (x * sd * Math.sqrt(2 * Math.PI));
+      const npdf = x => Math.exp(-Math.pow(x - M, 2) / (2 * V * V)) / (V * Math.sqrt(2 * Math.PI));
+      const ln = xs.map(x => [x, pdf(x)]), nn = xs.map(x => [x, npdf(x)]);
+      const ymax = Math.max(...ln.map(p => p[1]), ...nn.map(p => p[1])) * 1.16;
+      const b0 = S * Math.exp(m - sd), b1 = S * Math.exp(m + sd);
+      const xa = axis(lo, hi, 6);
+      const res = plot(svg, {
+        x: [lo, hi], y: [0, ymax], xt: xa.t.filter(v => v >= lo && v <= hi), yt: [],
+        xlabel: "到期股价（美元）", ylabel: "概率密度", vline: S, zero: 0,
+        band: [b0, b1, "var(--tint-delta)"],
+        series: [{ pts: nn, color: "var(--muted)", w: 1.7, dash: "5 5" }, { pts: ln, color: "var(--delta)", w: 2.6, fill: 0, fillOp: 0.10 }],
+        labels: [[b0, ymax * 0.97, b0.toFixed(1), -4, 4, "end", "var(--delta)"], [b1, ymax * 0.97, b1.toFixed(1), 4, 4, "start", "var(--delta)"]]
+      });
+      if (lo < 0) {
+        el("rect", { x: res.X(lo), y: res.m.t, width: Math.max(0, res.X(0) - res.X(lo)), height: res.H - res.m.t - res.m.b, style: "fill: var(--tint-warn)" }, res.g);
+        const t = el("text", { x: (res.X(lo) + res.X(0)) / 2, y: res.m.t + 16, "text-anchor": "middle", style: "fill: var(--warn); font-family: var(--font-body); font-size: 12px" }, res.g);
+        t.textContent = "负股价";
+      }
+      const pUp = CK.N(bs(S, 110, T, s, "c").d2), pDn = CK.N(-bs(S, 90, T, s, "p").d2);
+      document.getElementById("f2-r1").textContent = b0.toFixed(1) + "–" + b1.toFixed(1);
+      document.getElementById("f2-r2").textContent = (S * Math.exp(m)).toFixed(1) + " / " + M.toFixed(1);
+      document.getElementById("f2-r3").textContent = (pUp * 100).toFixed(1) + "%";
+      document.getElementById("f2-r4").textContent = (pDn * 100).toFixed(1) + "%";
+    }
+    dS.addEventListener("input", draw); ivS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 3-3 肥尾（静态） ----------
+  (function () {
+    const svg = document.getElementById("f3-svg");
+    const normal = [2.94, 125.3, 13843, 4022201], fat = [0.573, 1.287, 2.450, 4.174];
+    const nLabW = ["2.9 年", "125 年", "1.4 万年", "400 万年"], fLabW = ["0.6 年", "1.3 年", "2.5 年", "4.2 年"];
+    const nLabN = ["2.9", "125", "1.4万", "400万"], fLabN = ["0.6", "1.3", "2.5", "4.2"];
+    const yl = { 0.1: "0.1", 1: "1", 10: "10", 100: "100", 1000: "1千", 10000: "1万", 100000: "10万", 1000000: "100万", 10000000: "1000万" };
+    function draw() {
+      const bars = [], labels = [];
+      const narrow = (svg.getBoundingClientRect().width || 680) < 560;
+      const nLab = narrow ? nLabN : nLabW, fLab = narrow ? fLabN : fLabW;
+      normal.forEach((v, i) => {
+        bars.push({ x: i + 1 - 0.19, y: v, w: 0.34, color: "var(--muted)" });
+        bars.push({ x: i + 1 + 0.19, y: fat[i], w: 0.34, color: "var(--warn)" });
+        labels.push([i + 1 - 0.19, v, nLab[i], 0, -6, "middle", "var(--ink)"]);
+        labels.push([i + 1 + 0.19, fat[i], fLab[i], 0, -6, "middle", "var(--warn)"]);
+      });
+      const res = plot(svg, {
+        x: [0.45, 4.55], y: [0.1, 3e7], ylog: true, xt: [], yt: [0.1, 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000],
+        yf: v => yl[v] || v, xlabel: "单日跌幅（按标准差计）", ylabel: "平均间隔（年）", bars, labels
+      });
+      const ax = svg.querySelector("g.ax");
+      ["3σ", "4σ", "5σ", "6σ"].forEach((t, i) => {
+        el("text", { x: res.X(i + 1), y: res.H - res.m.b + 18, "text-anchor": "middle", style: "fill: var(--muted)" }, ax).textContent = t;
+      });
+    }
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 3-4 平价组合 ----------
+  (function () {
+    const svg = document.getElementById("f4-svg");
+    const kS = document.getElementById("f4-k");
+    const btns = document.querySelectorAll("#fig4 .seg button");
+    const S0 = 100, T = 30 / DAY, sig = 0.30, r = CK.R, g = Math.exp(r * T);
+    const names = {
+      long: { a: "买看涨 + 卖看跌", b: "买入 100 股", l1: "买看涨", l2: "卖看跌" },
+      short: { a: "卖看涨 + 买看跌", b: "卖空 100 股", l1: "卖看涨", l2: "买看跌" },
+      cc: { a: "备兑：持股 + 卖看涨", b: "卖出看跌（现金担保）", l1: "持股", l2: "卖看涨" },
+      pp: { a: "持股 + 买看跌", b: "买入看涨（+ 现金）", l1: "持股", l2: "买看跌" }
+    };
+    let cur = "long";
+    const cash = v => (v >= 0 ? "付 $" : "收 $") + Math.abs(v).toFixed(2);
+    function draw() {
+      const K = +kS.value;
+      document.getElementById("f4-k-o").textContent = K;
+      const C = bs(S0, K, T, sig, "c").price, P = bs(S0, K, T, sig, "p").price;
+      const f = {
+        lc: x => Math.max(x - K, 0) - C * g, sc: x => C * g - Math.max(x - K, 0),
+        lp: x => Math.max(K - x, 0) - P * g, sp: x => P * g - Math.max(K - x, 0),
+        st: x => x - S0 * g, ss: x => S0 * g - x
+      };
+      const cfg = {
+        long: { l1: f.lc, l2: f.sp, b: f.st, ca: C - P, cb: S0 },
+        short: { l1: f.sc, l2: f.lp, b: f.ss, ca: P - C, cb: -S0 },
+        cc: { l1: f.st, l2: f.sc, b: f.sp, ca: S0 - C, cb: -P },
+        pp: { l1: f.st, l2: f.lp, b: f.lc, ca: S0 + P, cb: C }
+      }[cur];
+      const xs = range(70, 130, 0.5);
+      const A = xs.map(x => [x, cfg.l1(x) + cfg.l2(x)]), B = xs.map(x => [x, cfg.b(x)]);
+      const maxDiff = Math.max(...xs.map((x, i) => Math.abs(A[i][1] - B[i][1])));
+      plot(svg, {
+        x: [70, 130], y: [-36, 36], xt: range(70, 130, 10), yt: [-30, -15, 0, 15, 30],
+        yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v),
+        xlabel: "到期股价（美元）", ylabel: "到期盈亏（每股）", zero: 0, vline: K,
+        series: [
+          { pts: xs.map(x => [x, cfg.l1(x)]), color: "var(--delta)", w: 1.5, op: 0.5 },
+          { pts: xs.map(x => [x, cfg.l2(x)]), color: "var(--gamma)", w: 1.5, op: 0.5 },
+          { pts: A, color: "var(--ink)", w: 3.4 },
+          { pts: B, color: "var(--warn)", w: 2.2, dash: "7 6" }
+        ]
+      });
+      const N = names[cur];
+      document.getElementById("f4-legend").innerHTML =
+        `<span><i style="border-color: var(--ink); border-top-width: 3.5px"></i>组合 A：${N.a}</span>` +
+        `<span><i class="dash" style="border-color: var(--warn)"></i>组合 B：${N.b}</span>` +
+        `<span><i style="border-color: var(--delta); opacity: .5"></i>${N.l1}</span>` +
+        `<span><i style="border-color: var(--gamma); opacity: .5"></i>${N.l2}</span>`;
+      document.getElementById("f4-r1").textContent = cash(cfg.ca);
+      document.getElementById("f4-r2").textContent = cash(cfg.cb);
+      document.getElementById("f4-r1s").textContent = "组合 A 期初（每股）";
+      document.getElementById("f4-r2s").textContent = "组合 B 期初（每股）";
+      document.getElementById("f4-r3").textContent = "$" + Math.abs(cfg.ca - cfg.cb).toFixed(2);
+      document.getElementById("f4-r4").textContent = "$" + maxDiff.toFixed(2);
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      cur = b.dataset.p;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    kS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 3-5 预期变动心算 ----------
+  (function () {
+    const svg = document.getElementById("f5-svg");
+    const ivS = document.getElementById("f5-iv"), dS = document.getElementById("f5-d");
+    const btns = document.querySelectorAll("#fig5 .seg button");
+    const S = 100, r = CK.R;
+    let view = "move";
+    const mental = (s, d) => S * s * Math.sqrt(d / DAY);
+    const upE = (s, d) => { const T = d / DAY; return S * Math.exp((r - s * s / 2) * T + s * Math.sqrt(T)) - S; };
+    const dnE = (s, d) => { const T = d / DAY; return S - S * Math.exp((r - s * s / 2) * T - s * Math.sqrt(T)); };
+    const strad = (s, d) => bs(S, S, d / DAY, s, "c").price + bs(S, S, d / DAY, s, "p").price;
+    function draw() {
+      const s = +ivS.value / 100, d = +dS.value;
+      document.getElementById("f5-iv-o").textContent = ivS.value + "%";
+      document.getElementById("f5-d-o").textContent = d + " 天";
+      const xs = range(1, 365, 2).concat([365]);
+      let series, dots, top, legend;
+      if (view === "move") {
+        const mv = xs.map(x => [x, mental(s, x)]), up = xs.map(x => [x, upE(s, x)]), dn = xs.map(x => [x, dnE(s, x)]);
+        series = [{ pts: up, color: "var(--ink)", w: 2.2 }, { pts: dn, color: "var(--ink)", w: 2, dash: "6 5" }, { pts: mv, color: "var(--delta)", w: 2.8 }];
+        dots = [[d, mental(s, d), "var(--delta)", 4.5], [d, upE(s, d), "var(--ink)", 4], [d, dnE(s, d), "var(--ink)", 4]];
+        top = Math.max(...mv.map(p => p[1]), ...up.map(p => p[1]));
+        legend = `<span><i style="border-color: var(--delta)"></i>心算 S·σ·√(天/365)</span><span><i style="border-color: var(--ink)"></i>精确上沿</span><span><i class="dash" style="border-color: var(--ink)"></i>精确下沿</span>`;
+        const a = mental(s, d), u = upE(s, d), w = dnE(s, d);
+        document.getElementById("f5-r1").textContent = "±" + a.toFixed(2);
+        document.getElementById("f5-r1s").textContent = "心算：一个标准差";
+        document.getElementById("f5-r2").textContent = "+" + u.toFixed(2) + " / −" + w.toFixed(2);
+        document.getElementById("f5-r2s").textContent = "精确：对数正态 68% 区间";
+        document.getElementById("f5-r3").textContent = "σ√T = " + (s * Math.sqrt(d / DAY)).toFixed(2);
+        document.getElementById("f5-r3s").textContent = "小于 0.2 时心算基本可靠";
+      } else {
+        const st = xs.map(x => [x, strad(s, x)]), ap = xs.map(x => [x, 0.8 * mental(s, x)]);
+        series = [{ pts: st, color: "var(--gamma)", w: 2.8 }, { pts: ap, color: "var(--delta)", w: 2.2, dash: "6 5" }];
+        dots = [[d, strad(s, d), "var(--gamma)", 4.5], [d, 0.8 * mental(s, d), "var(--delta)", 4]];
+        top = Math.max(...st.map(p => p[1]), ...ap.map(p => p[1]));
+        legend = `<span><i style="border-color: var(--gamma)"></i>Black-Scholes 平值跨式</span><span><i class="dash" style="border-color: var(--delta)"></i>0.8 × 心算变动</span>`;
+        const a = strad(s, d), b = 0.8 * mental(s, d);
+        document.getElementById("f5-r1").textContent = "$" + a.toFixed(3);
+        document.getElementById("f5-r1s").textContent = "Black-Scholes 跨式";
+        document.getElementById("f5-r2").textContent = "$" + b.toFixed(3);
+        document.getElementById("f5-r2s").textContent = "0.8 法则";
+        document.getElementById("f5-r3").textContent = signed((b - a) / a * 100, 1) + "%";
+        document.getElementById("f5-r3s").textContent = "法则误差";
+      }
+      const ya = axis(0, top * 1.05, 5);
+      plot(svg, {
+        x: [0, 365], y: [0, ya.hi], xt: [0, 30, 90, 180, 270, 365], yt: ya.t,
+        xlabel: "剩余天数", ylabel: view === "move" ? "股价变动（美元）" : "价格（美元）", vline: d, series, dots
+      });
+      document.getElementById("f5-legend").innerHTML = legend;
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      view = b.dataset.view;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    ivS.addEventListener("input", draw); dS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+})();
+</script>
+</body>
+</html>

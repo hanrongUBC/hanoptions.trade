@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>附录 · 美股期权课</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  /* glossary */
+  .search { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin: 14px 0 6px; }
+  .search input { font: inherit; font-size: 15.5px; padding: 8px 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--plate); color: var(--ink); width: min(100%, 380px); }
+  .search input:focus-visible { outline: 2px solid var(--delta); outline-offset: 1px; }
+  .search .cnt { font-size: 13.5px; color: var(--muted); }
+  .search .cnt b { font-family: var(--font-mono); font-weight: 500; color: var(--ink); }
+  .gloss table { table-layout: fixed; }
+  .gloss th, .gloss td { white-space: normal; text-align: left; vertical-align: top; }
+  .gloss th:first-child, .gloss td:first-child { width: 36%; }
+  .gloss td b { display: block; font-weight: 700; }
+  .gloss td .en { display: block; font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+  .gloss[hidden], .gloss tr[hidden] { display: none; }
+  .empty { color: var(--muted); font-size: 14.5px; }
+  /* quick reference */
+  .qref table { min-width: 1080px; font-size: 13.5px; }
+  .qref th, .qref td { white-space: normal; text-align: left; vertical-align: top; padding: 8px 10px; }
+  .qref td:first-child, .qref th:first-child { position: sticky; left: 0; background: var(--plate); z-index: 1; min-width: 7.5em; box-shadow: 1px 0 0 var(--rule); }
+  .qref td.mono { font-size: 12.5px; }
+  .qref td:nth-child(2) { min-width: 11em; }
+  .qref td:nth-child(3) { min-width: 9.5em; }
+  .qref td:nth-child(4), .qref td:nth-child(5), .qref td:nth-child(6) { min-width: 9.5em; }
+  .qref td:nth-child(7) { min-width: 10em; }
+  .qref a { text-decoration: none; }
+  /* atlas */
+  .atlas { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 14px; margin: 18px 0 26px; }
+  .atlas figure.plate { margin: 0; padding: 12px 12px 10px; }
+  .atlas .fig-title { font-size: 14.5px; }
+  .atlas .fig-no { font-size: 11.5px; }
+  .atlas svg .ax { font-size: 14px; }
+  .atlas .stats { font-family: var(--font-mono); font-size: 12px; color: var(--muted); line-height: 1.65; margin-top: 2px; }
+  .atlas .stats b { color: var(--ink); font-weight: 500; }
+  /* templates */
+  .tpl { margin: 28px 0 8px; }
+  .tpl-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .tpl-head h3 { margin: 0; }
+  .tpl-head h3 .num { color: var(--delta); margin-right: 10px; font-weight: 500; }
+  .tpl-use { font-size: 14.5px; color: var(--muted); margin: 6px 0 0; }
+  .tpl-use .meta { font-family: var(--font-mono); font-size: 12.5px; color: var(--delta); margin-right: 10px; }
+  .btn.copy[data-state="ok"] { border-color: var(--theta); color: var(--theta); }
+  .btn.copy[data-state="sel"] { border-color: var(--warn); color: var(--warn); }
+  /* sources */
+  .src ul { list-style: none; padding: 0; margin: 8px 0 10px; }
+  .src li { font-size: 14.5px; line-height: 1.6; }
+  .src li + li { margin-top: 8px; }
+  .src .dom { font-family: var(--font-mono); font-size: 12.5px; color: var(--delta); margin-left: 6px; }
+  .src .desc { color: var(--muted); font-size: 13.5px; }
+  .src .tip { font-size: 13.5px; color: var(--ink); border-top: 1px solid var(--rule); padding-top: 8px; margin: 0; }
+</style>
+</head>
+<body data-ch="17">
+<div class="topbar"><div class="topbar-inner"><a class="brand" href="index.html">美股期权<span>课</span></a><select id="ck-jump" aria-label="跳转到章节"></select></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">附</div>
+    <div class="eyebrow">美股期权课 · 附录 速查</div>
+    <h1>术语、速查与<span class="g">模板</span></h1>
+    <p class="deck">这一页不用从头读。遇到不懂的词查 A，下单前核对结构查 B 和 C，建立自己的交易系统用 D，找数据和工具看 E。所有例子都用同一组参数，方便和正文对照。</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="附录目录">
+    <p class="toc-title">附录目录</p>
+    <ol id="toc-list">
+      <li><a href="#a"><span class="n">A</span><span>术语表</span></a></li>
+      <li><a href="#b"><span class="n">B</span><span>策略速查表</span></a></li>
+      <li><a href="#c"><span class="n">C</span><span>盈亏图集</span></a></li>
+      <li><a href="#d"><span class="n">D</span><span>四份模板</span></a></li>
+      <li><a href="#e"><span class="n">E</span><span>数据源与工具</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>附录目录</summary>
+      <ol>
+        <li><a href="#a">A 术语表</a></li>
+        <li><a href="#b">B 策略速查表</a></li>
+        <li><a href="#c">C 盈亏图集</a></li>
+        <li><a href="#d">D 四份模板</a></li>
+        <li><a href="#e">E 数据源与工具</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>这份附录怎么用</h4>
+        <ul>
+          <li>读正文遇到生词：在 A 里搜索</li>
+          <li>下单前：用 B 核对盈亏边界，用 C 看形状</li>
+          <li>建立系统：把 D 的四份模板复制到自己的笔记</li>
+        </ul>
+      </div>
+      <div>
+        <h4>对应章节</h4>
+        <ul>
+          <li>A：全课 16 章的术语</li>
+          <li>B、C：第 7–11 章的策略</li>
+          <li>D：第 6、10、13、14 章的工具</li>
+        </ul>
+      </div>
+      <div>
+        <h4>约定</h4>
+        <ul>
+          <li>股价 100、30 天、IV 25%、利率 4%、不派息</li>
+          <li>价格与盈亏按每股计，一张合约 × 100</li>
+          <li>D 为净借记，C 为净信用，K₁ &lt; K₂ &lt; K₃ &lt; K₄</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="a">
+      <h2><span class="sn">A</span>术语表</h2>
+      <p>108 个术语，按六个主题分组，每个都给出英文原词和一句话解释。英文原词是你在券商平台、交易所文件和英文资料里会看到的写法。</p>
+      <div class="search" role="search">
+        <input type="search" id="g-q" placeholder="搜索中文、英文或解释，如 Vega、偏度、assignment" aria-label="搜索术语" autocomplete="off">
+        <span class="cnt" id="g-cnt">共 <b>108</b> 条</span>
+      </div>
+      <p class="empty" id="g-empty" hidden>没有匹配的术语，换个关键词试试。</p>
+      <div class="tbl gloss" data-group="basic">
+        <table>
+          <caption>A.1　基础（24 条）</caption>
+          <thead><tr><th>术语</th><th>一句话解释</th></tr></thead>
+          <tbody>
+            <tr><td><b>期权</b><span class="en">Option</span></td><td>在约定期限内按约定价格买入或卖出标的的合约：买方有权利，卖方有义务。</td></tr>
+            <tr><td><b>看涨期权</b><span class="en">Call option</span></td><td>按行权价买入标的的权利。</td></tr>
+            <tr><td><b>看跌期权</b><span class="en">Put option</span></td><td>按行权价卖出标的的权利。</td></tr>
+            <tr><td><b>标的资产</b><span class="en">Underlying</span></td><td>期权所对应的股票、ETF、指数或期货。</td></tr>
+            <tr><td><b>行权价</b><span class="en">Strike price</span></td><td>合约约定的买入或卖出价格。</td></tr>
+            <tr><td><b>到期日</b><span class="en">Expiration date</span></td><td>合约失效的日期；美股有周度、月度、季度等多种到期。</td></tr>
+            <tr><td><b>权利金</b><span class="en">Premium</span></td><td>期权的价格，按每股报价，一张标准合约要乘以 100。</td></tr>
+            <tr><td><b>合约乘数</b><span class="en">Contract multiplier</span></td><td>一张标准美股期权对应 100 股标的。</td></tr>
+            <tr><td><b>实值</b><span class="en">In the money (ITM)</span></td><td>立即行权有价值：看涨的股价高于行权价，看跌的股价低于行权价。</td></tr>
+            <tr><td><b>平值</b><span class="en">At the money (ATM)</span></td><td>行权价约等于当前股价。</td></tr>
+            <tr><td><b>虚值</b><span class="en">Out of the money (OTM)</span></td><td>立即行权没有价值的期权。</td></tr>
+            <tr><td><b>内在价值</b><span class="en">Intrinsic value</span></td><td>立即行权能得到的价值，最低为零。</td></tr>
+            <tr><td><b>时间价值</b><span class="en">Extrinsic value</span></td><td>权利金减去内在价值的部分，到期时归零。</td></tr>
+            <tr><td><b>美式期权</b><span class="en">American-style option</span></td><td>到期前任何交易日都可以行权；美股个股和 ETF 期权属于此类。</td></tr>
+            <tr><td><b>欧式期权</b><span class="en">European-style option</span></td><td>只能在到期时行权；SPX 等宽基指数期权属于此类。</td></tr>
+            <tr><td><b>行权</b><span class="en">Exercise</span></td><td>买方使用权利，按行权价买入或卖出标的。</td></tr>
+            <tr><td><b>指派</b><span class="en">Assignment</span></td><td>卖方被要求履约；美式期权的卖方可能在到期前被指派。</td></tr>
+            <tr><td><b>现金结算</b><span class="en">Cash settlement</span></td><td>到期按差价支付现金、不交割标的，例如 SPX 期权。</td></tr>
+            <tr><td><b>实物交割</b><span class="en">Physical settlement</span></td><td>到期交割标的本身，例如个股和 SPY 期权。</td></tr>
+            <tr><td><b>期权链</b><span class="en">Option chain</span></td><td>同一标的所有到期日和行权价的报价表。</td></tr>
+            <tr><td><b>未平仓合约</b><span class="en">Open interest (OI)</span></td><td>尚未平仓或行权的合约总数，每个交易日更新一次。</td></tr>
+            <tr><td><b>成交量</b><span class="en">Volume</span></td><td>当天成交的合约数量。</td></tr>
+            <tr><td><b>买卖价差</b><span class="en">Bid-ask spread</span></td><td>最高买价与最低卖价之差，是进出场的隐性成本。</td></tr>
+            <tr><td><b>中间价</b><span class="en">Mid price</span></td><td>买价与卖价的平均，限价单通常从这里开始挂。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tbl gloss" data-group="pricing">
+        <table>
+          <caption>A.2　定价（12 条）</caption>
+          <thead><tr><th>术语</th><th>一句话解释</th></tr></thead>
+          <tbody>
+            <tr><td><b>Black-Scholes 模型</b><span class="en">Black-Scholes model</span></td><td>用股价、行权价、期限、波动率、利率和股息六个输入给欧式期权定价的模型。</td></tr>
+            <tr><td><b>买卖权平价</b><span class="en">Put-call parity</span></td><td>不派息时 C − P = S − K·e^(−rT)，把同一行权价的看涨、看跌和股票联系起来。</td></tr>
+            <tr><td><b>风险中性定价</b><span class="en">Risk-neutral pricing</span></td><td>假设标的按无风险利率增长、再折现期望收益的定价方法；由此得到的是市场定价的概率，不是真实概率。</td></tr>
+            <tr><td><b>理论价值</b><span class="en">Theoretical value</span></td><td>由模型算出的公允价格，也是做市商报价的中心。</td></tr>
+            <tr><td><b>隐含概率</b><span class="en">Implied probability</span></td><td>由期权价格反推的到期价内概率，Black-Scholes 下为 N(d₂)。</td></tr>
+            <tr><td><b>预期变动</b><span class="en">Expected move</span></td><td>市场隐含的一段时间内的波动幅度，常用 S × IV × √(天数/365) 或平值跨式价格估算。</td></tr>
+            <tr><td><b>提前行权</b><span class="en">Early exercise</span></td><td>美式期权在到期前行权，常见于除息日前的深度实值看涨。</td></tr>
+            <tr><td><b>合成头寸</b><span class="en">Synthetic position</span></td><td>用期权组合复制另一种头寸，例如买看涨加卖看跌约等于持有股票。</td></tr>
+            <tr><td><b>远期价格</b><span class="en">Forward price</span></td><td>当前价格加上持有成本后的交割价格，期货期权以它为定价基准。</td></tr>
+            <tr><td><b>Black-76 模型</b><span class="en">Black-76 model</span></td><td>用期货价格代替股价的 Black-Scholes 变体，用于期货期权。</td></tr>
+            <tr><td><b>二叉树模型</b><span class="en">Binomial model</span></td><td>用价格树逐步倒推的定价方法，可以处理美式期权的提前行权。</td></tr>
+            <tr><td><b>无风险利率</b><span class="en">Risk-free rate</span></td><td>定价使用的短期国债利率，本课统一取 4%。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tbl gloss" data-group="greeks">
+        <table>
+          <caption>A.3　希腊字母（15 条）</caption>
+          <thead><tr><th>术语</th><th>一句话解释</th></tr></thead>
+          <tbody>
+            <tr><td><b>Delta</b><span class="en">Delta</span></td><td>标的每变动 $1，期权价格的变化；乘以 100 就是一张合约的等效股数。</td></tr>
+            <tr><td><b>Gamma</b><span class="en">Gamma</span></td><td>标的每变动 $1，Delta 的变化；买入期权为正，卖出为负。</td></tr>
+            <tr><td><b>Theta</b><span class="en">Theta</span></td><td>每过一天期权价格的变化；买方通常为负，卖方通常为正。</td></tr>
+            <tr><td><b>Vega</b><span class="en">Vega</span></td><td>隐含波动率每变动 1 个点，期权价格的变化。</td></tr>
+            <tr><td><b>Rho</b><span class="en">Rho</span></td><td>利率每变动 1%，期权价格的变化，期限越长越明显。</td></tr>
+            <tr><td><b>Charm</b><span class="en">Charm</span></td><td>时间流逝带来的 Delta 变化：虚值期权的 Delta 每天向 0 漂移，实值向 1 漂移。</td></tr>
+            <tr><td><b>Vanna</b><span class="en">Vanna</span></td><td>隐含波动率变化带来的 Delta 变化。</td></tr>
+            <tr><td><b>Vomma</b><span class="en">Vomma (Volga)</span></td><td>Vega 对波动率的敏感度，虚值期权较大。</td></tr>
+            <tr><td><b>美元 Gamma</b><span class="en">Dollar gamma</span></td><td>标的变动 1% 时，Delta 的变化相当于多少美元的股票，用来跨标的比较。</td></tr>
+            <tr><td><b>等效股数</b><span class="en">Share equivalent</span></td><td>Delta × 100 × 张数 × 方向，用来把期权和股票直接相加。</td></tr>
+            <tr><td><b>Beta 加权 Delta</b><span class="en">Beta-weighted delta</span></td><td>按 Beta 和价格把各仓位的 Delta 换算成指数（如 SPY）的等效股数。</td></tr>
+            <tr><td><b>Delta 中性</b><span class="en">Delta neutral</span></td><td>组合 Delta 约为零，对小幅价格变动不敏感。</td></tr>
+            <tr><td><b>Gamma scalping</b><span class="en">Gamma scalping</span></td><td>持有正 Gamma 并反复把 Delta 对冲回零，用实际波动赚回 Theta 成本。</td></tr>
+            <tr><td><b>Gamma 翻转点</b><span class="en">Gamma flip</span></td><td>估算的做市商净 Gamma 由正转负的价位，低于它时对冲容易放大波动。</td></tr>
+            <tr><td><b>离散对冲误差</b><span class="en">Discrete hedging error</span></td><td>隔一段时间才调一次 Delta 留下的误差，标准差约与对冲次数的平方根成反比。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tbl gloss" data-group="vol">
+        <table>
+          <caption>A.4　波动率（16 条）</caption>
+          <thead><tr><th>术语</th><th>一句话解释</th></tr></thead>
+          <tbody>
+            <tr><td><b>实际波动率</b><span class="en">Realized volatility</span></td><td>标的实际收益率的年化标准差，也叫历史波动率。</td></tr>
+            <tr><td><b>隐含波动率</b><span class="en">Implied volatility (IV)</span></td><td>让模型价格等于市场价格的波动率，是市场对未来波动的定价。</td></tr>
+            <tr><td><b>波动率风险溢价</b><span class="en">Volatility risk premium</span></td><td>隐含波动率平均高于随后实际波动率的部分；卖方长期赚取它，也承担尾部风险。</td></tr>
+            <tr><td><b>IV Rank</b><span class="en">IV Rank</span></td><td>当前 IV 在过去一年最低值与最高值之间的位置，从 0 到 100。</td></tr>
+            <tr><td><b>IV 百分位</b><span class="en">IV Percentile</span></td><td>过去一年里 IV 低于当前值的天数占比。</td></tr>
+            <tr><td><b>期限结构</b><span class="en">Term structure</span></td><td>不同到期日的平值 IV 连成的曲线。</td></tr>
+            <tr><td><b>正向结构</b><span class="en">Contango</span></td><td>远月 IV 高于近月，平静市场的常态。</td></tr>
+            <tr><td><b>倒挂</b><span class="en">Backwardation</span></td><td>近月 IV 高于远月，常见于恐慌或重大事件之前。</td></tr>
+            <tr><td><b>偏度</b><span class="en">Skew</span></td><td>同一到期、不同行权价的 IV 差异；股指通常是虚值看跌更贵。</td></tr>
+            <tr><td><b>波动率微笑</b><span class="en">Volatility smile</span></td><td>IV 随行权价呈 U 形，两翼都比平值贵。</td></tr>
+            <tr><td><b>波动率曲面</b><span class="en">Volatility surface</span></td><td>行权价 × 到期日的二维 IV 网格。</td></tr>
+            <tr><td><b>25 Delta 风险逆转</b><span class="en">25-delta risk reversal</span></td><td>25Δ 看涨 IV 减 25Δ 看跌 IV，衡量偏度的方向与陡峭程度。</td></tr>
+            <tr><td><b>远期波动率</b><span class="en">Forward volatility</span></td><td>由两个到期的总方差相减推出的、未来某段时间的隐含波动率。</td></tr>
+            <tr><td><b>IV 崩塌</b><span class="en">IV crush</span></td><td>事件公布、不确定性消失后隐含波动率急跌。</td></tr>
+            <tr><td><b>VIX</b><span class="en">VIX Index</span></td><td>Cboe 用 SPX 期权计算的未来 30 天隐含波动率指数。</td></tr>
+            <tr><td><b>隐含相关性</b><span class="en">Implied correlation</span></td><td>由指数 IV 与成分股 IV 反推的平均相关性。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tbl gloss" data-group="strat">
+        <table>
+          <caption>A.5　策略（21 条）</caption>
+          <thead><tr><th>术语</th><th>一句话解释</th></tr></thead>
+          <tbody>
+            <tr><td><b>备兑看涨</b><span class="en">Covered call</span></td><td>持有 100 股并卖出 1 张看涨，用上涨空间换权利金。</td></tr>
+            <tr><td><b>现金担保卖沽</b><span class="en">Cash-secured put</span></td><td>卖出看跌并预留足额现金，愿意在行权价买入股票。</td></tr>
+            <tr><td><b>保护性看跌</b><span class="en">Protective put</span></td><td>持股并买入看跌，为下跌买保险。</td></tr>
+            <tr><td><b>领口</b><span class="en">Collar</span></td><td>持股、买看跌、卖看涨，用卖出看涨的收入支付保护成本。</td></tr>
+            <tr><td><b>垂直价差</b><span class="en">Vertical spread</span></td><td>同一到期、不同行权价的一买一卖。</td></tr>
+            <tr><td><b>借记价差</b><span class="en">Debit spread</span></td><td>开仓时净付出权利金的价差，最大亏损就是净借记。</td></tr>
+            <tr><td><b>信用价差</b><span class="en">Credit spread</span></td><td>开仓时净收入权利金的价差，最大亏损是宽度减去净信用。</td></tr>
+            <tr><td><b>跨式</b><span class="en">Straddle</span></td><td>同一行权价的看涨加看跌：买入押大动，卖出押不动。</td></tr>
+            <tr><td><b>宽跨式</b><span class="en">Strangle</span></td><td>不同行权价的虚值看涨加虚值看跌。</td></tr>
+            <tr><td><b>铁鹰</b><span class="en">Iron condor</span></td><td>卖出宽跨式，再买更远的两翼把风险封顶。</td></tr>
+            <tr><td><b>铁蝶</b><span class="en">Iron butterfly</span></td><td>卖出平值跨式，再买两翼把风险封顶。</td></tr>
+            <tr><td><b>蝶式</b><span class="en">Butterfly</span></td><td>买 1、卖 2、买 1 的三行权价结构，押股价停在中间行权价附近。</td></tr>
+            <tr><td><b>日历价差</b><span class="en">Calendar spread</span></td><td>同一行权价卖近月、买远月，赚近月更快的时间衰减。</td></tr>
+            <tr><td><b>对角价差</b><span class="en">Diagonal spread</span></td><td>不同行权价、不同到期的一卖一买。</td></tr>
+            <tr><td><b>比例价差</b><span class="en">Ratio spread</span></td><td>买卖张数不等的价差，例如买 1 卖 2，多卖的部分没有保护。</td></tr>
+            <tr><td><b>风险逆转</b><span class="en">Risk reversal</span></td><td>卖虚值看跌、买虚值看涨（或反过来），低成本表达方向并交易偏度。</td></tr>
+            <tr><td><b>轮子策略</b><span class="en">Wheel strategy</span></td><td>卖沽被指派后持股，再卖备兑看涨，循环收取权利金。</td></tr>
+            <tr><td><b>LEAPS</b><span class="en">LEAPS</span></td><td>到期超过一年的长期期权，常用深度实值看涨替代持股。</td></tr>
+            <tr><td><b>0DTE</b><span class="en">Zero days to expiration</span></td><td>当天到期的期权，Gamma 和 Theta 都极大。</td></tr>
+            <tr><td><b>滚仓</b><span class="en">Roll</span></td><td>平掉现有期权，同时开一张行权价或到期不同的期权。</td></tr>
+            <tr><td><b>自动赎回票据</b><span class="en">Autocallable note</span></td><td>达到敲出条件就提前结束并付票息的结构性产品，投资者实质上卖出了敲入看跌；国内常见变种叫雪球。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tbl gloss" data-group="risk">
+        <table>
+          <caption>A.6　风险与账户（20 条）</caption>
+          <thead><tr><th>术语</th><th>一句话解释</th></tr></thead>
+          <tbody>
+            <tr><td><b>保证金</b><span class="en">Margin</span></td><td>券商要求为卖方仓位或借款预留的抵押资金。</td></tr>
+            <tr><td><b>维持保证金</b><span class="en">Maintenance margin</span></td><td>持仓期间必须保持的最低保证金水平。</td></tr>
+            <tr><td><b>追加保证金通知</b><span class="en">Margin call</span></td><td>账户低于维持保证金时，券商要求补钱或减仓的通知。</td></tr>
+            <tr><td><b>组合保证金</b><span class="en">Portfolio margin</span></td><td>按整个组合的压力测试结果计算保证金的方式，门槛较高，可用杠杆也更高。</td></tr>
+            <tr><td><b>购买力</b><span class="en">Buying power</span></td><td>账户当前可以用来开新仓的资金额度。</td></tr>
+            <tr><td><b>期权权限等级</b><span class="en">Options approval level</span></td><td>券商按经验与资产批准的可交易期权策略范围。</td></tr>
+            <tr><td><b>定义风险</b><span class="en">Defined risk</span></td><td>开仓时就知道最大亏损的结构，例如价差和铁鹰。</td></tr>
+            <tr><td><b>未定义风险</b><span class="en">Undefined risk</span></td><td>理论亏损没有上限或非常大的结构，例如裸卖看涨、卖出跨式。</td></tr>
+            <tr><td><b>最大亏损</b><span class="en">Max loss</span></td><td>一笔仓位在最坏情况下的亏损，是决定仓位大小的依据。</td></tr>
+            <tr><td><b>压力测试</b><span class="en">Stress test</span></td><td>按假设的价格和 IV 情景重新定价，看组合会亏多少。</td></tr>
+            <tr><td><b>尾部风险</b><span class="en">Tail risk</span></td><td>发生概率小、损失极大的极端行情风险。</td></tr>
+            <tr><td><b>跳空风险</b><span class="en">Gap risk</span></td><td>价格在两次交易之间（如隔夜）大幅跳动、来不及调整的风险。</td></tr>
+            <tr><td><b>钉住风险</b><span class="en">Pin risk</span></td><td>到期时股价贴近行权价，不确定会不会被行权或指派的风险。</td></tr>
+            <tr><td><b>流动性风险</b><span class="en">Liquidity risk</span></td><td>价差过宽或成交稀少，无法按合理价格进出的风险。</td></tr>
+            <tr><td><b>期望值</b><span class="en">Expected value</span></td><td>胜率 × 平均盈利 − 败率 × 平均亏损；扣除成本后为正才值得做。</td></tr>
+            <tr><td><b>凯利比例</b><span class="en">Kelly criterion</span></td><td>让长期增长率最大的下注比例；实务中通常只用它的四分之一到一半。</td></tr>
+            <tr><td><b>最大回撤</b><span class="en">Maximum drawdown</span></td><td>账户从最高点到之后最低点的最大跌幅。</td></tr>
+            <tr><td><b>交易日志</b><span class="en">Trading journal</span></td><td>记录每笔交易的理由、执行、结果和归因的文档。</td></tr>
+            <tr><td><b>限价单</b><span class="en">Limit order</span></td><td>指定最高买价或最低卖价的订单，交易期权时应默认使用。</td></tr>
+            <tr><td><b>组合单</b><span class="en">Multi-leg order</span></td><td>把价差的几条腿作为一个订单同时成交，避免单腿成交的风险。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="b">
+      <h2><span class="sn">B</span>策略速查表</h2>
+      <p>24 种结构，按首次出现的章节排列。表格较宽，可以左右滑动，第一列固定。盈亏都按每股计，乘以 100 就是一组合约。</p>
+      <div class="note">
+        <span class="tag">记号</span>
+        <ul>
+          <li>K₁ &lt; K₂ &lt; K₃ &lt; K₄ 是行权价；S₀ 是买入股票的成本。</li>
+          <li>D 是开仓净付出的权利金（净借记），C 是开仓净收入的权利金（净信用）；N 是净成本，付出为正、收入为负。</li>
+          <li>观点一列依次是：方向 · 波动率 · 时间流逝对你是否有利。</li>
+          <li>日历和对角的两条腿到期不同，最大盈利和盈亏平衡要用远月期权的剩余价值重新定价，见 C 节的图。</li>
+        </ul>
+      </div>
+      <div class="tbl qref">
+        <table>
+          <caption>表 B-1　策略速查（每股；到期时的盈亏边界）</caption>
+          <thead><tr><th>结构</th><th>构成</th><th>观点（方向 · 波动率 · 时间）</th><th>最大盈利</th><th>最大亏损</th><th>盈亏平衡</th><th>适用 IV 环境</th><th>章节</th></tr></thead>
+          <tbody>
+            <tr><td><b>买入看涨</b></td><td>买看涨 K</td><td>涨 · 升 · 不利</td><td class="mono">无上限</td><td class="mono">D</td><td class="mono">K + D</td><td>IV 偏低，预期变动被低估</td><td class="mono"><a href="ch07.html">7</a></td></tr>
+            <tr><td><b>买入看跌</b></td><td>买看跌 K</td><td>跌 · 升 · 不利</td><td class="mono">K − D</td><td class="mono">D</td><td class="mono">K − D</td><td>IV 偏低；也可作保护</td><td class="mono"><a href="ch07.html">7</a></td></tr>
+            <tr><td><b>牛市看涨价差</b></td><td>买看涨 K₁，卖看涨 K₂</td><td>涨 · 影响小 · 不利</td><td class="mono">K₂ − K₁ − D</td><td class="mono">D</td><td class="mono">K₁ + D</td><td>IV 中性或偏高时比单买看涨划算</td><td class="mono"><a href="ch07.html">7</a></td></tr>
+            <tr><td><b>熊市看跌价差</b></td><td>买看跌 K₂，卖看跌 K₁</td><td>跌 · 影响小 · 不利</td><td class="mono">K₂ − K₁ − D</td><td class="mono">D</td><td class="mono">K₂ − D</td><td>偏度陡时卖出腿更值钱</td><td class="mono"><a href="ch07.html">7</a></td></tr>
+            <tr><td><b>LEAPS 替代持股</b></td><td>买一年以上深度实值看涨 K</td><td>长期涨 · 升 · 轻微不利</td><td class="mono">无上限</td><td class="mono">D</td><td class="mono">K + D</td><td>IV 偏低时买入</td><td class="mono"><a href="ch07.html">7</a></td></tr>
+            <tr><td><b>卖出裸看涨</b></td><td>卖看涨 K</td><td>不涨 · 降 · 有利</td><td class="mono">C</td><td class="mono">无上限</td><td class="mono">K + C</td><td>IV 偏高；需最高权限，不建议</td><td class="mono"><a href="ch08.html">8</a></td></tr>
+            <tr><td><b>现金担保卖沽</b></td><td>卖看跌 K，备足 100 × K 现金</td><td>不跌 · 降 · 有利</td><td class="mono">C</td><td class="mono">K − C</td><td class="mono">K − C</td><td>IV 偏高，且愿意在 K 买入</td><td class="mono"><a href="ch08.html">8</a></td></tr>
+            <tr><td><b>备兑看涨</b></td><td>持 100 股（成本 S₀），卖看涨 K</td><td>温和涨 · 降 · 有利</td><td class="mono">K − S₀ + C</td><td class="mono">S₀ − C</td><td class="mono">S₀ − C</td><td>IV 偏高，持股但接受被叫走</td><td class="mono"><a href="ch08.html">8</a></td></tr>
+            <tr><td><b>牛市看跌价差</b></td><td>卖看跌 K₂，买看跌 K₁</td><td>不跌 · 降 · 有利</td><td class="mono">C</td><td class="mono">K₂ − K₁ − C</td><td class="mono">K₂ − C</td><td>IV 偏高</td><td class="mono"><a href="ch08.html">8</a></td></tr>
+            <tr><td><b>熊市看涨价差</b></td><td>卖看涨 K₁，买看涨 K₂</td><td>不涨 · 降 · 有利</td><td class="mono">C</td><td class="mono">K₂ − K₁ − C</td><td class="mono">K₁ + C</td><td>IV 偏高</td><td class="mono"><a href="ch08.html">8</a></td></tr>
+            <tr><td><b>买入跨式</b></td><td>买看涨 K，买看跌 K</td><td>大动 · 升 · 不利</td><td class="mono">上方无上限，下方 K − D</td><td class="mono">D</td><td class="mono">K − D 与 K + D</td><td>IV 低于你预期的实际波动</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>卖出跨式</b></td><td>卖看涨 K，卖看跌 K</td><td>不动 · 降 · 有利</td><td class="mono">C</td><td class="mono">无上限</td><td class="mono">K − C 与 K + C</td><td>IV 明显偏高，需严格风控</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>买入宽跨式</b></td><td>买看涨 K₂，买看跌 K₁</td><td>大动 · 升 · 不利</td><td class="mono">上方无上限，下方 K₁ − D</td><td class="mono">D</td><td class="mono">K₁ − D 与 K₂ + D</td><td>IV 偏低、事件前</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>卖出宽跨式</b></td><td>卖看涨 K₂，卖看跌 K₁</td><td>区间 · 降 · 有利</td><td class="mono">C</td><td class="mono">无上限</td><td class="mono">K₁ − C 与 K₂ + C</td><td>IV 偏高</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>铁鹰</b></td><td>买 K₁ 看跌，卖 K₂ 看跌，卖 K₃ 看涨，买 K₄ 看涨</td><td>区间 · 降 · 有利</td><td class="mono">C</td><td class="mono">较宽一侧的宽度 − C</td><td class="mono">K₂ − C 与 K₃ + C</td><td>IV 偏高、期间无事件</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>铁蝶</b></td><td>买 K₁ 看跌，卖 K₂ 看跌和 K₂ 看涨，买 K₃ 看涨</td><td>不动 · 降 · 有利</td><td class="mono">C</td><td class="mono">较宽一侧的宽度 − C</td><td class="mono">K₂ − C 与 K₂ + C</td><td>IV 偏高，押股价钉在 K₂</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>买入看涨蝶式</b></td><td>买 K₁ 看涨，卖 2 张 K₂ 看涨，买 K₃ 看涨（等距）</td><td>停在 K₂ · 降 · 临近到期有利</td><td class="mono">K₂ − K₁ − D</td><td class="mono">D</td><td class="mono">K₁ + D 与 K₃ − D</td><td>低成本押目标价</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>日历价差</b></td><td>卖近月 K，买远月 K</td><td>不动 · 远月 IV 升 · 有利</td><td class="mono">近月到期时股价在 K 附近最大，取决于远月 IV</td><td class="mono">约为 D（远月 IV 大跌时更多）</td><td class="mono">需按远月价值重新定价</td><td>近月 IV 高于远月</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>对角价差</b></td><td>买远月 K₁，卖近月 K₂</td><td>温和涨 · 升 · 有利</td><td class="mono">取决于远月 IV</td><td class="mono">约为 D</td><td class="mono">需重新定价</td><td>远月 IV 不贵</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>比例价差 1×2</b></td><td>买看涨 K₁，卖 2 张看涨 K₂（净成本 N）</td><td>温和涨 · 降 · 有利</td><td class="mono">K₂ − K₁ − N（股价在 K₂）</td><td class="mono">上方无上限</td><td class="mono">N &gt; 0 时下方 K₁ + N；上方 2K₂ − K₁ − N</td><td>IV 偏高、偏度陡</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>保护性看跌</b></td><td>持 100 股（成本 S₀），买看跌 K</td><td>持股防跌 · 升 · 不利</td><td class="mono">无上限</td><td class="mono">S₀ − K + D</td><td class="mono">S₀ + D</td><td>事件前、IV 偏低时更划算</td><td class="mono"><a href="ch11.html">11</a></td></tr>
+            <tr><td><b>领口</b></td><td>持股，买看跌 K₁，卖看涨 K₂（净成本 N）</td><td>持股 · 影响小 · 影响小</td><td class="mono">K₂ − S₀ − N</td><td class="mono">S₀ − K₁ + N</td><td class="mono">S₀ + N</td><td>偏度陡时看涨收入少，看跌更贵</td><td class="mono"><a href="ch11.html">11</a></td></tr>
+            <tr><td><b>风险逆转</b></td><td>卖看跌 K₁，买看涨 K₂（净成本 N）</td><td>涨 · 交易偏度 · 影响小</td><td class="mono">无上限</td><td class="mono">K₁ + N</td><td class="mono">N ≥ 0 时 K₂ + N；净收入时 K₁ − |N|</td><td>偏度陡时可以净收入开仓</td><td class="mono"><a href="ch11.html">11</a></td></tr>
+            <tr><td><b>合成多头</b></td><td>买看涨 K，卖看跌 K（净成本 N）</td><td>涨 · 中性 · 中性</td><td class="mono">无上限</td><td class="mono">K + N</td><td class="mono">K + N</td><td>替代持股，占用保证金</td><td class="mono"><a href="ch03.html">3</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>三条使用提醒：最大亏损那一列写着「无上限」的结构，下单前必须有明确的止损和压力测试（第 13 章）；IV 环境只是倾向，不是开仓理由，开仓理由要来自你自己的三个符号（第 14 章）；同一个结构在不同行权价下 Vega、Theta 的符号可能翻转，详见第 16 章的总表。</p>
+    </section>
+
+    <section id="c">
+      <h2><span class="sn">C</span>盈亏图集</h2>
+      <p>18 种常见结构的到期盈亏图，统一参数：股价 100、30 天、IV 25%、利率 4%，行权价取 90、95、100、105、110。日历价差画的是近月到期时的盈亏（远月剩 30 天，按 IV 25% 定价）。权利金和下方的数字都由 Black-Scholes 当场计算。</p>
+      <p class="legend" style="margin-top: 0"><span><i style="border-color: var(--delta)"></i>到期盈亏（每股）</span><span><i style="border-color: var(--theta); opacity: .5"></i>盈利区</span><span><i style="border-color: var(--gamma); opacity: .5"></i>亏损区</span><span><i class="dash" style="border-color: var(--muted)"></i>当前股价 100</span></p>
+      <div class="atlas" id="atlas"></div>
+      <div class="note">
+        <span class="tag">怎么读这些图</span>
+        <ul>
+          <li>先看两端：线在右端或左端一直往下走，就是无上限的亏损。</li>
+          <li>再看斜率：右侧斜率 +1 相当于持有 100 股，−1 相当于空 100 股，0 表示那一侧封顶。</li>
+          <li>最后看拐点：每个拐点都是一个行权价。拐点越多，结构越依赖股价停在某个区间。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="d">
+      <h2><span class="sn">D</span>四份模板</h2>
+      <p>这四份模板对应第 16 章说的「四样成果」。它们是纯文本，可以粘贴到任何笔记软件或表格里。点「复制模板」；如果浏览器不允许复制，文字会被自动选中，按 Ctrl + C（Mac 上按 ⌘ + C）即可。</p>
+      <div class="tpl">
+        <div class="tpl-head"><h3><span class="num">D.1</span>策略选择矩阵</h3><button type="button" class="btn copy" data-target="tpl1">复制模板</button></div>
+        <p class="tpl-use"><span class="meta">第 14 章</span>每次下单前填一份。先写三个符号，再从矩阵里挑 2–3 个候选，用最大亏损取舍。</p>
+        <pre class="code" id="tpl1">策略选择矩阵　（先写三个符号，再找结构）
+标的：________　日期：________
+IV / IV Rank：____ / ____　距下一个事件：____ 天
+
+一、我的观点（每行选一项）
+  方向：  [ ] 涨  [ ] 跌  [ ] 不动  [ ] 大动但方向不明
+  波动率：[ ] 会升（IV 偏低）  [ ] 会降（IV 偏高）  [ ] 无观点
+  时间：  [ ] 2 周内兑现  [ ] 1–3 个月  [ ] 6 个月以上
+  三个符号：方向 __ / 时间 __ / 波动率 __
+
+二、对照矩阵（方向 × IV 环境）
+  看涨 + IV 偏低：买看涨、牛市看涨价差、LEAPS
+  看涨 + IV 偏高：现金担保卖沽、牛市看跌价差
+  看跌 + IV 偏低：买看跌、熊市看跌价差
+  看跌 + IV 偏高：熊市看涨价差；持股时加领口
+  不动 + IV 偏低：日历价差（远月便宜时）
+  不动 + IV 偏高：铁鹰、铁蝶、蝶式（定义风险优先）
+  大动 + IV 偏低：买跨式、买宽跨式
+  大动 + IV 偏高：通常不做，卖方在大动中最危险
+
+三、候选结构
+  候选 1：____________  符号：__/__/__
+          最大亏损 $____  最大盈利 $____  盈亏平衡 ____
+  候选 2：____________  符号：__/__/__
+          最大亏损 $____  最大盈利 $____  盈亏平衡 ____
+  候选 3：____________  符号：__/__/__
+          最大亏损 $____  最大盈利 $____  盈亏平衡 ____
+
+四、选择
+  选定：____________
+  理由（一句话）：______________________________
+  如果观点错了，我在哪里认错：____________</pre>
+      </div>
+      <div class="tpl">
+        <div class="tpl-head"><h3><span class="num">D.2</span>仓位规则卡</h3><button type="button" class="btn copy" data-target="tpl2">复制模板</button></div>
+        <p class="tpl-use"><span class="meta">第 13 章</span>写一次，每 90 天复核；修改必须写明理由。下单和加仓前逐条核对。</p>
+        <pre class="code" id="tpl2">仓位规则卡　（每 90 天复核一次，修改需写明理由）
+账户净值：$________　生效日期：________
+
+一、单笔
+  单笔最大亏损 ≤ 账户的 ___%（练习期 1%，上限 2%）
+  买方：最大亏损 = 付出的权利金
+  卖方：只做定义风险结构；最大亏损 = 宽度 − 收到的权利金
+  出场：亏到最大亏损的 ___%，或离到期 ___ 天，二者先到为准
+
+二、组合
+  同时持仓 ≤ ___ 笔
+  全部仓位最大亏损合计 ≤ 账户的 ___%
+  Beta 加权 Delta 合计 ≤ ___ 股 SPY 等效
+  组合 Vega ≤ $____ / 点；组合 Theta ≥ −$____ / 天
+  与同一事件（财报、FOMC、CPI）相关的仓位按一笔计
+
+三、压力测试（每次下单前、每周一次）
+  标的 ±1、±2 个标准差：组合亏损 ≤ ___%
+  标的 −10% 且 IV +10 点：组合亏损 ≤ ___%
+
+四、停止规则
+  单日亏损 ≥ ___%：当天不再开新仓
+  单月亏损 ≥ ___% 或违规 ___ 次：退回纸上交易两周
+  想「赶紧翻本」的时候：先缩仓，第二天再决定
+
+本次修改及理由：________________________________</pre>
+      </div>
+      <div class="tpl">
+        <div class="tpl-head"><h3><span class="num">D.3</span>期权交易日志</h3><button type="button" class="btn copy" data-target="tpl3">复制模板</button></div>
+        <p class="tpl-use"><span class="meta">第 14、15 章</span>每笔一份。计划部分在下单前写完，复盘部分在平仓当天写。尤其要标出「赚钱但做错了」的交易。</p>
+        <pre class="code" id="tpl3">期权交易日志　编号：____
+开仓日期：________　标的：____　价格：____
+IV / IV Rank：____ / ____　下一个事件：________
+
+一、计划（下单前写）
+  观点（一句话）：______________________________
+  三个符号：方向 __ / 时间 __ / 波动率 __
+  结构与各腿：__________________________________
+  净权利金：____　最大盈利：____
+  最大亏损：____　盈亏平衡：____
+  Delta / Theta / Vega：____ / ____ / ____
+  占账户风险：___%（规则卡上限 ___%）
+  止盈：________　止损：________　时间止损：________
+
+二、执行
+  成交价：____　当时中间价：____　滑点：____
+  调整记录（日期、动作、理由）：
+    ________________________________________
+
+三、结果（平仓后写）
+  平仓日期：________　平仓价：____
+  盈亏：$____（____ 倍风险）　持有天数：____
+  期间标的变化：____　期间 IV 变化：____
+
+四、复盘
+  归因：[ ] 判断错  [ ] 执行错  [ ] 风控错  [ ] 正常波动
+  做对了什么：__________________________________
+  做错了什么：__________________________________
+  赚钱但做错了？ [ ] 是  [ ] 否
+  下次怎么做：__________________________________</pre>
+      </div>
+      <div class="tpl">
+        <div class="tpl-head"><h3><span class="num">D.4</span>事件日历与 IV 仪表盘</h3><button type="button" class="btn copy" data-target="tpl4">复制模板</button></div>
+        <p class="tpl-use"><span class="meta">第 6、10 章</span>每天收盘更新仪表盘，每周日更新未来 8 周的事件。用同一个数据源，口径才可比。</p>
+        <pre class="code" id="tpl4">事件日历与 IV 仪表盘　周：________　数据源：________
+
+一、IV 仪表盘（每天收盘更新）
+  标的 | 价格 | 平值 IV | IV Rank | 30 天预期变动 | 近 20 日实际波动 | IV − 实际
+  SPY  |      |         |         |               |                  |
+  QQQ  |      |         |         |               |                  |
+  ____ |      |         |         |               |                  |
+  ____ |      |         |         |               |                  |
+  ____ |      |         |         |               |                  |
+  预期变动 = 价格 × IV × √(天数 / 365)
+
+二、期限结构（每周一次）
+  标的：____　近月 IV：____　次月 IV：____
+  远期波动率 = √((σ2² × T2 − σ1² × T1) / (T2 − T1))：____
+  形状：[ ] 正向  [ ] 倒挂（原因：________）
+
+三、未来 8 周事件
+  日期 | 事件 | 相关标的 | 隐含幅度 | 过去 8 次平均实际幅度
+  ____ | ____ | ________ | ________ | ____________________
+  ____ | ____ | ________ | ________ | ____________________
+  ____ | ____ | ________ | ________ | ____________________
+  事件类型：财报 / FOMC / CPI / 就业 / 期权到期日 / 其他
+
+四、本周结论
+  IV 最贵的标的：________　最便宜的：________
+  值得准备的事件：________
+  需要提前缩仓的仓位：________</pre>
+      </div>
+    </section>
+
+    <section id="e">
+      <h2><span class="sn">E</span>数据源与工具</h2>
+      <p>下面只列常见的类别和公开知名的工具，说明各自适合做什么。列出不代表推荐，网址只写主域名，使用前请自行核对；收费和功能会变化。</p>
+      <div class="grid2">
+        <div class="tile src">
+          <h4>券商平台</h4>
+          <p class="meta">下单、实时期权链、组合 Greeks、盈亏分析</p>
+          <ul>
+            <li><b>Interactive Brokers</b> <span class="dom">interactivebrokers.com</span><br><span class="desc">品种覆盖广、成本低，期权分析工具齐全</span></li>
+            <li><b>Charles Schwab（thinkorswim 平台）</b> <span class="dom">schwab.com</span><br><span class="desc">thinkorswim 的分析页可以画多腿盈亏图、做价格与 IV 情景</span></li>
+            <li><b>Fidelity</b> <span class="dom">fidelity.com</span><br><span class="desc">综合券商，提供期权链与策略分析</span></li>
+            <li><b>tastytrade</b> <span class="dom">tastytrade.com</span><br><span class="desc">以期权交易为主的券商，界面围绕 IV Rank 和定义风险策略设计</span></li>
+          </ul>
+          <p class="tip">选券商时比较：每张合约的佣金与费用、期权权限等级的申请条件、组合单与条件单支持、能否看到组合层面的 Delta、Theta、Vega。</p>
+        </div>
+        <div class="tile src">
+          <h4>交易所、清算与教育</h4>
+          <p class="meta">合约规格、规则、风险披露</p>
+          <ul>
+            <li><b>Cboe</b> <span class="dom">cboe.com</span><br><span class="desc">SPX、XSP、VIX 等期权的合约规格；VIX 的计算方法与历史数据</span></li>
+            <li><b>OCC（期权清算公司）</b> <span class="dom">theocc.com</span><br><span class="desc">《标准化期权的特征与风险》披露文件，开通期权权限前应读；成交量统计</span></li>
+            <li><b>期权行业协会 OIC</b> <span class="dom">optionseducation.org</span><br><span class="desc">免费的期权基础课程、策略说明与计算器</span></li>
+            <li><b>CME Group</b> <span class="dom">cmegroup.com</span><br><span class="desc">期货与期货期权的合约规格；FedWatch 工具显示市场隐含的利率决议概率</span></li>
+          </ul>
+          <p class="tip">合约规格以交易所公布为准：乘数、行权方式、结算方式、最后交易日。</p>
+        </div>
+        <div class="tile src">
+          <h4>期权链与 IV 数据</h4>
+          <p class="meta">贵贱判断、未平仓量、历史 IV</p>
+          <ul>
+            <li><b>券商平台自带</b><br><span class="desc">实时数据最可靠，IV Rank、期限结构、偏度图多数平台都有</span></li>
+            <li><b>Barchart</b> <span class="dom">barchart.com</span><br><span class="desc">期权链、IV Rank、未平仓量和成交量异动，部分功能免费</span></li>
+            <li><b>Yahoo Finance</b> <span class="dom">finance.yahoo.com</span><br><span class="desc">免费期权链与行情，数据有延迟，适合练习读链</span></li>
+          </ul>
+          <p class="tip">不同数据源的 IV 口径不同：用哪个到期、是否插值到 30 天、用中间价还是成交价。比较时始终用同一个来源。</p>
+        </div>
+        <div class="tile src">
+          <h4>财经日历</h4>
+          <p class="meta">事件日历的原始来源</p>
+          <ul>
+            <li><b>美联储</b> <span class="dom">federalreserve.gov</span><br><span class="desc">FOMC 会议日程、声明与会议纪要</span></li>
+            <li><b>美国劳工统计局 BLS</b> <span class="dom">bls.gov</span><br><span class="desc">CPI、PPI、非农就业的发布日程</span></li>
+            <li><b>美国经济分析局 BEA</b> <span class="dom">bea.gov</span><br><span class="desc">PCE 物价指数、GDP 的发布日程</span></li>
+            <li><b>Nasdaq 财报日历</b> <span class="dom">nasdaq.com</span><br><span class="desc">按日期查看即将公布财报的公司</span></li>
+            <li><b>公司投资者关系页面</b><br><span class="desc">财报日期以公司正式公告为准，第三方日历可能是预估</span></li>
+          </ul>
+          <p class="tip">财报日期常先出现「预估」再变成「确认」，事件交易只用确认后的日期。</p>
+        </div>
+        <div class="tile src">
+          <h4>宏观与公司数据</h4>
+          <p class="meta">利率、通胀、公告</p>
+          <ul>
+            <li><b>FRED</b> <span class="dom">fred.stlouisfed.org</span><br><span class="desc">利率、通胀、就业等宏观时间序列，也有 VIX 的历史序列</span></li>
+            <li><b>美国财政部</b> <span class="dom">treasury.gov</span><br><span class="desc">国债收益率曲线数据</span></li>
+            <li><b>SEC EDGAR</b> <span class="dom">sec.gov</span><br><span class="desc">上市公司 10-K、10-Q、8-K 等正式公告</span></li>
+          </ul>
+          <p class="tip">宏观数据看「公布值 − 预期值」，市场对意外部分反应最大。</p>
+        </div>
+        <div class="tile src">
+          <h4>盈亏图、定价与回测</h4>
+          <p class="meta">下单前的模拟和事后统计</p>
+          <ul>
+            <li><b>OptionStrat</b> <span class="dom">optionstrat.com</span><br><span class="desc">在线画多腿结构的盈亏图，可以调整日期和 IV</span></li>
+            <li><b>券商分析工具</b><br><span class="desc">如 thinkorswim 的分析页、Interactive Brokers 的期权分析工具，能直接用持仓做情景分析</span></li>
+            <li><b>Python</b> <span class="dom">python.org</span><br><span class="desc">配合 NumPy、pandas，用本课的 Black-Scholes 公式自己做定价、压力测试和蒙特卡洛模拟</span></li>
+            <li><b>QuantLib</b> <span class="dom">quantlib.org</span><br><span class="desc">开源的金融定价库，适合进阶时研究美式、障碍等期权</span></li>
+            <li><b>你自己的交易日志</b><br><span class="desc">最重要的回测数据：只有它反映你真实的执行、滑点和纪律</span></li>
+          </ul>
+          <p class="tip">任何回测都要扣除滑点和佣金，并用样本外数据检验。少于 30 笔的统计只能当作参考。</p>
+        </div>
+      </div>
+      <div class="note warn">
+        <span class="tag">数据的三条底线</span>
+        <ul>
+          <li>下单用的价格以券商的实时报价为准，免费网站常有 15 分钟或更长的延迟。</li>
+          <li>同一个指标（IV Rank、预期变动）在不同网站的数值可能不同，固定用一个来源。</li>
+          <li>任何「信号」「流向」类数据都是估算，用来提出问题，不用来代替你的判断。</li>
+        </ul>
+      </div>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="章节翻页"></nav>
+
+    <footer class="end">
+      <p>本附录的权利金与盈亏由 Black-Scholes 模型计算（利率 4%，不派息，一年 365 天），用于教学，不构成投资建议；所列工具与数据源仅为常见类别举例，不构成推荐。</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+
+  // ---------- A. glossary search ----------
+  (function () {
+    const q = document.getElementById("g-q"), cnt = document.getElementById("g-cnt"), empty = document.getElementById("g-empty");
+    const groups = [...document.querySelectorAll(".gloss")];
+    const total = groups.reduce((s, g) => s + g.querySelectorAll("tbody tr").length, 0);
+    function run() {
+      const words = q.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      let shown = 0;
+      groups.forEach(g => {
+        let n = 0;
+        g.querySelectorAll("tbody tr").forEach(tr => {
+          const t = tr.textContent.toLowerCase();
+          const hit = words.every(w => t.includes(w));
+          tr.hidden = !hit; if (hit) n++;
+        });
+        g.hidden = n === 0; shown += n;
+      });
+      cnt.innerHTML = words.length ? `匹配 <b>${shown}</b> / ${total} 条` : `共 <b>${total}</b> 条`;
+      empty.hidden = shown !== 0;
+    }
+    q.addEventListener("input", run);
+    run();
+  })();
+
+  // ---------- C. payoff atlas ----------
+  (function () {
+    const IV = 0.25, S0 = 100;
+    const A = [
+      ["买入看涨", "+100C", [["c", 100, 30, 1]]],
+      ["买入看跌", "+100P", [["p", 100, 30, 1]]],
+      ["卖出看涨", "−105C", [["c", 105, 30, -1]]],
+      ["现金担保卖沽", "−95P", [["p", 95, 30, -1]]],
+      ["备兑看涨", "100 股 −105C", [["s", 0, 0, 1], ["c", 105, 30, -1]]],
+      ["保护性看跌", "100 股 +95P", [["s", 0, 0, 1], ["p", 95, 30, 1]]],
+      ["领口", "100 股 +95P −105C", [["s", 0, 0, 1], ["p", 95, 30, 1], ["c", 105, 30, -1]]],
+      ["牛市看涨价差", "+100C −105C", [["c", 100, 30, 1], ["c", 105, 30, -1]]],
+      ["熊市看跌价差", "+100P −95P", [["p", 100, 30, 1], ["p", 95, 30, -1]]],
+      ["牛市看跌价差", "−95P +90P", [["p", 95, 30, -1], ["p", 90, 30, 1]]],
+      ["熊市看涨价差", "−105C +110C", [["c", 105, 30, -1], ["c", 110, 30, 1]]],
+      ["买入跨式", "+100C +100P", [["c", 100, 30, 1], ["p", 100, 30, 1]]],
+      ["卖出宽跨式", "−105C −95P", [["c", 105, 30, -1], ["p", 95, 30, -1]]],
+      ["铁鹰", "+90P −95P −105C +110C", [["p", 90, 30, 1], ["p", 95, 30, -1], ["c", 105, 30, -1], ["c", 110, 30, 1]]],
+      ["铁蝶", "+95P −100P −100C +105C", [["p", 95, 30, 1], ["p", 100, 30, -1], ["c", 100, 30, -1], ["c", 105, 30, 1]]],
+      ["买入看涨蝶式", "+95C −2×100C +105C", [["c", 95, 30, 1], ["c", 100, 30, -2], ["c", 105, 30, 1]]],
+      ["日历价差", "−100C +100C（60 天）", [["c", 100, 30, -1], ["c", 100, 60, 1]]],
+      ["比例价差 1×2", "+100C −2×105C", [["c", 100, 30, 1], ["c", 105, 30, -2]]]
+    ];
+    function value(L, St, days) {
+      let v = 0;
+      L.forEach(([k, K, dte, q]) => {
+        if (k === "s") { v += q * St; return; }
+        const left = dte - days;
+        if (left <= 1e-9) { v += q * (k === "c" ? Math.max(St - K, 0) : Math.max(K - St, 0)); return; }
+        v += q * bs(St, K, left / DAY, IV, k).price;
+      });
+      return v;
+    }
+    function nice(lo, hi, n) {
+      const span = Math.max(hi - lo, 1e-9), raw = span / n;
+      const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+      const step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => s >= raw) || 10 * mag;
+      const a = Math.floor(lo / step) * step, b = Math.ceil(hi / step) * step;
+      const t = []; for (let v = a; v <= b + step * 1e-6; v += step) t.push(+v.toFixed(6));
+      return { lo: a, hi: b, ticks: t };
+    }
+    const f2 = v => v.toFixed(2);
+    const box = document.getElementById("atlas");
+    const items = A.map(([title, legs, L], i) => {
+      const fig = document.createElement("figure");
+      fig.className = "plate";
+      fig.innerHTML = `<div class="fig-head"><span class="fig-title">${title}</span><span class="fig-no">C-${i + 1} · ${legs}</span></div>
+        <svg class="chart" viewBox="0 0 680 210" role="img" aria-label="${title}的到期盈亏图"></svg><div class="stats"></div>`;
+      box.appendChild(fig);
+      const svg = fig.querySelector("svg");
+      // stats on a wide grid
+      const optLegs = L.filter(l => l[0] !== "s");
+      const first = Math.min(...optLegs.map(l => l[2]));
+      const cost = value(L, S0, 0);
+      const optCost = optLegs.reduce((s, [k, K, dte, q]) => s + q * bs(S0, K, dte / DAY, IV, k).price, 0);
+      const grid = range(0, 400, 0.05);
+      const pnl = grid.map(S => value(L, S, first) - cost);
+      const n = pnl.length;
+      const slope = (pnl[n - 1] - pnl[n - 2]) / 0.05;
+      const mx = Math.max(...pnl), mn = Math.min(...pnl);
+      const be = [];
+      for (let j = 1; j < n; j++) if ((pnl[j - 1] < 0) !== (pnl[j] < 0)) be.push(grid[j - 1] + (0 - pnl[j - 1]) / (pnl[j] - pnl[j - 1]) * 0.05);
+      const prem = optCost >= 0 ? `净借记 <b>${f2(optCost)}</b>` : `净信用 <b>${f2(-optCost)}</b>`;
+      const maxP = slope > 0.3 ? "<b>无上限</b>" : `<b>${f2(mx)}</b>`;
+      const maxL = slope < -0.3 ? "<b>无上限</b>" : `<b>${f2(-mn)}</b>`;
+      fig.querySelector(".stats").innerHTML = `${prem} · 最大盈利 ${maxP} · 最大亏损 ${maxL}<br>盈亏平衡 <b>${be.length ? be.map(f2).join(" / ") : "—"}</b>`;
+      const xs = range(75, 125, 0.25);
+      const pts = xs.map(S => [S, value(L, S, first) - cost]);
+      const ys = pts.map(p => p[1]);
+      let lo = Math.min(...ys), hi = Math.max(...ys);
+      const pad = (hi - lo) * 0.1 || 1; lo = Math.min(lo - pad, -0.5); hi = Math.max(hi + pad, 0.5);
+      const ny = nice(lo, hi, 4);
+      const draw = () => plot(svg, {
+        x: [75, 125], y: [ny.lo, ny.hi], xt: [80, 90, 100, 110, 120], yt: ny.ticks,
+        yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v), xlabel: "", ylabel: "", zero: 0, vline: 100,
+        series: [
+          { pts: pts.map(p => [p[0], Math.max(p[1], 0)]), color: "transparent", w: 0, fill: 0, fillColor: "var(--theta)", fillOp: 0.16 },
+          { pts: pts.map(p => [p[0], Math.min(p[1], 0)]), color: "transparent", w: 0, fill: 0, fillColor: "var(--gamma)", fillOp: 0.14 },
+          { pts, color: "var(--delta)", w: 2.6 }
+        ]
+      });
+      return draw;
+    });
+    items.forEach(d => CK.figure(d));
+  })();
+
+  // ---------- D. copy buttons ----------
+  (function () {
+    function selectText(node) {
+      const r = document.createRange(); r.selectNodeContents(node);
+      const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    }
+    document.querySelectorAll(".btn.copy").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const pre = document.getElementById(btn.dataset.target);
+        const text = pre.textContent;
+        let ok = false;
+        try {
+          if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(text); ok = true; }
+        } catch (e) { ok = false; }
+        if (!ok) {
+          try { selectText(pre); ok = document.execCommand("copy"); if (ok) window.getSelection().removeAllRanges(); } catch (e) { ok = false; }
+        }
+        if (ok) {
+          btn.dataset.state = "ok"; btn.textContent = "已复制";
+        } else {
+          selectText(pre); btn.dataset.state = "sel"; btn.textContent = "已选中，请按 Ctrl/⌘ + C";
+        }
+        clearTimeout(btn._t);
+        btn._t = setTimeout(() => { btn.dataset.state = ""; btn.textContent = "复制模板"; }, 2600);
+      });
+    });
+  })();
+})();
+</script>
+</body>
+</html>
