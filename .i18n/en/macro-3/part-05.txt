@@ -1,0 +1,160 @@
+@@ 54a39b7c7c js
+Clearly tightening
+@@ 4807c9612d js
+Leaning tight
+@@ 1bc6feb628 js
+Neutral
+@@ 33620d7e15 js
+Leaning loose
+@@ a0874cbe7f js
+Clearly easing
+@@ 8deacc8692 js
+Credit stress: risk is spreading
+@@ 315139186d js
+Credit spreads and volatility worsening together is the most serious combination of the seven numbers. Bond investors are charging for default risk, and the stock market's problem may be shifting from valuation to earnings and funding.
+@@ 5cebdd2d2b js
+ Rates are falling at the same time, so this time long-term Treasuries will probably work as a hedge.
+@@ 5d99a029d0 js
+ Rates are still rising, so stocks and bonds may fall together; cash is safer than Treasuries.
+@@ 1d2f1fd7f4 js
+Cash
+@@ c1611f3e17 js
+T-bills
+@@ c3a07583d4 js
+Long Treasuries
+@@ 6441259998 js
+Gold
+@@ eeb1280f54 js
+Consumer staples
+@@ b8c2e6d06f js
+High-yield bonds
+@@ 523643ca1b js
+Small caps
+@@ 11545bfe47 js
+Highly indebted companies
+@@ efb1a1b8d6 js
+Financials
+@@ 340db813a6 js
+Consumer discretionary
+@@ 721055e7ec js
+Watch whether credit spreads keep widening and whether the VIX term structure inverts. The regime may be entering phase two or three (Chapter 5).
+@@ d8982a79aa js
+Credibility or term-premium worries: money is leaving US assets
+@@ 6bfd97d8ba js
+Rates rising while the dollar falls means foreign money is cutting Treasuries and dollar assets. Stocks and Treasuries may fall together.
+@@ 83878c06d5 js
+ Gold rising confirms the worry.
+@@ 3bce64e9fb js
+Non-US assets
+@@ cc30bbd33a js
+Real assets
+@@ d11666557c js
+Short-duration assets
+@@ 3fa47a86e0 js
+Long Treasuries
+@@ 36f5a6f9e5 js
+Long-duration growth stocks
+@@ fb433d0677 js
+REITs
+@@ 5425bb2c85 js
+Watch the next long-bond auction, and whether the 30-year keeps leading the curve higher.
+@@ cc728f2007 js
+Inflationary pressure: rates and oil squeeze valuations together
+@@ b8d1a7d17b js
+Oil pushes up inflation expectations, and rates follow. This is the typical combination in phase one of a decline: economic data may still look good while valuations are being compressed.
+@@ ca101b919c js
+ The stronger dollar further tightens global financial conditions.
+@@ 1f43d86c3e js
+Energy
+@@ db9ba05cf4 js
+Oil services
+@@ 2068825591 js
+Banks (if the curve steepens)
+@@ d85a3fbd0d js
+Value stocks
+@@ 43bb8936a4 js
+Airlines
+@@ effbbacffe js
+Break down the 10-year: are real yields or inflation expectations driving it? Then check whether jobs are starting to weaken; that's the phase-two signal.
+@@ 9c29c9c8ed js
+Risk-off: growth worries
+@@ dfa8b721aa js
+Rates are falling and volatility is rising: money is fleeing to safe assets. In this kind of environment, Treasuries usually work as a hedge.
+@@ b5e6f847fd js
+Utilities
+@@ 90d1bad201 js
+Healthcare
+@@ 3d89cd4c10 js
+Cyclicals
+@@ 51c090cc5f js
+Industrials
+@@ d8749549b5 js
+Watch whether the yield curve bull-steepens and credit spreads widen with it. If credit starts to deteriorate too, that's the prelude to more serious stress.
+@@ ff3cc9a79a js
+Easing and risk appetite
+@@ b1cb28eb41 js
+Rates, the dollar and volatility are all falling and financial conditions are easing, so gains spread more easily to small caps and cyclicals.
+@@ f10a70dfda js
+ But oil is rising; watch whether it trims expectations of rate cuts.
+@@ d116c26eee js
+Growth stocks
+@@ 70afc50251 js
+Emerging markets
+@@ 51f089ae36 js
+The dollar
+@@ 4a4e8bf46c js
+Defensives (relative)
+@@ 955debb14e js
+Watch whether the equal-weight index and small caps confirm. A healthy rally needs breadth to follow (Chapter 6).
+@@ 1199dcd4db js
+Good news pushes rates up
+@@ 31d28ce46a js
+Rates are rising, but with volatility calm and oil flat, the likely driver is strong economic data. Cyclicals can handle it; growth stock valuations come under pressure.
+@@ bb546560ea js
+Banks
+@@ 5e74d75e37 js
+Watch the pace: a rise of more than 40 basis points in 20 trading days turns “good news” into valuation pressure.
+@@ 229a7dcb5d js
+Safe-haven demand from geopolitics or a sudden event
+@@ ccbfc55a20 js
+Volatility and gold are rising together and rates have no clear direction, which is common during geopolitical conflict or a sudden event.
+@@ c860f6b319 js
+Defense
+@@ 29a8de25c9 js
+Travel
+@@ 34846cc1f2 js
+Richly valued stocks
+@@ e363a146fd js
+Event-driven shocks usually come fast and go fast. See whether credit spreads follow; if they don't, the shock is probably short-lived.
+@@ dbaf07c972 js
+Volatility is rising, but there's no single macro explanation
+@@ 92e70abd16 js
+Demand for protection is rising, but rates, the dollar and commodities aren't telling the same story. It may be a stock- or sector-level event, or it may be flows (Chapter 7).
+@@ 9b69bec791 js
+Protective options
+@@ 40c84785c4 js
+Highly leveraged positions
+@@ 3e90eab873 js
+Crowded winners
+@@ 77c97b33c7 js
+Check options expiration dates, the Gamma flip and leveraged ETF rebalancing to judge whether this is mechanical volatility or the start of a macro move.
+@@ 3a6364a0f8 js
+A quiet day
+@@ 6338ed3a8c js
+None of the seven numbers moved much. Calm isn't a signal in itself, but it's a good time for prep work: update your regime view, write event playbooks, make a shopping list.
+@@ 271636d3b4 js
+Check this week's calendar and find the next event that could break the calm.
+@@ 388d9c09b8 js
+Mixed signals
+@@ 6cd338c4ce js
+These numbers don't point the same way; the market hasn't found its dominant theme yet. Days like this are best for doing less.
+@@ 0b2765ed2a js
+Wait until one variable moves clearly, or an unusual combination appears, before you act.
+@@ 22d3448ae9 tpl
+<h4>{0}</h4><div class="row"><b>Financial conditions</b>{1} (tightening score {2})</div><p>{3}</p>
+@@ 75a86836b5 tpl
+<div class="row"><b>Relative winners</b>{0}</div>
+@@ a2b317498e tpl
+<div class="row"><b>Relative losers</b>{0}</div>
+@@ 554209f4e9 tpl
+<div class="row"><b>What to check next</b>{0}</div>

@@ -1,0 +1,220 @@
+@@ bd60e4d0ec html
+Trading Psychology · hanoptions.trade
+@@ 72bf7cb92d html
+Study handbook · 11 chapters
+@@ 05cf54cac1 html
+Trading Psychology
+@@ 6d63af7389 html
+Most people don't lose money because they don't understand the market. They lose because, amid uncertainty and emotion, they can't do what they already know they should. This handbook is about the distance between knowing and doing.
+@@ ec16d60e39 html
+Chapters
+@@ fb5f5a5979 html
+Why trading is a mental game
+@@ 029af73c42 html
+Before they open a trading app, most people already know: “use a stop-loss,” “don't oversize,” “don't chase.” The hard part is whether you can still do it at the moment when your loss is growing, everyone else is making money, and you've just lost three trades in a row.
+@@ 7de76ab69f html
+Trading psychology studies that moment. It doesn't study where the market will go. It studies why, when prices move, you so often do the opposite of your own plan, and how to keep what you do in line with what you know.
+@@ f1855c2569 html
+The market is a “wicked” learning environment
+@@ fbf9ebae52 html
+The learning environments we grow up with give clear, prompt and fair feedback: get it right and you gain points, get it wrong and you lose them. The market is completely different.
+@@ f73f27b195 html
+Aspect
+@@ 8932064628 html
+School and exams
+@@ 33c9de3c90 html
+Market
+@@ 6ada94bc4b html
+Answers
+@@ 2f45910ce1 html
+There is a right answer
+@@ bcb8ca5fe6 html
+None, only probabilities
+@@ d99bec6159 html
+Feedback
+@@ ab79647669 html
+Get it right and you score
+@@ c1f69b393d html
+You can be right and lose, or wrong and win
+@@ 29d5ebf63f html
+Timing
+@@ 0588cf1566 html
+You get your results soon after the exam
+@@ 6816641667 html
+It takes dozens or hundreds of trades to see your real level
+@@ f5b61bcd04 html
+Correction
+@@ c7dc2bf1a2 html
+A teacher points out your mistakes
+@@ df6406e178 html
+No one tells you, and mistakes are often rewarded
+@@ 9e76dbe4bb html
+Stakes
+@@ 97e93ef397 html
+A grade
+@@ 05363a4a43 html
+Real money, plus emotion
+@@ f5caa7887a html
+In this kind of environment, learning by “feel” teaches you the wrong lessons. One lucky oversized trade that makes money makes you more willing to oversize; one correct stop-loss followed by a rebound makes you afraid to take the stop next time. So traders need to deliberately build a way of learning that doesn't depend on any single outcome.
+@@ b0bca56bca html
+Three layers: cognition, emotion, behavior
+@@ 89137b5d9d html
+<strong>Cognition</strong>: how you think about probability, risk and outcomes. Wrong beliefs make the right behavior look stupid.
+@@ be642c403c html
+<strong>Emotion</strong>: fear, greed, regret, euphoria. They are not the enemy in themselves; they are information. The problem is letting them place the order.
+@@ c2d6458b6a html
+<strong>Behavior</strong>: what you actually do. The goal of mental training is to keep your behavior reliably inside the plan, even under pressure.
+@@ 4633a06335 html
+Judgment
+@@ 48e2729e26 html
+Chapters 1, 2, 7
+@@ f3053580c4 html
+Entry and sizing
+@@ 2b0ff48bc0 html
+Chapters 4, 5
+@@ b1780c58ba html
+Mid-trade swings
+@@ cca9928639 html
+Chapters 3, 5
+@@ 3bcf668781 html
+Outcome and emotion
+@@ d26d6a3aef html
+Chapters 3, 6
+@@ 54078b185c html
+Review
+@@ 3f60aec59f html
+Chapter 8
+@@ e9da741eeb html
+Outside trading
+@@ 31ac4811e8 html
+Chapter 9
+@@ 86d6db9c02 html
+The two riskiest links
+@@ 87f636b561 html
+“Outside trading” is the dashed box: sleep, financial pressure and the rhythm of your life aren't in your trading app, yet they decide what state you bring to your next judgment.
+@@ eaa8a866e4 html
+How to use this handbook
+@@ ae26c48d72 html
+Chapters 1–2 build the right way of thinking; Chapters 3–6 deal with emotion, position size, discipline and randomness; Chapters 7–9 cover independence, trade review and the part of you outside trading.
+@@ 0e38827edd html
+Chapters 4 and 6 have simulations with sliders you can drag. Try adjusting them yourself; you'll get more out of it than from reading the conclusions.
+@@ 2f2cf7ba6d html
+Chapter 10 is the toolkit: checklists, a loss-of-control protocol and a self-assessment. You can take the self-assessment first and then pick chapters based on the results.
+@@ 0577bd64fb html
+Probabilistic thinking: judge one trade by a hundred
+@@ 3ba4991efe html
+The outcome of one trade tells you far less than you think. Professional traders treat each trade as one draw from a long series, not as an exam they have to pass.
+@@ d1ca37d492 html
+First, learn to count in R
+@@ 1f77aab6cb html
+R is the risk you plan to take on a trade. If you buy at $50 with a stop-loss at $47, you're risking $3 per share; that is 1R. A $6 gain counts as +2R, and getting stopped out counts as −1R. Counting in R puts trades at different prices and sizes on the same ruler.
+@@ 26c704fd26 html
+A system's long-run value is set by its expected value (EV):
+@@ 15b731b8b3 html
+<span class="num">EV (R) = win rate × average win − loss rate × average loss</span>
+@@ 8d07aa6dc1 html
+For example, with a 45% win rate, an average win of 2R and an average loss of 1R: <span class="num">0.45 × 2 − 0.55 × 1 = +0.35R</span>. Over time, each trade earns on average an extra 0.35 times the amount at risk. That is quite a good system.
+@@ 6257c4d9eb html
+Small samples lie
+@@ 60f3febc40 html
+Even with the good +0.35R system above, short-term results swing wildly:
+@@ 0dac6b4c48 html
+Table 1-1 Probability that a system with a 45% win rate and a 2:1 reward-to-risk ratio is still down overall after N trades
+@@ b2ee2d30ff html
+Trades
+@@ 2b7950a367 html
+Chance of being down overall
+@@ b401691b2a html
+The wrong conclusion you might draw
+@@ 5296ef9c5c html
+“This method doesn't work. Switch.”
+@@ 35c78d83e9 html
+“I must be executing it wrong.”
+@@ bb1ed465af html
+Getting closer to the truth
+@@ 5c0cb423b4 html
+A large enough sample to judge the system
+@@ adc46afc82 html
+The reverse is also true: a system with negative EV has a fair chance of making money over its first 10 trades. That is exactly the stage at which many people “confirm” a method that is bound to lose.
+@@ 1e4c75c339 html
+Judge a method on at least a few dozen trades. Judge a trade on its decision process, not on whether it ended up red or green.
+@@ e43c135e8f html
+Decision quality and outcome are two different things
+@@ 78da038c0c html
+Treating the outcome as the only evidence of whether a decision was good is called “resulting” in decision research. In trading, it is one of the most expensive habits of mind. The chart below is the tool you'll use most often in a trade review:
+@@ 24c05dd1b7 html
+Outcome
+@@ e695bea37f html
+Made money
+@@ 3048bb25ff html
+Lost money
+@@ ac1c9cae04 html
+Decision quality
+@@ 9a1ebd95dc html
+Good decision
+@@ 6dd1d1c3e7 html
+Bad decision
+@@ 5f3b9ba2c4 html
+A deserved win
+@@ 36f25a22e1 html
+Followed the plan, good result
+@@ 30914088e6 html
+Keep at it, but don't size up
+@@ 753322c2b4 html
+Bad luck
+@@ 1346bb18da html
+Right process, unlucky draw
+@@ 14d5ab023f html
+Keep the method: cost of business
+@@ 0892d5d62b html
+Lucky (most dangerous)
+@@ 85ea02d468 html
+Too big, chased, no stop, yet won
+@@ cfe7449345 html
+Breeds bad habits; review as a loss
+@@ c4a81cb819 html
+A deserved lesson
+@@ 350642bd8f html
+Broke the rules and lost money
+@@ 51b41e509f html
+Find which rule was broken
+@@ 0f6d40557c html
+Losses force you to reflect, but profits reward mistakes. In a review, the time is usually best spent on the bottom-left: the bad trades that made money.
+@@ d0835cd887 html
+Three questions before you place an order
+@@ 0d71aecab2 html
+<strong>What is most likely to happen?</strong> Write down your view and roughly how likely you think it is.
+@@ 6365d40b0a html
+<strong>How much can you make if you're right?</strong> Express it in R, and say exactly where you'll take profit.
+@@ 729a93a591 html
+<strong>How much are you prepared to lose if you're wrong?</strong> Where is the stop-loss, and what fact would make you admit your view is wrong?
+@@ 50e1df0a37 html
+Of the three, the third matters most and is skipped most often. When placing an order, most people think only about the second.
+@@ ca8498d632 html
+Being right is not the same as making money
+@@ 504910fa90 html
+The same correct call can get you shaken out midway because the position is too big; it can end in “right direction, but the option died first” because the option was too short-dated; or it can catch only the tail end because you got in too late. Your final P&amp;L is the product of four things: judgment, timing, instrument and size. If any one of them is zero, the result is zero.
+@@ 7965f13edb html
+Cognitive biases: the brain's default settings
+@@ cdec19eda6 html
+Cognitive biases are not stupidity. They are shortcuts the brain developed to make quick decisions in everyday life. They work well most of the time, but in the market they systematically push you in the wrong direction.
+@@ ff023a54c2 html
+One of the best-known findings in behavioral finance is that the pain of a loss is roughly twice the pleasure of an equal gain. Many trading mistakes follow from this one fact. Below are the twelve most common biases in trading.
+@@ 9dbbab01d2 html
+Loss aversion<small>LOSS AVERSION</small>
+@@ 04d62a072f html
+Symptom
+@@ 4922fe63c9 html
+Losing 1,000 hurts far more than gaining 1,000 feels good
+@@ 241fdafde0 html
+In trading
+@@ e7ba1a84b5 html
+You won't take the stop-loss and would rather “wait to get back to even”; you risk a big loss to avoid a small one
+@@ a311adcaba html
+Fix
+@@ b163b05d83 html
+Set the stop-loss in stone before you enter; think about losses in R, not dollars
+@@ 7afe94dc3f html
+Disposition effect<small>DISPOSITION EFFECT</small>
+@@ 2aa9cf53e3 html
+You rush to sell winners and hang on to losers

@@ -1,0 +1,262 @@
+@@ a70e23cc3d text
+US Options 
+@@ 875f2902a9 text
+Course
+@@ eef9b7b77d text
+US Options Course · Part 3 Strategies · Chapter 8
+@@ ac18a0f2da text
+Seller's expected P&amp;L
+@@ 34ff4b75d3 text
+option price
+@@ aece41e109 text
+realized volatility
+@@ 49442b5e48 text
+You can push the win rate as high as you like; the expected value depends only on the volatility gap
+@@ b7ebf7d618 text
+Figure 8-1 · 30 days, filled at IV 30%
+@@ 2fbcb45072 text
+P&amp;L at expiry (per contract)
+@@ 1fa9006ea0 text
+Distribution of the stock price at expiry (at realized volatility; height illustrative only)
+@@ 642ddc0f39 text
+Loss zone
+@@ edc44fe445 text
+Strike · premium received
+@@ 1151da88ca text
+Prob. of profit at expiry
+@@ 36dee59a22 text
+Expected P&amp;L per contract
+@@ f408552a24 text
+Stock at 80 at expiry
+@@ 13d63d2dcf text
+Bottom line
+@@ 4cfa78830f text
+Every box on the wheel sells put risk
+@@ bcfb8e6b0c text
+Figure 8-2 · Diagram
+@@ 5822687fcd text
+The wheel wins in flat markets and loses in one-way moves
+@@ 99103a0da2 text
+Figure 8-3 · Three hypothetical paths, settled monthly
+@@ b086654564 text
+Wheel equity
+@@ 12dfd4a8ef text
+Buy 100 shares at the start and hold
+@@ fb06fc5b5e text
+● Assigned, shares bought
+@@ 19ef582389 text
+● Called away, shares sold
+@@ 79a0e44e6c text
+Wheel year-end equity
+@@ a454a01b81 text
+Buy and hold, year-end
+@@ 47ff2e30cd text
+Total premium for the year
+@@ ff50cf5a8e text
+Times assigned / called away
+@@ 8e8cdf220a text
+Max profit
+@@ 5ac61a0ad0 text
+Max loss
+@@ 5674fb58bf text
+Breakeven
+@@ 8dcb170cec text
+short
+@@ a1aa21848e text
+From the field
+@@ ffe5fa5360 text
+Naked put margin
+@@ f14ba8c7ff text
+ (per share) =
+@@ 5323e31707 text
+premium
+@@ 4ac207693a text
+OTM amount
+@@ 6ec3e56c39 text
+Management rules narrow the distribution; whether the expected value is positive or negative still depends on the volatility gap
+@@ 51b65ee424 text
+Figure 8-4 · 1,000 reproducible paths, 45-day put spread
+@@ c6fbaf088d text
+Selected rule: wins
+@@ 287bc6ed25 text
+Selected rule: losses
+@@ f73d07b07e text
+Rule A (hold to expiry)
+@@ 9a423922ef text
+Selected rule: win rate
+@@ 7589182e6f text
+Avg. per trade (per contract)
+@@ d0365bf26c text
+Worst 5%
+@@ b1ca4d6fb7 text
+Expected value per day held
+@@ db8880dceb text
+When the rules apply
+@@ 7eab74015c text
+At a 90% win rate, a payoff ratio below 1 : 9 means negative expectancy
+@@ 3629ea0787 text
+Figure 8-5 · Expectancy heat map, interactive
+@@ d844689297 text
+Breakeven line
+@@ 9c14f9e50b text
+Positive expectancy
+@@ 1a4807a129 text
+Negative expectancy
+@@ 022051b0d6 text
+● Your point
+@@ 067c731116 text
+Expected value per $100 of average loss
+@@ 06a1f117cb text
+Breakeven win rate at this payoff ratio
+@@ 4001982f62 text
+Expected value if the win rate is 3 points too high
+@@ 046dfb89e4 text
+Case 1
+@@ 411ced42ca text
+Case 2
+@@ 81acdd30ad text
+Case 3
+@@ 5205b402f9 attr
+Jump to chapter
+@@ ae78ea9525 attr
+In this chapter
+@@ bd1a300571 attr
+Structure
+@@ 7a8147250f attr
+Seller's P&L at expiry and the stock price distribution
+@@ e0e1708b77 attr
+The wheel: cash, sell put, hold shares, sell call, repeat
+@@ 13012fd8cc attr
+Choose a path
+@@ 388ca57433 attr
+Equity curves of the wheel vs. buy and hold
+@@ d6df363e78 attr
+Short-leg Delta
+@@ 3c7e0f928f attr
+Gaps
+@@ 9eda22886a attr
+Rule shown
+@@ b618db7b1d attr
+Distribution of P&L per trade
+@@ 632fae331a attr
+Strategy points
+@@ e4d3afe174 attr
+Expectancy heat map by win rate and payoff ratio
+@@ f0852d355e attr
+Chapter navigation
+@@ 0ee3e368a5 js
+Stock price at expiry ($)
+@@ 3542c58605 js
+P&L at expiry (per contract, $)
+@@ 2e969fa0d1 js
+Breakeven 
+@@ 800ea53b54 js
+Stock at 80 at expiry (max loss 
+@@ bb0c4ea2dc js
+Sell 96 put
+@@ b406219227 js
+Expired
+@@ 4d128fa3b2 js
+Sell 100 put
+@@ ba55060f6a js
+Sell 99 put
+@@ af4c0283d3 js
+Sell 105 put
+@@ 152778e471 js
+Sell 108 put
+@@ 0b07102c2a js
+Sell 106 put
+@@ 10b7edf146 js
+Sell 112 put
+@@ d81c368ef6 js
+Sell 116 put
+@@ ec6815073b js
+Sell 115 put
+@@ c50c5a75ff js
+Sell 121 put
+@@ d4e801073c js
+Sell 126 put
+@@ ba36ec893b js
+Sell 124 put
+@@ 2542de2e97 js
+Assigned, bought at 100
+@@ c0a3c8e742 js
+Sell 102 call
+@@ 88edef3b79 js
+Sell 106 call
+@@ 2bdc40d478 js
+Sell 112 call
+@@ 72502d54ef js
+Sell 103 call
+@@ f764b1cb2a js
+Sell 100 call
+@@ d76b3169ca js
+Called away, sold at 100
+@@ 2bbba677bc js
+Sell 98 put
+@@ c3d2afcd53 js
+Sell 101 put
+@@ f0bb5581ff js
+Assigned, bought at 101
+@@ 884e14ceba js
+Sell 104 call
+@@ e4ac20a5b3 js
+Sell 109 call
+@@ 1adab4e6f0 js
+Assigned, bought at 96
+@@ ff45cc8029 js
+Sell 96 call
+@@ 6c8bbbf58c js
+Sell 96 call (Δ0.30 would be 92)
+@@ d157bd377b js
+Sell 96 call (would be 94)
+@@ b827e24158 js
+Sell 96 call (would be 86)
+@@ 09e17c0bd9 js
+Sell 96 call (would be 82)
+@@ 34789ec3ae js
+Sell 96 call (would be 84)
+@@ da517f8c84 js
+Sell 96 call (would be 77)
+@@ 915b434984 js
+Sell 96 call (would be 74)
+@@ 2667b75190 js
+Sell 96 call (would be 76)
+@@ 64228dd618 js
+bought
+@@ 5bbe0806f1 js
+sold
+@@ c9c18391ac js
+Start
+@@ de0c93b8ad js
+ mo
+@@ 17a645051c js
+Account equity ($)
+@@ a5a283f90c js
+Wheel year-end equity
+@@ bc09f16d61 js
+Buy and hold, year-end
+@@ 7df5d13331 js
+A hold to expiry
+@@ 9e26e542b6 js
+B 50% profit target
+@@ d2f9c35eaf js
+C B + 21 days
+@@ 1dafe9125b js
+D C + 2× stop
+@@ 59bbb9773e js
+P&L per trade (per contract, $)
+@@ 80e4c1c360 js
+Share of all trades
+@@ f136a693ce js
+Short 
+@@ e873ff4046 js
+ / long 
+@@ f6fb602490 js
+, credit 
+@@ 313049c460 tpl
+<tr class="{0}"><td>{1}</td><td class="mono">{2}%</td><td class="mono {3}">{4}</td><td class="mono neg">{5}</td><td class="mono neg">{6}</td><td class="mono">{7} days</td><td class="mono">{8}</td></tr>
+@@ 46458e5588 js
+Win rate
+@@ 793d8ed558 js
+Avg. win ÷ avg. loss (log)

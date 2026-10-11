@@ -1,0 +1,200 @@
+@@ 2a56399463 html
+Call price
+@@ 3a48788fba html
+Straddle price
+@@ b6b23d2067 html
+Theta per hour
+@@ ee4fc36aa6 html
+6.5 hours (open)
+@@ 859828186c html
+4 hours
+@@ 138049a9bb html
+2 hours
+@@ c59bf8f1d2 html
+1 hour
+@@ ef0bf481ad html
+30 minutes
+@@ 017ea2b00e html
+15 minutes
+@@ ba1ef1a289 html
+For comparison: 21 trading days
+@@ 5729b149d3 html
+A few numbers worth remembering:
+@@ 7164c2b548 html
+ATM Gamma in the last hour is <span class="num">11.7</span> times that of a one-month option, and <span class="num">23.5</span> times in the last 15 minutes.
+@@ e81efa7331 html
+An ATM option’s value is proportional to the square root of the time remaining. The $3.00 at the open is down to $1.16 by the last hour, about <span class="num">√(1/6.5) = 39%</span>: time decay is slow at first and fast at the end, and the last hour eats nearly 40% of the opening value.
+@@ 779424f672 html
+In the last hour, a 0.2% rise in SPY ($1.56) takes the ATM call from $1.16 to $2.11, a gain of <span class="num">82%</span>; the same move at the open lifts it only 29%.
+@@ a7f05c330f html
+For the 784 call, 0.5% out of the money, Gamma peaks with a little under 2 hours to the close, then decays quickly, down to just 0.006 in the last 15 minutes: the option either goes to zero or gets “caught” by the stock and becomes at the money.
+@@ 950a1a2cde html
+Distance OTM <input id="f4-k" type="range" min="0.1" max="1.5" step="0.1" value="0.5"> <output id="f4-k-o">0.5%</output>
+@@ aa8400f288 html
+From left to right, the horizontal axis moves closer and closer to the close. The pink line turns sharply upward in the last hour; the blue line rises and then falls. Drag the strike distance above 1% and the blue line falls all the way from the open, hugging zero by the afternoon: in 0DTE, a strike like that is a lottery ticket from the start. Switch to Theta: an ATM option’s hourly decay in the last 15 minutes is nearly five times what it is at the open.
+@@ 22cd3421e0 html
+How institutions and retail traders use them
+@@ 3d2f19bb4c html
+Institutions and professional traders
+@@ 12843149f3 html
+Systematically sell 0DTE spreads to collect premium, sized by maximum loss
+@@ 760a0691b1 html
+Hedge a single-day event precisely: buy protection for just the CPI or FOMC day, without paying for the weeks after it
+@@ b4909fc45b html
+Market makers manage large amounts of short-dated Gamma intraday
+@@ cb56db1ada html
+Retail traders
+@@ 57425e7711 html
+Buy cheap OTM options to bet on direction: low price, high leverage
+@@ 961188811c html
+Common mistakes: setting stops on the option price, and sizing by number of contracts rather than by maximum loss
+@@ 72d805f371 html
+Sizing up after a win, mistaking one lucky break for skill
+@@ 78a7d7be67 html
+Its effect on intraday price action
+@@ 9cab7e5e7f html
+Intraday Gamma is concentrated in the last two or three hours, and so is market makers’ hedging flow. When they are long Gamma, prices are more likely to get “pinned” near big strikes; when they are short Gamma, moves are more likely to accelerate (Chapter 4, Section 4.8).
+@@ 48e894be7e html
+Most 0DTE positions are opened and closed the same day. Open interest, updated only once a day, doesn’t see these positions, so Gamma estimates based on OI miss them.
+@@ 2a84f6f368 html
+Published research has not reached a consensus on whether 0DTE systematically amplifies market volatility. The safer view is that it has changed the distribution of intraday volatility, especially on event days.
+@@ 56a137d08f html
+In the last hour, a 0.2% move in SPY can send an ATM option’s price up 80% or down by half. A stop at “the option is down 50%” is a stop on 0.1%–0.2% of price noise, and it is almost certain to get hit. Write 0DTE exit rules as levels in the underlying (for example, “close if SPY breaks below 776”), and size the position by its worst-case maximum loss.
+@@ 5b6d869c2f html
+<span class="sn">10.7</span>SPX and SPY: one index, two contracts
+@@ 9315f8f785 html
+SPX and SPY options track the same S&amp;P 500, but they are completely different in exercise style, settlement and tax treatment, and in event trading those differences turn directly into money.
+@@ 96a7e899cd html
+Table 10-7 SPX vs SPY options (index at 7,800, SPY at 780)
+@@ e9b9c5edba html
+Item
+@@ 17581dcff7 html
+Exercise style
+@@ 919455ee01 html
+European-style, exercised only at expiration
+@@ f96cd483f0 html
+American-style, can be exercised at any time
+@@ 2ea89bc1ca html
+Settlement
+@@ d958b7aa01 html
+Cash-settled
+@@ 1299c2baa9 html
+Physical delivery: shares change hands
+@@ e22af98625 html
+Notional value per contract
+@@ e64ad07a9e html
+About $780,000
+@@ ca201d5425 html
+About $78,000
+@@ 3cfc094c2e html
+Early assignment
+@@ 0362dd0701 html
+Can’t happen
+@@ c89496dfda html
+Possible, especially ITM calls before an ex-dividend date
+@@ ed3f26cc78 html
+Expiration risk
+@@ 67a28408ae html
+No stock delivery; AM-settled monthly contracts carry opening-price risk
+@@ 577fddb173 html
+Holders can still decide to exercise after the close, so you may carry an unexpected stock position over the weekend
+@@ 392e236a92 html
+US taxes
+@@ 8a0ca12658 html
+Section 1256 contracts: 60% long-term, 40% short-term, marked to market at year-end
+@@ c50c8226ca html
+By holding period; under one year is short-term
+@@ 322ef3f216 html
+XSP is a mini SPX, one-tenth the size of SPX, with a notional value close to SPY’s. It is also European-style and cash-settled, and Section 1256 applies to it as well.
+@@ 7553f19c09 html
+How much Section 1256 saves
+@@ fb682555ca html
+Suppose your net options gain for the year is $10,000, the short-term capital gains rate is 32% and the long-term rate is 15% (assumed rates, only to show the calculation).
+@@ 40cf21d5be html
+SPY: all of it short-term, <span class="num">10,000 × 32% = $3,200</span>.
+@@ 6531941fe3 html
+SPX: <span class="num">10,000 × (60% × 15% + 40% × 32%) = 10,000 × 21.8% = $2,180</span>, or $1,020 less in tax.
+@@ 7f8b192b77 html
+Your actual tax depends on your personal situation and where you live; rely on the advice of a tax professional.
+@@ 8c5465577c html
+Two kinds of expiration risk
+@@ 39da514d83 html
+<strong>SPX AM settlement.</strong> Standard SPX contracts expiring on the third Friday of the month stop trading at Thursday’s close, and the settlement price is calculated from the opening prices of the index components on Friday. If you hold them through Thursday night, Friday’s opening gap directly sets the settlement price, and there is no way to close in between. The weekly and daily SPXW contracts are PM-settled at the closing price and don’t have this problem.
+@@ 59ca517578 html
+<strong>SPY after-hours exercise.</strong> Expiring SPY options stop trading at 16:00, but holders still have a window after the close to decide whether to exercise. Say SPY closes on Friday just below the 780 call you sold, and an after-hours headline pushes it to 783: the other side may exercise, and on Monday morning you open with a short stock position.
+@@ 024b296abc html
+How to choose: for large notional size, when taxes matter, or for event spreads, prefer SPX; for a small account, finer position sizing, or when you actually want to deliver or receive shares, use SPY or XSP. When you sell ITM SPY calls, watch out for early assignment before an ex-dividend date.
+@@ fdfadf8bb3 html
+<span class="sn">10.8</span>VIX options and recurring events
+@@ 3c600a9aaf html
+VIX options are priced off VIX futures, and they settle in an unusual way. Monthly expiration, triple witching and index rebalancing are liquidity events written on the calendar well in advance.
+@@ 4cee8f9146 html
+Three things that make VIX options different
+@@ d76af6c5b2 html
+<strong>The underlying is a future.</strong> The VIX index itself can’t be traded; VIX options are priced off the VIX future for the same expiration month. In calm periods the future usually sits above spot: with spot VIX at 15, the same-month future may be around 17, and whether a call is in or out of the money depends on the future.
+@@ fba0faded5 html
+<strong>The settlement price is a special opening quote.</strong> VIX options are European-style and cash-settled. On the morning of expiration (usually a Wednesday), a special quote (ticker VRO) is calculated from the opening prices of SPX options and used as the settlement price. It can be very different from the previous day’s closing VIX, and at the close the day before expiration you don’t know what the settlement price will be.
+@@ 89b4b82ec5 html
+<strong>Expiration follows SPX.</strong> VIX settlement is generally 30 days before the next month’s standard SPX expiration, so it is not the third Friday of the month. Mark the VIX settlement Wednesdays separately on your calendar.
+@@ 69b9d08fff html
+VIX is strongly mean-reverting: after a spike it often falls back quickly. That makes VIX calls a form of protection you “have to cash in on time,” which Chapter 11 covers in detail.
+@@ 99b2dfd5ad html
+Events already on the calendar
+@@ 9361201eae html
+Table 10-8 Recurring events and how they affect options
+@@ 29d5ebf63f html
+Time
+@@ 78b922b8e3 html
+Effect on options
+@@ 803277b854 html
+Monthly expiration
+@@ 2cea5d65fb html
+Third Friday of each month
+@@ 2f257c0d78 html
+Large open interest expires; before expiry prices tend to get pinned at big strikes, and after expiry market makers’ hedges are released
+@@ 95624ae313 html
+Triple witching
+@@ d45d9855df html
+Third Friday of March, June, September and December
+@@ f1c9f28861 html
+Stock options, index options and index futures expire on the same day, with very heavy volume in the closing auction
+@@ b4d9d486a2 html
+Index rebalancing
+@@ dc49e5e788 html
+S&amp;P quarterly rebalancing takes effect at the close on triple witching; Russell reconstitution day
+@@ 1e18af9d69 html
+Stocks being added or removed trade heavily at the close on the effective date, and individual names can move abnormally
+@@ c94c50437c html
+VIX settlement
+@@ fd31c5629f html
+Usually Wednesday morning
+@@ 9b0bd8e6af html
+VIX options and futures expire; the settlement price comes from an opening quote
+@@ 49859bba15 html
+Price behavior around monthly expiration is tied to Charm and Vanna from Chapter 4: near expiry, the Delta of OTM options quickly goes to zero, and the stock held as a hedge gets unwound; after expiry, the positions that had been “pinning” the price are gone, and the next week’s moves are often freer. The practical rule is simple: on these days, don’t hold a large short-Gamma position that is near expiry and near the money going into the close; in the first week after expiry, take a fresh look at the term structure and the Gamma distribution.
+@@ 7030078157 html
+<span class="sn">10.9</span>Event calendar and IV dashboard
+@@ 9ef0b14205 html
+Write each event as one row of a table, and fill in the implied move, historical move, structure, maximum loss and exit rule before you place the order. A row you can’t fill in is a trade you shouldn’t make.
+@@ f25f301fa5 html
+This is one of the deliverables of this course: an event dashboard you update every Sunday. The template below fills in three rows with this chapter’s examples. The numbers for XYZ and ABC come from the isolation formula in Section 10.3, and the SPX row comes from Section 10.5.
+@@ 5bc57b3b80 html
+Table 10-9 Event calendar and IV dashboard template (all example data hypothetical)
+@@ 7c9579fe1c html
+Event and time
+@@ 8bceaf30b0 html
+Underlying
+@@ 92f3f969d2 html
+Front / back IV
+@@ 8b4eea5bcd html
+Straddle-implied
+@@ f85d6d1cff html
+Isolated event move
+@@ 113dfc3793 html
+Historical mean (8)
+@@ 3ffe046985 html
+Ratio
+@@ 7fc66e5c96 html
+Plan
+@@ 9c02f9022f html
+Exit rule

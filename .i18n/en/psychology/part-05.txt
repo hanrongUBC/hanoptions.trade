@@ -1,0 +1,229 @@
+@@ c3ec1ad57c text
+Introduction
+@@ aae0f4420a text
+Every trade goes through this cycle, and every stage has its own psychological trap
+@@ 80e03d5043 text
+Figure 0-1
+@@ 5b18922e99 text
+Chapter 1
+@@ f8355a3ad9 text
+Expected value
+@@ 3e96163eda text
+Of the four combinations, the most dangerous is “bad decision, good outcome”
+@@ e1021590e7 text
+Figure 1-1
+@@ b5b287fac6 text
+Chapter 2
+@@ 7344937f4a text
+How to break the chain
+@@ ec198ee68d text
+Chapter 3
+@@ 9813bd5a4b text
+Caution
+@@ 54e07b1acf text
+Chapter 4
+@@ f5e7586b80 text
+The deeper the drawdown, the steeper the gain needed to recover
+@@ aa853fef44 text
+Figure 4-1
+@@ e37d5cc3cd text
+Long-run growth rises, then falls: too large a position turns a positive edge into a loss
+@@ bc11489609 text
+Figure 4-2 · Interactive
+@@ 9c7b6cba56 text
+EV per trade
+@@ eeb9a94523 text
+Risk per trade for fastest growth
+@@ c813416c09 text
+Above this, a long-run loss is certain
+@@ 95e18a9d85 text
+Equity curves in 24 parallel worlds
+@@ fdfa32f2a4 text
+Figure 4-3 · Simulation
+@@ 7c9e02a246 text
+Median equity after 200 trades
+@@ d61c0d7185 text
+Share of worlds that end in a loss
+@@ c23090bebe text
+Median maximum drawdown
+@@ 0fa17294a7 text
+Maximum drawdown of the worst path
+@@ bd3b591b92 text
+Size the position from risk
+@@ 973d44fd28 text
+Tool 4-A
+@@ bb4fc3490f text
+Shares you can buy
+@@ 1dbc4e5449 text
+Position value (% of account)
+@@ 7bad47dac3 text
+Loss if the stop is hit
+@@ 141abdc3ef text
+Gut check
+@@ 30b44a7821 text
+Chapter 5
+@@ e15a11e144 text
+One way to measure it
+@@ 45d7d3b76c text
+Chapter 6
+@@ 48609979c7 text
+Probability of at least one run of k straight losses
+@@ 56f9d13a90 text
+Figure 6-1 · Interactive
+@@ 28ccc0c330 text
+Median longest losing streak
+@@ 828b47730f text
+Chance of 5 losses in a row
+@@ 077b67aa6d text
+Chance of 8 losses in a row
+@@ aeccd92690 text
+Chapter 7
+@@ 2070f8f314 text
+Before you act on someone else's idea
+@@ 6abb27b583 text
+Chapter 8
+@@ 531c3211d8 text
+Date / ticker / direction / instrument:
+Reason for entry (thesis):
+Confidence at the time (1–5) and emotions:
+Plan: entry ___ stop ___ target ___ size ___R
+Actual: entry ___ exit ___ result ___R
+What I got right:
+What I got wrong:
+Did I break a rule? Which one:
+If I did it again, I would:
+Category: judgment error / execution error / risk-control error / normal variance
+@@ f881cd8901 text
+The easiest one to miss
+@@ 30f805314b text
+Chapter 9
+@@ d14b634b35 text
+Especially for students and beginners
+@@ ccc22c7da9 text
+Chapter 10
+@@ 456edde821 attr
+An 11-chapter study handbook: probabilistic thinking, cognitive biases, position-sizing math, losing-streak odds and review. The distance between knowing and doing.
+@@ 9ce7d3c4f4 attr
+Site navigation
+@@ b4126ef441 attr
+Chapters
+@@ bf7233c44e attr
+Introduction: why trading is a mental game
+@@ f5cdc36570 attr
+The trading cycle and the chapters that cover each stage
+@@ 940b6376d1 attr
+Probabilistic thinking: judge one trade by a hundred
+@@ 0d6dfec37d attr
+Four quadrants of decision quality and outcome
+@@ e7817e1140 attr
+Cognitive biases: the brain's default settings
+@@ 808e08a24e attr
+Emotion and state: when your body places the order
+@@ 53ce523ead attr
+Position size is psychology: a positive edge can still go to zero
+@@ 63e16528a1 attr
+Drawdown size and the gain needed to recover
+@@ 4fb4418548 attr
+Risk per trade and long-run growth rate
+@@ 51b10c741b attr
+Simulated equity curves at different position sizes
+@@ ceb3a54b37 attr
+Discipline and rules: make the decision before you need it
+@@ a16606af6b attr
+Streaks: randomness runs longer than you think
+@@ fbfc24b5e3 attr
+Probability of losing streaks of different lengths
+@@ 77b3302cef attr
+Independent judgment: information, narratives and copy trading
+@@ 0afb89864c attr
+Review: turning losses into tuition
+@@ 00ab6e63e4 attr
+Temperament and life: the part outside trading
+@@ 5e89956ae5 attr
+Toolkit: checklists, protocols and self-assessment
+@@ f0852d355e attr
+Chapter navigation
+@@ fd738db15e js
+Drawdown
+@@ c5498950ca js
+Gain needed to recover
+@@ 845dd17799 js
+Peak 
+@@ 2a68419d95 js
+Half
+@@ 7f2e96d244 js
+Risk per trade
+@@ d636a7347b js
+Compound growth per trade
+@@ 9f7614e069 js
+Negative EV
+@@ 085347936b js
+Any size
+@@ c3a147ade8 js
+Trades
+@@ 52b52647ee js
+Equity (× starting capital, log scale)
+@@ 9887935d86 js
+ shares
+@@ 1f233f1c6a js
+Losing streak length k (at least once)
+@@ 42f9ea088a js
+Probability
+@@ abbba660e2 js
+ in a row
+@@ 040e680663 js
+Selected. Press ⌘C or Ctrl+C to copy
+@@ 2e746791f3 js
+Copied
+@@ 5c766e4734 js
+Emotion
+@@ d19f625370 js
+Discipline
+@@ 2b0e95f4f7 js
+Risk
+@@ bde9dbe23c js
+Independence
+@@ be52240211 js
+Chapter 3
+@@ 71a9767b41 js
+Chapters 5 and 8
+@@ 7cfac31a79 js
+Chapters 4 and 6
+@@ 09c37f7385 js
+Chapters 1 and 7
+@@ 841c2a8fa5 js
+After a loss, I quickly open another trade to win the money back.
+@@ c146bd5299 js
+I place orders without having written down a stop-loss.
+@@ d57ab4bcc5 js
+The ups and downs of a single trade affect my sleep or my mood for the whole day.
+@@ 397118b662 js
+I buy because someone recommended it or because it's hot on social media.
+@@ 3a8c3a00e5 js
+After a run of profits, I feel I'm on form and want to trade bigger.
+@@ 37472e06a7 js
+When the price hits my stop, I wait a bit longer to see what happens.
+@@ b1852fa599 js
+I add to a losing position more than once.
+@@ 4c4988fe9a js
+I can't say what would invalidate my position; I just know it “should go up.”
+@@ 59a7156cfd js
+I trade when I'm very tired, irritated or have been drinking.
+@@ 68af1a61e3 js
+I make trades outside my plan just because I don't want to miss out.
+@@ 67bd53b71a js
+I'm not sure what percentage of my account I'm risking on each trade.
+@@ 419982ee4d js
+I judge how well I'm doing mainly by whether I made or lost money this week.
+@@ 403863c221 tpl
+<div class="qrow"><p>{0}. {1}</p><div class="scale" role="radiogroup" aria-label="Question {2}">{3}</div></div>
+@@ 8ecb220039 tpl
+<p class="scale-legend">1 Never · 2 Rarely · 3 Sometimes · 4 Often · 5 Almost always</p>
+@@ 94f8d8d02d tpl
+<p class="eyebrow" style="margin:0">Answered {0} / {1} · Higher scores need more attention</p>
+@@ bf03ad21d2 js
+Overall you're in good shape. Keep up the journaling habit.
+@@ 9f2d4faba7 tpl
+<p class="advice">The area that needs the most attention is <strong>{0}</strong> (average score {1}). Start with {2}. {3}</p>
+@@ f4d9623d28 tpl
+<p class="advice">Once you've answered all 12 questions, this will tell you which chapter to read first.</p>

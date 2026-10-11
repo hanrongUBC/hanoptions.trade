@@ -1,0 +1,212 @@
+@@ a70e23cc3d text
+US Options
+@@ 875f2902a9 text
+ Course
+@@ e6eaf113ee text
+App
+@@ 0c8db18b58 text
+US Options Course · Appendix Quick reference
+@@ c5cf9b77cd text
+All
+@@ 888c81a7b6 text
+terms
+@@ 81b9a10a8b text
+Notation
+@@ 896258ac14 text
+How to read these charts
+@@ 38806d721c text
+STRATEGY SELECTION MATRIX  (write the three signs first, then find a structure)
+Underlying: ________  Date: ________
+IV / IV Rank: ____ / ____  Days to next event: ____
+
+1. My view (pick one per line)
+  Direction:  [ ] Up  [ ] Down  [ ] Flat  [ ] Big move, direction unclear
+  Volatility: [ ] Will rise (IV low)  [ ] Will fall (IV high)  [ ] No view
+  Time:       [ ] Plays out within 2 weeks  [ ] 1–3 months  [ ] 6 months or more
+  Three signs: direction __ / time __ / volatility __
+
+2. Check the matrix (direction × IV environment)
+  Bullish + IV low:    long call, bull call spread, LEAPS
+  Bullish + IV high:   cash-secured put, bull put spread
+  Bearish + IV low:    long put, bear put spread
+  Bearish + IV high:   bear call spread; add a collar if you own the stock
+  Flat + IV low:       calendar spread (when the back month is cheap)
+  Flat + IV high:      iron condor, iron butterfly, butterfly (defined risk first)
+  Big move + IV low:   long straddle, long strangle
+  Big move + IV high:  usually no trade; sellers are most at risk in a big move
+
+3. Candidate structures
+  Candidate 1: ____________  Signs: __/__/__
+               Max loss $____  Max profit $____  Breakeven ____
+  Candidate 2: ____________  Signs: __/__/__
+               Max loss $____  Max profit $____  Breakeven ____
+  Candidate 3: ____________  Signs: __/__/__
+               Max loss $____  Max profit $____  Breakeven ____
+
+4. Decision
+  Chosen: ____________
+  Reason (one sentence): ______________________________
+  If the view is wrong, where I admit it: ____________
+@@ eaa48b1de2 text
+POSITION RULES CARD  (review every 90 days; any change needs a written reason)
+Account equity: $________  Effective date: ________
+
+1. Per trade
+  Max loss per trade ≤ ___% of the account (1% while practicing, 2% cap)
+  Buyers: max loss = premium paid
+  Sellers: defined-risk structures only; max loss = width − credit received
+  Exit: at ___% of max loss, or ___ days before expiration, whichever comes first
+
+2. Portfolio
+  Open positions ≤ ___
+  Total max loss of all positions ≤ ___% of the account
+  Total beta-weighted Delta ≤ ___ SPY share equivalents
+  Portfolio Vega ≤ $____ / point; portfolio Theta ≥ −$____ / day
+  Positions tied to the same event (earnings, FOMC, CPI) count as one
+
+3. Stress tests (before every order, and once a week)
+  Underlying ±1 and ±2 standard deviations: portfolio loss ≤ ___%
+  Underlying −10% and IV +10 points: portfolio loss ≤ ___%
+
+4. Stop rules
+  Daily loss ≥ ___%: no new positions for the rest of the day
+  Monthly loss ≥ ___% or ___ rule violations: back to paper trading for two weeks
+  When you want to “win it back fast”: cut size first, decide the next day
+
+This change and the reason for it: ________________________________
+@@ 5861d2cfd6 text
+OPTIONS TRADING JOURNAL  No.: ____
+Open date: ________  Underlying: ____  Price: ____
+IV / IV Rank: ____ / ____  Next event: ________
+
+1. Plan (write before the order)
+  View (one sentence): ______________________________
+  Three signs: direction __ / time __ / volatility __
+  Structure and legs: __________________________________
+  Net premium: ____  Max profit: ____
+  Max loss: ____  Breakeven: ____
+  Delta / Theta / Vega: ____ / ____ / ____
+  Account at risk: ___% (rules card cap ___%)
+  Take-profit: ________  Stop-loss: ________  Time stop: ________
+
+2. Execution
+  Fill price: ____  Mid at the time: ____  Slippage: ____
+  Adjustments (date, action, reason):
+    ________________________________________
+
+3. Result (write after closing)
+  Close date: ________  Close price: ____
+  P&amp;L: $____ (____× risk)  Days held: ____
+  Change in underlying: ____  Change in IV: ____
+
+4. Review
+  Attribution: [ ] Judgment error  [ ] Execution error  [ ] Risk-control error  [ ] Normal variance
+  What I did right: __________________________________
+  What I did wrong: __________________________________
+  Made money but did it wrong?  [ ] Yes  [ ] No
+  Next time: __________________________________
+@@ 4dbdfc433e text
+EVENT CALENDAR AND IV DASHBOARD  Week: ________  Data source: ________
+
+1. IV dashboard (update at each close)
+  Underlying | Price | ATM IV | IV Rank | 30-day expected move | 20-day realized vol | IV − realized
+  SPY        |       |        |         |                      |                     |
+  QQQ        |       |        |         |                      |                     |
+  ____       |       |        |         |                      |                     |
+  ____       |       |        |         |                      |                     |
+  ____       |       |        |         |                      |                     |
+  Expected move = price × IV × √(days / 365)
+
+2. Term structure (once a week)
+  Underlying: ____  Front-month IV: ____  Next-month IV: ____
+  Forward volatility = √((σ2² × T2 − σ1² × T1) / (T2 − T1)): ____
+  Shape: [ ] Contango  [ ] Inverted (reason: ________)
+
+3. Events in the next 8 weeks
+  Date | Event | Related underlyings | Implied move | Avg actual move, past 8
+  ____ | _____ | ___________________ | ____________ | _______________________
+  ____ | _____ | ___________________ | ____________ | _______________________
+  ____ | _____ | ___________________ | ____________ | _______________________
+  Event types: earnings / FOMC / CPI / jobs / options expiration / other
+
+4. This week's conclusions
+  Most expensive IV: ________  Cheapest: ________
+  Events worth preparing for: ________
+  Positions to cut ahead of time: ________
+@@ 1eb9d842a7 text
+Three ground rules for data
+@@ 5205b402f9 attr
+Jump to chapter
+@@ 5817d7e158 attr
+In this appendix
+@@ 0b0282d371 attr
+Search terms or explanations, e.g. Vega, skew, assignment
+@@ a9ecc9861a attr
+Search the glossary
+@@ f0852d355e attr
+Chapter navigation
+@@ f5787aaefc tpl
+<b>{0}</b> of {1} terms match
+@@ b87ba73a29 tpl
+All <b>{0}</b> terms
+@@ c44c7105fc js
+Long call
+@@ ae63614f8d js
+Long put
+@@ 1c0347a055 js
+Short call
+@@ 2616f4cb68 js
+Cash-secured put
+@@ f9b0906877 js
+Covered call
+@@ 7f337a5b16 js
+100 shares −105C
+@@ c548f9a638 js
+Protective put
+@@ 4718938704 js
+100 shares +95P
+@@ 557f355788 js
+Collar
+@@ 7064c6790e js
+100 shares +95P −105C
+@@ 279b6d3488 js
+Bull call spread
+@@ 0b6a752dde js
+Bear put spread
+@@ d503a8f174 js
+Bull put spread
+@@ b451b6ee43 js
+Bear call spread
+@@ d4ab3151b9 js
+Long straddle
+@@ b8c903e0d8 js
+Short strangle
+@@ 84c9b71cbc js
+Iron condor
+@@ 0f81ea2a5c js
+Iron butterfly
+@@ a822a0659f js
+Long call butterfly
+@@ d1d53ec146 js
+Calendar spread
+@@ 6f63f47c2d js
+−100C +100C (60 days)
+@@ e1a91faab7 js
+1×2 ratio spread
+@@ f8af4cde16 tpl
+<div class="fig-head"><span class="fig-title">{0}</span><span class="fig-no">C-{1} · {2}</span></div>
+        <svg class="chart" viewBox="0 0 680 210" role="img" aria-label="Payoff at expiry: {3}"></svg><div class="stats"></div>
+@@ 2200cbdb2f tpl
+Net debit <b>{0}</b>
+@@ d1d2830f63 tpl
+Net credit <b>{0}</b>
+@@ 87544953dc js
+<b>Unlimited</b>
+@@ 0db86c001e tpl
+{0} · Max profit {1} · Max loss {2}<br>Breakeven <b>{3}</b>
+@@ 2e746791f3 js
+Copied
+@@ 68bd331b0e js
+Selected; press Ctrl/⌘ + C
+@@ b828d11b5b js
+Copy template

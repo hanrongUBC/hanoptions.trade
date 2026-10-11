@@ -1,0 +1,901 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chapter 12 Portfolio Greeks and adjustments · US Options Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  #c-tbl { font-size: 13px; }
+  #c-tbl th, #c-tbl td { padding: 6px 3px; }
+  #c-tbl th:first-child, #c-tbl td:first-child { padding-left: 10px; }
+  #c-tbl th:last-child, #c-tbl td:last-child { padding-right: 10px; }
+  .calc table input { width: 3.3em; padding: 3px 4px; font-size: 13px; -moz-appearance: textfield; appearance: textfield; }
+  .calc table input::-webkit-inner-spin-button, .calc table input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+  .calc table input.name { width: 7.2em; }
+  .calc table select { font-size: 13px; padding: 3px 2px; }
+  .calc table input:disabled { opacity: .45; }
+  .presets { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 10px; }
+  .tbl.txt th, .tbl.txt td { text-align: left; }
+  .tbl.compact table { font-size: 13.5px; }
+  .tbl.compact th, .tbl.compact td { padding: 8px 7px; }
+  .tbl.compact th:first-child, .tbl.compact td:first-child { padding-left: 14px; }
+  .tbl.compact th:last-child, .tbl.compact td:last-child { padding-right: 14px; }
+  .tbl .l { text-align: left; }
+</style>
+<link rel="alternate" hreflang="zh-CN" href="https://hanoptions.trade/options/ch12.html"><link rel="alternate" hreflang="en" href="https://hanoptions.trade/en/options/ch12.html">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap">
+<style id="en-overrides">
+html[lang="en"] { --font-display: "Source Serif 4", "Noto Serif SC", Georgia, serif; --font-body: "Source Sans 3", "Noto Sans SC", system-ui, sans-serif; }
+html[lang="en"] body { line-height: 1.7; }
+html[lang="en"] body * { letter-spacing: normal !important; }
+html[lang="en"] p, html[lang="en"] li, html[lang="en"] td, html[lang="en"] figcaption { hyphens: auto; -webkit-hyphens: auto; }
+html[lang="en"] p { text-wrap: pretty; }
+html[lang="en"] .toc a { grid-template-columns: 48px 1fr; }
+</style>
+</head>
+<body data-ch="12">
+<div class="topbar"><div class="topbar-inner"><div class="topbar-brand"><a class="site-home" href="/en/">hanoptions.trade</a><a class="brand" href="index.html">US Options <span>Course</span></a></div><div class="topbar-tools"><select id="ck-jump" aria-label="Jump to chapter"></select><a class="lang-switch" href="/options/ch12.html" hreflang="zh-CN" lang="zh-CN" data-lang="zh"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>中文</a></div></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">12</div>
+    <div class="eyebrow">US Options Course · Part 4 Portfolio and risk management · Chapter 12</div>
+    <h1>Portfolio Greeks and <span class="g">adjustments</span></h1>
+    <p class="deck">Look at each position on its own and you only know what that position will do. Add them all up and you learn what the whole account is betting on. This chapter first teaches you to aggregate and read a portfolio's Greeks, then how to use the numbers, when a position goes wrong, to decide whether to roll, restructure or close.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="In this chapter">
+    <p class="toc-title">In this chapter</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>Opening: three “small” trades</span></a></li>
+      <li><a href="#s1"><span class="n">12.1</span><span>Adding every position into one table</span></a></li>
+      <li><a href="#s2"><span class="n">12.2</span><span>The portfolio's shape: what you're betting on</span></a></li>
+      <li><a href="#s3"><span class="n">12.3</span><span>Fix Delta first, then look at Gamma and Vega</span></a></li>
+      <li><a href="#s4"><span class="n">12.4</span><span>The three directions of rolling</span></a></li>
+      <li><a href="#s5"><span class="n">12.5</span><span>Without the old position, would you open this one?</span></a></li>
+      <li><a href="#s6"><span class="n">12.6</span><span>A credit spread is breached: four choices</span></a></li>
+      <li><a href="#s7"><span class="n">12.7</span><span>When to just close</span></a></li>
+      <li><a href="#s8"><span class="n">12.8</span><span>Timing and execution of adjustments</span></a></li>
+      <li><a href="#cases"><span class="n">Cases</span><span>Two cases</span></a></li>
+      <li><a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>In this chapter</summary>
+      <ol>
+        <li><a href="#open">Opening: three “small” trades</a></li>
+        <li><a href="#s1">12.1 Adding every position into one table</a></li>
+        <li><a href="#s2">12.2 The portfolio's shape: what you're betting on</a></li>
+        <li><a href="#s3">12.3 Fix Delta first, then look at Gamma and Vega</a></li>
+        <li><a href="#s4">12.4 The three directions of rolling</a></li>
+        <li><a href="#s5">12.5 Without the old position, would you open this one?</a></li>
+        <li><a href="#s6">12.6 A credit spread is breached: four choices</a></li>
+        <li><a href="#s7">12.7 When to just close</a></li>
+        <li><a href="#s8">12.8 Timing and execution of adjustments</a></li>
+        <li><a href="#cases">Two cases</a></li>
+        <li><a href="#tools">Checklist and self-test</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>After this chapter you can</h4>
+        <ul>
+          <li>Aggregate positions across different underlyings and expirations into one beta-weighted Greeks table, and say in one sentence what the portfolio is betting on</li>
+          <li>Work out the added premium, breakeven and best outcome for the three rolls: out, down, and out and down</li>
+          <li>When a credit spread is breached, compare rolling, adding a leg, converting to a calendar and closing, using “P&amp;L from here”</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Prerequisites</h4>
+        <ul>
+          <li>Chapter 4: share equivalents and beta-weighted Delta</li>
+          <li>Chapter 5: the units of Theta and Vega</li>
+          <li>Chapters 8 and 9: credit spreads, iron condors and calendar spreads</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Conventions</h4>
+        <ul>
+          <li>Black-Scholes, 4% rate, no dividends, 365-day year</li>
+          <li>One contract = 100 shares; SPY price taken as $780</li>
+          <li>Theta per calendar day, Vega per 1 vol point; fills at the model mid price, excluding commissions and slippage</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">Opening</span>Three “small” trades</h2>
+      <p class="lead">At Friday's close your account (<span class="num">$100,000</span>) holds three short-option positions: an SPY put credit spread, a short put on stock A and a short put on stock D. On the broker's page their Deltas are +60, +95 and +63 shares, and none of the lines looks big.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 12-0 The three positions and Monday's result (SPY −3%, each stock falls by its own β, all IVs up 4 points)</caption>
+          <thead><tr><th>Position (all 30 days to expiry)</th><th>Contracts</th><th>Own Delta (shares)</th><th>Daily Theta</th><th>Monday P&amp;L</th></tr></thead>
+          <tbody>
+            <tr><td>SPY 760/740 put credit spread</td><td class="mono">5</td><td class="mono">+60</td><td class="mono">+$17.6</td><td class="mono neg">−$2,005</td></tr>
+            <tr><td>Short A 140 put (stock 150, β 1.3)</td><td class="mono">4</td><td class="mono">+95</td><td class="mono">+$31.9</td><td class="mono neg">−$943</td></tr>
+            <tr><td>Short D 82 put (stock 90, β 1.5)</td><td class="mono">3</td><td class="mono">+63</td><td class="mono">+$16.0</td><td class="mono neg">−$428</td></tr>
+            <tr class="hl"><td>Total</td><td></td><td>Different units; can't be added directly</td><td class="mono">+$65.6</td><td class="mono neg">−$3,376</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Together the three collect <span class="num">$65.6</span> of Theta a day. On Monday SPY opens 3% lower, stocks A and D fall <span class="num">3.9%</span> and <span class="num">4.5%</span> according to their β, and IV rises about 4 points across the board. The three lose <span class="num">$3,376</span> together, equal to <span class="num">51</span> days of Theta. Each one on its own is “within expectations”; the trouble is that they all point the same way and they all hit at once.</p>
+      <p>You never added those three lines together. With the beta weighting from Chapter 4, the three add up to <span class="num">94.5</span> shares of SPY, about <span class="num">$73,700</span> of long market exposure. And Gamma and Vega are both negative, so the further the market falls and the more IV rises, the faster you lose.</p>
+      <p>At Monday's close you open the position that lost the most, and the broker's “Roll” button says “Net credit available.” This chapter answers two questions: first, what is your portfolio actually betting on; second, when is an adjustment a repair, and when is it just placing the same bet again with a different date?</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">12.1</span>Adding every position into one table</h2>
+      <p>A portfolio's Greeks can be added directly, as long as you first convert them to the same unit. Chapter 4 already turned Delta into “SPY share equivalents”; this section converts the other three.</p>
+      <div class="tbl txt">
+        <table>
+          <caption>Table 12-1 How to aggregate the four Greeks (q is the number of contracts, positive for long, negative for short)</caption>
+          <thead><tr><th>Greek</th><th>Single leg</th><th>Adding across underlyings</th><th>Unit after aggregating</th></tr></thead>
+          <tbody>
+            <tr><td>Delta</td><td class="mono">δ × 100 × q</td><td>× S / SPY × β</td><td>SPY shares</td></tr>
+            <tr><td>Gamma</td><td class="mono">Γ × 100 × q</td><td>× β² × S² × 1% / SPY</td><td>Shares added to the row above per 1% rise in SPY</td></tr>
+            <tr><td>Theta</td><td class="mono">θ × 100 × q</td><td>Add directly</td><td>$ / day</td></tr>
+            <tr><td>Vega</td><td class="mono">vega × 100 × q</td><td>Add directly (with a hidden assumption; see below)</td><td>$ / vol point</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Why Gamma is multiplied by β squared</h3>
+      <p>When SPY rises 1%, by the definition of β the stock rises β × 1%, that is, Δ<span class="v">S</span> = β · <span class="v">S</span> · 1%. The stock position's Delta therefore grows by Γ × 100 × q × Δ<span class="v">S</span> shares. Those “stock shares” then have to be converted into SPY shares as in Chapter 4, which multiplies once more by <span class="v">S</span> / SPY × β. Both steps carry a β, so you get:</p>
+      <div class="formula">
+        <div class="eq">Beta-weighted Gamma<sub>1%</sub> <span class="up">=</span> <span class="gm">Γ</span> <span class="up">× 100 × q ×</span> β<sup>2</sup> <span class="up">×</span> <span class="v">S</span><sup>2</sup> <span class="up">×</span> <span class="frac"><span>1%</span><span>SPY</span></span></div>
+        <p class="where">How to read it: for each 1% rise in SPY, how many SPY shares the portfolio's beta-weighted Delta gains. A negative number means you get shorter as the market rises and longer as it falls.</p>
+      </div>
+      <p>With these two aggregates you can estimate the whole portfolio's P&amp;L, as in Chapter 4. Let SPY's percentage move be <span class="v">x</span>:</p>
+      <div class="formula">
+        <div class="eq">P&amp;L <span class="up">≈</span> <span class="d">Δ</span><sub>β</sub> <span class="up">×</span> SPY <span class="up">×</span> <span class="v">x</span> <span class="up">+</span> <span class="frac"><span>1</span><span>2</span></span> <span class="gm">Γ</span><sub>β,1%</sub> <span class="up">×</span> SPY <span class="up">×</span> <span class="v">x</span> <span class="up">×</span> <span class="frac"><span><span class="v">x</span></span><span>1%</span></span></div>
+        <p class="where">Opening portfolio: Δ<sub>β</sub> = +94.5 shares, Γ<sub>β,1%</sub> = −18.1 shares. At SPY −3%, the approximation gives −2,212 − 634 = −$2,846; full repricing (IV unchanged) gives −$2,850.</p>
+      </div>
+
+      <figure class="plate calc" id="calc">
+        <div class="fig-head"><span class="fig-title">Portfolio Greeks aggregator</span><span class="fig-no">Tool 12-A · Editable; Figure 12-1 below updates with it</span></div>
+        <div class="presets"><button type="button" class="btn" data-preset="open">Load the opening portfolio</button><button type="button" class="btn" data-preset="case2">Load Case 2's 5-leg portfolio</button></div>
+        <div class="spy"><label for="c-spy">SPY price</label><input id="c-spy" type="number" value="780" step="1"></div>
+        <div class="tbl" style="margin: 0;">
+          <table id="c-tbl">
+            <thead><tr><th>Position</th><th>Type</th><th>Contracts</th><th>Underlying</th><th>Strike</th><th>Days</th><th>IV %</th><th>β</th><th>β Delta</th><th>Gamma</th><th>Theta</th><th>Vega</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="readout">
+          <div><b id="c-r1">—</b><small>Beta-weighted Delta (SPY shares)</small></div>
+          <div><b id="c-r2">—</b><small>Beta-weighted Gamma (per 1%)</small></div>
+          <div><b id="c-r3">—</b><small>Net Theta (per day)</small></div>
+          <div><b id="c-r4">—</b><small>Net Vega (per IV point)</small></div>
+        </div>
+        <figcaption>The four columns on the right are each leg's beta-weighted Delta (SPY shares), beta-weighted Gamma (per 1%), Theta ($/day) and Vega ($/point). Contracts: enter a positive number for long and a negative number for short. When the type is “Stock,” enter the number of shares; strike, days and IV are ignored. For rows you're not using, enter 0 contracts. The table is wide; on a phone you can swipe sideways.</figcaption>
+      </figure>
+
+      <h3>What you assume when you add up Theta and Vega</h3>
+      <p>Theta added up is “how much more you'll collect by tomorrow if everything else stays the same.” That “everything else stays the same” is the key: it's only a reference value, and the market changes every day.</p>
+      <p>Adding Vega directly assumes every underlying's IV moves by the same number of points at the same time. In reality that rarely holds: when the market falls, single-stock IVs tend to rise by more points than SPY's IV, because they start out higher. In the opening portfolio, the two SPY legs' Vega totals <span class="num">−$111.0</span> and the A and D positions total <span class="num">−$75.2</span>, for a simple sum of <span class="num">−$186.3</span>. If you assume single-stock IVs move 1.5 times as many points as SPY's, then per 1-point move in SPY, the portfolio's Vega is really <span class="num">−111.0 + 1.5 × (−75.2) = −$223.9</span>, 20% bigger than the headline number.</p>
+      <div class="note">
+        <span class="tag">Key point</span>
+        <p>The aggregate table answers “what happens when the whole account moves with the market.” It can't see two things: a single stock's own gaps (Case 2), and IVs that move out of step with each other. So after aggregating, you still need to stress-test each underlying on its own (Chapter 13).</p>
+      </div>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">12.2</span>The portfolio's shape: what you're betting on</h2>
+      <p>Put the signs of Gamma, Theta and Vega together and you have the world you're betting on. Read the signs first, then decide whether to change anything.</p>
+      <div class="tbl txt">
+        <table>
+          <caption>Table 12-2 Portfolio shapes and the bets behind them</caption>
+          <thead><tr><th>Shape</th><th>You're betting on</th><th>What hurts</th><th>Typical structures</th></tr></thead>
+          <tbody>
+            <tr><td>Negative Gamma, positive Theta</td><td>Price doesn't move much</td><td>Big moves, especially gaps</td><td>Short puts, short strangles, iron condors</td></tr>
+            <tr><td>Positive Gamma, negative Theta</td><td>Big price moves, either direction</td><td>Going sideways</td><td>Long options, long straddles</td></tr>
+            <tr><td>Negative Vega</td><td>IV falls or doesn't rise</td><td>IV rises (often along with a drop)</td><td>Most selling structures</td></tr>
+            <tr><td>Positive Vega</td><td>IV rises</td><td>IV falls (e.g., after earnings)</td><td>Most buying structures</td></tr>
+            <tr><td>Negative Gamma, positive Vega</td><td>Front month calm, back-month IV holds up</td><td>Sharp near-term move; back-month IV falls</td><td>Calendar spread</td></tr>
+            <tr><td>Positive Gamma, negative Vega</td><td>Big near-term move, back-month IV falls</td><td>Sideways with IV rising</td><td>Reverse calendar</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>For positions on the same underlying with the same expiration, Gamma and Theta almost always have opposite signs. That's what Chapter 4's Θ ≈ −½σ²<span class="v">S</span>²Γ says: positive Theta is the reward for negative Gamma. Only structures that span expirations (calendars, diagonals) can produce a combination like “positive Theta, positive Vega,” and the price is negative Gamma in the front month.</p>
+
+      <h3>The portfolio's “breakeven daily move”</h3>
+      <p>A negative-Gamma portfolio collects Theta every day and also takes losses from price moves every day. Set ½ × |Γ<sub>β,1%</sub>| × SPY × <span class="v">x</span>²/1% equal to Theta, and you get the move at which that day's Theta is wiped out:</p>
+      <div class="formula">
+        <div class="eq">|<span class="v">x</span>|<sub>breakeven</sub> <span class="up">=</span> √<span class="up">(</span> 2 <span class="up">×</span> <span class="th">Θ</span> <span class="up">× 1% / (</span> |<span class="gm">Γ</span><sub>β,1%</sub>| <span class="up">×</span> SPY <span class="up">) )</span></div>
+        <p class="where">Opening portfolio: √(2 × 65.55 × 1% / (18.07 × 780)) = 0.96%, or a $7.52 move in SPY in one day. SPY's IV is 17%, which implies a daily standard deviation of about 17% ÷ 19.1 = 0.89%. The two are very close: what a seller earns is the small gap by which “realized volatility comes in below implied volatility.”</p>
+      </div>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">The opening portfolio's shape: time is on your side; declines and rising IV are not</span><span class="fig-no">Figure 12-1 · Reads the positions in Tool 12-A</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Curve type">
+            <button type="button" data-mode="t" aria-pressed="true">Time slices</button>
+            <button type="button" data-mode="v" aria-pressed="false">IV slices</button>
+            <button type="button" data-mode="l" aria-pressed="false">Price and IV linked</button>
+          </div>
+        </div>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 320" role="img" aria-label="Portfolio P&amp;L as SPY moves"></svg>
+        <div class="legend" id="f1-legend"></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small>SPY −5% (IV unchanged)</small></div>
+          <div><b id="f1-r2">—</b><small>SPY +5% (IV unchanged)</small></div>
+          <div><b id="f1-r3">—</b><small>SPY flat, after 7 days</small></div>
+          <div><b id="f1-r4">—</b><small>SPY flat, IV +5 points</small></div>
+        </div>
+        <figcaption>In “Time slices,” the curve rises in the middle as the days pass: that's positive Theta. The left side falls ever more steeply while the right side flattens out quickly: that's negative Gamma plus positive Delta. In “IV slices,” IV up 5 points loses $868 even with SPY unchanged. “Linked” assumes IV rises 1 point for each 1% SPY falls and drops 0.5 points for each 1% it rises, which is closer to how markets really behave. Load Case 2 into Tool 12-A to compare a portfolio that “looks neutral.”</figcaption>
+      </figure>
+      <p>Start with size: the opening portfolio's beta-weighted Delta is +94.5 SPY shares, about <span class="num">$73,700</span>, as if 74% of the account were invested in the index. If the plan in your head was “sell a little premium with small positions,” this number is the first alarm: the directional exposure is already close to that of an ordinary long stock account, and it comes with negative Gamma.</p>
+      <p>How to read the opening portfolio: SPY −5% loses <span class="num">$5,371</span>, while +5% makes only <span class="num">$2,204</span>; 7 days with nothing else changing makes <span class="num">$505</span>; IV up 5 points loses <span class="num">$868</span>. In one sentence, it's betting that “the market doesn't fall, volatility doesn't rise, and time passes slowly.” All three trades are betting on the same thing.</p>
+      <p>One more detail: when SPY falls 10%, rising IV actually makes the loss slightly smaller (<span class="num">−$12,023</span> vs. <span class="num">−$12,307</span>). By then both legs of the SPY spread are in the money, and the spread's Vega has flipped from negative to positive. A portfolio's Vega changes with price, and the reading only holds near the current price.</p>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">12.3</span>Fix Delta first, then look at Gamma and Vega</h2>
+      <p>Stock or SPY can only bring Delta to zero; Gamma and Vega can only be changed with options. A hedge at the portfolio level is often cheaper than adjusting trade by trade, but you need to be clear about what it changes and what it doesn't.</p>
+      <p>Take the opening portfolio and compare two hedges. One: short <span class="num">95</span> shares of SPY (about $74,100) to bring beta-weighted Delta to zero. Two: buy <span class="num">2</span> 30-day at-the-money SPY 780 puts (IV 17.5%, $14.34 each, $2,868 in total), then short 2 shares of SPY to flatten the remaining Delta (third row of the table). Theta is per day and Vega per IV point, both in dollars.</p>
+      <div class="tbl compact">
+        <table>
+          <caption>Table 12-3 Two hedges for the opening portfolio (P&amp;L from instant repricing, dollars)</caption>
+          <thead><tr><th>State</th><th>β Delta</th><th>Gamma</th><th>Theta</th><th>Vega</th><th>SPY −10%</th><th>−5%</th><th>+5%</th><th>IV +5</th></tr></thead>
+          <tbody>
+            <tr><td>Original portfolio</td><td class="mono">+94.5</td><td class="mono">−18.07</td><td class="mono">+65.6</td><td class="mono">−186.3</td><td class="mono neg">−12,307</td><td class="mono neg">−5,371</td><td class="mono pos">+2,204</td><td class="mono neg">−868</td></tr>
+            <tr><td>+ short 95 SPY shares</td><td class="mono">−0.5</td><td class="mono">−18.07</td><td class="mono">+65.6</td><td class="mono">−186.3</td><td class="mono neg">−4,897</td><td class="mono neg">−1,666</td><td class="mono neg">−1,501</td><td class="mono neg">−868</td></tr>
+            <tr class="hl"><td>+ two 780 puts</td><td class="mono">−0.3</td><td class="mono">−2.23</td><td class="mono">+22.0</td><td class="mono">−8.6</td><td class="mono pos">+126</td><td class="mono neg">−184</td><td class="mono neg">−122</td><td class="mono pos">+21</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>In the second row Delta is zero, but the portfolio loses on both sides: SPY up 5% loses $1,501, and down 5% loses $1,666. That's negative Gamma's true face. A Delta hedge just turns it from “lopsided” into “afraid of both directions.”</p>
+      <p>The third row uses options to hold down Delta, Gamma and Vega at once, and the curve is nearly flat. The cost shows up in the Theta column: daily income falls from <span class="num">$65.6</span> to <span class="num">$22.0</span>, with two-thirds of it paid out for insurance. Whether the insurance is worth it is a separate question; at least it shows you that most of the original $65.6 was payment for bearing a market decline and a rise in IV.</p>
+      <div class="note warn">
+        <span class="tag">When to hedge at the portfolio level</span>
+        <ul>
+          <li>The problem is the shape of the whole account (for example, everything riding on the market not falling), which trade-by-trade adjustments can't fix</li>
+          <li>You need to cut exposure temporarily, say before a weekend, an FOMC meeting or a big earnings season, and don't want to close trade by trade and pay the spread several times</li>
+          <li>Remember its blind spots: SPY can't hedge a single stock's own gaps, or a rise in one stock's IV on its own</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">12.4</span>The three directions of rolling</h2>
+      <p>A roll is two trades: buy back the old position and sell a new one. The three directions differ in what you give up in exchange for time and room.</p>
+      <ul>
+        <li><strong>Rolling out</strong>: keep the strike and move to a later expiration. You sell more time and can usually collect a net credit; the price is that the risk lasts longer.</li>
+        <li><strong>Rolling down / up</strong>: keep the expiration and change the strike. Roll short puts down and short calls up, moving the strike away from the current price. Within the same expiration, a strike further away is cheaper, so this always costs money.</li>
+        <li><strong>Rolling out and down</strong>: both at once. The extra time value pays for moving the strike down, often at close to zero cost.</li>
+      </ul>
+      <p>Example: 30 days ago, with the stock at $100, you sold <span class="num">5</span> 30-day 95 puts (IV 35%), collecting <span class="num">$1.80</span> per share, <span class="num">$900</span> in total. Now 18 days have passed, the stock has fallen to <span class="num">$92</span>, IV has risen to <span class="num">42%</span>, and the put, with 12 days left, is worth <span class="num">$4.50</span>. Buying back costs <span class="num">$2,252</span>, an unrealized loss of <span class="num">$1,352</span>. The table below assumes every strike has an IV of 42% (in practice, lower strikes tend to have higher IV).</p>
+      <div class="tbl compact">
+        <table>
+          <caption>Table 12-4 Three rolls: cost and outcome (5 contracts, P&amp;L counted from the original trade)</caption>
+          <thead><tr><th>Choice</th><th class="l">New position</th><th>Net premium this roll</th><th>Cumulative premium/share</th><th>Breakeven</th><th>Best outcome</th><th>New Delta (shares)</th></tr></thead>
+          <tbody>
+            <tr><td>Close and take the loss</td><td class="l">—</td><td class="mono neg">−$2,252</td><td class="mono">−$2.70</td><td>—</td><td class="mono neg">−$1,352</td><td class="mono">0</td></tr>
+            <tr><td>Out</td><td class="l">95 put, 40 days</td><td class="mono pos">+$1,030</td><td class="mono">$3.86</td><td class="mono">$91.14</td><td class="mono pos">+$1,931</td><td class="mono">+276</td></tr>
+            <tr><td>Down</td><td class="l">90 put, 12 days</td><td class="mono neg">−$1,336</td><td class="mono">−$0.87</td><td>None</td><td class="mono neg">−$436</td><td class="mono">+183</td></tr>
+            <tr class="hl"><td>Out and down</td><td class="l">90 put, 40 days</td><td class="mono neg">−$289</td><td class="mono">$1.22</td><td class="mono">$88.78</td><td class="mono pos">+$611</td><td class="mono">+199</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>To read this table, start with the “Best outcome” column:</p>
+      <ul>
+        <li><strong>Out</strong> collects $1,030 and looks like the biggest “win.” It keeps the 95 strike, so Delta is still +276 shares, the breakeven only moves from $93.20 to $91.14, and you carry the risk for 28 more days. Daily Theta income actually falls from $51.0 to $28.5, because a 40-day option decays more slowly.</li>
+        <li><strong>Down</strong> costs $1,336, and Delta falls from +321 shares to +183 shares, with the same expiration. The cumulative premium is already negative, so this trade can't make its money back no matter what; even the best outcome is a $436 loss. It's essentially “closing part of the risk,” trading cash for distance.</li>
+        <li><strong>Out and down</strong> costs almost nothing, moves the strike below the current price and pushes the breakeven down to $88.78. The price is again 28 more days of risk, and the best outcome is only $611: what you're playing for is very little room to win back what you've lost.</li>
+      </ul>
+      <h3>Short calls: opposite direction, same logic</h3>
+      <p>When a covered call is breached, it looks like a loss, but it isn't necessarily one. You hold 300 shares (cost $100) and sold 3 30-day 105 calls (IV 28%) for <span class="num">$1.46</span>. Now the stock is at <span class="num">$109</span> with 10 days left, IV is 26%, and the call is worth <span class="num">$4.58</span>, with a Delta of 0.82. Three rolls: out to the 38-day 105 call, net credit <span class="num">$491</span>; up to the 10-day 110 call, net debit <span class="num">$933</span>; up and out to the 38-day 110 call, net debit <span class="num">$357</span>.</p>
+      <p>First work out what happens if you don't roll: you're assigned at expiry and sell the stock at 105, making <span class="num">(105 − 100 + 1.46) × 300 = $1,938</span> on the whole trade. The “loss” is only the gain above 105 that you miss. Rolling up spends money to buy that gain back, which amounts to going long part of the stock again at $109. The test is the same as before: if you held only the stock, without this call, would you sell a 38-day 110 call today? If you actually want to keep riding the rally, don't sell; if you're happy to sell at 110, then rolling makes sense.</p>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">Rolling out collects the most, rolling down is the safest, and none of them is “free”</span><span class="fig-no">Figure 12-2 · Rolling 5 short puts: a comparison</span></div>
+        <div class="controls">
+          <label class="ctl" for="f2-s">Current stock price <input id="f2-s" type="range" min="86" max="98" value="92" step="0.5"> <output id="f2-s-o">$92</output></label>
+          <label class="ctl" for="f2-d">Days to new expiry <input id="f2-d" type="range" min="26" max="68" value="40" step="1"> <output id="f2-d-o">40 days</output></label>
+          <label class="ctl" for="f2-k">New strike <input id="f2-k" type="range" min="84" max="94" value="90" step="1"> <output id="f2-k-o">90</output></label>
+        </div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 320" role="img" aria-label="P&amp;L at expiry of the three rolls and of closing"></svg>
+        <div class="legend"><span><i class="dash" style="border-color: var(--muted)"></i>Close and take the loss</span><span><i style="border-color: var(--delta)"></i>Out (strike 95)</span><span><i style="border-color: var(--theta)"></i>Down (original expiration)</span><span><i style="border-color: var(--gamma)"></i>Out and down</span></div>
+        <div class="readout">
+          <div><b id="f2-r1">—</b><small>Close: realized loss</small></div>
+          <div><b id="f2-r2">—</b><small>Out: net premium this roll</small></div>
+          <div><b id="f2-r3">—</b><small>Down: net premium this roll</small></div>
+          <div><b id="f2-r4">—</b><small>Out and down: net premium this roll</small></div>
+        </div>
+        <figcaption>The horizontal axis is the stock price at the new position's expiry; the vertical axis is the whole trade's P&amp;L counted from the original trade (IV fixed at 42%). The roll-down curve settles at the original expiration; the other two settle at the new expiration you choose. Drag the current stock price to 88 and the net cost of rolling down jumps. Lengthen the days to the new expiry and rolling out collects more, but the loss on the left side of the chart barely changes: the extra money buys a longer period of risk, not a smaller tail.</figcaption>
+      </figure>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">12.5</span>Without the old position, would you open this one?</h2>
+      <p>Rolling doesn't repair a loss. The loss hit your account value the moment the price got there; buying back the old position just renames it from “unrealized” to “realized.” Only one question is left: is the new position worth opening on its own merits?</p>
+      <p>Marked to market, your account value doesn't change at the moment you roll: you pay $2,252 to buy back the old put and take in $1,963 for selling the new one (out and down), so the account sheds a $2,252 liability and takes on a $1,963 liability at the same time. The so-called “net credit” or “net debit” is just the cash difference between the two trades. It doesn't change the $1,352 you've already lost.</p>
+
+      <h3>How the model sees the three choices</h3>
+      <p>Use the Black-Scholes risk-neutral distribution (IV 42%) to work out the final outcome of each choice:</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 12-5 Outcome distribution of the four choices (5 contracts, counted from the original trade)</caption>
+          <thead><tr><th>Choice</th><th>Expected P&amp;L</th><th>Chance the whole trade profits</th><th>Average when winning</th><th>Average when losing</th></tr></thead>
+          <tbody>
+            <tr><td>Close and take the loss</td><td class="mono neg">−$1,352</td><td class="mono">0%</td><td>—</td><td class="mono neg">−$1,352</td></tr>
+            <tr><td>Out</td><td class="mono neg">−$1,366</td><td class="mono">51.2%</td><td class="mono pos">+$1,706</td><td class="mono neg">−$4,586</td></tr>
+            <tr><td>Down</td><td class="mono neg">−$1,353</td><td class="mono">0%</td><td>—</td><td class="mono neg">−$1,353</td></tr>
+            <tr class="hl"><td>Out and down</td><td class="mono neg">−$1,360</td><td class="mono">58.6%</td><td class="mono pos">+$591</td><td class="mono neg">−$4,128</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The four choices have nearly the same expected value, each roughly equal to the $1,352 you've already lost (the small differences come from interest). When options trade at fair prices, switching contracts doesn't create expected return out of thin air. What a roll does is swap a certain loss for a distribution: a little better than even odds of getting back to even, about a 40% chance of losing more, and when it loses, an average loss of more than $4,000.</p>
+      <p>Real markets have two factors the model doesn't. One is the volatility risk premium: on average IV runs a little above realized volatility, so sellers have a slight long-run edge. The other is trend: for a stock that has just broken support, next month's distribution may not be symmetric. The first makes rolling a little better; the second may make it worse. Neither changes the core conclusion: a roll opens a new trade, and it has to be judged by the standards for a new trade.</p>
+
+      <h3>Run it through the standards for a new trade</h3>
+      <p>Take the position after rolling out and down, and look at it as if you were seeing it for the first time today:</p>
+      <ol>
+        <li><strong>Direction</strong>: would I go long +199 shares today in this stock that just fell 8%?</li>
+        <li><strong>Strike and expiration</strong>: I normally open by selling puts at Delta 0.20–0.30; this one is 0.40. Would I sell it?</li>
+        <li><strong>Size</strong>: the notional exposure of five 90 puts is $45,000, 45% of the account. Under my rules (Chapter 13), is that size acceptable?</li>
+        <li><strong>Reason</strong>: does the reason I opened it (say, “95 is support”) still hold? If 95 is the very level that just broke, the reason is gone.</li>
+      </ol>
+      <p>If the answer to any of these is “no,” close, or keep only the part that passes the test.</p>
+      <div class="note gam">
+        <span class="tag">In one sentence</span>
+        <p>“If I didn't have the old position, would I open this one?” A roll that passes this question is a new trade; one that doesn't is the same bet pushed back to next month and placed again.</p>
+      </div>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">12.6</span>A credit spread is breached: four choices</h2>
+      <p>Once a spread is breached, every choice trades one risk for another. To compare them, use the same yardstick: P&amp;L from here. Money already lost isn't part of any of the choices.</p>
+      <p>The scenario: 35 days ago, with the stock at $100, you sold <span class="num">10</span> 95/90 put credit spreads (IV 30%, short-leg Delta −0.26) for <span class="num">$1.02</span>, <span class="num">$1,021</span> in total. Now there are 14 days left, the stock is at <span class="num">$93</span> and IV has risen to <span class="num">38%</span>. The spread is worth <span class="num">$2.38</span>, an unrealized loss of <span class="num">$1,363</span>. If you do nothing, the most you can lose from here is another <span class="num">(5 − 2.384) × 1,000 = $2,616</span>.</p>
+      <ul>
+        <li><strong>A Close and take the loss</strong>: pay $2,384 to buy it back, and you're done.</li>
+        <li><strong>B Roll out and down</strong>: buy back the 95/90 and sell the 90/85 expiring in 42 days for $1.64. Net cost $745.</li>
+        <li><strong>C Add a leg to make an iron condor</strong>: keep the put spread and also sell 10 14-day 97/102 call spreads (short-leg Delta 0.31) for $0.91, $911 in total.</li>
+        <li><strong>D Convert to a calendar</strong>: sell the 90 puts you hold (collecting $1,428) and buy 42-day 95 puts (paying $5,641). The position becomes “short 14-day 95 put + long 42-day 95 put.”</li>
+      </ul>
+      <div class="tbl compact">
+        <table>
+          <caption>Table 12-6 The four choices and “no change,” all compared on P&amp;L from here (10 contracts, dollars; IV stays at 38%; price columns are 14 days out)</caption>
+          <thead><tr><th>Choice</th><th>Cash flow</th><th>Max loss</th><th>Stock 85</th><th>90</th><th>93</th><th>97</th><th>100</th></tr></thead>
+          <tbody>
+            <tr><td>No change</td><td class="mono">0</td><td class="mono neg">−2,616</td><td class="mono neg">−2,616</td><td class="mono neg">−2,602</td><td class="mono pos">+384</td><td class="mono pos">+2,384</td><td class="mono pos">+2,384</td></tr>
+            <tr><td>A Close</td><td class="mono neg">−2,384</td><td class="mono">0</td><td class="mono">0</td><td class="mono">0</td><td class="mono">0</td><td class="mono">0</td><td class="mono">0</td></tr>
+            <tr><td>B Roll to 90/85</td><td class="mono neg">−745</td><td class="mono neg">−3,361</td><td class="mono neg">−1,429</td><td class="mono neg">−375</td><td class="mono pos">+188</td><td class="mono pos">+781</td><td class="mono pos">+1,096</td></tr>
+            <tr><td>C Add call spread</td><td class="mono pos">+911</td><td class="mono neg">−1,704</td><td class="mono neg">−1,704</td><td class="mono neg">−1,691</td><td class="mono pos">+1,296</td><td class="mono pos">+3,281</td><td class="mono pos">+296</td></tr>
+            <tr><td>D Convert to 95 calendar</td><td class="mono neg">−4,213</td><td class="mono neg">about −2,120</td><td class="mono neg">−1,374</td><td class="mono neg">−152</td><td class="mono pos">+1,023</td><td class="mono pos">+1,152</td><td class="mono pos">+144</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">Every adjustment moves the loss from one price to another</span><span class="fig-no">Figure 12-3 · Ten 95/90 put spreads, P&amp;L 14 days out</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Choose an adjustment">
+            <button type="button" data-opt="hold" aria-pressed="false">No change</button>
+            <button type="button" data-opt="close" aria-pressed="false">A Close</button>
+            <button type="button" data-opt="roll" aria-pressed="true">B Roll</button>
+            <button type="button" data-opt="ic" aria-pressed="false">C Iron condor</button>
+            <button type="button" data-opt="cal" aria-pressed="false">D Calendar</button>
+          </div>
+        </div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 320" role="img" aria-label="P&amp;L from here of the four adjustments"></svg>
+        <div class="legend"><span><i style="border-color: var(--gamma)"></i>Selected choice</span><span><i style="border-color: var(--muted); opacity: .45"></i>Other choices</span><span><i class="dash" style="border-color: var(--ink)"></i>No change (reference)</span></div>
+        <div class="readout">
+          <div><b id="f3-r1">—</b><small>Cash flow now</small></div>
+          <div><b id="f3-r2">—</b><small>Max loss from here</small></div>
+          <div><b id="f3-r3">—</b><small>Stock unchanged in 14 days (93)</small></div>
+          <div><b id="f3-r4">—</b><small>Falls to 85 in 14 days</small></div>
+        </div>
+        <figcaption>The horizontal axis is the stock price 14 days from now; the vertical axis is P&amp;L from here. The roll and the calendar still have 28 days left after those 14 days and are repriced at IV 38%. Switch to “C Iron condor”: the loss on the left gets shallower, but a new loss zone appears on the right above 102. Where a rebound used to get you back $2,384, it now loses $1,704. Switch to “D Calendar”: it peaks in the middle, loses on both sides, and the curve depends on back-month IV.</figcaption>
+      </figure>
+
+      <h3>How to read this table</h3>
+      <ul>
+        <li><strong>B Roll</strong> lowers Delta (+281 → +149, with Theta going from $5.9 a day to $10.4) and moves the loss zone to lower prices, but the maximum loss from here rises from $2,616 to $3,361, and you carry the risk 28 days longer. If you want to roll “for a credit,” you have to roll out at the same strikes (net credit $77, short-leg Delta −0.53, nearly at the money) or widen the spread to 90/80 (net credit $180, with the maximum loss becoming $7,436).</li>
+        <li><strong>C Iron condor</strong> cuts the maximum loss to $1,704, lowers Delta to +94 and raises Theta from $5.9 a day to $45.4. It requires you to be genuinely neutral right now: if the stock rebounds to 100, you make only $296, where you could have made $2,384.</li>
+        <li><strong>D Calendar</strong> has the smallest Delta (+64) and Theta of $38.8 a day, and does best with the stock sitting at 93–97. It spends $4,213 in cash on a back-month put and becomes a long back-month volatility position: if back-month IV falls back to 30% within 14 days, the profit with the stock unchanged drops from $1,023 to $210.</li>
+        <li><strong>A Close</strong> has a P&amp;L from here of exactly zero. Its value is in freeing up margin and attention, so you can choose again with a clean account.</li>
+      </ul>
+      <div class="note warn">
+        <span class="tag">Don't forget early assignment</span>
+        <p>With the stock at 93, the 95 put still has $1.81 of time value, so early assignment is unlikely. If the stock keeps falling to 85, the same put has only $0.06 of time value left, and exercising early starts to make sense for the holder. You would then receive 1,000 shares worth $95,000, and the margin they tie up would far exceed the spread's own maximum loss (Chapter 13 covers this in detail). So when a spread is deep in the money, whichever choice you make, deal with the short leg first.</p>
+      </div>
+      <p>The order of choosing: first ask yourself what you now think of the stock, then find the row that matches that view. B fits “still bullish, I just need more room and time,” provided the new spread passes the test in Section 12.5. C fits “now neutral, and I think it'll struggle to get above 97.” D fits “I think it'll grind around 95, and back-month IV won't fall.” If you hold none of these views, choose A.</p>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">12.7</span>When to just close</h2>
+      <p>In three situations, don't adjust, just close: the thesis breaks, the loss hits your line, or the adjustment would make the maximum loss bigger. Closing doesn't need a reason; holding does.</p>
+
+      <h3>1. The thesis breaks</h3>
+      <p>When you open a trade, write down a one-sentence reason, such as “Earnings are out, 95 is support, and it won't break within 30 days.” If the stock breaks 95 and the company cuts guidance, that sentence is false. Any adjustment at that point just keeps you inside a story you no longer believe. The rule is simple: once the reason is proven wrong, close; if a new reason comes along later, open a new trade.</p>
+
+      <h3>2. The loss hits your line</h3>
+      <p>Two common lines: a loss of 2 times the premium collected (the spread's value rises to 3 times the premium), or a loss of half the maximum loss. The spread in Section 12.6 collected $1.02, so a 2× stop corresponds to a spread value of $3.06, which with 14 days to expiry and IV at 38% triggers at a stock price of about <span class="num">$90.6</span>. Half the maximum loss corresponds to a value of $3.01, almost the same spot.</p>
+      <p>Where does “2 times the premium” come from? It ties the loss to the income, so that the win rate is enough to cover the losses. Let the fraction of the premium you keep when you win be <span class="v">g</span>, and the loss when you lose be <span class="v">L</span> times the premium. The breakeven win rate is:</p>
+      <div class="formula">
+        <div class="eq"><span class="v">w</span>* <span class="up">=</span> <span class="frac"><span><span class="v">L</span></span><span><span class="v">g</span> <span class="up">+</span> <span class="v">L</span></span></span></div>
+        <p class="where">A 50% profit target (g = 0.5) with a 2× stop (L = 2): w* = 2 ÷ 2.5 = 80%. Keeping the full premium (g = 1) with a 2× stop: w* = 67%.</p>
+      </div>
+      <p>So this rule only suits structures whose win rate is high to begin with, such as a short-leg Delta of around 0.15–0.20, and only if you really do take profits at 50%. If you're selling 0.30-Delta spreads, the win rate probably won't reach 80%, and this stop line is too loose.</p>
+      <p>Also remember that a stop line is a target, not a guarantee. If the stock gaps overnight from 93 to 88 and IV rises to 42%, the spread jumps straight to $3.68, a loss of $2,663, 2.6 times the premium. You never get the chance to exit at 2×.</p>
+
+      <h3>3. The adjustment would make the maximum loss bigger</h3>
+      <p>Choice B in Section 12.6 raises the maximum loss from here from $2,616 to $3,361; widening the spread to 90/80 raises it to $7,436; adding contracts to “average down” is worse still. The rule: any adjustment that makes the maximum loss bigger has to be approved again by the standards for a new trade, and if it doesn't pass, close.</p>
+      <div class="note warn">
+        <span class="tag">Two more signals</span>
+        <ul>
+          <li>The same thesis has already been rolled twice: before a third roll, close half first</li>
+          <li>The position is big enough that you keep checking quotes after hours: that by itself is evidence the size is too big</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">12.8</span>Timing and execution of adjustments</h2>
+      <p>Many adjustments succeed or fail on timing and execution costs, and have little to do with your directional call.</p>
+
+      <h3>Why people say “manage at 21 days”</h3>
+      <p>This rule of thumb comes from a pattern that shows up again and again in sellers' backtests: the closer you get to expiration, the less premium is left to earn, while the loss from an ordinary shock changes little. In numbers: stock at $100, IV 30%, you sold a 95 put (Delta −0.28) 45 days ago for $1.92. Suppose the stock never moves:</p>
+      <div class="tbl compact">
+        <table>
+          <caption>Table 12-7 The same short put over time: “remaining profit vs. shock loss”</caption>
+          <thead><tr><th>Days left</th><th>Premium left</th><th>Earned</th><th>Gamma if it falls to 95</th><th>Loss at −5% and IV +5</th><th>Loss ÷ remaining</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">45</td><td class="mono">1.92</td><td class="mono">0%</td><td class="mono">0.040</td><td class="mono">2.49</td><td class="mono">1.3×</td></tr>
+            <tr><td class="mono">28</td><td class="mono">1.25</td><td class="mono">35%</td><td class="mono">0.050</td><td class="mono">2.28</td><td class="mono">1.8×</td></tr>
+            <tr class="hl"><td class="mono">21</td><td class="mono">0.93</td><td class="mono">52%</td><td class="mono">0.058</td><td class="mono">2.14</td><td class="mono">2.3×</td></tr>
+            <tr><td class="mono">14</td><td class="mono">0.58</td><td class="mono">70%</td><td class="mono">0.071</td><td class="mono">1.95</td><td class="mono">3.4×</td></tr>
+            <tr><td class="mono">7</td><td class="mono">0.20</td><td class="mono">89%</td><td class="mono">0.101</td><td class="mono">1.60</td><td class="mono">7.9×</td></tr>
+            <tr><td class="mono">3</td><td class="mono">0.03</td><td class="mono">98.5%</td><td class="mono">0.154</td><td class="mono">1.16</td><td class="mono">39×</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>At 21 days, with the stock unchanged, you've already earned half; the remaining $0.93 is exposed to $2.14 of ordinary shock risk. After that the ratio deteriorates fast, and once the stock falls near the strike, Gamma is two to four times what it was when you opened. That's where “manage at 21 days” comes from: before the ratio turns bad, close or move into a new cycle.</p>
+      <p>When it doesn't apply: if you opened with only 30 days left, 21 days is too early, and the common rule is “take 50% or reach 21 days, whichever comes first”; if you sold far-OTM options below 0.10 Delta, there's little premium left anyway; and with a very narrow defined-risk spread, the Gamma risk is already capped by the protective leg.</p>
+
+      <h3>Placing the order: fill it in one go, and count the cost</h3>
+      <ul>
+        <li><strong>Use a combo order</strong>: roll with a single multi-leg order (rolling a spread into a spread is 4 legs), rather than closing first and opening afterward. If you place the orders separately, you're exposed for the few seconds in between, and if the stock moves you may pay more.</li>
+        <li><strong>Start at the mid</strong>: place the order at the mid price first, then move $0.01–0.02 toward the natural price each time. Don't pay the natural price right away.</li>
+        <li><strong>Count the cost</strong>: rolling 10 four-leg spreads with each leg filled $0.05 from the mid costs 4 × 0.05 × 100 × 10 = $200. The net credit for “rolling out at the same strikes” in Section 12.6 is only $77, so the cost is more than the income.</li>
+        <li><strong>Avoid the traps</strong>: don't roll into an earnings date; when selling calls, check the ex-dividend date; Gamma is highest in the last few days of expiration week, so adjust earlier if you can.</li>
+      </ul>
+      <div class="note field">
+        <span class="tag">Field notes</span>
+        <p>Traders who run debit spreads roll too, in the opposite direction: they extend proactively before the final week before expiration, to avoid the accelerating time decay of the last few days. A common approach is to put the new position in a contract near the money with a later expiration, deliberately avoiding strikes far from the current price, because those are cheap but turn a directional view into a lottery ticket. Another common move: after a long put has made money, sell a lower-strike put to turn the position into a debit spread, locking in part of the profit while keeping the direction. Both moves can be checked with the question from Section 12.5: is the adjusted position one you'd be willing to open fresh today?</p>
+      </div>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">Cases</span>Two cases</h2>
+
+      <div class="case">
+        <div class="case-no">Case 1</div>
+        <h3>A seller's account that “rolled bigger and bigger”: six net credits, 40% of equity gone</h3>
+        <p>Account: <span class="num">$100,000</span>. In month 0, with the stock at $100 and IV 30%, the trader sells 5 30-day 95 puts for $1.33 per share. He sets himself a rule that looks safe: <strong>if the put is in the money at expiration, buy it back, then roll “one month out, $5 down,” always for a net credit; if the new premium isn't enough to cover the buyback, add contracts.</strong></p>
+        <p>Over the next six months the stock keeps falling (a hypothetical path), and IV rises with it. At each monthly expiration he follows the rule:</p>
+        <div class="tbl compact">
+          <table>
+            <caption>Table 12-8 Month-by-month positions (settled at each monthly expiration; buyback = contracts × intrinsic value × 100; premium is per share; equity = cash − open options' liability at market value)</caption>
+            <thead><tr><th>Month</th><th>Stock</th><th>IV</th><th>Buyback</th><th>New position</th><th>Premium</th><th>Cumulative net credit</th><th>Notional exposure</th><th>Share equivalent</th><th>Equity</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">0</td><td class="mono">100</td><td class="mono">30%</td><td>—</td><td>5 at 95</td><td class="mono">1.33</td><td class="mono">+$667</td><td class="mono">$47,500</td><td class="mono">+125</td><td class="mono">$100,000</td></tr>
+              <tr><td class="mono">1</td><td class="mono">91</td><td class="mono">36%</td><td class="mono">$2,000</td><td>7 at 90</td><td class="mono">3.11</td><td class="mono">+$841</td><td class="mono">$63,000</td><td class="mono">+297</td><td class="mono">$98,667</td></tr>
+              <tr><td class="mono">2</td><td class="mono">83</td><td class="mono">40%</td><td class="mono">$4,900</td><td>11 at 85</td><td class="mono">4.76</td><td class="mono">+$1,173</td><td class="mono">$93,500</td><td class="mono">+603</td><td class="mono">$95,941</td></tr>
+              <tr><td class="mono">3</td><td class="mono">76</td><td class="mono">44%</td><td class="mono">$9,900</td><td>17 at 80</td><td class="mono">6.06</td><td class="mono">+$1,583</td><td class="mono">$136,000</td><td class="mono">+1,062</td><td class="mono">$91,273</td></tr>
+              <tr><td class="mono">4</td><td class="mono">70</td><td class="mono">47%</td><td class="mono">$17,000</td><td>26 at 75</td><td class="mono">6.72</td><td class="mono">+$2,047</td><td class="mono">$195,000</td><td class="mono">+1,723</td><td class="mono">$84,583</td></tr>
+              <tr><td class="mono">5</td><td class="mono">64</td><td class="mono">50%</td><td class="mono">$28,600</td><td>39 at 70</td><td class="mono">7.38</td><td class="mono">+$2,221</td><td class="mono">$273,000</td><td class="mono">+2,738</td><td class="mono">$73,447</td></tr>
+              <tr class="hl"><td class="mono">6</td><td class="mono">59</td><td class="mono">52%</td><td class="mono">$42,900</td><td>60 at 65</td><td class="mono">7.27</td><td class="mono">+$2,943</td><td class="mono">$390,000</td><td class="mono">+4,259</td><td class="mono">$59,321</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Here is the calculation for month 6: the 39 70 puts expire with the stock at 59, an intrinsic value of $11 per share, so buying them back costs <span class="num">39 × 11 × 100 = $42,900</span>. The new 65 put (30 days, IV 52%) is $7.27 per share, so to collect $42,900 you have to sell at least <span class="num">42,900 ÷ 727 = 59.0</span>, rounded up to 60 contracts, collecting $43,623. This time's “net credit” is $723.</p>
+
+        <figure class="plate" id="fig4">
+          <div class="fig-head"><span class="fig-title">A net credit every time, yet exposure grew eightfold</span><span class="fig-no">Figure 12-4 · Case 1's six months</span></div>
+          <div class="controls">
+            <div class="seg" role="group" aria-label="Bars show">
+              <button type="button" data-v="n" aria-pressed="true">Notional exposure</button>
+              <button type="button" data-v="s" aria-pressed="false">Stress loss (−20%, IV × 1.5)</button>
+            </div>
+          </div>
+          <svg class="chart" id="f4-svg" viewBox="0 0 680 300" role="img" aria-label="Six months of notional exposure, stress loss and account equity"></svg>
+          <div class="legend"><span><i style="border-color: var(--warn); border-top-width: 8px; opacity: .55"></i>Bars: selected measure</span><span><i style="border-color: var(--delta)"></i>Equity of the account that kept rolling</span><span><i class="dash" style="border-color: var(--theta)"></i>Equity after taking the loss in month 1</span></div>
+          <div class="readout">
+            <div><b>$390,000</b><small>Month 6 notional exposure (6.6 times equity)</small></div>
+            <div><b>+$2,943</b><small>Cumulative net credit from six rolls</small></div>
+            <div><b>−$40,679</b><small>Change in equity over the same period</small></div>
+            <div><b>$64,510</b><small>Month 6 stress loss</small></div>
+          </div>
+          <figcaption>Switch to “Stress loss”: by month 6 the bar is already above the equity line. If the stock gaps another 20% and IV rises by another half, the loss of $64,510 exceeds the $59,321 left in the account. The dashed teal line is the equity if you had taken the $1,333 loss in month 1 and done nothing afterward: it stays at $98,667 for all six months.</figcaption>
+        </figure>
+        <p>This account's problems are visible in every row:</p>
+        <ul>
+          <li><strong>“Net credit” is cash flow, not profit.</strong> Every one of the six rolls took in cash, +$2,943 in total, while equity fell by $40,679 over the same period. The loss was hidden in an ever-growing options liability.</li>
+          <li><strong>Size grew with the losses.</strong> Contracts went from 5 → 60, share equivalents from +125 → +4,259, and notional exposure from 0.47 times equity to 6.6 times. That's doubling down: every loss makes the next bet bigger.</li>
+          <li><strong>Not one of the rolls passes the test in Section 12.5.</strong> In month 4 the new position is 26 contracts, $195,000 of notional exposure, long 1,723 shares in a stock that has fallen 30% in four months. Nobody would open that as a new trade.</li>
+        </ul>
+        <p>Taking the loss in month 1 would have cost $1,333, leaving the account at $98,667. Six months later, that figure has become $40,679, plus a position that could wipe out the account at any moment.</p>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 2</div>
+        <h3>A 5-leg portfolio that “looks neutral”</h3>
+        <p>Another trader's account has 5 legs: a covered call, a short strangle, and an SPY put as insurance. He feels he's “got longs and shorts, buys and sells; it's already hedged.” Enter them into Tool 12-A (the “Load Case 2” button):</p>
+        <div class="tbl compact">
+          <table>
+            <caption>Table 12-9 Summary of the 5-leg portfolio (SPY $780; Theta in $/day, Vega in $/IV point)</caption>
+            <thead><tr><th>Leg</th><th class="l">Description</th><th>β Delta</th><th>Gamma 1%</th><th>Theta</th><th>Vega</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">1</td><td class="l">Long 300 shares of E ($50, β 1.1)</td><td class="mono">+21.2</td><td class="mono">0</td><td class="mono">0</td><td class="mono">0</td></tr>
+              <tr><td class="mono">2</td><td class="l">Short 3 E 55 calls (30 days, IV 30%)</td><td class="mono">−3.2</td><td class="mono">−0.64</td><td class="mono">+5.3</td><td class="mono">−10.1</td></tr>
+              <tr><td class="mono">3</td><td class="l">Short 2 F 180 puts (F $200, β 1.4, 30 days, IV 42%)</td><td class="mono">+12.1</td><td class="mono">−2.10</td><td class="mono">+19.4</td><td class="mono">−28.8</td></tr>
+              <tr><td class="mono">4</td><td class="l">Short 2 F 220 calls (same as above)</td><td class="mono">−17.3</td><td class="mono">−2.60</td><td class="mono">+26.0</td><td class="mono">−35.7</td></tr>
+              <tr><td class="mono">5</td><td class="l">Long 1 SPY 740 put (45 days, IV 19%)</td><td class="mono">−18.5</td><td class="mono">+4.00</td><td class="mono">−13.8</td><td class="mono">+73.1</td></tr>
+              <tr class="hl"><td></td><td class="l">Total</td><td class="mono">−5.8</td><td class="mono">−1.33</td><td class="mono">+36.9</td><td class="mono">−1.5</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>First read: Delta near zero, Gamma small, Vega almost zero, collecting $37 a day. The P&amp;L for a 5% SPY move either way is only <span class="num">−$439</span> and <span class="num">+$186</span>. It looks like a quiet income portfolio.</p>
+        <p>The second read has to look at what the summary table can't see:</p>
+        <ul>
+          <li><strong>A single stock's own gaps.</strong> Beta weighting only measures the part that “moves with the market.” If F alone rises 15% (on earnings, say), the portfolio loses <span class="num">$2,331</span>; even if F's IV drops from 42% to 30% after earnings, it still loses <span class="num">$1,746</span>. If F alone falls 15% and its IV rises to 55%, it loses <span class="num">$2,299</span>. If E alone falls 10%, it loses <span class="num">$1,406</span>. None of these numbers shows up in the summary table.</li>
+          <li><strong>Zero Vega is two opposite bets.</strong> The three single-stock legs total −$74.6 and the SPY put +$73.1. They happen to cancel, but they're driven by different things: if single-stock IVs rise 5 points across the board while index IV falls 3 points (say, in earnings season, when stocks move on their own news while the index stays calm), the portfolio loses <span class="num">$594</span>, equal to 16 days of Theta.</li>
+          <li><strong>That SPY put only protects against “a market crash”; it does nothing for these two stocks.</strong> It keeps the portfolio slightly profitable if the market falls 10%, but it's no help at all with F's earnings.</li>
+        </ul>
+        <p>Conclusion: what this portfolio is really betting on is that “F and E each stay calm, and single-stock IV doesn't rise more than index IV.” That near-zero aggregate Delta can't be the basis for a risk budget; set the budget by stress-testing each underlying on its own (Chapter 13).</p>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">Tools</span>Checklist and self-test</h2>
+      <p>Checkbox states are saved only in your own browser.</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">12-1</span>Weekly portfolio checkup</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">Convert every position into beta-weighted Delta and Gamma, plus dollar Theta and Vega</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">Write down in one sentence what the portfolio is betting on</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">Work out the breakeven daily move and compare it with recent realized moves</label></li>
+            <li><input type="checkbox" id="k4"><label for="k4">Test a ±15% gap on each underlying separately</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">12-2</span>Before rolling</h4>
+          <ul>
+            <li><input type="checkbox" id="k5"><label for="k5">Split it into two trades: buy back the old position, open the new one</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">Ask: without the old position, would I open this one? (direction, Delta, size, reason)</label></li>
+            <li><input type="checkbox" id="k7"><label for="k7">Is the new maximum loss bigger than doing nothing?</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">Place it as a combo order, and count the spread cost on every leg</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">12-3</span>When a spread is breached</h4>
+          <ul>
+            <li><input type="checkbox" id="k9"><label for="k9">List the five choices: no change, close, roll, add a leg, convert to a calendar</label></li>
+            <li><input type="checkbox" id="k10"><label for="k10">Compare them all on P&amp;L “from here,” ignoring money already lost</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">Write down your current view first, then pick the row that matches it</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">12-4</span>Signals to just close</h4>
+          <ul>
+            <li><input type="checkbox" id="k12"><label for="k12">The reason for the trade is proven wrong</label></li>
+            <li><input type="checkbox" id="k13"><label for="k13">The loss hits your line (2× premium or half the max loss)</label></li>
+            <li><input type="checkbox" id="k14"><label for="k14">The adjustment would make the maximum loss bigger</label></li>
+            <li><input type="checkbox" id="k15"><label for="k15">The same thesis has already been rolled twice</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Five self-test questions</h3>
+      <details class="q"><summary><span class="num">1</span><span>You sold 4 puts on stock A with a Delta of −0.236 per contract; A is at $150 with β 1.3, and SPY is at $780. How many SPY shares is this position equivalent to?</span></summary>
+        <div class="ans"><p>Position Delta = −0.236 × 100 × (−4) = +94.4 shares of A. In SPY: <span class="num">94.4 × 150 / 780 × 1.3 = 23.6</span> shares.</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>The portfolio's beta-weighted Gamma is −18 shares (per 1%), Theta is +$66 a day, and SPY is at $780. How far does SPY have to move in a day for that day's Theta to be wiped out?</span></summary>
+        <div class="ans"><p><span class="num">√(2 × 66 × 1% / (18 × 780)) = 0.97%</span>, about $7.56. Beyond that move, the loss from Gamma is bigger than the day's Theta.</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>You sold a 95 put for $1.80, and it's now worth $4.50. Rolling to the 40-day 95 put collects $6.57, a “net credit of $2.07.” Are you back to even?</span></summary>
+        <div class="ans"><p>No. The $2.70 loss was realized when you bought back; the new $6.57 is the price of new risk. The cumulative premium on the whole trade is 1.80 − 4.50 + 6.57 = $3.87, the breakeven is $91.13, you carry the risk 28 more days, and Delta is still −0.55. Under the risk-neutral model, its expected value is almost the same as closing outright.</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>Ten 95/90 put spreads are now worth $2.40. If you do nothing, what's the most you can still lose from here? What if you also sell a 97/102 call spread for $0.90?</span></summary>
+        <div class="ans"><p>No change: <span class="num">(5 − 2.40) × 100 × 10 = $2,600</span>. With the iron condor: <span class="num">(5 − 2.40 − 0.90) × 1,000 = $1,700</span>, because at expiry only one side can take a full loss. The cost is that if the stock rebounds above 102, the money you would have recovered turns into a loss.</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>Your rule is “take profits at 50%, stop out at a loss of 2× the premium.” What win rate do you need, at minimum, to not lose money?</span></summary>
+        <div class="ans"><p><span class="num">w* = L / (g + L) = 2 / (0.5 + 2) = 80%</span>. If the structures you sell can't reach an 80% win rate, this set of rules loses money over the long run: either tighten the stop or switch to strikes with a higher win rate.</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="Chapter navigation"></nav>
+
+    <footer class="end">
+      <p>This chapter's examples are calculated with the Black-Scholes model (4% rate, no dividends, 365-day year); stock paths, IVs and hedging scenarios are hypothetical, as stated in the text. They are for teaching only and are not investment advice.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+  const sgn = v => (v > 0 ? "+" : v < 0 ? "−" : "");
+  const kfmt = v => sgn(v) + "$" + (Math.abs(v) >= 1000 ? (Math.abs(v) / 1000).toFixed(Math.abs(v) % 1000 === 0 ? 0 : 1) + "k" : Math.round(Math.abs(v)));
+  function nice(lo, hi, n) {
+    if (hi - lo < 1e-9) { lo -= 1; hi += 1; }
+    const raw = (hi - lo) / (n || 5), mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    const st = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => s >= raw - 1e-12);
+    const a = Math.floor(lo / st) * st, b = Math.ceil(hi / st) * st, t = [];
+    for (let v = a; v <= b + st * 1e-6; v += st) t.push(+v.toFixed(6));
+    return { lo: a, hi: b, t };
+  }
+
+  // ---------- tool 12-A + fig 12-1 ----------
+  (function () {
+    const PRE = {
+      open: [
+        ["SPY 760 put", "p", -5, 780, 760, 30, 17, 1.0],
+        ["SPY 740 put", "p", 5, 780, 740, 30, 19, 1.0],
+        ["A 140 put", "p", -4, 150, 140, 30, 38, 1.3],
+        ["D 82 put", "p", -3, 90, 82, 30, 45, 1.5],
+        ["(empty)", "p", 0, 100, 100, 30, 30, 1.0],
+        ["(empty)", "c", 0, 100, 100, 30, 30, 1.0]
+      ],
+      case2: [
+        ["E shares", "s", 300, 50, 0, 0, 0, 1.1],
+        ["E 55 call", "c", -3, 50, 55, 30, 30, 1.1],
+        ["F 180 put", "p", -2, 200, 180, 30, 42, 1.4],
+        ["F 220 call", "c", -2, 200, 220, 30, 42, 1.4],
+        ["SPY 740 put", "p", 1, 780, 740, 45, 19, 1.0],
+        ["(empty)", "p", 0, 100, 100, 30, 30, 1.0]
+      ]
+    };
+    const NR = 6, IDS = ["n", "t", "q", "s", "k", "d", "v", "b"];
+    const tbody = document.querySelector("#c-tbl tbody");
+    const spyIn = document.getElementById("c-spy");
+    let rows = "";
+    for (let i = 0; i < NR; i++) rows += `<tr>
+      <td><input class="name" id="c-n${i}" aria-label="Position name"></td>
+      <td><select id="c-t${i}" aria-label="Type"><option value="c">Call</option><option value="p">Put</option><option value="s">Stock</option></select></td>
+      <td><input id="c-q${i}" type="number" step="1" aria-label="Contracts"></td>
+      <td><input id="c-s${i}" type="number" step="1" aria-label="Underlying price"></td>
+      <td><input id="c-k${i}" type="number" step="1" aria-label="Strike"></td>
+      <td><input id="c-d${i}" type="number" step="1" min="0" aria-label="Days left"></td>
+      <td><input id="c-v${i}" type="number" step="1" min="1" aria-label="Implied volatility"></td>
+      <td><input id="c-b${i}" type="number" step="0.1" aria-label="Beta"></td>
+      <td class="mono" id="c-o${i}">—</td><td class="mono" id="c-g${i}">—</td><td class="mono" id="c-h${i}">—</td><td class="mono" id="c-w${i}">—</td></tr>`;
+    tbody.innerHTML = rows;
+    const $ = (id, i) => document.getElementById("c-" + id + i);
+    function load(key) { PRE[key].forEach((r, i) => IDS.forEach((id, j) => { $(id, i).value = r[j]; })); calc(); }
+    function legs() {
+      const out = [];
+      for (let i = 0; i < NR; i++) {
+        const t = $("t", i).value;
+        ["k", "d", "v"].forEach(id => { $(id, i).disabled = t === "s"; });
+        out.push({ t, q: +$("q", i).value || 0, S: +$("s", i).value || 0, K: +$("k", i).value || 0, d: Math.max(+$("d", i).value || 0, 0), iv: (+$("v", i).value || 0) / 100, b: +$("b", i).value || 0 });
+      }
+      return out;
+    }
+    const Z = { val: 0, bwd: 0, bwg: 0, th: 0, ve: 0 };
+    function legVal(l, spy, x, dv, dt) {
+      if (!l.q || l.S <= 0) return Z;
+      const S = Math.max(l.S * (1 + l.b * x), 0.01);
+      if (l.t === "s") return { val: l.q * S, bwd: l.q * S / spy * l.b, bwg: 0, th: 0, ve: 0 };
+      if (l.K <= 0) return Z;
+      const g = bs(S, l.K, Math.max(l.d - dt, 0) / DAY, Math.max(l.iv + dv, 0.01), l.t);
+      const m = 100 * l.q;
+      return { val: g.price * m, bwd: g.delta * m * S / spy * l.b, bwg: g.gamma * m * Math.pow(l.b * S, 2) * 0.01 / spy, th: g.theta * m, ve: g.vega * m };
+    }
+    function total(L, spy, x, dv, dt) {
+      const t = { val: 0, bwd: 0, bwg: 0, th: 0, ve: 0 };
+      L.forEach(l => { const r = legVal(l, spy, x, dv, dt); for (const k in t) t[k] += r[k]; });
+      return t;
+    }
+    let state = { L: [], spy: 780 };
+    function calc() {
+      const L = legs(), spy = +spyIn.value || 780;
+      state = { L, spy };
+      L.forEach((l, i) => {
+        const r = legVal(l, spy, 0, 0, 0), on = l.q !== 0;
+        $("o", i).textContent = on ? fmt(r.bwd, 1) : "—";
+        $("g", i).textContent = on ? fmt(r.bwg, 2) : "—";
+        $("h", i).textContent = on ? fmt(r.th, 1) : "—";
+        $("w", i).textContent = on ? fmt(r.ve, 1) : "—";
+      });
+      const t = total(L, spy, 0, 0, 0);
+      document.getElementById("c-r1").textContent = sgn(t.bwd) + Math.abs(t.bwd).toFixed(1) + " shares";
+      document.getElementById("c-r2").textContent = sgn(t.bwg) + Math.abs(t.bwg).toFixed(2) + " shares";
+      document.getElementById("c-r3").textContent = sgn(t.th) + "$" + Math.abs(t.th).toFixed(1);
+      document.getElementById("c-r4").textContent = sgn(t.ve) + "$" + Math.abs(t.ve).toFixed(1);
+      drawSurface();
+    }
+    document.querySelectorAll("#calc [data-preset]").forEach(b => b.addEventListener("click", () => load(b.dataset.preset)));
+    document.getElementById("calc").addEventListener("input", calc);
+    document.getElementById("calc").addEventListener("change", calc);
+
+    // fig 12-1
+    const svg = document.getElementById("f1-svg");
+    const segs = document.querySelectorAll("#fig1 .seg button");
+    const legendEl = document.getElementById("f1-legend");
+    let mode = "t";
+    function linked(x) { return x < 0 ? -x * 100 * 0.01 : -x * 100 * 0.005; }
+    function drawSurface() {
+      const { L, spy } = state;
+      if (!L.length) return;
+      const base = total(L, spy, 0, 0, 0).val;
+      const pnl = (x, dv, dt) => total(L, spy, x, dv, dt).val - base;
+      const xs = range(-10, 10, 0.25);
+      let sets;
+      if (mode === "t") sets = [[0, "Today", 1, ""], [7, "In 7 days", 0.75, ""], [14, "In 14 days", 0.55, ""], [21, "In 21 days", 0.38, ""]].map(([d, nm, op]) => ({ nm, op, color: "var(--theta)", pts: xs.map(x => [x, pnl(x / 100, 0, d)]) }));
+      else if (mode === "v") sets = [[-0.05, "IV −5 points", "var(--theta)"], [0, "IV unchanged", "var(--ink)"], [0.05, "IV +5 points", "var(--warn)"], [0.10, "IV +10 points", "var(--gamma)"]].map(([dv, nm, color]) => ({ nm, color, op: 1, pts: xs.map(x => [x, pnl(x / 100, dv, 0)]) }));
+      else sets = [{ nm: "IV unchanged", color: "var(--muted)", op: 1, dash: "5 5", pts: xs.map(x => [x, pnl(x / 100, 0, 0)]) }, { nm: "IV +1 point per 1% drop, −0.5 per 1% rise", color: "var(--gamma)", op: 1, pts: xs.map(x => [x, pnl(x / 100, linked(x / 100), 0)]) }];
+      let lo = Infinity, hi = -Infinity;
+      sets.forEach(s => s.pts.forEach(p => { lo = Math.min(lo, p[1]); hi = Math.max(hi, p[1]); }));
+      const nt = nice(lo, hi, 5);
+      plot(svg, {
+        x: [-10, 10], y: [nt.lo, nt.hi], xt: range(-10, 10, 5), yt: nt.t,
+        xf: v => sgn(v) + Math.abs(v) + "%", yf: kfmt,
+        xlabel: "SPY move (stocks move by β)", ylabel: "Portfolio P&L ($)", zero: 0, vline: 0,
+        series: sets.map(s => ({ pts: s.pts, color: s.color, w: 2.4, op: s.op, dash: s.dash }))
+      });
+      legendEl.innerHTML = sets.map(s => `<span><i class="${s.dash ? "dash" : ""}" style="border-color: ${s.color}; opacity: ${s.op}"></i>${s.nm}</span>`).join("");
+      document.getElementById("f1-r1").textContent = money(pnl(-0.05, 0, 0));
+      document.getElementById("f1-r2").textContent = money(pnl(0.05, 0, 0));
+      document.getElementById("f1-r3").textContent = money(pnl(0, 0, 7));
+      document.getElementById("f1-r4").textContent = money(pnl(0, 0.05, 0));
+    }
+    segs.forEach(b => b.addEventListener("click", () => {
+      mode = b.dataset.mode;
+      segs.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      drawSurface();
+    }));
+    load("open");
+    CK.figure(drawSurface);
+  })();
+
+  // ---------- fig 12-2 ----------
+  (function () {
+    const svg = document.getElementById("f2-svg");
+    const sS = document.getElementById("f2-s"), sD = document.getElementById("f2-d"), sK = document.getElementById("f2-k");
+    const N = 5, IV = 0.42, K0 = 95, LEFT = 12;
+    const c0 = bs(100, 95, 30 / DAY, 0.35, "p").price;
+    function draw() {
+      const S = +sS.value, dn = +sD.value, kn = +sK.value;
+      document.getElementById("f2-s-o").textContent = "$" + S;
+      document.getElementById("f2-d-o").textContent = dn + " days";
+      document.getElementById("f2-k-o").textContent = kn;
+      const buy = bs(S, K0, LEFT / DAY, IV, "p").price;
+      const pOut = bs(S, K0, dn / DAY, IV, "p").price;
+      const pDown = bs(S, kn, LEFT / DAY, IV, "p").price;
+      const pOD = bs(S, kn, dn / DAY, IV, "p").price;
+      const tot = (prem, K) => ST => (c0 - buy + prem - Math.max(K - ST, 0)) * 100 * N;
+      const xs = range(72, 104, 0.25);
+      const fC = () => (c0 - buy) * 100 * N, fO = tot(pOut, K0), fD = tot(pDown, kn), fOD = tot(pOD, kn);
+      const ser = [
+        { pts: xs.map(x => [x, fC()]), color: "var(--muted)", w: 2, dash: "6 5" },
+        { pts: xs.map(x => [x, fO(x)]), color: "var(--delta)", w: 2.4 },
+        { pts: xs.map(x => [x, fD(x)]), color: "var(--theta)", w: 2.4 },
+        { pts: xs.map(x => [x, fOD(x)]), color: "var(--gamma)", w: 2.4 }
+      ];
+      let lo = Infinity, hi = -Infinity;
+      ser.forEach(s => s.pts.forEach(p => { lo = Math.min(lo, p[1]); hi = Math.max(hi, p[1]); }));
+      const nt = nice(lo, hi, 5);
+      plot(svg, {
+        x: [72, 104], y: [nt.lo, nt.hi], xt: range(72, 104, 4), yt: nt.t, yf: kfmt,
+        xlabel: "Stock price at new expiry ($)", ylabel: "Whole-trade P&L (5 contracts)", zero: 0, vline: S,
+        series: ser
+      });
+      document.getElementById("f2-r1").textContent = money(fC());
+      document.getElementById("f2-r2").textContent = money((pOut - buy) * 100 * N);
+      document.getElementById("f2-r3").textContent = money((pDown - buy) * 100 * N);
+      document.getElementById("f2-r4").textContent = money((pOD - buy) * 100 * N);
+    }
+    [sS, sD, sK].forEach(s => s.addEventListener("input", draw));
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 12-3 ----------
+  (function () {
+    const svg = document.getElementById("f3-svg");
+    const btns = document.querySelectorAll("#fig3 .seg button");
+    const S0 = 93, IV = 0.38, H = 14;
+    const OPT = {
+      hold: [["p", 95, 14, -10], ["p", 90, 14, 10]],
+      close: [],
+      roll: [["p", 90, 42, -10], ["p", 85, 42, 10]],
+      ic: [["p", 95, 14, -10], ["p", 90, 14, 10], ["c", 97, 14, -10], ["c", 102, 14, 10]],
+      cal: [["p", 95, 14, -10], ["p", 95, 42, 10]]
+    };
+    const value = (legs, S, dt) => legs.reduce((s, l) => s + bs(S, l[1], Math.max(l[2] - dt, 0) / DAY, IV, l[0]).price * 100 * l[3], 0);
+    const v0 = {}; for (const k in OPT) v0[k] = value(OPT[k], S0, 0);
+    const pnl = (k, S) => value(OPT[k], S, H) - v0[k];
+    const px = (K, d, kind) => bs(S0, K, d / DAY, IV, kind).price;
+    const vOld = px(95, 14, "p") - px(90, 14, "p");
+    const crRoll = px(90, 42, "p") - px(85, 42, "p");
+    const crCall = px(97, 14, "c") - px(102, 14, "c");
+    let calMin = Infinity; for (let s = 50; s <= 150; s += 0.5) calMin = Math.min(calMin, pnl("cal", s));
+    const INFO = {
+      hold: { cash: 0, max: -(5 - vOld) * 1000 },
+      close: { cash: -vOld * 1000, max: 0 },
+      roll: { cash: (crRoll - vOld) * 1000, max: -(5 - crRoll) * 1000 },
+      ic: { cash: crCall * 1000, max: -(5 - vOld - crCall) * 1000 },
+      cal: { cash: (px(90, 14, "p") - px(95, 42, "p")) * 1000, max: calMin, approx: true }
+    };
+    const xs = range(80, 110, 0.25);
+    const curves = {}; for (const k in OPT) curves[k] = xs.map(x => [x, pnl(k, x)]);
+    let sel = "roll";
+    function draw() {
+      const series = [];
+      for (const k in OPT) if (k !== sel && k !== "hold") series.push({ pts: curves[k], color: "var(--muted)", w: 1.6, op: 0.45 });
+      series.push({ pts: curves.hold, color: "var(--ink)", w: 1.8, dash: "6 5" });
+      series.push({ pts: curves[sel], color: "var(--gamma)", w: 3 });
+      plot(svg, {
+        x: [80, 110], y: [-3500, 3500], xt: range(80, 110, 5), yt: [-3000, -2000, -1000, 0, 1000, 2000, 3000], yf: kfmt,
+        xlabel: "Stock price in 14 days ($)", ylabel: "P&L from here ($)", zero: 0, vline: S0, series
+      });
+      const I = INFO[sel];
+      document.getElementById("f3-r1").textContent = I.cash === 0 ? "$0" : money(I.cash);
+      document.getElementById("f3-r2").textContent = I.max === 0 ? "$0" : (I.approx ? "about " : "") + money(I.max);
+      const a = pnl(sel, 93), b = pnl(sel, 85);
+      document.getElementById("f3-r3").textContent = Math.abs(a) < 0.5 ? "$0" : money(a);
+      document.getElementById("f3-r4").textContent = Math.abs(b) < 0.5 ? "$0" : money(b);
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      sel = b.dataset.opt;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 12-4 ----------
+  (function () {
+    const svg = document.getElementById("f4-svg");
+    const btns = document.querySelectorAll("#fig4 .seg button");
+    // 由 Python 按表 12-8 的规则逐月计算
+    const notional = [47500, 63000, 93500, 136000, 195000, 273000, 390000];
+    const stress = [6929, 10017, 15422, 22645, 32460, 45328, 64510];
+    const equity = [100000, 98667, 95941, 91273, 84583, 73447, 59321];
+    const closed = [100000, 98667, 98667, 98667, 98667, 98667, 98667];
+    let v = "n";
+    function draw() {
+      const vals = v === "n" ? notional : stress;
+      const ymax = v === "n" ? 440000 : 120000;
+      const step = v === "n" ? 100000 : 20000;
+      const r = plot(svg, {
+        x: [-0.6, 6.6], y: [0, ymax], xt: [0, 1, 2, 3, 4, 5, 6], yt: range(0, v === "n" ? 400000 : 120000, step),
+        xf: m => "Month " + m + "", yf: y => "$" + (y / 1000) + "k", xlabel: "", ylabel: v === "n" ? "Notional exposure / equity" : "Stress loss / equity",
+        bars: vals.map((y, i) => ({ x: i, y, w: 0.56, color: "var(--tint-warn)" })),
+        series: [
+          { pts: closed.map((y, i) => [i, y]), color: "var(--theta)", w: 2, dash: "6 5" },
+          { pts: equity.map((y, i) => [i, y]), color: "var(--delta)", w: 2.6 }
+        ],
+        dots: equity.map((y, i) => [i, y, "var(--delta)", 3.5])
+      });
+      vals.forEach((y, i) => {
+        const t = el("text", { x: r.X(i), y: Math.max(r.Y(y) - 6, 12), "text-anchor": "middle", style: "fill: var(--warn); font-family: var(--font-mono); font-size: 11px" }, r.g);
+        t.textContent = Math.round(y / 1000) + "k";
+      });
+      r.g.querySelectorAll("rect").forEach(rc => { rc.style.stroke = "var(--warn)"; rc.style.strokeWidth = "1"; });
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      v = b.dataset.v;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    CK.figure(draw);
+  })();
+
+})();
+</script>
+<script id="lang-js">(function(){document.querySelectorAll(".lang-switch").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("hl-lang",a.getAttribute("data-lang"))}catch(e){}var h=a.getAttribute("href");if(location.hash&&h.indexOf("#")<0)a.setAttribute("href",h+location.hash);});});})();</script>
+</body>
+</html>

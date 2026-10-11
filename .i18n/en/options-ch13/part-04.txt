@@ -1,0 +1,246 @@
+@@ 9b8686e409 html
+<span class="sn">Cases</span>Two cases
+@@ 266b1c7749 html
+February 2018: a retail account short volatility
+@@ 6b2ec80138 html
+The facts first. In the run-up to early 2018, the market went through a long stretch of low volatility, and many retail traders treated “short volatility” as a source of steady income. The usual tools were exchange-traded products that were short VIX futures, and short index puts. On February 5, the VIX more than doubled in a single day; these products lost most of their net asset value in the rebalancing after the close, and one of them was later terminated early by its issuer.
+@@ d9454fdaa6 html
+Below, hypothetical numbers replay a typical account ($100,000) to show how it lost 40% in a day or two:
+@@ 5d12fed8de html
+$40,000 in a product that delivers “−1× daily” the return of a short-term VIX futures index
+@@ 364dd28ec4 html
+Short 30 index ETF puts with 30 days to expiry: ETF at $100, 95 strike, IV only 12%, $0.08 collected on each, <span class="num">$241</span> in total
+@@ a384d39ef2 html
+Table 13-6 Before and after the shock (assumed: ETF −6%, IV up to 30%, short-term VIX futures index +80% in one day)
+@@ e9b9c5edba html
+Item
+@@ 23776a08d8 html
+Before
+@@ 3c9a885efd html
+After
+@@ dc0aac1119 html
+Change
+@@ 04154d2a12 html
+Inverse VIX product
+@@ 8ff11e9af0 html
+30 short 95 puts (per share)
+@@ 713962234b html
+Margin requirement on the puts
+@@ bae0b8d162 html
+The math: a −1× product moves each day by the negative of the index’s move, so when the index rises 80% it falls 80%, and $40,000 becomes $8,000. If the index rose 100% in a day, it would in theory go to zero; in reality, the index rose even more that day than this example assumes. The puts: with the ETF at 94, IV 30% and 27 days left, each is worth $3.444, a loss of <span class="num">(3.444 − 0.080) × 100 × 30 = $10,090</span>, 42 times the income. Margin, using the formula from Section 13.6, rises from $45,241 to $66,731, more than the account’s equity.
+@@ c5520b522a html
+By this chapter’s rule card, the account had broken three rules before the shock even hit:
+@@ f1c84a84fc html
+<strong>Stress loss</strong>: the inverse product is built to go to zero if “the index doubles,” so its stress loss is the entire $40,000 (40%). That one position alone exceeds the 20% total cap.
+@@ 5fa532e947 html
+<strong>Concentration</strong>: both kinds of position bet on the same thing (the market staying calm), so they are really one position.
+@@ d5efd4cdc5 html
+<strong>Margin</strong>: before the shock, margin on the puts was already 45% of equity, above the 35% cap.
+@@ 624e8eee2c html
+Lesson: selling options at 12% IV collects the least premium while leaving IV the most room to double. Low IV is not low risk; it often means risk is priced at its cheapest.
+@@ 716034dc27 html
+November 2018: an advisory firm selling natural gas options
+@@ 3b1efa4d51 html
+The facts first. A US investment advisory firm specialized in selling options on commodity futures for its clients, mainly selling deep OTM options to collect premium. The appeal of this kind of strategy is its high win rate: most deep OTM options expire worthless. In mid-November 2018, natural gas futures surged within a very short time, while the firm’s client accounts held large numbers of short natural gas calls. After the futures clearing firm forcibly liquidated the positions, many clients not only lost their entire accounts but also owed the clearing firm money. The firm then shut down, and its head apologized publicly.
+@@ 2e10e9e342 html
+Below, hypothetical numbers replay one account ($500,000). A natural gas futures contract covers 10,000 MMBtu, so each $0.01 move in price changes one contract’s value by $100. With futures at $3.30, the account sells 60 calls with 75 days to expiry and a $4.50 strike (36% above the current price, IV 45%). Using the Black model, each is worth $0.0217, or <span class="num">$217</span>; 60 contracts bring in <span class="num">$13,032</span>, 2.6% of the account, with a Delta of only 0.077.
+@@ a9a63312d7 html
+Table 13-7 Unrealized losses as futures surge (hypothetical price and IV path)
+@@ f5d86acdac html
+Scenario
+@@ a42b17f77b html
+Futures price
+@@ e5d776948b html
+Value per call
+@@ 35c32ff469 html
+Unrealized loss, 60 contracts
+@@ a06fe3fe00 html
+Delta per contract
+@@ b0ea98c37f html
+Open
+@@ 921b7cd90f html
++15% (7 days later)
+@@ 692a9728ed html
++27% (11 days later)
+@@ 16b0e1ef3f html
++39% (14 days later)
+@@ f6cb49a365 html
++48% (15 days later)
+@@ 6c28f0e14d html
+Take the last row: futures at $4.90, IV 100%, 60 days left, each call is worth $0.9650, or $9,650; 60 contracts come to $579,018. Subtract the $13,032 collected and the unrealized loss is $565,985, $65,985 more than the entire account. That excess is what the client owes the clearing firm.
+@@ 25af3546a0 html
+<strong>Deep OTM does not mean safe.</strong> At the open, Delta was 0.077, which looks like “it’ll almost never get there”; after futures rose 48%, Delta was 0.656. In the surge, the seller’s Gamma turned the position into a large short.
+@@ 6924d37ffa html
+<strong>For commodity calls, the tail is on the upside.</strong> Weather, inventories and supply disruptions can all make prices jump higher, and short covering speeds up the rise. The equity seller’s habit of thinking “only drops are dangerous” is exactly backward here.
+@@ 8f1580bb1a html
+<strong>Options on futures can lose more than the whole account.</strong> The multiplier is large, margin is computed from scenarios (SPAN), and requirements climb steeply when price and IV rise together. The clearing firm liquidates at the worst moment.
+@@ aeab1bb9fe html
+<strong>Three rules broken at once.</strong> Per trade: stress loss far above 5%. Aggregate: one commodity was the entire book. Concentration: every client account was in the same commodity, in the same direction.
+@@ 76fc557033 html
+<span class="sn">Tools</span>Checklist and self-test
+@@ b4640d623d html
+Your checkmarks are saved only in your own browser.
+@@ d50d7b1cad html
+<span class="num">13-1</span>Weekly risk review
+@@ f84eb20643 html
+List notional exposure, max loss and stress loss for every position
+@@ 72e7c5b11d html
+Run the three scenarios: −20%, IV doubles, both together
+@@ 4cdc9c36ae html
+Check against the rule card and flag everything over a limit
+@@ 12017ba59b html
+Write down the fix and carry it out within the week
+@@ a6ec9fc205 html
+<span class="num">13-2</span>Before opening a new position
+@@ 87e4febff5 html
+Size by max loss or stress loss, not by premium
+@@ 6097751697 html
+Check whether it is the same bet as positions you already hold
+@@ 24d9587498 html
+Bid–ask spread no more than 10% of the premium
+@@ 5470efa349 html
+Check the earnings and ex-dividend dates, and confirm how your broker computes margin on this trade
+@@ 5e935e7949 html
+<span class="num">13-3</span>Expiration week
+@@ c29f7c9068 html
+Deep ITM short legs: is the time value close to zero?
+@@ cc9ddc6cee html
+Short calls: before the ex-dividend date, is the time value less than the dividend?
+@@ 5bca66bfcb html
+Before the close, close short legs within 1% of the current price
+@@ a6f5d33bbc html
+Self-test: five questions
+@@ 8b5ae77b32 html
+<span class="num">1</span><span>The stock is at $100, and you sell one 30-day 90 put at $1.00 (IV 40%). What are its notional exposure, max loss and stress loss (−20%, IV doubles)?</span>
+@@ 8064106a7b html
+Notional exposure 100 × $100 = $10,000 (cash-securing it takes $9,000); max loss (90 − 1.00) × 100 = $8,900; stress loss about $1,254, 12.5 times the premium.
+@@ 7a4b02b0a8 html
+<span class="num">2</span><span>You estimate your win rate when buying options at 35%, with wins averaging 2 times the premium. What is the Kelly fraction? What if your true win rate is 32%?</span>
+@@ c2357178f3 html
+<span class="num">(2 × 0.35 − 0.65) / 2 = 2.5%</span>; at a 32% win rate, <span class="num">(0.64 − 0.68) / 2 = −2%</span>: the expectancy is negative, so you shouldn’t bet at all. A 3-point error in win rate flips the conclusion, which is why the size you actually use should be far below the Kelly ceiling.
+@@ e68386c8bf html
+<span class="num">3</span><span>Your account is $80,000, and one put spread has a max loss of $435. Under “max loss per trade ≤ 3%,” how many spreads can you open at most?</span>
+@@ 5eabde9bcc html
+3% is $2,400; <span class="num">2,400 ÷ 435 = 5.5</span>, so 5 spreads, for a max loss of $2,175.
+@@ 342a8035f0 html
+<span class="num">4</span><span>You sell one put on each of ten stocks. If the correlation between the stocks rises from 0.3 to 0.9, how do the average P&amp;L and the worst-1% outcome change?</span>
+@@ a185b489ea html
+In the Figure 13-2 simulation, average P&amp;L goes from +$277 to +$261, almost unchanged; the worst 1% widens from −$3,986 to −$9,706, about 2.4 times as much. Correlation moves the tail; the average is barely affected.
+@@ 88a22e5b37 html
+<span class="num">5</span><span>Your 95/90 put spread has 14 days left, the stock has fallen to $85, and the 95 put has only $0.06 of time value left. What will happen, and what should you do?</span>
+@@ 15d964cf92 html
+The short leg is likely to be assigned early: 10 spreads would deliver 1,000 shares worth $95,000, with Reg T initial margin of about $47,500, far more than the spread’s max loss. Deal with the short leg proactively: close the whole spread, or at least the short leg, and confirm first how your broker computes margin.
+@@ 4fd4d24ca6 html
+The examples in this chapter are computed with the Black-Scholes model (its Black form for options on futures), 4% rate, no dividends, 365-day year; simulations, quotes, price paths and margin are assumptions as noted in the text. Historical events are described only in qualitative terms. This content is for education and is not investment advice.
+@@ a70e23cc3d text
+US Options&nbsp;
+@@ 875f2902a9 text
+Course
+@@ 8de3b6a934 text
+US Options Course · Part 4 Portfolio and risk management · Chapter 13
+@@ 167e7e2f42 text
+A buyer with a 35% win rate will most likely hit 9 losses in a row within 100 trades
+@@ e7f4a8d0ab text
+Figure 13-1 · Distribution of the longest losing streak in 100 trades
+@@ f34fb62514 text
+Probability
+@@ e5d0ea806a text
+Worst 5%
+@@ a7ea2e5626 text
+Median longest losing streak
+@@ be02038e77 text
+Not exceeded 95% of the time
+@@ 6d752cdb19 text
+Drawdown from that streak
+@@ ca15a39d23 text
+Chance of at least one 10-loss streak
+@@ f24f21ec35 text
+Key point
+@@ fc9875697d text
+Stress tester
+@@ 3f706d8e92 text
+Tool 13-A · Editable; defaults to the Table 13-3 account
+@@ b20d8dd772 text
+IV unchanged
+@@ 58a8c19237 text
+IV × selected multiple
+@@ 64a405cfbd text
+−20% account limit
+@@ 7a75ce9f80 text
+Portfolio P&amp;L in scenario
+@@ 2d79da3314 text
+% of account
+@@ 07d1e6f3bc text
+Largest single-underlying loss (share)
+@@ e5118beb16 text
+Total premium received
+@@ 44df5c5f0a text
+Correlation barely changes the average return, but makes the tail several times larger
+@@ 8cb13fcccb text
+Figure 13-2 · P&amp;L at expiry of 10 short 90 puts (1 per stock)
+@@ 02de45a977 text
+Current correlation
+@@ 7fe3981ab1 text
+Reference: ρ = 0
+@@ cd813a6f46 text
+Average P&amp;L
+@@ d3ab9c2e5b text
+Worst 5% of scenarios
+@@ 1663c25d5e text
+Worst 1% of scenarios
+@@ f8fec6a04d text
+Probability of losing more than $5,000
+@@ 13d116a126 text
+What to do
+@@ 32a7231782 text
+The margin spiral: each turn makes the next one steeper
+@@ e1cadb6d74 text
+Figure 13-3 · Schematic
+@@ a1aa21848e text
+Field notes
+@@ 046dfb89e4 text
+Case 1
+@@ 411ced42ca text
+Case 2
+@@ 5205b402f9 attr
+Jump to chapter
+@@ ae78ea9525 attr
+In this chapter
+@@ 61d45d3b2f attr
+Premium per trade as % of account
+@@ 8bd64e86aa attr
+Probability distribution of the longest losing streak
+@@ bf611ee104 attr
+Portfolio P&L versus gap size
+@@ 5b39cce151 attr
+Probability that the portfolio loss exceeds a given amount
+@@ 269eba3d9e attr
+The loop in which falling prices and rising IV raise margin, force positions closed, and push IV higher still
+@@ f0852d355e attr
+Chapter navigation
+@@ 76a77a1e42 js
+Longest losing streak in 100 trades (trades)
+@@ 42f9ea088a js
+Probability
+@@ d24a041501 js
+ trades
+@@ 6f3c4cfb62 tpl
+<tr>
+      <td><input class="name" id="s-n{0}" value="{1}" aria-label="Underlying"></td>
+      <td><select id="s-t{2}" aria-label="Type"><option value="p"{3}>Put</option><option value="c"{4}>Call</option></select></td>
+      <td><input id="s-q{5}" type="number" step="1" value="{6}" aria-label="Contracts"></td>
+      <td><input id="s-s{7}" type="number" step="1" value="{8}" aria-label="Underlying price"></td>
+      <td><input id="s-k{9}" type="number" step="1" value="{10}" aria-label="Strike"></td>
+      <td><input id="s-d{11}" type="number" step="1" min="0" value="{12}" aria-label="Days to expiry"></td>
+      <td><input id="s-v{13}" type="number" step="1" min="1" value="{14}" aria-label="Implied volatility"></td>
+      <td class="mono" id="s-m{15}">—</td><td class="mono" id="s-p{16}">—</td></tr>
+@@ 8e33d6fff7 js
+Gap in all underlyings
+@@ cd0f801ebf js
+Portfolio P&L ($)
+@@ a60f2d6b4b js
+No loss
+@@ b0eed40a98 js
+Portfolio loss exceeds ($)
+@@ 797bc91dfe js
+Probability (log scale)

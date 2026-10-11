@@ -1,0 +1,204 @@
+@@ a70e23cc3d text
+US Options
+@@ 875f2902a9 text
+ Course
+@@ f2ab188d75 text
+US Options Course · Part 2 The core variables · Chapter 6
+@@ 3c2cc68fa0 text
+annual
+@@ 37e5ff9c3e text
+daily
+@@ 857113418e text
+Trading days vs. calendar days
+@@ b4700a220b text
+The shorter the window, the faster RV reacts, and the noisier it is
+@@ 061251f067 text
+Figure 6-1 · Simulated prices, interactive
+@@ d2392a66c7 text
+Rolling RV (annualized)
+@@ fd27cd0f78 text
+True volatility set in the simulation
+@@ 6e3aef247f text
+Shock period (days 121–150)
+@@ 11bc75d333 text
+RV on the last day
+@@ 53cbdfc222 text
+Peak RV in the period
+@@ 3d00c7d1d4 text
+Days after the shock starts until RV tops 30%
+@@ 5729155e2d text
+Days after the shock ends until RV falls below 30%
+@@ ec19a1640e text
+Daily P&amp;L
+@@ b532a16616 text
+Total P&amp;L
+@@ 39cdf024e6 text
+Where buyers and sellers fight it out
+@@ 873873da44 text
+When it doesn’t hold
+@@ 79ee3b455a text
+Current IV
+@@ e5478d44ed text
+1-year low
+@@ e68c7c781c text
+1-year high
+@@ dbf961bf97 text
+Days in the past year with IV below current
+@@ 2ae94fffbe text
+Total days
+@@ 892688debf text
+One spike keeps IV Rank low for a long time; Percentile is unaffected
+@@ 284b45f1a1 text
+Figure 6-2 · One simulated year of IV, interactive
+@@ 737027503b text
+30-day IV over the past year
+@@ 16d579c9c0 text
+1-year low / high
+@@ bf33ca320e text
+Days with IV above current
+@@ 47dba0664c text
+Three things to check before using them
+@@ 0549aa16fb text
+fwd
+@@ 4b42c622e1 text
+Three shapes of the term structure
+@@ 6fe15712b6 text
+Figure 6-3 · Hypothetical ATM IV
+@@ 6c46072acb text
+30-day IV
+@@ 8e4f02247d text
+90-day IV
+@@ cdc143c6eb text
+30-day / 90-day
+@@ 8922340367 text
+Forward volatility, days 30–90
+@@ 664d18fe69 text
+Skew makes OTM puts several times pricier than the “flat assumption”
+@@ 8555c3a8f6 text
+Figure 6-4 · 30-day expiry, underlying 100, hypothetical curves
+@@ aa3739dba5 text
+IV by strike
+@@ 92f5f268b0 text
+Flat assumption: all at ATM IV
+@@ 7586fd3f91 text
+IV at this strike
+@@ 8c9af4c721 text
+Price on the curve
+@@ a66ddbec6d text
+Price at ATM IV
+@@ 637728f580 text
+Curve price ÷ flat price
+@@ 227c0575eb text
+25 Delta risk reversal
+@@ ec043a6d11 text
+1 standard deviation over one month
+@@ d5bafcc98c text
+When this range is off
+@@ 8334b6f519 text
+VIX to expected-move calculator
+@@ c89cfbc029 text
+Tool 6-A · editable
+@@ 060f650178 text
+1 SD, one month
+@@ ed06659bd7 text
+One-month ±1 SD range (about 68%)
+@@ 2074d57ad6 text
+One-month ±2 SD range (about 95%)
+@@ b8ae930ca1 text
+1 SD, one week
+@@ 58d48713c6 text
+1 SD, one trading day
+@@ f25ea1809c text
+Value of futures to buy
+@@ 9b222b90b0 text
+starting NAV
+@@ a1aa21848e text
+Field notes
+@@ be884cb036 text
+incl. event
+@@ 12652f2bdc text
+base
+@@ a65d0fe2fe text
+ATM straddle
+@@ 046dfb89e4 text
+Case 1
+@@ 411ced42ca text
+Case 2
+@@ 81acdd30ad text
+Case 3
+@@ 5205b402f9 attr
+Jump to chapter
+@@ ae78ea9525 attr
+In this chapter
+@@ 3ee8cbb569 attr
+Simulated stock price path
+@@ 661798c5f5 attr
+Rolling realized volatility vs. true volatility
+@@ e74b95ed94 attr
+One year of IV and the current IV
+@@ a5c1753d6f attr
+Term structure shape
+@@ 4229e3bc77 attr
+ATM IV across expirations
+@@ c9f1c95627 attr
+Skew shape
+@@ 068388f13b attr
+Implied volatility across strikes
+@@ f0852d355e attr
+Chapter navigation
+@@ c87f6311bf js
+ days
+@@ 150b8e7f30 js
+Stock price
+@@ 905f2b6888 js
+Trading day
+@@ 7dfc9a1840 js
+Annualized volatility
+@@ 07cf15371d js
+Peak RV in the period (after 
+@@ c4badfbe97 js
+ days)
+@@ 962662ddb0 js
+Never
+@@ 5ae550b0ec js
+Not yet
+@@ bbee1c60f0 js
+1 yr ago
+@@ 74337e988a js
+Today
+@@ fc7bc0d5df js
+<empty>
+@@ bb6a7bf0ab js
+d
+@@ 2c7bef16b4 js
+Past 252 trading days
+@@ e5394294ae js
+30-day ATM IV
+@@ 8baa4ff2ef js
+High 
+@@ 0ce28c972f js
+Low 
+@@ 29efd4a9e9 js
+Stock index, calm period
+@@ 4d4e5946df js
+Stock index, panic
+@@ 1b6c555ade js
+Single stock, earnings on day 10
+@@ 978015027f js
+Days to expiration
+@@ 85e579b1a9 js
+ATM IV
+@@ 3cfc47c474 tpl
+<span><i class="dash" style="border-color: var(--muted)"></i>Base IV excluding the event: 30%</span>
+@@ e4f4e00bf0 js
+Strike (underlying 100)
+@@ 79665988d3 js
+Implied volatility
+@@ 210b16829a js
+Price on the curve (
+@@ 9431327709 js
+put
+@@ 366177acc2 js
+call
+@@ f485df2f3e js
+ points

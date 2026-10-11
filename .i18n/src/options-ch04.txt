@@ -1,0 +1,703 @@
+## source: options/ch04.html  (337 segments)
+@@ 5817a2100c html
+第 4 章 Delta 与 Gamma · 美股期权课
+@@ 4f49b457d1 html
+Delta 与 <span class="g">Gamma</span>
+@@ 92d211a077 html
+Delta 告诉你此刻押了多少方向，Gamma 告诉你这个押注会以多快的速度自己变大或变小。读懂这两个数，就能在下单前算清「涨了赚多少、跌了亏多少、什么都不做又会怎样」。
+@@ 4a798dc727 html
+本章目录
+@@ 2d52da7043 html
+<a href="#open"><span class="n">··</span><span>开篇：仓位自己长大了</span></a>
+@@ fd4aab9684 html
+<a href="#s1"><span class="n">4.1</span><span>Delta 的三种读法</span></a>
+@@ 989958eaf3 html
+<a href="#s2"><span class="n">4.2</span><span>Delta 怎么变</span></a>
+@@ fed5852de4 html
+<a href="#s3"><span class="n">4.3</span><span>组合 Delta 与 Beta 加权</span></a>
+@@ f0ea410aa6 html
+<a href="#s4"><span class="n">4.4</span><span>Gamma：Delta 的速度</span></a>
+@@ 5ea06f5a00 html
+<a href="#s5"><span class="n">4.5</span><span>Delta–Gamma 盈亏近似</span></a>
+@@ 2953812e19 html
+<a href="#s6"><span class="n">4.6</span><span>Gamma 与 Theta 的交换</span></a>
+@@ f319c4b9ee html
+<a href="#s7"><span class="n">4.7</span><span>Gamma scalping 演练</span></a>
+@@ b2b0f191d9 html
+<a href="#s8"><span class="n">4.8</span><span>做市商 Gamma 与市场</span></a>
+@@ 12c019ed82 html
+<a href="#cases"><span class="n">案例</span><span>三个案例</span></a>
+@@ dd7ded685d html
+<a href="#tools"><span class="n">工具</span><span>清单与自测</span></a>
+@@ a48f579e60 html
+<a href="#open">开篇：仓位自己长大了</a>
+@@ 5804014290 html
+<a href="#s1">4.1 Delta 的三种读法</a>
+@@ eb032acb88 html
+<a href="#s2">4.2 Delta 怎么变</a>
+@@ 5eb6ffc210 html
+<a href="#s3">4.3 组合 Delta 与 Beta 加权</a>
+@@ b449dc09e4 html
+<a href="#s4">4.4 Gamma：Delta 的速度</a>
+@@ 09a19ab069 html
+<a href="#s5">4.5 Delta–Gamma 盈亏近似</a>
+@@ 425e516f11 html
+<a href="#s6">4.6 Gamma 与 Theta 的交换</a>
+@@ 69fdb5b6af html
+<a href="#s7">4.7 Gamma scalping 演练</a>
+@@ 7acd867429 html
+<a href="#s8">4.8 做市商 Gamma 与市场</a>
+@@ f3a78e0502 html
+<a href="#cases">三个案例</a>
+@@ 7ec24afd50 html
+<a href="#tools">清单与自测</a>
+@@ 80161dff8a html
+学完本章你能
+@@ f923c7c52c html
+把任何期权仓位换算成「相当于多少股」
+@@ b8d32c67e8 html
+下单前估算 ±3%、±5% 的盈亏
+@@ 5bd67d64e4 html
+算出持有期权每天至少要「动多少」才回本
+@@ fc4f43bd05 html
+前置知识
+@@ b5c4aa0823 html
+第 1 章：四种基本头寸与到期盈亏图
+@@ e243972e13 html
+第 3 章：权利金的六个输入
+@@ fe31444484 html
+本章约定
+@@ 303316b017 html
+示例用 Black-Scholes，利率 4%，不派息
+@@ 6c3d5d82a2 html
+天数为日历天，一年 365 天
+@@ cb0a70898e html
+一张合约 = 100 股
+@@ 5cfead2909 html
+<span class="sn">开篇</span>仓位自己长大了
+@@ af53fb03f6 html
+你买了 10 张平值看涨期权：股价 $100，行权价 100，还有 5 天到期，隐含波动率 30%。之后几天你一张都没加，股价也只涨了 2%。
+@@ 897104d094 html
+买入那天，每张期权的 Delta 是 <span class="num">0.513</span>，10 张相当于持有 <span class="num">513</span> 股。到最后一天，股价 $102，离到期只剩 1 天，Delta 变成 <span class="num">0.899</span>，相当于 <span class="num">899</span> 股。你什么都没做，方向敞口却放大了 75%。
+@@ a41d69293c html
+表 4-0　10 张 100 看涨期权，到期前五天的「等效股数」
+@@ f11f2be60f html
+时点
+@@ 32cf37f9ae html
+股价
+@@ 8e53b7da1a html
+剩余天数
+@@ a06fe3fe00 html
+单张 Delta
+@@ d9eaa15101 html
+相当于持股
+@@ 71346f96f8 html
+期权价格
+@@ f3e39a2b2f html
+第 1 天
+@@ f69aa5484d html
+第 2 天
+@@ e20bec35ef html
+第 3 天
+@@ 6b68dcc91e html
+第 4 天
+@@ b199baa2af html
+第 5 天
+@@ 7d0f6f8dee html
+这就是 Gamma 在起作用：它让 Delta 随价格和时间自动变化。股票没有这个性质，100 股永远是 100 股。期权的风险是会「自己长大」的，这一章就是教你提前看见它。
+@@ c312c00cad html
+<span class="sn">4.1</span>Delta 的三种读法
+@@ 15af48cd5b html
+同一个 Delta 数字，有三种用法。哪一种都对，但每种都有适用边界。
+@@ d241ec177e html
+读法一：价格敏感度
+@@ 0ad1f3d49c html
+标的涨 $1，期权价格大约变动 Delta 美元。Delta <span class="num">0.53</span> 的看涨期权，股价从 100 涨到 101，期权大约从 <span class="num">3.59</span> 涨到 <span class="num">4.12</span>。看涨期权 Delta 在 0 到 1 之间，看跌期权在 −1 到 0 之间。
+@@ 999389b824 html
+读法二：对冲比率与「等效股数」
+@@ 7cd9df8139 html
+Delta × 100 就是一张合约相当于多少股。这是最实用的读法，因为它让股票和不同期权可以直接相加。
+@@ fc39270166 html
+方向：买入为 +1，卖出为 −1。正股的单股 Delta 恒为 1。
+@@ 3d1bab69fb html
+买 2 张 Delta 0.40 的看涨：<span class="num">+0.40 × 100 × 2 = +80</span> 股
+@@ 5db5ae65fc html
+卖 3 张 Delta −0.30 的看跌：<span class="num">−0.30 × 100 × 3 × (−1) = +90</span> 股
+@@ d8cc57405c html
+两者合计 <span class="num">+170</span>：方向上相当于持有 170 股。卖出看跌和买入看涨一样是看多
+@@ 2fa2a7da01 html
+读法三：到期在价内的概率（近似）
+@@ fafa0516ed html
+Delta 常被当成「到期价内概率」来用。这只是近似：Black-Scholes 里 Delta 是 <span class="v">N</span>(<span class="v">d</span><sub>1</sub>)，而风险中性下的价内概率是 <span class="v">N</span>(<span class="v">d</span><sub>2</sub>)，前者总是略大。另外，这是市场定价隐含的概率，不是真实世界的概率。
+@@ 199a56c092 html
+表 4-1　股价 $100、30 天、IV 30% 时，Delta 与概率的差别
+@@ 937856adc5 html
+看涨期权行权价
+@@ 1bc9b51cac html
+到期价内概率 N(d₂)
+@@ ac5557c527 html
+期间触及过行权价的概率 ≈ 2 × N(d₂)
+@@ adc48f2a8d html
+「触及概率约是价内概率的两倍」对卖方特别重要：一张 Delta 0.15 的看涨，到期价内的概率只有一成多，但在这 30 天里股价碰到 110 的概率接近三成。卖方的止损往往在「触及」时就被打到，而不是等到到期。
+@@ 851c4e5213 html
+<span class="sn">4.2</span>Delta 怎么变
+@@ c61f80343d html
+Delta 受三样东西推动：价格、时间、波动率。价格对 Delta 的影响就是 Gamma（4.4 节）；时间和波动率的影响各有名字，叫 Charm 和 Vanna。先用下面的图直观感受一下。
+@@ 1ac69090ba html
+看涨
+@@ 727fb827ee html
+看跌
+@@ c042057812 html
+剩余天数 <input id="f1-dte" type="range" min="1" max="120" value="30"> <output id="f1-dte-o">30 天</output>
+@@ b6225cc9cc html
+隐含波动率 <input id="f1-iv" type="range" min="10" max="80" value="30"> <output id="f1-iv-o">30%</output>
+@@ 0799ae906a html
+把剩余天数拖到 1–3 天，曲线会变成接近竖直的台阶：平值附近一点点价格变化就让 Delta 从 0.2 跳到 0.8。把隐含波动率调高，曲线会变平：虚值期权的 Delta 被抬高，实值期权的 Delta 被压低。
+@@ 0be8b961df html
+价格：越接近平值，Delta 变化越快
+@@ b771a90a16 html
+表 4-2　股价 $100、IV 30%，不同行权价的看涨 Delta
+@@ 4a14863fad html
+行权价
+@@ aeabff2947 html
+30 天看涨
+@@ e1a2f12927 html
+5 天看涨
+@@ abc521b1d7 html
+30 天看跌
+@@ c8dd8de26e html
+看跌 Delta 等于看涨 Delta 减 1（同行权价、同到期）。所以平值看涨约 0.53、平值看跌约 −0.47，并不是各占一半：d₁ 里含有利率和波动率的漂移项，平值看涨的 Delta 会略高于 0.5。
+@@ 4c18a1d4ae html
+时间：Charm 把 Delta 推向 0 或 1
+@@ f0de4b603f html
+什么都不变，只过一天，Delta 也会变。这个变化率叫 <strong>Charm</strong>。虚值期权的 Delta 每天往 0 漂，实值期权往 1 漂。110 看涨从 30 天到 29 天，Delta 从 <span class="num">0.152</span> 掉到 <span class="num">0.148</span>；到剩 10 天时只剩 <span class="num">0.031</span>。90 看涨则从 <span class="num">0.904</span> 涨到 10 天时的 <span class="num">0.985</span>。
+@@ ab545f94b1 html
+周五收盘前，做市商为大量临近到期的期权调整对冲。虚值期权的 Delta 迅速归零，对应的对冲股票被平掉，这股资金流就是 Charm 带来的。很多「到期日下午的莫名波动」与此有关。
+@@ 1ae1490c6a html
+波动率：Vanna 改变 Delta
+@@ 1b1ef80b1f html
+隐含波动率每变动 1 个点，Delta 的变化叫 <strong>Vanna</strong>。110 看涨（30 天）在 IV 30% 时 Delta 是 <span class="num">0.152</span>；IV 升到 31%，变成 <span class="num">0.161</span>；升到 40%，变成 <span class="num">0.228</span>；降到 20%，只剩 <span class="num">0.057</span>。
+@@ 0ecfbb9208 html
+这意味着财报后 IV 崩塌时，你手里虚值期权的价格和 Delta 会同时缩水：方向判断即使对了，能吃到的涨幅也变少了。
+@@ 0ea98b4073 html
+<span class="sn">4.3</span>组合 Delta 与 Beta 加权
+@@ 8c840650ef html
+持有好几只股票和期权时，单看每个仓位的 Delta 没法回答「我整体押了多少大盘」。办法是把每个仓位都换算成「相当于多少股 SPY」。
+@@ da8419bf5d html
+仓位 Delta 用股数表示；β 是个股相对标普 500 的 Beta。价格比把「股数」换成「美元」再换回 SPY 的股数。
+@@ e8dcec5dcd html
+例子：SPY 在 $780。A 股 200 股、股价 $150、β 1.3，等于 <span class="num">200 × 150 / 780 × 1.3 = 50</span> 股 SPY。下面的计算器已经填好三个仓位，你可以改成自己的。
+@@ 0cce89e309 html
+SPY 价格
+@@ 0e1ae088fd html
+仓位
+@@ b7a96fb783 html
+类型
+@@ dd50819757 html
+数量
+@@ 8c96b1bac7 html
+单位 Delta
+@@ cc1eb24987 html
+标的价格
+@@ 5b3b252995 html
+SPY 等效股数
+@@ 0cf95610e3 html
+类型选「期权」时，数量填张数（卖出填负数），单位 Delta 填单张 Delta；选「股票」时数量填股数，单位 Delta 固定为 1。
+@@ bb585c2c7d html
+上面的组合合计约 300 股 SPY。要对冲它，是卖空约 300 <strong>股</strong> SPY，或买入约 7–8 <strong>张</strong> Delta −0.40 的 SPY 看跌（每张 −40 股）。把「300」误当成合约数，对冲规模就差了 100 倍。
+@@ 945363089b html
+Beta 加权常常暴露「隐藏的集中」：三只看起来不相关的科技股和一张 QQQ 看涨，换算后可能全是同一个方向的大盘敞口。多个科技、高 Beta、小盘和看涨期权仓位，往往是同一个方向的风险，不能凭代码个数认为已经分散。
+@@ 292df1a997 html
+<span class="sn">4.4</span>Gamma：Delta 的速度
+@@ fd588e7d65 html
+Gamma 是标的每涨 $1 时 Delta 的变化量。如果说 Delta 是你的速度，Gamma 就是油门。
+@@ 85f8ead58f html
+<strong>符号</strong>：买入期权（无论看涨看跌）Gamma 为正；卖出为负；正股 Gamma 为零。
+@@ 2b348eddea html
+<strong>正 Gamma</strong>：涨的时候 Delta 变大（越涨越多），跌的时候 Delta 变小（越跌越少）。盈亏曲线向上弯。
+@@ d0c4f11036 html
+<strong>负 Gamma</strong>：正好相反。涨的时候你越来越空，跌的时候越来越多，盈亏曲线向下弯。
+@@ 1b3febfe86 html
+同一张平值期权，剩 60 天时 Gamma 约 0.033，剩 2 天时约 0.18，放大了五倍多。而虚值 110 的 Gamma 在临近到期时几乎归零：它离得太远，已经很难再影响 Delta。
+@@ c0c6d8e167 html
+表 4-3　平值期权（股价与行权价都是 100，IV 30%）的 Gamma 与 Theta
+@@ 74ade1d735 html
+每张涨 $1 后 Delta 增加（股）
+@@ 122180ad3e html
+每日 Theta（每股，美元）
+@@ 4640c8501a html
+注意 Gamma 和 Theta 是一起变大的。这不是巧合，4.6 节会说明：Gamma 的价格就是 Theta。
+@@ 07dbb1d172 html
+跨标的比较：用「美元 Gamma」
+@@ 0a8dc3823d html
+Gamma 的单位是「每 $1 的 Delta 变化」。$10 的股票动 $1 是 10%，$800 的股票动 $1 只是 0.1%，所以不同价格的标的不能直接比 Gamma。实务上常用 <strong>1% 美元 Gamma</strong>：股价变动 1% 时，你的 Delta 变化相当于多少美元的股票。
+@@ 5b099239f9 html
+4.8 节估算做市商 Gamma 敞口用的就是这个量。
+@@ 4d3946b5cf html
+<span class="sn">4.5</span>Delta–Gamma 盈亏近似
+@@ f1ee651d9f html
+下单前最有用的一个公式：用当前的 Delta 和 Gamma，估算股价移动 Δ<span class="v">S</span> 后的盈亏。
+@@ bbd76e2e54 html
+前两项就是常说的 Delta–Gamma 近似。后两项分别是波动率和时间的影响，常被忽略，但在财报前后它们往往才是主角（见案例 2）。
+@@ 78b90c778b html
+以 30 天平值看涨为例：Delta <span class="num">0.532</span>，Gamma <span class="num">0.0462</span>，价格 <span class="num">3.591</span>。股价涨 $5，近似值 <span class="num">0.532 × 5 + ½ × 0.0462 × 25 = 3.24</span>；用 Black-Scholes 重新定价是 <span class="num">3.207</span>。跌 $5，近似 <span class="num">−2.084</span>，实际 <span class="num">−2.082</span>。同样 $5，涨赚的比跌亏的多：这就是正 Gamma 的不对称。
+@@ 8053f2efab html
+IV 变化 <input id="f3-iv" type="range" min="-25" max="25" value="0"> <output id="f3-iv-o">0 点</output>
+@@ 5237f63993 html
+经过天数 <input id="f3-t" type="range" min="0" max="20" value="0"> <output id="f3-t-o">0 天</output>
+@@ 11ad592ecc html
+两个滑块都为 0 时，粉色线和黑色线在 ±5 以内几乎重合。把 IV 往下拖 20 点，黑色线整体下沉，近似公式却纹丝不动，这就是财报后「方向对了还亏钱」的来源。把经过天数往右拖，可以看到 Theta 一天天吃掉权利金。
+@@ 326b633cdd html
+表 4-4　近似值与重新定价的差距（每股，IV 与时间不变）
+@@ c2780ee2e6 html
+股价移动
+@@ abee8aa39a html
+真实盈亏
+@@ 396f6cb94b html
+只用 Delta
+@@ b7d0e9abdc html
+误差
+@@ 6d54df68e4 html
+移动在 1 个日标准差以内（约 <span class="v">S</span> × IV ÷ 19）：误差可以忽略
+@@ 7d9f812a71 html
+移动超过 2–3 个标准差，或离到期不到一周：Gamma 本身也在剧烈变化，误差迅速放大
+@@ a34694baf8 html
+有事件（财报、FOMC）：必须把 Vega 项加进去，最好直接重新定价
+@@ b4335452db html
+<span class="sn">4.6</span>Gamma 与 Theta 的交换
+@@ 4e91f8d2f5 html
+买期权得到正 Gamma，代价是每天付 Theta；卖期权收 Theta，代价是承担负 Gamma。两者不是独立的，Black-Scholes 方程把它们绑在了一起。
+@@ b3df5756f3 html
+忽略利率项，就得到 Θ ≈ −½ σ² S² Γ：Theta 的大小正比于 Gamma。Gamma 越大的期权，每天的时间损耗也越大。
+@@ a8e6a021b2 html
+每天要动多少才回本
+@@ bca6a50543 html
+如果你买入期权，并用股票把 Delta 对冲到零，一天的盈亏只剩两项：Gamma 带来的 ½Γ(Δ<span class="v">S</span>)²，减去 Theta。令两者相等，得到回本所需的每日移动：
+@@ a95f63bc15 html
+按日历天计算是除以 √365 ≈ 19。交易员常说「除以 16」，那是按交易日计（√252 ≈ 15.9，取 16）：周末两天的时间损耗被摊进周五，所以每个交易日要求的移动更大。
+@@ a116f5e205 html
+30 天平值看涨：Theta <span class="num">−0.0624</span>，Gamma <span class="num">0.0462</span>，回本移动 <span class="num">√(2 × 0.0624 / 0.0462) = $1.64</span>。简化公式给出 <span class="num">100 × 0.30 / 19.1 = $1.57</span>，差的那一点来自利率项。按交易日约定则是 <span class="num">100 × 0.30 / 16 ≈ $1.88</span>。
+@@ 2faf69abda html
+剩余天数 <input id="f4-dte" type="range" min="2" max="90" value="30"> <output id="f4-dte-o">30 天</output>
+@@ 7100947df8 html
+隐含波动率 <input id="f4-iv" type="range" min="10" max="80" value="30"> <output id="f4-iv-o">30%</output>
+@@ 8bce385cba html
+抛物线与横轴的两个交点之间（阴影区）是亏损区：股价动得不够大，Gamma 赚的钱补不上 Theta。把剩余天数调小，抛物线变窄变深：Gamma 更大，但 Theta 也更贵。
+@@ 1836abd464 html
+买期权本质上是在押「实际波动率会高于隐含波动率」，卖期权是押相反。方向只是这笔交易的一部分。
+@@ 1a365870b8 html
+<span class="sn">4.7</span>Gamma scalping 演练
+@@ 700ab9dfc8 html
+Gamma scalping 是把 4.6 节的结论变成操作：买入期权得到正 Gamma，然后每当股价移动，就用股票把 Delta 调回零。正 Gamma 让这个过程自动「高卖低买」：涨了 Delta 变大，你卖股票；跌了 Delta 变小，你买回来。
+@@ 27eb2c5a32 html
+下面用一个具体仓位走五天：买入 10 张 30 天平值跨式（10 张看涨 + 10 张看跌，行权价 100，IV 30%），每天收盘对冲到零，每股滑点按 $0.02 计。初始仓位 Gamma 约 92.5 股/美元，每天 Theta 约 −$114。
+@@ 9438e6da8b html
+行情 A：来回大幅震荡
+@@ 09de12d50d html
+行情 B：几乎不动
+@@ 4f5994e37a html
+天
+@@ 746ad05f93 html
+收盘
+@@ d4344e9f0b html
+移动
+@@ b675bacef9 html
+期权盈亏
+@@ 1bc09266c0 html
+对冲盈亏
+@@ eca122926c html
+调仓（股）
+@@ 49c0214de4 html
+当日合计
+@@ 18f3cc9456 html
+累计
+@@ 653f8f1393 html
+行情 A 第五天收在 101.9，几乎回到原点，只拿跨式不对冲会亏 $304。对冲后每天都在高处卖、低处买，五天赚了 $797。行情 B 波动太小，每天赚的 Gamma 只有十几美元，Theta 却要扣 $114，五天亏 $542。两种结果的分界线，就是实际波动率是否高于买入时的 30% 隐含波动率。
+@@ b0ec82506c html
+真实世界里多出来的成本
+@@ dce0c54464 html
+<strong>对冲频率</strong>：对冲越勤，越接近理论值，但手续费和滑点越高。实务中常按 Delta 偏离的阈值（例如超过 ±50 股）来对冲，而不是固定时间。
+@@ e4cb465b74 html
+<strong>跳空</strong>：隔夜跳空时你来不及调仓。正 Gamma 在跳空中受益，负 Gamma 在跳空中最危险。
+@@ 07bdf932c3 html
+<strong>IV 变化</strong>：演练假设 IV 不变。如果你买入后 IV 下跌，跨式价值会额外缩水，scalping 的利润可能被 Vega 损失吞掉。
+@@ f4a0aac237 html
+这套方法对做市商是日常工作，对个人来说成本和精力要求都很高。更现实的用法是反过来理解：当你卖期权收 Theta 时，你就站在这张表的对手位置，赚的是「行情 B」，怕的是「行情 A」。
+@@ c9f7b2c2dd html
+<span class="sn">4.8</span>做市商 Gamma 与市场
+@@ 52dceea0ce html
+做市商卖出期权后通常会对冲 Delta，他们持有的 Gamma 决定了这些对冲会推动还是压制价格。
+@@ 4009ecb41f html
+做市商净多 Gamma（正 Gamma）
+@@ f970594951 html
+做市商净空 Gamma（负 Gamma）
+@@ cc9ae01f4d html
+股价上涨 → 做市商 Delta 变大
+@@ b682da6d4b html
+为回到中性：卖出股票
+@@ 987b9788b5 html
+卖压抵消涨势，价格被「钉住」
+@@ 120f5adc8e html
+波动收窄、均值回归
+@@ ca43dc90f2 html
+股价下跌 → 做市商 Delta 变多
+@@ 4e9237e345 html
+为回到中性：继续卖出股票
+@@ 9b193e0727 html
+卖压追着跌势，跌幅被放大
+@@ 6cace68295 html
+追涨杀跌、趋势加速
+@@ 3987523050 html
+在正 Gamma 环境里做市商的对冲是「逆势」的，市场容易横盘、被钉在大额持仓的行权价附近。在负 Gamma 环境里对冲是「顺势」的，涨跌都会被放大。两种环境的分界价位就是常说的 Gamma Flip。
+@@ f5884145f8 html
+怎么估算做市商的 Gamma 敞口
+@@ 259c31d260 html
+没有人能直接看到做市商的仓位，市面上的 GEX（Gamma 敞口）数据都是估算，最常见的做法分三步：
+@@ 21e3679b6a html
+对每个行权价，用未平仓合约数（OI）乘以该行权价期权的 Gamma，再按 4.4 节换成 1% 美元 Gamma。
+@@ da4620d2f7 html
+假设做市商在看涨期权上净多、在看跌期权上净空（客户多为卖出备兑看涨、买入保护性看跌）。于是看涨贡献正号，看跌贡献负号。
+@@ e4d2c0019d html
+把所有行权价加总得到净 GEX；在不同的假设股价下重复计算，净值由正转负的价位就是 Gamma Flip。
+@@ 10102cbefb html
+表 4-5　假设的两个行权价（SPY $780，7 天到期，IV 16%）
+@@ 5f364b9085 html
+合约
+@@ 346fefbb14 html
+未平仓量
+@@ 0187ad38bd html
+单张 Gamma
+@@ e4b0b9b77b html
+1% 美元 Gamma
+@@ 05e517414a html
+做市商视角符号
+@@ 89490aa6b3 html
+780 看涨
+@@ 69fc7c5664 html
+770 看跌
+@@ 1bfb7f7a76 html
+净值
+@@ db30b691da html
+略偏负 Gamma
+@@ 34af409237 html
+读法：如果做市商真的是这样持仓，SPY 每跌 1%，他们需要额外卖出约 8,000 万美元的股票来维持中性。数字是假设的，用来说明计算方法。
+@@ 2d2f26381e html
+「做市商多看涨、空看跌」只是平均假设，个别行权价可能完全相反
+@@ 7c364423f5 html
+OI 每天只更新一次，看不到当天的 0DTE 流量
+@@ 26f13be1ef html
+Vanna 和 Charm 同样驱动对冲，单看 Gamma 会漏掉 IV 和时间带来的资金流
+@@ 2048fa54a2 html
+不少交易者的盘前笔记都用这套框架。例如在一次三巫日前，判断跌破 SPY 760 偏向买 Put、守在 760 上方偏向买 Call，理由是 760 以上由正 Gamma 主导。又如把某次 MU 的急拉归因于次日到期的大量看涨期权引发的做市商对冲，而不是基本面改善；或者提醒连涨的芯片股要等期权到期日过后再下结论：到期后如果回撤，说明上涨主要是对冲盘推上去的。Barchart 的 Gamma 页面是一个常用的免费查看入口。
+@@ a9dd9e4635 html
+<span class="sn">案例</span>三个案例
+@@ 55cabf7fbf html
+同样的 ±3%，在最后几天完全是另一种仓位
+@@ 5627045eac html
+平值 100 看涨，IV 30%。比较股价在 97、100、103 时，不同剩余天数下的 Delta：
+@@ 4a6bc42215 html
+股价 97
+@@ f6c113bff2 html
+股价 100
+@@ e1243b3f37 html
+股价 103
+@@ 2d52b45f70 html
+97 到 103 的 Delta 落差
+@@ f9a63a57d5 html
+剩 30 天时，股价在 97 到 103 之间晃动，Delta 只在 0.39 到 0.67 之间变化，仓位像一只稳定的股票。剩 1 天时，同样的晃动让 Delta 在 0.03 和 0.97 之间来回跳：前一刻几乎没有仓位，下一刻像满仓持股。
+@@ e0752a8e6b html
+<strong>对买方</strong>：最后几天的平值期权是彩票。赢面在于跳跃，Theta 却按 Gamma 同步加价（表 4-3）。
+@@ a83bb1a0f8 html
+<strong>对卖方</strong>：最后几天收的权利金最多，但一根大阳线就可能让你从「几乎没风险」变成「满仓做空」。这就是很多卖方账户在到期周出事的原因。
+@@ e0818d2bbd html
+财报前用 Delta–Gamma 做压力测试，结果漏掉了最大的一项
+@@ 5cdd89bd3b html
+你在财报前买了 20 张 30 天平值 100 看涨。财报前 IV 被抬到 60%，仓位 Delta <span class="num">+1,084</span> 股，Gamma <span class="num">46.1</span>，Vega 每个 IV 点约 <span class="num">$227</span>。财报后第二天，IV 回落到 35%。
+@@ 44c25854cd html
+表 4-6　20 张看涨，财报后一天的仓位盈亏（美元）
+@@ c486a2d6e4 html
+Delta–Gamma 近似
+@@ da44563be4 html
+重新定价，IV 不变
+@@ 3e16d7ab22 html
+重新定价，IV 降到 35%
+@@ 75249fe848 html
+前两列很接近，说明 Delta–Gamma 对价格的估计没问题。差距全在第三列：IV 掉 25 个点，乘以每点 $227，约 $5,700 的 Vega 损失。股价如期涨了 5%，你只赚 $445。
+@@ 262e6111bd html
+事件前的压力测试至少要做两组：价格 × IV 不变，价格 × IV 回落到事件前的正常水平。如果第二组里「看对方向」也不赚钱，这笔交易的结构就选错了，可以考虑价差（两条腿的 Vega 部分抵消）或日历价差。
+@@ 0362e10bef html
+当一只股票被期权「推着走」
+@@ 35f61dbf2a html
+2021 年 1 月的 GameStop 是负 Gamma 放大效应最有名的例子。散户大量买入短期虚值看涨期权，卖出这些期权的做市商被迫买股对冲。股价上涨让这些虚值期权的 Delta 快速变大（Gamma），同时 IV 飙升又进一步抬高 Delta（Vanna），做市商需要买入的股票越来越多，买盘推高股价，形成循环。
+@@ bca33be17d html
+你不需要等到这种极端情况才用得上这个逻辑。日常里更常见的是它的小规模版本：某个临近到期的行权价上堆积了大量看涨期权，做市商为对冲而买股，把股价推向那个行权价。这类上涨来自「期权效应」，不是基本面改善。验证方法也一样：看到期日过后，对冲需求消失，价格是否回落。
+@@ 76fc557033 html
+<span class="sn">工具</span>清单与自测
+@@ b4640d623d html
+勾选状态只保存在你自己的浏览器里。
+@@ 3a2b593c21 html
+<span class="num">4-1</span>下单前：换算方向敞口
+@@ c99a7bb4b9 html
+每条腿的 Delta × 100 × 张数 × 方向，加总成股数
+@@ 254abbe199 html
+多个标的用 β 换算成 SPY 等效股数
+@@ 955bf92836 html
+对冲时确认单位：股还是张
+@@ 22cf64dbc5 html
+<span class="num">4-2</span>下单前：压力测试
+@@ d272bfc3a1 html
+±1 个日标准差（S × IV ÷ 19）的盈亏
+@@ e11c13826b html
+±3 个标准差直接重新定价，不用近似
+@@ 0f263c8747 html
+有事件：加一组 IV 回落的情景
+@@ 084a8e5d65 html
+<span class="num">4-3</span>持仓中：Gamma 体检
+@@ 7a1b800195 html
+离到期不到一周的平值仓位，Delta 每天都要重算
+@@ 96e7317bed html
+卖方仓位：股价触及行权价时的 Delta 是多少
+@@ f7f9af69e5 html
+到期日下午不要被 Charm 带来的波动吓到
+@@ 62ad92b389 html
+<span class="num">4-4</span>买还是卖：Gamma–Theta 平衡
+@@ 79d010775f html
+算出回本移动 S × IV ÷ 19（日历天）
+@@ fb32d66d53 html
+对比近期的实际日均波动
+@@ f2ed213129 html
+实际波动明显更大才买；明显更小才考虑卖
+@@ a6f5d33bbc html
+自测五题
+@@ 55b72a8011 html
+<span class="num">1</span><span>你买了 5 张 Delta 0.40 的看涨，又卖了 2 张 Delta −0.30 的看跌。仓位相当于多少股？</span>
+@@ 1fae5d3dab html
+<span class="num">5 × 40 + 2 × 30 = 260</span> 股。卖出看跌的 Delta 是 −0.30 × (−1) = +0.30，同样是看多。
+@@ 71a4725a95 html
+<span class="num">2</span><span>同一行权价的平值期权，剩 2 天和剩 60 天，哪个 Gamma 更大？大约差几倍？</span>
+@@ 4603b1386f html
+剩 2 天的更大。IV 30% 时约 0.180 对 0.033，相差五倍多。平值 Gamma 大致与剩余时间的平方根成反比。
+@@ e9a6f31031 html
+<span class="num">3</span><span>股价 $200、IV 40%，买入平值期权并做 Delta 对冲，每天大约要动多少才回本？</span>
+@@ d4994d948c html
+按日历天：<span class="num">200 × 0.40 / 19.1 ≈ $4.2</span>；按交易日约定：<span class="num">200 × 0.40 / 16 = $5.0</span>。
+@@ f446ef993b html
+<span class="num">4</span><span>股价没动，IV 从 30% 升到 40%，你手里的 110 看涨（30 天）Delta 会怎样？这叫什么？</span>
+@@ b3491615c3 html
+从 0.152 升到 0.228。这是 Vanna：波动率变化引起 Delta 变化。虚值期权的 Delta 随 IV 上升而变大。
+@@ b70d9a0cb6 html
+<span class="num">5</span><span>财报后股价如你所料涨了 5%，Delta–Gamma 估算你该赚 $6,000，实际只赚了几百。最可能的原因？</span>
+@@ 4078de286a html
+IV 崩塌。近似公式没有 Vega 项，财报后 IV 大幅回落带来的损失吃掉了大部分方向收益（案例 2）。
+@@ 4e4e0f78d7 html
+本章示例全部由 Black-Scholes 模型计算（利率 4%，不派息，一年 365 天），用于教学，不构成投资建议。
+@@ a70e23cc3d text
+美股期权
+@@ 875f2902a9 text
+课
+@@ 1a0964c72a text
+美股期权课 · 第二部分 核心变量 · 第 4 章
+@@ 97e72ea433 text
+仓位 Delta
+@@ a18e2bb30c text
+单张 Delta
+@@ ba51fcee04 text
+张数
+@@ be0ff75ea9 text
+× 方向)
+@@ f24f21ec35 text
+要点
+@@ 8e9fe282f8 text
+Delta 随股价变化的 S 形曲线
+@@ e5b3cc936c text
+图 4-1 · 行权价 100，可拖动
+@@ 08fa9154e3 text
+当前设置
+@@ 72bf60d947 text
+参照：30 天、IV 30%
+@@ 2325dd1e4d text
+股价 95 时
+@@ 5ff0328175 text
+股价 100 时
+@@ bd72d9c7e2 text
+股价 105 时
+@@ 9813bd5a4b text
+注意
+@@ cbb2a224ef text
+SPY 等效股数
+@@ 4e376d3c29 text
+个股价格
+@@ 58012af91f text
+SPY 价格
+@@ c9b770d080 text
+Beta 加权 Delta 计算器
+@@ 0d1d039618 text
+工具 4-A · 可编辑
+@@ 24a4032968 text
+对冲用 SPY 看跌期权的 Delta
+@@ a4e4e994cf text
+组合合计：SPY 等效股数
+@@ adfbf79c71 text
+等效于持有 SPY 市值
+@@ 92529c2719 text
+完全对冲需买入的 SPY 看跌张数
+@@ 8dc0bd9605 text
+注意单位
+@@ ae609ac635 text
+Gamma 在平值处达到峰值，临近到期急剧变尖
+@@ a22c3fdb6e text
+图 4-2 · 行权价 100，IV 30%
+@@ 920de1c311 text
+1% 美元 Gamma
+@@ ed485f0f98 text
+盈亏
+@@ ff2417674b text
+近似公式在小幅移动时几乎完美，大幅移动时开始偏离
+@@ dc2e8fb431 text
+图 4-3 · 30 天平值看涨，每股盈亏
+@@ 4e13b858d1 text
+真实盈亏（重新定价）
+@@ ca22195647 text
+只用 Delta
+@@ a2cad34732 text
+什么时候能信
+@@ d0fb69c69b text
+回本
+@@ 291665148c text
+对冲后的每日盈亏是一条抛物线
+@@ c2bb7b04be text
+图 4-4 · 平值看涨 + 股票对冲，每股
+@@ ef47b164e3 text
+回本所需每日移动
+@@ e31bc21789 text
+简化公式 S·σ/√365
+@@ 5f9ffb527e text
+股价不动时的每日损失
+@@ 13d63d2dcf text
+一句话
+@@ 7729850097 text
+同一个仓位，两种行情
+@@ fe35e3a189 text
+图 4-5 · 10 张跨式，每日收盘对冲
+@@ c4eb4202bc text
+收盘价
+@@ 0e389b4035 text
+▼ 卖出股票
+@@ f584872660 text
+▲ 买入股票
+@@ e2ee57a002 text
+五天对冲后累计盈亏
+@@ 778ef5c261 text
+同期不对冲、只拿跨式
+@@ 183dc761f4 text
+这段路径的实际波动率
+@@ 460e2cb8e2 text
+对个人交易者
+@@ 0d37c6b063 text
+做市商的 Gamma 符号决定了对冲方向
+@@ c6ce285371 text
+图 4-6 · 示意图
+@@ 15cf938141 text
+估算的局限
+@@ a1aa21848e text
+实战观察
+@@ 046dfb89e4 text
+案例 1
+@@ 411ced42ca text
+案例 2
+@@ 81acdd30ad text
+案例 3
+@@ 5205b402f9 attr
+跳转到章节
+@@ ae78ea9525 attr
+本章目录
+@@ d12a833e34 attr
+期权类型
+@@ 449f94ea48 attr
+Delta 随股价变化的曲线
+@@ 65c1c7370f attr
+对冲期权 Delta
+@@ 3dcba6802d attr
+不同剩余天数的 Gamma 曲线
+@@ 5989c3595c attr
+真实盈亏与近似盈亏对比
+@@ 697f84d595 attr
+对冲后每日盈亏随股价移动的抛物线
+@@ 7dbfb706fc attr
+选择行情
+@@ f8007167aa attr
+价格路径与对冲交易
+@@ 54dfc844f8 attr
+正 Gamma 环境压制波动，负 Gamma 环境放大波动
+@@ f0852d355e attr
+章节翻页
+@@ c87f6311bf js
+## code: ment.getElementById("f1-dte-o").textContent = d + " 天";       document.getElementByI
+ 天
+@@ 34ae6467e4 js
+## code:  yf: v => v.toFixed(2).replace("-", "−"), xlabel: "股价（美元）", ylabel: "Delta", vline: 100,
+股价（美元）
+@@ 2dd6ed1245 tpl
+## code: legend").innerHTML = days.map((d, i) => `<span><i style="bor
+<span><i style="border-color: var(--gamma); opacity: {0}"></i>剩 {1} 天</span>
+@@ f485df2f3e js
+## code: +" : div < 0 ? "−" : "") + Math.abs(+ivS.value) + " 点";       document.getElementByI
+ 点
+@@ 219c4ebfff js
+## code:  v < 0 ? "−" : "") + Math.abs(v),         xlabel: "股价移动（美元）", ylabel: "每股盈亏（美元）", zero: 0,
+股价移动（美元）
+@@ b436c20338 js
+## code:  Math.abs(v),         xlabel: "股价移动（美元）", ylabel: "每股盈亏（美元）", zero: 0, vline: 0,         s
+每股盈亏（美元）
+@@ fe6982fdff js
+## code: s(v).toFixed(step < 0.5 ? 1 : 1),         xlabel: "当日股价移动（美元）", ylabel: "对冲后当日盈亏（每股）", zero:
+当日股价移动（美元）
+@@ f397234c9c js
+## code: 5 ? 1 : 1),         xlabel: "当日股价移动（美元）", ylabel: "对冲后当日盈亏（每股）", zero: 0,         band: [-be,
+对冲后当日盈亏（每股）
+@@ 87e43b87ea js
+## code: , 100, 101, 102, 103],         xf: v => v === 0 ? "建仓" : "第" + v + "天", xlabel: "", 
+建仓
+@@ fc7bc0d5df js
+## code: 101, 102, 103],         xf: v => v === 0 ? "建仓" : "第" + v + "天", xlabel: "", ylabel
+第
+@@ bb6a7bf0ab js
+## code: 103],         xf: v => v === 0 ? "建仓" : "第" + v + "天", xlabel: "", ylabel: "股价",   
+天
+@@ 150b8e7f30 js
+## code: === 0 ? "建仓" : "第" + v + "天", xlabel: "", ylabel: "股价",         series: [{ pts, colo
+股价
+@@ dbe7a7eac7 js
+## code: t-mono)` }, r.g);         t.textContent = (sell ? "▼ 卖" : "▲ 买") + Math.abs(row[5]); 
+▼ 卖
+@@ 963f130af1 js
+## code:  }, r.g);         t.textContent = (sell ? "▼ 卖" : "▲ 买") + Math.abs(row[5]);       })
+▲ 买
+@@ e59dbda72f js
+## code: ment.getElementById("f5-r3").textContent = D.rv + "（买入 IV 30%）";     }     let cur = "A";    
+（买入 IV 30%）
+@@ 799c1278ad js
+## code:   (function () {     const rows = [       { name: "A 股", type: "s", qty: 200, delta: 
+A 股
+@@ 6af8882090 js
+## code: 00, delta: 1, px: 150, beta: 1.3 },       { name: "B 股", type: "s", qty: 100, delta: 
+B 股
+@@ eb3f2879d6 js
+## code: 100, delta: 1, px: 60, beta: 0.7 },       { name: "C 看涨", type: "o", qty: 5, delta: 0.
+C 看涨
+@@ 031b6c1d64 tpl
+## code:    tbody.innerHTML = rows.map((r, i) => `<tr>       <td><inp
+<tr>
+      <td><input class="name" id="c-n{0}" value="{1}" aria-label="仓位名称"></td>
+      <td><select id="c-t{2}" aria-label="类型"><option value="s"{3}>股票</option><option value="o"{4}>期权</option></select></td>
+      <td><input id="c-q{5}" type="number" value="{6}" aria-label="数量"></td>
+      <td><input id="c-d{7}" type="number" step="0.05" value="{8}" aria-label="单位 Delta"></td>
+      <td><input id="c-p{9}" type="number" value="{10}" aria-label="标的价格"></td>
+      <td><input id="c-b{11}" type="number" step="0.1" value="{12}" aria-label="Beta"></td>
+      <td class="mono" id="c-o{13}">—</td></tr>
+@@ 9887935d86 js
+## code: tById("c-total").textContent = total.toFixed(1) + " 股";       document.getElementByI
+ 股
+@@ 0162123374 js
+## code: "c-hedge").textContent = (total / h).toFixed(1) + " 张";     }     document.getElemen
+ 张

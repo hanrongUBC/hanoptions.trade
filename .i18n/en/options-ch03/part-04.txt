@@ -1,0 +1,142 @@
+@@ a6f5d33bbc html
+Self-test: five questions
+@@ 686db15ece html
+<span class="num">1</span><span>With the stock unchanged, IV rises from 30% to 35%, and a 30-day at-the-money call gains $0.57. How much does the put with the same strike and expiration gain? Why?</span>
+@@ b8b9604cc1 html
+Also $0.57. The parity equation <span class="num">C − P = S − K·e^{−rT}</span> contains no volatility, so the difference doesn't change when σ changes, and the two must rise and fall together.
+@@ 427bdab734 html
+<span class="num">2</span><span>The stock is at $50, a 60-day at-the-money call is $2.10, the rate is 4% and there are no dividends. About how much is the European put at the same strike?</span>
+@@ 9f66eb184d html
+<span class="num">P = C − S + K·e^{−rT} = 2.10 − 50 + 50 × e^{−0.04×60/365} = 2.10 − 50 + 49.67 ≈ $1.77</span>. An American put would be slightly higher, but for an at-the-money option with no dividends the difference is small.
+@@ 14bad5046f html
+<span class="num">3</span><span>The stock is at $80, IV is 50%, and there are 45 days to expiration. Roughly how big is the one-standard-deviation expected move? Roughly how much is the at-the-money straddle?</span>
+@@ 6395cc1a00 html
+Expected move: <span class="num">80 × 0.50 × √(45/365) = 40 × 0.351 ≈ $14.0</span>. Straddle: <span class="num">≈ 0.8 × 14.0 = $11.2</span>. The exact Black-Scholes value is $11.17, an error of about 0.6%.
+@@ 685f38f7f5 html
+<span class="num">4</span><span>A 30-day 110 call has a Delta of 0.152. Roughly what is the probability that it finishes in the money? And the probability that the stock touches 110 during those 30 days?</span>
+@@ 63d5aee8a4 html
+The probability of finishing in the money is slightly below Delta, about 13% (<span class="num">N(d₂) = 0.133</span>). The probability of touching is about double that, roughly 27%. If touching is judged only on daily closing prices, it is about 22%.
+@@ 0cb310c1fb html
+<span class="num">5</span><span>Someone says “a covered call is safer than a cash-secured put.” Use parity to explain why the two carry the same risk, and name two factors that make them not quite the same in practice.</span>
+@@ f43a7a5c80 html
+Rearranging parity gives <span class="num">S − C = K·e^{−rT} − P</span>: owning stock and selling a call has exactly the same starting cost and payoff at expiration as holding cash equal to the present value of the strike and selling a put. Real-world differences: if the cash behind the short put earns no interest, you miss out on the interest on the strike; with American options, early assignment can come at different times; and who gets the dividend, the number of trades and the tax treatment also differ.
+@@ 19aa0aaef8 html
+Examples in this chapter are calculated with the Black-Scholes model (4% rate, no dividends, 365-day year); the numbers for the t distribution, the historical scenario and the earnings quote are assumptions, as noted in the text. For education only; not investment advice.
+@@ a70e23cc3d text
+US Options 
+@@ 875f2902a9 text
+Course
+@@ de23e60dea text
+US Options Course · Part 1 Foundations · Chapter 3
+@@ 290ed7b2fe text
+Exception: more time doesn't always make an option worth more
+@@ ee24464704 text
+Of the six inputs, only time and volatility make calls and puts more expensive together
+@@ 9adfc113bb text
+Figure 3-1 · Sensitivity lab, interactive
+@@ ed218abb4d text
+Call
+@@ 9216f85533 text
+Put
+@@ 00131e0424 text
+Dot: current setting
+@@ ced9d056a9 text
+Call price
+@@ a589a2176d text
+Put price
+@@ 98f4be79d4 text
+Call − put
+@@ 134c3a617e text
+Key point: the odds of up or down never appear
+@@ c003b5d6cc text
+The higher the volatility and the longer the term, the more right-skewed the distribution at expiration
+@@ 23d1587aaf text
+Figure 3-2 · Stock at $100, interactive
+@@ 09c86b956b text
+Lognormal distribution (Black-Scholes)
+@@ 111f6c512b text
+Normal distribution with the same mean and standard deviation
+@@ dcaf06e0ce text
+68% range
+@@ 70c2e44efa text
+68% range (±1σ)
+@@ f18f2d025f text
+Median / mean
+@@ 496e062f40 text
+Prob. of finishing above 110
+@@ 23a108575d text
+Prob. of finishing below 90
+@@ 03462dea5a text
+With fat tails, a “once in ten thousand years” drop comes every few years
+@@ bd331c31d6 text
+Figure 3-3 · Vertical axis on a log scale (years)
+@@ 45ae057803 text
+Normal distribution
+@@ 05d65dd709 text
+t distribution (3 degrees of freedom, same standard deviation)
+@@ 6154427f4b text
+How to use Black-Scholes
+@@ a83974c907 text
+Rearranged, the two ways of holding the position have the same P&amp;L line at expiration
+@@ 3b32180c10 text
+Figure 3-4 · 30 days, IV 30%, interactive
+@@ 0d71d7a082 text
+Portfolio A at the start
+@@ e171e740c5 text
+Portfolio B at the start
+@@ f1da0c0abb text
+Difference at the start (= PV of strike)
+@@ 48c524121a text
+Difference in P&amp;L at expiration (any stock price)
+@@ eeeb9caa64 text
+Note: these are probabilities priced by the market
+@@ a1aa21848e text
+In practice
+@@ 8ff4cbcf28 text
+Expected move
+@@ d926a6547e text
+days
+@@ 7122468c9f text
+With short terms and low IV, mental math and the exact value are almost the same
+@@ 69d4c63e82 text
+Figure 3-5 · Stock at $100, interactive
+@@ 1dcf041ac2 text
+Mental math
+@@ dc46e25334 text
+Exact
+@@ 5ab4831389 text
+Gap
+@@ 787f0daee3 text
+When not to use it
+@@ 3176f11bc2 text
+Agree on the measure first
+@@ 046dfb89e4 text
+Case 1
+@@ c076194320 text
+Takeaways
+@@ 411ced42ca text
+Case 2
+@@ 81acdd30ad text
+Case 3
+@@ 5205b402f9 attr
+Jump to chapter
+@@ ae78ea9525 attr
+In this chapter
+@@ 92be84b93e attr
+Horizontal axis variable
+@@ 0ec6638755 attr
+Call and put prices as the selected input changes
+@@ d4e3591204 attr
+Lognormal distribution of the stock price at expiration and its normal approximation
+@@ a0e7d62bb0 attr
+Average interval between extreme drops under normal and fat-tailed distributions
+@@ 5c9086b5cb attr
+Choose an equivalent combination
+@@ c6a626f358 attr
+P&L at expiration of the equivalent combinations compared
+@@ 020dc293f7 attr
+Choose a view
+@@ a61e5f9e60 attr
+Mental-math expected move vs. exact values as the term changes
+@@ f0852d355e attr
+Chapter navigation

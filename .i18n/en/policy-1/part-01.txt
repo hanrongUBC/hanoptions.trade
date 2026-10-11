@@ -1,0 +1,170 @@
+@@ 9634077e57 html
+Policy Narrative Investing · hanoptions.trade
+@@ 0a41270e95 html
+Study handbook · 12 chapters
+@@ b651e7dbd9 html
+Policy Narrative Investing
+@@ 2fee74dced html
+Political slogans change every day, but the capital flows that policies create can last for years. This handbook shows how to break the grand narratives in the news into investment themes you can test, bet on and admit you got wrong.
+@@ ec16d60e39 html
+Chapters
+@@ 3ccd376a93 html
+Trade the policy, not the slogan
+@@ 7ab59f1a74 html
+Political news is the noisiest kind of information in the market. But beneath the noise are things that really change where money flows: budgets, laws, tariffs, export restrictions, subsidies and procurement contracts. This handbook cares only about the latter.
+@@ 5e39ceb5a0 html
+The difference between a slogan and a policy
+@@ 02e005415b html
+A politician says, “We're going to bring the factories back.” That's a slogan. Congress passes a law that subsidizes companies building plants at home, the Treasury issues the detailed rules, companies announce investment plans and engineering firms win contracts. That's policy, and the capital flows it creates. The first may be forgotten the next day; the second shows up in earnings reports for years.
+@@ 4ea71012c8 html
+Why set your political views aside
+@@ 967eeae6f5 html
+Everyone has political views, and that's normal. The problem is that political views quietly creep into your positions. When the side you support takes office, you tend to believe its policies will all succeed; when the side you oppose takes office, you tend to think the economy is headed for trouble. Both tendencies lead you astray.
+@@ b84d222c71 html
+The market doesn't care whom you support. It cares only which companies' revenue a policy will raise and which companies' costs it will push up. A useful test: if the side you support loses power, would your positions keep you up at night? If so, you're betting on a belief, not on logic you can test.
+@@ 4ff69695b1 html
+Where this handbook's themes come from
+@@ bee18343b4 html
+In recent years, US policy has settled into several fairly durable themes, and many of them have drawn some degree of support from both parties:
+@@ 4ada26c153 html
+Main theme
+@@ 7a51d7779d html
+The logic behind it
+@@ 17feb5928a html
+Chapter
+@@ 0b766579e5 html
+Supply-chain security and the Western Hemisphere
+@@ d7ef9411ef html
+Move key industrial supply chains out of regions with high geopolitical risk, to the home country or its neighbors
+@@ 0a9182db90 html
+Chapter 3
+@@ b0bd76a8f0 html
+Defense and military preparedness
+@@ b0c73390ac html
+Great-power competition and regional conflicts are pushing countries to raise defense spending for the long term
+@@ 3b11941a57 html
+Chapter 4
+@@ f53d669e80 html
+Resource and energy independence
+@@ 8d4a01df86 html
+Supplies of critical minerals, energy and fuel are treated as a national security issue
+@@ 6648ec5f17 html
+Chapter 5
+@@ 59fc8cc0c3 html
+Reshoring and tariffs
+@@ bf191c3c05 html
+Use tariffs, subsidies and procurement preferences to pull manufacturing back home
+@@ 3013c461eb html
+Chapter 6
+@@ 4a0f168a42 html
+AI and power
+@@ 08c4fca5ad html
+AI is seen as central to productivity and national competitiveness, driving investment in power and infrastructure
+@@ d0243abec0 html
+Chapter 7
+@@ d8e08f9e9c html
+Inflation, consumers and demographics
+@@ 305e1c25bf html
+Inflation hits income groups differently; population aging creates long-term demand
+@@ 3f60aec59f html
+Chapter 8
+@@ 5aff0285e6 html
+Chapters 1 and 2 cover method: how to score a narrative, and deciding first what to avoid. Chapter 9 covers elections and policy cycles, Chapter 10 covers execution in practice, and Chapter 11 is the toolkit.
+@@ 7608f72f83 html
+The companies and ETFs mentioned in this handbook are only examples to help explain the themes. They are starting points for research, not recommendations to buy.
+@@ 540bae6a6c html
+Policies change. This handbook describes a framework and the public facts as of writing; check the current status of the relevant laws and budgets before you use it.
+@@ 8c23afe8dd html
+Every theme has a counterargument, and the handbook lists it alongside. Looking only at evidence that supports your view is the most common way to lose money in thematic investing.
+@@ f105eecd7b html
+Scoring narratives: from slogan to cash flow
+@@ 902ba9f3c9 html
+The narrative decides what you research; valuation decides when you buy. Scoring these two separately is the first step to avoiding “right story, lost money.”
+@@ 6fe3d5ace9 html
+Four steps: from change to price
+@@ 5c1fbb6ffa html
+How long a policy lasts matters more than how strong it is
+@@ e822f94f66 html
+How much revenue a policy brings an industry depends on how long it lasts. Compare two laws passed in 2022:
+@@ c7023d82eb html
+CHIPS and Science Act (2022)
+@@ ddca0f9926 html
+Members of both parties voted for it
+@@ 8d8c2d74cb html
+Its logic, national security and competition with China, is shared by both parties
+@@ 8687be8490 html
+Largely continued in the years since, with subsidies rolling out
+@@ 6b5060db71 html
+Inflation Reduction Act (2022)
+@@ f7df45b34e html
+Passed the Senate on a party-line vote
+@@ 60ad4e27c5 html
+Clean energy tax credits are at its core
+@@ e7113ba7f7 html
+The 2025 tax law sharply cut the credits for electric vehicles, wind and solar
+@@ 2195af599a html
+This isn't a judgment on which law is better. It illustrates a pattern: <strong>a policy backed by only one party is much more likely to be rewritten after a change of government.</strong> The stocks of companies that bet on it will swing hard with election results. Directions both parties support, such as defense, supply-chain security and export controls on key technologies, usually last longer.
+@@ 62ebe0d9d1 html
+Six scoring dimensions
+@@ 0be401127b html
+The first four measure how reliable the narrative is; the last two measure how attractive the price is. Keeping them separate is the only way to answer two different questions: is it worth researching, and is it worth buying now?
+@@ 511fe995be html
+Rhetoric only
+@@ 1c9c9cb710 html
+Executive order
+@@ a49e627cd9 html
+Law and budget
+@@ 7809d3270f html
+One party
+@@ 41a5f7b54b html
+Partly bipartisan
+@@ 443beed98f html
+Bipartisan consensus
+@@ 6a6e09dbf8 html
+One-off
+@@ 263c724d3b html
+Years
+@@ 96e6b664b4 html
+10+ years
+@@ a73a7423c8 html
+Easy to replace
+@@ e767bf54d4 html
+Part
+@@ 481ad7c6ae html
+Unavoidable
+@@ 6bbf0085c7 html
+Everyone's talking
+@@ 9e2853606a html
+Some attention
+@@ 696c96bf2c html
+Few are looking
+@@ 273bac0db6 html
+Expensive
+@@ b4e6d1e1fc html
+Fair
+@@ 1900e771b3 html
+Cheap
+@@ d79903d7db html
+Narrative durability scores up to 8 points and price attractiveness up to 4. Only durability of 5 or more with price of 3 or more lands in the “build in stages” quadrant. Most hot themes land in the upper right: a great narrative at too high a price, best put on a watchlist to wait.
+@@ 104aab96a0 html
+The narrative can be right and the instrument wrong
+@@ dc1aaa4023 html
+Within a real trend, plenty of companies fail through poor execution, competition, debt or dilution. A correct narrative only tells you money will flow in that direction, not that it will flow into the company you bought. A few common mismatches:
+@@ bc475ca8d5 html
+<strong>You bought the purest story, not the most profitable link.</strong> The profits from a new technology often land first with suppliers of equipment, materials and infrastructure, not with the best-known end-product companies.
+@@ e14d2b4d73 html
+<strong>You bought the concept, not the revenue.</strong> A company with a hot word in its name but little related revenue will trade with the theme, but its long-term performance depends on its core business.
+@@ d143191bdd html
+<strong>You bought a single company and took on single-company risk.</strong> One company's accident, lawsuit or management change can wipe out everything the theme earned you. A thematic ETF spreads out this layer of risk.
+@@ 73a44b65eb html
+Write down invalidation conditions
+@@ 0c0e9ed3ae html
+Before you buy into a theme, write down which facts would make you admit the call was wrong. Note that these are facts, not prices:
+@@ 1e1f167aa2 html
+Bad invalidation conditions
+@@ d6be11492e html
+Admit you're wrong if the stock falls 20%
+@@ 4e3d893e97 html
+A feeling that the wind has shifted
+@@ 6eb7ab745a html
+Good invalidation conditions

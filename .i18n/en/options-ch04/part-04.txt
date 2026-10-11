@@ -1,0 +1,189 @@
+@@ a70e23cc3d text
+US Options 
+@@ 875f2902a9 text
+Course
+@@ 1a0964c72a text
+US Options Course · Part 2 The core variables · Chapter 4
+@@ 97e72ea433 text
+Position Delta
+@@ a18e2bb30c text
+Delta per contract
+@@ ba51fcee04 text
+contracts
+@@ be0ff75ea9 text
+× direction)
+@@ f24f21ec35 text
+Key point
+@@ 8e9fe282f8 text
+Delta's S-curve against the stock price
+@@ e5b3cc936c text
+Figure 4-1 · Strike 100, interactive
+@@ 08fa9154e3 text
+Current settings
+@@ 72bf60d947 text
+Reference: 30 days, IV 30%
+@@ 2325dd1e4d text
+Stock at 95
+@@ 5ff0328175 text
+Stock at 100
+@@ bd72d9c7e2 text
+Stock at 105
+@@ 9813bd5a4b text
+Watch out
+@@ cbb2a224ef text
+SPY-equivalent shares
+@@ 4e376d3c29 text
+Stock price
+@@ 58012af91f text
+SPY price
+@@ c9b770d080 text
+Beta-weighted delta calculator
+@@ 0d1d039618 text
+Tool 4-A · Editable
+@@ 24a4032968 text
+Delta of the SPY put used to hedge
+@@ a4e4e994cf text
+Portfolio total: SPY-equivalent shares
+@@ adfbf79c71 text
+Equivalent SPY market value
+@@ 92529c2719 text
+SPY puts to buy for a full hedge
+@@ 8dc0bd9605 text
+Mind the units
+@@ ae609ac635 text
+Gamma peaks at the money and spikes near expiry
+@@ a22c3fdb6e text
+Figure 4-2 · Strike 100, IV 30%
+@@ 920de1c311 text
+1% dollar Gamma
+@@ ed485f0f98 text
+P&amp;L
+@@ ff2417674b text
+The approximation is nearly perfect for small moves and drifts off for large ones
+@@ dc2e8fb431 text
+Figure 4-3 · 30-day ATM call, P&amp;L per share
+@@ 4e13b858d1 text
+Actual P&amp;L (repriced)
+@@ ca22195647 text
+Delta only
+@@ a2cad34732 text
+When to trust it
+@@ d0fb69c69b text
+breakeven
+@@ 291665148c text
+Hedged daily P&amp;L is a parabola
+@@ c2bb7b04be text
+Figure 4-4 · ATM call + stock hedge, per share
+@@ ef47b164e3 text
+Daily move to break even
+@@ e31bc21789 text
+Shortcut S·σ/√365
+@@ 5f9ffb527e text
+Daily loss if the stock stays put
+@@ 13d63d2dcf text
+Bottom line
+@@ 7729850097 text
+One position, two scenarios
+@@ fe35e3a189 text
+Figure 4-5 · 10 straddles, hedged at each close
+@@ c4eb4202bc text
+Close
+@@ 0e389b4035 text
+▼ Sell stock
+@@ f584872660 text
+▲ Buy stock
+@@ e2ee57a002 text
+Cumulative P&amp;L after five hedged days
+@@ 778ef5c261 text
+Same period, straddle unhedged
+@@ 183dc761f4 text
+Realized volatility of this path
+@@ 460e2cb8e2 text
+For individual traders
+@@ 0d37c6b063 text
+Market makers' gamma sign sets the direction of their hedging
+@@ c6ce285371 text
+Figure 4-6 · Schematic
+@@ 15cf938141 text
+Limits of the estimate
+@@ a1aa21848e text
+From the field
+@@ 046dfb89e4 text
+Case 1
+@@ 411ced42ca text
+Case 2
+@@ 81acdd30ad text
+Case 3
+@@ 5205b402f9 attr
+Jump to chapter
+@@ ae78ea9525 attr
+In this chapter
+@@ d12a833e34 attr
+Option type
+@@ 449f94ea48 attr
+Delta as a function of the stock price
+@@ 65c1c7370f attr
+Delta of the hedging option
+@@ 3dcba6802d attr
+Gamma curves for different days to expiry
+@@ 5989c3595c attr
+Actual vs. approximate P&L
+@@ 697f84d595 attr
+Parabola of hedged daily P&L against the stock move
+@@ 7dbfb706fc attr
+Choose a scenario
+@@ f8007167aa attr
+Price path and hedge trades
+@@ 54dfc844f8 attr
+Positive gamma dampens moves; negative gamma amplifies them
+@@ f0852d355e attr
+Chapter navigation
+@@ c87f6311bf js
+ days
+@@ 34ae6467e4 js
+Stock price ($)
+@@ 2dd6ed1245 tpl
+<span><i style="border-color: var(--gamma); opacity: {0}"></i>{1} days left</span>
+@@ f485df2f3e js
+ points
+@@ 219c4ebfff js
+Stock move ($)
+@@ b436c20338 js
+P&L per share ($)
+@@ fe6982fdff js
+Day's stock move ($)
+@@ f397234c9c js
+Hedged daily P&L (per share)
+@@ 87e43b87ea js
+Entry
+@@ fc7bc0d5df js
+Day 
+@@ bb6a7bf0ab js
+<empty>
+@@ 150b8e7f30 js
+Stock price
+@@ dbe7a7eac7 js
+▼ Sell 
+@@ 963f130af1 js
+▲ Buy 
+@@ e59dbda72f js
+ (bought at IV 30%)
+@@ 799c1278ad js
+Stock A
+@@ 6af8882090 js
+Stock B
+@@ eb3f2879d6 js
+Call C
+@@ 031b6c1d64 tpl
+<tr>
+      <td><input class="name" id="c-n{0}" value="{1}" aria-label="Position name"></td>
+      <td><select id="c-t{2}" aria-label="Type"><option value="s"{3}>Stock</option><option value="o"{4}>Option</option></select></td>
+      <td><input id="c-q{5}" type="number" value="{6}" aria-label="Quantity"></td>
+      <td><input id="c-d{7}" type="number" step="0.05" value="{8}" aria-label="Delta per unit"></td>
+      <td><input id="c-p{9}" type="number" value="{10}" aria-label="Underlying price"></td>
+      <td><input id="c-b{11}" type="number" step="0.1" value="{12}" aria-label="Beta"></td>
+      <td class="mono" id="c-o{13}">—</td></tr>
+@@ 9887935d86 js
+ shares
+@@ 0162123374 js
+ contracts

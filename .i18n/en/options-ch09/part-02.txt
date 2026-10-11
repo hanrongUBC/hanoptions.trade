@@ -1,0 +1,200 @@
+@@ d55457038e html
+Hold to expiry and you are betting on realized volatility; close early and you are betting on IV. A 45-day ATM straddle costs 8.39, with Vega of $27.88 per point. 10 days later the stock is still at 100. If IV is unchanged, the straddle is worth 7.40 and you lose $99 per contract: that is Theta. If IV rises to 33%, you lose $25; to 36%, you make $49; to 40%, you make $147. In other words, IV has to rise to about 34% within those 10 days just to offset the time decay.
+@@ dcd53f898c html
+The typical setup for this trade: a known event (earnings, a product launch, a regulatory ruling) is a few weeks away, and front-month IV hasn’t started to climb yet. If you sell after IV has risen but before the event, you never carry the jump from the event itself. The risk is that IV doesn’t rise while Theta takes its cut every day. And the market often prices things in early: by the time you notice IV “hasn’t risen yet,” it may already have (Chapter 10).
+@@ 814dba4f4d html
+IV at purchase <input id="f2-iv" type="range" min="10" max="80" value="30"> <output id="f2-iv-o">30%</output>
+@@ 148b399834 html
+Realized volatility <input id="f2-rv" type="range" min="10" max="80" value="30"> <output id="f2-rv-o">30%</output>
+@@ 741b3223b7 html
+Days to expiry <input id="f2-d" type="range" min="5" max="90" value="30"> <output id="f2-d-o">30 days</output>
+@@ 7041d5b034 html
+With both volatilities at 30%, the breakevens (±6.85%) sit inside ±1 standard deviation (±8.6%), the buyer’s probability of profit is 42.5%, and the expectancy is 0. Drag only realized volatility to 35%: the curve stays put, the distribution widens, and the probability of profit rises to 49.4%. Then drag the purchase IV to 45%: the cost goes up and the breakevens move out. With the same realized volatility, buying too expensively means negative expectancy.
+@@ fbe968694f html
+<span class="sn">9.3</span>Iron condors, iron butterflies and butterflies
+@@ b8aef5f6b3 html
+Add two “wings” to a short strangle or a short straddle and you get the iron condor and the iron butterfly, whose maximum loss is fixed. The wing width decides how much premium you trade for how much tail protection.
+@@ eee2090abb html
+<strong>Iron condor</strong>: a put credit spread + a call credit spread. Example: sell the 91 put, buy the 86 put, sell the 112 call, buy the 117 call.
+@@ 4b296a4b81 html
+<strong>Iron butterfly</strong>: sell an ATM straddle, then buy OTM options the same distance away on each side. Example: sell the 100 straddle, buy the 95 put and the 105 call.
+@@ ab7c6908ca html
+<strong>Butterfly</strong>: all calls (or all puts). Buy 1 at the lower strike, sell 2 in the middle, buy 1 at the higher strike, and pay a debit.
+@@ ad9cb59f87 html
+When both wings are the same width, the stock can only break through one side at expiry, so you only need to set aside capital for one maximum loss.
+@@ 4d640bf183 html
+Wing width: how much insurance to buy
+@@ 565ea15e59 html
+Table 9-3 45-day iron condor, short strikes 91 / 112 (about 0.16 Delta), different wing widths (IV 30%, per share)
+@@ 0e19c60723 html
+Wing width
+@@ fd5af90f74 html
+Premium collected
+@@ a59f077925 html
+Max loss
+@@ cf069bf981 html
+Loss : profit
+@@ d983f7505d html
+Probability of profit: realized 30% / 25%
+@@ 96b540ec3e html
+With the short strikes unchanged, the probability of a “full profit” is 67.3% for all three wing widths (the stock stays between 91 and 112). The wider the wings, the cheaper and farther away the insurance you buy, the more premium you collect, and the slightly higher your probability of profit; the price is a maximum loss that grows several times over. In a gap, a condor with $10 wings is almost a strangle. Theta per contract is +$1.55, +$2.50 and +$4.25 per day, and Vega is −$4.73, −$7.58 and −$12.86 per point: the wider the wings, the closer you get to a naked short strangle.
+@@ b4cbfc1585 html
+The order of choices: first set your maximum-loss budget for one trade (Section 8.8), then choose the wing width, and finally divide the budget by the maximum loss per contract to get the number of contracts. With wings too narrow ($1–2), the premium is so small that commissions and the bid–ask spread eat almost all of it; with wings too wide, the iron condor loses its point as a defined-risk trade.
+@@ 9abd600d59 html
+Iron butterflies and butterflies: two ways to build the same shape
+@@ cde0f9815c html
+Selling a 45-day 95/100/105 iron butterfly collects 4.05, with a maximum loss of 0.95 and breakevens at 95.95 / 104.05; at market pricing, the probability of profit is only 30.0%. Widen the wings to 10 (90/100/110) and you collect 6.44, with a maximum loss of 3.56 and a 45.9% probability of profit. The iron butterfly has a low probability of profit and a high payoff ratio; it makes money when the stock gets “pinned” in the middle.
+@@ 72bb43f41d html
+Buying the 95/100/105 call butterfly costs 0.925, with a maximum profit of 4.075 and breakevens at 95.93 / 104.07. Its payoff at expiry is exactly the same as the iron butterfly’s: <span class="num">5 × e<sup>−rT</sup> − 0.925 = 4.05</span>, which is exactly the premium the iron butterfly collects. One takes in money and one pays it out, but the shape is the same. Which one to use depends on liquidity and capital. The butterfly uses only calls, so the 95 leg is in the money and usually has a wider bid–ask spread; all four legs of the iron butterfly are at or out of the money, so it fills more easily. The butterfly ties up only its debit, while the iron butterfly freezes margin equal to its maximum loss. If the stock sits near the middle strike at expiry, either one can be assigned and leave you with a stock position, so it is best to close before expiration.
+@@ 21b5132119 html
+Management, and adjusting in a trend
+@@ c9c42ed2b2 html
+<strong>Short-leg Delta</strong>: 0.10–0.20 is common. 0.16 is about one standard deviation out and balances premium against room for error.
+@@ 842ec7159d html
+<strong>Taking profits</strong>: the 50% profit target and the 21-day rule from Chapter 8 apply here too. Because its profit zone is narrow, the iron butterfly usually takes profits at around 25%.
+@@ e1c1e0ef4b html
+<strong>The tested side</strong>: once a short leg’s Delta rises above 0.30, or the price touches the short strike, decide whether to close, roll or do nothing.
+@@ 97898cf8e4 html
+<strong>The rule in a trend</strong>: in a trend, “tightening” an iron condor (moving the untested side toward the price) collects more premium, but makes both sides easier to hit. Before you adjust, ask yourself: if I had no position today, would I open this new one? Case 3 compares three choices with numbers.
+@@ 2068cf34b1 html
+<span class="sn">9.4</span>Calendar and diagonal spreads
+@@ d94dd7ef05 html
+A calendar spread sells the front month and buys the back month, and earns the front month’s faster time decay. It needs the stock to stay near the strike and back-month IV not to fall sharply.
+@@ 2c4d37ab1e html
+Same strike, different expirations: sell the 30-day 100 call for 3.591, buy the 60-day 100 call for 5.168, for a net debit of 1.577. The front-month option has more Theta and loses value faster every day; the back month has more Vega and is more sensitive to IV. So a calendar is <strong>positive Theta, positive Vega, negative Gamma</strong>: the passage of time and a rise in IV help it, and a big move in the stock hurts it.
+@@ 0c4720c40e html
+Table 9-4 Long 100 call calendar (30/60 days, debit 1.577), P&amp;L at front-month expiry (per share), by back-month IV
+@@ ba6a8a2ed2 html
+Back-month IV 25%
+@@ 4a3cb6d8fd html
+Back-month IV 30% (unchanged)
+@@ d1642d5154 html
+Back-month IV 35%
+@@ 1efb7ecb91 html
+With IV unchanged, the profit zone runs from about 95.2 to 105.9, and if the stock sits exactly at 100 you make 2.01, more than the cost. The maximum loss approaches the 1.577 you paid: when the stock moves far away, both options turn into pure intrinsic value or become worthless, and the spread goes to 0. Each 5-point change in back-month IV moves the P&amp;L near the strike by about 0.57; the farther from the strike, the smaller the effect.
+@@ b937218b10 html
+Earnings calendars: sell the expensive front month, buy the cheap back month
+@@ cfb66bed31 html
+Before earnings, IV on the nearest expiration that includes the earnings date gets pushed up a lot, while the back month rises only a little. You can see why by breaking out the “event variance” (Chapter 6, Section 6.8):
+@@ b156d1bf18 html
+<span class="v">e</span> is the one-day move the market expects on earnings day (one standard deviation). The same <span class="v">e</span> spread over 7 days and spread over 35 days lifts annualized IV by very different amounts.
+@@ 8798cfa20f html
+Suppose normal volatility is 30% and the expected earnings-day move is <span class="v">e</span> = 7%. IV for the 7-day expiration is <span class="num">√(0.30² + 0.07² × 365/7) = 58.8%</span>, and IV for the 35-day expiration is <span class="num">√(0.30² + 0.07² × 365/35) = 37.6%</span>. Once earnings are out, the event variance disappears and both expirations go back to around 30%: front-month IV drops 29 points, the back month only 8. A calendar that sells the front month and buys the back month is collecting this difference.
+@@ cf9d403186 html
+Day after earnings
+@@ b330844cf4 html
+Front-month expiry
+@@ 9e3b1f51c8 html
+Back-month IV after earnings <input id="f3-iv" type="range" min="25" max="45" value="30"> <output id="f3-iv-o">30%</output>
+@@ b3fd368c1c html
+IV assumptions: normal volatility 30%, expected earnings-day move 7%; at entry, front-month IV is 58.8% and back-month IV 37.6%; after earnings, front-month IV returns to 30%. By default the back month also returns to 30%: if the stock doesn’t move you make $101, and the profit zone runs from about 95.0 to 106.1, slightly narrower than the ±6.5% implied by the front-month straddle. Drag back-month IV to 25% and the profit zone shrinks noticeably; drag it to 35% or higher and the result approaches the dashed line.
+@@ e3f00dd7b7 html
+Case 2 works through the full numbers. A calendar’s maximum loss is about the debit you paid, which makes it a good fit for expressing, in small size, the view that “the actual jump on this earnings report will be smaller than the market expects.”
+@@ d871fdc317 html
+Choosing expirations: the front month is usually 1–5 weeks out, and the back month 3–8 weeks beyond it. The farther out the back month, the larger its Vega and the more the calendar behaves like a plain long-IV position, while the Theta difference between the two legs matters less. With the back month too close, the Theta difference is too small to be worth paying the bid–ask spread twice. Also check whether the back month includes another big event (such as the next earnings report or a Fed meeting). If it does, that event will hold up back-month IV, and you are in effect also long volatility on the next event, which may not be what you want.
+@@ 0163b0163a html
+Diagonal spreads: calendars with different strikes
+@@ a51e95ab82 html
+The two legs of a diagonal spread have different expirations and different strikes. One common version uses a deep-ITM back-month call in place of stock for a covered call: buy the 90-day 90 call (12.65, Delta 0.80), sell the 30-day 105 call (1.66, Delta 0.31), for a net debit of 10.99 and a net Delta of 0.49. Compared with the covered call in Section 8.2, the capital drops from $10,000 to about $1,099. The costs: if the stock falls, the loss on the back-month call can be larger than the cushion from the premium; if the stock rallies hard, the front-month call goes deep in the money, total profit is capped, and it can even come in below what you expected because the back month doesn’t have enough time value left. Diagonals are also common around earnings: sell the expensive front month, buy the cheap back month, and use the strikes to express a bit of direction.
+@@ c0e977ca21 html
+Traders often treat an earnings calendar as a small “lottery ticket”: the maximum loss is the debit paid, and you accept up front that you may lose all of it. A few common practices: choose a strike not far from the current price, so that a “small move” still lands in the profit zone; open the position in the last ten to twenty minutes before the close, to reduce the effect of intraday IV swings on your entry price; after earnings, either close the whole combination together or deal with the front-month leg before it expires. Avoid cutting just one leg, which turns a defined-risk structure into a naked single-leg position.
+@@ b48f25c0f5 html
+<span class="sn">9.5</span>Keeping Delta neutral: frequency and cost
+@@ f6978993b8 html
+Hedging frequency changes how much your P&amp;L swings, not its expectancy. The more often you hedge, the closer the result gets to the underlying bet of “realized minus implied volatility,” and the higher the cost.
+@@ ab37ef7405 html
+A neutral structure’s Delta is close to zero only at the moment you open it. Once the stock moves, Gamma pushes Delta away. For 10 short ATM straddles, after the stock rises $1.57 (one daily standard deviation), Delta goes from −65 shares to −207 shares (Gamma is about −92.5 shares per dollar). Should you hedge back to zero, and how often? The simulation below answers that.
+@@ 87e4a2ab14 html
+Setup: sell 10 contracts of a 30-day ATM straddle (collecting $6,854) and hedge with stock; check 4 times a day; trading cost $0.02 per share; 2,000 random paths (seed 99).
+@@ 0de1814528 html
+Table 9-5 Short 10 straddles: results by hedging method ($)
+@@ 89420dd199 html
+Hedging method
+@@ 9215455613 html
+Average P&amp;L
+@@ 4aa4898caf html
+Standard deviation
+@@ 211aad6b3d html
+Worst 5% (5th percentile)
+@@ 33675d6fda html
+Average shares traded
+@@ a79bfa6e6a html
+Average cost
+@@ 0ad3ad4f94 html
+Realized volatility 30% (equal to IV, no premium)
+@@ 7c964c434c html
+No hedge
+@@ 70a17d86a9 html
+Once a day at the close
+@@ 33093abf9d html
+Four times a day
+@@ b0b6041389 html
+When Delta drifts ±100 shares
+@@ cb597edaad html
+When Delta drifts ±300 shares
+@@ 217cdef701 html
+Realized volatility 25% (with a premium)
+@@ baf87a5990 html
+<strong>The premium sets the expectancy</strong>. With no premium, every hedging method averages close to 0, and the differences are basically trading costs (the standard error for no hedge is about $116). With a premium, they all come in around +$1,000.
+@@ 27bde8a3a9 html
+<strong>Hedging compresses the swings</strong>. Without hedging the standard deviation is $5,201; hedging four times a day cuts it to $541. In the case with a premium, hedging four times a day makes 95% of paths profitable (5th percentile +$203), while without hedging 5% of paths lose more than $7,000.
+@@ 00d3627d32 html
+<strong>Thresholds are cheaper than a fixed schedule</strong>. A ±100-share threshold uses about two-thirds of the trading volume and gets close to the stability of “four times a day.” In practice, market makers mostly hedge on thresholds or on bands set by Gamma, not by the clock.
+@@ e1f8997b57 html
+How do you set the threshold? A simple reference is “how much Delta changes on a one-daily-standard-deviation move,” which is |Γ| × <span class="v">S</span> × σ ÷ √365. For the 10 straddles that is <span class="num">92.5 × 100 × 0.30 ÷ 19.1 ≈ 145</span> shares. In the table, ±100 shares is about 0.7 daily standard deviations and ±300 shares about 2. A threshold between 0.5 and 1 daily standard deviation is a common compromise between variance and cost. Gamma grows as expiration approaches, so the number of shares the threshold corresponds to needs to be recomputed as you go.
+@@ fdf1e8cd24 html
+For individual traders, the lesson of this table is this: if you sell volatility without hedging, what you mainly carry is directional risk, and the premium is only a small tilt in your favor. To make “selling volatility” live up to its name, either hedge, or use a defined-risk structure to cut off the directional risk. Adjusting with options is also a kind of hedge: selling a spread on the untested side or buying a small option in the same direction both pull Delta back, at the cost of changing the shape of the whole structure.
+@@ 9faf870019 html
+<span class="sn">9.6</span>When to buy and when to sell volatility
+@@ c2d8e59512 html
+Look at three indicators together: where IV sits within its own history, the shape of the term structure, and the gap between realized and implied volatility. A bet is only worth making when all three point the same way.
+@@ 2c6a8a1fc6 html
+Indicator 1: IV Rank
+@@ c44aec9196 html
+Example: over the past year IV ranged from 22% to 68%, and it is now 32%, so IV Rank = (32 − 22) ÷ (68 − 22) = 21.7%. Another common measure, IV Percentile, counts “how many days in the past year IV was lower than today,” so a single extreme value doesn’t distort it (Chapter 6).
+@@ 21c41788e2 html
+A low IV Rank means options are cheap relative to their own history, but “cheap” can last a long time, and low IV by itself doesn’t make IV rise. A high IV Rank means premiums are rich, but high IV usually has a reason: earnings, a lawsuit, a macro event. IV Rank tells you where the price is, not whether the price is right.
+@@ 7de6190c83 html
+Indicator 2: the term structure
+@@ 44790e9b60 html
+<strong>Steeply upward-sloping</strong> (front-month IV clearly below the back month): common in calm markets. When you sell short-dated options, they “roll down” to lower IV as time passes, which helps the seller.
+@@ 478f34f714 html
+<strong>Flat</strong>: front and back months are about the same. The market has no particular worry about the near term, and the seller gets no extra roll-down. A buyer gives up nothing by buying the back month here.
+@@ 867f588354 html
+<strong>Inverted</strong> (front month above the back month): the market is paying for risk right in front of it, which is common in panics and before events. This is when front-month premium is richest, but also when realized volatility is most likely to keep expanding.
+@@ 5a026161e5 html
+Indicator 3: realized vs implied volatility
+@@ 3c7d8cf6c7 html
+Compare realized volatility over the last 10–20 trading days with 30-day IV. If realized volatility stays above IV, options haven’t caught up with what is really going on, and buyers have the edge; if it stays below IV, the market is paying premium for volatility that isn’t happening, and sellers have the edge. “Stays” matters: one or two big days don’t count.
+@@ c7ca83900d html
+Realized − implied volatility
+@@ 13916958ba html
+Above IV
+@@ 177251e5da html
+Below IV
+@@ fe68013871 html
+Low IV Rank (&lt; 30)
+@@ 0a8dfb8b84 html
+High IV Rank (&gt; 50)
+@@ 4de03e4148 html
+Best for buying volatility
+@@ e412efe8d9 html
+Cheap options, and big realized moves
+@@ f9cae82817 html
+Buy straddles / strangles, then hedge
+@@ f5b0a03d33 html
+Gamma scalping (Section 9.7)
+@@ e35835a29b html
+Risk: low IV can last; Theta bleeds daily
+@@ 64e3e654e7 html
+Conflict: rich, but really moving
+@@ 4961e91fe7 html
+Early in a panic; term structure inverted
+@@ 5f7114b768 html
+Only small, defined-risk positions
+@@ 69581c8918 html
+Sell once the inversion clears
+@@ 18ec9da494 html
+Risk: selling while vol is still expanding
+@@ 50619e5d55 html
+Conflict: a premium, but thin

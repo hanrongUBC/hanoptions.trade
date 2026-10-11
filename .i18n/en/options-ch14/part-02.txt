@@ -1,0 +1,262 @@
+@@ 6be0c34e58 html
+<span class="sn">14.2</span>A view in three dimensions
+@@ 6eeb62a831 html
+An options view needs three sentences: direction, volatility and time. Write only the first, and you leave the other two variables to luck.
+@@ b22473edb4 html
+Buying stock takes only a direction. An option's price depends on the underlying price, implied volatility and time remaining all at once, which correspond to three Greeks: Delta, Vega and Theta. If you don't take a position on the last two, the market takes one for you: buying a single option automatically bets that “IV won't fall and the move will come fast enough.” That is how A and B lost in the opening.
+@@ a3d58ab35a html
+How to write the three sentences
+@@ a25ad1aff4 html
+<strong>Direction sentence</strong>: “The underlying reaches ___ (target price) within <span class="v">N</span> days; a break below ___ means I'm wrong (invalidation price).” A neutral view is also a direction sentence: “Stays between 95 and 105 for 30 days.”
+@@ 6f36bc9531 html
+<strong>Volatility sentence</strong>: “IV is ___% now, IV Rank ___, 20-day realized volatility ___%. I think IV will rise, fall or stay flat from here, because ___.”
+@@ 6f109ac4e5 html
+<strong>Time sentence</strong>: “The catalyst is ___. It arrives on day ___ at the earliest and day ___ at the latest.”
+@@ 9ddf9c56c3 html
+Write the direction sentence so it can be compared with the market
+@@ bc78d63e8a html
+Only when you write down a target price can you compare it with what the market is quoting. With the stock at $100, IV at 30% and 30 days to go, the market's 1-standard-deviation expected move is:
+@@ fbdb5cb16b html
+<span class="v">T</span> is in years. An at-the-money straddle costs about 0.8 times the expected move: here the straddle is 6.85, and 6.85 ÷ 8.60 ≈ 0.80. The factor comes from √(2/π).
+@@ 52e3221198 html
+Your target is 105 in 30 days, or 0.58 standard deviations. Working back from option prices, the market puts the probability of finishing above 105 at <span class="num">28.4%</span> (the <span class="v">N</span>(<span class="v">d</span><sub>2</sub>) of the 105 call). If you think the probability is closer to one half, you disagree with the market, and buying calls makes sense. If you think it's only about 30%, your “bullish” view is no different from the market's pricing, and that isn't a trade.
+@@ 2e49cda91f html
+The volatility sentence decides whether you buy or sell
+@@ 7ff8a76d7c html
+The same at-the-money straddle is worth <span class="num">6.85</span> at 30% IV and only <span class="num">4.57</span> at 20% IV. If you have reason to think realized volatility over the next 30 days will be only 20%, then buying options priced at 30% means paying 6.85 for something worth 4.57. Even if you get the direction right, you are running into a headwind. In that case, favor selling structures or spreads, so Vega isn't working against you.
+@@ 0670c44c13 html
+Three common failures, and the sentence each one left out
+@@ d09899a437 html
+Table 14-2 Four ways to be right on direction and still lose money
+@@ e8e409b5ca html
+Failure
+@@ 8c61a17cce html
+Missing sentence
+@@ ca651f6d5a html
+What it looks like
+@@ 02df09b97a html
+Related chapters
+@@ 7fa8591e60 html
+Expiration too soon
+@@ f378fe650c html
+Time sentence
+@@ 4af1cbd698 html
+Bought a one-week option; the move came in week three
+@@ d0243abec0 html
+Chapter 7
+@@ c548173e08 html
+IV crush
+@@ 0b36155654 html
+Volatility sentence
+@@ fab020003d html
+Bought a single option before earnings; the stock rose and the option lost money
+@@ cf607717a7 html
+Chapters 5, 10
+@@ 45b765eaf2 html
+Move too small
+@@ adb4b30d9c html
+The target price in the direction sentence
+@@ 5695dfee0c html
+Bought the 110 call; the stock only got to 106
+@@ 703dc8d973 html
+No invalidation price
+@@ f79a563113 html
+The invalidation price in the direction sentence
+@@ 0257c20a92 html
+Wrong, but held all the way to expiration
+@@ 43bc4f7cc8 html
+Chapter 13
+@@ 7e36674e8a html
+If you can't write the three sentences, all you have is a “feeling.” Put feelings on a watchlist and trade only once they turn into three sentences. Often, by the time you reach the volatility sentence, you find that options are too expensive to make money even if you're right on direction, and the trade should be dropped or restructured.
+@@ 0de873cea2 html
+<span class="sn">14.3</span>The strategy selection matrix
+@@ 133d2b4c7f html
+Pick one value for each of three dimensions—direction, IV environment and whether there is an event—and the structure is mostly settled. The matrix rules out structures with the wrong shape before you place the order.
+@@ 016633c1e9 html
+How to set the three dimensions
+@@ 22d26d33ad html
+<strong>Direction</strong>: bullish, bearish or neutral, taken from the direction sentence.
+@@ bb8bda160e html
+<strong>IV environment</strong>: split IV Rank into three tiers: below 25 is low, 25 to 50 is mid, above 50 is high. IV Rank = (current IV − 52-week low IV) ÷ (52-week high − 52-week low) × 100. Then cross-check with IV ÷ 20-day realized volatility (IV/HV): a high IV Rank with IV/HV below 1 means volatility itself has picked up, and options aren't actually expensive.
+@@ 86e8817d54 html
+<strong>Event</strong>: whether there is an earnings report, FOMC meeting, CPI release, product launch or ex-dividend date during the period you plan to hold.
+@@ 420b25ea0b html
+Table 14-3 Strategy selection matrix (direction × IV environment × event)
+@@ 3a11437185 html
+IV environment · event
+@@ 1ac69090ba html
+Bullish
+@@ 727fb827ee html
+Bearish
+@@ 17a6b31034 html
+Neutral
+@@ cb833a3b28 html
+Low · no event
+@@ a6caca5b61 html
+Buy a call (ATM, 45–90 days)
+@@ 0b2f836bc1 html
+Buy a put (ATM, 45–90 days)
+@@ dee71563de html
+Calendar spread, or no trade
+@@ 7941b775e1 html
+Low · event
+@@ a00baf2d02 html
+Buy calls early, scale out before the event
+@@ ee0c08af23 html
+Buy puts early, scale out before the event
+@@ b794c55eea html
+Buy a straddle before the event, close it before the event
+@@ c79b0530a6 html
+Mid · no event
+@@ eee4566630 html
+Call debit spread
+@@ 9075d8256c html
+Put debit spread
+@@ 44ce3c2343 html
+Iron condor (short strikes about 1× the expected move)
+@@ b1ef2c1485 html
+Mid · event
+@@ f6e57eace7 html
+Call debit spread, held through the event
+@@ 14af372459 html
+Put debit spread, held through the event
+@@ 778eacb339 html
+Event calendar spread
+@@ a021d668ac html
+High · no event
+@@ f6ebb25fba html
+Sell a put spread / cash-secured put
+@@ 9aaf6e71fc html
+Sell a call spread
+@@ a0e22ac578 html
+Iron condor (a defined-risk short strangle)
+@@ ae2decc090 html
+High · event
+@@ 33cfd5ddb9 html
+Sell a put spread, short strike outside the expected move
+@@ b10050f804 html
+Sell a call spread, short strike outside the expected move
+@@ 23eaf78a9f html
+Event iron condor, small size
+@@ 970855daef html
+Low
+@@ fd6b764510 html
+Mid
+@@ 4d4b8156f4 html
+High
+@@ cf8d66dc8d html
+None
+@@ 6f2f0e440f html
+Yes
+@@ f076e85a61 html
+Example IVs: low 18%, mid 30%, high 50%. When there is an event, the leg that expires right after it is priced at 1.35 times IV, which returns to normal once that leg expires. Strikes are multiples of the expected move, rounded. Click “Low,” “Mid” and “High” in turn and watch net Vega go from positive to negative: the higher the IV, the more the structure leans toward selling options.
+@@ 134b576db5 html
+Three rules behind the matrix
+@@ 407398a8e3 html
+<strong>IV sets the sign of Vega.</strong> Use buying structures when IV is low (net Vega positive), selling structures when IV is high (net Vega negative) and spreads when IV is in the middle (net Vega near zero), so that direction becomes the main source of profit and loss.
+@@ 98f75a628c html
+<strong>An event means risk must be capped.</strong> IV gets bid up before an event and collapses after it. “Buy before the event, sell before the event” and “sell before the event, buy back after it” are two completely different trades. If you hold through an event, the structure must have a known maximum loss.
+@@ d4978ef9e5 html
+<strong>Neutral views are the most sensitive to IV.</strong> A neutral structure earns nothing from Delta; it can only make money from Theta or Vega. That is why neutral views are hardest when IV is low: sellers collect too little, and the most common right answer is not to trade.
+@@ f4cfbb1ac4 html
+The 52-week window includes one extreme episode: the IV high was pushed far up, so IV Rank looks low for the whole year that follows. In that case use IV percentile (how many days in the past year IV was below today's level) or compare with the multi-year median.
+@@ 482bfcf81f html
+The underlying is going through a structural change: an acquisition, a restructuring, index inclusion. Its historical IV range no longer describes the future.
+@@ 818cffff52 html
+Poor liquidity: slippage on any structure can eat the edge the matrix gives you. Run the liquidity screen in Section 14.9 first.
+@@ 495d796de1 html
+<span class="sn">14.4</span>Strikes, expiration and size
+@@ 4ff248bb19 html
+Expiration follows the time sentence, strikes follow the direction sentence, and the number of contracts follows the worst case.
+@@ 02212a3313 html
+Table 14-4 Summary of strike and expiration rules
+@@ 3f160803e7 html
+Expiration
+@@ 4a14863fad html
+Strike
+@@ 02794142c4 html
+When to manage
+@@ 49e842c1b2 html
+Long option
+@@ c6614f5148 html
+≥ latest catalyst date × 1.5; usually 45–90 days
+@@ 60b9ffb079 html
+Delta 0.50–0.70 (ATM to slightly ITM)
+@@ 66d9c2697b html
+Exit before 21 days are left
+@@ e0ae5e6c66 html
+Debit spread
+@@ 9bb6099a2e html
+Same as above
+@@ 900d5cb3db html
+Long leg ATM, short leg at the target price
+@@ cb1d17d3ee html
+At 50–75% of maximum value
+@@ baa9c29451 html
+Credit spread / short put
+@@ 4d71b988e8 html
+30–45 days
+@@ 0446c40b63 html
+Short leg at Delta 0.15–0.30, or outside the expected move
+@@ 393e3037cd html
+At 50% profit, or 21 days left
+@@ 3724c32d4f html
+Iron condor
+@@ e8c835382b html
+Short legs about ±1× the expected move; wing width set by the risk budget
+@@ 477680abd1 html
+Same as above; act when either short leg's Delta reaches 0.30
+@@ cccfe2647f html
+Event trade
+@@ 567de2cf8b html
+The first expiration right after the event
+@@ d3f9660aca html
+Placed by the event's expected move
+@@ 58fd70d6ca html
+First trading day after the event
+@@ e6624b7ad8 html
+Calendar spread
+@@ 5efab1c01f html
+Front month 20–35 days, back month 50–90 days
+@@ 8fdc40c0d7 html
+ATM or the target price
+@@ 4ed85ff9bf html
+One week before the front month expires
+@@ 090be424ae html
+Where “expiration ≥ 1.5×” comes from
+@@ 53fb4b6c1b html
+This rule of thumb rests on the “cliff” at expiration: if the catalyst comes even one day after expiration, the option goes to zero. Your sense of timing is usually less accurate than your sense of direction, so leave a margin for time. The chart below draws the trade-off: the stock sits at 100 until the catalyst arrives, then rises in a single step.
+@@ 6cef260718 html
+ATM 100
+@@ fb8119d4cb html
+OTM 105
+@@ e945f82d55 html
+Rise <input id="f3-g" type="range" min="3" max="12" value="6"> <output id="f3-g-o">6%</output>
+@@ 0427b8af4a html
+Implied volatility <input id="f3-iv" type="range" min="15" max="60" value="30"> <output id="f3-iv-o">30%</output>
+@@ 3f8082c14e html
+The “latest catalyst day” is the last day on which the catalyst can arrive, with the position closed that same day, without a loss. ATM with a 6% rise: if the catalyst comes on day 10, the 30-day option makes 95% and the 90-day option 53%; if it slips to day 45, the 30-day option is worth zero while the 60- and 90-day options still make about 30%. Switch to the OTM 105 strike and the 30-day option's latest catalyst day moves up to day 27: cheaper options are less forgiving about timing.
+@@ 973a2e8584 html
+When the catalyst arrives on time, short-dated options have the most leverage; when it arrives late, they go straight to zero. Longer-dated options make a bit less when the catalyst is on time and still hold value when it is late. If you say “about a month,” it could really be three weeks or six, so choose an expiration of roughly 1.5 times six weeks. Events with fixed dates are the exception: once the earnings date has been announced there is little timing uncertainty, and the first expiration after the event will do. What you have to worry about then is IV crush.
+@@ 24d18959f7 html
+Where “exit with 21 days left” comes from
+@@ 3a0c219a48 html
+Table 14-5 Time decay of an ATM option (stock and strike 100, IV 30%)
+@@ 8e53b7da1a html
+Days left
+@@ 71346f96f8 html
+Option price
+@@ c52eba10d9 html
+Theta per day
+@@ 62b3b6984d html
+Daily decay as % of price
+@@ e9ae2f457f html
+At 21 days left, each day's decay as a share of the price is more than twice what it was at 45 days, and it accelerates even faster after that. For buyers, this is the point where the cost of holding on gets steep. For sellers, little premium is left while Gamma keeps growing, so the same price move causes a bigger swing in Delta and the risk/reward gets worse. The rule doesn't apply to deep ITM options or to LEAPS with more than a year left; their Theta is small to begin with.
+@@ 32a09b7fcd html
+The sellers' “short leg at Delta 0.15–0.30” can be read with the probability interpretation from Chapter 4: a put with a 0.20 Delta has about a 20% chance of finishing in the money, but close to a 40% chance that the stock touches the strike at some point before expiration. So design management rules around a “touch,” not just around expiration.
+@@ 3ebae3368f html
+Size: work back from the worst case to the number of contracts
+@@ 44b9d646fd html
+For defined-risk structures, the maximum loss is the debit paid, or the spread width minus the credit received. For structures without a cap, use the stress-test loss from Chapter 13 instead (for example, the repriced value after a 20% gap in the underlying). This course caps the risk on any single trade at 1%–2% of the account, and positions in the same direction are added up on a beta-weighted basis (Chapter 4).
+@@ fd9fd70cee html
+For example, with an $80,000 account, a 2% per-trade cap is $1,600. If one spread's maximum loss is $489, you can trade <span class="num">⌊1600 ÷ 489⌋ = 3</span> spreads. Note that the number of contracts is the last thing you calculate. Don't decide on “10 contracts” first and then go looking for a structure.

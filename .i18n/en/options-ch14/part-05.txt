@@ -1,0 +1,169 @@
+@@ a70e23cc3d text
+US Options
+@@ 875f2902a9 text
+ Course
+@@ 65ee2e269c text
+US Options Course · Part 4 Portfolio and risk management · Chapter 14
+@@ 9f67c1bf67 text
+The nine-step process: steps 1–5 come before the order, and step 9 loops back to step 1
+@@ 4ce507fcec text
+Figure 14-1 · Schematic
+@@ 76aed5f62a text
+Before the order (1–5)
+@@ 75d9a2379a text
+Order (6)
+@@ a7c0d9a3e1 text
+Holding (7–8)
+@@ f515161def text
+Review (9)
+@@ 8ff4cbcf28 text
+Expected move
+@@ f24f21ec35 text
+Key point
+@@ 43f69b6a1f text
+Each cell of the matrix gives a payoff shape that matches your three sentences
+@@ c969ec2208 text
+Figure 14-2 · Stock at 100; pick the three dimensions
+@@ 295ed8c9ec text
+Direction
+@@ c747eadfa6 text
+IV environment
+@@ 3eeac65026 text
+Event
+@@ 6e86593841 text
+P&amp;L at expiry (front-month expiry for calendars)
+@@ acad746219 text
+P&amp;L today (entry day)
+@@ 08a43d2fb4 text
+Net premium at entry (per position)
+@@ 8e8cdf220a text
+Max profit
+@@ 5ac61a0ad0 text
+Max loss
+@@ fbbb8500e4 text
+Net Vega / net Theta (per position)
+@@ 68cfeb1200 text
+When the matrix doesn't apply
+@@ 5142d0a991 text
+Leave the catalyst room in the expiration date
+@@ 75f2a9ff15 text
+Figure 14-3 · Stock at 100, jumping in one step when the catalyst arrives
+@@ 11ff615215 text
+30-day expiry
+@@ 6fc79a7ed1 text
+60-day expiry
+@@ dee7baae86 text
+90-day expiry
+@@ b4be541b7d text
+30-day option: latest catalyst day
+@@ 7cb92dfe7e text
+60-day option: latest catalyst day
+@@ 4982d97818 text
+90-day option: latest catalyst day
+@@ ba51fcee04 text
+Contracts
+@@ e0ac231a9c text
+Account equity
+@@ eb09a5d96b text
+Per-trade risk cap
+@@ 8479415376 text
+Max loss per contract
+@@ 68e8961e95 text
+Limits of the simulation
+@@ a1aa21848e text
+From the field
+@@ ea580a2e00 text
+Options trading journal template
+@@ a6710a8594 text
+Tool 14-A · Copyable
+@@ b73cb53baf text
+OPTIONS TRADING JOURNAL  No.: ____  Date: ____  Account equity: ____
+Underlying: ____  Underlying price: ____
+
+[View: three sentences]
+Direction: reaches ____ (target price) within ____ days; a break below ____ means I'm wrong (invalidation price)
+Volatility: IV ____%  IV Rank ____  IV/HV20 ____  My view: ____
+Time: catalyst ____, earliest day ____, latest day ____
+
+[What the market is pricing]
+Expected move (1σ): to expiration ±____  to the event ±____
+Event: ____ (earnings / FOMC / CPI / ex-dividend)  Date ____
+
+[Structure]
+Structure: ____  Legs: ____ (strike / expiration / contracts / buy or sell)
+Why this one: ____
+Why not the other two: ____
+Greeks snapshot (whole position): Δ ____ shares  Γ ____  Θ $____/day  Vega $____/IV point
+Max profit ____  Max loss ____  % of account ____%  Breakeven ____
+
+[Entry]
+Mid ____  Fill ____  Slippage ____  Time of day ____  Scaling conditions ____
+
+[Management rules: written before entry]
+Take-profit: ____
+Stop-loss: ____ (as an underlying price)
+Time: ____
+Adjustment: ____ (at most ____ times)
+
+[Exit: fill in afterward]
+Date ____  Fill ____  P&amp;L ____  R-multiple ____  Held ____ days
+Exit snapshot: Δ ____  IV ____  Actual move in underlying ____ (vs. expected move)
+Trigger: take-profit / stop-loss / time / outside the rules
+Rule broken: yes / no  Which one: ____
+Attribution: judgment error / execution error / risk-management error / normal variance
+If I did it again: ____
+
+Spreadsheet header row:
+Date,Underlying,Structure,DTE,Contracts,IV,IVRank,IV/HV,Expected move,Delta,Gamma,Theta,Vega,Event,Max loss,% of account,Fill,Exit price,P&amp;L,R-multiple,Days held,Trigger,Violation,Attribution
+@@ 23d56fbb82 text
+Using attribution
+@@ f8355a3ad9 text
+Expectancy
+@@ 20dd0ab0d3 text
+× avg win −
+@@ 9e8a6c5180 text
+× avg loss
+@@ 614150b8f5 text
+The smaller the sample, the wider the interval around expectancy
+@@ dfeedcb082 text
+Tool 14-B · Expectancy calculator
+@@ fdf22dd1f6 text
+Expectancy per trade
+@@ 16936d92fc text
+95% interval bounds
+@@ 223cbfc83e text
+Your current number of trades
+@@ 03654acbef text
+95% interval at your current number of trades
+@@ 0c6b8cd4c5 text
+Trades needed for a positive lower bound
+@@ f63af487ea text
+Breakeven win rate
+@@ 046dfb89e4 text
+Case 1
+@@ c076194320 text
+Takeaways
+@@ 411ced42ca text
+Case 2
+@@ 5205b402f9 attr
+Jump to chapter
+@@ ae78ea9525 attr
+In this chapter
+@@ a53b225f6a attr
+The nine-step trading process: view, IV environment, structure, strikes and expiration, size, entry, management, exit, record
+@@ 05bf9e70a6 attr
+Direction
+@@ b0b5d9807f attr
+IV environment
+@@ ce04251a56 attr
+Is there an event
+@@ cd07697605 attr
+Payoff chart of the suggested structure
+@@ 0568545260 attr
+Strike
+@@ ed0457ce7c attr
+Return on calls with different expirations, by the day the catalyst arrives
+@@ e9ed6c46cd attr
+The 95% interval for expectancy narrows as the number of trades grows
+@@ f0852d355e attr
+Chapter navigation

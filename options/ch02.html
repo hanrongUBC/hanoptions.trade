@@ -23,9 +23,10 @@
   .calc .ins label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); min-width: 0; }
   .calc .ins input { font-family: var(--font-mono); font-size: 14px; padding: 5px 8px; border: 1px solid var(--rule); border-radius: 4px; background: var(--paper); color: var(--ink); width: 100%; min-width: 0; }
 </style>
+<link rel="alternate" hreflang="zh-CN" href="https://hanoptions.trade/options/ch02.html"><link rel="alternate" hreflang="en" href="https://hanoptions.trade/en/options/ch02.html">
 </head>
 <body data-ch="2">
-<div class="topbar"><div class="topbar-inner"><div class="topbar-brand"><a class="site-home" href="/">hanoptions.trade</a><a class="brand" href="index.html">美股期权<span>课</span></a></div><select id="ck-jump" aria-label="跳转到章节"></select></div></div>
+<div class="topbar"><div class="topbar-inner"><div class="topbar-brand"><a class="site-home" href="/">hanoptions.trade</a><a class="brand" href="index.html">美股期权<span>课</span></a></div><div class="topbar-tools"><select id="ck-jump" aria-label="跳转到章节"></select><a class="lang-switch" href="/en/options/ch02.html" hreflang="en" lang="en" data-lang="en"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>English</a></div></div></div>
 
 <header class="mast">
   <div class="mast-inner">
@@ -882,5 +883,6 @@
   })();
 })();
 </script>
+<script id="lang-js">(function(){document.querySelectorAll(".lang-switch").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("hl-lang",a.getAttribute("data-lang"))}catch(e){}var h=a.getAttribute("href");if(location.hash&&h.indexOf("#")<0)a.setAttribute("href",h+location.hash);});});})();</script>
 </body>
 </html>

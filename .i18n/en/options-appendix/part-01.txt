@@ -1,0 +1,254 @@
+@@ c647684f89 html
+Appendix · US Options Course
+@@ 1911a19bbb html
+Glossary, quick reference and <span class="g">templates</span>
+@@ be321af0ec html
+You don't need to read this page from start to finish. Look up unfamiliar words in A, check a structure in B and C before you place an order, use D to build your own trading system, and turn to E for data and tools. Every example uses the same set of parameters, so you can compare it with the main text.
+@@ 08ba746354 html
+In this appendix
+@@ fc6bf9e244 html
+<a href="#a"><span class="n">A</span><span>Glossary</span></a>
+@@ 2ef816efc8 html
+<a href="#b"><span class="n">B</span><span>Strategy quick reference</span></a>
+@@ e22a03242b html
+<a href="#c"><span class="n">C</span><span>Payoff diagram atlas</span></a>
+@@ 53e9470b9a html
+<a href="#d"><span class="n">D</span><span>Four templates</span></a>
+@@ e4231abaca html
+<a href="#e"><span class="n">E</span><span>Data sources and tools</span></a>
+@@ 5e6ba5016d html
+<a href="#a">A Glossary</a>
+@@ 898cabdf62 html
+<a href="#b">B Strategy quick reference</a>
+@@ ce6a7dc8c4 html
+<a href="#c">C Payoff diagram atlas</a>
+@@ 09026c855d html
+<a href="#d">D Four templates</a>
+@@ 7961e5796d html
+<a href="#e">E Data sources and tools</a>
+@@ 50643898bd html
+How to use this appendix
+@@ bcfa0dcb81 html
+Hit an unfamiliar word in the text: search for it in A
+@@ 4c48e6a82c html
+Before an order: check the profit and loss limits in B and the shape in C
+@@ a00ad564dc html
+Building a system: copy the four templates in D into your own notes
+@@ 9f777286a7 html
+Related chapters
+@@ 5f0f64cea8 html
+A: terms from all 16 chapters
+@@ 9ae66d10a1 html
+B, C: strategies from Chapters 7–11
+@@ 01481139c7 html
+D: tools from Chapters 6, 10, 13 and 14
+@@ e16980ee20 html
+Conventions
+@@ 7778419992 html
+Stock at 100, 30 days, IV 25%, 4% rate, no dividends
+@@ 380d58008d html
+Prices and P&amp;L are per share; one contract × 100
+@@ b640b04687 html
+D is a net debit, C a net credit, K₁ &lt; K₂ &lt; K₃ &lt; K₄
+@@ 85128edc7a html
+<span class="sn">A</span>Glossary
+@@ e90df0c94f html
+108 terms in six groups, each with a one-line explanation. The terms are written the way you will see them on broker platforms, in exchange documents and in other English-language sources.
+@@ 94e8bda91e html
+No matching terms. Try another keyword.
+@@ a5f31fcf43 html
+A.1 Basics (24 terms)
+@@ c2cda3a9b3 html
+Term
+@@ ebdbd4243c html
+Explanation
+@@ 002bffaabe html
+<b>Option</b><span class="en"></span>
+@@ b22ed6e8d7 html
+A contract to buy or sell an underlying at an agreed price within an agreed period: the buyer has the right, the seller has the obligation.
+@@ dcd84d8b0f html
+<b>Call option</b><span class="en"></span>
+@@ ba81c6960c html
+The right to buy the underlying at the strike price.
+@@ 33f247ecda html
+<b>Put option</b><span class="en"></span>
+@@ b17c0f6ae3 html
+The right to sell the underlying at the strike price.
+@@ c508a06ec8 html
+<b>Underlying</b><span class="en"></span>
+@@ 1bbdc27ab0 html
+The stock, ETF, index or futures contract an option is written on.
+@@ d1b8cd0771 html
+<b>Strike price</b><span class="en"></span>
+@@ 3121c40855 html
+The price at which the contract lets you buy or sell.
+@@ 19f9672e2a html
+<b>Expiration date</b><span class="en"></span>
+@@ 1a076ad499 html
+The date the contract expires; US options come with weekly, monthly, quarterly and other expirations.
+@@ 53ab5a03b6 html
+<b>Premium</b><span class="en"></span>
+@@ a66cb5acff html
+The option's price. It is quoted per share; multiply by 100 for one standard contract.
+@@ 87a016bc55 html
+<b>Contract multiplier</b><span class="en"></span>
+@@ 8a865aaf7a html
+One standard US option covers 100 shares of the underlying.
+@@ db4b41d0b9 html
+<b>In the money</b><span class="en">ITM</span>
+@@ 25f46b41df html
+Worth something if exercised now: for a call, the stock is above the strike; for a put, below it.
+@@ ffb7a02a7d html
+<b>At the money</b><span class="en">ATM</span>
+@@ f531477eb6 html
+The strike is roughly equal to the current stock price.
+@@ 752c3ec3f2 html
+<b>Out of the money</b><span class="en">OTM</span>
+@@ 66df175fa2 html
+An option that would be worth nothing if exercised now.
+@@ 47bd60c029 html
+<b>Intrinsic value</b><span class="en"></span>
+@@ 900245d2bf html
+What you would get by exercising right now; never less than zero.
+@@ 7b8a2272bb html
+<b>Time value</b><span class="en">Extrinsic value</span>
+@@ 4257ed903d html
+The part of the premium above intrinsic value; it goes to zero at expiration.
+@@ 6b22bddd4b html
+<b>American-style option</b><span class="en"></span>
+@@ 8466af00f5 html
+Can be exercised on any trading day before expiration; US single-stock and ETF options are American-style.
+@@ 68a0ae3a96 html
+<b>European-style option</b><span class="en"></span>
+@@ cb602acbaa html
+Can be exercised only at expiration; options on broad indexes such as SPX are European-style.
+@@ a8adf13fa0 html
+<b>Exercise</b><span class="en"></span>
+@@ d5b1e0b2e9 html
+The buyer uses the right, buying or selling the underlying at the strike.
+@@ b512e4cb2a html
+<b>Assignment</b><span class="en"></span>
+@@ 60ece2e581 html
+The seller is required to fulfill the contract; sellers of American-style options can be assigned before expiration.
+@@ 2694903ff7 html
+<b>Cash settlement</b><span class="en"></span>
+@@ 88661d7993 html
+At expiration the difference is paid in cash and no underlying changes hands, as with SPX options.
+@@ 362397a627 html
+<b>Physical settlement</b><span class="en"></span>
+@@ f59eba4802 html
+At expiration the underlying itself is delivered, as with single-stock and SPY options.
+@@ 36866526fc html
+<b>Option chain</b><span class="en"></span>
+@@ b4a6d3d0e3 html
+The table of quotes for every expiration and strike on one underlying.
+@@ 2036ea9782 html
+<b>Open interest</b><span class="en">OI</span>
+@@ 76c89c48c2 html
+The total number of contracts not yet closed or exercised; updated once each trading day.
+@@ 566d462543 html
+<b>Volume</b><span class="en"></span>
+@@ 2d4683172a html
+The number of contracts traded during the day.
+@@ 0019e7999e html
+<b>Bid–ask spread</b><span class="en"></span>
+@@ 8e1eb432e0 html
+The gap between the highest bid and the lowest ask; a hidden cost of getting in and out.
+@@ 1b63c4b816 html
+<b>Mid price</b><span class="en">Mid</span>
+@@ df86d17726 html
+The average of the bid and the ask; limit orders usually start here.
+@@ e0b951bf1b html
+A.2 Pricing (12 terms)
+@@ 2dd5ae747c html
+<b>Black-Scholes model</b><span class="en"></span>
+@@ f3e6e8076b html
+A model that prices European options from six inputs: stock price, strike, time to expiration, volatility, interest rate and dividends.
+@@ 0efc199279 html
+<b>Put–call parity</b><span class="en"></span>
+@@ 1d5245a2ac html
+With no dividends, C − P = S − K·e^(−rT), linking the call and the put at the same strike to the stock.
+@@ 52d9992139 html
+<b>Risk-neutral pricing</b><span class="en"></span>
+@@ 33fea76617 html
+Pricing that assumes the underlying grows at the risk-free rate and then discounts the expected payoff; the probabilities it produces are the market's pricing, not real-world probabilities.
+@@ 121a682e8d html
+<b>Theoretical value</b><span class="en"></span>
+@@ 8e5164b3b1 html
+The fair price a model produces; also the center of market makers' quotes.
+@@ 90e4228647 html
+<b>Implied probability</b><span class="en"></span>
+@@ 2f5c2085cd html
+The probability of finishing in the money, backed out from option prices; N(d₂) under Black-Scholes.
+@@ 3a878d4424 html
+<b>Expected move</b><span class="en"></span>
+@@ b052d5e685 html
+The size of move the market implies over a period, usually estimated as S × IV × √(days/365) or from the price of the ATM straddle.
+@@ e5bf9a27c4 html
+<b>Early exercise</b><span class="en"></span>
+@@ ade23495fc html
+Exercising an American option before expiration; most common with deep ITM calls just before an ex-dividend date.
+@@ 56b2ffb3cd html
+<b>Synthetic position</b><span class="en"></span>
+@@ ccb963874e html
+Replicating one position with a combination of options; for example, a long call plus a short put is roughly the same as owning the stock.
+@@ bec97182ef html
+<b>Forward price</b><span class="en"></span>
+@@ d6d431cff1 html
+The delivery price: the current price plus the cost of carry. Options on futures are priced off it.
+@@ 52df89e851 html
+<b>Black-76 model</b><span class="en"></span>
+@@ 1ec156d978 html
+A variant of Black-Scholes that uses the futures price in place of the stock price; used for options on futures.
+@@ 626e6705c6 html
+<b>Binomial model</b><span class="en"></span>
+@@ bec89414d0 html
+A pricing method that works backward step by step through a tree of prices; it can handle early exercise of American options.
+@@ 7a86f4a959 html
+<b>Risk-free rate</b><span class="en"></span>
+@@ e7963d9774 html
+The short-term Treasury rate used in pricing; this course uses 4% throughout.
+@@ e8c0ed730f html
+A.3 The Greeks (15 terms)
+@@ 798a7d503d html
+The change in the option price for each $1 move in the underlying; multiplied by 100, it is one contract's share equivalent.
+@@ 3b8754b87e html
+The change in Delta for each $1 move in the underlying; positive for long options, negative for short ones.
+@@ e2729e51b7 html
+The change in the option price as each day passes; usually negative for buyers and positive for sellers.
+@@ b96988c553 html
+The change in the option price for each 1-point change in implied volatility.
+@@ ac41b840c6 html
+The change in the option price for each 1% change in interest rates; more noticeable the longer the term.
+@@ 39049e85d2 html
+The change in Delta as time passes: an OTM option's Delta drifts toward 0 each day, an ITM option's toward 1.
+@@ d222ff5f80 html
+The change in Delta caused by a change in implied volatility.
+@@ 34687f6b10 html
+Vega's sensitivity to volatility; larger for OTM options.
+@@ 2e9738b480 html
+<b>Dollar gamma</b><span class="en"></span>
+@@ c458ab69ad html
+How many dollars of stock the change in Delta amounts to when the underlying moves 1%; used to compare across underlyings.
+@@ 5c32b0bcf6 html
+<b>Share equivalent</b><span class="en"></span>
+@@ a20213e950 html
+Delta × 100 × contracts × direction; lets you add options and stock together directly.
+@@ 183b55af5f html
+<b>Beta-weighted delta</b><span class="en"></span>
+@@ eff574066f html
+Converts each position's Delta into share equivalents of an index (such as SPY), using beta and price.
+@@ af07820d53 html
+<b>Delta neutral</b><span class="en"></span>
+@@ fdaa2acb4d html
+Portfolio Delta is about zero, so small price moves have little effect.
+@@ 90f9a648b4 html
+Holding positive Gamma and repeatedly hedging Delta back to zero, using realized volatility to earn back the Theta cost.
+@@ a2799746e4 html
+<b>Gamma flip</b><span class="en"></span>
+@@ f6325bb386 html
+The estimated price level where market makers' net Gamma turns from positive to negative; below it, their hedging tends to amplify moves.
+@@ 15a4c6400d html
+<b>Discrete hedging error</b><span class="en"></span>
+@@ 940d5f0183 html
+The error left by adjusting Delta only at intervals; its standard deviation is roughly inversely proportional to the square root of the number of hedges.

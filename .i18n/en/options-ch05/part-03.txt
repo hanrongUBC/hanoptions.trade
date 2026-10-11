@@ -1,0 +1,166 @@
+@@ 168e57cab1 html
+<span class="sn">5.7</span>Second-order Greeks
+@@ 6f0287fffe html
+The first-order Greeks themselves change. Vanna links Delta and Vega, Charm links Delta and Theta, and Volga describes how Vega itself changes with IV.
+@@ 54b6096fb2 html
+Table 5-8 Four commonly used second-order Greeks
+@@ 7247285f28 html
+Name
+@@ c7c7375af8 html
+Definition
+@@ 352c10d6f5 html
+Another reading
+@@ 1cd1d17c6e html
+When it matters
+@@ e9d647b25e html
+= ∂Vega/∂S: how Vega changes as the stock moves
+@@ 721279fd80 html
+OTM options during big IV moves
+@@ bbb3608e34 html
+= ∂Theta/∂S: how Theta changes as the stock moves
+@@ e94de5b9cb html
+Near expiration; expiration-day hedging flows
+@@ e1938e16b8 html
+Vega’s “Gamma”: how much price curves with IV
+@@ f4cb011a98 html
+Far-OTM options when IV spikes
+@@ 8bef51427e html
+How fast Vega shrinks over time
+@@ 7e981a9dc1 html
+Holding volatility positions for a long time
+@@ 511c8b1cce html
+Vanna: two readings of one number
+@@ 6ed6978890 html
+Chapter 4 showed that the Delta of a 30-day 110 call rises with IV, by about 0.009 for each 1-point rise. Look at it the other way: when the stock goes from 100 to 101, this option’s Vega goes from <span class="num">0.0675</span> to <span class="num">0.0763</span>, an increase of 0.0087. Computed by central differences, both numbers are <span class="num">0.00873</span>, exactly equal. This is no coincidence: both are the cross second derivative of price with respect to <span class="v">S</span> and σ, and the order of differentiation can be swapped.
+@@ 325f1e8d8d html
+In practice: as the stock moves toward an OTM option’s strike, the option’s IV exposure grows. An ATM option’s Vanna is close to 0; the ITM 90 call has negative Vanna (−0.0069), so its Vega actually shrinks as the stock rises.
+@@ e5b39d8e25 html
+Charm: theta and delta tell the same story
+@@ 39c837f657 html
+After one day, the 110 call (30 days) sees its Delta fall from 0.152 by <span class="num">0.0047</span>. At the same time, for every $1 the stock rises, its daily Theta takes an extra <span class="num">0.0047</span>. Again, this is the same cross derivative. The ITM 90 call is the mirror image: its Delta drifts toward 1 by 0.0033 a day. Chapter 4 covered the expiration-day hedging flows that Charm creates; what we add here is its link to Theta: the more sensitive a position’s Theta is to the stock price, the faster its Delta drifts over time.
+@@ a217e52208 html
+Volga: OTM options gain “extra” when IV spikes
+@@ 4e94f614c7 html
+Vega extrapolates linearly from a 1-point change in IV. An ATM option’s price is almost a straight line in IV, so the extrapolation is accurate; an OTM option’s price curves upward in IV, so when IV jumps, the actual gain far exceeds what Vega predicts.
+@@ 153a9c48f7 html
+Table 5-9 30-day options when IV jumps from 30%: linear Vega estimate vs. actual price
+@@ 5f364b9085 html
+Contract
+@@ b566697ea3 html
+Price at IV 30%
+@@ e49ff25849 html
+IV 50%: estimate
+@@ f3fcd0ecab html
+Actual
+@@ 33d526b3b6 html
+IV 60%: estimate
+@@ caaa09fa0f html
+100 call (ATM)
+@@ 19e534df48 html
+90 put (OTM)
+@@ 62622e2c4e html
+85 put (far OTM)
+@@ 7e3fe642e8 html
+When IV doubles from 30% to 60%, the 85 put’s actual price is 2.5 times the Vega estimate. This is one reason far-OTM puts serve as crash insurance: in a crisis they benefit from Delta, Gamma, Vega and Volga all at once. It is also why sellers of far-OTM options lose far more than expected in a crisis: negative Volga means that the more IV rises, the bigger your Vega exposure gets. To put a number on it: sell 10 contracts of the 30-day 85 put and collect $81; with the stock unchanged and IV doubling from 30% to 60%, the loss is <span class="num">$1,328</span>, while the Vega estimate is only <span class="num">0.0164 × 30 × 1,000 = $492</span>. Stress-testing a short position with Vega understates tail risk by more than half. You have to reprice it in full.
+@@ 5e53cca960 html
+Veta: vega ages too
+@@ b94896381c html
+A 30-day ATM call’s Vega falls from 0.1140 to 0.1121 in one day. If you hold a long-term positive-Vega position, your IV exposure shrinks day by day even if IV doesn’t change. That is why Section 5.5 used “Vega with 6 days left” to estimate the IV-crush loss.
+@@ 4fdfc79b72 html
+<span class="sn">5.8</span>Reading a full Greeks table
+@@ 3070a0f096 html
+Read a Greeks table in three steps: first use the signs to judge the shape of the position, then turn each number into a dollar scenario, and finally use the second-order terms to check how those numbers will change.
+@@ 31b48595e9 html
+The example is a common diagonal spread (often called a “poor man’s covered call”): with the stock at $100 and IV 30%, buy 5 contracts of the 365-day 85 call (in place of the stock) and sell 5 contracts of the 30-day 105 call (to collect rent).
+@@ 214db40e02 html
+Table 5-10 Full Greeks of the diagonal spread (position totals, in dollars or shares)
+@@ e9b9c5edba html
+Item
+@@ bad60894db html
+Long 5 × 365-day 85 call
+@@ a87da6a9e5 html
+Short 5 × 30-day 105 call
+@@ 57eec06783 html
+Total
+@@ 4f4c883f1f html
+Price per share
+@@ 5f5e4d08b6 html
+Position value
+@@ b311ca65a3 html
+Delta (shares)
+@@ 8485e2c44b html
+Gamma (shares / $)
+@@ 3e128d63cf html
+Theta ($ / day)
+@@ 751c91e80a html
+Vega ($ / IV point)
+@@ 266d16b904 html
+Rho ($ / 1% rate)
+@@ b273721948 html
+Vanna (Vega $ / $1 stock move)
+@@ 81dd9f238e html
+Charm (shares / day)
+@@ 872ac73cbd html
+Line by line
+@@ a06536c495 html
+<strong>Delta +241</strong>: directionally, this is like holding 241 shares, with $10,343 of capital tied up. Buying 241 shares would take $24,100.
+@@ f811bb2b48 html
+<strong>Gamma −15.9</strong>: for every $1 the stock rises, Delta drops by 15.9 shares, so the more it rises, the less the position acts like stock; on the way down Delta grows instead, so the further it falls, the faster you lose. Negative Gamma means big moves in either direction are unwelcome. It comes from the short-dated call you sold.
+@@ d8c06227ed html
+<strong>Theta +$18/day</strong>: you net $18 a day. The short leg pays $27 a day; the long leg costs $9 a day.
+@@ a55b9b5532 html
+<strong>Vega +$91/point</strong>: each 1-point drop in IV loses $91, about 5 days of Theta. The long leg’s Vega is far larger than the short leg’s (Section 5.4: Vega is proportional to √<span class="v">T</span>), so this “rent-collecting” position is actually long volatility.
+@@ 9b8436977e html
+<strong>Rho +$274/1%</strong>: a 1-percentage-point rise in rates makes $274, about 15 days of Theta. The reason is that the long leg is a one-year option (Section 5.6).
+@@ 38e6dc07a1 html
+<strong>Vanna −5.9</strong>: for every $1 the stock rises, position Vega falls by $5.9. As the stock climbs toward 105, the short leg gets closer to the money and its negative Vega grows.
+@@ 3905b8eead html
+<strong>Charm +2.0</strong>: with nothing else changing, Delta rises by about 2 shares a day. The short leg is an OTM option whose Delta drifts toward 0 every day, so it hedges away less and less.
+@@ 9f7c3c05e5 html
+Turning the numbers into scenarios
+@@ d01fc48674 html
+Table 5-11 Greeks estimate vs. full repricing (position P&amp;L, $)
+@@ f5d86acdac html
+Scenario
+@@ b36f15f2d7 html
+Greeks estimate
+@@ 7dd2092829 html
+Repriced
+@@ cf12c812ea html
+Difference comes from
+@@ be3e8bad1a html
+Stock +5
+@@ 8c82cf18a0 html
+Gamma itself changes
+@@ f5b2adeb9d html
+Stock −5
+@@ 9bb6099a2e html
+Same as above
+@@ fed3891ce9 html
+Stock +10
+@@ 4671326cb5 html
+Higher-order terms
+@@ d5affea973 html
+Stock −10
+@@ f61f165913 html
+Short leg’s Gamma vanishes quickly on a big drop
+@@ 250b6649d0 html
+IV −5 points
+@@ d0be2af6ae html
+7 days pass
+@@ f3843f924b html
+Short leg’s Theta accelerates
+@@ 23d673892d html
+Rates +1%
+@@ bda2cf3068 html
+Nearly linear
+@@ b53d0533e5 html
+Per share or per contract, one contract or the whole position: the same Theta might show up as −0.06, −6 or −30.
+@@ d498c4851b html
+Whether Theta is per calendar day or per trading day, and whether Friday already includes the weekend (Section 5.3).
+@@ ed4ecfbdc8 html
+Vega per 1-percentage-point change in IV (this course’s convention); some platforms use a 1% relative change, or show it as a decimal per 0.01.
+@@ 8b612c9317 html
+Whether the signs are flipped for short positions: some platforms list the Greeks of the contract itself, and you have to multiply by −1 yourself.
+@@ fcc3f69c18 html
+It fears two things most: a sharp near-term drop (positive Delta plus negative Gamma; a $10 fall costs nearly 30% of the capital) and a fall in IV (positive Vega). It wants the stock to drift slowly up to around 105 with IV steady. The $18 a day of Theta income doesn’t cover the loss from a 1-point drop in IV, or from a drop of about $0.1 in the stock, so “collecting rent” is only a secondary source of return for this position.

@@ -1,0 +1,651 @@
+## source: macro/index.html  (325 segments)
+@@ 71bf799ed2 html
+宏观交易框架 · hanoptions.trade
+@@ 0a41270e95 html
+研习手册 · 十二章
+@@ 1ff58308b0 html
+宏观交易框架
+@@ 01188751a1 html
+股价最终由盈利和利率决定，盈利和利率又被油价、美元、就业和政策推着走。这本手册把这些力量串成一张每天能用的地图：看什么，怎么推，什么时候相信，怎样下注。
+@@ ec16d60e39 html
+章节
+@@ fc02ed4747 html
+宏观交易在做什么
+@@ e0e9f05284 html
+宏观交易并不是去预测下个季度的 GDP。它关心两个更实际的问题：钱接下来会被迫流向哪里，以及市场有没有提前想到。
+@@ ccdec9b9ad html
+股价的两条腿：盈利和折现率
+@@ 4663b4e14a html
+任何一只股票的价格，都可以拆成两部分：
+@@ 60a7ec2fc7 html
+几乎所有宏观消息，最后都落在这两条腿上。油价上涨会抬高企业成本，压低盈利；也会推高通胀，让央行更难降息，抬高折现率<span class="ek">（Discount rate）</span>。美元走强会让跨国公司的海外收入换算后缩水，同时收紧全球的融资环境。就业转弱先让市场期待降息，接着又让人担心盈利。
+@@ 0b201bb879 html
+所以宏观分析的落点永远是三个问题：这件事会怎样改变盈利？怎样改变利率？怎样改变风险偏好<span class="ek">（Risk appetite）</span>？
+@@ 6916b0576d html
+一个宏观交易者每天在做的六件事
+@@ 943a99e928 html
+观察：什么变了
+@@ a63458a350 html
+第 1 章
+@@ 81181f963e html
+归因：为什么变
+@@ 68916c53b1 html
+第 2、8 章
+@@ c44d8acfb2 html
+推演：传到哪里
+@@ d3ec085a95 html
+第 2–5 章
+@@ 4a3b198153 html
+验证：盘面认不认
+@@ 0955527450 html
+第 6、7 章
+@@ 106bcd030f html
+表达：用什么下注
+@@ 70d6307cd8 html
+第 9、10 章
+@@ b04132dc06 html
+复盘：哪一环错了
+@@ 7d7d98c805 html
+第 11 章
+@@ 853a22e382 html
+新手常跳过「验证」，直接从推演跳到下单
+@@ 1f9aa7a898 html
+中间的四步都是推理，只有「验证」需要市场给你答案。推得再漂亮，盘面不认，就先不下注。
+@@ 6ace9924f5 html
+为什么做个股和期权也要懂宏观
+@@ ea4ec29e37 html
+2022 年，许多盈利仍在增长的大型科技公司，股价跌了三成到一半以上。公司没有变坏，变的是估值倍数<span class="ek">（Valuation multiple）</span>：利率从接近零快速升高，市场愿意为同样一块钱盈利支付的价格大幅下降。那一年，选股能力很难抵消宏观带来的整体下杀。
+@@ f8d412fdb0 html
+宏观主导市场的时候，个股之间的相关性<span class="ek">（Correlation）</span>会明显上升，大家一起涨、一起跌。这时你对一家公司的研究再深入，也只决定了你比别人少亏多少。对期权交易者来说更直接：利率、美元和数据日会改变整个市场的隐含波动率<span class="ek">（Implied volatility (IV)）</span>，进而改变每一张期权的价格。
+@@ bd9d1db727 html
+三个常见误区
+@@ 2fb6ef8cc0 html
+误区
+@@ 04d62a072f html
+表现
+@@ d8536a3053 html
+更好的做法
+@@ 4fc7315839 html
+把宏观当预言
+@@ 448f21d517 html
+押注一个具体结果，比如「下个月一定加息」
+@@ fc03e3cbf0 html
+画一张地图：列出几种情景，各自对应什么资产表现，再看市场走向哪一种
+@@ f621dc2af1 html
+只读新闻标题
+@@ 9458b52081 html
+看到利好就买，看到利空就卖
+@@ 99525c56bc html
+看市场怎么反应。利好不涨、利空不跌，本身就是信号
+@@ 46683ef356 html
+把信念当事实
+@@ 309fda5a4a html
+因为认同某种政治立场或宏大叙事<span class="ek">（Narrative）</span>，就忽略价格给出的证据
+@@ 405ca65e8c html
+信念可以帮你决定研究什么，下注要看证据。市场不关心你支持谁
+@@ 586bfd0eac html
+宏观在不同时间尺度上的用法
+@@ 24574b6775 html
+时间尺度
+@@ c7e5d310f4 html
+主导力量
+@@ ab38a20986 html
+常用工具
+@@ aceb5fa63e html
+几小时到几天
+@@ 884ca1dfc2 html
+数据公布、央行讲话、期权到期<span class="ek">（Options expiration (OpEx)）</span>、机械性资金<span class="ek">（Mechanical flows）</span>流
+@@ 12f077d6e8 html
+关键点位、短期期权、价差
+@@ a8d62101f6 html
+几周
+@@ 2245105bb5 html
+利率和美元的趋势、财报<span class="ek">（Earnings report）</span>季、季节性<span class="ek">（Seasonality）</span>、板块轮动<span class="ek">（Sector rotation）</span>
+@@ fc0cd831c8 html
+正股、板块 ETF、较长期限的价差
+@@ 4fdbc1758f html
+几个月
+@@ 09588533f4 html
+经济周期、政策周期、市场体制<span class="ek">（Market regime）</span>
+@@ de55c0e046 html
+仓位高低、对冲比例<span class="ek">（Hedge ratio）</span>、现金比例
+@@ 263c724d3b html
+几年
+@@ c1854feace html
+结构性叙事：人工智能、能源与资源、制造业回流<span class="ek">（Reshoring）</span>、人口老龄化<span class="ek">（Population aging）</span>
+@@ 73a9de3d77 html
+长期持有、定投<span class="ek">（Dollar-cost averaging (DCA)）</span>、长期限期权
+@@ 8d6e9e9707 html
+同一个宏观判断，用错时间尺度的工具，结果会完全不同。一个需要半年才能兑现的逻辑，用三周后到期的期权去表达，即使方向对了，也可能亏光权利金<span class="ek">（Premium）</span>。第 10 章会专门讲这个问题。
+@@ 94bc46da9c html
+第 1–4 章是零件：仪表盘<span class="ek">（Dashboard）</span>、传导链<span class="ek">（Transmission chain）</span>、利率、美元黄金与能源。
+@@ d15ba86b92 html
+第 5–8 章是组装：体制<span class="ek">（Regime）</span>判断、广度<span class="ek">（Market breadth）</span>与轮动、资金流<span class="ek">（Fund flows）</span>、叙事。
+@@ acfe97105f html
+第 9–11 章是使用：日历与事件、从观点到交易、每天可用的模板和清单。
+@@ 095d9b273c html
+第 1、2、3、5、6、7、9、10 章都有可以操作的图或工具，建议亲手调一调。
+@@ dfac84e484 html
+跨资产仪表盘：先看七个数字
+@@ 250261b063 html
+股市往往是最后一个知道消息的。债券、美元、原油和波动率经常先动，而且它们之间的组合，比任何一个单独的数字都更能说明市场在担心什么。
+@@ e0bb3c7ae3 html
+七个数字和它们的含义
+@@ 34000dcf18 html
+指标
+@@ fa1bfb3b54 html
+代表什么
+@@ 01bf419ef5 html
+上升常见的含义
+@@ a130ff0e66 html
+容易误读的地方
+@@ 096ce401b4 html
+2 年期美债收益率
+@@ b5cc71a654 html
+市场对未来一两年政策利率<span class="ek">（Policy rate）</span>的预期
+@@ 191e828b74 html
+市场在定价更多加息，或更少降息
+@@ b06a161f29 html
+对数据和央行讲话最敏感，一天能动很多
+@@ 35f678f513 html
+10 年期美债收益率
+@@ b6ec352e67 html
+增长、通胀预期<span class="ek">（Inflation expectations）</span>和期限溢价<span class="ek">（Term premium）</span>的合成
+@@ f807e35383 html
+股票的折现率<span class="ek">（Discount rate）</span>上升，长久期<span class="ek">（Duration）</span>资产受压
+@@ d2af0ce78d html
+要拆开看：是实际利率<span class="ek">（Real yield）</span>在涨，还是通胀预期在涨
+@@ e7adf409ba html
+10 年期实际利率（TIPS）
+@@ 6926548d67 html
+扣掉通胀预期后的真实资金成本
+@@ 97871c9d7e html
+黄金和成长股<span class="ek">（Growth stocks）</span>的机会成本上升
+@@ 4cda0dfbc9 html
+解释估值变化往往比名义利率更准
+@@ 38b71414d0 html
+美元指数（DXY）
+@@ 20bebc29f9 html
+美元相对一篮子主要货币
+@@ 79fdec0ed7 html
+全球金融条件<span class="ek">（Financial conditions）</span>收紧，大宗商品和新兴市场<span class="ek">（Emerging markets）</span>承压
+@@ a444ce3545 html
+美元为什么涨，比涨了多少更重要（第 4 章）
+@@ cdb03077ab html
+原油（WTI、布伦特）
+@@ a4d725ac3f html
+需求和供给的混合信号
+@@ 4d916a9414 html
+通胀预期上行，消费者负担加重
+@@ 2a9af8b7e7 html
+需求推动的上涨和供给冲击<span class="ek">（Supply shock）</span>的上涨，对股市含义相反
+@@ 90d4e9d87d html
+VIX 与期限结构<span class="ek">（Term structure）</span>
+@@ 4baee4c67b html
+标普 500 未来 30 天的隐含波动率<span class="ek">（Implied volatility (IV)）</span>
+@@ a04cde3182 html
+保护需求上升
+@@ 1f7bafe317 html
+近月高于远月（倒挂）才代表眼前的恐慌
+@@ f6031fd725 html
+高收益债利差<span class="ek">（High-yield spread）</span>
+@@ 533724082c html
+投资者对违约风险的要价
+@@ 4dcd20be2b html
+信用压力在上升
+@@ 961454817c html
+通常动得慢，但一旦明显扩大，往往比股市更可靠
+@@ 6eb511c1d7 html
+另外几个值得放在第二屏的：<strong>黄金</strong>（对货币信誉和地缘风险的对冲<span class="ek">（Hedge）</span>）、<strong>美元兑日元</strong>（套息交易的晴雨表）、<strong>铜</strong>（全球工业需求）。还有几条「领先线索」：韩国股市常常领先全球存储芯片股，金融板块经常比纳斯达克 100 早一步转向，小盘股<span class="ek">（Small caps）</span>对利率最敏感。
+@@ c3c87b5a5d html
+先看变化的速度，再看水平
+@@ 16f7af5b2f html
+10 年期收益率在 4.8% 本身说明不了多少，一个季度内从 4.0% 升到 4.8% 和一年内慢慢升上去，对股市的冲击完全不同。市场能消化缓慢的变化，消化不了急剧的变化。
+@@ 3c120b5622 html
+一个简单的习惯：每个数字都记两个变化量，一天的和二十个交易日的。再把它和这个指标平常的波动比一比。10 年期收益率平常一天动 5 个基点左右，某天动了 15 个基点，就值得停下来问为什么。
+@@ d6345b5272 html
+关系反常的时候最值得注意
+@@ a99707cf28 html
+这些资产之间有一些「正常」的关系。当它们被打破，通常意味着市场在交易一件新的事情：
+@@ c7e9ed163c html
+反常组合
+@@ 1c3561d250 html
+正常情况
+@@ 1443560eb1 html
+可能说明
+@@ 85782aab89 html
+股票和债券一起跌
+@@ 4446c29c84 html
+股票跌时，资金流<span class="ek">（Fund flows）</span>入国债，债券涨
+@@ 4e971bcb05 html
+市场在交易通胀或利率冲击，美债不再是对冲工具
+@@ 0f96ec68de html
+美债收益率上升，美元却下跌
+@@ f0b8f7281d html
+美国利率越高，美元越有吸引力
+@@ 613220a105 html
+海外资金在减持美国资产，可能是对财政或货币信誉的担忧
+@@ 66c460a570 html
+实际利率上升，黄金也上涨
+@@ 61d7ef40f8 html
+实际利率越高，持有黄金的机会成本越高
+@@ 4fc471667f html
+有买家在为别的东西付钱：央行购金<span class="ek">（Central bank gold buying）</span>、避险<span class="ek">（Risk-off）</span>、对冲信誉风险
+@@ 3bb5d326f7 html
+股市上涨，VIX 也上涨
+@@ e375bc357f html
+股市涨时，保护需求下降
+@@ 630f32cdbd html
+追涨的看涨期权<span class="ek">（Call option）</span>需求很大，行情变得拥挤和脆弱
+@@ f9ddb5056d html
+指数创新高，信用利差<span class="ek">（Credit spread）</span>却在扩大
+@@ 0518c468d0 html
+风险偏好<span class="ek">（Risk appetite）</span>好的时候，信用利差收窄
+@@ 24e7c5d0d3 html
+债券投资者比股票投资者更早看到了风险
+@@ f2c1a7fdc9 html
+下跌
+@@ 7f8597ddd9 html
+持平
+@@ 9726be4372 html
+上升
+@@ 2afc80feab html
+收窄
+@@ 88e1484fac html
+扩大
+@@ dea601c88c html
+规则按严重程度排序：信用和波动率一起恶化优先级最高，其次是利率与美元的反常组合。这只是读盘的起点，结论要在第 6、7 章的盘面验证之后才算数。
+@@ fb4a3a206d html
+开盘前的读盘顺序
+@@ d087ca313f html
+记下隔夜七个数字的变化：2 年期、10 年期、美元、原油、黄金、VIX、信用利差。
+@@ c8b5d8af81 html
+找出变化最大、或者最反常的那一个。
+@@ de31d3c567 html
+问为什么：是数据、讲话、拍卖、地缘事件，还是没有消息的资金行为？
+@@ 94f04da522 html
+判断这件事是不是已经被提前交易<span class="ek">（Priced in early）</span>过（第 2 章）。
+@@ 0ce9d77102 html
+写一句话：「今天市场在交易＿＿＿。」写不出来，就说明今天没有清楚的主线<span class="ek">（Dominant theme）</span>，少做。
+@@ 4c3fc51b68 html
+不少做宏观的交易者会把这几个数字放在同一块屏幕上，开盘前先写那一句话，再去看个股。他们发现，最好的交易日往往是那句话很容易写出来的日子；最容易亏钱的日子，是写了三遍还在改的日子。
+@@ f595793cf1 html
+传导链与二阶思维
+@@ 6424c83d7a html
+新闻本身很少直接决定股价。决定股价的，是这条新闻沿着一条链传到盈利、利率和资金流<span class="ek">（Fund flows）</span>的方式，以及市场在你之前已经想到了多少。
+@@ 946e4445bb html
+最常用的一条主链
+@@ a6a8db4b5e html
+大部分宏观事件都能放进下面这条链里。熟练以后，看到任何一条新闻，你都能很快问出「它卡在链条的哪一环」。
+@@ 89a12a2842 html
+每一环都可能断
+@@ 44c45cb238 html
+传导链<span class="ek">（Transmission chain）</span>不是自动发生的，每一环都有条件。能看出链条在哪里断，比会背链条更有价值。
+@@ 5051a56162 html
+<strong>油价到通胀</strong>：短暂的冲击不会进入核心通胀<span class="ek">（Core inflation）</span>。只有持续几个月的高油价，才会通过运费、机票、化工品慢慢渗进去。
+@@ a381ac0991 html
+<strong>通胀到利率</strong>：央行可能选择「看穿」供给冲击<span class="ek">（Supply shock）</span>，不为它加息。这时短端利率不动，长端却可能因为通胀担忧上行。
+@@ 4b803a7697 html
+<strong>利率到股市</strong>：如果利率上升是因为经济强劲、盈利同步上修，股市可以承受；如果盈利没有跟上，就是纯粹的估值压缩。
+@@ cf12cc25a4 html
+<strong>政策反应</strong>：油价涨到政治上难以接受的水平时，政府可能释放储备、限制出口，链条会突然反转。
+@@ f4dd35640f html
+油价供给冲击
+@@ a77a0f5971 html
+长端利率急升
+@@ 1d6d4c4695 html
+美元走强
+@@ d2ed67288c html
+就业大幅转弱
+@@ 897cc1e81b html
+央行意外偏鸽
+@@ d2094e7e0b html
+每个冲击都给出了「受益」和「受压」两组方向，以及一个用来判断链条有没有按剧本走的验证信号。真实世界里几个冲击常常同时发生，要看哪一个在主导。
+@@ 46a7302476 html
+二阶思维：多问一句「然后呢」
+@@ d4d6cb675a html
+一阶思维说：油价涨，买能源股。问题是所有人都想到了这一点，能源股很快会变得拥挤。二阶思维<span class="ek">（Second-order thinking）</span>会接着问：油价涨到让人难受的地步，政府会做什么？如果政策突然把油价压下来，谁反弹最猛？答案是航空和旅游，因为它们之前被卖得最狠。
+@@ 30aada7315 html
+这就引出一种很实用的组合：持有能源仓位押注油价上涨，同时用一小部分资金买入航空股或航空股的看涨期权<span class="ek">（Call option）</span>，作为「意外对冲<span class="ek">（Hedge）</span>」。油价继续涨，能源赚钱；油价因为政策意外下跌，航空的反弹弥补能源的损失。第 10 章会用数字把这个组合算一遍。
+@@ 456e75f589 html
+看不懂局势的时候，最该问的问题是「谁获益」。一项政策、一场冲突、一次技术突破，总有人的成本下降、收入上升，有人被迫花钱。顺着钱被迫流去的方向找，比猜测事件本身的结果可靠。
+@@ e20bee6b44 html
+同一个信号，不同板块方向相反
+@@ 977f5cc743 html
+长端收益率下跌，如果是因为市场开始担心经济放缓，对整体股市偏空。但对公用事业、房地产信托、必需消费这些「类债券」板块，利率下降直接降低了它们的融资成本，也让它们的股息<span class="ek">（Dividend）</span>更有吸引力，短期反而利好。
+@@ dc27eb3175 html
+所以宏观交易者经常说：交易资金的流向，而不是押指数的涨跌。指数是几百个方向相反的力量相加的结果，板块之间的分化往往比指数本身更清楚。
+@@ e1028112ec html
+是否已经被定价
+@@ 117dc3f9c9 html
+市场对几乎所有已知事件都有预期，而且这些预期是可以看到的：联邦基金期货<span class="ek">（Fed funds futures）</span>告诉你市场定价了多少次加息，期权价格告诉你市场预期一个事件会带来多大的波动，分析师一致预期告诉你财报<span class="ek">（Earnings report）</span>的「及格线」。
+@@ 403830ae84 html
+结果相对预期
+@@ 4725833ca6 html
+事前仓位
+@@ ff6748c21f html
+典型反应
+@@ d136dad75a html
+好于预期
+@@ e908209b7b html
+仓位很轻，大家都在观望
+@@ dea7b94e94 html
+大涨，而且可能持续几天
+@@ c7f54be73e html
+多头已经很拥挤
+@@ 1e52b066af html
+利好出尽<span class="ek">（Sell the news）</span>，冲高回落
+@@ 9021634748 html
+差于预期
+@@ 31694684e3 html
+空头已经很拥挤，保护买得很多
+@@ 50c25aaf15 html
+利空出尽，反而上涨（空头回补、保护被卖出）
+@@ 5f1ab94958 html
+仓位乐观
+@@ 2d251b7836 html
+下跌，而且容易加速
+@@ 9bed8fa1ae html
+还有一种常被忽视的情况：<strong>提前交易<span class="ek">（Priced in early）</span></strong>。如果央行官员在数据公布前一天发表了偏鸽的讲话，市场可能已经把「数据偏弱」的利好提前交易完了。第二天数据真的偏弱，市场反而可能下跌，因为「没有想象中那么差」。
+@@ 2ac8ef1557 html
+看反应，不看标题
+@@ 935a2bdae6 html
+标题是给所有人看的，反应是用真金白银投出来的。两种情况尤其值得记录：
+@@ 63ef8ad8b8 html
+<strong>利好不涨</strong>：一家公司宣布提价，股价却下跌。说明有人在借利好出货，或者市场在担心别的事情。
+@@ b39cc3e8f8 html
+<strong>利空不跌</strong>：一项看起来严重的制裁<span class="ek">（Sanctions）</span>宣布了，油价几乎没动。说明市场认为它执行不了，或者早已定价。
+@@ 82006847f9 html
+市场的反应是一条新闻真正的分量。
+@@ bcc3051a45 html
+利率、美联储与估值
+@@ 41bfadc666 html
+利率是所有资产价格的引力。它变一点，离现在越远的现金流受的影响越大。理解这一点，就能理解为什么同样的利率上升，有的股票几乎不动，有的股票跌掉一半。
+@@ 68cc0d6e5a html
+一个公式看懂「利率杀估值」
+@@ d9860858ea html
+把一家公司看成一串永远持续、每年增长 <span class="v">g</span> 的现金流，用折现率<span class="ek">（Discount rate）</span> <span class="v">r</span> 折回今天，就得到经典的戈登增长模型<span class="ek">（Gordon growth model）</span>。假设盈利全部分给股东，市盈率<span class="ek">（Price-to-earnings ratio (P/E)）</span>可以简化成：
+@@ be339297d3 html
+设折现率是 8%。一家长期增长 2% 的成熟公司，市盈率约 16.7 倍；一家长期增长 6% 的高成长公司，市盈率约 50 倍。现在折现率上升 1 个百分点到 9%：
+@@ a77eda0359 html
+长期增长率 g
+@@ 5b7952a69f html
+r = 8% 时的市盈率
+@@ 0e13685bcf html
+r = 9% 时的市盈率
+@@ fb414534f7 html
+估值变化
+@@ 8b3f84cd5c html
+2%（成熟公司）
+@@ 453d1a6569 html
+6%（高成长）
+@@ 448635fdff html
+盈利一分钱没变，高成长公司的理论价值<span class="ek">（Theoretical value）</span>就少了三分之一。这就是 2022 年发生在很多成长股<span class="ek">（Growth stocks）</span>身上的事。
+@@ 8b3b10a33f html
+折现率变化 <input id="gv-dr" type="range" min="-10" max="20" value="10"> <output id="gv-dr-o">+1.0%</output>
+@@ b0f43f703e html
+基准折现率 8%。把滑块拖到 −1%，高成长公司的估值翻倍；拖到 +2%，它腰斩。曲线是弯的：利率下降时的涨幅大于同样幅度上升时的跌幅，这就是成长股在降息预期下特别凶猛的原因。
+@@ a978cb7117 html
+成长股是长久期资产
+@@ 38872d68dd html
+对上面的公式求导，可以得到一个很像债券久期<span class="ek">（Duration）</span>的数字：
+@@ c4ab0cdc2a html
+用这个近似去算 g = 5%、利率上升 1 个百分点：−1% × 33 ≈ −33%，比精确值 −25% 夸大了一些，因为曲线是弯的。但它抓住了要点：增长越高、盈利越远的公司，越像一张 30 年、50 年期的长债。没有盈利、靠十年后的故事定价的公司，久期更长。
+@@ 73fee11cb3 html
+这也解释了一个常见现象：利率急升的日子里，小盘成长股、未盈利科技股、生物科技股跌得最多；银行、能源、必需消费跌得最少，甚至上涨。
+@@ 29f40dd4e5 html
+股票风险溢价：股票比债券多给你多少
+@@ eeb20e72b6 html
+市盈率的倒数叫盈利收益率<span class="ek">（Earnings yield）</span>。市盈率 20 倍，盈利收益率就是 5%：每投入 100 美元，公司每年为你赚 5 美元。拿它和国债收益率比较，就是在问：承担股票的风险，你多拿到了多少补偿？
+@@ aaef283804 html
+远期市盈率<input id="erp-pe" type="number" value="19" step="0.5">
+@@ ad1ade4b9e html
+10 年期名义收益率（%）<input id="erp-y" type="number" value="5.3" step="0.05">
+@@ 063206dbb2 html
+10 年期实际利率 TIPS（%）<input id="erp-t" type="number" value="2.65" step="0.05">
+@@ 2df0b1e81b html
+默认数字是一组示例假设。盈利会随通胀增长，名义国债的票息不会，所以「盈利收益率减实际利率<span class="ek">（Real yield）</span>」在逻辑上更合理；两种算法都看一下，趋势比绝对值重要。
+@@ e64d576de3 html
+风险溢价<span class="ek">（Risk premium）</span>很低，不代表股市明天就跌。它是一个很差的择时工具，估值可以在偏贵的位置停留很久。它真正告诉你的是<strong>缓冲有多厚</strong>：溢价很薄的时候，一次利率冲击就足以造成明显的估值压缩，因为股票相对债券已经没有多少多余的吸引力。
+@@ 81e6996d2a html
+收益率曲线的四种移动
+@@ 353aeee6a2 html
+只看 10 年期不够，要看短端和长端谁动得多。用 2 年期和 10 年期的利差来衡量曲线的陡峭程度，交易员把它的变化分成四种：
+@@ d1b3325eb8 html
+形态
+@@ 91c891cae1 html
+发生了什么
+@@ d8c8129c5e html
+常见背景
+@@ 9bcc6733dd html
+对股市的含义
+@@ 8643810e8b html
+牛陡<span class="ek">（Bull steepening）</span>
+@@ fb675c538e html
+短端跌得比长端多
+@@ f1bbaf70b3 html
+市场开始定价降息，常出现在经济明显放缓、衰退<span class="ek">（Recession）</span>开始时
+@@ 2d121104aa html
+看起来是利好，实际经常是坏消息的开始
+@@ efeb83c0ff html
+牛平<span class="ek">（Bull flattening）</span>
+@@ aaaa78e95f html
+长端跌得比短端多
+@@ 02ba791cfc html
+增长和通胀预期<span class="ek">（Inflation expectations）</span>下降，资金涌入长债避险<span class="ek">（Risk-off）</span>
+@@ f270a3a499 html
+防御板块<span class="ek">（Defensive sectors）</span>、长久期资产相对占优
+@@ f719e1e0d6 html
+熊陡<span class="ek">（Bear steepening）</span>
+@@ 0a1bb9076b html
+长端涨得比短端多
+@@ 9b44f2c8ab html
+期限溢价<span class="ek">（Term premium）</span>上升：国债供给大、通胀或财政担忧
+@@ 77b2de6cbb html
+对估值最不友好，股债容易同跌；银行的息差受益
+@@ 55dee2ebf6 html
+熊平<span class="ek">（Bear flattening）</span>
+@@ 65c658e0d5 html
+短端涨得比长端多
+@@ 101d8dc258 html
+加息周期，央行在收紧
+@@ 41fb3e4c68 html
+周期后段，小盘和高负债公司先受压
+@@ 0b843d5136 html
+曲线倒挂（2 年期高于 10 年期）在过去几次美国衰退之前都出现过，但它不是定时器：2022 年开始的那次倒挂持续了两年多，经济并没有按时进入衰退。更值得警惕的往往是倒挂<strong>结束</strong>的方式：如果是短端因为降息预期快速下跌、曲线重新变陡，常常说明经济正在真正转弱。
+@@ 99f85048be html
+美联储的反应函数，和市场的定价
+@@ 33d3b054f1 html
+美联储<span class="ek">（Federal Reserve (Fed)）</span>有两个目标：物价稳定和充分就业。它的每一次决定，都可以理解为在这两个目标之间称重。通胀远高于目标时，它对就业转弱的容忍度更高；就业明显恶化而通胀接近目标时，它会更快转向宽松。
+@@ 43959335de html
+对交易者来说，关键不是美联储做了什么，而是它做的和市场预期的差了多少。联邦基金期货<span class="ek">（Fed funds futures）</span>和隔夜指数掉期<span class="ek">（Overnight index swap (OIS)）</span>会告诉你市场定价了多少次加息或降息（CME 的 FedWatch 工具把它换算成了概率）。会议前市场已经定价 90% 的加息概率，那么加息本身不是新闻，不加才是。
+@@ b8c7db9774 html
+还要留意央行官员会前的讲话。他们经常有意识地引导预期，避免在会议上制造意外。这也意味着，讲话本身就会把一部分数据的影响提前交易<span class="ek">（Priced in early）</span>掉。
+@@ 89ade64bf4 html
+美联储信誉交易
+@@ 118c792ad4 html
+当市场已经几乎完全定价了加息，美联储却选择不加，会发生什么？反应通常分两个阶段：
+@@ 8ff18e5e8a html
+资产
+@@ 284b86bc00 html
+第一阶段（几小时到一两天）
+@@ 1f90094865 html
+第二阶段（如果市场开始怀疑央行）
+@@ 87778864f6 html
+2 年期收益率
+@@ 03df9611c0 html
+继续偏低
+@@ e8900ff5f0 html
+10 年、30 年期收益率
+@@ dbf42a67bf html
+跟着下跌
+@@ 46c16412a5 html
+反向上升，曲线熊陡
+@@ 08538343a8 html
+美元
+@@ 4b24e00d5e html
+走弱
+@@ 6a4205bb33 html
+继续走弱
+@@ 8b0f4538d8 html
+黄金
+@@ 550d3734d0 html
+上涨
+@@ 2e1ec4b976 html
+继续上涨
+@@ e7cd9933a3 html
+股票
+@@ b63605b1fb html
+长端利率上行，把最初的涨幅卖掉
+@@ ee9e23b280 html
+第二阶段会不会出现，取决于市场还信不信央行能把通胀控制住。如果通胀明显还高，央行却不敢收紧，长债投资者会要求更高的补偿来承担未来的通胀风险。这时降息预期反而推高了长端利率，股市得不到任何好处。
+@@ 13cded96a3 html
+判断方法很直接：宣布后的几天里，看 10 年期收益率是跟着 2 年期一起下跌（市场相信央行），还是逆向上升（市场在惩罚它）。
+@@ 71a0cc1c10 html
+国债供给、拍卖和期限溢价
+@@ f8528ed9f0 html
+长端利率不只取决于对央行的预期，还取决于国债的供需。政府赤字越大，需要发的债越多；如果买家不够，就只能用更高的收益率吸引他们。投资者为了持有长期债券而额外要求的那部分收益，叫期限溢价。
+@@ 83f1cfd63d html
+值得关注的几个细节：
+@@ 5f489d4344 html
+<strong>拍卖结果</strong>：中标收益率明显高于拍卖前的市场水平（俗称「尾部」），认购倍数<span class="ek">（Bid-to-cover ratio）</span>偏低，海外买家比例下降，都说明需求疲弱。20 年、30 年期拍卖的疲弱尤其会推高长端。
+@@ 311970af4c html
+<strong>季度再融资<span class="ek">（Quarterly refunding）</span>公告</strong>：美国财政部每个季度公布接下来的发债计划，包括长债和短期国库券的比例。2023 年 11 月初，财政部放慢了长债发行的增速，叠加美联储暗示暂停加息，长端收益率从接近 5% 回落，股市随后大幅反弹。
+@@ f057cb44a4 html
+<strong>期限溢价上升时的特征</strong>：长端涨得比短端多，美元不一定跟着涨，股票和债券一起跌。
+@@ a73d45de1f html
+利率通过折现率影响所有资产，增长越高、盈利越远的公司越敏感。
+@@ c7d1ba0beb html
+看利率要拆开看：短端看央行，长端看增长、通胀和供需；名义利率要拆成实际利率和通胀预期。
+@@ 1b849c0e3d html
+央行的决定要和市场定价比较；最重要的问题是市场还信不信它。
+@@ 60eff62aae html
+美元、黄金与能源
+@@ 61a13e0f0b html
+美国的利率决定了全球资金的价格，美元、黄金和原油则把这个价格传到世界各地，再传回美国企业的利润表。
+@@ be16ea0c49 html
+美元是全球的融资货币
+@@ b8bfbe030f html
+全球大量的贸易结算、跨境贷款和非美国企业的债务都以美元计价。美元走强，意味着这些借款人要用更多本币去还同样的债，全球的融资环境随之收紧。对美股的影响主要有四条路径：
+@@ 33a23d701d html
+<strong>盈利换算</strong>：标普 500 公司有相当一部分收入来自海外，美元越强，这部分收入换算成美元越少。跨国科技和消费品牌在财报<span class="ek">（Earnings report）</span>里常常提到「汇率逆风」。
+@@ 216f2a1c48 html
+<strong>大宗商品</strong>：以美元计价的商品对其他国家的买家变贵，需求和价格承压。
+@@ d1949d0a4e html
+<strong>新兴市场<span class="ek">（Emerging markets）</span></strong>：资本外流、本币贬值、美元债务压力上升。
+@@ d43c5b8374 html
+<strong>风险偏好<span class="ek">（Risk appetite）</span></strong>：美元急涨常常和全球避险<span class="ek">（Risk-off）</span>同时出现。
+@@ fb605ff38d html
+同样是美元走强，原因不同，含义相反
+@@ 8e1d251911 html
+交易员常用一条「美元微笑<span class="ek">（Dollar smile）</span>」曲线来概括美元和经济环境的关系：
+@@ e33f1f0684 html
+左端：全球恐慌，资金逃向美元，美股通常同时下跌。中间：全球同步复苏，资金流<span class="ek">（Fund flows）</span>向海外，美元走弱。右端：美国增长明显强于其他地区，资金流入美国资产，美元和美股可以一起涨。看到美元走强，先问它在微笑的哪一端。
+@@ 3e35f00d95 html
+还有一种不在微笑曲线上的情况值得单独记住：<strong>美国利率上升而美元下跌</strong>。正常情况下利率越高美元越有吸引力，两者反向，往往说明海外投资者在减持美国资产，背后可能是对财政可持续性、政策可预期性或通胀控制的担忧。2025 年 4 月关税冲击期间，就一度出现过美股、美债、美元同时下跌的局面。
+@@ 750dd6d1e4 html
+日元和套息交易
+@@ cad1fe10d5 html
+日本长期维持极低的利率，于是很多投资者借入日元，换成美元或其他货币，去买收益更高的资产。这就是套息交易<span class="ek">（Carry trade）</span>。只要日元稳定或贬值，这笔交易每天都在赚利差。
+@@ e70e7eb256 html
+风险在于日元突然大幅升值。借日元的人要还的债瞬间变多，只好卖掉手里的各种资产去平仓，而这些资产彼此可能毫无关系。2024 年 7 月底日本央行加息，紧接着 8 月初美国就业数据偏弱，日元急升，套息交易集中平仓。8 月 5 日日经指数单日下跌约 12%，VIX 盘中一度冲到 60 以上，美股的热门科技股也被大量抛售。几周后市场就收复了大部分跌幅，但那几天的波动足以让高杠杆<span class="ek">（Leverage）</span>的仓位出局。
+@@ 2212182bf1 html
+日元短时间内急升，要当成全球风险资产的警报，即使你手里没有任何日本资产。
+@@ 50657d9a70 html
+黄金：它在对冲什么
+@@ 8de6657478 html
+黄金没有利息，持有它的代价是放弃的实际利率<span class="ek">（Real yield）</span>。所以传统上，黄金和 10 年期实际利率反向：实际利率上升，黄金承压。除此之外，影响黄金的还有：
+@@ 114731665d html
+<strong>美元</strong>：黄金以美元计价，美元走弱通常利好黄金。
+@@ 82d0c9d770 html
+<strong>央行购金<span class="ek">（Central bank gold buying）</span></strong>：一些国家的央行为了减少对美元资产的依赖，持续增持黄金。2022 年以后，这股买盘让黄金和实际利率的传统关系明显变弱。
+@@ 8f6270e99c html
+<strong>信誉和地缘对冲<span class="ek">（Hedge）</span></strong>：当市场担心货币贬值、财政失控或者冲突升级时，黄金是少数不依赖任何一个政府信用的资产。
+@@ 5c7277c743 html
+白银既有贵金属的属性，也有工业需求（电子、光伏），所以它跟着黄金的叙事<span class="ek">（Narrative）</span>走，但会被经济周期放大，波动也更大，不如黄金「干净」。
+@@ 39809c3688 html
+一个实用的读法：黄金上涨的同时实际利率也在上涨，说明买家在为利率以外的东西付钱，往往是信誉或地缘风险。这时的黄金上涨比单纯由降息预期推动的上涨更有持续性，也更值得当成风险信号。
+@@ 5b8f5b8965 html
+原油：为什么涨，比涨多少更重要
+@@ e96d205b8d html
+需求推动的上涨
+@@ 8feee828a5 html
+全球经济强，消费和工业需求好
+@@ f1b1d55358 html
+原油、铜、股票一起涨
+@@ b7ea86b2d8 html
+周期股<span class="ek">（Cyclical stocks）</span>、工业、能源领涨
+@@ 29ed186b39 html
+对股市影响偏正面
+@@ 2be9409f37 html
+供给冲击的上涨
+@@ e667ab1ee6 html
+减产、制裁<span class="ek">（Sanctions）</span>、航道受阻
+@@ 0ad884b4b4 html
+原油涨，股票跌，债券也可能跌
+@@ 612a70f520 html
+航空、运输、可选消费受伤最重
+@@ dfbc00d1b8 html
+相当于对消费者加税
+@@ d63dbfec78 html
+「油价税」可以粗算一下：一桶原油是 42 加仑，原油每涨 10 美元，摊到每加仑成品油上大约是 0.24 美元。假设美国每年消费约 1,350 亿加仑汽油，每加仑多 0.24 美元，就是每年约 320 亿美元从消费者口袋里流向能源生产商。这笔钱不会消失，但花在加油站的钱，就不会花在餐厅和商场。
+@@ 904c506e8a html
+判断方法：油价上涨的那几天，看标普 500 是一起涨还是下跌，看铜是否同步上涨。股票和铜都跟着涨，多半是需求；股票跌而铜不涨，多半是供给冲击<span class="ek">（Supply shock）</span>。
+@@ b7eb785062 html
+有油不等于有燃料
+@@ c0f8104658 html
+原油要经过炼油<span class="ek">（Refining）</span>厂才能变成汽油、柴油和航空煤油。炼油能力不足、或者某个品种（比如柴油）库存紧张的时候，成品油价格可以比原油涨得多得多。原油和成品油之间的价差叫裂解价差<span class="ek">（Crack spread）</span>，它决定了炼油公司的利润。
+@@ bc6d23a8f8 html
+柴油尤其重要，因为卡车运输、农业机械、工程设备都依赖它。柴油紧张会通过运费推高几乎所有商品的价格，对通胀的影响比汽油更广。政策上，如果柴油价格高到引起政治压力，政府可能考虑限制出口，这会让国内价格下跌、海外价格上涨，相关公司的命运一夜之间改变。
+@@ 1086a84988 html
+整数关口和政策反应
+@@ 32d4d35937 html
+原油在整数关口附近常常出现明显的阻力或加速，不是因为数字本身有魔力，而是因为它会改变人们的行为：媒体开始大量报道、消费者开始抱怨、政客开始表态。油价涨到政治上难以接受的水平时，释放战略储备<span class="ek">（Strategic Petroleum Reserve (SPR)）</span>、施压产油国、限制出口这些政策反应的可能性就会上升。交易高油价时，要把政策反应当成一种随时可能出现的情景。
+@@ 5227ba04bc html
+本章速查
+@@ 3381fb6cd0 html
+主要驱动
+@@ 7bb21217e5 html
+对美股意味着什么
+@@ 954e7c8109 html
+要和谁一起看
+@@ 0dda18471a html
+美国相对他国的利率和增长、避险需求
+@@ 660ff4dc61 html
+急涨收紧全球金融条件<span class="ek">（Financial conditions）</span>；跨国公司盈利受压
+@@ b45d281325 html
+美股、美债收益率、日元
+@@ 0f68e0c237 html
+日元
+@@ d017fb0459 html
+日本利率、套息交易仓位
+@@ a0b3f37689 html
+急升可能触发全球去杠杆
+@@ d9701ac5cb html
+日经、VIX、热门科技股
+@@ bf38eca74c html
+实际利率、美元、央行购金、信誉风险
+@@ a3607b902a html
+和实际利率同涨时是风险信号
+@@ 12a9848280 html
+10 年期 TIPS、美元
+@@ d62331d663 html
+原油
+@@ aa8017577d html
+需求、供给冲击、政策
+@@ d6afe69d6b html
+需求型上涨偏正面；供给冲击偏负面
+@@ 87822dea04 html
+铜、标普、盈亏平衡通胀率<span class="ek">（Breakeven inflation）</span>
+@@ fb9c0c6550 html
+柴油
+@@ ebf65936bc html
+炼油能力、库存、出口政策
+@@ 21d600828d html
+推高运费和商品通胀
+@@ 2042336acf html
+裂解价差、运输股
+@@ 0aa3370679 html
+市场体制：四个变量与三个阶段
+@@ 22e36f2d68 html
+同一条新闻，在不同的市场体制<span class="ek">（Market regime）</span>下意义相反。所以要先判断市场处在哪个阶段，再选标的和工具。体制<span class="ek">（Regime）</span>判断不需要很精确，只要别在大方向上站错。

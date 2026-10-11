@@ -1,0 +1,184 @@
+@@ cc1eb24987 html
+Underlying price
+@@ 5b3b252995 html
+SPY-equivalent shares
+@@ 0cf95610e3 html
+When the type is “Option,” enter the number of contracts as the quantity (negative for short) and the per-contract Delta as Delta per unit; when it is “Stock,” enter the number of shares, and Delta per unit is fixed at 1.
+@@ bb585c2c7d html
+The portfolio above totals about 300 shares of SPY. To hedge it, you short about 300 <strong>shares</strong> of SPY, or buy about 7–8 <strong>contracts</strong> of an SPY put with Delta −0.40 (−40 shares each). Mistake “300” for a number of contracts and your hedge is off by a factor of 100.
+@@ 945363089b html
+Beta weighting often exposes “hidden concentration”: three tech stocks that look unrelated plus a QQQ call may, once converted, all be the same directional market exposure. Positions in tech, high-Beta stocks, small caps and calls are often one and the same directional risk; you can't count tickers and conclude you are diversified.
+@@ 292df1a997 html
+<span class="sn">4.4</span>Gamma: the speed of delta
+@@ fd588e7d65 html
+Gamma is the change in Delta for each $1 rise in the underlying. If Delta is your speed, Gamma is the gas pedal.
+@@ 85f8ead58f html
+<strong>Sign</strong>: long options (calls or puts) have positive Gamma; short options have negative Gamma; stock has zero Gamma.
+@@ 2b348eddea html
+<strong>Positive Gamma</strong>: Delta grows as the stock rises (you get longer as it goes up) and shrinks as it falls (you get less long as it goes down). The P&amp;L curve bends upward.
+@@ d0c4f11036 html
+<strong>Negative Gamma</strong>: the exact opposite. You get shorter as the stock rises and longer as it falls, and the P&amp;L curve bends downward.
+@@ 1b3febfe86 html
+The same at-the-money option has a Gamma of about 0.033 with 60 days left and about 0.18 with 2 days left, more than five times larger. The out-of-the-money 110, by contrast, has almost no Gamma near expiry: it is too far away to move Delta much anymore.
+@@ c0c6d8e167 html
+Table 4-3 Gamma and Theta of an at-the-money option (stock and strike both 100, IV 30%)
+@@ 74ade1d735 html
+Delta gain per contract after a $1 rise (shares)
+@@ 122180ad3e html
+Daily Theta (per share, $)
+@@ 4640c8501a html
+Notice that Gamma and Theta grow together. This is no coincidence; as Section 4.6 explains, Theta is the price of Gamma.
+@@ 07dbb1d172 html
+Comparing across underlyings: use “dollar gamma”
+@@ 0a8dc3823d html
+Gamma's unit is “change in Delta per $1.” A $1 move is 10% for a $10 stock but only 0.1% for an $800 stock, so you can't compare Gamma directly across underlyings at different prices. In practice people use <strong>1% dollar Gamma</strong>: how many dollars' worth of stock your Delta changes by when the stock moves 1%.
+@@ 5b099239f9 html
+This is the quantity Section 4.8 uses to estimate market makers' Gamma exposure.
+@@ 4d3946b5cf html
+<span class="sn">4.5</span>The delta–gamma P&amp;L approximation
+@@ f1ee651d9f html
+The single most useful formula before you place an order: use the current Delta and Gamma to estimate the P&amp;L after a stock move of Δ<span class="v">S</span>.
+@@ bbd76e2e54 html
+The first two terms are the familiar Delta–Gamma approximation. The last two are the effects of volatility and time; they are often ignored, but around earnings they are usually the main event (see Case 2).
+@@ 78b90c778b html
+Take a 30-day at-the-money call: Delta <span class="num">0.532</span>, Gamma <span class="num">0.0462</span>, price <span class="num">3.591</span>. If the stock rises $5, the approximation gives <span class="num">0.532 × 5 + ½ × 0.0462 × 25 = 3.24</span>; repricing with Black-Scholes gives <span class="num">3.207</span>. If it falls $5, the approximation gives <span class="num">−2.084</span> and the actual result is <span class="num">−2.082</span>. For the same $5, the gain on the way up beats the loss on the way down: that is the asymmetry of positive Gamma.
+@@ 8053f2efab html
+IV change <input id="f3-iv" type="range" min="-25" max="25" value="0"> <output id="f3-iv-o">0 points</output>
+@@ 5237f63993 html
+Days passed <input id="f3-t" type="range" min="0" max="20" value="0"> <output id="f3-t-o">0 days</output>
+@@ 11ad592ecc html
+With both sliders at 0, the pink and black lines nearly coincide within ±5. Drag IV down 20 points and the whole black line sinks while the approximation doesn't budge: this is where “right on direction but still losing money” comes from after earnings. Drag the days passed to the right and you can watch Theta eat the premium day by day.
+@@ 326b633cdd html
+Table 4-4 Approximation vs. full repricing (per share, IV and time unchanged)
+@@ c2780ee2e6 html
+Stock move
+@@ abee8aa39a html
+Actual P&amp;L
+@@ 396f6cb94b html
+Delta only
+@@ b7d0e9abdc html
+Error
+@@ 6d54df68e4 html
+Move within 1 daily standard deviation (about <span class="v">S</span> × IV ÷ 19): the error is negligible
+@@ 7d9f812a71 html
+Move beyond 2–3 standard deviations, or less than a week to expiry: Gamma itself is changing fast, and the error grows quickly
+@@ a34694baf8 html
+An event ahead (earnings, FOMC): you must add the Vega term, and it is better to reprice outright
+@@ b4335452db html
+<span class="sn">4.6</span>The gamma–theta trade-off
+@@ 4e91f8d2f5 html
+Buying options gets you positive Gamma at the cost of paying Theta every day; selling options collects Theta at the cost of carrying negative Gamma. The two aren't independent: the Black-Scholes equation ties them together.
+@@ b3df5756f3 html
+Drop the interest-rate terms and you get Θ ≈ −½ σ² S² Γ: the size of Theta is proportional to Gamma. The bigger an option's Gamma, the bigger its daily time decay.
+@@ a8e6a021b2 html
+How far the stock must move each day to break even
+@@ bca6a50543 html
+If you buy an option and hedge its Delta to zero with stock, a day's P&amp;L has only two terms left: ½Γ(Δ<span class="v">S</span>)² from Gamma, minus Theta. Set them equal and you get the daily move needed to break even:
+@@ a95f63bc15 html
+Counting calendar days, you divide by √365 ≈ 19. Traders often say “divide by 16”; that counts trading days (√252 ≈ 15.9, rounded to 16): the weekend's two days of time decay are folded into Friday, so each trading day requires a bigger move.
+@@ a116f5e205 html
+30-day at-the-money call: Theta <span class="num">−0.0624</span>, Gamma <span class="num">0.0462</span>, breakeven move <span class="num">√(2 × 0.0624 / 0.0462) = $1.64</span>. The shortcut gives <span class="num">100 × 0.30 / 19.1 = $1.57</span>; the small gap comes from the interest-rate term. Under the trading-day convention it is <span class="num">100 × 0.30 / 16 ≈ $1.88</span>.
+@@ 2faf69abda html
+Days left <input id="f4-dte" type="range" min="2" max="90" value="30"> <output id="f4-dte-o">30 days</output>
+@@ 7100947df8 html
+Implied volatility <input id="f4-iv" type="range" min="10" max="80" value="30"> <output id="f4-iv-o">30%</output>
+@@ 8bce385cba html
+Between the parabola's two crossings of the horizontal axis (the shaded area) is the loss zone: the stock didn't move enough for Gamma's gains to cover Theta. Reduce the days left and the parabola gets narrower and deeper: more Gamma, but more expensive Theta.
+@@ 1836abd464 html
+Buying options is essentially a bet that “realized volatility will exceed implied volatility”; selling options is the opposite bet. Direction is only part of the trade.
+@@ 1a365870b8 html
+<span class="sn">4.7</span>A gamma scalping walkthrough
+@@ 700ab9dfc8 html
+Gamma scalping turns the conclusion of Section 4.6 into a procedure: buy options to get positive Gamma, then every time the stock moves, use stock to bring Delta back to zero. Positive Gamma makes the process “sell high, buy low” automatically: when the stock rises, Delta grows and you sell stock; when it falls, Delta shrinks and you buy it back.
+@@ 27eb2c5a32 html
+Here is a concrete position over five days: buy 10 at-the-money 30-day straddles (10 calls + 10 puts, strike 100, IV 30%), hedge to zero at each close, and assume slippage of $0.02 per share. The starting position has Gamma of about 92.5 shares per dollar and Theta of about −$114 a day.
+@@ 9438e6da8b html
+Scenario A: big swings back and forth
+@@ 09de12d50d html
+Scenario B: barely moves
+@@ 4f5994e37a html
+Day
+@@ 746ad05f93 html
+Close
+@@ d4344e9f0b html
+Move
+@@ b675bacef9 html
+Option P&amp;L
+@@ 1bc09266c0 html
+Hedge P&amp;L
+@@ eca122926c html
+Rebalance (shares)
+@@ 49c0214de4 html
+Day total
+@@ 18f3cc9456 html
+Cumulative
+@@ 653f8f1393 html
+In Scenario A the stock closes day 5 at 101.9, nearly back where it started; holding the straddle unhedged would lose $304. Hedged, you sell high and buy low every day and make $797 over five days. In Scenario B the moves are too small: Gamma earns only a dozen or so dollars a day while Theta takes $114, and you lose $542 over five days. The dividing line between the two outcomes is whether realized volatility exceeds the 30% implied volatility you bought at.
+@@ b0ec82506c html
+Extra costs in the real world
+@@ dce0c54464 html
+<strong>Hedging frequency</strong>: the more often you hedge, the closer you get to the theoretical value, but the higher your commissions and slippage. In practice, traders often hedge when Delta drifts past a threshold (say, beyond ±50 shares) rather than on a fixed schedule.
+@@ e4cb465b74 html
+<strong>Gaps</strong>: an overnight gap leaves you no time to rebalance. Positive Gamma benefits from gaps; negative Gamma is most dangerous in them.
+@@ 07bdf932c3 html
+<strong>IV changes</strong>: the walkthrough assumes IV stays constant. If IV falls after you buy, the straddle loses extra value, and the scalping profit may be swallowed by the Vega loss.
+@@ f4a0aac237 html
+This is routine work for market makers, but for individuals it is costly and demanding. The more realistic use is to read it the other way around: when you sell options to collect Theta, you are on the other side of this table, profiting from “Scenario B” and fearing “Scenario A.”
+@@ c9f7b2c2dd html
+<span class="sn">4.8</span>Market-maker gamma and the market
+@@ 52dceea0ce html
+Market makers usually hedge the Delta of the options they sell, and the Gamma they hold determines whether those hedges push prices along or hold them back.
+@@ 4009ecb41f html
+Market makers net long Gamma (positive)
+@@ f970594951 html
+Market makers net short Gamma (negative)
+@@ cc9ae01f4d html
+Stock rises → market-maker Delta rises
+@@ b682da6d4b html
+Back to neutral: sell stock
+@@ 987b9788b5 html
+Selling offsets the rise; price “pins”
+@@ 120f5adc8e html
+Narrower swings, mean reversion
+@@ ca43dc90f2 html
+Stock falls → market-maker Delta rises
+@@ 4e9237e345 html
+Back to neutral: sell more stock
+@@ 9b193e0727 html
+Selling chases the drop and deepens it
+@@ 6cace68295 html
+Chasing moves, trends accelerate
+@@ 3987523050 html
+In a positive-Gamma environment, market makers' hedging goes “against the trend,” so the market tends to trade sideways and get pinned near strikes with large open positions. In a negative-Gamma environment, hedging goes “with the trend,” and moves in both directions get amplified. The price level that divides the two environments is what people call the Gamma Flip.
+@@ f5884145f8 html
+How to estimate market makers' gamma exposure
+@@ 259c31d260 html
+No one can see market makers' positions directly. All the GEX (Gamma exposure) data out there is estimated, and the most common method has three steps:
+@@ 21e3679b6a html
+For each strike, multiply open interest (OI) by the Gamma of the options at that strike, then convert to 1% dollar Gamma as in Section 4.4.
+@@ da4620d2f7 html
+Assume market makers are net long calls and net short puts (customers mostly sell covered calls and buy protective puts). Calls then contribute a positive sign and puts a negative one.
+@@ e4d2c0019d html
+Sum across all strikes to get net GEX; repeat the calculation at different hypothetical stock prices, and the level where the net value flips from positive to negative is the Gamma Flip.
+@@ 10102cbefb html
+Table 4-5 Two hypothetical strikes (SPY $780, 7 days to expiry, IV 16%)
+@@ 5f364b9085 html
+Contract
+@@ 346fefbb14 html
+Open interest
+@@ 0187ad38bd html
+Gamma per contract
+@@ e4b0b9b77b html
+1% dollar Gamma
+@@ 05e517414a html
+Sign for market makers
+@@ 89490aa6b3 html
+780 call
+@@ 69fc7c5664 html
+770 put
+@@ 1bfb7f7a76 html
+Net
+@@ db30b691da html
+Slightly negative Gamma
+@@ 34af409237 html
+How to read it: if market makers really held these positions, every 1% drop in SPY would force them to sell about $80 million more stock to stay neutral. The numbers are hypothetical, to illustrate the method.

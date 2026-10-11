@@ -1,0 +1,200 @@
+@@ 83077cdf58 html
+Total variance: <span class="num">1.00² × 2/365 = 0.005479</span>; <span class="num">0.54² × 9/365 = 0.007190</span>.
+@@ 793d3e58c0 html
+Base variance: <span class="num">(0.007190 − 0.005479) ÷ (7/365) = 0.0892</span>, σ<sub>b</sub> = <span class="num">29.9%</span>.
+@@ 5326f67047 html
+Jump variance: <span class="num">(1.00 − 0.0892) × 2/365 = 0.004991</span>, event 1σ = <span class="num">7.06%</span> ($14.13), expected absolute move <span class="num">5.64%</span> ($11.27).
+@@ 21727e3aed html
+Event-day IV: <span class="num">√(0.0892 + 365 × 0.004991) = 138%</span>, 4.6 times that of an ordinary day.
+@@ f9c7fb2c02 html
+Read straight off the straddle, the move is 5.90%; with the event isolated, it is 5.64%. The 0.26-point difference is the time value of the two ordinary days. When comparing with history, use 5.64%: the ratio is <span class="num">5.64 ÷ 4.28 = 1.32</span>, still on the expensive side, but not as extreme as 1.38. After the report, front-month IV should reasonably land at σ<sub>b</sub> ≈ 30%, which is the “back down to 30%” assumed in the opening table.
+@@ a1a1201cf5 html
+Stock price <input id="c-s" type="number" value="200" step="1">
+@@ 1f208034ad html
+Front-month days <input id="c-t1" type="number" value="2" step="1" min="1">
+@@ 4432d4b18b html
+Front-month IV % <input id="c-iv1" type="number" value="100" step="1">
+@@ 9c7f760e8a html
+Back-month days <input id="c-t2" type="number" value="9" step="1" min="2">
+@@ 73a4a5d64d html
+Back-month IV % <input id="c-iv2" type="number" value="54" step="1">
+@@ f54b56dcef html
+The vertical axis is cumulative variance (in “percent squared”; take the √ and you get a percentage move). The two dots are σ²<span class="v">T</span> for the two expirations; extend the line through them left to day 0, and the intercept is the jump variance. Lower the back-month IV to 40% and the back month’s total variance becomes smaller than the front month’s, so the computed base variance turns negative: this tells you the back-month quote is inconsistent with the front month, or there is another event between the two expirations.
+@@ 6838db7a83 html
+<strong>No other event between the two expirations.</strong> Otherwise the slope is pushed up, base volatility comes out too high, and the event is underestimated.
+@@ 1816ffe717 html
+<strong>Base volatility is the same across the two expirations.</strong> When the whole market is in a panic, near-term base volatility is often higher, and the method will overstate the event.
+@@ ec2aeb0fd8 html
+<strong>Calendar days or trading days.</strong> When the back month spans a weekend, recomputing in trading days (2 days and 7 days, 252-day year) changes the event 1σ from 7.06% to 6.92%. The event estimate barely changes, but the base IV figure can’t be compared directly with the calendar-day result.
+@@ 6d42fbb578 html
+If σ<sub>b</sub>² or <span class="v">v</span><sub>e</sub> comes out negative, first check whether the quotes use the same ATM strike and whether they are thin intraday quotes.
+@@ f366f56461 html
+<span class="sn">10.4</span>Choosing an earnings structure
+@@ 14da365381 html
+The order for choosing a structure: look at the implied ÷ historical ratio first, then set the maximum loss you can take, and only then pick the specific legs.
+@@ 653035b382 html
+Below, five common structures are placed in the same scenario: you open at XYZ’s Wednesday close, with front-month (2 days) IV at 100% and back-month (9 days) IV at 54%; you value the position at Thursday’s close, with IV for both expirations back down to 30%. The iron condor and reverse iron condor use strikes 190/180 and 210/220; the calendar sells the Friday 200 call and buys the next Friday’s 200 call.
+@@ e318ce6682 html
+Table 10-3 Five earnings structures: P&amp;L per contract at the close on the first day after the report ($)
+@@ 2b2f1e4d50 html
+Structure
+@@ 78ac84a76a html
+Entry
+@@ 7221418176 html
+Unchanged
+@@ 8690eb7ed6 html
+Breakeven
+@@ a59f077925 html
+Max loss
+@@ 977bcb6bb9 html
+Short straddle
+@@ 13d3f9bf69 html
+Credit 1,181
+@@ 5ca4b5e09a html
+Unlimited
+@@ 6464a39313 html
+Short iron condor
+@@ 834661def8 html
+Credit 319
+@@ 13ff49bbee html
+Calendar (calls)
+@@ dabdcecb8d html
+Debit 93
+@@ 7eef68f946 html
+Long straddle
+@@ f7bb68c947 html
+Debit 1,181
+@@ 666bdce9c4 html
+Reverse iron condor
+@@ 477ad21770 html
+Debit 319
+@@ b600ead9e0 html
+±5.6% is the expected absolute move isolated in Section 10.3, and ±8.9% is XYZ’s largest move in its history. Note three things when you read this table:
+@@ 0e4fb2114b html
+The short straddle makes the most when the stock “doesn’t move” ($930), but at ±8.9% it loses $600 in one go, and at −15% it would lose $1,817.
+@@ 51986429a5 html
+The short iron condor makes only $319 when the stock doesn’t move, but its breakevens are actually wider than the straddle’s (the short legs are beyond ±5%, plus the premium collected), and its maximum loss is locked at $681.
+@@ 1dddaa550c html
+The calendar’s P&amp;L is small either way, and its maximum loss is the $93 paid. It is very sensitive to IV after the report: if post-report IV is 25%, it makes only $105 when the stock doesn’t move; at 40%, it makes $220.
+@@ 4d8d2a898c html
+Calendar
+@@ 6da61a007a html
+Post-report IV <input id="f3-iv" type="range" min="20" max="50" value="30"> <output id="f3-iv-o">30%</output>
+@@ 11e0aa2a85 html
+Switch to “Calendar” and drag the post-report IV from 20% to 50%: the whole curve shifts up, because the back-month option you hold keeps more of its value. Switch to “Short straddle” and the vertical axis stretches a long way: that is its tail. Switch to “Short iron condor” and both ends are flattened by the wings.
+@@ 916f93bef9 html
+Table 10-4 When each of the five structures fits
+@@ 4c1cf8fb5d html
+Your view
+@@ c141924952 html
+When to use it
+@@ cd2036d15d html
+When not to
+@@ dff08a15ab html
+Moves less than implied
+@@ 79f3ac4b8d html
+Ratio &gt; 1.2, good liquidity, very small size
+@@ 5c4039a407 html
+Your account can’t absorb a loss 3 times the credit
+@@ d1ea82efdf html
+Same as above, but with a cap on the maximum loss
+@@ 0ad031b10e html
+Wings so narrow that the credit doesn’t cover commissions and slippage
+@@ 1763c40fd7 html
+Moves little, and back-month IV holds up
+@@ f5d6cdac73 html
+Front-month IV far above the back month, and you want to risk little money
+@@ bbe5043c9b html
+The back month also contains another event, or you expect a big move
+@@ a46c1c6a15 html
+Moves more than implied
+@@ 892cc6e048 html
+Ratio &lt; 0.9, or there is a new variable this time that isn’t in the history
+@@ 11990f1534 html
+IV has already been bid up to the top of its IV Rank
+@@ ef9c830e17 html
+Moves a lot, but not to an extreme
+@@ 578db39ca2 html
+You want to be long volatility but find the straddle too expensive
+@@ 70e238ad30 html
+When it only makes money on a move of more than 10%
+@@ fa22663cf3 html
+Entry timing, strikes and exit
+@@ 06cab97096 html
+<strong>Entry timing.</strong> Sellers usually open the position just before the close on the last trading day before earnings: that is when front-month IV is highest and the fewest ordinary days remain. Opening a few days early means carrying a few more days of ordinary-day Gamma, and you may watch IV keep climbing.
+@@ 5abc64dfb8 html
+<strong>Where to put the short legs.</strong> The short legs of the iron condor in Table 10-3 are at ±5%, closer than the expected absolute move (5.64%); that is an aggressive setup. Under the market’s implied distribution, the chance of a move larger than 5% is about <span class="num">50%</span>. Move the short legs out to 185/215 (about 1σ away) and that chance falls to about <span class="num">31%</span>; the price is that the credit drops from $319 to <span class="num">$184</span> and the maximum loss rises from $681 to <span class="num">$816</span>. There is no free margin of safety, only different trade-offs.
+@@ a093951214 html
+<strong>Exit.</strong> By default, close the whole position 15–30 minutes after the open on the first day after the report. The bid–ask spread is widest at the open, so wait for it to narrow; by then IV has already been crushed, and the money the event trade was meant to make has been made. Letting an event position drift into an ordinary holding means swapping in a trade you never analyzed.
+@@ a9a9d98cf6 html
+<strong>Handle a calendar as one unit.</strong> As the front-month leg nears expiry, either close the whole position or deal with the front-month leg early, so you don’t get assigned and end up with a lone back-month leg.
+@@ 081e444f67 html
+Plenty of traders treat earnings as a “lottery ticket,” but a lottery has rules: use only a very small position in a calendar spread or butterfly, so that the maximum loss is the premium paid; place the order only about ten minutes before the close, so that price and IV are as close as possible to their final state before the report; if it loses, close the whole thing or let it expire, and don’t cut just one leg after the fact, which would turn a limited-risk structure into a naked position. If a stock’s IV is so high that “neither buying nor selling is worth it,” express the view with a sector ETF instead. Another common practice is to add a short-term hedge against your main exposure before the event: if you hold a lot of short positions, buy a small short-dated call spread on an index or leveraged ETF before earnings or the FOMC, and take it off after the event.
+@@ 89fc6d7c52 html
+<span class="sn">10.5</span>Macro event days
+@@ aa24422a7c html
+A macro event hits an index far less than an earnings report hits a single stock, but it hits every position in your portfolio at the same time.
+@@ 1d6c6ea9f5 html
+Table 10-5 Timing and impact of three types of macro events (Eastern Time)
+@@ 82698770af html
+Event
+@@ 56fa921982 html
+Release time
+@@ 5478bf6d56 html
+How prices react
+@@ c8457cadbe html
+Expiration mainly affected
+@@ 3d84204544 html
+8:30, before the open
+@@ 99e4e4be39 html
+Mostly through the opening gap
+@@ 89d69e7fa8 html
+Expirations that include the day, as of the night before
+@@ 1ab0bbd726 html
+Nonfarm payrolls
+@@ 621ebb101a html
+8:30, usually the first Friday of the month
+@@ e7c4c40e7b html
+Weekly options expiring that Friday
+@@ 9605e14ba7 html
+Statement at 14:00, press conference at 14:30
+@@ 7354afce3b html
+Two bursts of intraday volatility, often in opposite directions
+@@ cfdcd21eae html
+Same-day 0DTE and that week’s options
+@@ a44af96fb0 html
+Why VIX barely moves before CPI
+@@ 769a1c7c74 html
+Work it through with the framework from Section 10.3. Suppose the base volatility of the S&amp;P 500 is 14%, and the market expects an extra 1% jump (1σ) on CPI day.
+@@ 293a2e2e64 html
+Options expiring in 1 day: IV = <span class="num">√(0.14² + 0.01² × 365 / 1) = 23.7%</span>, almost double.
+@@ ee049b052d html
+30-day IV (the VIX measure): <span class="num">√(0.14² + 0.01² × 365 / 30) = 14.43%</span>, only 0.4 points higher.
+@@ 595ab91f45 html
+The same jump looks huge over 1 day and gets diluted away over 30 days. So reading VIX to judge “whether the market fears CPI” badly understates the event premium; look at straddles expiring the same day or the next day instead. With SPX at 7,800, a 1-day ATM straddle costs about <span class="num">$45.6</span> (0.58%) on an ordinary day and about <span class="num">$77.2</span> (0.99%) on this CPI day.
+@@ e5ef8544ea html
+Hedging before an event: expensive per day, cheap per event
+@@ 4b07da8be7 html
+Suppose your portfolio is equivalent to 300 shares of SPY (beta-weighted, as in Chapter 4), and you want to add protection the night before CPI, with SPY at 780.
+@@ 12ff0e4e56 html
+3 of the 780 puts expiring the next day, at 23.7% IV: $382 each, <span class="num">$1,145</span> in total, covering just this one day.
+@@ 1092d4e165 html
+3 of the 30-day 780 puts, at 14.43% IV: $1,161 each, <span class="num">$3,483</span> in total, or <span class="num">$116</span> a day.
+@@ ccdf9de0b2 html
+Per day, the one-day hedge is nearly 10 times as expensive (<span class="num">1,145 ÷ 116 ≈ 9.9</span>), because its price is almost entirely event premium; the upside is that you pay only for the one day you need. Conversely, if you were planning to hold a month of protection anyway, buy the 30-day puts before the event: the event premium is only a small part of their price.
+@@ f9e34138da html
+Index IV after the event
+@@ b57a9ce19c html
+When the result is no surprise, short-term index IV usually falls back after the release, for the same reason as with earnings: the jump has happened. The difference is that the drop is smaller, and a macro event can change base volatility for the following weeks. For example, if the FOMC signals a new policy direction, the market may keep repricing over the next few days, and base volatility can actually rise.
+@@ 21c1ea40e9 html
+The real risk of these events is at the portfolio level: every stock moves in the same direction at once, and diversification across stocks basically stops working for that day. Before the event, check your portfolio’s beta-weighted Delta (Chapter 4) and, if needed, add an offsetting position with short-dated index options. During the event, do as little as possible; wait until the press conference is over and prices have settled before acting.
+@@ f530bfc3fa html
+<span class="sn">10.6</span>0DTE: a whole day compressed into a few hours
+@@ ef0854f094 html
+0DTE options expire the same day. They squeeze a whole day of risk into a few hours, pushing both Gamma and Theta to extremes. SPX, SPY, QQQ and other major index products now have expirations every trading day.
+@@ d04304eaf0 html
+Intraday time is measured in trading time: one trading day is 6.5 hours, a year has 252 trading days, and time remaining <span class="v">T</span> = hours remaining ÷ (6.5 × 252). Read IV of 15% on this basis too. After-hours and overnight time are not counted.
+@@ fb0c7ffd14 html
+Table 10-6 SPY 780 ATM call (IV 15%), values at different times before the close (per share)
+@@ 085956cc4f html
+Time to close

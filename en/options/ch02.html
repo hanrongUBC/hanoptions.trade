@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chapter 2: US options in practice · US Options Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  .chain table { font-size: 13px; }
+  .chain th, .chain td { padding: 7px 9px; }
+  .chain th:first-child, .chain td:first-child { text-align: right; }
+  .chain tr.grp th { text-align: center; color: var(--ink); font-weight: 700; letter-spacing: .08em; border-bottom: 1px solid var(--rule); }
+  .chain td.itm { background: var(--tint-theta); }
+  .chain th.k, .chain td.k { text-align: center; font-weight: 700; background: var(--grid); }
+  .chain td.iv { color: var(--muted); }
+  .chain tr.spot td { text-align: center; font-size: 12px; color: var(--delta); background: var(--tint-delta); padding: 3px 8px; font-family: var(--font-mono); }
+  .tbl.txt th, .tbl.txt td { white-space: normal; text-align: left; vertical-align: top; min-width: 5.5em; }
+  .mk { font-family: var(--font-mono); font-size: 11px; color: var(--gamma); margin-left: 2px; }
+  .calc .ins { display: grid; grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); gap: 10px 14px; margin: 8px 0 8px; }
+  .calc .ins label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); min-width: 0; }
+  .calc .ins input { font-family: var(--font-mono); font-size: 14px; padding: 5px 8px; border: 1px solid var(--rule); border-radius: 4px; background: var(--paper); color: var(--ink); width: 100%; min-width: 0; }
+</style>
+<link rel="alternate" hreflang="zh-CN" href="https://hanoptions.trade/options/ch02.html"><link rel="alternate" hreflang="en" href="https://hanoptions.trade/en/options/ch02.html">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap">
+<style id="en-overrides">
+html[lang="en"] { --font-display: "Source Serif 4", "Noto Serif SC", Georgia, serif; --font-body: "Source Sans 3", "Noto Sans SC", system-ui, sans-serif; }
+html[lang="en"] body { line-height: 1.7; }
+html[lang="en"] body * { letter-spacing: normal !important; }
+html[lang="en"] p, html[lang="en"] li, html[lang="en"] td, html[lang="en"] figcaption { hyphens: auto; -webkit-hyphens: auto; }
+html[lang="en"] p { text-wrap: pretty; }
+html[lang="en"] .toc a { grid-template-columns: 48px 1fr; }
+</style>
+</head>
+<body data-ch="2">
+<div class="topbar"><div class="topbar-inner"><div class="topbar-brand"><a class="site-home" href="/en/">hanoptions.trade</a><a class="brand" href="index.html">US Options <span>Course</span></a></div><div class="topbar-tools"><select id="ck-jump" aria-label="Jump to chapter"></select><a class="lang-switch" href="/options/ch02.html" hreflang="zh-CN" lang="zh-CN" data-lang="zh"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>中文</a></div></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">02</div>
+    <div class="eyebrow">US Options Course · Part 1 Foundations · Chapter 2</div>
+    <h1>US options <span class="g">in practice</span></h1>
+    <p class="deck">Between the order and expiration, an option passes through a broker, an exchange and a clearinghouse. This chapter lays out the rules of the game: when you can be assigned, what your account lets you do, how much of each trade the spread eats, and what special tax treatment applies.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="In this chapter">
+    <p class="toc-title">In this chapter</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>Opening: two weeks to go, assigned tonight</span></a></li>
+      <li><a href="#s1"><span class="n">2.1</span><span>American and European style</span></a></li>
+      <li><a href="#s2"><span class="n">2.2</span><span>Expiration cycles</span></a></li>
+      <li><a href="#s3"><span class="n">2.3</span><span>Exercise and assignment</span></a></li>
+      <li><a href="#s4"><span class="n">2.4</span><span>Two reasons for early assignment</span></a></li>
+      <li><a href="#s5"><span class="n">2.5</span><span>Reading an option chain</span></a></li>
+      <li><a href="#s6"><span class="n">2.6</span><span>Accounts, approval levels and margin</span></a></li>
+      <li><a href="#s7"><span class="n">2.7</span><span>Orders and liquidity</span></a></li>
+      <li><a href="#s8"><span class="n">2.8</span><span>Tax concepts</span></a></li>
+      <li><a href="#s9"><span class="n">2.9</span><span>Choosing your index exposure</span></a></li>
+      <li><a href="#cases"><span class="n">Cases</span><span>Three cases</span></a></li>
+      <li><a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>In this chapter</summary>
+      <ol>
+        <li><a href="#open">Opening: two weeks to go, assigned tonight</a></li>
+        <li><a href="#s1">2.1 American and European style</a></li>
+        <li><a href="#s2">2.2 Expiration cycles</a></li>
+        <li><a href="#s3">2.3 Exercise and assignment</a></li>
+        <li><a href="#s4">2.4 Two reasons for early assignment</a></li>
+        <li><a href="#s5">2.5 Reading an option chain</a></li>
+        <li><a href="#s6">2.6 Accounts, approval levels and margin</a></li>
+        <li><a href="#s7">2.7 Orders and liquidity</a></li>
+        <li><a href="#s8">2.8 Tax concepts</a></li>
+        <li><a href="#s9">2.9 Choosing your index exposure</a></li>
+        <li><a href="#cases">Three cases</a></li>
+        <li><a href="#tools">Checklist and self-test</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>After this chapter you can</h4>
+        <ul>
+          <li>Tell whether an in-the-money call will be assigned early before an ex-dividend date, and work out what is at stake</li>
+          <li>Read every column of an option chain, judge liquidity with three measures and work out the round-trip cost</li>
+          <li>Choose among SPX, SPY and XSP by contract size, settlement and taxes</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Prerequisites</h4>
+        <ul>
+          <li>Chapter 1: the six terms of a contract and the four basic positions</li>
+          <li>Chapter 1: how intrinsic value, time value and interest relate</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Conventions</h4>
+        <ul>
+          <li>Rules follow common practice for US-listed options; for details, your exchange and broker have the final word</li>
+          <li>Examples use Black-Scholes with a 4% rate and a 365-day year</li>
+          <li>Taxes are covered as concepts only; this is not tax advice</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">Opening</span>Two weeks to go, assigned tonight</h2>
+      <p class="lead">You hold 500 shares of XYZ at $110. For a little extra income, you sold 5 calls with a 100 strike that expire in two weeks. On Thursday evening your broker sends a notice: all 5 have been assigned, and your 500 shares have been sold at $100.</p>
+      <p>The options still have two weeks to go, so why would anyone exercise now? Because tomorrow is the ex-dividend date, and the dividend is <span class="num">$1.20</span> per share. If the holder keeps the option, the call will have only <span class="num">0.235</span> of time value left once the stock goes ex-dividend; by exercising tonight and taking the shares, the holder collects the 1.20 dividend tomorrow. That is <span class="num">0.965</span> more per share, or <span class="num">$483</span> across 5 contracts.</p>
+      <p>That $483 comes out of your pocket. The $600 in dividends you would have collected is gone, and all you get in return is your $50,000 for the shares two weeks early, plus no longer having to wait for the remaining time value to decay to zero. None of this should be a surprise: if you know the rules, you can work it out before Thursday's close and buy the calls back or roll them to a higher strike in advance.</p>
+      <p>This chapter is about rules like these. They don't decide whether your view on direction is right, but they often decide how much money you end up with.</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">2.1</span>American and European style</h2>
+      <p>Stock and ETF options are American-style and physically settled: they can be exercised on any trading day and turn into shares. Index options such as SPX are European-style and cash-settled: they settle only at expiration, in cash, for the difference.</p>
+      <div class="tbl txt">
+        <table>
+          <caption>Table 2-1 The rules for the two kinds of options, side by side</caption>
+          <thead><tr><th>Feature</th><th>Stock and ETF options (AAPL, SPY, QQQ)</th><th>Index options (SPX, XSP, NDX)</th></tr></thead>
+          <tbody>
+            <tr><td>Exercise style</td><td>American: can be exercised on any trading day before expiration</td><td>European: settles only at expiration</td></tr>
+            <tr><td>What is delivered</td><td>100 shares of the stock or ETF</td><td>Cash = intrinsic value × 100</td></tr>
+            <tr><td>Early assignment of the seller</td><td>Possible</td><td>Not possible</td></tr>
+            <tr><td>Position after expiration</td><td>May become long or short stock</td><td>Cash only</td></tr>
+            <tr><td>Settlement price</td><td>Closing price on expiration day</td><td>PM-settled: the close on expiration day; AM-settled: a special opening settlement price on expiration day</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>“American” and “European” are just names; they have nothing to do with where the options trade. An American option carries one extra right, so it is never worth less than an otherwise identical European option. The difference is called the early-exercise value. For calls on stocks that pay no dividend, this value is zero and early exercise never pays; for calls on dividend-paying stocks and for deep in-the-money puts, it can be substantial (Section 2.4).</p>
+
+      <h3>Physical settlement: the option turns into stock</h3>
+      <p>You hold 1 SPY 780 call, and SPY closes at 785 at expiration. The option is exercised automatically and you buy 100 shares of SPY for $78,000. If your account holds only a few thousand dollars, you are immediately short of margin. It works the other way too: if a put you sold is exercised, you must buy 100 shares at the strike; if a call you sold is exercised and you don't own the shares, you become short 100 shares.</p>
+
+      <h3>Cash settlement: only the difference changes hands</h3>
+      <p>You hold 1 SPX 7,800 call, and the settlement price at expiration is 7,850. Your account simply receives <span class="num">(7,850 − 7,800) × 100 = $5,000</span> in cash. No shares move in or out, and there is no weekend risk after expiration. What you do need to watch is when the settlement price is set. Standard monthly SPX contracts are AM-settled: the last trading day is Thursday, and the settlement price is calculated from the opening prices of the component stocks on Friday. You have no way to trade around a gap between Thursday's close and Friday's open. SPX weekly and daily contracts (symbol SPXW) are PM-settled and use the closing price on expiration day.</p>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">2.2</span>Expiration cycles</h2>
+      <p>Expirations come in three layers: monthly, weekly and daily. An option that is in the money by $0.01 at the close on expiration day is exercised automatically.</p>
+      <ul>
+        <li><strong>Monthly</strong>: the third Friday of each month. If the exchange is closed that day (for example, on Good Friday), expiration moves up to Thursday. Monthly contracts are listed the longest, and for less liquid stocks, open interest tends to concentrate in the monthlies.</li>
+        <li><strong>Weekly</strong>: most popular stocks and ETFs have contracts expiring every Friday, usually listed a few weeks ahead.</li>
+        <li><strong>Daily</strong>: a handful of products, such as SPX, XSP, SPY and QQQ, have contracts expiring every day from Monday to Friday. Contracts that expire the same day are often called 0DTE (Chapter 10).</li>
+        <li><strong>Long-term</strong>: contracts with more than a year to expiration are called LEAPS, and they usually expire in January.</li>
+      </ul>
+
+      <h3>What happens after 4 p.m. on expiration day</h3>
+      <p>Stock options stop trading at 16:00 Eastern time on expiration day (some index and ETF options close at a different time; check the exchange rules). But the end of trading is not the end of the story: the stock keeps trading after hours, and option holders can still change their minds.</p>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">Trading ends at 16:00, but you won't know the assignment result until the next trading day</span><span class="fig-no">Figure 2-1 · How a physically settled option expires</span></div>
+        <div class="scroll-x"><svg class="chart wide" viewBox="0 0 680 330" role="img" aria-label="The four steps that longs and shorts each go through after 4 p.m. on expiration day">
+          <defs>
+            <marker id="a2-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--delta)"></path></marker>
+            <marker id="a2-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--gamma)"></path></marker>
+          </defs>
+          <g style="font-family: var(--font-mono); font-size: 12px">
+            <line x1="24" y1="42" x2="658" y2="42" style="stroke: var(--rule)" stroke-width="1.5"></line>
+            <circle cx="96.5" cy="42" r="4" style="fill: var(--ink)"></circle>
+            <circle cx="259.5" cy="42" r="4" style="fill: var(--ink)"></circle>
+            <circle cx="422.5" cy="42" r="4" style="fill: var(--ink)"></circle>
+            <circle cx="585.5" cy="42" r="4" style="fill: var(--ink)"></circle>
+            <text x="96.5" y="28" text-anchor="middle" style="fill: var(--muted)">16:00 close</text>
+            <text x="259.5" y="28" text-anchor="middle" style="fill: var(--muted)">16:00–17:30</text>
+            <text x="422.5" y="28" text-anchor="middle" style="fill: var(--muted)">That evening</text>
+            <text x="585.5" y="28" text-anchor="middle" style="fill: var(--muted)">Before next open</text>
+          </g>
+          <g style="font-family: var(--font-body); font-size: 12.5px">
+            <text x="24" y="68" style="fill: var(--delta); font-weight: 700; font-size: 13.5px">Long option (holder)</text>
+            <rect x="24" y="78" width="145" height="62" rx="6" style="fill: var(--tint-delta); stroke: var(--delta)"></rect>
+            <rect x="187" y="78" width="145" height="62" rx="6" style="fill: var(--tint-delta); stroke: var(--delta)"></rect>
+            <rect x="350" y="78" width="145" height="62" rx="6" style="fill: var(--tint-delta); stroke: var(--delta)"></rect>
+            <rect x="513" y="78" width="145" height="62" rx="6" style="fill: var(--tint-delta); stroke: var(--delta)"></rect>
+            <text x="96.5" y="104" text-anchor="middle" style="fill: var(--ink)">Option stops trading</text>
+            <text x="96.5" y="124" text-anchor="middle" style="fill: var(--ink)">Close sets ITM/OTM</text>
+            <text x="259.5" y="104" text-anchor="middle" style="fill: var(--ink)">Stock still trades</text>
+            <text x="259.5" y="124" text-anchor="middle" style="fill: var(--ink)">Can opt out of exercise</text>
+            <text x="422.5" y="104" text-anchor="middle" style="fill: var(--ink)">≥ $0.01 ITM, no opt-out</text>
+            <text x="422.5" y="124" text-anchor="middle" style="fill: var(--ink)">Auto-exercised</text>
+            <text x="585.5" y="104" text-anchor="middle" style="fill: var(--ink)">Call: buy at strike</text>
+            <text x="585.5" y="124" text-anchor="middle" style="fill: var(--ink)">Put: sell at strike</text>
+            <path d="M171 109 H184" style="stroke: var(--delta)" stroke-width="1.5" marker-end="url(#a2-d)"></path>
+            <path d="M334 109 H347" style="stroke: var(--delta)" stroke-width="1.5" marker-end="url(#a2-d)"></path>
+            <path d="M497 109 H510" style="stroke: var(--delta)" stroke-width="1.5" marker-end="url(#a2-d)"></path>
+
+            <text x="24" y="174" style="fill: var(--gamma); font-weight: 700; font-size: 13.5px">Short option (seller)</text>
+            <rect x="24" y="184" width="145" height="62" rx="6" style="fill: var(--tint-gamma); stroke: var(--gamma)"></rect>
+            <rect x="187" y="184" width="145" height="62" rx="6" style="fill: var(--tint-gamma); stroke: var(--gamma)"></rect>
+            <rect x="350" y="184" width="145" height="62" rx="6" style="fill: var(--tint-gamma); stroke: var(--gamma)"></rect>
+            <rect x="513" y="184" width="145" height="62" rx="6" style="fill: var(--tint-gamma); stroke: var(--gamma)"></rect>
+            <text x="96.5" y="210" text-anchor="middle" style="fill: var(--ink)">Can no longer close</text>
+            <text x="96.5" y="230" text-anchor="middle" style="fill: var(--ink)">Exposure locked in</text>
+            <text x="259.5" y="210" text-anchor="middle" style="fill: var(--ink)">Can't see what the</text>
+            <text x="259.5" y="230" text-anchor="middle" style="fill: var(--ink)">holder will decide</text>
+            <text x="422.5" y="210" text-anchor="middle" style="fill: var(--ink)">OCC assigns at random</text>
+            <text x="422.5" y="230" text-anchor="middle" style="fill: var(--ink)">Broker picks accounts</text>
+            <text x="585.5" y="210" text-anchor="middle" style="fill: var(--ink)">Assignment notice</text>
+            <text x="585.5" y="230" text-anchor="middle" style="fill: var(--ink)">Position becomes stock</text>
+            <path d="M171 215 H184" style="stroke: var(--gamma)" stroke-width="1.5" marker-end="url(#a2-g)"></path>
+            <path d="M334 215 H347" style="stroke: var(--gamma)" stroke-width="1.5" marker-end="url(#a2-g)"></path>
+            <path d="M497 215 H510" style="stroke: var(--gamma)" stroke-width="1.5" marker-end="url(#a2-g)"></path>
+
+            <rect x="24" y="266" width="634" height="52" rx="6" style="fill: var(--tint-warn); stroke: var(--warn)"></rect>
+            <text x="341" y="287" text-anchor="middle" style="fill: var(--ink)">With the close near the strike, the seller learns only at the last step whether it was assigned;</text>
+            <text x="341" y="307" text-anchor="middle" style="fill: var(--ink)">after-hours trading and a weekend lie in between. That uncertainty is “pin risk” (Case 2).</text>
+          </g>
+        </svg></div>
+        <figcaption>17:30 is the usual deadline for the clearinghouse to accept exercise decisions, and brokers' internal cutoffs are often earlier. Holders can submit “do not exercise” on an in-the-money option and can also choose to exercise an out-of-the-money one, so being out of the money at the close does not guarantee that an option expires worthless. Index options settle in cash, so the fourth step is just a cash credit.</figcaption>
+      </figure>
+
+      <h3>The auto-exercise threshold is one cent</h3>
+      <p>The clearinghouse applies “exercise by exception” to expiring contracts: any option that is in the money by $0.01 or more at the closing price is exercised automatically unless the holder submits contrary instructions. For individual traders, this threshold is a trap.</p>
+      <p>Example: you hold 5 of the 100 calls and mean to sell them before expiration, but forget. Friday's close is 100.03, so the options are 3 cents in the money and are exercised automatically. On Monday your account has 500 more shares and you have to pay <span class="num">$50,015</span>, while the intrinsic value of this exercise is only <span class="num">0.03 × 500 = $15</span> in total. For $15, you carried $50,000 of stock over a weekend, and if your account doesn't have the funds, you also face a margin call or a forced sale.</p>
+      <div class="note warn">
+        <span class="tag">Three things to do on expiration afternoon</span>
+        <ul>
+          <li>For in-the-money longs, if you don't want the shares, sell before the close or give your broker a “do not exercise” instruction.</li>
+          <li>For shorts where the close may land near the strike, spend a little to buy them back before the close (Case 2).</li>
+          <li>Don't assume “out of the money at the close means worthless”: if news comes out after hours, holders can exercise out-of-the-money options.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">2.3</span>Exercise and assignment</h2>
+      <p>Exercise is the buyer's decision; assignment is the result that lands on a seller at random. The seller can't choose it and can't know it in advance.</p>
+      <ol>
+        <li>The holder submits an exercise instruction through a broker (or is exercised automatically at expiration).</li>
+        <li>Instructions go to the Options Clearing Corporation (OCC). It is the central counterparty for all US-listed options: on every trade, the buyer and the seller each actually settle with the OCC.</li>
+        <li>The OCC allocates assignments <strong>at random</strong> among the clearing members that hold short positions in that contract.</li>
+        <li>The clearing member (your broker or its clearing firm) then allocates them to specific customer accounts, either at random or first in, first out, and must disclose its method to customers.</li>
+        <li>The seller is usually notified before the next trading day's open, and the short option in the account becomes a purchase or sale of stock.</li>
+      </ol>
+      <div class="tbl txt">
+        <table>
+          <caption>Table 2-2 Where the stock goes after exercise and assignment</caption>
+          <thead><tr><th>Contract</th><th>Long exercises</th><th>Short is assigned</th></tr></thead>
+          <tbody>
+            <tr><td>Call</td><td>Buy 100 shares at the strike</td><td>Sell 100 shares at the strike; if you don't own them, you become short</td></tr>
+            <tr><td>Put</td><td>Sell 100 shares at the strike; if you don't own them, you become short</td><td>Buy 100 shares at the strike</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Why early exercise usually doesn't pay</h3>
+      <p>Exercising early captures only the intrinsic value; the time value is thrown away. With the stock at $100, a 30-day 95 call is worth 6.65. Exercising gets you 5.00; selling the option gets you 6.65. That is a difference of <span class="num">1.65</span>, or $165 per contract. So for a holder who wants out, selling the option is almost always better than exercising.</p>
+      <p>For calls on stocks that pay no dividend, this holds strictly. As Chapter 1 showed, the time value of an in-the-money call always includes at least the “interest on the strike,” which is always greater than zero. Exercising early means paying the strike early and giving up that interest for nothing. Only two situations can overturn this conclusion; the next section covers them.</p>
+      <div class="note">
+        <span class="tag">Key point</span>
+        <p>Illiquid options are an exception. If the bid is far below theoretical value (say, a call with 5.00 of intrinsic value is bid at only 4.80), selling it costs you. In that case you can consider exercising and selling the stock at the same time, provided you've worked out the costs on both sides.</p>
+      </div>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">2.4</span>Two reasons for early assignment</h2>
+      <p>Early exercise pays in only two situations: for a call before an ex-dividend date, when the dividend is larger than the remaining time value; and for a deep in-the-money put, when the interest on the strike is larger than the put's remaining “rebound value.”</p>
+
+      <h3>Reason 1: dividends</h3>
+      <p>At the open on the ex-dividend date, the stock drops by roughly the amount of the dividend, and option holders don't receive the dividend. At the close on the day before the ex-dividend date, a call holder has two choices:</p>
+      <ul>
+        <li><strong>Exercise today</strong>: take the shares, worth <span class="v">S</span> − <span class="v">K</span>, and collect the dividend tomorrow.</li>
+        <li><strong>Keep holding</strong>: tomorrow the stock becomes <span class="v">S</span> − <span class="v">D</span>, and the option is worth its new intrinsic value plus the remaining time value.</li>
+      </ul>
+      <p>Subtract one from the other and the stock price itself cancels out, leaving a very simple comparison:</p>
+      <div class="formula">
+        <div class="eq">Early exercise pays <span class="up">⟺</span> <span class="v">D</span> <span class="up">&gt;</span> <span class="v">P</span>(<span class="v">S</span> <span class="up">−</span> <span class="v">D</span>, <span class="v">K</span>) <span class="up">+</span> <span class="v">K</span>(1 <span class="up">−</span> <span class="v">e</span><sup>−<span class="v">rT</span></sup>)</div>
+        <p class="where">The right-hand side is the call's remaining time value after the ex-dividend date. It has two parts: the value of the put at the same strike (protection in case the stock falls back below the strike), and the interest saved by paying the strike later. <span class="v">T</span> is the time from the ex-dividend date to expiration. The derivation uses put–call parity: once the dividend is paid there are no more dividends, so the American call is equivalent to a European call.</p>
+      </div>
+      <div class="tbl">
+        <table>
+          <caption>Table 2-3 Strike 100, dividend 1.50, 20 days left after ex-dividend, IV 30%: exercise early or not?</caption>
+          <thead><tr><th>Stock price before ex-div</th><th>Put value</th><th>Interest</th><th>Remaining time value</th><th>Dividend − time value</th><th>Verdict</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">105</td><td class="mono">1.365</td><td class="mono">0.219</td><td class="mono">1.584</td><td class="mono neg">−0.084</td><td>Keep holding</td></tr>
+            <tr><td class="mono">110</td><td class="mono">0.416</td><td class="mono">0.219</td><td class="mono">0.635</td><td class="mono pos">+0.865</td><td>Exercise early</td></tr>
+            <tr><td class="mono">115</td><td class="mono">0.098</td><td class="mono">0.219</td><td class="mono">0.317</td><td class="mono pos">+1.183</td><td>Exercise early</td></tr>
+            <tr><td class="mono">120</td><td class="mono">0.018</td><td class="mono">0.219</td><td class="mono">0.237</td><td class="mono pos">+1.263</td><td>Exercise early</td></tr>
+            <tr class="hl"><td class="mono">125</td><td class="mono">0.003</td><td class="mono">0.219</td><td class="mono">0.222</td><td class="mono pos">+1.278</td><td>Exercise early</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The threshold stock price is about <span class="num">105.30</span>: above it, exercising pays more. The threshold moves with conditions. With a dividend of only 0.50, it rises to <span class="num">110.44</span>; with 60 days left after the ex-dividend date, it rises to <span class="num">115.41</span>, because the more time remains, the larger the time value and the less it is worth giving up for the dividend. The deeper in the money the stock, the closer the put value gets to zero, and the time value approaches its floor: the interest of 0.219.</p>
+      <p>Timing matters too. US stocks now settle T+1, so the ex-dividend date is the record date. To get the dividend, the holder must exercise on the trading day before the ex-dividend date so the shares arrive by the record date. That is why early assignment almost always happens <strong>the night before the ex-dividend date</strong>.</p>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">Where the dividend exceeds the time value, early exercise pays</span><span class="fig-no">Figure 2-2 · A call with a 100 strike, the day before the ex-dividend date</span></div>
+        <div class="controls">
+          <label class="ctl" for="f2-s">Stock price <input id="f2-s" type="range" min="95" max="140" step="0.5" value="115"> <output id="f2-s-o">115.0</output></label>
+          <label class="ctl" for="f2-d">Dividend per share <input id="f2-d" type="range" min="0.1" max="3" step="0.05" value="1.5"> <output id="f2-d-o">1.50</output></label>
+          <label class="ctl" for="f2-t">Days left after ex-div <input id="f2-t" type="range" min="1" max="120" step="1" value="20"> <output id="f2-t-o">20 days</output></label>
+          <label class="ctl" for="f2-iv">Implied volatility <input id="f2-iv" type="range" min="10" max="80" step="1" value="30"> <output id="f2-iv-o">30%</output></label>
+        </div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 300" role="img" aria-label="Remaining time value after the ex-dividend date compared with the dividend"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>Time value left after ex-div</span><span><i class="dash" style="border-color: var(--warn)"></i>Dividend</span><span><i style="border-color: var(--warn); border-top-width: 8px; opacity: .4"></i>Early-exercise zone</span></div>
+        <div class="readout">
+          <div><b id="f2-r1">—</b><small>Time value left at the current price</small></div>
+          <div><b id="f2-r2">—</b><small>Extra gain per contract from exercising early</small></div>
+          <div><b id="f2-r3">—</b><small>Threshold stock price</small></div>
+        </div>
+        <figcaption>The blue line is the time value left after the ex-dividend date. It falls as the stock price rises and eventually hugs the interest floor. Drag the dividend below 0.2 and the dashed line drops below the floor: no early exercise at any stock price. Lengthen the days remaining or raise volatility and the whole blue line shifts up, moving the threshold price to the right.</figcaption>
+      </figure>
+
+      <div class="note">
+        <span class="tag">A quick check for sellers</span>
+        <p>Your short call is in the money and the stock goes ex-dividend tomorrow. How do you tell whether you'll be assigned tonight? Look at the quote for the put with the same strike and expiration. If the put price plus a little interest is still less than the dividend, prepare as if you will be assigned tonight. A covered call position will lose the dividend; a naked short call, or the short leg of a spread, becomes a short stock position on the ex-dividend date, and you also have to pay the dividend on the shares you borrowed (Case 1). Not every holder runs the numbers precisely, so assignment isn't 100% certain, but you can't bet on it not happening.</p>
+      </div>
+
+      <h3>Reason 2: interest</h3>
+      <p>With a deep in-the-money put, exercising early gets you the strike in cash right away, and that cash starts earning interest. The cost is giving up the chance that the stock rebounds above the strike, and that chance is worth exactly the price of the call at the same strike. By put–call parity, the time value of a European put is:</p>
+      <div class="formula">
+        <div class="eq">Time value of a European put <span class="up">=</span> <span class="v">C</span>(<span class="v">S</span>, <span class="v">K</span>) <span class="up">−</span> <span class="v">K</span>(1 <span class="up">−</span> <span class="v">e</span><sup>−<span class="v">rT</span></sup>)</div>
+        <p class="where">When the same-strike call is worth less than the interest on the strike, the European put's time value turns negative, as with the 115 put in Table 1-2 of Chapter 1. The holder of an American put won't accept negative time value; they will exercise early.</p>
+      </div>
+      <p>In numbers: strike 100, 60 days left, IV 30%, rate 4%. The interest on the strike is <span class="num">100 × (1 − e<sup>−0.04×60/365</sup>) = 0.655</span>.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 2-4 Put with strike 100, 60 days, IV 30%: European vs. American time value</caption>
+          <thead><tr><th>Stock price</th><th>Same-strike call</th><th>European time value</th><th>American time value (binomial tree)</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">95</td><td class="mono">2.854</td><td class="mono">2.199</td><td class="mono">2.291</td></tr>
+            <tr><td class="mono">90</td><td class="mono">1.352</td><td class="mono">0.696</td><td class="mono">0.867</td></tr>
+            <tr><td class="mono">85</td><td class="mono">0.528</td><td class="mono neg">−0.127</td><td class="mono">0.169</td></tr>
+            <tr><td class="mono">82</td><td class="mono">0.269</td><td class="mono neg">−0.387</td><td class="mono">0.018</td></tr>
+            <tr class="hl"><td class="mono">80</td><td class="mono">0.162</td><td class="mono neg">−0.493</td><td class="mono">0 (exercise now)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>European time value turns negative below a stock price of about <span class="num">86.05</span>, a signal that early exercise is “starting to be worth considering.” But the optimal boundary for the American option is lower, around <span class="num">80.6</span>: between 80.6 and 86, waiting and exercising once the put is deeper is still better than exercising right away. The exact boundary has to be computed with an American pricing method such as a binomial tree; the Black-Scholes formula itself can't give it.</p>
+      <p>Interest rates determine how often this comes up. With the same 60 days, at a 1% rate the American boundary falls to <span class="num">75.3</span>; with rates near zero, a deep in-the-money put has almost no reason to be exercised early. The shorter the time left, the closer the boundary is to the strike: at a 4% rate with 30 days left, the boundary is at <span class="num">84.7</span>.</p>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">The higher the rate, the sooner deep in-the-money puts get exercised</span><span class="fig-no">Figure 2-3 · A put with a 100 strike, IV 30%</span></div>
+        <div class="controls">
+          <label class="ctl" for="f3-r">Interest rate <input id="f3-r" type="range" min="0" max="8" step="0.25" value="4"> <output id="f3-r-o">4.00%</output></label>
+          <label class="ctl" for="f3-t">Days left <input id="f3-t" type="range" min="10" max="180" step="1" value="60"> <output id="f3-t-o">60 days</output></label>
+        </div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 300" role="img" aria-label="Time value of European and American puts"></svg>
+        <div class="legend"><span><i class="dash" style="border-color: var(--delta)"></i>European time value</span><span><i style="border-color: var(--theta)"></i>American time value</span><span><i style="border-color: var(--warn); border-top-width: 8px; opacity: .4"></i>Optimal American early-exercise zone</span></div>
+        <div class="readout">
+          <div><b id="f3-r1">—</b><small>Interest on the strike</small></div>
+          <div><b id="f3-r2">—</b><small>Price where European time value turns negative</small></div>
+          <div><b id="f3-r3">—</b><small>Optimal American exercise boundary</small></div>
+        </div>
+        <figcaption>Drag the rate to 0 and the dashed line no longer dips below zero, and the amber area disappears: with no interest to earn, there's no reason to exercise early. Drag the rate above 6% and the boundary moves right, pulling more “ordinary” in-the-money puts into the early-exercise zone. If you sell deep in-the-money puts, be ready at any time to buy the shares at the strike.</figcaption>
+      </figure>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">2.5</span>Reading an option chain</h2>
+      <p>An option chain is a table of quotes, with one page per expiration and one row per strike. Look at the bid and ask first, then volume and open interest, and the theoretical measures last.</p>
+      <p>Below is a simulated option chain: XYZ at 102.35, expiring in 30 days. The quotes are generated from Black-Scholes plus an assumed volatility skew and bid–ask spreads; volume and open interest are made up.</p>
+      <div class="tbl chain">
+        <table>
+          <caption>Table 2-5 Simulated option chain (XYZ 102.35, 30 days to expiration; shaded = in the money)</caption>
+          <thead>
+            <tr class="grp"><th colspan="5">Calls</th><th class="k"></th><th></th><th colspan="5">Puts</th></tr>
+            <tr><th>Bid<span class="mk">①</span></th><th>Ask<span class="mk">②</span></th><th>Volume<span class="mk">③</span></th><th>Open int.<span class="mk">④</span></th><th>Delta<span class="mk">⑤</span></th><th class="k">Strike<span class="mk">⑥</span></th><th>IV<span class="mk">⑦</span></th><th>Bid</th><th>Ask</th><th>Volume</th><th>Open int.</th><th>Delta</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="mono itm">10.65</td><td class="mono itm">10.85</td><td class="mono itm">12</td><td class="mono itm">150</td><td class="mono itm">0.88</td><td class="mono k">92.5</td><td class="mono iv">32.7%</td><td class="mono">0.55</td><td class="mono">0.66</td><td class="mono">640</td><td class="mono">4,100</td><td class="mono">−0.12</td></tr>
+            <tr><td class="mono itm">8.55</td><td class="mono itm">8.70</td><td class="mono itm">38</td><td class="mono itm">880</td><td class="mono itm">0.82</td><td class="mono k">95</td><td class="mono iv">31.6%</td><td class="mono">0.92</td><td class="mono">1.01</td><td class="mono">1,820</td><td class="mono">9,600</td><td class="mono">−0.18</td></tr>
+            <tr><td class="mono itm">6.60</td><td class="mono itm">6.75</td><td class="mono itm">61</td><td class="mono itm">410</td><td class="mono itm">0.74</td><td class="mono k">97.5</td><td class="mono iv">30.6%</td><td class="mono">1.46</td><td class="mono">1.54</td><td class="mono">930</td><td class="mono">2,700</td><td class="mono">−0.26</td></tr>
+            <tr><td class="mono itm">4.85</td><td class="mono itm">5.00</td><td class="mono itm">420</td><td class="mono itm">5,200</td><td class="mono itm">0.64</td><td class="mono k">100</td><td class="mono iv">29.7%</td><td class="mono">2.22</td><td class="mono">2.29</td><td class="mono">2,050</td><td class="mono">7,300</td><td class="mono">−0.36</td></tr>
+            <tr class="spot"><td colspan="12">Stock at 102.35</td></tr>
+            <tr><td class="mono">3.45</td><td class="mono">3.55</td><td class="mono">1,310</td><td class="mono">3,100</td><td class="mono">0.53</td><td class="mono k">102.5</td><td class="mono iv">29.0%</td><td class="mono itm">3.25</td><td class="mono itm">3.35</td><td class="mono itm">770</td><td class="mono itm">1,500</td><td class="mono itm">−0.47</td></tr>
+            <tr><td class="mono">2.28</td><td class="mono">2.35</td><td class="mono">2,240</td><td class="mono">8,400</td><td class="mono">0.41</td><td class="mono k">105</td><td class="mono iv">28.3%</td><td class="mono itm">4.55</td><td class="mono itm">4.70</td><td class="mono itm">160</td><td class="mono itm">1,200</td><td class="mono itm">−0.59</td></tr>
+            <tr><td class="mono">1.41</td><td class="mono">1.49</td><td class="mono">980</td><td class="mono">2,600</td><td class="mono">0.30</td><td class="mono k">107.5</td><td class="mono iv">27.7%</td><td class="mono itm">6.15</td><td class="mono itm">6.35</td><td class="mono itm">22</td><td class="mono itm">260</td><td class="mono itm">−0.70</td></tr>
+            <tr><td class="mono">0.81</td><td class="mono">0.90</td><td class="mono">1,650</td><td class="mono">11,800</td><td class="mono">0.20</td><td class="mono k">110</td><td class="mono iv">27.1%</td><td class="mono itm">8.05</td><td class="mono itm">8.25</td><td class="mono itm">15</td><td class="mono itm">430</td><td class="mono itm">−0.80</td></tr>
+            <tr><td class="mono">0.41</td><td class="mono">0.52</td><td class="mono">310</td><td class="mono">1,900</td><td class="mono">0.12</td><td class="mono k">112.5</td><td class="mono iv">26.7%</td><td class="mono itm">10.15</td><td class="mono itm">10.35</td><td class="mono itm">3</td><td class="mono itm">40</td><td class="mono itm">−0.88</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <dl class="kv">
+        <dt>① Bid</dt><dd>The highest buy order in the market: the price at which you can <strong>sell</strong> immediately.</dd>
+        <dt>② Ask</dt><dd>The lowest sell order in the market: the price at which you can <strong>buy</strong> immediately. The midpoint between the two is called the mid price (Mid); some brokers show it as Mark.</dd>
+        <dt>③ Volume</dt><dd>Contracts traded so far today. It starts from zero every day.</dd>
+        <dt>④ Open interest</dt><dd>The total number of contracts in the market that have not been closed. The clearinghouse updates it once a day after the close; it doesn't change during the session.</dd>
+        <dt>⑤ Delta</dt><dd>How many shares one contract is equivalent to (multiply by 100). It can also serve as a rough probability of finishing in the money (Chapter 4).</dd>
+        <dt>⑥ Strike</dt><dd>The spine of the chain. A bar marks where the current price sits; the calls above it and the puts below it are in the money.</dd>
+        <dt>⑦ Implied volatility</dt><dd>The volatility backed out from the mid price. Here the lower strikes have higher IV; this “skew” is normal for stock options (Chapter 6).</dd>
+      </dl>
+
+      <h3>One chain, three levels of liquidity</h3>
+      <ul>
+        <li><strong>105 call</strong>: bid 2.28, ask 2.35, a spread of 0.07, only <span class="num">3.0%</span> of the mid; 2,240 contracts traded today and open interest is 8,400. Liquid: an order at the mid will probably fill.</li>
+        <li><strong>112.5 call</strong>: 0.41 / 0.52. A spread of 0.11 looks small, but it is <span class="num">23.7%</span> of the mid. Buy and then sell right away, and nearly a quarter of your money is gone.</li>
+        <li><strong>92.5 call</strong>: 10.65 / 10.85, a spread of only <span class="num">1.9%</span> of the mid, but only 12 contracts traded today and open interest is 150. The percentage looks good, but a round trip actually costs $20 per contract, and there may be few real counterparties behind the quotes.</li>
+      </ul>
+      <p>Another column you'll often see is the last traded price (Last). For thinly traded contracts, it may be hours old and have nothing to do with the current quotes. Base both valuations and orders on the bid, the ask and the mid.</p>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">2.6</span>Accounts, approval levels and margin</h2>
+      <p>What you can trade depends on two things: the options approval level your broker grants you, and whether your account is a cash account or a margin account.</p>
+      <div class="tbl txt">
+        <table>
+          <caption>Table 2-6 Typical options approval levels (names and number of levels vary by broker)</caption>
+          <thead><tr><th>Level</th><th>Allowed trades</th><th>Account requirement</th><th>Nature of the maximum loss</th></tr></thead>
+          <tbody>
+            <tr><td>Level 1</td><td>Covered calls, protective puts</td><td>Cash or margin</td><td>Similar to owning the stock</td></tr>
+            <tr><td>Level 2</td><td>Buying calls and puts; cash-secured puts</td><td>Cash or margin</td><td>The premium; or buying the shares at the strike</td></tr>
+            <tr><td>Level 3</td><td>Spreads: debit, credit, iron condors, butterflies</td><td>Usually requires a margin account</td><td>Limited; depends on the width of the spread</td></tr>
+            <tr><td>Level 4</td><td>Naked puts</td><td>Margin account</td><td>Close to strike × 100</td></tr>
+            <tr><td>Level 5</td><td>Naked calls</td><td>Margin account</td><td>Unlimited in theory</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Some brokers put cash-secured puts in Level 1; some combine the two kinds of naked selling into one level. Approval usually depends on the trading experience, income, net worth and investment objectives you report. The logic of the levels is clear: the higher you go, the harder it is to put a bound on the maximum loss.</p>
+
+      <h3>Cash accounts and margin accounts</h3>
+      <ul>
+        <li><strong>Cash account</strong>: you pay for options in full. Selling a put requires setting aside the full amount in cash; for example, selling one 90 put for $40 ties up <span class="num">90 × 100 − 40 = $8,960</span>. A covered call requires owning 100 shares. Most brokers don't allow spreads in a cash account. Proceeds from a sale can be used again only after settlement (T+1 for options).</li>
+        <li><strong>Margin account</strong>: you can borrow to buy stock (Reg T initial margin is 50%), and you can trade spreads and sell naked. Options themselves generally can't be bought with borrowed money: options expiring within 9 months must be paid for in full, and longer-dated options can be financed up to 25%.</li>
+      </ul>
+
+      <h3>Reg T and portfolio margin</h3>
+      <p>US brokers use Reg T rules by default, which calculate margin for each position with a fixed formula. The standard formula for a naked stock option is:</p>
+      <div class="formula">
+        <div class="eq">Naked put margin <span class="up">=</span> Premium <span class="up">+</span> max(20% <span class="up">×</span> <span class="v">S</span> <span class="up">−</span> OTM amount, 10% <span class="up">×</span> <span class="v">K</span>)</div>
+        <p class="where">Per share; multiply by 100 for each contract. For a naked call, replace the last term with 10% × <span class="v">S</span>. For broad-based index options, replace 20% with 15%. The premium received can be applied toward this requirement, and brokers can add more on top.</p>
+      </div>
+      <p>Example: stock at 100, sell a 30-day 90 put (0.40). The margin is <span class="num">0.40 + max(20 − 10, 9) = 10.40</span>, or $1,040 per contract; minus the $40 received, $1,000 is actually tied up. The same trade in a cash account would tie up $8,960.</p>
+      <p><strong>Portfolio margin</strong> takes a different approach: it reprices the whole portfolio under a set of price scenarios and uses the largest loss as the margin. The scenario range is ±15% for individual stocks and roughly −8% to +6% for broad market indexes. Counting only the price shock, with volatility unchanged, the 90 put above is worth 5.92 if the stock falls 15%, so portfolio margin is about <span class="num">5.92 − 0.40 = 5.52</span>, or $552 per contract, roughly half of Reg T. Portfolio margin generally requires at least $100,000 in account equity; the minimum varies by broker.</p>
+
+      <figure class="plate" id="fig4">
+        <div class="fig-head"><span class="fig-title">As the stock falls toward the strike, both kinds of margin rise</span><span class="fig-no">Figure 2-4 · One naked 30-day 90 put, IV 30%</span></div>
+        <svg class="chart" id="f4-svg" viewBox="0 0 680 300" role="img" aria-label="Reg T and portfolio margin as the stock price changes"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>Reg T (excluding option value)</span><span><i style="border-color: var(--theta)"></i>Portfolio margin (±15% scenarios)</span></div>
+        <figcaption>Both lines show the amount that account equity needs to cover. The option's market value has already been deducted from equity, so for Reg T only the second term of the formula is plotted. With the stock at 100, Reg T requires $1,000 and portfolio margin $552; if the stock falls to 92, Reg T rises to $1,640. Once the put is deep in the money, Reg T eases slightly, because the loss is already reflected in equity.</figcaption>
+      </figure>
+
+      <h3>Margin calls</h3>
+      <p>When account equity falls below the margin requirement, your broker issues a margin call. The example below shows how fast it can come.</p>
+      <p>Your account has $20,000, and you sell 15 of the 90 puts above for 0.40. Reg T requires <span class="num">15 × $1,000 = $15,000</span>, which looks like room to spare. Two days later the stock falls to 92, panic pushes IV to 40%, and the put rises to <span class="num">2.98</span>:</p>
+      <ul>
+        <li>Unrealized loss of <span class="num">(2.98 − 0.40) × 1,500 = $3,870</span>; account equity drops to <span class="num">$16,130</span>.</li>
+        <li>The margin requirement rises to <span class="num">15 × (20% × 92 − 2) × 100 = $24,600</span>.</li>
+        <li>A shortfall of <span class="num">$8,470</span>. The stock fell only 8%, and you have to put in more than 40% of your starting capital.</li>
+      </ul>
+      <div class="note warn">
+        <span class="tag">Three facts about margin calls</span>
+        <ul>
+          <li>The margin requirement and the loss grow at the same time, and usually just when volatility spikes and liquidity is at its worst.</li>
+          <li>Brokers usually give you very little time to meet a call, but account agreements generally reserve the right to liquidate without notice, at a price the broker chooses, with the loss on you.</li>
+          <li>Portfolio margin is cheaper in calm markets and rises faster in violent ones. The closer you run to your margin limit, the sooner the call comes. Chapter 13 discusses the margin spiral.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">2.7</span>Orders and liquidity</h2>
+      <p>Use only limit orders for options, and combo orders for multi-leg trades. Judge liquidity by three numbers: the spread as a share of the premium, open interest and volume.</p>
+
+      <h3>Order types</h3>
+      <ul>
+        <li><strong>Market orders</strong>: avoid them for options. When spreads are wide, or quotes are unstable in the first few minutes after the open, a market order can fill at an absurd price.</li>
+        <li><strong>Limit orders</strong>: the standard approach is to start at the mid and, if you don't get filled, move a cent or a few cents toward the other side every 30 seconds to a minute. This is called “walking the order.”</li>
+        <li><strong>Combo orders</strong>: multi-leg trades such as spreads and straddles are submitted as a single order at a net price, and the exchange fills all the legs at once. Placing the legs separately (“legging in”) risks one leg filling while the price of the other runs away.</li>
+        <li><strong>Stop orders</strong>: stop orders on options are usually triggered by the option's own price, so a momentary widening of the spread can trigger one by mistake and fill it at a terrible price. Many traders use alerts on the underlying stock's price instead and then place limit orders by hand.</li>
+      </ul>
+
+      <h3>The bid–ask spread is a real cost</h3>
+      <p>If you pay the ask to buy and take the bid to sell, a round trip costs the entire spread:</p>
+      <div class="formula">
+        <div class="eq">Round-trip cost <span class="up">=</span> (<span class="v">Ask</span> <span class="up">−</span> <span class="v">Bid</span>) <span class="up">× 100 ×</span> contracts&emsp;&emsp;Extra stock move needed <span class="up">=</span> <span class="frac"><span><span class="v">Ask</span> <span class="up">−</span> <span class="v">Bid</span></span><span><span class="d">Δ</span></span></span></div>
+        <p class="where">The second expression says the same thing another way: how much extra the stock has to move for you to earn back the spread. The smaller the Delta, the bigger the move needed, which is why spreads on out-of-the-money options are especially expensive.</p>
+      </div>
+
+      <figure class="plate calc" id="calc">
+        <div class="fig-head"><span class="fig-title">Bid–ask spread cost calculator</span><span class="fig-no">Tool 2-A · Editable</span></div>
+        <div class="ins">
+          <label for="c-bid">Bid<input id="c-bid" type="number" step="0.01" value="2.28"></label>
+          <label for="c-ask">Ask<input id="c-ask" type="number" step="0.01" value="2.35"></label>
+          <label for="c-n">Contracts<input id="c-n" type="number" step="1" value="10"></label>
+          <label for="c-dl">Delta<input id="c-dl" type="number" step="0.01" value="0.41"></label>
+          <label for="c-s">Stock price<input id="c-s" type="number" step="0.01" value="102.35"></label>
+        </div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="How you fill">
+            <button type="button" data-f="1" aria-pressed="true">Cross both ways</button>
+            <button type="button" data-f="0.5" aria-pressed="false">Give up half each way</button>
+            <button type="button" data-f="0" aria-pressed="false">Mid both ways</button>
+          </div>
+        </div>
+        <svg class="chart" id="c-svg" viewBox="0 0 680 260" role="img" aria-label="Round-trip cost as a share of premium as the mid price changes"></svg>
+        <div class="legend"><span><i style="border-color: var(--gamma)"></i>Round-trip cost as a share of the mid, for the same spread width</span></div>
+        <div class="readout">
+          <div><b id="c-r1">—</b><small>Mid price</small></div>
+          <div><b id="c-r2">—</b><small>Round-trip cost</small></div>
+          <div><b id="c-r3">—</b><small>Share of premium</small></div>
+          <div><b id="c-r4">—</b><small>Extra stock move needed</small></div>
+        </div>
+        <figcaption>The defaults are the 105 call from Table 2-5. Change the bid and ask to 0.41 and 0.52 (the 112.5 call) and Delta to 0.12, and the round-trip cost jumps to about 24% of the premium; the stock has to move an extra $0.92 to earn back the spread. The curve shows that the cheaper the option, the larger the share that the same spread width takes.</figcaption>
+      </figure>
+
+      <h3>Three measures of liquidity</h3>
+      <div class="tbl txt">
+        <table>
+          <caption>Table 2-7 Rules of thumb for the three liquidity measures</caption>
+          <thead><tr><th>Measure</th><th>Rule of thumb</th><th>When it breaks down</th></tr></thead>
+          <tbody>
+            <tr><td>Spread / mid</td><td>Under 5% is good; 5–10%, work a limit order patiently; over 10%, be careful</td><td>When the premium is very low, the minimum tick makes the ratio high by default</td></tr>
+            <tr><td>Open interest</td><td>Several hundred or more, ideally thousands</td><td>Updated only once a day; zero for newly listed contracts</td></tr>
+            <tr><td>Today's volume</td><td>Your order is no more than a tenth of it</td><td>Swings widely early in the session and on event days</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>These thresholds come from simple arithmetic: the real expected edge of an options trade is often only in the low teens as a percentage of the premium, or less. If the round-trip spread takes 10%, most of the edge is gone. So the thresholds aren't absolute. A trade you plan to hold to expiration, without closing it early, pays the spread only once; for trades you get in and out of often, multiply the spread's impact by the number of trades (Case 3).</p>
+      <p>The minimum tick also affects the spread. Products in the “Penny Program” are quoted in $0.01 increments below $3 and in $0.05 increments above $3; SPY, QQQ and IWM are quoted in $0.01 at every price. Products outside the program use $0.05 and $0.10, respectively. For an option worth only 0.20, a spread of just one tick is already more than 5%.</p>
+      <div class="note field">
+        <span class="tag">In practice</span>
+        <p>A few common ways traders deal with liquidity: when the underlying itself isn't very active, choose monthly expirations rather than weeklies, because open interest concentrates in the monthlies; avoid the first few minutes after the open and the pre-market session, when spreads are widest; before placing a spread order, confirm that it is “one combo order with two legs” and hasn't been split into two separate orders; when exiting a position with a wide spread, don't dump it all at once, but work it down a contract at a time with limit orders. One more rule relates to assignment: if the short leg of a spread is assigned, don't sell the protective long leg on its own, or your maximum loss is no longer capped.</p>
+      </div>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">2.8</span>Tax concepts</h2>
+      <p>How options are taxed depends on the underlying: broad-based index options get the Section 1256 60/40 treatment, while stock and ETF options are taxed as ordinary capital gains. The wash sale rule applies to options too.</p>
+      <div class="note warn">
+        <span class="tag">Read this first</span>
+        <p>This section covers only general concepts that apply to US tax residents, to help you understand why traders care about these distinctions. The actual treatment depends on your status, income, state and that year's rules; if you are not a US tax resident, the rules may be entirely different. For an actual return, consult a tax professional.</p>
+      </div>
+
+      <h3>Section 1256 contracts and 60/40</h3>
+      <p>Broad-based index options such as SPX, XSP, NDX and RUT (as well as futures) are “Section 1256 contracts,” with two special rules:</p>
+      <ul>
+        <li><strong>60/40</strong>: however long you hold, gains and losses are taxed as 60% long-term and 40% short-term capital gains.</li>
+        <li><strong>Year-end mark-to-market</strong>: positions still open on the last trading day of December are treated as sold at that day's market value, so unrealized gains and losses also count for that year.</li>
+      </ul>
+      <p>Options on ETFs such as SPY and QQQ generally aren't Section 1256 contracts; gains and losses on positions held a year or less are taxed as short-term capital gains. For people who trade often and hold briefly, the difference can be large.</p>
+      <p>Example (tax rates are assumptions): short-term capital gains are taxed at 32%, long-term at 15%. The blended 60/40 rate is <span class="num">0.6 × 15% + 0.4 × 32% = 21.8%</span>. On the same $10,000 of short-term profit, SPX options would owe about $2,180 and SPY options about $3,200, a difference of $1,020. In the top federal bracket, the two rates are <span class="num">26.8%</span> and 37% (not counting state taxes and other surtaxes).</p>
+
+      <h3>The wash sale rule</h3>
+      <p>If you sell a security at a loss and buy a “substantially identical” security within 30 days before or after the sale, the loss can't be deducted now; instead it is added to the cost basis of the new position and deferred. For options, this matters in two ways:</p>
+      <ul>
+        <li>Buying a call on the same stock within 30 days after selling the stock at a loss counts as acquiring an option to buy that stock and generally triggers a wash sale.</li>
+        <li>Options can also trigger it among themselves: you close a call at a loss, then within 30 days buy a call on the same underlying with similar terms. In some cases it isn't clearly defined which options count as “substantially identical.”</li>
+      </ul>
+      <p>Example: on October 1 you sell 100 shares of XYZ at a $1,500 loss, and on October 15 you buy 1 XYZ call. That $1,500 loss generally can't be deducted now; it is added to the cost of the call instead. Also, for shares you receive through assignment, the premium goes into the cost basis: if you sold a 90 put for 0.40 and were assigned, the tax basis of the shares is 89.60.</p>
+    </section>
+
+    <section id="s9">
+      <h2><span class="sn">2.9</span>Choosing your index exposure</h2>
+      <p>SPY and QQQ suit small accounts and strategies that need stock delivery; SPX, XSP and NDX suit traders who don't want early assignment, want cash settlement or care about taxes.</p>
+      <p>The notional values in the table below use assumed levels: SPX 7,800, SPY 780, NDX 30,000, QQQ 740.</p>
+      <div class="tbl txt">
+        <table>
+          <caption>Table 2-8 Five common broad-market options</caption>
+          <thead><tr><th>Product</th><th>Notional per contract</th><th>Exercise style</th><th>Settlement</th><th>Early assignment</th><th>Taxes (US tax residents)</th></tr></thead>
+          <tbody>
+            <tr><td>SPX</td><td class="mono">≈ $780,000</td><td>European</td><td>Cash; monthly AM, SPXW PM</td><td>None</td><td>1256, 60/40</td></tr>
+            <tr><td>XSP</td><td class="mono">≈ $78,000</td><td>European</td><td>Cash; PM</td><td>None</td><td>1256, 60/40</td></tr>
+            <tr><td>SPY</td><td class="mono">≈ $78,000</td><td>American</td><td>100 shares of SPY</td><td>Yes; watch ex-dividend dates</td><td>Usually ordinary capital gains</td></tr>
+            <tr><td>NDX</td><td class="mono">≈ $3,000,000</td><td>European</td><td>Cash; monthly AM, weekly PM</td><td>None</td><td>1256, 60/40</td></tr>
+            <tr><td>QQQ</td><td class="mono">≈ $74,000</td><td>American</td><td>100 shares of QQQ</td><td>Yes; watch ex-dividend dates</td><td>Usually ordinary capital gains</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The difference in size shows up directly in the price. At an IV of 16%, a 30-day at-the-money call costs about <span class="num">$1,557</span> per contract on SPY and about <span class="num">$15,566</span> on SPX. One SPX contract carries the same exposure as 10 SPY or 10 XSP contracts.</p>
+      <h3>How to choose</h3>
+      <ul>
+        <li><strong>A small account, or a strategy that needs the stock</strong> (covered calls, selling puts to take delivery of shares): use SPY or QQQ. SPY and QQQ options are among the most liquid of all options.</li>
+        <li><strong>Trading spreads without early assignment</strong>: use SPX or XSP. With cash settlement, accidents like Cases 1 and 2, where “one leg turns into stock,” can't happen.</li>
+        <li><strong>A US tax resident who trades short term a lot</strong>: the 60/40 treatment of SPX and XSP can save a meaningful amount of tax over a year.</li>
+        <li><strong>You want SPX rules but have a small account</strong>: XSP is one-tenth the size of SPX. The trade-off is that it doesn't trade as actively as SPX or SPY, its spread as a share of the premium is usually higher, and you need more patience with your orders.</li>
+        <li><strong>Nasdaq-100</strong>: one NDX contract has a notional value of about $3 million and is used mainly by institutions; individual traders mostly use QQQ.</li>
+      </ul>
+      <div class="note warn">
+        <span class="tag">The special risk of AM settlement</span>
+        <p>Standard monthly SPX and NDX contracts stop trading on Thursday, and the settlement price is taken from Friday's opening prices. If you hold to expiration, you carry the gap between Thursday's close and Friday's open, and you can't close on Friday. If you don't want that risk, close before Thursday's close or use the PM-settled weeklies instead.</p>
+      </div>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">Cases</span>Three cases</h2>
+
+      <div class="case">
+        <div class="case-no">Case 1</div>
+        <h3>One leg of a spread assigned before the ex-dividend date</h3>
+        <p>You hold 10 XYZ 100/110 call spreads (long the 100 call, short the 110 call). The stock has risen to 125, both legs are deep in the money, and the spread is close to its maximum value of $10. Tomorrow is the ex-dividend date, with a dividend of <span class="num">$1.50</span> per share. After that there are 20 days to expiration, and IV is 30%.</p>
+        <p>First check both legs with the formula from Section 2.4. After the dividend the stock is about 123.50; the rate is 4% and there are 20 days left:</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 2-9 Each leg's remaining time value after the ex-dividend date</caption>
+            <thead><tr><th>Leg</th><th>Same-strike put</th><th>Interest on the strike</th><th>Remaining time value</th><th>Dividend</th><th>Verdict</th></tr></thead>
+            <tbody>
+              <tr><td>Short 110 call</td><td class="mono">0.157</td><td class="mono">0.241</td><td class="mono">0.398</td><td class="mono">1.50</td><td>Holder will exercise</td></tr>
+              <tr><td>Long 100 call</td><td class="mono">0.003</td><td class="mono">0.219</td><td class="mono">0.222</td><td class="mono">1.50</td><td>You should exercise too</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>You didn't run this check and did nothing that night. The next morning you find that all 10 of the 110 calls have been assigned: your account is short 1,000 shares of XYZ at 110. Today is the ex-dividend date, and the short position owes <span class="num">1.50 × 1,000 = $1,500</span> in dividends.</p>
+        <ul>
+          <li><strong>Your actual result</strong>: buy back the 1,000 shares at the 123.50 open and sell the 10 contracts of the 100 call (about 23.72 each). The total is <span class="num">110,000 − 1,500 − 123,500 + 23,722 = $8,722</span>.</li>
+          <li><strong>If you had also exercised the 100 calls the night before</strong>: you would have bought 1,000 shares at 100, delivered them against the 110 assignment, and collected the maximum value of <span class="num">$10,000</span>, with no dividend involved.</li>
+          <li>The difference is <span class="num">$1,278</span>, roughly the dividend minus the remaining time value of the 100 call: <span class="num">(1.50 − 0.22) × 1,000</span>.</li>
+        </ul>
+        <p>There is one more hidden danger: between the assignment and the moment you deal with it, your account carries a $123,500 short stock position. A small account could get a margin call because of it, or even be liquidated at the open.</p>
+        <div class="note">
+          <span class="tag">Takeaways</span>
+          <ul>
+            <li>When you hold spreads on individual stocks, put the ex-dividend dates on your calendar. The day before each one, check every in-the-money short leg for “dividend &gt; put price + interest.”</li>
+            <li>There are three ways to handle it: close the whole spread before the close; exercise your long leg to offset the assignment; or roll the short leg to a strike with more time value. With European-style index options such as SPX, the problem never comes up.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 2</div>
+        <h3>Pin risk on a Friday afternoon</h3>
+        <p>You sold 10 100/95 put credit spreads (short the 100 put, long the 95 put) 30 days ago, with the stock at 103, and collected <span class="num">1.33</span>, or $1,330 in total. As designed, the maximum loss is <span class="num">(5 − 1.33) × 1,000 = $3,670</span>.</p>
+        <p>On expiration Friday, the stock hovers around 100 all afternoon and finally closes at <span class="num">99.95</span>. The 100 put is 5 cents in the money and the 95 put is out of the money. You figure it's basically a wash and do nothing.</p>
+        <ul>
+          <li>The 100 put is in the money by more than $0.01, so it will be exercised automatically unless the holders submit instructions. Suppose all 10 contracts are exercised: on Monday morning you have been assigned to buy 1,000 shares at $100, for $100,000.</li>
+          <li>The 95 put that protected you has expired worthless. What you hold now is 1,000 shares of unhedged long stock.</li>
+          <li>Over the weekend the company announces bad news, and on Monday the stock opens at 94. The stock loses <span class="num">(94 − 100) × 1,000 = −$6,000</span>; add the $1,330 you collected and the total is <span class="num">−$4,670</span>, $1,000 more than the spread's “maximum loss.”</li>
+        </ul>
+        <p>On the other hand, if the stock bounces to 100.40 after hours on Friday, many holders will submit “do not exercise,” and you might not be assigned on a single contract. The problem is that on Friday night you can't know which it will be; maybe 6 of the 10 are assigned. That is pin risk: the close is too near the strike, and your position sits in an unknown state over the weekend.</p>
+        <p>How much would it cost to avoid this? At 15:50 on Friday, 10 minutes before the close, with the stock at 99.95, the 100 put is theoretically worth about <span class="num">0.08</span>. Even buying it back at 0.10 would cost only $100 for 10 contracts.</p>
+        <div class="note warn">
+          <span class="tag">Takeaways</span>
+          <ul>
+            <li>A spread's “maximum loss” holds only while both legs exist. If one leg is in the money and the other out of the money at expiration, it no longer applies.</li>
+            <li>Rule: before the close on expiration day, buy back for a few cents any short leg within about 1% of its strike. Those few cents are the cheapest insurance there is.</li>
+            <li>Cash-settled index options settle the difference at the settlement price and leave no stock position behind, so pin risk is much smaller.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 3</div>
+        <h3>How much the spread eats in a year</h3>
+        <p>Say your account is $20,000 and you make 8 trades a month, 5 contracts each, opening and closing each one once: 96 round trips a year. Compare two kinds of contracts (all filled by crossing the spread):</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 2-10 A year of spread costs (5 contracts per trade, 96 round trips)</caption>
+            <thead><tr><th>Contract</th><th>Average spread</th><th>Per round trip</th><th>Full year</th><th>Share of account</th></tr></thead>
+            <tbody>
+              <tr><td>Illiquid stock options</td><td class="mono">$0.15</td><td class="mono">$75</td><td class="mono neg">$7,200</td><td class="mono neg">36%</td></tr>
+              <tr><td>Liquid ETF options</td><td class="mono">$0.03</td><td class="mono">$15</td><td class="mono">$1,440</td><td class="mono">7.2%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The math: <span class="num">0.15 × 100 × 5 = $75</span>, <span class="num">75 × 96 = $7,200</span>. If you also assume a commission of $0.65 per contract each way, add another <span class="num">5 × 2 × 0.65 × 96 = $624</span> for the year.</p>
+        <p>The illiquid row means your trades have to earn 36% of your capital before costs just to break even. Even if you use limit orders at the mid and give up only half the spread on average, it is still 18%. Many accounts are slowly ground down by this invisible cost, and no amount of good judgment wins it back.</p>
+        <div class="note">
+          <span class="tag">Takeaways</span>
+          <ul>
+            <li>Once a month, tally your spread costs: the difference between your fill price and the mid at the time, times the number of contracts and 100.</li>
+            <li>The more often you trade, the more you need liquid contracts. On illiquid underlyings, trade less often, or only take trades you plan to hold to expiration.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">Tools</span>Checklist and self-test</h2>
+      <p>Your checkmarks are saved only in your own browser.</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">2-1</span>Before the order: liquidity check</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">Spread no more than 10% of the mid; otherwise, trade less often</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">Open interest and volume can absorb the number of contracts I'm trading</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">Limit order starting at the mid; combo order for multiple legs</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">2-2</span>While holding: ex-dividend check</h4>
+          <ul>
+            <li><input type="checkbox" id="k4"><label for="k4">Mark the ex-dividend dates of the underlyings I hold</label></li>
+            <li><input type="checkbox" id="k5"><label for="k5">Short in-the-money calls: is the dividend larger than the put price plus interest?</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">Short deep in-the-money puts: have the cash ready to take the shares</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">2-3</span>Expiration-day afternoon</h4>
+          <ul>
+            <li><input type="checkbox" id="k7"><label for="k7">In-the-money longs I don't want as stock: sell before the close</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">Short legs within 1% of the strike: buy back before the close</label></li>
+            <li><input type="checkbox" id="k9"><label for="k9">Confirm the account can handle any stock position that may result</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">2-4</span>Account and products</h4>
+          <ul>
+            <li><input type="checkbox" id="k10"><label for="k10">Know my approval level and account type</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">Short positions: work out the margin requirement if the stock falls 10%</label></li>
+            <li><input type="checkbox" id="k12"><label for="k12">Index exposure: choose SPY, SPX or XSP by size, settlement and taxes</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Self-test: five questions</h3>
+      <details class="q"><summary><span class="num">1</span><span>You are short an XYZ 50 call that is in the money, with the stock at 58. The stock goes ex-dividend tomorrow, with a 0.80 dividend. After that there are 30 days to expiration, and the same-strike put, priced at the post-dividend stock price of 57.20, is worth 0.04. Will you be assigned tonight?</span></summary>
+        <div class="ans"><p>Interest: <span class="num">50 × (1 − e<sup>−0.04×30/365</sup>) = 0.164</span>. Remaining time value: <span class="num">0.04 + 0.164 = 0.20</span>, less than the 0.80 dividend. The holder gains about 0.60 per share by exercising, so you should prepare as if you will be assigned tonight.</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>An option is bid 1.20 and offered at 1.40, with a Delta of 0.35. You buy 10 contracts and later sell them, crossing the spread both times. What is the round-trip cost? What share of the premium is it? How much extra does the stock have to move?</span></summary>
+        <div class="ans"><p>Round-trip cost: <span class="num">0.20 × 100 × 10 = $200</span>. The mid is 1.30, so it is <span class="num">0.20 / 1.30 = 15.4%</span> of the premium. The stock has to move an extra <span class="num">0.20 / 0.35 = $0.57</span>.</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>The stock is at 50, and you sell 1 naked 45 put in a margin account for 0.60. What is the margin requirement under the Reg T formula?</span></summary>
+        <div class="ans"><p><span class="num">0.60 + max(20% × 50 − 5, 10% × 45) = 0.60 + max(5, 4.5) = 5.60</span>, or $560 per contract; minus the $60 received, $500 is actually tied up. A cash account would tie up <span class="num">45 × 100 − 60 = $4,440</span>.</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>You hold 2 SPY 780 calls. At the close on expiration day SPY is at 780.02, and you do nothing. What happens?</span></summary>
+        <div class="ans"><p>The calls are 0.02 in the money, above the $0.01 threshold, so they are exercised automatically. On the next trading day you buy 200 shares of SPY at $780, which takes <span class="num">$156,000</span>, while the intrinsic value of the exercise is only <span class="num">0.02 × 200 = $4</span>. If you don't have the funds, you face a margin call or a forced sale. You should have sold the options before the close or submitted a “do not exercise” instruction.</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>Assume a short-term capital gains rate of 32% and a long-term rate of 15%. A US tax resident makes $20,000 of short-term trading profit in a year. Roughly how much federal tax is due if the profit comes from SPX options, and how much if it comes from SPY options?</span></summary>
+        <div class="ans"><p>SPX at 60/40: <span class="num">20,000 × (0.6 × 15% + 0.4 × 32%) = 20,000 × 21.8% = $4,360</span>. SPY at the short-term rate: <span class="num">20,000 × 32% = $6,400</span>. The difference is $2,040. For an actual return, consult a tax professional.</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="Chapter navigation"></nav>
+
+    <footer class="end">
+      <p>Examples in this chapter are calculated with the Black-Scholes model (4% rate, 365-day year), a binomial tree model and the assumptions stated in the text. Trading rules are governed by the current rules of the exchanges, the clearinghouse and your broker; the tax content covers concepts only. For education only; not investment or tax advice.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+
+  // 美式看跌 (CRR 二叉树)
+  function amerPut(S, K, T, s, r, n) {
+    const dt = T / n, u = Math.exp(s * Math.sqrt(dt)), d = 1 / u, disc = Math.exp(-r * dt), p = (Math.exp(r * dt) - d) / (u - d);
+    const v = new Float64Array(n + 1), pw = new Float64Array(2 * n + 1);
+    for (let k = -n; k <= n; k++) pw[k + n] = S * Math.pow(u, k);
+    for (let j = 0; j <= n; j++) v[j] = Math.max(K - pw[2 * j], 0);
+    for (let i = n - 1; i >= 0; i--) {
+      for (let j = 0; j <= i; j++) {
+        const cont = disc * (p * v[j + 1] + (1 - p) * v[j]);
+        const ex = K - pw[2 * j - i + n];
+        v[j] = cont > ex ? cont : ex;
+      }
+    }
+    return v[0];
+  }
+
+  // ---------- fig 2-2: 股息与提前行权 ----------
+  (function () {
+    const svg = document.getElementById("f2-svg");
+    const sS = document.getElementById("f2-s"), dS = document.getElementById("f2-d"), tS = document.getElementById("f2-t"), vS = document.getElementById("f2-iv");
+    const K = 100;
+    function draw() {
+      const S = +sS.value, D = +dS.value, days = +tS.value, iv = +vS.value / 100, T = days / DAY;
+      document.getElementById("f2-s-o").textContent = S.toFixed(1);
+      document.getElementById("f2-d-o").textContent = D.toFixed(2);
+      document.getElementById("f2-t-o").textContent = days + " days";
+      document.getElementById("f2-iv-o").textContent = vS.value + "%";
+      const intr = K * (1 - Math.exp(-CK.R * T));
+      const tv = x => bs(x - D, K, T, iv, "p").price + intr;
+      let crit = null;
+      if (D > intr + 1e-9) {
+        let lo = K * 0.5, hi = K * 4;
+        if (tv(lo) <= D) crit = lo; else {
+          for (let i = 0; i < 60; i++) { const m = (lo + hi) / 2; if (tv(m) > D) lo = m; else hi = m; }
+          crit = (lo + hi) / 2;
+        }
+      }
+      const xs = range(95, 140, 0.25);
+      plot(svg, {
+        x: [95, 140], y: [0, 3.5], xt: range(95, 140, 5), yt: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5], yf: v => v.toFixed(1),
+        xlabel: "Stock price the day before ex-div ($)", ylabel: "Per share ($)",
+        band: crit !== null && crit < 140 ? [Math.max(95, crit), 140, "var(--tint-warn)"] : undefined,
+        series: [
+          { pts: [[95, D], [140, D]], color: "var(--warn)", w: 1.8, dash: "6 5" },
+          { pts: [[95, intr], [140, intr]], color: "var(--muted)", w: 1, dash: "2 4" },
+          { pts: xs.map(x => [x, tv(x)]), color: "var(--delta)", w: 2.6 }
+        ],
+        dots: [[S, tv(S), "var(--ink)", 4.5]].concat(crit !== null && crit < 140 && crit > 95 ? [[crit, D, "var(--warn)", 4.5]] : []),
+        labels: [[139, D, "Dividend " + D.toFixed(2), 0, D >= intr ? -8 : 15, "end", "var(--warn)"], [139, intr, "Interest floor " + intr.toFixed(3), 0, D >= intr ? 15 : -8, "end", "var(--muted)"]]
+      });
+      const t = tv(S), gain = (D - t) * 100;
+      document.getElementById("f2-r1").textContent = t.toFixed(3);
+      document.getElementById("f2-r2").textContent = gain > 0 ? "+$" + gain.toFixed(0) : "Holding is better";
+      document.getElementById("f2-r3").textContent = crit === null ? "No early exercise" : crit.toFixed(2);
+    }
+    [sS, dS, tS, vS].forEach(x => x.addEventListener("input", draw));
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 2-3: 利息与看跌提前行权 ----------
+  (function () {
+    const svg = document.getElementById("f3-svg");
+    const rS = document.getElementById("f3-r"), tS = document.getElementById("f3-t");
+    const K = 100, iv = 0.30;
+    function draw() {
+      const r = +rS.value / 100, days = +tS.value, T = days / DAY;
+      document.getElementById("f3-r-o").textContent = (+rS.value).toFixed(2) + "%";
+      document.getElementById("f3-t-o").textContent = days + " days";
+      const intr = K * (1 - Math.exp(-r * T));
+      const xs = range(60, 110, 1);
+      const eu = xs.map(S => [S, bs(S, K, T, iv, "p", r).price - (K - S)]);
+      const am = xs.map(S => [S, amerPut(S, K, T, iv, r, 150) - Math.max(K - S, 0)]);
+      // 欧式时间价值转负的股价: C(S) = 利息
+      let euCross = null;
+      if (r > 0) {
+        let lo = 1, hi = K;
+        for (let i = 0; i < 60; i++) { const m = (lo + hi) / 2; if (bs(m, K, T, iv, "c", r).price < intr) lo = m; else hi = m; }
+        euCross = (lo + hi) / 2;
+      }
+      // 美式边界: 二分
+      let bnd = null;
+      if (r > 0) {
+        let lo = 20, hi = K;
+        for (let i = 0; i < 22; i++) { const m = (lo + hi) / 2; if (amerPut(m, K, T, iv, r, 400) - (K - m) < 1e-5) lo = m; else hi = m; }
+        bnd = lo > 20.5 ? (lo + hi) / 2 : null;
+      }
+      plot(svg, {
+        x: [60, 110], y: [-1.5, 3], xt: range(60, 110, 10), yt: [-1, 0, 1, 2, 3], yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v),
+        xlabel: "Stock price ($)", ylabel: "Time value (per share)", zero: 0, vline: 100,
+        band: bnd !== null && bnd > 60 ? [60, bnd, "var(--tint-warn)"] : undefined,
+        series: [
+          { pts: eu, color: "var(--delta)", w: 2, dash: "6 5" },
+          { pts: am, color: "var(--theta)", w: 2.6 }
+        ],
+        dots: (bnd !== null && bnd > 60 ? [[bnd, 0, "var(--warn)", 4.5]] : []).concat(euCross !== null && euCross > 60 ? [[euCross, 0, "var(--delta)", 4]] : [])
+      });
+      document.getElementById("f3-r1").textContent = intr.toFixed(3);
+      document.getElementById("f3-r2").textContent = euCross !== null && euCross > 1.5 ? euCross.toFixed(1) : "Never negative";
+      document.getElementById("f3-r3").textContent = bnd !== null ? bnd.toFixed(1) : "No early exercise";
+    }
+    rS.addEventListener("input", draw); tS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 2-4: 保证金 ----------
+  (function () {
+    const svg = document.getElementById("f4-svg");
+    const K = 90, T = 30 / DAY, iv = 0.30;
+    const regt = S => Math.max(0.2 * S - Math.max(S - K, 0), 0.1 * K) * 100;
+    const pm = S => {
+      const base = bs(S, K, T, iv, "p").price; let w = 0;
+      for (let m = -0.15; m <= 0.1501; m += 0.03) w = Math.max(w, bs(S * (1 + m), K, T, iv, "p").price - base);
+      return w * 100;
+    };
+    const xs = range(80, 115, 0.25);
+    const draw = () => plot(svg, {
+      x: [80, 115], y: [0, 2000], xt: range(80, 115, 5), yt: [0, 500, 1000, 1500, 2000],
+      xlabel: "Stock price ($)", ylabel: "Margin per contract ($)", vline: 90,
+      series: [{ pts: xs.map(S => [S, regt(S)]), color: "var(--delta)", w: 2.6 }, { pts: xs.map(S => [S, pm(S)]), color: "var(--theta)", w: 2.6 }],
+      dots: [[100, regt(100), "var(--delta)", 4.5], [100, pm(100), "var(--theta)", 4.5], [92, regt(92), "var(--delta)", 4.5]],
+      labels: [[100, regt(100), "$1,000", 8, -8, "start", "var(--delta)"], [100, pm(100), "$" + Math.round(pm(100)), -8, 18, "end", "var(--theta)"], [92, regt(92), "$1,640", 8, -8, "start", "var(--delta)"]]
+    });
+    CK.figure(draw);
+  })();
+
+  // ---------- 工具 2-A: 价差成本 ----------
+  (function () {
+    const svg = document.getElementById("c-svg");
+    const ids = ["c-bid", "c-ask", "c-n", "c-dl", "c-s"];
+    const btns = document.querySelectorAll("#calc .seg button");
+    let frac = 1;
+    function draw() {
+      const bid = +document.getElementById("c-bid").value || 0, ask = +document.getElementById("c-ask").value || 0;
+      const n = +document.getElementById("c-n").value || 0, dl = Math.abs(+document.getElementById("c-dl").value || 0), S = +document.getElementById("c-s").value || 0;
+      const spread = Math.max(ask - bid, 0), mid = (bid + ask) / 2;
+      const cost = spread * frac;
+      const pctAt = m => m > 0 ? cost / m * 100 : NaN;
+      const xs = range(0.1, 10, 0.05);
+      const ymax = Math.max(40, Math.min(100, Math.ceil(pctAt(Math.max(mid, 0.1)) / 20) * 20 + 10));
+      const yt = []; for (let v = 0; v <= ymax + 1e-9; v += ymax > 60 ? 20 : 10) yt.push(v);
+      plot(svg, {
+        x: [0, 10], y: [0, ymax], xt: [0, 2, 4, 6, 8, 10], yt, yf: v => v + "%",
+        xlabel: "Option mid price ($)", ylabel: "Round-trip cost / premium",
+        series: [{ pts: xs.map(m => [m, pctAt(m)]), color: "var(--gamma)", w: 2.4 }],
+        dots: mid > 0 && mid <= 10 ? [[mid, pctAt(mid), "var(--ink)", 5]] : [],
+        labels: mid > 0 && mid <= 10 ? [[mid, pctAt(mid), "Now " + pctAt(mid).toFixed(1) + "%", 8, -8, "start", "var(--ink)"]] : []
+      });
+      document.getElementById("c-r1").textContent = mid.toFixed(3);
+      document.getElementById("c-r2").textContent = "$" + Math.round(cost * 100 * n).toLocaleString("en-US");
+      document.getElementById("c-r3").textContent = mid > 0 ? (cost / mid * 100).toFixed(1) + "%" : "—";
+      document.getElementById("c-r4").textContent = dl > 0 ? "$" + (cost / dl).toFixed(2) + (S > 0 ? "(" + (cost / dl / S * 100).toFixed(2) + "%)" : "") : "—";
+    }
+    ids.forEach(id => document.getElementById(id).addEventListener("input", draw));
+    btns.forEach(b => b.addEventListener("click", () => {
+      frac = +b.dataset.f;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    CK.figure(draw);
+  })();
+})();
+</script>
+<script id="lang-js">(function(){document.querySelectorAll(".lang-switch").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("hl-lang",a.getAttribute("data-lang"))}catch(e){}var h=a.getAttribute("href");if(location.hash&&h.indexOf("#")<0)a.setAttribute("href",h+location.hash);});});})();</script>
+</body>
+</html>

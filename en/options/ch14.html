@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chapter 14 Systems and process · US Options Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  .mx-ctl { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--muted); }
+  .mx-out { border-top: 1px solid var(--rule); margin-top: 12px; padding-top: 12px; }
+  .mx-out h4 { margin: 0 0 2px; font-size: 16.5px; }
+  .mx-out .legs { font-family: var(--font-mono); font-size: 13px; color: var(--muted); margin: 0 0 8px; }
+  .mx-out p { font-size: 14.5px; margin: 0 0 8px; }
+  .mx-out p b { color: var(--delta); font-weight: 500; }
+  .mx-out p.not b { color: var(--warn); }
+  .copyrow { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 4px; }
+  .copy-msg { font-size: 13px; color: var(--muted); }
+  .plate pre.code { max-height: 420px; }
+  #tpl-text { white-space: pre-wrap; word-break: break-all; }
+  .ev-in { display: flex; flex-wrap: wrap; gap: 10px 20px; margin: 6px 0 8px; }
+  td.tw, th.tw { white-space: normal; min-width: 9em; text-align: left; }
+  th.hw { white-space: normal; line-height: 1.4; min-width: 4.6em; }
+  td.cw { white-space: normal; min-width: 8em; }
+</style>
+<link rel="alternate" hreflang="zh-CN" href="https://hanoptions.trade/options/ch14.html"><link rel="alternate" hreflang="en" href="https://hanoptions.trade/en/options/ch14.html">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap">
+<style id="en-overrides">
+html[lang="en"] { --font-display: "Source Serif 4", "Noto Serif SC", Georgia, serif; --font-body: "Source Sans 3", "Noto Sans SC", system-ui, sans-serif; }
+html[lang="en"] body { line-height: 1.7; }
+html[lang="en"] body * { letter-spacing: normal !important; }
+html[lang="en"] p, html[lang="en"] li, html[lang="en"] td, html[lang="en"] figcaption { hyphens: auto; -webkit-hyphens: auto; }
+html[lang="en"] p { text-wrap: pretty; }
+html[lang="en"] .toc a { grid-template-columns: 48px 1fr; }
+</style>
+</head>
+<body data-ch="14">
+<div class="topbar"><div class="topbar-inner"><div class="topbar-brand"><a class="site-home" href="/en/">hanoptions.trade</a><a class="brand" href="index.html">US Options <span>Course</span></a></div><div class="topbar-tools"><select id="ck-jump" aria-label="Jump to chapter"></select><a class="lang-switch" href="/options/ch14.html" hreflang="zh-CN" lang="zh-CN" data-lang="zh"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>中文</a></div></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">14</div>
+    <div class="eyebrow">US Options Course · Part 4 Portfolio and risk management · Chapter 14</div>
+    <h1>Systems and <span class="g">process</span></h1>
+    <p class="deck">The result of any single trade is largely luck. Only the process can be tested and improved. This chapter strings the tools from the first thirteen chapters into nine fixed steps, and shows you how to use your own journal to work out each strategy's real expectancy and judge whether the sample is big enough to draw a conclusion.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="In this chapter">
+    <p class="toc-title">In this chapter</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>Opening: one view, three outcomes</span></a></li>
+      <li><a href="#s1"><span class="n">14.1</span><span>The nine-step process</span></a></li>
+      <li><a href="#s2"><span class="n">14.2</span><span>A view in three dimensions</span></a></li>
+      <li><a href="#s3"><span class="n">14.3</span><span>The strategy selection matrix</span></a></li>
+      <li><a href="#s4"><span class="n">14.4</span><span>Strikes, expiration and size</span></a></li>
+      <li><a href="#s5"><span class="n">14.5</span><span>Executing the entry</span></a></li>
+      <li><a href="#s6"><span class="n">14.6</span><span>Write management rules before you enter</span></a></li>
+      <li><a href="#s7"><span class="n">14.7</span><span>The options trading journal</span></a></li>
+      <li><a href="#s8"><span class="n">14.8</span><span>Thinking in expectancy</span></a></li>
+      <li><a href="#s9"><span class="n">14.9</span><span>The weekly scan</span></a></li>
+      <li><a href="#cases"><span class="n">Cases</span><span>Two cases</span></a></li>
+      <li><a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>In this chapter</summary>
+      <ol>
+        <li><a href="#open">Opening: one view, three outcomes</a></li>
+        <li><a href="#s1">14.1 The nine-step process</a></li>
+        <li><a href="#s2">14.2 A view in three dimensions</a></li>
+        <li><a href="#s3">14.3 The strategy selection matrix</a></li>
+        <li><a href="#s4">14.4 Strikes, expiration and size</a></li>
+        <li><a href="#s5">14.5 Executing the entry</a></li>
+        <li><a href="#s6">14.6 Write management rules before you enter</a></li>
+        <li><a href="#s7">14.7 The options trading journal</a></li>
+        <li><a href="#s8">14.8 Thinking in expectancy</a></li>
+        <li><a href="#s9">14.9 The weekly scan</a></li>
+        <li><a href="#cases">Two cases</a></li>
+        <li><a href="#tools">Checklist and self-test</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>After this chapter you can</h4>
+        <ul>
+          <li>Write any trade idea as three sentences: direction, volatility and time</li>
+          <li>Choose a structure by direction × IV environment × event, and say why you didn't choose the other two</li>
+          <li>Use your journal to compute each strategy's expectancy and 95% interval, and judge whether the sample is big enough</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Prerequisites</h4>
+        <ul>
+          <li>Chapter 6: IV Rank, realized and implied volatility</li>
+          <li>Chapters 7–10: buyer, seller, neutral and event strategies</li>
+          <li>Chapter 13: measuring position size and stress testing</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Conventions</h4>
+        <ul>
+          <li>Examples use Black-Scholes with a 4% rate and no dividends</li>
+          <li>Days are calendar days, 365 to a year; one contract = 100 shares</li>
+          <li>Journals, scan tables and simulated data are all fictional</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">Opening</span>One view, three outcomes</h2>
+      <p class="lead">You think XYZ (stock at $200) will rise to around 215 within a month. It reports earnings in 10 days, and implied volatility has been bid up to 55% ahead of the report. Three traders, A, B and C, see it exactly the way you do, and each places a trade.</p>
+      <p>The stock then does just what you all expected: 203 on day 7, a jump to 206 after earnings on day 10 with IV falling back to 32%, and 212 by day 30, up 6% for the month. Here is how the three traders did.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 14-0 One bullish view, three structures: results on day 30 (per share, $)</caption>
+          <thead><tr><th>Trader</th><th>Structure</th><th>Cost</th><th>Value on day 30</th><th>Return</th><th>Missing sentence</th></tr></thead>
+          <tbody>
+            <tr><td>A</td><td>7-day 210 call (IV 40%)</td><td class="mono">1.21</td><td class="mono">0 (expired)</td><td class="mono neg">−100%</td><td>Time</td></tr>
+            <tr><td>B</td><td>45-day 200 call (IV 55%)</td><td class="mono">15.84</td><td class="mono">13.61</td><td class="mono neg">−14.1%</td><td>Volatility</td></tr>
+            <tr class="hl"><td>C</td><td>45-day 200/215 call spread (IV 55%)</td><td class="mono">5.94</td><td class="mono">9.31</td><td class="mono pos">+56.9%</td><td>None</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>A bought the cheapest option. It expired before earnings, which is why its IV was only 40%. But the move took until day 30 to play out: when the option expired on day 7 the stock was only at 203, and the option went to zero. B gave the trade enough time but bought a single call at 55% IV. After earnings IV fell 23 points, and the Vega loss ate the gain from the 6% rise. C used a spread: the short 215 call offset most of the Vega, and the short leg sat right on the target price. The same move made 57%.</p>
+      <p>All three made exactly the same call on direction, yet the results ran from −100% to +57%. The difference came from two things other than direction: volatility and time. This chapter turns C's thinking into a fixed process you can follow every time.</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">14.1</span>The nine-step process</h2>
+      <p>The process makes every trade answer the same nine questions. Only when the questions are the same can you compare results across trades and trace a mistake to a specific step.</p>
+      <p>Options trading is an environment of incomplete answers: a correct decision can lose money, and a wrong one can make money. From the P&amp;L of a single trade you can't tell good judgment from good luck. The process breaks a trade into nine stages, each with a clear output, so in review you can ask “which step went wrong?” instead of just saying “this one lost.”</p>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">The nine-step process: steps 1–5 come before the order, and step 9 loops back to step 1</span><span class="fig-no">Figure 14-1 · Schematic</span></div>
+        <div class="scroll-x"><svg class="chart wide" viewBox="0 0 680 350" role="img" aria-label="The nine-step trading process: view, IV environment, structure, strikes and expiration, size, entry, management, exit, record">
+          <defs>
+            <marker id="a14" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--muted)"></path></marker>
+            <marker id="a14t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--theta)"></path></marker>
+          </defs>
+          <g style="font-family: var(--font-body)">
+            <!-- row 1 -->
+            <rect x="30" y="24" width="180" height="64" rx="7" style="fill: var(--tint-delta); stroke: var(--delta)"></rect>
+            <text x="44" y="50" style="fill: var(--delta); font-family: var(--font-mono); font-size: 14px">1</text><text x="62" y="50" style="fill: var(--ink); font-size: 15px; font-weight: 700">View</text>
+            <text x="44" y="74" style="fill: var(--muted); font-size: 12.5px">3 sentences + invalidation</text>
+            <rect x="250" y="24" width="180" height="64" rx="7" style="fill: var(--tint-delta); stroke: var(--delta)"></rect>
+            <text x="264" y="50" style="fill: var(--delta); font-family: var(--font-mono); font-size: 14px">2</text><text x="282" y="50" style="fill: var(--ink); font-size: 15px; font-weight: 700">IV environment</text>
+            <text x="264" y="74" style="fill: var(--muted); font-size: 12.5px">IV Rank · IV/HV · events</text>
+            <rect x="470" y="24" width="180" height="64" rx="7" style="fill: var(--tint-delta); stroke: var(--delta)"></rect>
+            <text x="484" y="50" style="fill: var(--delta); font-family: var(--font-mono); font-size: 14px">3</text><text x="502" y="50" style="fill: var(--ink); font-size: 15px; font-weight: 700">Structure</text>
+            <text x="484" y="74" style="fill: var(--muted); font-size: 12.5px">Matrix + trade-offs</text>
+            <path d="M212 56 H246" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#a14)"></path>
+            <path d="M432 56 H466" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#a14)"></path>
+            <path d="M560 90 V130" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#a14)"></path>
+            <!-- row 2 (right to left) -->
+            <rect x="470" y="134" width="180" height="64" rx="7" style="fill: var(--tint-delta); stroke: var(--delta)"></rect>
+            <text x="484" y="160" style="fill: var(--delta); font-family: var(--font-mono); font-size: 14px">4</text><text x="502" y="160" style="fill: var(--ink); font-size: 15px; font-weight: 700">Strike &amp; expiry</text>
+            <text x="484" y="184" style="fill: var(--muted); font-size: 12.5px">Match target and catalyst</text>
+            <rect x="250" y="134" width="180" height="64" rx="7" style="fill: var(--tint-delta); stroke: var(--delta)"></rect>
+            <text x="264" y="160" style="fill: var(--delta); font-family: var(--font-mono); font-size: 14px">5</text><text x="282" y="160" style="fill: var(--ink); font-size: 15px; font-weight: 700">Size</text>
+            <text x="264" y="184" style="fill: var(--muted); font-size: 12.5px">Max loss ≤ 2% of account</text>
+            <rect x="30" y="134" width="180" height="64" rx="7" style="fill: var(--tint-warn); stroke: var(--warn)"></rect>
+            <text x="44" y="160" style="fill: var(--warn); font-family: var(--font-mono); font-size: 14px">6</text><text x="62" y="160" style="fill: var(--ink); font-size: 15px; font-weight: 700">Entry</text>
+            <text x="44" y="184" style="fill: var(--muted); font-size: 12.5px">Combo · mid · timing</text>
+            <path d="M468 166 H434" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#a14)"></path>
+            <path d="M248 166 H214" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#a14)"></path>
+            <path d="M120 200 V240" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#a14)"></path>
+            <!-- row 3 -->
+            <rect x="30" y="244" width="180" height="64" rx="7" style="fill: var(--tint-gamma); stroke: var(--gamma)"></rect>
+            <text x="44" y="270" style="fill: var(--gamma); font-family: var(--font-mono); font-size: 14px">7</text><text x="62" y="270" style="fill: var(--ink); font-size: 15px; font-weight: 700">Manage</text>
+            <text x="44" y="294" style="fill: var(--muted); font-size: 12.5px">4 rules set before entry</text>
+            <rect x="250" y="244" width="180" height="64" rx="7" style="fill: var(--tint-gamma); stroke: var(--gamma)"></rect>
+            <text x="264" y="270" style="fill: var(--gamma); font-family: var(--font-mono); font-size: 14px">8</text><text x="282" y="270" style="fill: var(--ink); font-size: 15px; font-weight: 700">Exit</text>
+            <text x="264" y="294" style="fill: var(--muted); font-size: 12.5px">Note which rule fired</text>
+            <rect x="470" y="244" width="180" height="64" rx="7" style="fill: var(--tint-theta); stroke: var(--theta)"></rect>
+            <text x="484" y="270" style="fill: var(--theta); font-family: var(--font-mono); font-size: 14px">9</text><text x="502" y="270" style="fill: var(--ink); font-size: 15px; font-weight: 700">Record</text>
+            <text x="484" y="294" style="fill: var(--muted); font-size: 12.5px">Snapshot · cause · stats</text>
+            <path d="M212 276 H246" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#a14)"></path>
+            <path d="M432 276 H466" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#a14)"></path>
+            <!-- feedback -->
+            <path d="M560 310 V334 H14 V56 H26" style="fill: none; stroke: var(--theta)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#a14t)"></path>
+            <text x="300" y="329" text-anchor="middle" style="fill: var(--theta); font-size: 12.5px">Problems the journal turns up change how you write the next view</text>
+          </g>
+        </svg></div>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>Before the order (1–5)</span><span><i style="border-color: var(--warn)"></i>Order (6)</span><span><i style="border-color: var(--gamma)"></i>Holding (7–8)</span><span><i style="border-color: var(--theta)"></i>Review (9)</span></div>
+        <figcaption>Any step can output “no trade.” If step 2 finds the options too expensive and no suitable structure, if step 3 finds no structure in the matrix with the right shape, or if step 5 shows that even the smallest size exceeds the risk limit, stop.</figcaption>
+      </figure>
+
+      <div class="tbl">
+        <table>
+          <caption>Table 14-1 The nine-step process: the question each step answers, and its output</caption>
+          <thead><tr><th>Step</th><th class="tw">Question to answer</th><th class="tw">Output</th><th>See</th></tr></thead>
+          <tbody>
+            <tr><td>1 View</td><td class="tw">What do I think will happen? One sentence each for direction, volatility and time</td><td class="tw">Three sentences, plus an invalidation price</td><td>14.2</td></tr>
+            <tr><td>2 IV environment</td><td class="tw">Are options expensive or cheap right now? Is there an event before expiration?</td><td class="tw">IV Rank, IV/HV, event dates</td><td>Chapters 6, 10</td></tr>
+            <tr><td>3 Structure</td><td class="tw">Which structure's payoff shape matches the three sentences?</td><td class="tw">One structure, plus the reasons for not choosing the other two</td><td>14.3</td></tr>
+            <tr><td>4 Strikes and expiration</td><td class="tw">Which leg corresponds to the target price, the invalidation price and the catalyst timing?</td><td class="tw">Specific contracts</td><td>14.4</td></tr>
+            <tr><td>5 Size</td><td class="tw">How much do I lose in the worst case, and what share of the account is that?</td><td class="tw">Number of contracts</td><td>14.4, Chapter 13</td></tr>
+            <tr><td>6 Entry</td><td class="tw">What order type, what price, what time of day?</td><td class="tw">Fill price and slippage</td><td>14.5</td></tr>
+            <tr><td>7 Manage</td><td class="tw">What are the take-profit, stop-loss, time and adjustment rules?</td><td class="tw">Four rules (written before entry)</td><td>14.6</td></tr>
+            <tr><td>8 Exit</td><td class="tw">Which rule fired? Did you do anything outside the rules?</td><td class="tw">Exit price and reason</td><td>14.6</td></tr>
+            <tr><td>9 Record</td><td class="tw">Which steps went right, and which went wrong?</td><td class="tw">One journal row, plus attribution</td><td>14.7, 14.8</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Beginners spend most of their time on steps 1 and 8: finding opportunities, watching the screen, deciding when to sell. Long-run results depend more on steps 3, 5 and 7. The structure decides in which scenarios you make money, the size decides whether you survive the worst scenario, and the management rules decide whether losses get out of hand. All three are done before the order goes in and take almost no screen time.</p>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">14.2</span>A view in three dimensions</h2>
+      <p>An options view needs three sentences: direction, volatility and time. Write only the first, and you leave the other two variables to luck.</p>
+      <p>Buying stock takes only a direction. An option's price depends on the underlying price, implied volatility and time remaining all at once, which correspond to three Greeks: Delta, Vega and Theta. If you don't take a position on the last two, the market takes one for you: buying a single option automatically bets that “IV won't fall and the move will come fast enough.” That is how A and B lost in the opening.</p>
+
+      <h3>How to write the three sentences</h3>
+      <ul>
+        <li><strong>Direction sentence</strong>: “The underlying reaches ___ (target price) within <span class="v">N</span> days; a break below ___ means I'm wrong (invalidation price).” A neutral view is also a direction sentence: “Stays between 95 and 105 for 30 days.”</li>
+        <li><strong>Volatility sentence</strong>: “IV is ___% now, IV Rank ___, 20-day realized volatility ___%. I think IV will rise, fall or stay flat from here, because ___.”</li>
+        <li><strong>Time sentence</strong>: “The catalyst is ___. It arrives on day ___ at the earliest and day ___ at the latest.”</li>
+      </ul>
+
+      <h3>Write the direction sentence so it can be compared with the market</h3>
+      <p>Only when you write down a target price can you compare it with what the market is quoting. With the stock at $100, IV at 30% and 30 days to go, the market's 1-standard-deviation expected move is:</p>
+      <div class="formula">
+        <div class="eq">Expected move <span class="up">≈</span> <span class="v">S</span> <span class="up">×</span> IV <span class="up">×</span> √<span class="up">(</span><span class="v">T</span><span class="up">) = 100 × 0.30 × √(30/365) = ±8.60</span></div>
+        <p class="where"><span class="v">T</span> is in years. An at-the-money straddle costs about 0.8 times the expected move: here the straddle is 6.85, and 6.85 ÷ 8.60 ≈ 0.80. The factor comes from √(2/π).</p>
+      </div>
+      <p>Your target is 105 in 30 days, or 0.58 standard deviations. Working back from option prices, the market puts the probability of finishing above 105 at <span class="num">28.4%</span> (the <span class="v">N</span>(<span class="v">d</span><sub>2</sub>) of the 105 call). If you think the probability is closer to one half, you disagree with the market, and buying calls makes sense. If you think it's only about 30%, your “bullish” view is no different from the market's pricing, and that isn't a trade.</p>
+
+      <h3>The volatility sentence decides whether you buy or sell</h3>
+      <p>The same at-the-money straddle is worth <span class="num">6.85</span> at 30% IV and only <span class="num">4.57</span> at 20% IV. If you have reason to think realized volatility over the next 30 days will be only 20%, then buying options priced at 30% means paying 6.85 for something worth 4.57. Even if you get the direction right, you are running into a headwind. In that case, favor selling structures or spreads, so Vega isn't working against you.</p>
+
+      <h3>Three common failures, and the sentence each one left out</h3>
+      <div class="tbl">
+        <table>
+          <caption>Table 14-2 Four ways to be right on direction and still lose money</caption>
+          <thead><tr><th>Failure</th><th>Missing sentence</th><th class="tw">What it looks like</th><th>Related chapters</th></tr></thead>
+          <tbody>
+            <tr><td>Expiration too soon</td><td>Time sentence</td><td class="tw">Bought a one-week option; the move came in week three</td><td>Chapter 7</td></tr>
+            <tr><td>IV crush</td><td>Volatility sentence</td><td class="tw">Bought a single option before earnings; the stock rose and the option lost money</td><td>Chapters 5, 10</td></tr>
+            <tr><td>Move too small</td><td>The target price in the direction sentence</td><td class="tw">Bought the 110 call; the stock only got to 106</td><td>Chapter 7</td></tr>
+            <tr><td>No invalidation price</td><td>The invalidation price in the direction sentence</td><td class="tw">Wrong, but held all the way to expiration</td><td>Chapter 13</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <span class="tag">Key point</span>
+        <p>If you can't write the three sentences, all you have is a “feeling.” Put feelings on a watchlist and trade only once they turn into three sentences. Often, by the time you reach the volatility sentence, you find that options are too expensive to make money even if you're right on direction, and the trade should be dropped or restructured.</p>
+      </div>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">14.3</span>The strategy selection matrix</h2>
+      <p>Pick one value for each of three dimensions—direction, IV environment and whether there is an event—and the structure is mostly settled. The matrix rules out structures with the wrong shape before you place the order.</p>
+
+      <h3>How to set the three dimensions</h3>
+      <ul>
+        <li><strong>Direction</strong>: bullish, bearish or neutral, taken from the direction sentence.</li>
+        <li><strong>IV environment</strong>: split IV Rank into three tiers: below 25 is low, 25 to 50 is mid, above 50 is high. IV Rank = (current IV − 52-week low IV) ÷ (52-week high − 52-week low) × 100. Then cross-check with IV ÷ 20-day realized volatility (IV/HV): a high IV Rank with IV/HV below 1 means volatility itself has picked up, and options aren't actually expensive.</li>
+        <li><strong>Event</strong>: whether there is an earnings report, FOMC meeting, CPI release, product launch or ex-dividend date during the period you plan to hold.</li>
+      </ul>
+
+      <div class="tbl">
+        <table>
+          <caption>Table 14-3 Strategy selection matrix (direction × IV environment × event)</caption>
+          <thead><tr><th>IV environment · event</th><th class="tw">Bullish</th><th class="tw">Bearish</th><th class="tw">Neutral</th></tr></thead>
+          <tbody>
+            <tr><td>Low · no event</td><td class="tw">Buy a call (ATM, 45–90 days)</td><td class="tw">Buy a put (ATM, 45–90 days)</td><td class="tw">Calendar spread, or no trade</td></tr>
+            <tr><td>Low · event</td><td class="tw">Buy calls early, scale out before the event</td><td class="tw">Buy puts early, scale out before the event</td><td class="tw">Buy a straddle before the event, close it before the event</td></tr>
+            <tr><td>Mid · no event</td><td class="tw">Call debit spread</td><td class="tw">Put debit spread</td><td class="tw">Iron condor (short strikes about 1× the expected move)</td></tr>
+            <tr><td>Mid · event</td><td class="tw">Call debit spread, held through the event</td><td class="tw">Put debit spread, held through the event</td><td class="tw">Event calendar spread</td></tr>
+            <tr><td>High · no event</td><td class="tw">Sell a put spread / cash-secured put</td><td class="tw">Sell a call spread</td><td class="tw">Iron condor (a defined-risk short strangle)</td></tr>
+            <tr class="hl"><td>High · event</td><td class="tw">Sell a put spread, short strike outside the expected move</td><td class="tw">Sell a call spread, short strike outside the expected move</td><td class="tw">Event iron condor, small size</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">Each cell of the matrix gives a payoff shape that matches your three sentences</span><span class="fig-no">Figure 14-2 · Stock at 100; pick the three dimensions</span></div>
+        <div class="controls">
+          <div class="mx-ctl"><span>Direction</span><div class="seg" role="group" aria-label="Direction" data-k="dir">
+            <button type="button" data-v="up" aria-pressed="true">Bullish</button><button type="button" data-v="down" aria-pressed="false">Bearish</button><button type="button" data-v="flat" aria-pressed="false">Neutral</button></div></div>
+          <div class="mx-ctl"><span>IV environment</span><div class="seg" role="group" aria-label="IV environment" data-k="iv">
+            <button type="button" data-v="lo" aria-pressed="false">Low</button><button type="button" data-v="mid" aria-pressed="false">Mid</button><button type="button" data-v="hi" aria-pressed="true">High</button></div></div>
+          <div class="mx-ctl"><span>Event</span><div class="seg" role="group" aria-label="Is there an event" data-k="ev">
+            <button type="button" data-v="no" aria-pressed="true">None</button><button type="button" data-v="yes" aria-pressed="false">Yes</button></div></div>
+        </div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 300" role="img" aria-label="Payoff chart of the suggested structure"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>P&amp;L at expiry (front-month expiry for calendars)</span><span><i class="dash" style="border-color: var(--muted)"></i>P&amp;L today (entry day)</span></div>
+        <div class="readout">
+          <div><b id="f2-r1">—</b><small>Net premium at entry (per position)</small></div>
+          <div><b id="f2-r2">—</b><small>Max profit</small></div>
+          <div><b id="f2-r3">—</b><small>Max loss</small></div>
+          <div><b id="f2-r4">—</b><small>Net Vega / net Theta (per position)</small></div>
+        </div>
+        <div class="mx-out" id="f2-out"></div>
+        <figcaption>Example IVs: low 18%, mid 30%, high 50%. When there is an event, the leg that expires right after it is priced at 1.35 times IV, which returns to normal once that leg expires. Strikes are multiples of the expected move, rounded. Click “Low,” “Mid” and “High” in turn and watch net Vega go from positive to negative: the higher the IV, the more the structure leans toward selling options.</figcaption>
+      </figure>
+
+      <h3>Three rules behind the matrix</h3>
+      <ol>
+        <li><strong>IV sets the sign of Vega.</strong> Use buying structures when IV is low (net Vega positive), selling structures when IV is high (net Vega negative) and spreads when IV is in the middle (net Vega near zero), so that direction becomes the main source of profit and loss.</li>
+        <li><strong>An event means risk must be capped.</strong> IV gets bid up before an event and collapses after it. “Buy before the event, sell before the event” and “sell before the event, buy back after it” are two completely different trades. If you hold through an event, the structure must have a known maximum loss.</li>
+        <li><strong>Neutral views are the most sensitive to IV.</strong> A neutral structure earns nothing from Delta; it can only make money from Theta or Vega. That is why neutral views are hardest when IV is low: sellers collect too little, and the most common right answer is not to trade.</li>
+      </ol>
+      <div class="note warn">
+        <span class="tag">When the matrix doesn't apply</span>
+        <ul>
+          <li>The 52-week window includes one extreme episode: the IV high was pushed far up, so IV Rank looks low for the whole year that follows. In that case use IV percentile (how many days in the past year IV was below today's level) or compare with the multi-year median.</li>
+          <li>The underlying is going through a structural change: an acquisition, a restructuring, index inclusion. Its historical IV range no longer describes the future.</li>
+          <li>Poor liquidity: slippage on any structure can eat the edge the matrix gives you. Run the liquidity screen in Section 14.9 first.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">14.4</span>Strikes, expiration and size</h2>
+      <p>Expiration follows the time sentence, strikes follow the direction sentence, and the number of contracts follows the worst case.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 14-4 Summary of strike and expiration rules</caption>
+          <thead><tr><th>Structure</th><th class="tw">Expiration</th><th class="tw">Strike</th><th class="tw">When to manage</th></tr></thead>
+          <tbody>
+            <tr><td>Long option</td><td class="tw">≥ latest catalyst date × 1.5; usually 45–90 days</td><td class="tw">Delta 0.50–0.70 (ATM to slightly ITM)</td><td class="tw">Exit before 21 days are left</td></tr>
+            <tr><td>Debit spread</td><td class="tw">Same as above</td><td class="tw">Long leg ATM, short leg at the target price</td><td class="tw">At 50–75% of maximum value</td></tr>
+            <tr><td>Credit spread / short put</td><td class="tw">30–45 days</td><td class="tw">Short leg at Delta 0.15–0.30, or outside the expected move</td><td class="tw">At 50% profit, or 21 days left</td></tr>
+            <tr><td>Iron condor</td><td class="tw">30–45 days</td><td class="tw">Short legs about ±1× the expected move; wing width set by the risk budget</td><td class="tw">Same as above; act when either short leg's Delta reaches 0.30</td></tr>
+            <tr><td>Event trade</td><td class="tw">The first expiration right after the event</td><td class="tw">Placed by the event's expected move</td><td class="tw">First trading day after the event</td></tr>
+            <tr><td>Calendar spread</td><td class="tw">Front month 20–35 days, back month 50–90 days</td><td class="tw">ATM or the target price</td><td class="tw">One week before the front month expires</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Where “expiration ≥ 1.5×” comes from</h3>
+      <p>This rule of thumb rests on the “cliff” at expiration: if the catalyst comes even one day after expiration, the option goes to zero. Your sense of timing is usually less accurate than your sense of direction, so leave a margin for time. The chart below draws the trade-off: the stock sits at 100 until the catalyst arrives, then rises in a single step.</p>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">Leave the catalyst room in the expiration date</span><span class="fig-no">Figure 14-3 · Stock at 100, jumping in one step when the catalyst arrives</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Strike">
+            <button type="button" data-k="100" aria-pressed="true">ATM 100</button>
+            <button type="button" data-k="105" aria-pressed="false">OTM 105</button>
+          </div>
+          <label class="ctl" for="f3-g">Rise <input id="f3-g" type="range" min="3" max="12" value="6"> <output id="f3-g-o">6%</output></label>
+          <label class="ctl" for="f3-iv">Implied volatility <input id="f3-iv" type="range" min="15" max="60" value="30"> <output id="f3-iv-o">30%</output></label>
+        </div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 320" role="img" aria-label="Return on calls with different expirations, by the day the catalyst arrives"></svg>
+        <div class="legend"><span><i style="border-color: var(--gamma)"></i>30-day expiry</span><span><i style="border-color: var(--delta)"></i>60-day expiry</span><span><i style="border-color: var(--theta)"></i>90-day expiry</span></div>
+        <div class="readout">
+          <div><b id="f3-r1">—</b><small>30-day option: latest catalyst day</small></div>
+          <div><b id="f3-r2">—</b><small>60-day option: latest catalyst day</small></div>
+          <div><b id="f3-r3">—</b><small>90-day option: latest catalyst day</small></div>
+        </div>
+        <figcaption>The “latest catalyst day” is the last day on which the catalyst can arrive, with the position closed that same day, without a loss. ATM with a 6% rise: if the catalyst comes on day 10, the 30-day option makes 95% and the 90-day option 53%; if it slips to day 45, the 30-day option is worth zero while the 60- and 90-day options still make about 30%. Switch to the OTM 105 strike and the 30-day option's latest catalyst day moves up to day 27: cheaper options are less forgiving about timing.</figcaption>
+      </figure>
+      <p>When the catalyst arrives on time, short-dated options have the most leverage; when it arrives late, they go straight to zero. Longer-dated options make a bit less when the catalyst is on time and still hold value when it is late. If you say “about a month,” it could really be three weeks or six, so choose an expiration of roughly 1.5 times six weeks. Events with fixed dates are the exception: once the earnings date has been announced there is little timing uncertainty, and the first expiration after the event will do. What you have to worry about then is IV crush.</p>
+
+      <h3>Where “exit with 21 days left” comes from</h3>
+      <div class="tbl">
+        <table>
+          <caption>Table 14-5 Time decay of an ATM option (stock and strike 100, IV 30%)</caption>
+          <thead><tr><th>Days left</th><th>Option price</th><th>Theta per day</th><th>Daily decay as % of price</th><th>Gamma</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">90</td><td class="mono">6.41</td><td class="mono">−0.038</td><td class="mono">0.59%</td><td class="mono">0.0265</td></tr>
+            <tr><td class="mono">45</td><td class="mono">4.44</td><td class="mono">−0.052</td><td class="mono">1.17%</td><td class="mono">0.0377</td></tr>
+            <tr><td class="mono">30</td><td class="mono">3.59</td><td class="mono">−0.062</td><td class="mono">1.74%</td><td class="mono">0.0462</td></tr>
+            <tr class="hl"><td class="mono">21</td><td class="mono">2.98</td><td class="mono">−0.074</td><td class="mono">2.47%</td><td class="mono">0.0553</td></tr>
+            <tr><td class="mono">7</td><td class="mono">1.70</td><td class="mono">−0.124</td><td class="mono">7.30%</td><td class="mono">0.0960</td></tr>
+            <tr><td class="mono">1</td><td class="mono">0.63</td><td class="mono">−0.319</td><td class="mono">50.4%</td><td class="mono">0.2540</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>At 21 days left, each day's decay as a share of the price is more than twice what it was at 45 days, and it accelerates even faster after that. For buyers, this is the point where the cost of holding on gets steep. For sellers, little premium is left while Gamma keeps growing, so the same price move causes a bigger swing in Delta and the risk/reward gets worse. The rule doesn't apply to deep ITM options or to LEAPS with more than a year left; their Theta is small to begin with.</p>
+      <p>The sellers' “short leg at Delta 0.15–0.30” can be read with the probability interpretation from Chapter 4: a put with a 0.20 Delta has about a 20% chance of finishing in the money, but close to a 40% chance that the stock touches the strike at some point before expiration. So design management rules around a “touch,” not just around expiration.</p>
+
+      <h3>Size: work back from the worst case to the number of contracts</h3>
+      <div class="formula">
+        <div class="eq">Contracts <span class="up">=</span> ⌊ <span class="frac"><span>Account equity <span class="up">×</span> Per-trade risk cap</span><span>Max loss per contract</span></span> ⌋</div>
+        <p class="where">For defined-risk structures, the maximum loss is the debit paid, or the spread width minus the credit received. For structures without a cap, use the stress-test loss from Chapter 13 instead (for example, the repriced value after a 20% gap in the underlying). This course caps the risk on any single trade at 1%–2% of the account, and positions in the same direction are added up on a beta-weighted basis (Chapter 4).</p>
+      </div>
+      <p>For example, with an $80,000 account, a 2% per-trade cap is $1,600. If one spread's maximum loss is $489, you can trade <span class="num">⌊1600 ÷ 489⌋ = 3</span> spreads. Note that the number of contracts is the last thing you calculate. Don't decide on “10 contracts” first and then go looking for a structure.</p>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">14.5</span>Executing the entry</h2>
+      <p>Execution won't turn a bad trade into a good one, but it can leak away a good trade's edge bit by bit. Spread orders, limit prices, timing and scaling in are four ways to plug the leaks.</p>
+      <p>The example below uses a 30-day 100/105 call spread. With the stock at $100 and IV at 30%, the two legs have theoretical values of 3.59 and 1.66. Suppose the quotes are as follows:</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 14-6 Quotes for the two legs and three fill prices (per share, $)</caption>
+          <thead><tr><th>Contract</th><th>Bid</th><th>Ask</th><th>Mid</th><th>Spread as % of mid</th></tr></thead>
+          <tbody>
+            <tr><td>100 call (buy)</td><td class="mono">3.50</td><td class="mono">3.70</td><td class="mono">3.60</td><td class="mono">5.6%</td></tr>
+            <tr><td>105 call (sell)</td><td class="mono">1.60</td><td class="mono">1.72</td><td class="mono">1.66</td><td class="mono">7.2%</td></tr>
+            <tr class="hl"><td>The spread</td><td colspan="2" class="mono">Natural 2.10</td><td class="mono">1.94</td><td class="mono">Theoretical 1.93</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>1. Use a combo order, not separate legs</h3>
+      <p>Placing the two legs as separate orders is called “legging in.” Suppose you first buy the 100 call at 3.70, and before you can sell the 105 call the stock drops $0.50: the 105 call's mid falls from 1.66 to 1.51, and you can only sell at about 1.45. Your total cost becomes <span class="num">3.70 − 1.45 = 2.25</span>, 0.31 more than the combo order's mid, or $31 extra per spread. The stock could just as well move in your favor, but that amounts to placing an extra directional bet with no edge at entry. A combo order also guarantees that both legs fill together, never just one.</p>
+
+      <h3>2. Start the limit at the mid</h3>
+      <p>The natural price of 2.10 is the “fill right now” price; the mid of 1.94 is the average of the two sides. Start your order at the mid and give up $0.01–0.05 every minute or two; you will usually fill near the mid. The difference looks small: 0.16 per spread, $160 for 10 spreads. But this spread's maximum profit is only <span class="num">5 − 1.94 = 3.06</span>. Filling at the natural price both in and out gives up 0.32 on the round trip, or <span class="num">10.5%</span> of the maximum profit. Selling strategies make less per trade, so for them the percentage is even higher.</p>
+      <p>The bid–ask spread as a percentage of the mid is a direct measure of liquidity. This course's threshold: no more than 10% near the money, and within 5% is better. On contracts above 15%, almost no strategy can cover the cost of execution.</p>
+
+      <h3>3. Avoid illiquid times of day</h3>
+      <ul>
+        <li><strong>The first 15–30 minutes after the open</strong>: market makers are still adjusting quotes for overnight news, spreads are wide, and IV often runs high. Options bought in this window tend to be overpriced.</li>
+        <li><strong>The last few minutes before the close</strong>: quotes widen, especially on contracts close to expiration.</li>
+        <li><strong>Around data releases</strong>: just before and after CPI, FOMC statements and similar events, quotes can briefly disappear or widen sharply.</li>
+        <li><strong>Outside regular trading hours</strong>: single-stock options trade only during regular hours. Some index options have extended sessions, but liquidity there is clearly worse.</li>
+      </ul>
+
+      <h3>4. Planned scaling in</h3>
+      <p>Splitting a position into 2–3 tranches that enter on time or price conditions reduces timing error. For example, you plan 3 spreads: 2 today, and 1 more if the underlying pulls back to a support level within 5 trading days without breaking the invalidation price. The scaling conditions must be written down before the first tranche. Deciding after a loss to “buy a little more to bring down the cost” is not scaling in; it is the averaging down to rescue a losing trade that Chapter 15 covers.</p>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">14.6</span>Write management rules before you enter</h2>
+      <p>Management rules must be written down before you enter. Once you hold the position, an open profit makes you want to lock it in early and an open loss makes you want to wait a little longer. The position has already changed your judgment.</p>
+      <p>Write four rules for every trade: take-profit, stop-loss, time and adjustment. The table below gives starting points by structure; adjust the numbers based on your own journal statistics.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 14-7 Starting points for management rules, by structure</caption>
+          <thead><tr><th>Structure</th><th class="tw">Take-profit</th><th class="tw">Stop-loss</th><th class="tw">Time</th><th class="tw">Adjustment</th></tr></thead>
+          <tbody>
+            <tr><td>Long option</td><td class="tw">Target price reached, or option +50% to +100%</td><td class="tw">Underlying breaks the invalidation price, or option −30% to −50%</td><td class="tw">21 days left; or a third of the time gone with no move</td><td class="tw">No averaging down; roll out at most once</td></tr>
+            <tr><td>Debit spread</td><td class="tw">At 50–75% of maximum value</td><td class="tw">Underlying breaks the invalidation price, or spread −50%</td><td class="tw">21 days left</td><td class="tw">Move the short leg up at most once</td></tr>
+            <tr><td>Credit spread</td><td class="tw">50% of the credit earned</td><td class="tw">Loss reaches 2× the credit</td><td class="tw">21 days left</td><td class="tw">Roll once, only for a net credit</td></tr>
+            <tr><td>Iron condor</td><td class="tw">25–50% of the credit earned</td><td class="tw">Loss of 1–2× the credit, or a short leg's Delta reaches 0.30</td><td class="tw">21 days left</td><td class="tw">Move the untested side in once</td></tr>
+            <tr><td>Event trade</td><td class="tw" colspan="3">Act after the open on the first trading day after the event, win or lose; don't keep holding the original structure after the event</td><td class="tw">No adjustments</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>What these rules actually change</h3>
+      <p>Let's test three common credit-spread rules with a simulation. Sell a 45-day 92.5/87.5 put spread: stock at $100, IV 30%, short-leg Delta −0.20, credit <span class="num">0.81</span>, maximum loss <span class="num">4.19</span>. Assume realized volatility of 25% (below implied, so the seller has an edge), reprice at IV 30% at each day's close, and simulate 20,000 paths.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 14-8 One credit spread, four sets of management rules: simulated results (per spread, $)</caption>
+          <thead><tr><th>Rule</th><th>Win rate</th><th class="hw">Avg win</th><th class="hw">Avg loss</th><th class="hw">Expectancy per trade</th><th class="hw">Avg hold</th><th class="hw">Expectancy per 30 days held</th><th class="hw">Worst 5% avg</th></tr></thead>
+          <tbody>
+            <tr><td>Hold to expiration</td><td class="mono">82.7%</td><td class="mono">79</td><td class="mono">−280</td><td class="mono">17.1</td><td class="mono">45.0 days</td><td class="mono">11.4</td><td class="mono neg">−419</td></tr>
+            <tr><td class="cw">50% take-profit only</td><td class="mono">87.9%</td><td class="mono">48</td><td class="mono">−314</td><td class="mono">4.1</td><td class="mono">20.7 days</td><td class="mono">6.0</td><td class="mono neg">−419</td></tr>
+            <tr class="hl"><td class="cw">50% take-profit + 2× stop</td><td class="mono">82.3%</td><td class="mono">47</td><td class="mono">−183</td><td class="mono">6.5</td><td class="mono">17.4 days</td><td class="mono">11.2</td><td class="mono neg">−214</td></tr>
+            <tr><td class="cw">Plus close at 21 days left</td><td class="mono">73.5%</td><td class="mono">43</td><td class="mono">−100</td><td class="mono">5.4</td><td class="mono">15.1 days</td><td class="mono">10.7</td><td class="mono neg">−191</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li><strong>A take-profit on its own lowers expectancy.</strong> It cuts the winners short and leaves the losers as they were; expectancy per 30 days held falls from 11.4 to 6.0.</li>
+        <li><strong>Take-profit plus stop-loss: expectancy about the same, tail cut in half.</strong> Expectancy per 30 days is 11.2, almost the same as holding to expiration; the average loss in the worst 5% drops from −419 to −214, and the standard deviation of single-trade results drops from 149 to 89.</li>
+        <li><strong>Rules mainly change the shape of the distribution.</strong> With a smaller tail, the same risk budget can carry more trades, and the account is less likely to be badly hurt by a run of bad luck.</li>
+      </ul>
+      <div class="note warn">
+        <span class="tag">Limits of the simulation</span>
+        <p>This assumes you can always exit at the daily close. A gap jumps straight past the stop, and the real loss is larger than in the simulation. More important, the simulation assumes the seller has an edge (realized volatility of 25%, below the 30% implied). Without that edge, no management rule can turn expectancy positive; rules can only make the losses arrive more slowly.</p>
+      </div>
+      <div class="note field">
+        <span class="tag">From the field</span>
+        <p>A few common practices. First, write the stop-loss for an options trade as an underlying price, for example “exit if the underlying closes below a given support level.” IV swings so much around earnings that the option price itself gets distorted, and a stop on the option price can knock you out because of IV rather than direction. Second, the “30/30” rule: if 30% of the holding period has passed with no move, or the option has lost 30% of its value, close or roll. The first half is easy to follow; for the second half, first confirm that the original thesis no longer holds. Third, put lottery-ticket short-dated options only into a small slice of realized profits, and never touch principal for them.</p>
+      </div>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">14.7</span>The options trading journal</h2>
+      <p>An ordinary trading journal records buys, sells and profit and loss. An options journal also has to record the volatility, Greeks, expected move and events at entry. Otherwise, when you review, you can't tell whether you made money from direction, from volatility or from time.</p>
+      <h3>Six fields an ordinary journal doesn't have</h3>
+      <ol>
+        <li><strong>IV, IV Rank, IV/HV</strong>: shows whether you bought when options were expensive or sold when they were cheap. After three months, grouping results by IV environment often reveals one environment in which you keep losing.</li>
+        <li><strong>Greeks snapshot</strong>: the whole position's Delta (shares), Gamma, Theta ($/day) and Vega ($/IV point). Record it at entry, at exit and after each event.</li>
+        <li><strong>Expected move</strong>: one standard deviation to expiration and to the event. Compare it with the actual move at exit, and you'll know whether you made money because “I was right” or because “the move was bigger than the market expected.”</li>
+        <li><strong>Event</strong>: type and date. Keep separate statistics for event trades.</li>
+        <li><strong>Reason for the structure</strong>: why this one, and why not the other two. A few months later, this column is often the most valuable.</li>
+        <li><strong>R-multiple and attribution</strong>: P&amp;L ÷ planned maximum loss, so trades of different sizes can be compared. For attribution, pick exactly one of four categories: judgment error, execution error, risk-management error, or normal variance.</li>
+      </ol>
+
+      <figure class="plate" id="tpl">
+        <div class="fig-head"><span class="fig-title">Options trading journal template</span><span class="fig-no">Tool 14-A · Copyable</span></div>
+<pre class="code" id="tpl-text">OPTIONS TRADING JOURNAL  No.: ____  Date: ____  Account equity: ____
+Underlying: ____  Underlying price: ____
+
+[View: three sentences]
+Direction: reaches ____ (target price) within ____ days; a break below ____ means I'm wrong (invalidation price)
+Volatility: IV ____%  IV Rank ____  IV/HV20 ____  My view: ____
+Time: catalyst ____, earliest day ____, latest day ____
+
+[What the market is pricing]
+Expected move (1σ): to expiration ±____  to the event ±____
+Event: ____ (earnings / FOMC / CPI / ex-dividend)  Date ____
+
+[Structure]
+Structure: ____  Legs: ____ (strike / expiration / contracts / buy or sell)
+Why this one: ____
+Why not the other two: ____
+Greeks snapshot (whole position): Δ ____ shares  Γ ____  Θ $____/day  Vega $____/IV point
+Max profit ____  Max loss ____  % of account ____%  Breakeven ____
+
+[Entry]
+Mid ____  Fill ____  Slippage ____  Time of day ____  Scaling conditions ____
+
+[Management rules: written before entry]
+Take-profit: ____
+Stop-loss: ____ (as an underlying price)
+Time: ____
+Adjustment: ____ (at most ____ times)
+
+[Exit: fill in afterward]
+Date ____  Fill ____  P&amp;L ____  R-multiple ____  Held ____ days
+Exit snapshot: Δ ____  IV ____  Actual move in underlying ____ (vs. expected move)
+Trigger: take-profit / stop-loss / time / outside the rules
+Rule broken: yes / no  Which one: ____
+Attribution: judgment error / execution error / risk-management error / normal variance
+If I did it again: ____
+
+Spreadsheet header row:
+Date,Underlying,Structure,DTE,Contracts,IV,IVRank,IV/HV,Expected move,Delta,Gamma,Theta,Vega,Event,Max loss,% of account,Fill,Exit price,P&amp;L,R-multiple,Days held,Trigger,Violation,Attribution</pre>
+        <div class="copyrow"><button type="button" class="btn" id="tpl-copy">Copy template</button><span class="copy-msg" id="tpl-msg" aria-live="polite"></span></div>
+        <figcaption>Copy it and paste it into a notes app or spreadsheet, one per trade. If the browser won't allow automatic copying, the template text is selected for you; just copy it by hand.</figcaption>
+      </figure>
+      <p>Be especially careful to log the trades that “made money but were done wrong”: you broke a rule, went over your size limit or chased an entry at a time you shouldn't have, and it happened to pay off. Losses force you to reflect; profits reward the wrong behavior. The more of these trades your journal holds, the more your profits depend on luck.</p>
+      <div class="note">
+        <span class="tag">Using attribution</span>
+        <p>The four attribution categories call for completely different responses. Judgment error: go back to step 1 and improve how you write views. Execution error: fix your order habits in step 6. Risk-management error: fix steps 5 and 7. Normal variance: change nothing. The most common mistake is to treat normal variance as a judgment error and keep switching strategies on a method that actually works.</p>
+      </div>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">14.8</span>Thinking in expectancy</h2>
+      <p>Whether a strategy is good depends on its expectancy over dozens of trades. That number can only come from your journal, not from your gut.</p>
+      <div class="formula">
+        <div class="eq">Expectancy <span class="up">=</span> <span class="v">p</span> <span class="up">× avg win −</span> (1 − <span class="v">p</span>) <span class="up">× avg loss</span></div>
+        <p class="where"><span class="v">p</span> is the win rate. Set expectancy to zero and you get the breakeven win rate <span class="v">p</span>* = avg loss ÷ (avg win + avg loss).</p>
+      </div>
+      <p>The breakeven win rate turns “is the win rate high enough?” into a question with a benchmark. A credit spread that makes $100 and loses $300 needs a win rate above <span class="num">75%</span> just to break even; an OTM buying strategy that makes $300 and loses $100 only needs <span class="num">25%</span>. Comparing these two strategies on win rate alone is meaningless.</p>
+
+      <h3>Expectancy has error too</h3>
+      <p>The expectancy you compute from a journal is a sample estimate: the smaller the sample, the larger the error. Call the standard deviation of individual results σ. The standard error of the average of <span class="v">N</span> trades is σ ÷ √<span class="v">N</span>, and the 95% interval is roughly expectancy ± 1.96 standard errors. If you only know the win rate and the average win and loss, you can approximate with a two-point distribution: σ = (avg win + avg loss) × √(<span class="v">p</span>(1 − <span class="v">p</span>)).</p>
+      <p>Example: win rate 80%, average win $120, average loss $300, 30 trades. Expectancy is <span class="num">0.8 × 120 − 0.2 × 300 = $36</span>, σ = <span class="num">420 × 0.4 = $168</span>, the standard error is <span class="num">168 ÷ √30 = $30.7</span>, and the 95% interval is <span class="num">[−$24, +$96]</span>, which includes zero. For the lower bound of the interval to turn positive you need about <span class="num">(1.96 × 168 ÷ 36)² ≈ 84</span> trades. The win rate itself has an interval of <span class="num">80% ± 14.3%</span>, or 65.7% to 94.3%, and the breakeven win rate of 71.4% falls inside it.</p>
+
+      <figure class="plate" id="ev">
+        <div class="fig-head"><span class="fig-title">The smaller the sample, the wider the interval around expectancy</span><span class="fig-no">Tool 14-B · Expectancy calculator</span></div>
+        <div class="ev-in">
+          <label class="ctl" for="ev-p">Win rate % <input id="ev-p" type="number" min="1" max="99" step="1" value="80"></label>
+          <label class="ctl" for="ev-w">Avg win $ <input id="ev-w" type="number" min="1" step="10" value="120"></label>
+          <label class="ctl" for="ev-l">Avg loss $ <input id="ev-l" type="number" min="1" step="10" value="300"></label>
+          <label class="ctl" for="ev-n">Trades <input id="ev-n" type="number" min="2" max="400" step="1" value="30"></label>
+        </div>
+        <svg class="chart" id="ev-svg" viewBox="0 0 680 300" role="img" aria-label="The 95% interval for expectancy narrows as the number of trades grows"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>Expectancy per trade</span><span><i class="dash" style="border-color: var(--gamma)"></i>95% interval bounds</span><span><i class="dash" style="border-color: var(--muted)"></i>Your current number of trades</span></div>
+        <div class="readout">
+          <div><b id="ev-r1">—</b><small>Expectancy per trade</small></div>
+          <div><b id="ev-r2">—</b><small>95% interval at your current number of trades</small></div>
+          <div><b id="ev-r3">—</b><small>Trades needed for a positive lower bound</small></div>
+          <div><b id="ev-r4">—</b><small>Breakeven win rate</small></div>
+        </div>
+        <figcaption>Change the win rate to 90% and the average loss to 1,000: the sign of expectancy stays the same, but the number of trades needed rises sharply. The more lopsided the wins and losses, the bigger the sample you need. The standard deviation here uses the two-point approximation; when a real strategy's losses have a long tail, you need even more trades.</figcaption>
+      </figure>
+
+      <h3>Four easy statistical mistakes</h3>
+      <ul>
+        <li><strong>The tail hasn't shown up yet.</strong> If a strategy has a 5% chance per trade of hitting its maximum loss, the probability of not hitting it once in 28 trades is <span class="num">0.95<sup>28</sup> = 23.8%</span>. A loss you don't see in the sample still exists.</li>
+        <li><strong>Mixing different structures in one set of statistics.</strong> Credit spreads and long single options have completely different payoff shapes, and an expectancy averaged across them tells you nothing. At least group by structure, and preferably by IV environment as well.</li>
+        <li><strong>Using dollars instead of R-multiples.</strong> As your size grows, dollar statistics get dominated by the last few big trades. Convert to R-multiples (P&amp;L ÷ planned maximum loss) and recompute.</li>
+        <li><strong>Ignoring holding time.</strong> An expectancy of $20 over 40 days versus $15 over 10 days: the second uses capital far more efficiently per day (see Table 14-8).</li>
+      </ul>
+    </section>
+
+    <section id="s9">
+      <h2><span class="sn">14.9</span>The weekly scan</h2>
+      <p>Spend an hour each week running your underlyings through filters for liquidity, IV and the event calendar. This does more than watching the screen every day for opportunities to make sure you only trade where the matrix has an answer.</p>
+      <ol>
+        <li><strong>Fixed candidate pool</strong>: 20–40 stocks and ETFs you know well, with liquid options. If an underlying isn't in the pool, you don't trade it this week.</li>
+        <li><strong>Liquidity filter</strong>: ATM bid–ask spread no more than 10% of the mid; open interest of at least 500–1,000 contracts at the main strikes.</li>
+        <li><strong>Event calendar</strong>: mark earnings, FOMC, CPI and ex-dividend dates over the next two to six weeks.</li>
+        <li><strong>IV metrics</strong>: IV Rank and IV/HV20. Besides IV Rank, look at IV percentile: the share of days in the past year with IV below today's. One extreme episode pushes the 52-week high up and keeps IV Rank low for a long time; the percentile is much less affected by it.</li>
+        <li><strong>Sort into buckets</strong>: seller candidates, buyer candidates, event candidates, skip.</li>
+        <li><strong>Write the three sentences</strong>: write a view for each candidate; if you can't, move it to “skip.”</li>
+      </ol>
+      <div class="tbl">
+        <table>
+          <caption>Table 14-9 A weekly scan (hypothetical data; EEE is an index ETF)</caption>
+          <thead><tr><th>Underlying</th><th>Price</th><th class="hw">IV (52-week range)</th><th class="hw">IV Rank</th><th>IV/HV</th><th class="hw">ATM spread</th><th class="hw">ATM open interest</th><th class="hw">Next event</th><th>Bucket</th></tr></thead>
+          <tbody>
+            <tr><td>AAA</td><td class="mono">85</td><td class="mono">48% (28–62)</td><td class="mono">58.8</td><td class="mono">1.33</td><td class="mono">3%</td><td class="mono">4,200</td><td>Earnings in 26 days</td><td>Seller candidate</td></tr>
+            <tr><td>BBB</td><td class="mono">140</td><td class="mono">31% (24–70)</td><td class="mono">15.2</td><td class="mono">1.07</td><td class="mono">2%</td><td class="mono">9,800</td><td>Earnings in 6 days</td><td>Event candidate</td></tr>
+            <tr><td>CCC</td><td class="mono">42</td><td class="mono">65% (40–120)</td><td class="mono">31.2</td><td class="mono">0.93</td><td class="mono neg">12%</td><td class="mono neg">300</td><td>None</td><td>Skip: liquidity</td></tr>
+            <tr><td>DDD</td><td class="mono">310</td><td class="mono">22% (18–40)</td><td class="mono">18.2</td><td class="mono">1.29</td><td class="mono">4%</td><td class="mono">2,500</td><td>Earnings in 50 days</td><td>Buyer candidate</td></tr>
+            <tr><td>EEE</td><td class="mono">780</td><td class="mono">16% (11–33)</td><td class="mono">22.7</td><td class="mono">1.33</td><td class="mono">1%</td><td class="mono">50,000</td><td>FOMC in 9 days</td><td>Neutral, small size</td></tr>
+            <tr class="hl"><td>FFF</td><td class="mono">58</td><td class="mono">55% (35–58)</td><td class="mono">87.0</td><td class="mono">1.45</td><td class="mono">6%</td><td class="mono">1,800</td><td>Earnings in 3 days</td><td>Event candidate</td></tr>
+            <tr><td>GGG</td><td class="mono">120</td><td class="mono">38% (30–50)</td><td class="mono">40.0</td><td class="mono">0.93</td><td class="mono">5%</td><td class="mono">900</td><td>None</td><td>Skip: no view</td></tr>
+            <tr><td>HHH</td><td class="mono">25</td><td class="mono">90% (60–140)</td><td class="mono">37.5</td><td class="mono">0.95</td><td class="mono neg">20%</td><td class="mono neg">150</td><td>None</td><td>Skip: liquidity</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li><strong>AAA</strong>: IV Rank 58.8 and IV/HV 1.33, so the options really are expensive. Earnings are 26 days out; choosing contracts that expire within 21 days avoids them, so use a selling structure.</li>
+        <li><strong>BBB</strong>: IV Rank is only 15.2 ahead of earnings, which looks cheap. But the 52-week high of 70% probably came from a single event last year, which drags IV Rank down. First compare this report's expected move with the actual moves on the last few reports, then decide whether to buy or sell.</li>
+        <li><strong>FFF</strong>: the IV Rank of 87 is propped up by earnings and will very likely collapse in 3 days. It suits an event calendar spread or a small event iron condor, not buying a single option.</li>
+        <li><strong>DDD</strong>: IV is low and earnings are far off. If you have a directional view, it suits buying options or a debit spread; with no view, leave it alone.</li>
+      </ul>
+      <p>The output of the scan is a short list of no more than three to five underlyings. For the rest of the week you do only two things: manage existing positions, and wait for names on the short list to meet their entry conditions.</p>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">Cases</span>Two cases</h2>
+
+      <div class="case">
+        <div class="case-no">Case 1</div>
+        <h3>From a macro view to an options position: all nine steps</h3>
+        <p>Background (all hypothetical): inflation data has cooled for several months in a row, the market expects the FOMC meeting in 21 days may cut rates, and CPI comes out in 8 days. You think rate-sensitive small caps will benefit. A small-cap ETF (called IWM below; prices are hypothetical) trades at $250, with IV at 22%, a 52-week IV range of 17%–45% and 20-day realized volatility of 19%. Account equity is $80,000.</p>
+        <p><strong>Step 1: View.</strong> Direction: IWM rises to around 262 within 6 weeks (+5%); a close below 241 means I'm wrong. Volatility: IV at 22% isn't high and is unlikely to drop much before the FOMC. Time: the catalysts are CPI on day 8 and the FOMC on day 21, giving the view about 42 days to play out. The market's expected move over 42 days is <span class="num">250 × 0.22 × √(42/365) = ±18.7</span>, and working back from option prices, the probability of being above 262 after 42 days is about <span class="num">27.3%</span>. You think it is clearly higher, so this is a view that disagrees with the market.</p>
+        <p><strong>Step 2: IV environment.</strong> IV Rank = <span class="num">(22 − 17) ÷ (45 − 17) × 100 = 17.9</span>, which is low; IV/HV = 22 ÷ 19 = 1.16, so options are a bit rich relative to realized volatility but not outrageously so. There are events: both CPI and the FOMC fall within the holding period.</p>
+        <p><strong>Step 3: Structure.</strong> The matrix cell “bullish · low · event” says: buy calls or a call debit spread, and get in early. Compare the two (63 days to expiration, IV 22%):</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 14-10 Two candidate structures (per share, $)</caption>
+            <thead><tr><th>Metric</th><th>250 call</th><th>250/262 call spread</th></tr></thead>
+            <tbody>
+              <tr><td>Cost (max loss)</td><td class="mono">9.97</td><td class="mono">4.89</td></tr>
+              <tr><td>Breakeven at expiry</td><td class="mono">259.97</td><td class="mono">254.89</td></tr>
+              <tr><td>Value at 262.5 on day 42</td><td class="mono">14.27 (+43%)</td><td class="mono">8.19 (+67%)</td></tr>
+              <tr><td>Value if still at 250 on day 42</td><td class="mono">5.55 (−44%)</td><td class="mono">4.05 (−17%)</td></tr>
+              <tr><td>Delta / Theta per day</td><td class="mono">0.548 / −0.086</td><td class="mono">0.201 / −0.010</td></tr>
+              <tr><td>Vega (per IV point)</td><td class="mono">0.411</td><td class="mono">0.028</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Choose the spread. The reasons go into the journal: you don't need the upside beyond the 262 target, and selling it buys you half the cost and one-ninth of the Theta; the return is higher if the target is reached, and the loss is smaller if the stock goes nowhere. Not the single call, because IV/HV of 1.16 says options aren't cheap, so buying a single option has no clear edge. Not a short put spread, because IV is low and sellers collect too little.</p>
+        <p><strong>Step 4: Strikes and expiration.</strong> A 42-day window times 1.5 is about 63 days, so choose the 63-day expiration. Long leg at the 250 strike, ATM (Delta 0.55); short leg at 262, matching the target price (Delta 0.35).</p>
+        <p><strong>Step 5: Size.</strong> A 2% per-trade cap is $1,600; each spread's maximum loss is about $489, so trade 3 spreads.</p>
+        <p><strong>Step 6: Entry.</strong> Quotes: 250 call 9.85/10.10, 262 call 4.98/5.17; combo mid 4.90, natural 5.12. An hour before the close, place a combo order at 4.90; two minutes later, raise it to 4.95 and get filled. Total cost is <span class="num">3 × 495 = $1,485</span>, or 1.86% of the account.</p>
+        <p><strong>Step 7: Management rules (written before entry).</strong> Take-profit: IWM closes ≥ 262, or the spread ≥ 8.40 (70% of its maximum value of 12), whichever comes first. Stop-loss: IWM closes &lt; 241, or the spread ≤ 2.45 (about −50%). Time: if the take-profit hasn't been hit with 21 days left, close everything. Event: you hold through the FOMC, but the 3 spreads together have a Vega of only $8 per IV point, so a drop in IV has little effect. Adjustment: no adding, no moving the short leg up.</p>
+        <p><strong>Step 8: Exit.</strong> The path while the position was open, with the spread's mid price:</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 14-11 Path of the position (spread value at the Black-Scholes mid)</caption>
+            <thead><tr><th>Day</th><th>Event</th><th>IWM</th><th>IV</th><th>Spread value</th><th>Open P&amp;L, 3 spreads</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">0</td><td>Open</td><td class="mono">250.0</td><td class="mono">22%</td><td class="mono">4.89</td><td class="mono">−17</td></tr>
+              <tr><td class="mono">8</td><td>CPI cools</td><td class="mono">253.0</td><td class="mono">22%</td><td class="mono">5.45</td><td class="mono pos">+151</td></tr>
+              <tr><td class="mono">21</td><td>Before FOMC</td><td class="mono">255.0</td><td class="mono">23%</td><td class="mono">5.84</td><td class="mono pos">+266</td></tr>
+              <tr><td class="mono">22</td><td>FOMC cuts</td><td class="mono">257.5</td><td class="mono">20%</td><td class="mono">6.54</td><td class="mono pos">+477</td></tr>
+              <tr><td class="mono">30</td><td></td><td class="mono">259.8</td><td class="mono">19.5%</td><td class="mono">7.29</td><td class="mono pos">+701</td></tr>
+              <tr class="hl"><td class="mono">34</td><td>Take-profit hit</td><td class="mono">262.4</td><td class="mono">19%</td><td class="mono">8.19</td><td class="mono pos">+971</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Look at day 22: after the FOMC, IV fell from 23% to 20%, and the spread actually benefited. Once IWM rose past 256, the midpoint between the two strikes, the short leg's Vega became larger than the long leg's, and the spread's net Vega turned negative (at the same price, it is worth 6.43 at IV 23% and 6.54 at 20%, $35 more for 3 spreads). On day 34, before the close, IWM moved above 262 (closing at 262.4). The take-profit condition fired, and the spread sold at 8.10, a little below the 8.19 mid, for a P&amp;L of <span class="num">(8.10 − 4.95) × 300 = +$945</span>.</p>
+        <p><strong>Step 9: Record.</strong> R-multiple = <span class="num">945 ÷ 1,485 = 0.64R</span>, held 34 days. At exit, IWM had actually risen 12.4, against a 42-day expected move of 18.7, so the move did not exceed what the market expected. The take-profit followed the rules, with no violations. Attribution: the judgment was right and execution went to plan. One-line review: putting the short leg at the target gave the take-profit a clear price.</p>
+        <div class="note">
+          <span class="tag">Takeaways</span>
+          <p>Of the nine steps, the ones that really take time are steps 1 to 3; the rest are almost mechanical. Because the management rules were written in advance, the decision on day 34 only required looking at a closing price, not judging again whether “it will keep going up.” The trade itself was only 0.64R. Its value is that the journal now has one more record that can be counted and that followed the process exactly.</p>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 2</div>
+        <h3>Expectancy from three months of journal statistics: which conclusions hold up</h3>
+        <p>A fictional account made 76 trades in three months. Grouped by structure, the statistics are below. Every trade followed the management rules, and the stop-loss on credit spreads was set at about 2 times the credit.</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 14-12 Simulated journal summary (per trade, $; the last cell of the Total row is total P&amp;L)</caption>
+            <thead><tr><th>Structure</th><th>Trades</th><th>Win rate</th><th class="hw">Avg win</th><th class="hw">Avg loss</th><th>Expectancy</th><th>Std dev</th><th>95% interval</th><th class="hw">Trades for lower bound &gt; 0</th></tr></thead>
+            <tbody>
+              <tr><td>Short put spread</td><td class="mono">28</td><td class="mono">89.3%</td><td class="mono">127</td><td class="mono">302</td><td class="mono pos">+80.7</td><td class="mono">136</td><td class="mono">[+30, +131]</td><td class="mono">11 trades</td></tr>
+              <tr><td>Long options</td><td class="mono">16</td><td class="mono">43.8%</td><td class="mono">486</td><td class="mono">170</td><td class="mono pos">+116.9</td><td class="mono">379</td><td class="mono">[−69, +303]</td><td class="mono">40 trades</td></tr>
+              <tr><td>Debit spread</td><td class="mono">14</td><td class="mono">50.0%</td><td class="mono">229</td><td class="mono">141</td><td class="mono pos">+43.6</td><td class="mono">195</td><td class="mono">[−59, +146]</td><td class="mono">77 trades</td></tr>
+              <tr><td>Iron condor</td><td class="mono">10</td><td class="mono">60.0%</td><td class="mono">128</td><td class="mono">249</td><td class="mono neg">−22.5</td><td class="mono">200</td><td class="mono">[−146, +101]</td><td class="mono">—</td></tr>
+              <tr><td>Long straddle before earnings</td><td class="mono">8</td><td class="mono">25.0%</td><td class="mono">280</td><td class="mono">241</td><td class="mono neg">−110.6</td><td class="mono">245</td><td class="mono">[−281, +59]</td><td class="mono">—</td></tr>
+              <tr class="hl"><td>Total</td><td class="mono">76</td><td class="mono">61.8%</td><td></td><td></td><td class="mono pos">+47.8</td><td></td><td></td><td class="mono">+3,630</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Checking the first row's expectancy with the formula: <span class="num">(25/28) × 126.6 − (3/28) × 301.7 = +80.7</span>. 95% interval = expectancy ± 1.96 × std dev ÷ √trades; “trades for lower bound &gt; 0” = (1.96 × std dev ÷ expectancy)².</p>
+        <p><strong>Short put spread: the interval excludes zero, but the tail hasn't shown up.</strong> The 3 losses out of 28 trades were all around −$300, which shows the stop-loss is working. But this structure's maximum loss of about $420, which happens when a gap jumps past the stop, never appears in the sample. If its true probability is 6% and you add that in, expectancy drops from 80.7 to about <span class="num">0.80 × 126.6 − 0.14 × 301.7 − 0.06 × 410 = 34.4</span>. And at a 5% probability, the chance of not hitting it once in 28 trades is 23.8%. Conclusion: this strategy very likely has positive expectancy, but these 28 trades are no basis for increasing size.</p>
+        <p><strong>Long options: looks best, actually the least certain.</strong> Expectancy of +116.9 ranks first, but the best two of the 16 trades were +895 and +710. Take those two out and the other 14 trades have an expectancy of only <span class="num">(1,870 − 895 − 710) ÷ 14 = +18.9</span>. The interval runs from −69 to +303, and it takes about 40 trades to reach a conclusion.</p>
+        <p><strong>Debit spreads and iron condors: the samples are too small to say anything.</strong> Debit spreads need about 77 trades. Iron condors show negative expectancy over 10 trades, but the interval runs from −146 to +101, so it may just be bad luck.</p>
+        <p><strong>Long straddles before earnings: only 2 wins in 8 trades, losing $111 per trade on average.</strong> This isn't statistically significant yet either, but you can look for the cause in the journal's IV fields: if every entry was made at a very high IV Rank and IV collapsed after the event, this is the structural problem covered in Chapter 10, and you don't need to wait for a large enough sample to fix it.</p>
+        <div class="note">
+          <span class="tag">Takeaways</span>
+          <ul>
+            <li>76 trades in three months support very few conclusions. The most common mistake is to size up the top-ranked “long options,” whose lead comes mainly from two trades.</li>
+            <li>Statistics tell you “where things are still uncertain”; the journal's other fields tell you “why.” Combine the two, and you can make sensible adjustments even when the sample is too small.</li>
+            <li>The sample-size problem won't go away: once you group by structure and IV environment, each group has even fewer trades. So keep records for the long run and review quarterly, not weekly.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">Tools</span>Checklist and self-test</h2>
+      <p>Your checkmarks are saved only in your own browser.</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">14-1</span>Before the order: five questions you must answer</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">All three sentences written (direction, volatility, time), including the invalidation price</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">Checked IV Rank, IV/HV and the event calendar</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">The structure comes from the matrix, and I can say why I didn't choose the other two</label></li>
+            <li><input type="checkbox" id="k4"><label for="k4">Expiration ≥ latest catalyst date × 1.5 (except for events with fixed dates)</label></li>
+            <li><input type="checkbox" id="k5"><label for="k5">Maximum loss ≤ 2% of the account; the number of contracts is calculated</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">14-2</span>Entry: execution</h4>
+          <ul>
+            <li><input type="checkbox" id="k6"><label for="k6">Use a combo order for multi-leg structures</label></li>
+            <li><input type="checkbox" id="k7"><label for="k7">Start the limit at the mid and give up $0.01–0.05 at a time</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">Near-the-money bid–ask spread ≤ 10% of the mid</label></li>
+            <li><input type="checkbox" id="k9"><label for="k9">Avoid the first 30 minutes after the open and the time around data releases</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">14-3</span>Management: four rules</h4>
+          <ul>
+            <li><input type="checkbox" id="k10"><label for="k10">Take-profit: a price or a percentage, written as a number</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">Stop-loss: preferably written as an underlying price</label></li>
+            <li><input type="checkbox" id="k12"><label for="k12">Time: the latest number of days left at which you exit</label></li>
+            <li><input type="checkbox" id="k13"><label for="k13">Adjustment: what is allowed, and how many times at most</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">14-4</span>Weekly: scan and review</h4>
+          <ul>
+            <li><input type="checkbox" id="k14"><label for="k14">Fill in attribution and R-multiples for this week's closed trades</label></li>
+            <li><input type="checkbox" id="k15"><label for="k15">Update expectancy and sample size by structure, and check whether the interval includes zero</label></li>
+            <li><input type="checkbox" id="k16"><label for="k16">Run the candidate pool through three screens: liquidity, events, IV</label></li>
+            <li><input type="checkbox" id="k17"><label for="k17">Write three sentences for each name on the short list; skip any you can't</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Self-test: five questions</h3>
+      <details class="q"><summary><span class="num">1</span><span>A strategy has a 70% win rate, an average win of $150 and an average loss of $300. What is its expectancy? What is its breakeven win rate?</span></summary>
+        <div class="ans"><p>Expectancy is <span class="num">0.70 × 150 − 0.30 × 300 = +$15</span>. The breakeven win rate is <span class="num">300 ÷ (150 + 300) = 66.7%</span>. The win rate is only 3.3 percentage points above breakeven, so a small error in the journal's win rate would flip the conclusion.</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>A stock's IV is 40%, and over the past 52 weeks its IV ranged from 25% to 65%. What is the IV Rank, and which tier is it in?</span></summary>
+        <div class="ans"><p><span class="num">(40 − 25) ÷ (65 − 25) × 100 = 37.5</span>, the mid tier. By the matrix, directional views should favor debit spreads. Also check IV/HV: if realized volatility is around 40% too, the options aren't expensive.</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>A debit spread: the long leg is quoted 2.40/2.60 and the short leg 1.10/1.25, and you trade 10 spreads. How much does the cost differ between filling at the natural price and filling at the mid?</span></summary>
+        <div class="ans"><p>Natural: <span class="num">2.60 − 1.10 = 1.50</span>; mid: <span class="num">2.50 − 1.175 = 1.325</span>. The difference is 0.175 per spread, or <span class="num">0.175 × 100 × 10 = $175</span> for 10 spreads, and you pay a similar difference again on exit.</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>A strategy in your journal has 30 trades, an expectancy of $25 per trade and a standard deviation of $200. Can you trust this expectancy? How many trades would be enough?</span></summary>
+        <div class="ans"><p>The standard error is <span class="num">200 ÷ √30 = $36.5</span>, and the 95% interval is <span class="num">25 ± 1.96 × 36.5 = [−$46.6, +$96.6]</span>. It includes zero, so you can't draw a conclusion yet. For the lower bound to turn positive, you need <span class="num">(1.96 × 200 ÷ 25)² ≈ 246</span> trades.</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>You think a catalyst will arrive within 3 to 5 weeks and want to buy an ATM call. How do you choose the expiration? When do you exit?</span></summary>
+        <div class="ans"><p>Take 1.5 times the latest time of 5 weeks (35 days): at least about 53 days, so choose an expiration around 60 days. Time rule: exit at the latest with 21 days left, which means holding no more than about 39 days. If the catalyst still hasn't arrived by then, the time sentence was wrong: exit rather than rolling and stubbornly holding on.</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="Chapter navigation"></nav>
+
+    <footer class="end">
+      <p>Option prices and Greeks in this chapter are calculated with the Black-Scholes model (4% rate, no dividends, 365-day year). Journals, scan data and simulation results are fictional or are assumptions stated in the text. They are for teaching only and are not investment advice.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+
+  /* 自动刻度: 返回 [min, max, ticks] */
+  function nice(lo, hi, n) {
+    if (hi - lo < 1e-9) { hi = lo + 1; }
+    const raw = (hi - lo) / (n || 5);
+    const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    const st = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => s >= raw) || 10 * mag;
+    const a = Math.floor(lo / st) * st, b = Math.ceil(hi / st) * st;
+    const t = []; for (let v = a; v <= b + st * 1e-6; v += st) t.push(+v.toFixed(6));
+    return [a, b, t, st];
+  }
+  const sgn = v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v);
+
+  // ---------- fig 14-2 strategy matrix ----------
+  (function () {
+    const svg = document.getElementById("f2-svg");
+    const out = document.getElementById("f2-out");
+    const ENV = { lo: 0.18, mid: 0.30, hi: 0.50 };
+    const EM = (iv, d) => 100 * iv * Math.sqrt(d / DAY);
+    const L = (k, K, q, d, m) => ({ k, K: Math.round(K), q, d, m: m || 1 });
+    const EVM = 1.35;
+    const M = {
+      "up-lo-no": { name: "Buy a call (ATM)", legs: iv => [L("c", 100, 1, 60)],
+        why: "Options are cheap, and positive Vega means a rebound in IV also works for you; the maximum loss is the premium.", not: "No clear catalyst, just a “feeling it will go up.” Theta still takes its cut every day." },
+      "up-lo-yes": { name: "Buy calls early, scale out before the event", legs: iv => [L("c", 100, 1, 45)],
+        why: "IV usually rises as an event approaches, so buying early captures both the direction and the IV lift; sell part of the position before the event to lock in that gain.", not: "If you want to hold through the event, switch to a debit spread; otherwise the IV crush after the event will cancel out the directional gain." },
+      "up-mid-no": { name: "Call debit spread", legs: iv => [L("c", 100, 1, 45), L("c", 100 + EM(iv, 45), -1, 45)],
+        why: "Buy ATM, sell at the target: the two legs' Vega mostly cancels, so P&L comes mainly from direction.", not: "When the target is far beyond 1× the expected move, the short leg is too far out and the spread degenerates into a single call." },
+      "up-mid-yes": { name: "Call debit spread, held through the event", legs: iv => [L("c", 100, 1, 21, EVM), L("c", 100 + EM(iv, 21), -1, 21, EVM)],
+        why: "The short leg sits near the event's expected move; after the event both legs lose IV together, and the losses offset.", not: "If you expect a rise far bigger than the expected move, the spread caps exactly the part of the gain you want most." },
+      "up-hi-no": { name: "Sell a put spread", legs: iv => [L("p", 100 - 0.6 * EM(iv, 45), -1, 45), L("p", 100 - 1.1 * EM(iv, 45), 1, 45)],
+        why: "With IV high you sell expensive options, and negative Vega turns a fall in IV into a source of profit; it makes money if the stock doesn't fall, goes sideways or rises a little. If you're willing to own the shares, a cash-secured put also works.", not: "IV is high because the fundamentals are deteriorating: options are expensive for a reason." },
+      "up-hi-yes": { name: "Sell a put spread, short strike outside the expected move", legs: iv => [L("p", 100 - EM(iv, 7), -1, 7, EVM), L("p", 100 - 1.6 * EM(iv, 7), 1, 7, EVM)],
+        why: "Expiring right after the event, it collects premium pumped up by the event; with the short leg outside the expected move, it makes money unless the stock falls sharply.", not: "Size must be small: a gap will jump past the stop, so size on the maximum loss. Or wait and trade after the event." },
+      "down-lo-no": { name: "Buy a put (ATM)", legs: iv => [L("p", 100, 1, 60)],
+        why: "Options are cheap, and IV tends to rise when stocks fall, so direction and Vega both help you.", not: "Being bearish goes against the long-term uptrend: keep the target realistic, and don't buy far out-of-the-money puts just because they're cheap." },
+      "down-lo-yes": { name: "Buy puts early, scale out before the event", legs: iv => [L("p", 100, 1, 45)],
+        why: "The IV rise before an event helps long options, and downside risk itself pushes IV up.", not: "Holding through the event still runs into IV crush; to hold through it, switch to a put debit spread." },
+      "down-mid-no": { name: "Put debit spread", legs: iv => [L("p", 100, 1, 45), L("p", 100 - EM(iv, 45), -1, 45)],
+        why: "Buy ATM, sell at the target: lower cost and lower Vega, with P&L coming mainly from direction.", not: "In a sharp sell-off IV spikes and a single put makes more; the spread's capped gain will look conservative." },
+      "down-mid-yes": { name: "Put debit spread, held through the event", legs: iv => [L("p", 100, 1, 21, EVM), L("p", 100 - EM(iv, 21), -1, 21, EVM)],
+        why: "The short leg sits near the event's expected move, offsetting the IV crush after the event.", not: "You expect a drop far beyond the expected move: the spread caps the gain." },
+      "down-hi-no": { name: "Sell a call spread", legs: iv => [L("c", 100 + 0.6 * EM(iv, 45), -1, 45), L("c", 100 + 1.1 * EM(iv, 45), 1, 45)],
+        why: "Bets that “it won't rally much more”: it makes money if the stock falls, goes sideways or rises a little, and high IV makes the premium richer.", not: "Strong momentum stocks: “it has gone up too much” is not a reason to be short." },
+      "down-hi-yes": { name: "Sell a call spread, short strike outside the expected move", legs: iv => [L("c", 100 + EM(iv, 7), -1, 7, EVM), L("c", 100 + 1.6 * EM(iv, 7), 1, 7, EVM)],
+        why: "Collects premium pumped up by the event, with the short leg outside the expected move.", not: "A jump after good news can go far beyond the expected move, so you must use a spread, not naked short calls." },
+      "flat-lo-no": { name: "Calendar spread (or no trade)", legs: iv => [L("c", 100, -1, 30), L("c", 100, 1, 60)],
+        why: "Sell the faster-decaying front month and buy the back month: net Vega is positive, so a rebound in IV helps you.", not: "With IV low, sellers collect too little and there is no good neutral structure; not trading is often the best choice." },
+      "flat-lo-yes": { name: "Buy a straddle before the event, close it before the event", legs: iv => [L("c", 100, 1, 30), L("p", 100, 1, 30)],
+        why: "Buy a straddle at low IV, betting that IV rises as the event approaches; close before the event so you don't carry the event's outcome.", not: "If IV doesn't rise before the event, Theta keeps draining the position; don't hold through the event." },
+      "flat-mid-no": { name: "Iron condor (short strikes about 1× the expected move)", legs: iv => [L("p", 100 - EM(iv, 45), -1, 45), L("p", 100 - 1.5 * EM(iv, 45), 1, 45), L("c", 100 + EM(iv, 45), -1, 45), L("c", 100 + 1.5 * EM(iv, 45), 1, 45)],
+        why: "Collects Theta inside the expected range; the wings on both sides cap the maximum loss.", not: "With IV only mid-range, premium is thin, so be more conservative with the width and the stop." },
+      "flat-mid-yes": { name: "Event calendar spread", legs: iv => [L("c", 100, -1, 7, EVM), L("c", 100, 1, 35)],
+        why: "Sell the front month, whose IV is inflated by the event, and buy the back month; after the event the front month's IV collapses while the back month is barely affected.", not: "If the stock jumps far from the strike after the event, both legs of the calendar lose their time value, and it loses money too." },
+      "flat-hi-no": { name: "Iron condor (a defined-risk short strangle)", legs: iv => [L("p", 100 - 0.8 * EM(iv, 45), -1, 45), L("p", 100 - 1.3 * EM(iv, 45), 1, 45), L("c", 100 + 0.8 * EM(iv, 45), -1, 45), L("c", 100 + 1.3 * EM(iv, 45), 1, 45)],
+        why: "Sell options on both sides at high IV: negative Vega and positive Theta both work for you.", not: "Don't use a naked short strangle instead: high IV means the market expects big moves, so the maximum loss must be capped." },
+      "flat-hi-yes": { name: "Event iron condor, small size", legs: iv => [L("p", 100 - 1.1 * EM(iv, 7), -1, 7, EVM), L("p", 100 - 1.7 * EM(iv, 7), 1, 7, EVM), L("c", 100 + 1.1 * EM(iv, 7), -1, 7, EVM), L("c", 100 + 1.7 * EM(iv, 7), 1, 7, EVM)],
+        why: "Expiring right after the event with the short legs outside the expected move, it profits from the IV crush.", not: "First compare this event's expected move with the actual moves on past events; underlyings that have often moved more than the expected move are not a fit." }
+    };
+    const st = { dir: "up", iv: "hi", ev: "no" };
+    const kname = { c: "call", p: "put" };
+    function value(legs, S, t, env, entry) {
+      let v = 0;
+      legs.forEach(g => {
+        const left = g.d - t;
+        const iv = entry ? env * g.m : env;
+        const px = left <= 0 ? (g.k === "c" ? Math.max(S - g.K, 0) : Math.max(g.K - S, 0)) : bs(S, g.K, left / DAY, iv, g.k).price;
+        v += g.q * px;
+      });
+      return v;
+    }
+    function draw() {
+      const cell = M[st.dir + "-" + st.iv + "-" + st.ev];
+      const env = ENV[st.iv];
+      const legs = cell.legs(env);
+      const hz = Math.min(...legs.map(g => g.d));
+      const cost = value(legs, 100, 0, env, true);
+      const span = Math.max(10, Math.ceil(2.6 * EM(env, 45) / 5) * 5);
+      const x0 = 100 - span, x1 = 100 + span;
+      const xs = range(x0, x1, span / 120);
+      const exp = xs.map(S => [S, (value(legs, S, hz, env, false) - cost) * 100]);
+      const now = xs.map(S => [S, (value(legs, S, 0, env, true) - cost) * 100]);
+      const all = exp.concat(now).map(p => p[1]);
+      const [y0, y1, yt] = nice(Math.min(...all), Math.max(...all), 5);
+      const xst = span <= 20 ? 5 : span <= 30 ? 10 : 20;
+      const xt = range(Math.ceil(x0 / xst) * xst, x1, xst);
+      plot(svg, {
+        x: [x0, x1], y: [y0, y1], xt, yt, yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(Math.round(v)),
+        xlabel: "Stock price at expiry (front-month expiry for calendars)", ylabel: "P&L per position ($)", zero: 0, vline: 100,
+        series: [{ pts: now, color: "var(--muted)", w: 1.6, dash: "5 5" }, { pts: exp, color: "var(--delta)", w: 2.6, fill: 0, fillOp: 0.08 }]
+      });
+      // max profit / loss on a wide grid
+      const grid = range(1, 300, 0.5).map(S => (value(legs, S, hz, env, false) - cost) * 100);
+      const hiEdge = grid[grid.length - 1] - grid[grid.length - 101];
+      const mx = Math.max(...grid), mn = Math.min(...grid);
+      let vega = 0, theta = 0;
+      legs.forEach(g => { const r = bs(100, g.K, g.d / DAY, env * g.m, g.k); vega += g.q * r.vega * 100; theta += g.q * r.theta * 100; });
+      document.getElementById("f2-r1").textContent = cost >= 0 ? "Debit $" + Math.round(cost * 100) : "Credit $" + Math.round(-cost * 100);
+      document.getElementById("f2-r2").textContent = hiEdge > 40 ? "Unlimited" : money(mx);
+      document.getElementById("f2-r3").textContent = hiEdge < -40 ? "Unlimited" : money(mn);
+      document.getElementById("f2-r4").textContent = (vega >= 0 ? "+" : "−") + Math.abs(vega).toFixed(1) + " / " + (theta >= 0 ? "+" : "−") + Math.abs(theta).toFixed(1);
+      const legTxt = legs.map(g => (g.q > 0 ? "Buy " : "Sell ") + g.K + " " + kname[g.k] + "(" + g.d + " days)").join(", ");
+      out.innerHTML = `<h4>${cell.name}</h4><p class="legs">${legTxt}; example IV ${Math.round(env * 100)}%</p><p><b>Why:</b> ${cell.why}</p><p class="not"><b>When it doesn't fit:</b> ${cell.not}</p>`;
+    }
+    document.querySelectorAll("#fig2 .seg").forEach(seg => {
+      const btns = seg.querySelectorAll("button");
+      btns.forEach(b => b.addEventListener("click", () => {
+        st[seg.dataset.k] = b.dataset.v;
+        btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+        draw();
+      }));
+    });
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 14-3 catalyst timing ----------
+  (function () {
+    const svg = document.getElementById("f3-svg");
+    const gS = document.getElementById("f3-g"), ivS = document.getElementById("f3-iv");
+    const btns = document.querySelectorAll("#fig3 .seg button");
+    let K = 100;
+    const DTES = [30, 60, 90], COL = ["var(--gamma)", "var(--delta)", "var(--theta)"];
+    function ret(dte, a, g, iv) {
+      const c0 = bs(100, K, dte / DAY, iv, "c").price;
+      let v;
+      if (a < dte) v = bs(100 * (1 + g), K, (dte - a) / DAY, iv, "c").price;
+      else if (a === dte) v = Math.max(100 * (1 + g) - K, 0);
+      else v = Math.max(100 - K, 0);
+      return (v / c0 - 1) * 100;
+    }
+    function draw() {
+      const g = +gS.value / 100, iv = +ivS.value / 100;
+      document.getElementById("f3-g-o").textContent = gS.value + "%";
+      document.getElementById("f3-iv-o").textContent = ivS.value + "%";
+      const xs = range(0, 90, 1);
+      const series = DTES.map((d, i) => ({ pts: xs.map(a => [a, ret(d, a, g, iv)]), color: COL[i], w: 2.4 }));
+      const ymax = Math.max(...series.flatMap(s => s.pts.map(p => p[1])));
+      const top = Math.max(50, Math.ceil(ymax / 50) * 50);
+      const step = top > 300 ? 100 : 50;
+      const yt = []; for (let v = -100; v <= top + 1e-9; v += step) yt.push(v);
+      plot(svg, {
+        x: [0, 90], y: [-110, top], xt: range(0, 90, 15), yt, yf: v => sgn(v) + "%",
+        xlabel: "Day the catalyst arrives (closed that day)", ylabel: "Return", zero: 0, series
+      });
+      ["f3-r1", "f3-r2", "f3-r3"].forEach((id, i) => {
+        let be = -1;
+        for (let a = 0; a <= DTES[i]; a++) if (ret(DTES[i], a, g, iv) >= 0) be = a;
+        document.getElementById(id).textContent = be < 0 ? "Loses on any day" : "Day " + be + "";
+      });
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      K = +b.dataset.k;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    gS.addEventListener("input", draw); ivS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- tool 14-A copy template ----------
+  (function () {
+    const btn = document.getElementById("tpl-copy"), pre = document.getElementById("tpl-text"), msg = document.getElementById("tpl-msg");
+    function selectText() {
+      try {
+        const r = document.createRange(); r.selectNodeContents(pre);
+        const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      } catch (e) {}
+      msg.textContent = "All the text is selected. Press Ctrl+C (long-press on a phone) to copy.";
+    }
+    btn.addEventListener("click", () => {
+      const text = pre.textContent;
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => { msg.textContent = "Copied to clipboard."; }, selectText);
+      } else {
+        let ok = false;
+        try {
+          const ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", "");
+          ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select();
+          ok = document.execCommand && document.execCommand("copy"); document.body.removeChild(ta);
+        } catch (e) { ok = false; }
+        if (ok) msg.textContent = "Copied to clipboard."; else selectText();
+      }
+    });
+  })();
+
+  // ---------- tool 14-B EV calculator ----------
+  (function () {
+    const svg = document.getElementById("ev-svg");
+    const ids = ["ev-p", "ev-w", "ev-l", "ev-n"].map(i => document.getElementById(i));
+    function draw() {
+      const p = Math.min(0.99, Math.max(0.01, (+ids[0].value || 50) / 100));
+      const W = Math.max(1, +ids[1].value || 1), Lo = Math.max(1, +ids[2].value || 1);
+      const n = Math.min(400, Math.max(2, Math.round(+ids[3].value || 30)));
+      const ev = p * W - (1 - p) * Lo;
+      const sd = (W + Lo) * Math.sqrt(p * (1 - p));
+      const xs = range(10, 400, 2);
+      const up = xs.map(N => [N, ev + 1.96 * sd / Math.sqrt(N)]);
+      const dn = xs.map(N => [N, ev - 1.96 * sd / Math.sqrt(N)]);
+      const half = 1.96 * sd / Math.sqrt(10);
+      const [y0, y1, yt] = nice(Math.min(ev - half, 0), Math.max(ev + half, 0), 5);
+      const nstar = ev > 0 ? Math.ceil(Math.pow(1.96 * sd / ev, 2)) : null;
+      const dots = [[n, ev, "var(--delta)", 5]];
+      if (nstar && nstar <= 400) dots.push([Math.max(10, nstar), 0, "var(--theta)", 5]);
+      const r = plot(svg, {
+        x: [0, 400], y: [y0, y1], xt: range(0, 400, 50), yt, yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(Math.round(v)),
+        xlabel: "Trades", ylabel: "Expectancy per trade ($)", zero: 0, vline: n,
+        series: [{ pts: up, color: "var(--gamma)", w: 1.8, dash: "6 4" }, { pts: dn, color: "var(--gamma)", w: 1.8, dash: "6 4" }, { pts: [[0, ev], [400, ev]], color: "var(--delta)", w: 2.4 }],
+        dots
+      });
+      // shade band
+      const poly = up.map(q => r.X(q[0]).toFixed(1) + "," + r.Y(Math.min(y1, q[1])).toFixed(1)).concat(dn.slice().reverse().map(q => r.X(q[0]).toFixed(1) + "," + r.Y(Math.max(y0, q[1])).toFixed(1))).join(" ");
+      const pg = el("polygon", { points: poly, style: "fill: var(--tint-gamma); stroke: none" });
+      r.g.insertBefore(pg, r.g.firstChild);
+      const se = sd / Math.sqrt(n);
+      document.getElementById("ev-r1").textContent = money(ev, 1);
+      document.getElementById("ev-r2").textContent = "[" + money(ev - 1.96 * se, 0) + ", " + money(ev + 1.96 * se, 0) + "]";
+      document.getElementById("ev-r3").textContent = ev > 0 ? "About " + nstar + " trades" : "Expectancy not positive";
+      document.getElementById("ev-r4").textContent = (Lo / (W + Lo) * 100).toFixed(1) + "%";
+    }
+    ids.forEach(i => i.addEventListener("input", draw));
+    CK.figure(draw);
+  })();
+
+})();
+</script>
+<script id="lang-js">(function(){document.querySelectorAll(".lang-switch").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("hl-lang",a.getAttribute("data-lang"))}catch(e){}var h=a.getAttribute("href");if(location.hash&&h.indexOf("#")<0)a.setAttribute("href",h+location.hash);});});})();</script>
+</body>
+</html>

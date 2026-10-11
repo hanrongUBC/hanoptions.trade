@@ -1,0 +1,200 @@
+@@ fcada09c3d html
+Chapter 10: Trading events · US Options Course
+@@ 27ed2cfcc6 html
+Trading <span class="g">events</span>
+@@ 2714b866fa html
+On days like earnings, FOMC and CPI, option prices already spell out how big a move the market expects. This chapter teaches you to read that number, compare it with history, and then decide whether to buy, sell, or stay away altogether.
+@@ 4a798dc727 html
+In this chapter
+@@ 97cb31e542 html
+<a href="#open"><span class="n">··</span><span>Opening: the expectation inside a straddle</span></a>
+@@ 29abe9cc2d html
+<a href="#s1"><span class="n">10.1</span><span>The earnings IV cycle</span></a>
+@@ 54135ce1b7 html
+<a href="#s2"><span class="n">10.2</span><span>Implied moves and historical moves</span></a>
+@@ 3b95484235 html
+<a href="#s3"><span class="n">10.3</span><span>Isolating event IV</span></a>
+@@ 7af47396fb html
+<a href="#s4"><span class="n">10.4</span><span>Choosing an earnings structure</span></a>
+@@ a73a90de3c html
+<a href="#s5"><span class="n">10.5</span><span>Macro event days</span></a>
+@@ 7a837d70fa html
+<a href="#s6"><span class="n">10.6</span><span>0DTE: compressed into a few hours</span></a>
+@@ 7e2d0aefeb html
+<a href="#s7"><span class="n">10.7</span><span>SPX and SPY</span></a>
+@@ 90008c13e6 html
+<a href="#s8"><span class="n">10.8</span><span>VIX options and recurring events</span></a>
+@@ 3a60aaf803 html
+<a href="#s9"><span class="n">10.9</span><span>Event calendar and IV dashboard</span></a>
+@@ 12c019ed82 html
+<a href="#cases"><span class="n">Cases</span><span>Three cases</span></a>
+@@ dd7ded685d html
+<a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a>
+@@ 3d616ef787 html
+<a href="#open">Opening: the expectation inside a straddle</a>
+@@ ecb15a7d04 html
+<a href="#s1">10.1 The earnings IV cycle</a>
+@@ 34f177f77e html
+<a href="#s2">10.2 Implied moves and historical moves</a>
+@@ bfa810015b html
+<a href="#s3">10.3 Isolating event IV</a>
+@@ 2cda7f1eb5 html
+<a href="#s4">10.4 Choosing an earnings structure</a>
+@@ be8f55efb3 html
+<a href="#s5">10.5 Macro event days</a>
+@@ ea98c91a65 html
+<a href="#s6">10.6 0DTE: compressed into a few hours</a>
+@@ 9908c731ab html
+<a href="#s7">10.7 SPX and SPY</a>
+@@ a7a6cd4945 html
+<a href="#s8">10.8 VIX options and recurring events</a>
+@@ 19306eb8e4 html
+<a href="#s9">10.9 Event calendar and IV dashboard</a>
+@@ f3a78e0502 html
+<a href="#cases">Three cases</a>
+@@ 7ec24afd50 html
+<a href="#tools">Checklist and self-test</a>
+@@ 80161dff8a html
+After this chapter you can
+@@ c0b8cabd3d html
+Read the implied earnings move from the price of an ATM straddle and compare it with the actual moves of the last 8 reports
+@@ 1f9aea1b5d html
+Use the IVs of a nearer and a farther expiration to isolate the move from the event itself and the “event-day IV”
+@@ 219b72c320 html
+Choose an earnings structure by the “implied ÷ historical” ratio and maximum loss, and explain the differences between SPX and SPY
+@@ fc4f43bd05 html
+Prerequisites
+@@ 5c1b9348ba html
+Chapter 5: Vega and IV crush
+@@ 49b7ce57a5 html
+Chapter 6: the term structure and IV Rank
+@@ 7f1112ba65 html
+Chapter 9: straddles, iron condors and calendar spreads
+@@ fe31444484 html
+Conventions
+@@ dd8044d70d html
+Black-Scholes, 4% rate, no dividends
+@@ 2a800d91cb html
+Calendar days, 365-day year; 0DTE uses trading hours (Section 10.6)
+@@ da82200888 html
+One contract = 100 shares; all market data are hypothetical
+@@ 6e306bcd35 html
+<span class="sn">Opening</span>A straddle spells out the market’s expectation
+@@ cab8532087 html
+XYZ, a $200 stock, reports earnings after the close tonight. The ATM 200 straddle expiring this Friday (2 days left) is quoted at $11.81, and IV for this expiration is 100%. You think this report will be a big one, so you buy 1 straddle.
+@@ 0eb8d5b99b html
+The next day the stock jumps 5% and closes at $210. Neither the direction nor the size is small, yet the straddle is worth only <span class="num">$10.02</span>, a loss of <span class="num">$178</span> per straddle. If the stock hadn’t moved at all, you would have lost <span class="num">$930</span>.
+@@ fc885ffe22 html
+Table 10-0 P&amp;L on 1 long 200 straddle at the next day’s close (1 day left, IV back down to 30%)
+@@ c2780ee2e6 html
+Stock move
+@@ 32cf37f9ae html
+Stock price
+@@ 4153f3b2e0 html
+Straddle value
+@@ 41f359ef4b html
+P&amp;L per straddle ($)
+@@ b5c0f656d7 html
+The $11.81 you paid is the price the market set on this earnings move: <span class="num">11.81 ÷ 200 = 5.9%</span>. If the actual move is smaller than about 5.9%, the buyer loses and the seller wins; if it is larger, the reverse. Event trading really has only one question to answer: compared with how far this stock will actually move, is the move the market implies expensive or cheap? This chapter first teaches you to read the implied move, then to strip it down cleanly, and only then gets to structures, macro events and 0DTE.
+@@ fd46674b5e html
+<span class="sn">10.1</span>The earnings IV cycle
+@@ ecf6f2b992 html
+IV climbs all the way into earnings and collapses the moment the report is out. Most of this cycle comes from arithmetic; market sentiment is just a layer on top.
+@@ dde3a68c64 html
+Split a stock’s variance into two pieces: the <strong>base variance</strong> it has every day, plus one extra <strong>jump variance</strong> on the night of earnings. Any option that expires after earnings has to pay for that jump.
+@@ 63392aa18a html
+σ<sub>b</sub> is the base volatility; <span class="v">v</span><sub>e</sub> is the variance of the jump (for example, if the market expects a 1-standard-deviation jump of 7%, <span class="v">v</span><sub>e</sub> = 0.07² = 0.0049); <span class="v">T</span> is the time remaining (in years).
+@@ ae30d81585 html
+The key is the <span class="v">v</span><sub>e</sub> / <span class="v">T</span> term. The size of the jump stays the same, but the closer you get to expiration, the smaller <span class="v">T</span> becomes; the same jump is spread over fewer days, so it translates into a higher annualized IV. That is why front-month IV climbs on its own even if nobody changes their view of the earnings. Once the report is out, the jump has happened, <span class="v">v</span><sub>e</sub> drops out of the formula, and IV falls straight back to σ<sub>b</sub>.
+@@ 3e37d5f321 html
+Some numbers: base volatility is 30%, the market expects a 7% earnings jump (1 standard deviation), and the report comes out after the close on day 21. The front-month option expires on day 25, the back month on day 53.
+@@ 623f2162a7 html
+Table 10-1 One earnings report, IV paths for two expirations (model calculation)
+@@ f11f2be60f html
+Point in time
+@@ 5aea4d21b3 html
+Days left in front month
+@@ efdd0a9f79 html
+Front-month IV
+@@ 37cf21d7b8 html
+Back-month IV
+@@ 5bee37ba66 html
+Today (day 0)
+@@ 5b6b49bfb7 html
+Day 14
+@@ 58907dee6f html
+Day 20
+@@ 66dc9a46bd html
+Day 21 close, before the report
+@@ 8cc709e025 html
+After the report
+@@ 394df47b4f html
+Base volatility <input id="f1-base" type="range" min="15" max="60" value="30"> <output id="f1-base-o">30%</output>
+@@ c41f2f5cc3 html
+Expected jump (1σ) <input id="f1-ev" type="range" min="2" max="14" step="0.5" value="7"> <output id="f1-ev-o">7%</output>
+@@ bc60017304 html
+Drag the expected jump above 12%: front-month IV shoots past 100% before the report, while the back month only rises to around 50%, because in the back month the same jump is spread over 32 days. Raise the base volatility and both lines shift up together, but the post-report “dive” gets smaller, because the jump makes up a smaller share of total variance.
+@@ 6abc7a5d36 html
+Three ways to read it:
+@@ ecc0080fdc html
+<strong>The front month rises a lot, the back month a little.</strong> An inversion with front-month IV above the back month (the term structure from Chapter 6) is in itself evidence that the market is pricing an event.
+@@ 65fac7bae7 html
+<strong>After the report, the front month falls hardest.</strong> In the table, the front month drops from 73.3% to 30%, a fall of 43 points; the back month drops only 8 points. A calendar spread that sells the front month and buys the back month earns exactly this difference.
+@@ 6779f829be html
+<strong>The real world adds another layer of demand.</strong> Speculative buying pushes IV higher than the model, and during earnings season IV often starts climbing weeks ahead. The model tells you “where IV should be if the expected jump stays the same”; only the part above that is sentiment.
+@@ ef93df2947 html
+The earnings date isn’t confirmed yet: options may be betting on the wrong expiration, and the IV cycle shows up in the wrong place
+@@ 03a1bec525 html
+Two things fall in the same expiration (earnings plus an investor day, or a regulatory ruling): there is more than one jump, and the methods that follow will overstate the “earnings” part
+@@ b85f3743e2 html
+The company preannounces results: the jump happens early, and IV falls back early too
+@@ 1e0a0e270f html
+<span class="sn">10.2</span>Implied moves and historical moves
+@@ 2878d3f040 html
+The price of an ATM straddle is roughly the “average absolute move” the market expects, and a 1-standard-deviation move is about 1.25 times that.
+@@ d0c1e15b9c html
+The derivation takes one line. ATM call and put prices are each about 0.4 × <span class="v">S</span>σ√<span class="v">T</span> (the rule of thumb from Chapter 3), so the two together are about 0.8 × <span class="v">S</span>σ√<span class="v">T</span>. And the mean absolute value of a normal distribution is exactly √(2/π) ≈ 0.798 standard deviations. The two 0.8s are the same number, so:
+@@ f0a95d895e html
+XYZ from the opening: 0.798 × 200 × 1.00 × √(2/365) = $11.81, which matches the straddle quote. The implied average move is 5.9%, and 1σ is about 7.4%.
+@@ 36cc738d72 html
+You can also read off a probability that often gets overlooked: under the normal assumption, the chance that the actual move exceeds the straddle price is <span class="num">2 × (1 − N(0.798)) = 42.5%</span>. A straddle buyer makes money at expiry less than half the time, but wins big when winning; the seller is the exact opposite.
+@@ b436774eec html
+What to compare it with
+@@ bf74d7a9c8 html
+For the historical move, use the percentage change from “the last close before earnings” to “the first close after earnings,” because options are also valued at the close. Take the last 8 reports and look at two numbers: the mean and the median of the absolute moves. Below is hypothetical data for XYZ over the past 8 quarters.
+@@ b393f3ccb9 html
+Table 10-2 XYZ’s close-to-close moves on its last 8 earnings reports (hypothetical data)
+@@ 1620d4ec22 html
+Quarter
+@@ d4344e9f0b html
+Move
+@@ e43c42cde0 html
+Above 5.9%?
+@@ 887832c996 html
+Yes
+@@ 86491d762c html
+Mean absolute move <span class="num">4.28%</span>, median <span class="num">3.6%</span>, and only 2 of the 8 moves exceeded 5.9%. Implied ÷ historical = <span class="num">5.90 ÷ 4.28 = 1.38</span>: the market’s price is nearly 40% more expensive than the average of the past.
+@@ 16db50c939 html
+Stock price <input id="f2-s" type="number" value="200" step="1" min="1">
+@@ 1d756d6eee html
+ATM straddle price <input id="f2-st" type="number" value="11.81" step="0.1" min="0.01">
+@@ ac9f57bc6a html
+The shaded band is where the seller wins: if a bar is below the solid horizontal line, a short straddle makes money at expiry. Change the straddle price to 8.5 and the implied move falls to about 4.3%, the ratio gets close to 1, 3 of the 8 moves exceed it, and the seller’s average profit nearly disappears. Change it to 14 and the ratio rises above 1.6, but then you have to ask: does the market know something that isn’t in the historical data?
+@@ 6e58970149 html
+Where the ratio thresholds come from
+@@ 7371c99a0f html
+A common rule of thumb: consider selling only when implied ÷ historical is above 1.2, consider buying only when it is below 0.9, and do nothing in between. The thresholds come from sampling error. The standard deviation of the 8 absolute moves is <span class="num">2.40</span> percentage points, so the standard error of the mean is <span class="num">2.40 ÷ √8 = 0.85</span>. In other words, the “historical mean of 4.28%” could itself be anywhere from 3.4% to 5.1%, which puts the ratio anywhere from 1.15 to 1.72. When the ratio is only 1.1, the “expensive” you see may well be just noise.
+@@ aa56dabb8e html
+The thresholds don’t apply when the company has just been through a major change (a merger, a new CEO, a turn in the industry cycle), so the last 8 reports no longer represent the future; when one extreme value in the history dominates the mean; or when the options are illiquid and the straddle’s bid–ask spread alone is more than a tenth of its price.
+@@ 6ff5138b5e html
+<span class="sn">10.3</span>Isolating event IV
+@@ 2c4bc083cd html
+The IVs of two expirations are enough to solve for two things: the base volatility of ordinary days, and the size of the jump on earnings night.
+@@ a8c7af86e4 html
+A straddle’s price mixes in the time value of ordinary days. With 2 days left in the front month, that is not a big problem; with 10 days left, a lot more gets mixed in. The clean approach is to take two expirations that both include earnings and solve the equations from Section 10.1. Total variance <span class="v">w</span> = σ²<span class="v">T</span> is a straight line in <span class="v">T</span>: the slope is the base variance and the intercept is the jump variance. Two points determine a line.
+@@ 31ff988c12 html
+Subscript 1 is the nearer expiration and 2 the farther one; <span class="v">T</span> is in years. “Event-day IV” is the volatility of that one day taken on its own and annualized, so you can compare it with ordinary days.
+@@ 800d8d2497 html
+A worked example
+@@ 0e463e8cc2 html
+XYZ at Wednesday’s close: the Friday expiration (<span class="v">T</span><sub>1</sub> = 2 days) has IV of 100%, and the next Friday’s expiration (<span class="v">T</span><sub>2</sub> = 9 days) has IV of 54%.

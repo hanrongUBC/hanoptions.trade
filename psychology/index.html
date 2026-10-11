@@ -212,9 +212,18 @@ footer.end p { max-width: none; }
 @media (max-width: 900px) { .sitebar-inner { padding-inline: 16px; } }
 @media (max-width: 480px) { .sitebar-inner { gap: 10px; } .sitebar-links a { padding: 3px 7px; } }
 </style>
+<link rel="alternate" hreflang="zh-CN" href="https://hanoptions.trade/psychology/"><link rel="alternate" hreflang="en" href="https://hanoptions.trade/en/psychology/">
+<style id="lang-css">
+.lang-switch { flex: none; display: inline-flex; align-items: center; gap: 6px; padding: 3px 11px; border: 1px solid var(--rule); border-radius: 999px;
+  background: var(--plate); color: var(--ink); text-decoration: none; font-size: 13px; line-height: 1.5; white-space: nowrap; font-family: var(--font-body); letter-spacing: 0; }
+.lang-switch:hover { border-color: var(--ink); }
+.lang-switch svg { width: 13px; height: 13px; flex: none; }
+
+.sitebar-links { flex: 0 1 auto; min-width: 0; margin-left: auto; justify-content: flex-start; }
+</style>
 </head>
 <body>
-<nav class="sitebar" aria-label="站点导航"><div class="sitebar-inner"><a class="sitebar-home" href="/">hanoptions.trade</a><div class="sitebar-links"><a href="/options/">美股期权课</a><a href="/psychology/" aria-current="page">交易心理学</a><a href="/macro/">宏观交易框架</a><a href="/policy/">政策叙事投资</a><a href="/rebound/">超卖反弹清单</a></div></div></nav>
+<nav class="sitebar" aria-label="站点导航"><div class="sitebar-inner"><a class="sitebar-home" href="/">hanoptions.trade</a><div class="sitebar-links"><a href="/options/">美股期权课</a><a href="/psychology/" aria-current="page">交易心理学</a><a href="/macro/">宏观交易框架</a><a href="/policy/">政策叙事投资</a><a href="/rebound/">超卖反弹清单</a></div><a class="lang-switch" href="/en/psychology/" hreflang="en" lang="en" data-lang="en"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>English</a></div></nav>
 <header class="mast">
   <div class="mast-inner">
     <div class="mast-title">
@@ -1125,5 +1134,6 @@ footer.end p { max-width: none; }
   show(hm ? +hm[1] : (saved !== null ? +saved : 0), false);
 })();
 </script>
+<script id="lang-js">(function(){document.querySelectorAll(".lang-switch").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("hl-lang",a.getAttribute("data-lang"))}catch(e){}var h=a.getAttribute("href");if(location.hash&&h.indexOf("#")<0)a.setAttribute("href",h+location.hash);});});})();</script>
 </body>
 </html>

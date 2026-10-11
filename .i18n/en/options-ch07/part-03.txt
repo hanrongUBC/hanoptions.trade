@@ -1,0 +1,236 @@
+@@ 412fbb0263 html
+<span class="sn">7.7</span>When options beat stock
+@@ 345ea98267 html
+Options work better than stock in four situations: you want convexity, you want a capped loss, you are betting ahead of an event, or capital efficiency matters to you. The rest of the time, stock is usually less trouble.
+@@ 6f0c376e54 html
+1. Convexity: winning at the extremes
+@@ cfeaf8eff7 html
+Compare 1 90-day ATM call ($641, Delta 0.556) with 56 shares, which have the same Delta. At expiry:
+@@ d3a0ed6345 html
+Table 7-11 Two positions with the same Delta, P&amp;L at expiry ($)
+@@ ae4224123c html
+Stock at expiry
+@@ 9caa804618 html
+56 shares
+@@ 1cdcebf6ee html
+1 ATM call
+@@ 1c11d6ca29 html
+The crossover points are 88.55 and 114.57: if the stock ends between them, the shares do better; outside them, the option does better. So options suit a view of “either it rallies hard or I admit I'm wrong,” not a view of “it will drift up a little.”
+@@ 54fb2c3d71 html
+2. Capped loss: a stop order can't help you in a gap
+@@ 125470390b html
+The stock gaps down 30% overnight. 100 shares lose $3,000; a stop order fills at the opening price and can't protect you from the gap. On the same day, the 90-day ATM call falls from 6.41 to 0.04, a loss of <span class="num">$637</span>, and it can never lose more than $641. Even if IV jumps to 45% after the gap, it is worth only 0.47.
+@@ 5d8ea7ade7 html
+3. Before an event: only if you expect a bigger move than the implied one
+@@ 96c43d66b8 html
+Take the earnings example from Chapter 6: a 7-day ATM call is worth 4.45 at IV 80%. After earnings IV drops back to 35%; with the stock +10% the call makes <span class="num">127%</span>, at +5% it makes 21%, at +3% it loses 16%, and on a drop it can lose up to 100%. The stock simply makes 10% on a 10% rise and loses 15% on a 15% drop. Using options to express an event view only makes sense if you have reason to believe this move will be clearly bigger than the roughly 8.8% the market implies, and you accept losing up to the entire premium.
+@@ dc628670f0 html
+4. Capital efficiency
+@@ 0b7a04ee40 html
+LEAPS give you about 80% of the exposure for 22% of the capital (Section 7.6); the rest of the money can earn interest or be spread across other positions. For a student account without much money, that means you can express a view on a high-priced stock without margin leverage.
+@@ faaebaa6ab html
+You expect a slow, small rise: time decay eats most of the gain.
+@@ 3da4b668a1 html
+You plan to hold for more than two years: the option has to be rolled again and again, paying the bid–ask spread and time value each time.
+@@ 632546ef9e html
+IV is high relative to its own history: you are prepaying for too much movement.
+@@ 0f33e80931 html
+High-dividend stocks: option holders don't receive the dividends.
+@@ 9533b897a4 html
+Illiquid options: if the bid–ask spread is more than 5% of the premium, every round trip costs you a meaningful amount.
+@@ f904f00d26 html
+<span class="sn">7.8</span>Five common buyer mistakes
+@@ 03d9387739 html
+Buyers rarely lose money because they got the direction completely wrong. More often it is one of the five mistakes below, all of which can be avoided in advance.
+@@ 8202e74bed html
+Mistake 1: buying too far out of the money
+@@ 65aa74f3c3 html
+A 30-day call with a Delta of 0.10 (strike 112) costs only <span class="num">$43</span> and looks cheap. Its breakeven is 112.43, a 12.4% rise; at IV 30% one standard deviation over a month is only 8.6%, so you need a move of 1.45 standard deviations. The probability of finishing in the money is <span class="num">9.3%</span>, and of finishing above breakeven <span class="num">8.6%</span>. It is cheap in dollars but not at all cheap in probability: about nine times out of ten you lose everything.
+@@ 097aa29e59 html
+Mistake 2: buying too short
+@@ 217a605de5 html
+Table 7-12 ATM calls: the shorter the term, the bigger the share lost each day
+@@ 112c3ac48e html
+7 days
+@@ 2ad0b147ef html
+14 days
+@@ 759b57b069 html
+A 7-day option loses 7% of its value per day, and because decay runs on calendar days, a weekend takes three days' worth. Short-dated options are cheap because they leave you the least time to be wrong.
+@@ 5aa1f2589d html
+Mistake 3: buying when IV is high
+@@ ab37bec9a0 html
+Table 7-7 already showed this: on the same 5% rise, buying at high IV made only 13%, while buying at low IV made 100%. IV is usually high before earnings, after a big drop and while a hot theme is at its peak.
+@@ 7cea7195bb html
+Mistake 4: positions that are too big
+@@ 084cc35a71 html
+Buyers usually win less than half the time. With a 35% win rate, the chance of 5 losses in a row is 0.65<sup>5</sup> = <span class="num">11.6%</span>; the chance of at least one 5-trade losing streak in 50 trades is as high as <span class="num">92.4%</span>, and the chance of at least one 8-trade losing streak in 100 trades is <span class="num">69.0%</span>. Losing streaks will come. The question is whether your account can survive them.
+@@ 8aea37122b html
+Table 7-13 Account left after a losing streak, risking a fixed share of the account per trade and losing the whole premium each time
+@@ decb668284 html
+Size per trade
+@@ a79389a65b html
+Left after 5 losses
+@@ 964326c4be html
+Left after 10 losses
+@@ dbc53d9617 html
+Risk 20% per trade and five losses in a row leave you with a third of the account; you would have to triple it just to get back to even. Risk 2% per trade and after 10 losses in a row you still have more than 80%.
+@@ 9231076967 html
+Mistake 5: not taking profits
+@@ 8529b197e3 html
+You buy a 60-day ATM call for 5.17. On day 20 the stock is up to 108 and the option is worth <span class="num">9.63</span>, an 86% gain. You decide to “wait a bit longer.” On day 45 the stock is back at 101 and the option is worth just <span class="num">3.06</span>, a 41% loss; hold to expiry with the stock at 101 and it is worth only 1.00, a loss of 81%. Had you sold half on day 20 and the other half on day 45, you would still be up <span class="num">23%</span> overall. Open profits on an option “go bad”: time value drains away every day, and Delta shrinks as the stock pulls back.
+@@ 02d53f5d9a html
+<span class="sn">7.9</span>Management rules
+@@ bd152de6d5 html
+Before you place the order, write down three exit rules: how much profit gets you out, how much time gets you out, and what level in the underlying gets you out. And size the position on the assumption that “this money could all go to zero.”
+@@ 380bcdc56b html
+Rule 1: take profits at a target
+@@ 446ee620fa html
+Write down two targets in advance and act on whichever comes first: a return target for the option (say +50% to +100%) or a price target for the underlying (say the stock reaching 110). When one is hit, take at least some profit. If the option has doubled, sell half, and the rest is effectively free. You can also turn the long call into a spread to lock in part of the profit while keeping some exposure (Case 3).
+@@ 838eb80096 html
+Rule 2: time stop
+@@ 3aa08d60b6 html
+Table 7-14 Value of a 90-day ATM call if the stock never moves
+@@ 8e53b7da1a html
+Days left
+@@ a0fd5f7563 html
+Option value
+@@ f98edae146 html
+% of entry price
+@@ cbac77f22b html
+The first 30 days cost only 19.4%; the last 30 days take all of the remaining 56%. The rule: when the time left falls to a third of the original term (30 days for this option) and your view hasn't started to play out, close or roll. Don't drag the position into the stretch where decay is fastest.
+@@ adf6ea296a html
+Rule 3: set the stop on the underlying
+@@ c556964370 html
+Option prices are distorted by IV changes, the bid–ask spread and time decay, so a stop based on the option's percentage loss is easily knocked out by noise. A 30-day ATM call with the stock unchanged is down 30% after 15 days; if your stop is −30%, the passage of time alone will trigger it. A sounder approach is to set the stop on the underlying's price: get out at the level where your view is proven wrong (for example, a break below support). A stop on the option's percentage loss can serve as a second line of defense.
+@@ fe5b3a26bc html
+Rule 4: be ready for zero
+@@ dd824db13c html
+A buyer's maximum loss is the entire premium, and that will happen often. Keep the premium on each trade to 1%–3% of the account, and count multiple trades in the same direction as one. If losing it all would keep you up at night, the position is too big. Also, don't “average down” on a losing option: it is losing time as well as money, and averaging down only makes the next zero bigger.
+@@ 68526eeefa html
+Turn the rules into a trading plan
+@@ ae22e207f3 html
+Take the 90-day 94 call from Case 1, the contract that fits the view best, in a $50,000 account:
+@@ 4633a06335 html
+View
+@@ b797167349 html
+Up to 110 within three months
+@@ 7ab3d5cef4 html
+Contract and size
+@@ 2a2f13fced html
+90-day 94 call, 9.84, 1 contract, $984, 2.0% of the account
+@@ 83ca92ce7a html
+Profit target
+@@ d14d992fb6 html
+Sell half when the stock hits 110 or the option is up 70%. If the stock reaches 110 by day 45, the option is about 16.75, exactly +70%
+@@ 2104a375d7 html
+Time stop
+@@ 0b4bc5c8b1 html
+Close if the stock still isn't above 104 on day 60 (30 days left). If the stock is at 100 then, the option is about 7.39, a 25% loss
+@@ e00cbb4dd5 html
+Underlying stop
+@@ b16c845ad1 html
+Close if the stock breaks below 95; the view is wrong. If it falls to 95 by day 30, the option is about 5.42, a 45% loss
+@@ 349652798f html
+Worst case
+@@ 7f7da7f3a2 html
+The $984 goes to zero and the account is down 2%
+@@ a9ded1b314 html
+Every number in this plan was worked out before the order went in. While you hold the position, you just follow it; you don't have to make decisions on the fly when the market is at its most stressful.
+@@ 99cbafd789 html
+Traders write their profit and stop rules in a few common ways. For profits: sell half when the option doubles and treat the rest as “house money”; once you have made enough, sell 80% and keep 20% as a lottery ticket; or, when a long option is in profit, sell a further OTM option of the same type to turn it into a debit spread and lock part of the profit in your pocket. For stops: cut an option trade at around −30%, because trades left to run past −70% often turn out, in hindsight, to be where the big losses came from; around earnings, switch to tiered stops on the underlying's price, because the IV crush temporarily distorts option prices.
+@@ a9dd9e4635 html
+<span class="sn">Cases</span>Three cases
+@@ 090511b46a html
+One view, “up 10% in three months,” expressed six ways
+@@ ec9ef36d10 html
+Stock at 100, IV constant at 30%. Four outcomes: A, fast: the stock reaches 110 on day 30 and you close that day; B, on schedule: a steady rise that reaches 110 only on day 90; C, half right: the stock is at 104 on day 90; D, wrong: the stock is down to 95 on day 90. Options are valued on day 90; the 30-day option is valued at its own expiration.
+@@ 50b08e284b html
+Table 7-15 Returns of the six expressions
+@@ 86cb78878a html
+Expression
+@@ 502a7ceb55 html
+A fast
+@@ 388bfbd628 html
+B on time
+@@ 7899eba590 html
+C half
+@@ 18f4983532 html
+D wrong
+@@ 6d200e1eb8 html
+30-day Δ0.50
+@@ 42d4a9e651 html
+90-day Δ0.70
+@@ fbd6c3b437 html
+90-day Δ0.50
+@@ 0c4bb27b92 html
+90-day Δ0.30
+@@ c3e3c99d70 html
+180-day Δ0.50
+@@ e2b1400035 html
+180-day Δ0.30
+@@ 77cf282d46 html
+<strong>The 30-day option is a bet on “fast”</strong>: if the move is fast it makes 189%; otherwise it loses almost everything. What it expresses is “up 10% within a month,” which is not your view.
+@@ 26e1ebec20 html
+<strong>The 90-day Δ0.30 is a bet on “more than 10%”</strong>: if your view turns out exactly right, it goes to zero.
+@@ a56df5e200 html
+<strong>The 90-day Δ0.70 and the 180-day Δ0.50 fit this view best</strong>: none of the four outcomes is a disaster, and in C (half right) one roughly breaks even and the other takes a small loss.
+@@ 57f7206ebc html
+In outcome D, the 180-day option loses only 64%, because it still has 90 days left and keeps some residual value. Extra time also cuts your loss when you are wrong.
+@@ 85dc90c761 html
+Lesson: first write your view as “how much, how long,” then choose a contract that expresses it. Expressing more than your view (faster, bigger) means paying for an opinion you don't hold.
+@@ a4c50faa45 html
+Debit spread vs. long call in seven scenarios
+@@ 861e2cffc5 html
+90 days; the long 100 call costs $641 and the 100/110 call spread $368. The table shows P&amp;L per contract:
+@@ 55b4244d06 html
+Table 7-16 P&amp;L of the two structures across scenarios
+@@ f5d86acdac html
+Scenario
+@@ 0de97b8b81 html
+Better
+@@ 79f322eeb3 html
+Rallies to 115 by day 30
+@@ db997f5584 html
+Long call
+@@ c0d84fe0fc html
+Up to 120 at expiry
+@@ 676aff5450 html
+At 110 on day 45, IV down 5
+@@ 0332e6c2de html
+Spread (by return)
+@@ 2dc2edbb7d html
+Exactly 110 at expiry
+@@ ac75540bb0 html
+105 at expiry
+@@ fc13f7b27f html
+Flat on day 45, IV down 5
+@@ 3ee80294e6 html
+Down to 95 on day 45
+@@ 4bb38d0eb2 html
+The long call wins only in the “fast and big” scenarios. Whenever the rise is moderate or slow, or IV falls, the spread does better. The 105-at-expiry row says it best: right direction, ordinary size, and the long call loses 22% while the spread makes 36%.
+@@ c60e2899b3 html
+Lesson: if your view has a clear target price, a spread is almost always the better expression. Only pay the extra $273 for the long call when you think there is a lot of room above the target and IV isn't high.
+@@ 345070d265 html
+After a profit: four ways to handle it
+@@ c1bf6c913a html
+You buy a 60-day ATM 100 call for $517. On day 20 the stock is at 108 and the option is worth $963, an open profit of $447. Four ways to handle it:
+@@ 7f500fce6c html
+A: keep holding the long call.
+@@ 84300a097b html
+B: close the whole position and lock in +$447.
+@@ c4739c705a html
+C: sell half and hold the other half.
+@@ e7ec0e237d html
+D: sell a 105 call expiring in 40 days for $616, turning the position into a 100/105 call spread. The cash received already exceeds the original $517 cost, so the worst case is a <span class="num">$99</span> profit and the best is <span class="num">$599</span>.
+@@ 430e5e8111 html
+Table 7-17 Total P&amp;L under different paths afterward ($)
+@@ dcecedf4a3 html
+What happens next
+@@ 192124b5e6 html
+A hold
+@@ 0c09b1ddb9 html
+B close all
+@@ d4ca9e5c35 html
+C sell half
+@@ 921c1a5e63 html
+D to spread

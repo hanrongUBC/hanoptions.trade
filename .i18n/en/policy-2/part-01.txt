@@ -1,0 +1,206 @@
+@@ 9ffb0b2fde html
+Four risks in the AI theme
+@@ 4774dcb928 html
+Risk
+@@ 04d62a072f html
+What it looks like
+@@ 82b14bc830 html
+What to watch
+@@ 0680265038 html
+Capex digestion
+@@ 7cb7b20e5d html
+Big tech slows its spending, and orders shrink all the way down the chain
+@@ b40fa1a1e2 html
+Changes in quarterly capex guidance
+@@ fdca5d5dd7 html
+Doubts about returns
+@@ 4686cee495 html
+Investors start demanding to see the revenue and profit that AI brings in
+@@ 7e902021cc html
+Cloud growth rates, stock reactions after earnings reports
+@@ 9721c030ae html
+Circular financing
+@@ 85e2638931 html
+Suppliers invest in customers, customers then buy the suppliers' products, and people start to question whether the demand is real
+@@ 0c0a37e1ef html
+Accounts receivable, related-party transactions, credit default swap prices
+@@ 1630981a7b html
+Crowding
+@@ 88d790ef8f html
+Everyone owns the same stocks, and index concentration is extremely high
+@@ f53b857419 html
+Index weights, demand for calls, ETF fund flows
+@@ 9d8fc13b9b html
+Advice for learners: start with a broad semiconductor or tech ETF to get to know the theme, then study individual stocks. If you must pick stocks, favor the “lower layers”: links with good order visibility whose valuations haven't been bid up to the sky.
+@@ 56cdc42956 html
+Household themes: uneven inflation, agriculture and healthcare
+@@ a21788754a html
+People have to eat and they have to see a doctor. When money is short they count every penny; when they have more, they buy experiences. These needs don't change with the political cycle, but inflation changes what they look like for different groups of people.
+@@ 4dd1dba40e html
+How inflation splits consumer spending
+@@ 75b8c6a6f6 html
+Inflation hits everyone differently. Lower-income households spend a bigger share of their income on food, rent and gasoline, so they are the most sensitive to rising prices. Higher-income households have a cushion of rising asset values, and their spending power is less affected. By some estimates, the top 10% of households by income account for nearly half of all consumer spending. Economists call this split “K-shaped” consumption.
+@@ 1e81d87f76 html
+Group
+@@ 8bf4cf027c html
+Typical behavior
+@@ 06a44dae48 html
+Business models that benefit
+@@ 880580c275 html
+Households under income pressure
+@@ ea75de54d1 html
+Trading down: shopping at discount stores, buying store brands, swapping beef for cheaper protein
+@@ 93e169363e html
+Discount retail, warehouse clubs, lower-priced meat processors
+@@ 946957cb92 html
+Middle-income households
+@@ d68ae57146 html
+Budget carefully and put off big-ticket purchases
+@@ f07fc32041 html
+Value brands, secondhand and repair markets
+@@ d4474adee7 html
+High-income households
+@@ 54f0703fae html
+Keep spending on travel, dining and experiences
+@@ 4d30280071 html
+Luxury travel, premium airline cabins, premium credit card networks
+@@ dc71d61a67 html
+Here is a classic trap: <strong>a good company is not the same as a good price.</strong> Warehouse clubs are widely seen as a great business, and the trading-down narrative holds up, but if the stock already trades at a price-to-earnings ratio (P/E) in the dozens, the growth the narrative brings has long been priced in. Within the same narrative, a cheaper company the market has overlooked is often the better vehicle.
+@@ 8742676f96 html
+Payment networks are another clever way to express the theme: inflation pushes up the nominal amount people spend, so payment companies that charge a fee on transaction value see their revenue grow along with inflation, without bearing the pressure of rising product costs.
+@@ cceaf8cd44 html
+Agriculture: essential demand inside a cycle
+@@ f1b10354ec html
+Demand for agriculture is very stable, but prices are cyclical. Fertilizer, seeds, farm machinery and grain trading each have their own cycle:
+@@ b2e95406e9 html
+<strong>Fertilizer</strong>: prices swing widely with natural gas (the feedstock for nitrogen fertilizer), geopolitical conflict and grain prices. Fertilizer stocks look cheapest at the price peak, because that is when earnings are highest. This is the classic trap of cyclical stocks.
+@@ a4249261ee html
+<strong>Grain trading and processing</strong>: these businesses earn the spread on transport, storage and processing, so earnings are relatively stable, and they often pay a dividend.
+@@ 54fe0339bb html
+<strong>Broad agriculture ETFs</strong> (such as MOO) cover several links at once.
+@@ aec8d56225 html
+Agriculture is a “wait for the price” theme: buy in stages near the bottom of the cycle, when dividend yields are higher, and hold patiently into the next cycle, instead of chasing in on headlines about soaring grain prices.
+@@ 0442f7b1b0 html
+Healthcare and longevity: people are trying to buy more time
+@@ 881dfd1b93 html
+Population aging is one of the few trends you can predict decades in advance. More older people means steadily rising demand for medical devices, surgery, drugs and care services. There are several ways to express this theme, with very different levels of risk:
+@@ 20580158a2 html
+Characteristics
+@@ 42375cb34d html
+Established medical device companies
+@@ 0b7f8cb2db html
+Surgery volumes grow as the population ages; stable revenue
+@@ ebc386884e html
+Valuations are often not cheap
+@@ ab48d15ec7 html
+Life science tools companies
+@@ 7cca98a794 html
+Sell “picks and shovels” to the whole drug R&amp;D industry
+@@ 945d5f14cf html
+Exposed to R&amp;D budgets and the funding environment
+@@ 54d846263e html
+Small companies in a turnaround
+@@ 01038051dd html
+New management, new products; could be sharply rerated
+@@ 8fc4cbe4db html
+High chance of failing to execute
+@@ 3744a9ae3e html
+Cutting-edge anti-aging biotech
+@@ f45e2cf385 html
+The most exciting story
+@@ 0cfd3ca7a6 html
+Most have no revenue yet; very high failure rate
+@@ 74428302af html
+Healthcare also has a big new variable from recent years: GLP-1 weight-loss drugs. They affect not only drugmakers but possibly the long-term demand for food, beverages, medical devices and even airlines (fuel savings from lower average passenger weight). This is a good exercise in using second-order thinking to find winners and losers.
+@@ e2e15f62ea html
+What household themes have in common
+@@ b6fea65483 html
+Demand for these themes is very certain, so their biggest risk is usually not demand but <strong>valuation and policy</strong>: drug price negotiations, health insurance reimbursement rules, food safety and subsidy policy. They work as the stable part of a portfolio, built up slowly with shares. They are not suited to betting on short-term swings with short-term options.
+@@ 9c9666cb1b html
+Elections and policy cycles
+@@ a8a9c0a172 html
+Elections don't change the fact that people need to eat and use electricity, but they do change who pays, who gets subsidies and who gets taxed. You study policy cycles to judge how far a theme can run, not to bet on who will win.
+@@ c8f9a91adf html
+Incentives in an election year
+@@ bc39ddb7bd html
+Those in power generally want a stable economy and a rising stock market before an election. In the US, the president's party has lost House seats in the midterm elections again and again throughout history, so in the year before a midterm, policymakers tend to have less tolerance for a big market drop.
+@@ f9860b32c6 html
+This creates what the market calls the “policy put”: when a market drop is caused by policy itself, policymakers have an incentive to adjust the policy to stop the slide. The tariff pause in April 2025 is one example; the violent swings in the Treasury market at the time are widely seen as one of the reasons for the pause.
+@@ 49aeb77ba8 html
+It only works when the drop is caused by policy. If the drop comes from inflation, earnings or credit problems, policymakers can do little, and a central bank facing high inflation has a hard time stepping in.
+@@ e742a6b707 html
+You can't know in advance where or when the put will come. People waiting for it are often forced to hit their stop-loss before it arrives.
+@@ 7f88b1ff3e html
+Repeated policy puts make the market dependent on them, and risk builds up at ever higher levels.
+@@ 92cc9baa9a html
+How far each policy area swings
+@@ 9fed9e58db html
+Different policy areas change by very different amounts after a change of government. The table below doesn't judge which policies are better; it only describes how much each one swings with the political cycle:
+@@ 480b7243f2 html
+Policy area
+@@ 55f97c5e03 html
+Bipartisan consensus
+@@ cf547107bc html
+What it means for investing
+@@ 012a762781 html
+Defense budget
+@@ 4d4b8156f4 html
+High
+@@ 940cb5e158 html
+Durable theme; a change of government has little effect
+@@ edcfbf9de0 html
+Export controls on critical technologies
+@@ aa7229ae22 html
+Restrictions on semiconductor equipment and critical materials will continue
+@@ 3111cb3cbe html
+Supply-chain security, critical minerals
+@@ cce604009a html
+Fairly high
+@@ 3d69d5474e html
+The tools may change (subsidies, tariffs, equity stakes), but the direction won't
+@@ d90b680c1c html
+Tariffs
+@@ 96b799808e html
+Medium
+@@ 28a52bee69 html
+Both parties use them, but the scale and the targets differ widely
+@@ a67fef57e7 html
+Drug prices
+@@ 53496a6de5 html
+Both parties lean toward pushing drug prices down, by different means
+@@ b342afb624 html
+Energy mix (conventional vs. clean energy)
+@@ 970855daef html
+Low
+@@ 061a34ba8b html
+Swings sharply with the party in power; related subsidies may be rewritten
+@@ d4b1ae2e7b html
+Financial regulation
+@@ 17300959d2 html
+How strict bank capital requirements and merger reviews are changes with each administration
+@@ c7f91da9af html
+A practical rule: <strong>keep long-term positions in high-consensus themes, and trade high-swing themes only with a time limit.</strong> If you must hold a high-swing theme, cut the position before the election to a level you can live with “no matter which side wins.”
+@@ 0d91cdc2f8 html
+Volatility around elections
+@@ e507cdb16d html
+The options market prices in elections. In the week or month that contains election day, implied volatility (IV) on index options is usually noticeably higher than before or after. As with data release days, you can use the method from the Macro Trading Framework handbook to work out the expected move for election day alone, then compare it with your own view. Once the result is in, the uncertainty is gone and IV often falls quickly; people who bought protection and didn't get a big move lose money as volatility drops.
+@@ a722b70aa3 html
+Once the results are in, the sectors most sensitive to policy react first: energy, healthcare, financials, defense, clean energy, and tariff-sensitive importers. The first-day reaction is often overdone, because the market is pricing “the most extreme version of the policy,” while the policy that actually takes effect is usually watered down by Congress and the courts.
+@@ 09f980c200 html
+Fiscal policy, government bonds and the central bank
+@@ 36b05df3fa html
+Every government wants lower borrowing costs. The market cares about two things: whether the fiscal deficit keeps widening, and whether the central bank can make decisions independently, based on inflation and employment. When the market worries about either one, the term premium on long-term government bonds rises, gold strengthens and the dollar may weaken. Chapters 3 and 4 of the Macro Trading Framework handbook explain the mechanics in detail.
+@@ 4d2d6c1348 html
+As an investor, neither question requires you to take a political stance. You only need to watch long-term yields, gold and the dollar together, and see whether the market is pricing in credibility risk.
+@@ e0d23cb835 html
+Keep your politics out of your positions
+@@ a9a5d35ba0 html
+<strong>Write about policy, not parties.</strong> In your investment notes, write “defense budget growing,” not “Party X will win, so buy defense.”
+@@ 3904bc4461 html
+<strong>Run the “change-of-government test.”</strong> For each theme, ask: if the other side were in power, would this theme still hold? Only the part that still holds belongs in your core position.
+@@ a5886cc4c9 html
+<strong>Read both sides.</strong> Following media from only one point of view makes you systematically overestimate the odds that the policies you support will succeed.
+@@ 97fd4bc0fd html
+<strong>Don't trade slogans.</strong> Until a statement on social media becomes an order, a law or a budget, it is worth at most a small short-term trade.
+@@ 82ea3baa0c html
+<strong>Size positions to survive any election result.</strong> Betting on an election result is not fundamentally different from betting on a coin toss.

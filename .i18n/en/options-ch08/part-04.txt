@@ -1,0 +1,130 @@
+@@ a9dd9e4635 html
+<span class="sn">Cases</span>Three cases
+@@ 78254488eb html
+A simulated year of selling puts: eleven months of small gains, one gap wipes out the year
+@@ a2f34d000a html
+Assumptions: a $50,000 account sells 4 contracts of 30-day cash-secured puts at about Delta 0.20 at the start of each month, settled at expiry; when assigned, the shares are sold at the expiration price and the loss is booked in that month. IV is 25% for the first 9 months; in month 9 the stock gaps from 108.1 to 85.0 (−21.4%), and IV over the following four months is 45%, 38%, 33% and 30%.
+@@ c59c1b8176 html
+Table 8-12 12-month put-selling ledger (4 contracts, $)
+@@ 15da70cbbc html
+Payout
+@@ a5a089fc2f html
+Month P&amp;L
+@@ 18f3cc9456 html
+Cumulative
+@@ ff46d17bb2 html
+The year's premium totals $4,461, with 11 winning months: a 92% win rate, even higher than the roughly 80% implied by Delta 0.20. Yet the ledger ends at <span class="num">−$2,339</span>. The payout in month 9 is <span class="num">(102 − 85) × 400 = $6,800</span>, and that one month's loss is 2.4 times the cumulative profit of the first 8 months.
+@@ 180489400c html
+Over the same 12 months, if you had sold $5-wide put spreads each month instead (short leg also at Delta 0.20, 4 contracts), you would have collected about a quarter less premium each month, $3,343 for the year. In the gap month the payout is capped at <span class="num">5 × 400 = $2,000</span>, the month's loss is $1,748, and the year ends at <span class="num">+$1,343</span>.
+@@ e662e958e1 html
+<strong>Lesson 1</strong>: a seller's annual result is decided by the single worst month. When you evaluate a strategy, first ask “how much will the worst month lose,” then ask “how much does a normal month make.”
+@@ 203b6dd5c8 html
+<strong>Lesson 2</strong>: after a gap, IV rises and premiums get noticeably fatter ($508 in month 10 alone), and it is tempting to sell more contracts to win the money back. Right after a gap is exactly when you most need to redo the stress test from Section 8.8.
+@@ cb8018fe66 html
+<strong>Lesson 3</strong>: buying a cheap protective leg turns “the worst month” from −$6,473 into −$1,748. This insurance costs about $93 of premium a month, and on this path it earned back $3,682.
+@@ 596c94ff1f html
+The opportunity cost of covered calls in a strong rally
+@@ 50034fa991 html
+Assumptions: a high-growth stock with IV 45% rises from 100 to 260 over a year. Each month you sell a 30-day call at about Delta 0.30; when called away, you buy the shares back at the expiration price and carry on (ignoring frictions).
+@@ 050f35be14 html
+Table 8-13 Per-share results ($)
+@@ a984b889d6 html
+Start
+@@ 3185530067 html
+End
+@@ f2994644d9 html
+Stock, month
+@@ 716fc7cc47 html
+Covered call, month
+@@ 7add5629fc html
+Upside given up
+@@ 920d2e3366 html
+For the year, holding the stock makes $160 and the covered call $145.22, a shortfall of <span class="num">$14.78</span>, or about $1,478 per 100 shares. Premium collected totals $46.22 and the upside given up is $61.00, of which $53 came in just three months, 4, 7 and 10: in those months the stock rose 24%, 20% and 16%, the three best stretches of the year.
+@@ e921617f17 html
+The real opportunity cost is often bigger, because people rarely chase the price and buy back right after being called away. If, after being called away at 131 in month 4, you wait for a pullback and never buy back, you make only <span class="num">$33.73</span> for the year, about a fifth of what holding the stock made. On the same path, selling calls at about Delta 0.15 instead makes $161.76 for the year, roughly even with holding the stock: only $18.76 of premium collected, and only $17 of upside given up.
+@@ cfa9a810f1 html
+<strong>Lesson 1</strong>: covered calls lose out in a trend because of drift, not volatility. Options are priced with drift at the risk-free rate, so all of the stock's real strong-trend return goes to the call buyer. Realized volatility on this path was only about 28%, far below the 45% IV: the seller won on “volatility” but lost more on “direction.”
+@@ d2855a2620 html
+<strong>Lesson 2</strong>: the more bullish you are on a stock, the further OTM the calls you sell should be, or don't sell them at all.
+@@ 72fcfaee19 html
+<strong>Lesson 3</strong>: decide before you open the position whether you will buy back after being called away. Don't leave it to emotion after the stock has already run up.
+@@ e9a5c68c78 html
+A defined-risk spread assigned early: the loss is capped, the capital isn't
+@@ 9591cd9c2c html
+Assumptions: a $20,000 account, with the stock at 100, sells 10 contracts of a 30-day 97/92 put spread for 1.294; maximum loss <span class="num">(5 − 1.294) × 1,000 = $3,706</span>. After 25 days the stock has fallen to 88, with 5 days left and IV at 35%.
+@@ bd93118dd6 html
+The 97 put's European theoretical value is 8.958, below its intrinsic value of 9.00, so its time value is <span class="num">−0.042</span>. For the holder of an American option, exercising now is the better deal: sell the stock at 97 immediately and earn 5 more days of interest (about 0.053). Early assignment is the rational outcome.
+@@ 03fd31efb8 html
+That evening you are assigned on all 10 contracts and buy 1,000 shares at 97, paying $97,000. Account equity is <span class="num">20,000 + 1,294 + 88,000 − 97,000 + 4,217 = $16,511</span> (the last term is the value of the 10 92 puts, 4.217 each, Delta −0.853).
+@@ bdf4b63513 html
+$88,000 of stock requires $44,000 at 50% initial margin, but account equity is only $16,511, so a margin call follows.
+@@ 78de652548 html
+<strong>The right move</strong>: at the next day's open, sell the 1,000 shares and the 10 92 puts together. The result is <span class="num">1.294 − (97 − 88) + 4.217 = −3.489</span>, or −$349 per contract and −$3,489 in total; had you not been assigned and simply closed the spread, the result would have been −$3,447, almost the same. Selling the 92 puts beats exercising them, because they still have 0.217 of time value.
+@@ 563a46071c html
+<strong>The wrong move</strong>: sell the 92 puts first to “free up cash” and hold the shares waiting for a rebound. Now you own 1,000 shares with no protection at all; another 5% drop costs <span class="num">−$4,400</span>, and the loss already exceeds the original maximum loss.
+@@ 8637737a99 html
+<strong>Lesson 1</strong>: “defined risk” defines your P&amp;L, not the capital tied up. After assignment, the shares and the protective leg are one unit and must be handled together.
+@@ 050fef97c6 html
+<strong>Lesson 2</strong>: when the short leg is deep ITM and its time value is close to zero, that is your signal to close early. Don't wait for the final week.
+@@ 2ce80e4794 html
+<strong>Lesson 3</strong>: before you open the position, find out your broker's rules on spread margin and on handling assignment, including whether it will liquidate automatically before you have time to act.
+@@ 76fc557033 html
+<span class="sn">Tools</span>Checklist and self-test
+@@ b4640d623d html
+Your checkmarks are saved only in your own browser.
+@@ b4d7aef405 html
+<span class="num">8-1</span>Before you open: work out the bad side first
+@@ 9ba3916b89 html
+Max loss written down; if uncapped, the loss in a −20% gap
+@@ 7ab1a29bf6 html
+Breakeven win rate L̄ ÷ (W̄ + L̄) computed and compared with my estimate
+@@ 8dc967eff1 html
+Answered: if assigned, what will I be holding, and can I accept it
+@@ faddcbb0c6 html
+<span class="num">8-2</span>Size: set contracts by the worst case
+@@ 67e8661024 html
+Max loss per trade ≤ 2%–5% of the account
+@@ 32302b9443 html
+All short option positions −20% at once: combined loss ≤ 15%–20%
+@@ 903043cba2 html
+Margin requirement under stress is affordable too
+@@ 1dc81673e2 html
+<span class="num">8-3</span>While holding: three rules
+@@ e2ed58a690 html
+Profit reaches 50% of the premium: consider closing and opening a new trade
+@@ 01ae14ed46 html
+21 days left and still open: close or roll
+@@ 79d0c64a72 html
+Loss reaches the stop line (converted by width for spreads): execute, no bargaining
+@@ b65723569e html
+<span class="num">8-4</span>Around assignment
+@@ 8bb2c84b52 html
+Short leg deep ITM, time value near zero: close early
+@@ 8f7ba665f6 html
+After assignment, handle the shares and the protective leg together
+@@ acbe10861d html
+Assigned shares: if I had no position today, would I buy them?
+@@ a6f5d33bbc html
+Self-test: five questions
+@@ c9e77b6a27 html
+<span class="num">1</span><span>With the stock at 100, you sell one 30-day 90 put for 0.40. The stock is at 82 at expiry. How much does the contract lose, and how many months of premium is that?</span>
+@@ bbf1ab42f2 html
+<span class="num">(90 − 82 − 0.40) × 100 = $760</span>, about <span class="num">760 ÷ 40 = 19</span> months of premium.
+@@ 3d0d7650da html
+<span class="num">2</span><span>A 96/91 put credit spread collects 1.32. What are the max loss, the breakeven and the ratio of loss to profit?</span>
+@@ d33623a02c html
+Max loss <span class="num">5 − 1.32 = 3.68</span>, or $368 per contract; breakeven <span class="num">96 − 1.32 = 94.68</span>; loss : profit = <span class="num">3.68 : 1.32 ≈ 2.8 : 1</span>.
+@@ edfde82aa1 html
+<span class="num">3</span><span>A strategy wins 85% of the time, makes $60 on average per winning trade and loses $400 on average per losing trade. What is its expectancy, and what is the breakeven win rate?</span>
+@@ a12af14ad1 html
+<span class="num">E = 0.85 × 60 − 0.15 × 400 = 51 − 60 = −$9</span>; breakeven win rate <span class="num">400 ÷ 460 = 87.0%</span>. Even an 85% win rate can mean negative expectancy.
+@@ 60755f0c00 html
+<span class="num">4</span><span>You have a $40,000 account and want to sell 30-day 90 puts naked (stock at 100). Your rule: “a −20% gap the next day must not cost more than 10% of the account.” What is the most contracts you can sell?</span>
+@@ f6eb18106d html
+From Table 8-7, a gap to 80 with IV up to 45% loses $1,038 per contract. <span class="num">4,000 ÷ 1,038 = 3.85</span>, so at most 3 contracts. Margin would let you sell more than 30; the stress test allows only 3.
+@@ 1eaa020167 html
+<span class="num">5</span><span>If the stock doesn't move, a covered call earns extra premium every month. Why, then, does it fall behind simply holding the stock over a year in a strong trend?</span>
+@@ c2acc772c5 html
+A covered call cuts off the right tail of returns, and the return in a strong trend is concentrated in a few big up months. Options are priced with drift at the risk-free rate, so the real trend return goes to the call buyer. In Case 2, the premium collected was $46.22 and the upside given up was $61.00, leaving the covered call $14.78 per share behind for the year.
+@@ 2ac4e8a198 html
+This chapter's examples are computed with the Black-Scholes model (4% rate, no dividends, 365-day year) and the hypothetical paths noted in the text. For education only; not investment advice.

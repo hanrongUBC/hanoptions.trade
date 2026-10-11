@@ -1,0 +1,224 @@
+@@ ff7749f90d html
+Four variables instead of a point forecast
+@@ 735afa645b html
+Predicting “will the S&amp;P go up or down next month?” is almost impossible to do well. It's more workable to keep watching four variables, which correspond to the four sources of valuation and earnings:
+@@ 2bc6def622 html
+Variable
+@@ d3fe9737ea html
+What to watch
+@@ 1c75c4aae8 html
+What it affects
+@@ 6553833c72 html
+Rates
+@@ d5a736bc63 html
+The trend in the 10-year yield (week by week)
+@@ b5aa03bc35 html
+The discount rate, and with it the valuation multiple
+@@ 211f464ca5 html
+Oil
+@@ 7ce296216b html
+The trend in crude and diesel
+@@ ab72405ffc html
+Inflation, corporate costs, the burden on consumers
+@@ 0acd08b57b html
+Earnings
+@@ e76857dcab html
+Whether analysts' earnings estimates are being revised up or down; company guidance during earnings season
+@@ 3f2fae0f69 html
+Earnings per share
+@@ 5f02db3db3 html
+Jobs
+@@ d492653ffe html
+The unemployment rate, weekly initial jobless claims, nonfarm payrolls (NFP)
+@@ 5510d5bbb2 html
+Spending power and recession risk
+@@ c1978ed234 html
+Six combinations, six playbooks
+@@ f5d86acdac html
+Scenario
+@@ c317db02aa html
+Earnings
+@@ d4b0865686 html
+Typical approach
+@@ 2cd622409d html
+Broad rally
+@@ 80855c6204 html
+Down
+@@ ecbb0e7d43 html
+Good
+@@ 279958ec14 html
+Strong
+@@ a2e3ded54e html
+Go long the index and cyclical stocks; small caps join in too
+@@ 0126e13703 html
+Sector rotation
+@@ ee9e7a7dec html
+Mixed
+@@ 1bea19179f html
+The index goes sideways while sectors take turns; buy pullbacks in former losers, trim crowded winners
+@@ ea7881fa43 html
+Good news lifts rates
+@@ 70dd1aa351 html
+Up
+@@ 8d4174a3fc html
+Cyclicals and banks lead; watch how fast rates are rising
+@@ 2db9521741 html
+Decline, phase one
+@@ 542031975c html
+Valuation compression: cut long-duration growth stocks and buy protection while volatility is cheap
+@@ f42c0f0bcb html
+Decline, phase two
+@@ d0188b40fc html
+Softening
+@@ b65b9a7c12 html
+Start systematic protection and raise cash; defensive sectors hold up relatively well
+@@ 76406d67ce html
+Decline, phase three
+@@ 8fabd2a55e html
+Poor
+@@ 5b5e69a7ce html
+Deteriorating
+@@ bbdc0428f2 html
+Earnings cuts and recession; mostly cash and long-term Treasuries; wait for a policy catalyst
+@@ df2e766465 html
+In the “sector rotation” row, earnings is the key item: earnings aren't great, but not bad enough to cause panic, so money doesn't leave stocks wholesale; it changes hands between sectors instead.
+@@ 4a15245d68 html
+The three phases of a decline
+@@ a671ad557e html
+Phase one
+@@ 6ff1c1e4e8 html
+Economy still strong
+@@ cf897bf511 html
+Phase two
+@@ 04836a608b html
+Growth starts to hurt
+@@ 14348237f3 html
+Phase three
+@@ d7b1aebc81 html
+Recession
+@@ 6e5e928738 html
+↑ Rising
+@@ a7255ef52e html
+↓ Turning down
+@@ f380e571f0 html
+↑ Still high
+@@ abb5c44d09 html
+Decent
+@@ c9417ec25d html
+↓ Falling fast
+@@ 03cc92e610 html
+↓ Falling
+@@ c7d853b9e9 html
+Cut
+@@ 2c4c96e1e4 html
+Valuation squeeze
+@@ c06a1f6bd1 html
+Growth, small caps fall first
+@@ 4e35ce0972 html
+Growth scare
+@@ f332ea3212 html
+Cyclicals, consumer next
+@@ 86420de8b8 html
+Earnings squeeze
+@@ eaa7efa237 html
+Broad selloff; wait for policy
+@@ 4049771572 html
+Phase one is the easiest to miss: earnings and jobs both look good, and people think “how can it fall when the economy is this strong?”, yet rates and oil together are compressing valuations. Phase two is marked by rates starting to fall, and not because inflation is cooling.
+@@ c318244e50 html
+The turn from phase one to phase two is the one most worth monitoring. A very practical rule: <strong>if yields start falling while oil is still high and jobs start to soften, start protecting</strong>, either by cutting position size or by buying a protective put spread.
+@@ 008fefdd6b html
+Falling rates: good news or bad?
+@@ 555d258d15 html
+The same 30-basis-point drop in the 10-year yield could mean inflation is cooling (good) or that the market is worried about recession (bad). To tell them apart, look at how it combines with other assets:
+@@ bb00806542 html
+The good kind: inflation cooling
+@@ cc5a99b086 html
+Breakeven inflation falls; real yields hold steady
+@@ 563789fabb html
+Cyclicals and small caps rise with it
+@@ 73c5b526e2 html
+Credit spreads stable or narrowing
+@@ c369a04ad5 html
+Oil eases
+@@ a857f1de42 html
+The bad kind: growth worries
+@@ ac3902482e html
+Real yields fall; the curve bull-steepens
+@@ 38fbd20990 html
+Cyclicals and small caps lag; defensive sectors outperform
+@@ 79450a63dd html
+Credit spreads widen
+@@ 80ca0f6cc2 html
+Jobs data weakens; initial claims rise
+@@ c03cc44451 html
+Down
+@@ 40cd0f76e9 html
+It's rare for all four to match an archetype exactly. At a 3/4 match, look at which way the one variable that doesn't fit is heading: that is usually the direction the regime will switch to next.
+@@ 3fb208b496 html
+A look back at past major pullbacks
+@@ b478a9b8ad html
+Let's test the framework against history. The table below lists only qualitative features and approximate declines (S&amp;P 500, peak to trough); you can check the exact figures in public databases such as FRED.
+@@ e3b5977b85 html
+Period
+@@ 6599f729af html
+Decline (approx.)
+@@ 6114172ebd html
+Did Treasuries hedge?
+@@ b1d421e6da html
+What confirmed the bottom
+@@ 0ba3e49812 html
+Q4 2018
+@@ 82f2e0c19f html
+Rate hikes plus quantitative tightening (QT), trade friction
+@@ a80538065f html
+In the second half, as yields fell
+@@ a4af6a1b08 html
+The Fed turned “patient”
+@@ d98eb2abaa html
+Feb–Mar 2020
+@@ 48b2dc72b8 html
+Pandemic shock, liquidity crunch
+@@ 92a27796cb html
+Mostly yes; stocks and bonds briefly fell together in mid-March
+@@ 58f3116ecc html
+Unlimited Fed easing and fiscal rescue
+@@ d3dd7e97cc html
+2022
+@@ 6bc7012e2c html
+High inflation and rapid rate hikes
+@@ 18a4f96362 html
+No; stocks and bonds fell together
+@@ 02fa78e467 html
+No single policy pivot; signs of peak inflation, and valuation compression had run its course
+@@ d827caccc8 html
+Aug–Oct 2023
+@@ 276b13d150 html
+Long-end yields near 5%; rising term premium
+@@ ce462d9d79 html
+No
+@@ 58ee9b0f2f html
+Treasury slowed long-bond issuance; the Fed hinted at a pause
+@@ 7ebeb85f8c html
+Feb–Apr 2025
+@@ b2b3b729aa html
+Tariff shock; growth and inflation worries at the same time
+@@ 8d4d5a0855 html
+Unreliable; the long end rose for a while
+@@ 514b72483b html
+Tariff pause
+@@ fe3afdc600 html
+Two patterns stand out:
+@@ fbfb2cddf2 html
+<strong>Treasuries hedge growth shocks, not rate or inflation shocks.</strong> In three of the five cases, the decline was caused by rates, inflation or policy, and Treasuries fell along with stocks. At times like that, the protection that really works is options, or simply a smaller position.
+@@ 55734867cc html
+<strong>Bottoms are usually confirmed by policy, not by valuations repairing themselves.</strong> In four of the five cases, the market bottomed around the time some policy changed. So in a decline, instead of asking “has it fallen enough?”, ask “what policy would make the decision-makers step in, and how far are we from that point?”
+@@ a1c740da0e html
+Discipline for regime calls
+@@ c257d9ac8b html
+Update weekly, not daily. Daily noise will have you flipping back and forth between two regimes.
+@@ 3ff67a556c html
+Consider switching regimes only when at least two variables change at the same time.
+@@ 78fc03f757 html
+Write your call down, along with “what data would make me change it,” and check it afterward.
+@@ ff2e895502 html
+The regime decides your position size and playbook, not your exact entry timing. Leave timing to Chapters 6, 7 and 9.

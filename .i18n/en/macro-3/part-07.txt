@@ -1,0 +1,132 @@
+@@ 99cfdc8aaf js
+Broad rally
+@@ 50240645da js
+Discount rates falling, costs falling, earnings and jobs both good: nearly every asset has a tailwind.
+@@ 388a3d61de js
+Go long the index and cyclicals; small caps will join in
+@@ 25c0740a98 js
+The risk is overoptimism and crowding: manage with a trailing stop rather than trying to call the top
+@@ 47e288b75d js
+Use this phase to lower your cost basis and build up profits, leaving room for the next phase
+@@ 8dc1d61d58 js
+Rotation
+@@ a61fe95928 js
+Rates and oil are easing and jobs are still good, but earnings aren't impressive. Money doesn't leave stocks wholesale; it changes hands between sectors.
+@@ 0cf8b284c9 js
+Buy pullbacks in earlier losers; trim rallies in crowded winners
+@@ 8b9db65600 js
+Use shares or longer-dated instruments; rotation takes time to pay off
+@@ 5dcef1445c js
+Equal-weight and small caps steadily outperforming confirms the rotation
+@@ e63ace070e js
+Rising rates reflect strong growth, earnings can keep up, and oil isn't making trouble.
+@@ 27b83c4cb0 js
+Cyclicals, banks and industrials lead; growth valuations are under pressure but can be offset by earnings
+@@ 9eeb920b46 js
+Watch how fast rates rise; too fast and it slides into phase one
+@@ fa2c72556a js
+Underweight long-duration assets
+@@ dce8ddcf30 js
+Phase one of a decline: valuation compression
+@@ 395af6b34f js
+Rates and oil rise together while earnings and jobs are still good. People think an economy this strong can't fall, but valuations are being compressed.
+@@ 336843a181 js
+Cut long-duration growth stocks and small caps
+@@ 80a4c87dc1 js
+Hold energy and real assets
+@@ 7905d9f745 js
+Buy protection while volatility is cheap; remember Treasuries are not a hedge in this phase
+@@ d59da6c550 js
+Phase two of a decline: growth starts to suffer
+@@ 434a24221c js
+Rates start falling, but not because inflation is cooling; oil is still high and jobs are weakening.
+@@ 885a894404 js
+Start systematic protection: shrink positions, buy protective put spreads
+@@ f543304728 js
+Raise cash; defensives are relatively strong
+@@ a9c8c6641d js
+Watch initial claims and credit spreads to judge whether it's sliding into phase three
+@@ 74639dd554 js
+Phase three of a decline: recession
+@@ e41c5d1f52 js
+Earnings are cut, unemployment jumps, and both rates and oil are falling.
+@@ 8ec39d6966 js
+Mostly cash and long-term Treasuries; stay flat or go short
+@@ fac396c2f9 js
+Wait for a policy catalyst to confirm the bottom; don't buy just because valuations “look cheap”
+@@ d085cd94e1 js
+Have your shopping list ready; buy in stages after policy turns
+@@ 6b2f2e617e js
+Stagflation pressure
+@@ 4a60dc1c73 js
+Rates and oil are rising while earnings and jobs weaken: the hardest environment.
+@@ 36bd6f2fb7 js
+Stocks and bonds may both fall; cash and short-duration assets are safest
+@@ df06b3dd36 js
+Energy and real assets hold up relatively well
+@@ 8dd7a2a8a6 js
+Keep overall size low and wait for one variable to improve first
+@@ ceca9ce80e tpl
+{0}: the archetype has “{1}”, you chose “{2}”
+@@ 6dccbeb381 tpl
+<h4>{0}<span class="match">Matches {1}/4</span></h4><p>{2}</p><ul>{3}</ul>
+@@ e6114aaf99 tpl
+<div class="row"><b>Differences from the archetype</b>{0}.</div>
+@@ 12c69835c0 tpl
+<div class="row"><b>Differences from the archetype</b>None; an exact match.</div>
+@@ dc7a303473 js
+Top 10
+@@ 09d02131dd js
+Other 490
+@@ 062af4d38f js
+Cap-weighted
+@@ 4f08f8b4cb js
+Equal-weight
+@@ f42cb6e28f js
+Day's change
+@@ 0fe4d75049 js
+ pts
+@@ c87f6311bf js
+ days
+@@ d550171b03 js
+Index ETF price
+@@ bee28c16f2 js
+Dealer net Gamma ($100M per 1%)
+@@ 33dbb72f33 js
+Price 780
+@@ 17ecb6069f js
+Flip 
+@@ 8f67e81ae4 js
+ × $100M
+@@ 5042080159 js
+ (negative)
+@@ 01a765ea5d js
+ (positive)
+@@ d6a30d11f7 js
+ × $100M
+@@ 9965c736cf js
+No selling needed
+@@ 033b2d944b js
+Buy before the close
+@@ ce45d828ab js
+Sell before the close
+@@ 2d4463c172 js
+No adjustment needed
+@@ 2e56236f3c js
+Weekly IV including the event
+@@ 40c0b52eb4 js
+Expected move on event day
+@@ 5b8697519f js
+Normal day 
+@@ 98ffcbb034 js
+Near 0
+@@ 0162123374 js
+ contracts
+@@ 77a62c99eb js
+Oil price change in 30 days
+@@ 4b9e21136c js
+Portfolio P&L
+@@ 040e680663 js
+Selected. Press ⌘C or Ctrl+C to copy
+@@ 2e746791f3 js
+Copied

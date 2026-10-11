@@ -1,0 +1,220 @@
+@@ 9fe2bd1171 html
+Path A, 1.5% budget: after 20 years the two lines end up at almost the same point (322 vs. 326), and the maximum drawdown shrinks from −35% to −21%. Switch to Path B: the insurance never pays, and the annualized return drops from 8.99% to 7.48%, a gap close to the annual budget. Drag the budget to 3% and Path A's drawdown shrinks further to −12%, while the drag on Path B doubles.
+@@ d218fb3834 html
+You don't know in advance which path you're living on. So the point of a tail-hedge budget isn't “making money.” It does two things: it keeps you from panic-selling in a −35% year, and the cash the insurance pays out lets you rebalance and add at low prices. The simulation counts neither benefit, and they are the real return on protection.
+@@ e14ddde3f7 html
+How to spend the budget: laddering
+@@ 7b7c157df2 html
+Buying once a year bets all your protection on the IV at one moment and on one expiration date. A smoother approach is a ladder: each quarter, spend a quarter of the budget on one-year puts covering a quarter of the portfolio. After a year you always hold four puts with staggered expirations, and the strikes update to each quarter's market level. The annual spend is the same, but you won't overpay because IV happened to be high on one day, and you won't suddenly be left “naked” after a single expiration date.
+@@ 32cc9dbdfd html
+When IV Rank is low (say, below 30), spend the budget on plain puts
+@@ b5a4b59ff2 html
+When IV Rank is high, insurance is expensive: switch to put spreads or collars, selling equally expensive options to offset the cost
+@@ 00a05358af html
+After a big drop, with IV high, rather than chasing protection, check whether the position is too big, and trim if necessary
+@@ b639260b5c html
+These two paths were made up to illustrate the point, and the results depend entirely on the assumptions: the number and depth of crashes, the level of IV, and puts that settle only at year-end (a real crash can happen mid-year and recover by year-end). What it shows you is “what the cost and payout of insurance look like,” not “whether insurance makes money.”
+@@ bed71217f1 html
+<span class="sn">11.7</span>Monetization rules: after the protection pays off
+@@ dcb9c6cee8 html
+Once your protection has made money, sell part of it. Otherwise, as soon as the market bounces and IV falls back, the paper profit vanishes quickly.
+@@ 02ce346afd html
+An example
+@@ 2bae93e38a html
+You bought the 91-day 90 put for 1.01 (index at 100). Thirty days later the index has fallen 15% to 85 and ATM IV has risen to 34%. The put is now in the money, worth <span class="num">7.16</span>, <span class="num">7.1</span> times its cost, with a Delta of <span class="num">−0.62</span>.
+@@ 1ac8f7c089 html
+Monetization rule: sell half, and roll the other half from the 90 put to the 80 put with the same expiration (IV 38.3%, price 2.83).
+@@ ade7d08189 html
+Sell half: recover <span class="num">0.5 × 7.16 = 3.58</span>
+@@ 65a9a96f71 html
+Roll the other half: <span class="num">0.5 × (7.16 − 2.83) = 2.16</span>
+@@ b4d10e2f59 html
+Total cash recovered: <span class="num">5.74</span> (5.7% of the original portfolio, 5.7 times the premium), and you still hold 0.5 units of the 80 put
+@@ 43fd09ec33 html
+Table 11-6 Thirty days later: the protection's value under the two approaches (per 100 notional)
+@@ f5d86acdac html
+Scenario
+@@ b115e0cc66 html
+Index
+@@ 507d801797 html
+ATM IV
+@@ 6fa057fa6f html
+Keep holding the 90 put
+@@ 1ab76993d2 html
+Monetize + roll
+@@ a40ae9a521 html
+Rebound
+@@ 8b29d32fbb html
+Crash continues
+@@ 8f9d68f625 html
+On a rebound, the investor who held on watches 7.16 shrink to 1.02; the one who monetized keeps 5.86. If the crash continues, the one who monetized makes less (10.10 vs. 17.75) but still has the 80 put paying out. A monetization rule gives up part of the payoff in extreme cases in exchange for certainty in most cases.
+@@ d780be8516 html
+The other direction: moving up after a rally
+@@ 2e69efca0e html
+Monetizing handles declines; rallies need a rule too. Say you bought a one-year 90 put (2.82), and three months later the market is at 110. The old put is now 18% from the current price and worth only <span class="num">1.42</span>; a new one-year 99 put (90% of 110) costs <span class="num">3.10</span>. Selling the old one and buying the new one costs a net <span class="num">1.68</span>, about 1.5% of the new portfolio value. That money raises your protection floor from 90 to 99. A common rule: once the market is up 10% or more from where you bought, move the strike up, and count the cost against that year's tail-hedge budget.
+@@ baa24ca73e html
+Rules written in advance
+@@ be87773f68 html
+When the protection is worth 3–5 times its cost, or its Delta goes past −0.6, sell half first
+@@ d5a6c1fae6 html
+Roll the rest to a lower strike or a longer expiration, recovering cash while keeping tail protection
+@@ e1896a5c70 html
+Monetizing while VIX is spiking and the term structure is inverted beats waiting until VIX has come back down
+@@ 640f127dbf html
+Put the cash from monetizing into a rebalancing plan: buying stock back at low prices is one of the real sources of return on protection
+@@ 6650964c16 html
+The rebalancing arithmetic is worth doing. If the 5.74 you recovered goes back into stock with the index at 85, and the index later returns to 100, that money earns an extra <span class="num">5.74 × (100 ÷ 85 − 1) = 1.01</span>, roughly the premium you paid in the first place. The payout in the decline, plus the gain from using that payout to buy low, is the full return on protection.
+@@ b62828097c html
+Neither the 3–5× threshold nor the −0.6 threshold is theoretically optimal. A Delta past −0.6 means the put is moving more and more like a short stock position: the advantage from convexity is shrinking, and you're holding volatility at its most expensive. The thresholds give you a rule to follow when emotions run highest. You can adjust the numbers to your own style, but write them down on the same day you buy the protection.
+@@ f3cc048c80 html
+<span class="sn">11.8</span>Stock replacement: deep-in-the-money LEAPS
+@@ 9827b64341 html
+Sell the stock and buy deep-in-the-money long-dated calls (LEAPS), and you keep about 90% of the directional exposure while capping your maximum loss at the premium.
+@@ 30fa450e99 html
+Example: you hold 200 shares of a $150 stock, worth $30,000. Instead, you buy 2 one-year calls struck at 110 (IV 30%; a single stock, so skew is ignored here):
+@@ 6b03bf6fc3 html
+<span class="num">$46.56</span> each, Delta <span class="num">0.906</span>; 2 contracts are equivalent to 181 shares
+@@ 9a07575793 html
+Cost <span class="num">$9,312</span>, freeing <span class="num">$20,688</span> in cash, which earns about <span class="num">$844</span> in interest over a year at 4%
+@@ 5c3773013c html
+What's inside the time value
+@@ ea84f02670 html
+Put–call parity lets you take the call apart:
+@@ fd2f2f6369 html
+46.56 = intrinsic value 40 + interest component 4.31 + one 110 put 2.25. The time value of 6.56 is made up of “interest on borrowed money” and “an insurance policy.”
+@@ 03462e4768 html
+The interest component is roughly offset by the interest the freed-up cash earns, so what you're really paying for is the 110 put: stock replacement equals “shares + a protective put 27% OTM.”
+@@ eb52da3b3f html
+Table 11-7 Results after one year (dollars; the LEAPS row includes interest on cash)
+@@ ae4224123c html
+Stock price at expiry
+@@ f2ab541ad1 html
+Hold 200 shares
+@@ 78395241bc html
+Two 110 LEAPS
+@@ 46e5fc22bc html
+If the stock doesn't move, the replacement loses $468, about the value of the two puts; at 180 it makes $468 less; below 110, the loss is capped at $8,468.
+@@ f531131ef8 html
+When stock replacement makes sense
+@@ d88ac7b9cf html
+The position has an unrealized loss or only a small gain, so selling costs almost nothing in tax (while steering clear of the wash-sale rule)
+@@ f1797965f3 html
+In a tax-exempt or tax-deferred account, selling creates no current tax
+@@ c8efb65073 html
+You still like the stock but want a hard limit on the worst case, without paying for puts every quarter
+@@ 14d424123a html
+IV is low: the “implied put” inside the LEAPS is cheaper
+@@ 32b20a3feb html
+<strong>Taxes.</strong> Selling the stock realizes the gain or loss. Selling at a loss and then buying calls on the same stock within 30 days may trigger the wash-sale rule, and the loss can't be deducted in the current year
+@@ 9e8767c745 html
+<strong>Dividends.</strong> In the real world, LEAPS holders don't receive dividends, so replacement costs more on high-dividend stocks
+@@ 212a8ae67c html
+<strong>The lure of leverage.</strong> The freed-up cash belongs in short-term Treasuries. Using it to buy more LEAPS turns a risk-reducing move into adding leverage
+@@ a580d03811 html
+<strong>Liquidity.</strong> LEAPS bid–ask spreads are usually wide, so you lose a little on the way in and on the way out
+@@ 710b2af70c html
+<span class="sn">11.9</span>Adjusting portfolio beta with options
+@@ 718f49e16b html
+Without touching your holdings, you can use index options to bring portfolio beta from 1.25 down to 0.75. But option Deltas change, so the beta you set will drift.
+@@ fae46eb3bd html
+Using the beta weighting from Chapter 4: a $200,000 portfolio with beta 1.25 and SPY at 780 is equivalent to <span class="num">200,000 × 1.25 ÷ 780 = 320.5</span> shares of SPY. A target beta of 0.75 corresponds to 192.3 shares, so you need <span class="num">−128.2</span> shares of SPY Delta. The options are 91-day, with IV from this chapter's skew assumption.
+@@ d2fe31cf3a html
+Table 11-8 Four ways to lower beta, and the effective beta after an instant ±5% move in SPY
+@@ 63cc1a1ab5 html
+Method
+@@ dd50819757 html
+Quantity
+@@ 3bdaee9481 html
+Cash
+@@ fc97702451 html
+Beta at entry
+@@ 28d2af0492 html
+After SPY −5%
+@@ 5a564e73ac html
+After SPY +5%
+@@ 21ef9e1647 html
+Short SPY
+@@ ef6f43b187 html
+128 shares
+@@ 51d302461a html
+None (margin required)
+@@ 2070f571a4 html
+Buy 741 puts (Delta −0.26)
+@@ ddbb53e282 html
+5 contracts
+@@ 3c7ec730b3 html
+Pay $6,857
+@@ 12aed7b641 html
+Sell 819 calls (Delta 0.34)
+@@ 26a6998009 html
+4 contracts
+@@ 08811f8233 html
+Receive $5,703
+@@ 4ebae93e88 html
+Collar 741 / 819
+@@ aa8e2ba2ac html
+2 sets
+@@ b3ace61169 html
+Receive $109
+@@ 45e87d9605 html
+“After −5%” assumes SPY instantly drops to 741 and ATM IV rises to 24%; “after +5%” assumes it rises to 819 and ATM IV falls to 15%. A few ways to read the table:
+@@ 21b1e42787 html
+<strong>Buying puts: more defensive the further it falls.</strong> As the market drops, the puts' Delta grows and portfolio beta falls from 0.74 to 0.37, exactly the direction you want. The catch is cost: $6,857 a quarter, 3.4% of the portfolio.
+@@ 33e0e0d6e8 html
+<strong>Selling calls: more defensive the further it rises.</strong> You collect cash, but in a decline the calls' Delta shrinks and beta climbs back to 0.90, so the protection weakens just when you need it most. In a rally beta is pushed down to 0.38, and you get no share of the gains however far it rises.
+@@ 4dfc9cea1b html
+<strong>The collar is the most stable.</strong> The long put and the short call have Gamma of opposite sign, which cancels out, so after ±5% beta stays around 0.7, at almost zero cash cost.
+@@ 562b9a9076 html
+Check regularly after adjusting. You can write the rule as: when effective beta drifts more than ±0.15 from target, readjust the number of contracts. Remember two more things. Beta itself is estimated from historical data, and in a crash, correlations between stocks rise and beta changes. And index options can't hedge stock-specific risk: if one stock in your portfolio blows up on earnings, SPY puts won't help.
+@@ 295b4c077b html
+Hedging doesn't have to use options. One trader who was bullish on oil bought an energy-stock ETF and a leveraged crude oil ETF, and at the same time built a heavy position in an airline ETF in stages as a hedge: rising oil helps energy and drives up airlines' fuel costs, and falling oil does the reverse. Later a news item sent oil sharply lower. The leveraged crude ETF lost heavily, the airline ETF rose, and the portfolio as a whole still made money. Cross-asset hedges like this have no time decay, but they depend on correlation and lack the convexity of options: in extreme scenarios such as a recession, oil and airline stocks can fall together. Another common habit: when the market-wide cost of hedging is at multi-year lows, use rallies to put downside protection in place, rather than chasing it once the decline has started.
+@@ a9dd9e4635 html
+<span class="sn">Cases</span>Three cases
+@@ 1fe75ef123 html
+A $200,000 portfolio falls 10%, 20% or 30%: what's left under each of the four approaches
+@@ f018787cbd html
+Same conditions as Section 11.4: a $200,000 portfolio tracking the S&amp;P 500, 91 days of protection, covering the notional 1:1 (with SPY options that's about 2.56 contracts; you can only buy whole contracts, so you might choose 3 and slightly over-hedge). ATM IV 18%, skew as in Section 11.2. Results are settled at expiry after 91 days and include premium.
+@@ d7a9af6548 html
+Table 11-9 Portfolio P&amp;L under the four approaches (dollars)
+@@ 7231127a89 html
+Cost
+@@ 7c964c434c html
+No hedge
+@@ df02275509 html
+Protective put 90
+@@ 6f3c835b7f html
+Zero-cost collar 90 / 107.9
+@@ ab36a90720 html
+Put spread 95 / 80
+@@ 8d38ed350b html
+<strong>−10%:</strong> The put spread is best (−$12,831), because it starts paying at −5%. The protective put pays nothing and loses the premium on top of the unhedged loss. The collar does the same as no hedge.
+@@ 151b65dce9 html
+<strong>−20%:</strong> The put spread is still best, using exactly its full 15% payout range. The protective put and the collar both hold the loss to just over $20,000.
+@@ ff9772f48f html
+<strong>−30%:</strong> The put spread stops paying below −20%, loses $32,831 and drops to third. The collar (−$20,000) and the protective put (−$22,021) deliver on their promise of a floor.
+@@ 23057d912c html
+<strong>+15%:</strong> The collar makes only $15,775, nearly half less than with no hedge. That's the real cost of “zero cost.”
+@@ a67f7e4200 html
+The lesson: no protection is best in every scenario. Before you buy protection, write down “the decline I fear most,” such as “a pullback of about 15% within three months” or “a single 30% crash,” then pick the structure that matches it. If the answer is “both,” you can combine them: a put spread for pullbacks, plus a small amount of far-OTM puts for the tail.
+@@ 3d3027fb12 html
+A cautionary example: paying too much for protection
+@@ 42e6fd6dfa html
+The same $200,000 portfolio, two investors, the same hypothetical market:
+@@ 6a18ace231 html
+Table 11-10 Hypothetical market path
+@@ f11f2be60f html
+Time
+@@ 2e85b26367 html
+Portfolio value
+@@ db6e89ca9f html
+Day 0
+@@ c7a9ea7ae7 html
+Day 30
+@@ ca016457aa html
+Day 60
+@@ 48b18fbed9 html
+Day 90
+@@ 9af79ec5de html
+<strong>Investor A buys while things are calm.</strong> On day 0 A buys the 91-day 90 put at IV 20% for 0.58%, or <span class="num">$1,158</span>. On day 30, with the index down to 85 and IV up to 40%, the put is worth <span class="num">$15,913</span>, 13.7 times its cost.
+@@ 1e89f1290d html
+<strong>Investor B buys after the fire.</strong> On day 0, B thinks protection is unnecessary. On day 30, scared, he buys a 30-day at-the-money 85 put at IV 40% for 4.40%, or <span class="num">$7,485</span>. On day 60 the index is back at 90 and the put expires worthless; still nervous, he buys another 30-day at-the-money 90 put at IV 28% for 3.03%, or <span class="num">$5,463</span>. On day 90 the index is at 94, and that one expires worthless too.

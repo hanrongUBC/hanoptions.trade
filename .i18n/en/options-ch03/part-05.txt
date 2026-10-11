@@ -1,0 +1,120 @@
+@@ 34ae6467e4 js
+Stock price ($)
+@@ 562fc7a64c js
+Strike ($)
+@@ 544ba9818d js
+Days left
+@@ c87f6311bf js
+ days
+@@ 3e5b035f18 js
+Implied volatility (%)
+@@ 6f51b1369d js
+Risk-free rate (%)
+@@ 7ee01746a8 js
+Dividend yield (%)
+@@ 84f1c5acb8 js
+Option price ($)
+@@ 79d7c2f6fb js
+Call · vs. base case <b>
+@@ c4ee11e135 js
+Put · vs. base case <b>
+@@ 0ee3e368a5 js
+Stock price at expiration ($)
+@@ 77ac3ee57d js
+Probability density
+@@ 7c632261a1 js
+Negative prices
+@@ 02d2dfecb1 js
+2.9 yrs
+@@ d94974d219 js
+125 yrs
+@@ f0d1ca531c js
+14,000 yrs
+@@ 5e594789ed js
+4M yrs
+@@ fc799ba2cc js
+0.6 yrs
+@@ b3372dc166 js
+1.3 yrs
+@@ 949ee11bf6 js
+2.5 yrs
+@@ 5ca4fba445 js
+4.2 yrs
+@@ 371c74498a js
+14K
+@@ 8e2eede5a0 js
+4M
+@@ fcaa9c162e js
+1K
+@@ 14663539f1 js
+10K
+@@ d8e07f6928 js
+100K
+@@ d03ba05375 js
+1M
+@@ 3277c89591 js
+10M
+@@ 1fb46df6f0 js
+One-day drop (in standard deviations)
+@@ 5a6ebba815 js
+Average interval (years)
+@@ 2c1fa6ceb9 js
+Buy call + sell put
+@@ 01acf710fb js
+Buy 100 shares
+@@ cf4b72f989 js
+Buy call
+@@ db76ad0171 js
+Sell put
+@@ 564af0c22a js
+Sell call + buy put
+@@ 212d127b66 js
+Short 100 shares
+@@ 1ec0c286a2 js
+Sell call
+@@ 03df974a00 js
+Buy put
+@@ f6b6b6b912 js
+Covered call: stock + sell call
+@@ 31a428886b js
+Sell put (cash-secured)
+@@ 45a1d3fca3 js
+Stock
+@@ a9e66c7110 js
+Stock + buy put
+@@ 572e86134d js
+Buy call (+ cash)
+@@ a20927cb50 js
+Pay $
+@@ 7fa8d5020f js
+Receive $
+@@ 49cd777e4e js
+P&L at expiration (per share)
+@@ d1f3254841 tpl
+<span><i style="border-color: var(--ink); border-top-width: 3.5px"></i>Portfolio A: {0}</span>
+@@ b7732b5964 tpl
+<span><i class="dash" style="border-color: var(--warn)"></i>Portfolio B: {0}</span>
+@@ c2fc261917 js
+Portfolio A at the start (per share)
+@@ 71c9188c1c js
+Portfolio B at the start (per share)
+@@ c99079a65c tpl
+<span><i style="border-color: var(--delta)"></i>Mental math S·σ·√(days/365)</span><span><i style="border-color: var(--ink)"></i>Exact upper bound</span><span><i class="dash" style="border-color: var(--ink)"></i>Exact lower bound</span>
+@@ 14e9bece65 js
+Mental math: one standard deviation
+@@ c9fa190cd6 js
+Exact: lognormal 68% range
+@@ 85259a0da9 js
+Below 0.2, mental math holds up
+@@ d1348d0db3 tpl
+<span><i style="border-color: var(--gamma)"></i>Black-Scholes ATM straddle</span><span><i class="dash" style="border-color: var(--delta)"></i>0.8 × mental-math move</span>
+@@ ebaee169da js
+Black-Scholes straddle
+@@ dc858e73ae js
+0.8 rule
+@@ b4ca12ecfb js
+Rule error
+@@ 790abc0b88 js
+Stock move ($)
+@@ 264bfa5b23 js
+Price ($)

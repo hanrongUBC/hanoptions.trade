@@ -1,0 +1,160 @@
+@@ 40320849fe html
+PEP <span class="zh">PepsiCo</span>
+@@ 19b74d4856 html
+A consumer staples stock on the list. His reasoning: when rates come down and rate-hike expectations cool, high-dividend defensive stocks will rebound.
+@@ f95d999801 html
+PepsiCo has two big businesses: convenience foods, led by Frito-Lay (Lay's, Doritos) and Quaker, and beverages such as Pepsi and Gatorade. Revenue over the trailing twelve months was $98.24 billion. North America is the biggest market, and recent growth has come mainly from the international business.
+@@ 057155d09b html
+The 52-week range is $123.47 to $171.48, and the price is 26.5% below the high. The average analyst price target is $143.05 (24 analysts, average rating Hold). Price targets reflect an optimistic scenario and often lag the stock price.
+@@ 49fd2ff13e html
+The close of $125.97 is 7.05% below the 50-day moving average of $135.52 and 14.12% below the 200-day moving average of $146.68; the moving averages are in bearish alignment.
+@@ c69ae69f29 html
+RSI is 36.89: weak, but not in oversold territory below 30.
+@@ 45d964b1ad html
+Support: the 52-week low of $123.47 (intraday, October 7), only 2.02% below the current price; the lowest close of the last 30 trading days, $123.73, was also on October 7.
+@@ 478dd4c13b html
+Resistance: the intraday high of $129.50 on the October 8 earnings day, and the September 22 close of $131.19; above that are the 50-day moving average at $135.52 and the highest close of the last 30 days, $141.07 (August 28).
+@@ 69d17d196b html
+About 23.95 million shares traded on earnings day, roughly 2.3 times the 20-day average volume of 10.52 million; the stock rose 3.73% that day and gave back 1.85% the next. The 52-week high is $171.48, and the price is 26.54% below it.
+@@ 63c6912ac6 html
+$171.7 billion
+@@ 87456bb836 html
+$98.2 billion
+@@ 9ed24162d5 html
+$51.9 billion / $11.2 billion
+@@ b2886a695e html
+$10.5 billion
+@@ f8946547db html
+Revenue over the trailing twelve months was $98.24 billion, up 6.4% year over year; gross margin was 54.33%, operating margin 16.05% and net margin 11.09%.
+@@ cd24f77015 html
+Q3 2026 revenue was $25.27 billion, up 5.58%, with organic revenue up 3.1%; reported EPS was $2.23, up 17%, while core EPS of $2.34 grew only 2%. Trailing-twelve-month reported EPS grew 51.2%, far from the core figure, so judge the earnings trend by core EPS.
+@@ fb91bf0cc6 html
+North America is the weak spot: PepsiCo Foods North America (PFNA) organic revenue was flat and core operating profit fell 12%; organic revenue in the international regions grew 6% to 9%.
+@@ e685d263a8 html
+Full-year guidance was cut: core constant-currency EPS growth from “the low end of 4% to 6%” to 1% to 2%, and core EPS growth from “the low end of 5% to 7%” to 2.5% to 3.5%.
+@@ 0939684950 html
+The annualized dividend is $5.92, a dividend yield of 4.70% with a payout ratio of 74.47%, and it has grown for 54 years in a row; the company plans to return $8.9 billion to shareholders in 2026 (about $7.9 billion in dividends and about $1 billion in share buybacks). Trailing-twelve-month free cash flow was $10.47 billion.
+@@ d838ddcd1e html
+Valuation: P/E 15.85x, forward 14.86x, EV/EBITDA 11.08x. Total debt is $51.88 billion and cash $11.16 billion; ROIC is 19.68%. The 24 analysts rate it Hold, with an average price target of $143.05.
+@@ 2cf0798b32 html
+<span class="nd">2026-09-29</span><span>JPMorgan downgraded the stock from Overweight to Neutral and cut its target from $170 to $138, saying the recovery in Frito-Lay North America's salty snacks stalled after Q1 and that hitting Q4 guidance now depends more on cost cuts. <a href="https://stocktwits.com/news-articles/markets/equity/pep-stock-gets-a-downgrade-from-jp-morgan-firm-flags-frito-lay-weakness/cZMmCWWRBgW" target="_blank" rel="noopener">stocktwits.com</a></span>
+@@ 3a2902ef9d html
+<span class="nd">2026-10-07</span><span>A Reuters analysis noted that after Elliott took a stake, the company promised to raise core operating margin by 100 basis points within three years, but first-half core operating margin was 16.3%, actually down 15 basis points year over year; GLP-1 weight-loss drugs are weighing on North American volumes, making the target harder to hit. <a href="https://www.businessday.co.za/world/international-companies/2026-10-07-pepsicos-quiet-scramble-to-fight-off-the-glp-1-threat/" target="_blank" rel="noopener">businessday.co.za</a></span>
+@@ acfd663ccc html
+<span class="nd">2026-10-08</span><span>Reported Q3: revenue of $25.27 billion, up 5.6%, and core EPS of $2.34, both better than expected, but full-year guidance for core constant-currency EPS growth was cut to 1% to 2%. The stock still rose 3.73% that day, a sign that the bad news was partly priced in. <a href="https://www.sec.gov/Archives/edgar/data/0000077476/000007747626000050/q320268-kxexhibit991.htm" target="_blank" rel="noopener">sec.gov</a></span>
+@@ fe9e5cbd09 html
+<span class="nd">2026-10-08</span><span>The AP reported that the company will raise prices on Doritos, Ruffles, SunChips and some sodas by a single-digit percentage to recover fuel, aluminum and agricultural costs; the $178 million tariff refund used up in Q3 will not recur. <a href="https://fortune.com/2026/10/08/pepsico-price-hike-doritos-ruffles-sodas-178-million-tariff-refund/" target="_blank" rel="noopener">fortune.com</a></span>
+@@ 2b9a154d79 html
+Price increases on North American snacks and some sodas (single-digit percentages) take effect; watch how volumes respond.
+@@ 2eedcbeb12 html
+The company says it will roll out additional structural cost cuts in the coming months.
+@@ 88e92ebb58 html
+Peer signal: Mondelez (MDLZ) is expected to report Q3 after the close on 2026-10-27 (estimated date), a cross-check on snack demand.
+@@ 0d2d33f30c html
+The date of the next (Q4) report has not been announced; that report will test whether full-year guidance for core EPS growth of 2.5% to 3.5% is met.
+@@ cb9f113887 html
+Oil and raw materials: the company says the price increases are meant to recover fuel, aluminum and agricultural costs; higher oil prices push up transport and packaging costs directly.
+@@ 3e7ea21a9b html
+Dollar: the company raised its estimate of the currency contribution to full-year revenue to about 1.5 percentage points; a weaker dollar helps the translation of international results, and a stronger dollar does the opposite.
+@@ c51c6c186a html
+Rates and the consumer: with a 4.70% dividend yield, falling long-term rates would make it more attractive relative to bonds; but North American consumers are buying less, and the CEO said he “doesn't feel good” about the beverage business.
+@@ 0190757816 html
+The stock is near its 52-week low, with a forward P/E of 14.86x; Reuters notes that its EV/EBITDA has fallen from about 18x in mid-2022 to about 10x.
+@@ e1f77de1e6 html
+International organic growth was 6% to 9%, Q3 revenue and core EPS beat expectations, and the stock rose 3.73% on heavy volume on earnings day.
+@@ 8567fc3ef2 html
+If the price increases and cost cuts can stabilize North American profit margins, worries about the guidance cut have room to ease; the 4.70% dividend yield offers some support.
+@@ 05ac1b47e2 html
+North American snacks are losing share: TD Cowen says Frito-Lay's US sales are flat and losing share. GLP-1 weight-loss drugs could hold down snack demand for a long time.
+@@ 5476fb4f4c html
+In Q3 a $178 million tariff refund offset part of the costs, and it won't be there going forward; the CFO flagged pressure on North American core operating margin in Q4.
+@@ 79a80b0ef2 html
+The price increases could push volumes down again; volumes fell after the back-to-back double-digit price increases of 2022 to 2023.
+@@ f776036eed html
+Whether the 52-week low of $123.47 holds.
+@@ ffd3eb1db6 html
+Whether the stock can get above $129.50 (the earnings-day high) and back above the 50-day moving average at $135.52.
+@@ 9bcff61601 html
+How North American snack volumes change after the price increases, and whether PFNA organic revenue turns positive in the next report.
+@@ ef2571aee0 html
+Sources: <a href="https://stockanalysis.com/stocks/pep/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/pep/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/pep/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/pep/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0000077476/000007747626000050/q320268-kxexhibit991.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://fortune.com/2026/10/08/pepsico-price-hike-doritos-ruffles-sodas-178-million-tariff-refund/" target="_blank" rel="noopener">fortune.com</a> · <a href="https://www.businessday.co.za/world/international-companies/2026-10-07-pepsicos-quiet-scramble-to-fight-off-the-glp-1-threat/" target="_blank" rel="noopener">businessday.co.za</a> · <a href="https://stocktwits.com/news-articles/markets/equity/pep-stock-gets-a-downgrade-from-jp-morgan-firm-flags-frito-lay-weakness/cZMmCWWRBgW" target="_blank" rel="noopener">stocktwits.com</a> · <a href="https://stocktwits.com/news-articles/markets/equity/pepsi-co-tops-q3-estimates-as-international-growth-accelerates-cfo-sees-north-america-core-operating-margin-facing-pressure-in-q4/cZDUKgZRBNf" target="_blank" rel="noopener">stocktwits.com</a>
+@@ c77677d951 html
+MDLZ <span class="zh">Mondelez</span>
+@@ 128745c385 html
+A consumer staples stock on the list (snacks, chocolate). Like PepsiCo, it is a bet on defensive stocks warming up again, and it is also heavily exposed to cocoa prices.
+@@ 953806c3c2 html
+Mondelez is a global snack company whose main brands include Oreo, Cadbury, Milka, Toblerone and Clif energy bars. Revenue is mostly biscuits and chocolate, and most of it comes from markets outside the US; cocoa is one of its most important raw materials.
+@@ 7edac0cfb0 html
+The 52-week range is $51.20 to $66.65, and the price is 9.4% below the high. The average analyst price target is $69.00 (23 analysts, average rating Buy). Price targets reflect an optimistic scenario and often lag the stock price.
+@@ 1bec06e0cf html
+The close of $60.41 is 2.03% below the 50-day moving average of $61.66 and 1.12% above the 200-day moving average of $59.74. The stock is caught between the two averages, and its direction is not yet clear.
+@@ e0db825e57 html
+RSI is 49.69, in neutral territory: neither overbought nor oversold.
+@@ 5bf44ea54f html
+Support: the 200-day moving average at $59.74; the lowest close of the last 30 trading days, $57.76 (October 1); further down, the 52-week low of $51.20.
+@@ e67a118cff html
+Resistance: the 50-day moving average at $61.66; the highest close of the last 30 days, $62.47 (September 10); the 52-week high of $66.65, with the price 9.36% below it.
+@@ 844b23f1fd html
+Since October 1 the stock has bounced about 4.6% from $57.76, and over the past 52 weeks it is down only 2.03%, a relatively steady trend.
+@@ ff39538872 html
+$77.1 billion
+@@ f6bb8183ec html
+$39.7 billion
+@@ b87160c37f html
+$22.1 billion / $1.7 billion
+@@ bc8d990182 html
+$3.1 billion
+@@ 27923d178a html
+Revenue over the trailing twelve months was $39.68 billion, up 6.9% year over year; gross margin was 31.15%, operating margin 11.83% and net margin 8.86%.
+@@ 585993c952 html
+Q2 2026 revenue was $9.355 billion, up 4.13%, with organic growth of 2.2% (1.5 percentage points from price, 0.7 points from volume and mix); adjusted EPS of $0.73 was flat with last year and down 2.7% in constant currency.
+@@ f3c270ab00 html
+After Q2 the company raised its 2026 guidance for organic revenue growth to at least 2% (from 0 to 2%), kept its guidance for adjusted EPS growth in constant currency at 0 to 5%, and expects full-year free cash flow of about $3 billion.
+@@ e0ba579117 html
+Reported EPS swings a lot: Q2 reported EPS was $1.20, up 144.9%, while adjusted EPS was flat; the gap comes from items the company strips out of its adjusted figures. Trailing-twelve-month EPS was $2.73, down 0.7% year over year.
+@@ f6c4a5b038 html
+The annualized dividend is $2.08, a dividend yield of 3.44% with a payout ratio of 76.23%, and the quarterly dividend was raised 4% in Q2; trailing-twelve-month free cash flow was $3.09 billion.
+@@ e3b014adc4 html
+Valuation: P/E 22.23x, forward 18.81x, EV/EBITDA 16.01x. Total debt is $22.06 billion and cash $1.72 billion; ROIC is 7.89%. The 23 analysts rate it Buy, with an average price target of $69.00, 14.22% above the current price.
+@@ d56729c196 html
+<span class="nd">2026-07-28</span><span>Reported Q2 (slightly before this book's time window): revenue of $9.355 billion, up 4.1%, organic growth of 2.2%, and adjusted EPS flat at $0.73. Full-year guidance for organic revenue growth was raised to at least 2% and the quarterly dividend increased 4%; this is the main basis for the recent fundamental picture. <a href="https://www.sec.gov/Archives/edgar/data/0001103982/000162828026050157/mdlzearningsreleasecontent.htm" target="_blank" rel="noopener">sec.gov</a></span>
+@@ c179094741 html
+<span class="nd">2026-09-22</span><span>Launched Diamond Truffles, a premium Toblerone and Biscoff co-branded chocolate, worldwide; it is one of the ways the company uses co-branding and premium launches to drive chocolate sales. <a href="https://www.malaymail.com/news/money/mediaoutreach/2026/09/22/an-iconic-duo-toblerone-launches-truffles-with-biscoff/487118" target="_blank" rel="noopener">malaymail.com</a></span>
+@@ e1412e7686 html
+<span class="nd">2026-10-01</span><span>Cocoa futures fell toward about $5,100 a ton, the lowest since July 27, and ICE cocoa inventories rose to a 2.25-year high; lower input costs help the gross margins of chocolate makers like Mondelez. <a href="https://tradingeconomics.com/commodity/cocoa/news/588793" target="_blank" rel="noopener">tradingeconomics.com</a></span>
+@@ 10d54f163e html
+<span class="nd">2026-10-07</span><span>Cocoa futures fell back from a three-week high to about $5,640 a ton as the market weighed ample supply this season against expectations of a smaller 2026/27 crop; third-quarter cocoa grind data is due out October 15. <a href="https://tradingeconomics.com/commodity/cocoa" target="_blank" rel="noopener">tradingeconomics.com</a></span>
+@@ 26f2b119ef html
+<span class="nd">2026-10-08</span><span>Peer PepsiCo reported weak North American snacks, cut its full-year earnings guidance and announced price increases, a reference point for demand and pricing across the snack industry; MDLZ closed up 2.17% that day. <a href="https://fortune.com/2026/10/08/pepsico-price-hike-doritos-ruffles-sodas-178-million-tariff-refund/" target="_blank" rel="noopener">fortune.com</a></span>
+@@ a3fa528518 html
+2026-10-15: third-quarter cocoa grind data for Europe and North America, a read on chocolate demand.
+@@ 8d8311f822 html
+2026-10-27, after the close (estimated): Q3 earnings. Watch the balance between price and volume, whether European sales stop falling, and the outlook for 2027 costs.
+@@ 64d192abfd html
+The new cocoa crop: Côte d'Ivoire's 2026/27 output is forecast at about 1.8 million tons, down from about 2.2 million tons last season; the weather (El Niño) is a wild card.
+@@ f2ef0a116d html
+Cocoa prices: cocoa futures closed at about $5,670/ton on October 9, down 4.9% over 1 month and 3.05% over 1 year. Lower cocoa helps chocolate profit margins, while expectations of a smaller new crop could push prices up.
+@@ c0142cd60d html
+Dollar: the company expects currency translation to add about 2 percentage points to 2026 revenue growth and about $0.05 to adjusted EPS; a weaker dollar helps, a stronger one hurts.
+@@ 30ac1477b1 html
+Rates and the consumer: with a 3.44% dividend yield, falling long-term rates would make defensive dividend stocks more attractive; organic sales in Europe fell 3.5% in Q2, a sign that consumers are sensitive to price increases.
+@@ e046e96ed7 html
+The stock is above its 200-day moving average of $59.74 and has already bounced from $57.76 on October 1, so the technical picture is relatively healthy.
+@@ 7f86208142 html
+Cocoa prices have come down from their highs; if that continues, margins have room to improve. The average analyst price target is $69.00.
+@@ 934f44fd4c html
+North American organic revenue grew 3.4% in Q2, with both price and volume contributing, and the company raised its full-year guidance for organic revenue.
+@@ 75708d406a html
+Organic sales in Europe fell 3.5% in Q2, with both price and volume down, and Europe is an important market for the company.
+@@ 850c8f7f33 html
+Côte d'Ivoire's new crop is expected to be smaller, so cocoa prices could rise again and squeeze margins.
+@@ 93d3a7e5e0 html
+Peer PepsiCo's North American snacks are weak, and the long-term effect of GLP-1 weight-loss drugs on snack demand is still uncertain; at a P/E of 22.23x, the valuation is not exactly cheap.
+@@ b184e5e7dc html
+Whether the stock holds the 200-day moving average at $59.74; if it breaks, watch the 30-day low of $57.76.
+@@ 1e24ae89a1 html
+Whether it can break above the 50-day moving average at $61.66 and the 30-day high of $62.47.
+@@ ef3026de15 html
+The October 15 cocoa grind data, and European volumes and the 2027 outlook in the October 27 (estimated) earnings report.
+@@ 4bcd8bd19c html
+Sources: <a href="https://stockanalysis.com/stocks/mdlz/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/mdlz/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/mdlz/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/mdlz/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0001103982/000162828026050157/mdlzearningsreleasecontent.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://www.grocerygazette.co.uk/2026/07/29/mondelez-raises-sales-outlook-as-oreo-and-cadbury-demand-holds-firm/" target="_blank" rel="noopener">grocerygazette.co.uk</a> · <a href="https://www.malaymail.com/news/money/mediaoutreach/2026/09/22/an-iconic-duo-toblerone-launches-truffles-with-biscoff/487118" target="_blank" rel="noopener">malaymail.com</a> · <a href="https://tradingeconomics.com/commodity/cocoa/news/588793" target="_blank" rel="noopener">tradingeconomics.com</a> · <a href="https://tradingeconomics.com/commodity/cocoa" target="_blank" rel="noopener">tradingeconomics.com</a> · <a href="https://fortune.com/2026/10/08/pepsico-price-hike-doritos-ruffles-sodas-178-million-tariff-refund/" target="_blank" rel="noopener">fortune.com</a>

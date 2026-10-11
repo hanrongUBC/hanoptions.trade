@@ -1,0 +1,168 @@
+@@ db412410f3 html
+Grid equipment
+@@ 0ace47ebee html
+Growing power demand, upgrades to an aging grid
+@@ 8d11dcd36a html
+Permitting and local opposition
+@@ ba2b98d016 html
+Gold: a hedge against a splintering monetary order
+@@ 33506f63e1 html
+Traditionally, gold moves opposite to real yields. But since 2022, central banks have bought more than 1,000 tonnes of gold a year, and that buying has clearly weakened the link between gold and real yields. Central banks buy gold largely to reduce their dependence on a single currency and a single financial system: the freezing of Russia's foreign exchange reserves in 2022 made many countries realize that assets held in another country's currency can be frozen in a conflict.
+@@ fa57b788c8 html
+So in today's narrative, gold looks more like a hedge against “a splintering monetary order” and “internal risks in major economies.” Households in some large economies are also adding gold as their real estate and local financial assets come under pressure, which gives gold demand support beyond the macro picture.
+@@ 8b0f4538d8 html
+Gold
+@@ 210da81e66 html
+Structural demand from central banks and households
+@@ f1fc1fc8cf html
+Hedge against credibility and geopolitical risk
+@@ ac7c8ad133 html
+Relatively “clean”; no industrial cycle
+@@ 2708e23f7b html
+Silver
+@@ 22091366cc html
+The precious-metals narrative plus industrial demand (electronics, solar)
+@@ e55948d0d7 html
+More volatile; affected by the economic cycle
+@@ 3e886bc150 html
+For those who want to amplify the gold narrative and can stomach bigger swings
+@@ d3e388d732 html
+Remember the counterargument too: gold produces no cash flow, and the return from holding it comes entirely from someone else being willing to pay a higher price. If central bank buying slows, or real yields rise sharply, gold could go through a long stretch of sideways trading or even decline.
+@@ 634c4e06c0 html
+Reshoring and tariffs
+@@ 6632b10432 html
+Don't ask who will bring the factories back; ask who will make money because everyone needs them. Where factories get built and who builds them is full of uncertainty, but whoever builds them has to buy equipment, use power, hire engineering firms and rent warehouses.
+@@ ea2a66dcaa html
+The “shovels” reshoring needs
+@@ 725a71c973 html
+Why it's unavoidable
+@@ 895238ac52 html
+Engineering and construction (E&amp;C)
+@@ 00ea09073d html
+Every factory and every production line needs someone to design and build it
+@@ 5dd3c0a830 html
+Large engineering and construction firms
+@@ 02501ae4ba html
+Electrical equipment
+@@ 2016c08dcb html
+New factories and data centers all need grid connections; lead times for large transformers have at times stretched to several years
+@@ 42c85f7428 html
+Makers of transformers, switchgear and grid equipment
+@@ c94e7b825b html
+Industrial automation
+@@ 67ce048c8e html
+Labor at home is expensive, so reshored factories must be more automated
+@@ ee7ed53dce html
+Robotics, control system and sensor companies
+@@ a0006452b3 html
+Electronics manufacturing services (EMS)
+@@ 9ff9b953fb html
+Brands don't want to build their own plants, so they outsource to domestic contract manufacturers
+@@ f0b2dd5d1e html
+Electronics contract manufacturers and assemblers
+@@ d52d3048e2 html
+Transport and logistics
+@@ f0572c4c2a html
+Parts and finished goods have to move between new locations
+@@ be8bf81245 html
+Heavy truck makers, railroads, industrial real estate
+@@ af42ff44fd html
+Skilled-worker training
+@@ cb732b2f0e html
+Long-running shortages of electricians, welders and machinists
+@@ ebcaa4368b html
+Vocational education, staffing services
+@@ e022ccdd07 html
+The lazy expressions are US infrastructure ETFs (for example, PAVE) and grid equipment ETFs. The theme's biggest risk is the cycle: industrial capital expenditure (capex) is very sensitive to interest rates, and when rates rise and subsidies wind down, projects get delayed or even canceled.
+@@ 8cbc77d797 html
+Who actually pays the tariff
+@@ ef12b00062 html
+Legally, the importer pays the tariff, but the economic burden is split three ways: foreign exporters (cutting prices to keep orders), importers (squeezing their own margins) and consumers (paying more). How much each one bears depends on who has more bargaining power.
+@@ 40908b4cde html
+For stock investors, what matters most is how much of the cost a company can pass through to customers, and whether customers buy less once it does. Here is a hypothetical company: revenue of 100, cost of goods of 60 (a 40% gross margin), with half of that cost coming from imports.
+@@ 40960efe62 html
+Tariff rate <input id="tf-t" type="range" min="0" max="60" step="5" value="25"> <output id="tf-t-o">25%</output>
+@@ 903f2bffc2 html
+Pass-through <input id="tf-p" type="range" min="0" max="100" step="5" value="50"> <output id="tf-p-o">50%</output>
+@@ a3e04679e8 html
+Demand elasticity <input id="tf-e" type="range" min="0" max="20" value="10"> <output id="tf-e-o">1.0</output>
+@@ bb452376e7 html
+A price elasticity of demand of 1.0 means sales fall 1% for every 1% rise in price. With the default settings, a 25% tariff raises costs by 7.5; the company passes through half by raising prices 3.75%, sales fall 3.75%, and gross profit drops about 12.8%. Drag elasticity to 0 and full pass-through preserves gross profit completely; drag it to 2.0 and gross profit falls 15% even with full pass-through. Companies with strong brands and hard-to-replace products have low elasticity. That is “pricing power.”
+@@ 249ed25575 html
+Second-order effects of tariffs
+@@ 79e679b4ac html
+<strong>Domestic competitors benefit</strong>: once imports get more expensive, companies making similar products at home can raise prices or take market share. Steel, some chemicals and manufacturing are typical examples.
+@@ 84af8bf890 html
+<strong>Downstream users lose</strong>: manufacturers that use steel and aluminum as inputs see their costs rise.
+@@ 76f4172ad0 html
+<strong>Trade reroutes</strong>: some goods are re-exported through third countries, whose logistics and assembly businesses grow until the rules close the loophole.
+@@ de0cef3ed2 html
+<strong>Retaliation and negotiation</strong>: the other side's counter-tariffs hit export industries such as farm products and aircraft. Many tariffs end up as bargaining chips, announced, paused and adjusted again and again.
+@@ d96ef2e440 html
+The last point is especially important. Tariff policy often follows a rhythm of “announce hard, then partly back down.” In April 2025, after sweeping tariffs were announced, stocks and Treasuries both fell sharply, and within a week most of the tariffs were paused for 90 days. When you trade tariff news, treat “a pause or an exemption” as a scenario that can appear at any moment: don't slash your positions in the first day's panic, and don't chase in the first day's cheering.
+@@ 0cea9fe08a html
+On a company's earnings call, look for the answers to three questions: What share of its costs is imported? How much has it raised prices, and how have customers reacted? Is it adjusting its supply chain, and how long will that take? When a company answers all three clearly, its tariff risk is usually already under control.
+@@ 59fce3723a html
+AI, power and robotics
+@@ c551b33f44 html
+In the policy narrative, AI isn't just a technology; it's a tool for lowering unit labor costs and keeping the nation competitive. Whichever company wins the model race, it has to buy power, buy hardware and connect to networks.
+@@ 961f3f9f8d html
+From apps to power plants: money flows downstream
+@@ a0f6af7bb7 html
+Bought no matter who wins
+@@ c244afb6bf html
+Biggest risk
+@@ a8ab62ee5a html
+Apps and software
+@@ 7c37977890 html
+Fiercest competition, monetization unproven
+@@ 0cae8d93e2 html
+Model companies
+@@ 9a490024fc html
+Burning cash; winners hard to call
+@@ c29e9423a2 html
+Cloud and big tech
+@@ 2dcace2e9d html
+Whether the investment pays off
+@@ abe3c8c0ac html
+Chips and memory
+@@ 1347ec56fb html
+Cyclical; concentrated customers
+@@ a63756bf35 html
+Networking and servers
+@@ 783db6af80 html
+Orders swing with capex
+@@ ad9d0ac2b1 html
+Data center construction and cooling
+@@ 65df800801 html
+Project delays, financing costs
+@@ 2de1d4cf76 html
+Power and the grid
+@@ 5ac41b65be html
+Slow permitting, local opposition
+@@ 3e07c461b8 html
+↓ Money flows from capex in the upper layers to orders in the lower layers
+@@ a779fd6019 html
+Competition is fiercest in the upper layers, where winner-take-all is most obvious. Demand in the lower layers is the sum of all the players above, but it is also limited by physical constraints (power, permits, equipment lead times). The labels on the right mark each layer's biggest risk.
+@@ da43b6cee2 html
+This chart explains why the “picks and shovels” logic is so popular in the AI theme: it's hard to tell which model company will win, but their combined capital expenditure (capex) eventually turns into orders for chips, networking equipment, data center construction and power.
+@@ 55b4108bfc html
+Power: the hardest constraint
+@@ 5736ec64e2 html
+Growth in data center power use has turned electricity from a slow-growing utility business into part of the tech theme. A few links worth watching:
+@@ e8c8f27bf2 html
+<strong>Generation</strong>: sources that can supply steady power for the long term are most in demand, and big tech companies are snapping up long-term power purchase agreements (PPAs) for nuclear and natural gas power.
+@@ c616557d76 html
+<strong>Grid equipment</strong>: transformers, switchgear and transmission lines have long lead times, and capacity expands slowly.
+@@ dc68156cfd html
+<strong>Gas turbines and cooling equipment</strong>: demand from data centers building their own power supply and cooling.
+@@ 42747131ef html
+<strong>Networking and connectivity</strong>: high-speed networks within and between data centers; companies holding related patents and equipment also benefit.
+@@ 77c4343782 html
+The counterargument: power demand forecasts have been too optimistic many times in the past; gains in chip energy efficiency could cut the power used per unit of compute; and residents and governments in some places have started opposing new data centers over electricity prices, water and land. All of this could limit the pace of growth.
+@@ d6f8e8abe3 html
+Robotics: AI in physical form
+@@ d753d5f74d html
+If AI lowers the cost of mental work, robots lower the cost of physical work. Their first stop is most likely factories and logistics warehouses: controlled environments, repetitive tasks, high labor costs and jobs that are hard to fill. This ties in directly with the reshoring theme: for reshored factories to make money where labor is expensive, they have to automate heavily.
+@@ d2f353cb68 html
+Risk levels within the robotics theme vary widely. Established industrial automation companies have steady revenue and customers; humanoid robot makers and early-stage startups mostly don't have revenue at scale yet, and some have gone public through special purpose acquisition companies (SPACs), with high risks of dilution and failure. Putting them in the same basket mixes two completely different kinds of risk.

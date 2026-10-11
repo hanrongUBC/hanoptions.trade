@@ -1,0 +1,192 @@
+@@ bc8cf53af1 html
+<span class="sn">15.7</span>Three tools: the impulse log, the warning-sign checklist and the streak review
+@@ 83d513c939 html
+Psychological problems are hard to solve with willpower. A more reliable approach is to turn them into a form you must fill in before placing an order, and questions you must answer every month.
+@@ 93b13483e3 html
+1. The options impulse log
+@@ 3d02dbc4a4 html
+For any trade that isn’t in your plan and that you suddenly want to make, fill in this form first, then decide whether to do it. It doesn’t forbid impulses; its job is to keep impulses and plans in separate books. After a month, count: how many impulses, how many you acted on, and how the trades you made performed against your planned trades. Most people find that impulse trades have clearly worse expectancy and cluster right after a loss or a win.
+@@ 758d90293c html
+Copy template
+@@ 02ac7930f0 html
+The “hypothetical result if skipped” matters: it tells you how many of the impulses you resisted would actually have lost money. If your browser blocks automatic copying, all the text will be selected; just copy it by hand.
+@@ 998300bde6 html
+When impulse trades lose money, by the four categories of Chapter 14 it’s almost always an “execution error” or a “risk management error,” rarely a “judgment error.” Track them separately from planned trades so impulse losses don’t contaminate your assessment of the strategy itself.
+@@ 6ba8bbd3c0 html
+2. The early-warning checklist for the five paths
+@@ 31c7d4cfed html
+The early warning signs for each path in Section 15.6 are condensed into Checklist 15-3 at the end of this chapter. Go through it at the end of every month; if any item gets a check, go back to that path’s prevention rules.
+@@ d4d3236676 html
+3. The streak review
+@@ c6e2e40f03 html
+Right after a winning streak is the most dangerous time, because that’s when you most want to add. Set a trigger, such as 5 wins in a row for a seller, 3 for a buyer, or a new account high, and once it fires, do a review before trading again: are your positions bigger than last month? Were there trades in this stretch that “made money but were done wrong”? Rerun the stress test. Then take a day off.
+@@ 130180344a html
+The simulation below shows why. A seller-style strategy: 80% win rate, wins of 0.27R, losses of 1R, expectancy +0.016R per trade, a thin edge but a real one. Two sizing rules: a fixed 2% risk per trade; or scaling size up 1.5× after each consecutive win, to a maximum of 8×, and back to base size after any loss. 2,000 accounts each make 100 trades, using the same random numbers.
+@@ ce0bc946bc html
+Thin edge (win 0.27R)
+@@ b181c91c80 html
+Thick edge (win 0.30R)
+@@ 635611dd59 html
+Scale-up per win <input id="f4-m" type="range" min="1" max="2" step="0.1" value="1.5"> <output id="f4-m-o">1.5×</output>
+@@ 798a3dcdd1 html
+Base risk <input id="f4-f" type="range" min="1" max="4" step="0.5" value="2"> <output id="f4-f-o">2%</output>
+@@ a152e10f00 html
+With the default settings, fixed sizing ends 100 trades at a median of 1.03×, a third of the accounts lose money, and none is cut in half along the way; streak scaling drops the median to 0.96×, more than half the accounts lose money, and 12.5% are cut in half at some point, yet the mean rises to 1.16×. Drag the scale-up back to 1.0 and the two sets of curves coincide; switch to the thick edge and the scaling median beats fixed sizing, but the worst 5% and the chance of being cut in half are still clearly worse.
+@@ 3a43b07c5e html
+Why does this happen? At an 80% win rate, the chance of 6 wins in a row is <span class="num">0.8<sup>6</sup> = 26.2%</span>, not rare at all. Scaling 1.5× per win, those 6 trades are sized 1, 1.5, 2.25, 3.38, 5.06 and 7.59×, making <span class="num">20.78 × 0.27 = 5.61R</span> in total; trade 7 is already at the 8× cap and loses <span class="num">8R</span> in one go. Everything the streak earned is given back, plus another 2.39R. The trade after a streak has exactly the same chance of winning as any other, yet it carries the biggest size.
+@@ 269858dfad html
+The mean goes up because the few accounts that keep winning make enormous amounts; but you only live one path. For a single account, what matters is the median and the worst case, and both get worse.
+@@ 0e5ef081f2 html
+Some traders who survive for the long run handle these problems in plain ways: they buy 0DTE options only with a small slice of realized profits (say 10%), never touching capital; after a big win they take a day off and open nothing new; their trading journal has a separate column for “made money but did it wrong”; and their test for whether a position is too big is whether it affects their sleep and mood. Once they lie awake watching the account, they first cut the position until they can sleep.
+@@ 539c2f4afe html
+<span class="sn">Cases</span>Two ledgers
+@@ 63b66a8340 html
+A seller’s account: 11 months of steady small gains, then one gap in month 12
+@@ 5f69760b2e html
+A fictional account starting at $60,000. Once a month it sells a 30-day put with a Delta of about −0.20 (underlying XYZ, starting at $100) and holds it to expiry. For the first 4 months, 6 contracts; after 4 winning months, up to 8; after 8 winning months, up to 10; in month 12, with “11 wins in a row, a 100% win rate,” up to 14.
+@@ 3bb73eff1b html
+Table 15-7 The full 12-month ledger (premium per share, everything else in $; margin estimated under Reg T)
+@@ b1f2bc1a7d html
+Month
+@@ 34c0f15870 html
+Stock at start
+@@ 4a14863fad html
+Strike
+@@ 6e52cb2b8f html
+Premium
+@@ 772e245467 html
+Contracts
+@@ c5573546fd html
+Margin used
+@@ 70c0543c23 html
+Stock at end
+@@ a5a089fc2f html
+Month’s P&amp;L
+@@ 4a3b8fac30 html
+Account
+@@ 79c80b3da8 html
+<strong>What happened in month 12.</strong> On day 9 the company cut its full-year guidance, and the stock gapped from 114 to 88, down 22.8%, with IV jumping to 55%. Stopping out at that day’s open meant paying 19.16 to buy back the 14 contracts of the 107 put, a loss of <span class="num">$25,283</span>; holding to expiry (stock at 87) lost <span class="num">107 − 87 − 1.098 = 18.90</span> per share, or <span class="num">$26,463</span> on 14 contracts. Stopping out or not made a difference of only $1,180: after the gap there were no good choices left.
+@@ 1b0371783a html
+<strong>What the ledger shows.</strong> The first 11 months made <span class="num">$8,836</span> (+14.7%); every month was positive, and margin used stayed below 26% of equity throughout. It looked very solid. Month 12 lost <span class="num">38.4%</span> of the month’s starting equity, and the year ended at <span class="num">−$17,627</span> (−29.4%). The ratio of notional exposure to equity rose from 0.93× in month 1 to 2.18× in month 12, and not one increase came because the risk had gotten smaller.
+@@ 4a4bb17106 html
+Table 15-8 Same market, three approaches ($)
+@@ 5ee37a5890 html
+Approach
+@@ aab495ed4e html
+First 11 months
+@@ 7dddf30f6d html
+Month 12
+@@ 5cfcbde2fd html
+Full year
+@@ 6fea3b0db4 html
+Actual: up to 14 contracts after the streak
+@@ 945fa33981 html
+6 contracts throughout
+@@ 1af163de23 html
+Same contracts, 5-wide put spreads instead
+@@ 550db1b922 html
+Even without adding, the result is still a loss: the problem with naked puts is first the structure, and only second the size. Spreads with the same number of contracts made 30% less in the first 11 months and lost only $5,945 in the gap month.
+@@ 699a57585b html
+The 11-month streak told you nothing about month 12. Using a streak as a reason to add means making the most important decision with the least relevant data.
+@@ da6d0c09a2 html
+Every early warning sign showed up: when size went to 8 contracts in month 5, notional exposure of $77,600 already exceeded equity; then came month after month without a loss, and size kept growing. Checked monthly, the Path 2 list would have stopped you in month 5.
+@@ 85cb3bc5f7 html
+A buyer’s account: a month of chasing 0DTEs
+@@ ff8c141fa0 html
+A fictional account starting at $30,000 buys one same-day index ETF option at 10 a.m. every trading day (prices are hypothetical; strike about 0.5% OTM, about 6 hours left) and holds it to the close. The direction “chases” the move in the first half hour after the open. The amount put into each trade records the trader’s state of mind at the time.
+@@ 8cd2e1bca9 html
+Table 15-9 Ledger for 20 trading days (prices per share, everything else in $)
+@@ 6f8cd6c84a html
+Day
+@@ e0551de2ea html
+Direction
+@@ 9f28d768b8 html
+At entry
+@@ 7231127a89 html
+Cost
+@@ 095e3b6e3d html
+Outlay
+@@ 746ad05f93 html
+Close
+@@ b9f00f0c1f html
+Day’s P&amp;L
+@@ 1ac69090ba html
+Call
+@@ 727fb827ee html
+Put
+@@ 9ff0be2446 html
+Cost = Black-Scholes mid plus $0.01, rounded to two decimals; on winning days the option is sold at the close for intrinsic value minus $0.01. For example, day 9: <span class="num">(597 − 596.0 − 0.01 − 0.18) × 144 × 100 = +$11,664</span>.
+@@ 351d864e6a html
+<strong>The trail of emotions.</strong> Days 1–3 are straight losses, and the bet grows from $288 to $646 (chasing). Day 4 wins 3.9×, and on days 5–8 the bet climbs from $1,197 to $2,185: first the swagger after a win, then the chase after a losing streak. Day 9 is a 5.5× winner and the account shoots up to $36,194, the only account balance this month anyone would screenshot. Days 10–12 are about $3,500 each (“I’m in the zone”), all losers. Day 13 shrinks to $1,998 (scared), day 14 wins 5.6× again, and so days 15–20 go back up to $2,500–3,990, all losers.
+@@ c153c0d873 html
+<strong>The result.</strong> 3 winning days out of 20, a 15% win rate, in line with the roughly 10% worked out in Section 15.2. The account went from $30,000 to <span class="num">$13,931</span>, down 53.6%. Total premium put in over the month was <span class="num">$44,921</span>, 1.5 times the starting account. The same 20 days, with the same directions and strikes at a fixed $300 a day, would have ended at <span class="num">−$1,444</span> (−4.8%).
+@@ 51ee444844 html
+The choices were the same, and so was the win rate. The whole gap between −4.8% and −53.6% comes from how bet size changed with emotion.
+@@ 3b630010b1 html
+The biggest losing stretches came right after the two big wins (days 10–12 and days 15–20). Sizing up after a win is harder to spot than doubling after a loss, because it feels like “playing with confidence.”
+@@ e1967c8ba7 html
+The day 9 screenshot is real, and so is this month. Anyone who sees only the screenshot would think this was a month that made $11,664.
+@@ 76fc557033 html
+<span class="sn">Tools</span>Checklist and self-test
+@@ b4640d623d html
+Your checkmarks are saved only in your own browser.
+@@ ef97aa0f9d html
+<span class="num">15-1</span>Buyers: monthly checkup
+@@ cfedc09197 html
+Total lottery-type premium this month stayed within budget
+@@ fcd5c1c356 html
+No new 0DTE trades on losing days
+@@ 13b0beefb5 html
+Bet size stayed fixed, not changed by the previous result
+@@ 2abb45c1f1 html
+Every trade has its win rate and payoff written down, with expectancy calculated
+@@ 93688639c6 html
+<span class="num">15-2</span>Sellers: monthly checkup
+@@ 055264d518 html
+Naked notional ≤ 1× equity, or spreads only
+@@ 992a1675a9 html
+20% gap stress test: loss per trade ≤ 5% of account, total ≤ 20%
+@@ d8651b4c2b html
+Didn’t add to any breached position
+@@ fcfcad43f6 html
+Rolls added no contracts, and losses were booked as realized
+@@ 5a0c63f96a html
+<span class="num">15-3</span>Early warning signs of the five paths (check any that appear)
+@@ e04846a018 html
+Bet size grew after a losing streak
+@@ b657d94961 html
+Months without a loss, and notional exposure above equity
+@@ 972e062b11 html
+<span class="num">15-4</span>Streak review (after 5 straight wins or a new account high)
+@@ c118ffee1e html
+Positions are no bigger than last month
+@@ 2bdcb06cfd html
+Reviewed trades in the period that “made money but were done wrong”
+@@ 59f351d0a3 html
+Reran the stress test
+@@ ddd9a47719 html
+Took a day off before trading again
+@@ a6f5d33bbc html
+Self-test: five questions
+@@ d33affc21a html
+<span class="num">1</span><span>A 0DTE call costs $0.20, has a 12% chance of finishing in the money, and is worth $1.40 on average when it does. What is the expectancy per trade? At 10 contracts a day for 20 days a month, how much do you expect to lose?</span>
+@@ c580388bc9 html
+Expectancy per trade is <span class="num">0.12 × 1.40 − 0.20 = −$0.032</span>, or −16% of cost. For a month, expect <span class="num">−0.032 × 100 × 10 × 20 = −$640</span>. Each trade loses only a few dozen dollars; you see it only once you add them up.
+@@ 9223d0d565 html
+<span class="num">2</span><span>You sell puts every week, collecting $0.25 per share. After one gap, your net loss is $6 per share once the premium is deducted. How many weeks of income did that one loss wipe out?</span>
+@@ 86c6303636 html
+<span class="num">6 ÷ 0.25 = 24</span> weeks, close to half a year. For a strategy with a 90% win rate, just two gaps like this in a year wipe out the whole year’s work.
+@@ fd746fa016 html
+<span class="num">3</span><span>You sell 10 contracts of the 90 put. With the stock at 100 the option is 0.50; when the stock falls to 88 it is 4.00. Under the Reg T formula, what does the margin requirement go from and to?</span>
+@@ bdd6c29b18 html
+Stock at 100: <span class="num">(max(20 − 10, 9) + 0.50) × 1,000 = $10,500</span>. Stock at 88, now in the money, so the out-of-the-money amount is 0: <span class="num">(max(17.6, 9) + 4.00) × 1,000 = $21,600</span>. A 12% drop in the stock doubles the margin requirement, while equity falls by $3,500.
+@@ f716645c3f html
+<span class="num">4</span><span>A short ATM straddle collects $11.40 of Theta a day, with Gamma of 0.0925. One day the stock moves 4.71 (3 daily standard deviations). Roughly what is that day’s P&amp;L after Delta hedging?</span>
+@@ b29b3b5dab html
+The Gamma loss is <span class="num">½ × 0.0925 × 4.71² = 1.026</span> per share, or $102.6, about 9 days of Theta. The day’s P&amp;L is about <span class="num">11.4 − 102.6 = −$91.2</span>.
+@@ 49c49f39ff html
+<span class="num">5</span><span>A strategy with an 80% win rate, wins of 0.27R and losses of 1R scales size up 1.5× after each consecutive win (capped at 8×). After 6 straight wins, trade 7 loses. What is the total for these 7 trades? How likely are 6 straight wins?</span>
+@@ 0411336951 html
+The sizes of the 6 trades add up to <span class="num">1 + 1.5 + 2.25 + 3.38 + 5.06 + 7.59 = 20.78</span>, earning <span class="num">20.78 × 0.27 = 5.61R</span>; trade 7 is sized 8× and loses 8R. Total: <span class="num">−2.39R</span>. The chance of 6 straight wins is <span class="num">0.8⁶ = 26.2%</span>, so you’ll hit it in about one stretch out of every four.
+@@ 4cfd4e12b2 html
+Option prices in this chapter are computed with the Black-Scholes model (4% rate, no dividends, 365-day year); ledgers, simulations and margin formulas are fictional or simplified assumptions as noted in the text. For education only; not investment advice.

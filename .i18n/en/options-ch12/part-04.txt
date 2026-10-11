@@ -1,0 +1,217 @@
+@@ ce96564562 html
+<span class="num">√(2 × 66 × 1% / (18 × 780)) = 0.97%</span>, about $7.56. Beyond that move, the loss from Gamma is bigger than the day's Theta.
+@@ bd79cc518d html
+<span class="num">3</span><span>You sold a 95 put for $1.80, and it's now worth $4.50. Rolling to the 40-day 95 put collects $6.57, a “net credit of $2.07.” Are you back to even?</span>
+@@ de6e56a28a html
+No. The $2.70 loss was realized when you bought back; the new $6.57 is the price of new risk. The cumulative premium on the whole trade is 1.80 − 4.50 + 6.57 = $3.87, the breakeven is $91.13, you carry the risk 28 more days, and Delta is still −0.55. Under the risk-neutral model, its expected value is almost the same as closing outright.
+@@ eb804bb0e7 html
+<span class="num">4</span><span>Ten 95/90 put spreads are now worth $2.40. If you do nothing, what's the most you can still lose from here? What if you also sell a 97/102 call spread for $0.90?</span>
+@@ a20a877ced html
+No change: <span class="num">(5 − 2.40) × 100 × 10 = $2,600</span>. With the iron condor: <span class="num">(5 − 2.40 − 0.90) × 1,000 = $1,700</span>, because at expiry only one side can take a full loss. The cost is that if the stock rebounds above 102, the money you would have recovered turns into a loss.
+@@ 888dcb690c html
+<span class="num">5</span><span>Your rule is “take profits at 50%, stop out at a loss of 2× the premium.” What win rate do you need, at minimum, to not lose money?</span>
+@@ 97a404046c html
+<span class="num">w* = L / (g + L) = 2 / (0.5 + 2) = 80%</span>. If the structures you sell can't reach an 80% win rate, this set of rules loses money over the long run: either tighten the stop or switch to strikes with a higher win rate.
+@@ 72c2106f8a html
+This chapter's examples are calculated with the Black-Scholes model (4% rate, no dividends, 365-day year); stock paths, IVs and hedging scenarios are hypothetical, as stated in the text. They are for teaching only and are not investment advice.
+@@ a70e23cc3d text
+US Options
+@@ 875f2902a9 text
+ Course
+@@ 5f37c06d71 text
+US Options Course · Part 4 Portfolio and risk management · Chapter 12
+@@ c6a82855b3 text
+Beta-weighted Gamma
+@@ ed485f0f98 text
+P&amp;L
+@@ 3bc780a93d text
+Portfolio Greeks aggregator
+@@ 8d2fb23ec0 text
+Tool 12-A · Editable; Figure 12-1 below updates with it
+@@ 5138c91c42 text
+Beta-weighted Delta (SPY shares)
+@@ b0ac6634eb text
+Beta-weighted Gamma (per 1%)
+@@ 8faad93444 text
+Net Theta (per day)
+@@ 356f4aa5a3 text
+Net Vega (per IV point)
+@@ f24f21ec35 text
+Key point
+@@ 4968ad443d text
+breakeven
+@@ d6aa7c53cb text
+The opening portfolio's shape: time is on your side; declines and rising IV are not
+@@ 950463236d text
+Figure 12-1 · Reads the positions in Tool 12-A
+@@ b131a46f15 text
+SPY −5% (IV unchanged)
+@@ 0b03fc5c35 text
+SPY +5% (IV unchanged)
+@@ 420995514a text
+SPY flat, after 7 days
+@@ 8d32df814b text
+SPY flat, IV +5 points
+@@ 566cf46352 text
+When to hedge at the portfolio level
+@@ 642dbde813 text
+Rolling out collects the most, rolling down is the safest, and none of them is “free”
+@@ 35a6e8b158 text
+Figure 12-2 · Rolling 5 short puts: a comparison
+@@ 75549038bf text
+Close and take the loss
+@@ 369f78cf60 text
+Out (strike 95)
+@@ 97cb647afc text
+Down (original expiration)
+@@ cf96c68a00 text
+Out and down
+@@ 9b0cdca69c text
+Close: realized loss
+@@ aea3186f75 text
+Out: net premium this roll
+@@ e2f344039b text
+Down: net premium this roll
+@@ 8656d0a7b5 text
+Out and down: net premium this roll
+@@ 13d63d2dcf text
+In one sentence
+@@ 0d22f9c250 text
+Every adjustment moves the loss from one price to another
+@@ ef24434cf7 text
+Figure 12-3 · Ten 95/90 put spreads, P&amp;L 14 days out
+@@ 1509e29312 text
+Selected choice
+@@ 680eaad01a text
+Other choices
+@@ 84d069f2b0 text
+No change (reference)
+@@ a384b77689 text
+Cash flow now
+@@ 435ce01f62 text
+Max loss from here
+@@ bf703e0180 text
+Stock unchanged in 14 days (93)
+@@ 8f75979422 text
+Falls to 85 in 14 days
+@@ 05e9e5b3bb text
+Don't forget early assignment
+@@ 7d6774cd78 text
+Two more signals
+@@ a1aa21848e text
+Field notes
+@@ 046dfb89e4 text
+Case 1
+@@ e3880d23f3 text
+A net credit every time, yet exposure grew eightfold
+@@ 8930f3618c text
+Figure 12-4 · Case 1's six months
+@@ 4f5b15fccd text
+Bars: selected measure
+@@ 38522bc96e text
+Equity of the account that kept rolling
+@@ 3e211ab284 text
+Equity after taking the loss in month 1
+@@ 72006d8be2 text
+Month 6 notional exposure (6.6 times equity)
+@@ adc3b5526a text
+Cumulative net credit from six rolls
+@@ 15ce7c2dbd text
+Change in equity over the same period
+@@ f972403b8d text
+Month 6 stress loss
+@@ 411ced42ca text
+Case 2
+@@ 5205b402f9 attr
+Jump to chapter
+@@ ae78ea9525 attr
+In this chapter
+@@ 0b183af1c7 attr
+Curve type
+@@ 19c184a2a0 attr
+Portfolio P&L as SPY moves
+@@ 15d8ff04ea attr
+P&L at expiry of the three rolls and of closing
+@@ 04f6b30b9a attr
+Choose an adjustment
+@@ 9d1239e9d4 attr
+P&L from here of the four adjustments
+@@ 25620c2217 attr
+Bars show
+@@ d93a7c8ab9 attr
+Six months of notional exposure, stress loss and account equity
+@@ f0852d355e attr
+Chapter navigation
+@@ c28d88c6f6 js
+SPY 760 put
+@@ 083fa15e86 js
+SPY 740 put
+@@ ea88fd0b39 js
+A 140 put
+@@ 5c643cd0a9 js
+D 82 put
+@@ f62739cc1e js
+(empty)
+@@ a8fd2a2d49 js
+E shares
+@@ 4834f6cda0 js
+E 55 call
+@@ df4d8c7166 js
+F 180 put
+@@ 18e087b016 js
+F 220 call
+@@ 7d6a221a32 tpl
+<tr>
+      <td><input class="name" id="c-n{0}" aria-label="Position name"></td>
+      <td><select id="c-t{1}" aria-label="Type"><option value="c">Call</option><option value="p">Put</option><option value="s">Stock</option></select></td>
+      <td><input id="c-q{2}" type="number" step="1" aria-label="Contracts"></td>
+      <td><input id="c-s{3}" type="number" step="1" aria-label="Underlying price"></td>
+      <td><input id="c-k{4}" type="number" step="1" aria-label="Strike"></td>
+      <td><input id="c-d{5}" type="number" step="1" min="0" aria-label="Days left"></td>
+      <td><input id="c-v{6}" type="number" step="1" min="1" aria-label="Implied volatility"></td>
+      <td><input id="c-b{7}" type="number" step="0.1" aria-label="Beta"></td>
+      <td class="mono" id="c-o{8}">—</td><td class="mono" id="c-g{9}">—</td><td class="mono" id="c-h{10}">—</td><td class="mono" id="c-w{11}">—</td></tr>
+@@ 9887935d86 js
+ shares
+@@ 74337e988a js
+Today
+@@ 035d20d5cf js
+In 7 days
+@@ 1238f0f6e0 js
+In 14 days
+@@ 73a6caeeb0 js
+In 21 days
+@@ 5ae3927b6e js
+IV −5 points
+@@ 535618f821 js
+IV unchanged
+@@ 26d8a72ffb js
+IV +5 points
+@@ a6cb6e4c09 js
+IV +10 points
+@@ 288701653f js
+IV +1 point per 1% drop, −0.5 per 1% rise
+@@ a220204835 js
+SPY move (stocks move by β)
+@@ cd0f801ebf js
+Portfolio P&L ($)
+@@ c87f6311bf js
+ days
+@@ 0fec3858a9 js
+Stock price at new expiry ($)
+@@ 2c221115d7 js
+Whole-trade P&L (5 contracts)
+@@ 74e71c222e js
+Stock price in 14 days ($)
+@@ ea6f7c6ee5 js
+P&L from here ($)
+@@ 9d80c2cd9b js
+about 
+@@ fc7bc0d5df js
+Month 
+@@ 5602dc2912 js
+<empty>
+@@ 14a21082e7 js
+Notional exposure / equity
+@@ 2f7802847c js
+Stress loss / equity

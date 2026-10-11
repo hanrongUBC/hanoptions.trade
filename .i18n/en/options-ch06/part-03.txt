@@ -1,0 +1,154 @@
+@@ 89685ac8df html
+<span class="sn">6.5</span>Term structure
+@@ cc2fecbce5 html
+Connect the ATM IVs of one underlying across different expirations and you get the term structure. In calm markets it slopes upward, which is called contango; in a panic the near end sits above the far end, which is called backwardation.
+@@ ce4af64285 html
+The shape comes from mean reversion. Volatility has a long-run normal level. When current volatility is below normal, the market expects it to drift back up; the longer the term, the more of that “recovery” it includes, so the curve slopes up. When current volatility is far above normal, the market expects it to calm down gradually, so the near end is high, the far end is low, and the curve is in backwardation.
+@@ 59f6854c4c html
+Forward volatility: reading “later” from the curve
+@@ 06bfc46612 html
+Variance adds over time. 30-day IV covers days 0 to 30 and 90-day IV covers days 0 to 90; take one from the other and you get the market’s price for days 30 to 90:
+@@ 587bca9868 html
+σ<sub>1</sub> and σ<sub>2</sub> are the IVs for expirations <span class="v">T</span><sub>1</sub> &lt; <span class="v">T</span><sub>2</sub>. The quantity in brackets must be positive; otherwise the two quotes contradict each other.
+@@ 20064e3a47 html
+Contango: 30-day 15%, 90-day 18%. Forward = √[(0.18² × 90 − 0.15² × 30) / 60] = <span class="num">19.3%</span>. The market thinks things will be more turbulent a month from now than they are today.
+@@ 09b3a97266 html
+Backwardation: 30-day 35%, 90-day 28%. Forward = √[(0.28² × 90 − 0.35² × 30) / 60] = <span class="num">23.7%</span>. The market thinks things are dangerous right now but will be noticeably calmer in a month.
+@@ f3fc2cdb84 html
+Contango: calm
+@@ 7e6e2e7cc1 html
+Backwardation: fear
+@@ 1d8564c58b html
+Stock: earnings hump
+@@ 42e6923f78 html
+In contango, the 30-day / 90-day ratio is 0.86, below 1. Switch to backwardation and the ratio rises to 1.22, with near-term IV more than 6 points above the far end. Switch to the earnings hump: earnings fall on day 10, so the 7-day option excludes earnings and its IV is only 30%; the 14-day option includes earnings and jumps to 46.7%; further out, the earnings day is spread ever more thinly. The computed forward volatility for days 30–90 is 29.9%, almost exactly the 30% base volatility without the event.
+@@ 52c0bcdad8 html
+How to read it and use it
+@@ a360288b69 html
+<strong>Indexes</strong>: the usual gauge is the ratio of VIX to VIX3M (the equivalent 3-month index). A ratio below 1 is normal; above 1 means near-term fear has overtaken the far end.
+@@ 36c6e4e529 html
+<strong>Single stocks</strong>: look for humps first. When one expiration’s IV suddenly sits above the neighboring months, there is usually an earnings report or another known event in that window.
+@@ e22a4e3739 html
+<strong>The near end moves more</strong>: in a shock, 30-day IV might rise 10 points while 1-year IV rises only 3. So two positions with “the same Vega” but different expirations don’t actually carry the same IV risk.
+@@ 9a8c779a52 html
+<strong>Strategy implications</strong>: in contango, a calendar spread that sells the front month and buys a back month earns the roll down the curve; in backwardation, front-month options are relatively expensive, so buyers are better off expressing views with back months. Chapter 9 goes into this.
+@@ c9415e9e04 html
+<span class="sn">6.6</span>Skew and the volatility surface
+@@ 041094ddad html
+For the same expiration, IV differs across strikes. For stock indexes, OTM put IV is systematically higher than OTM call IV. This is called put skew.
+@@ 2d76a4ab9c html
+Black-Scholes assumes one volatility for all strikes. If the market really priced options that way, plotting IV by strike would give a horizontal line. In practice, a stock index gives a line sloping down from left to right, most single stocks give a shallow smile, and story stocks sometimes curl up even higher on the right.
+@@ 8e793aaecc html
+Stock index
+@@ 4b7004985f html
+Typical stock
+@@ dfa48ceb0d html
+Story stock
+@@ 1c5288b296 html
+Strike <input id="f4-k" type="range" min="80" max="120" step="1" value="90"> <output id="f4-k-o">90</output>
+@@ 2d8ff25e6e html
+In index mode, drag the strike to 90: IV is 25.2%, 10 points above ATM, and this put is worth 0.197 on the curve but only 0.008 under the flat assumption, more than twenty times as much. Drag to 105: call IV is only 12.2%, and the price is less than half the flat-assumption value. Switch to story stock and the right side of the curve curls up, turning the risk reversal positive at +10.2 points: the market is more afraid of missing a surge.
+@@ 00572af70b html
+Why stock indexes have put skew
+@@ 2f0fe36ff6 html
+<strong>Memory of the crash</strong>: after the stock market crash of October 1987, put skew in index options became persistent and pronounced. The left tail of real returns is much fatter than a normal distribution’s, and the market priced that straight in.
+@@ 5984796141 html
+<strong>Demand for protection</strong>: institutions keep buying OTM index puts to insure their portfolios, and the market makers who sell to them demand a higher price.
+@@ 9d62e7711a html
+<strong>Volatility rises in a sell-off</strong>: when stocks fall, corporate leverage rises and fear spreads, so volatility tends to rise at the same time. In a decline a put gains from both the direction and the rise in IV, so naturally it is worth more.
+@@ 2ef1998ae3 html
+<strong>Supply of calls</strong>: large covered-call programs sell OTM calls on indexes and single stocks year-round, pushing down IV on the call side.
+@@ 7e49d68864 html
+Single-stock skew is usually flatter than index skew, because a single stock can crash but can also surge on a takeover, new drug data or an earnings beat. For story stocks and stocks with a big retail following, demand for OTM calls is strong, so the curve curls up on the right, forming call skew.
+@@ 6826b957c4 html
+How to measure skew
+@@ 6d99aee57d html
+The most common measure is the <strong>25 Delta risk reversal</strong>: the IV of the 25 Delta call minus the IV of the 25 Delta put. The more negative it is, the steeper the put skew. The three hypothetical curves above come out at <span class="num">−4.1</span>, <span class="num">−1.7</span> and <span class="num">+10.2</span> points. Another intuitive measure is the IV difference between the 90% strike and the 110% strike. Like IV, skew only means something when compared with its own history.
+@@ 5a35abbd73 html
+What skew means for trading
+@@ 0ea155413c html
+<strong>OTM index puts are expensive to buy</strong>: for the 90 put in the chart above, most of the price you pay is skew premium.
+@@ 49387a5f2e html
+<strong>A spread lets you “sell back” skew</strong>: buy the 95 put (0.457) and sell the 90 put (0.197), and the short leg recovers <span class="num">43%</span> of the cost. If the curve were flat, the 90 put would be worth only 0.008 and recover just <span class="num">3.7%</span>. Put spreads are especially good value when skew is steep.
+@@ b4a6d56295 html
+<strong>Selling OTM puts collects skew premium</strong>: it pays off over the long run, at the cost of taking the first hit in a crash.
+@@ 40df535914 html
+The volatility surface
+@@ 834a926b9d html
+Put term structure (looking across expirations) and skew (looking across strikes) together and you get a volatility surface: one IV for every strike and every expiration.
+@@ 6a468c7aac html
+Table 6-6 A hypothetical stock-index volatility surface (underlying 100, in %)
+@@ 99b9b664bf html
+Expiry \ strike
+@@ 8e1d7ff4c1 html
+90 minus 110
+@@ 343909b5b4 html
+30 days
+@@ 175f892274 html
+90 days
+@@ b289f55ba5 html
+180 days
+@@ a15bd28295 html
+You can read this table in two directions. Down the ATM column, 15.0, 16.8, 18.0 is a term structure in contango. Across the rows, skew is steepest in the front month, where 90 and 110 differ by 14.6 points; at 180 days the gap is only 5.9 points. The reason is that over a short horizon it takes a crash to get the price down to 90, while over a long horizon the stock has many more paths to every price level, so the differences between strikes even out.
+@@ 7b3ce6142d html
+The surface moves as a whole. When an index falls, the entire surface usually shifts up, the near end most of all. If the index drops from 100 to 95, the old 95-strike IV (19.2%) becomes the IV near the new at-the-money level, and the IV of the ATM option you hold “slides” up the skew. That is why ATM IV almost always rises when an index falls.
+@@ 6af2c6c2d1 html
+<span class="sn">6.7</span>VIX and its products
+@@ 40d29fed77 html
+VIX is the implied volatility over the next 30 days, calculated from the prices of a basket of S&amp;P 500 index options and expressed as an annualized percentage.
+@@ fcc20375a3 html
+It is calculated differently from a single option’s IV. Cboe takes two sets of SPX options expiring on either side of 30 days, weights the prices of a large number of OTM calls and OTM puts by strike (inversely to the square of the strike) and sums them into a variance, interpolates to exactly 30 days, takes the square root and multiplies by 100. Because it uses many OTM puts, VIX includes skew and usually sits slightly above SPX ATM IV.
+@@ 498528b2d1 html
+VIX / √12: the one-month expected move
+@@ c03aa16c41 html
+To convert annualized volatility σ to <span class="v">T</span> years, multiply by √<span class="v">T</span>. 30 days is about 1/12 of a year, so:
+@@ 994370f3e6 html
+Calculated exactly in calendar days, it is √(30/365) = 0.2867, against √(1/12) = 0.2887, less than 1% apart, so 3.46 is fine for mental math. Likewise, per week ÷ √52 ≈ 7.21, and per trading day ÷ √252 ≈ 15.87.
+@@ e6a908baf6 html
+Example: VIX is 16, and assume the S&amp;P 500 is at 7,800. One standard deviation over a month is 16 / 3.46 = <span class="num">4.62%</span>, about <span class="num">±360</span> points, so the range is roughly 7,440 to 8,160. If returns were normally distributed, the index would have about a 68% chance of ending the month inside this range, and about a 95% chance of ending within ±2 standard deviations (±9.2%). One standard deviation per day is 16 / 15.87 ≈ <span class="num">1.01%</span>, about 79 points.
+@@ 1e4b16b899 html
+Table 6-7 VIX and the S&amp;P 500’s expected move (index assumed at 7,800)
+@@ e4545e9a9e html
+One month (%)
+@@ 697c03d19a html
+One month (pts)
+@@ a6ad710025 html
+One week (%)
+@@ 08715f93a9 html
+One trading day (%)
+@@ cc04500e94 html
+One trading day (pts)
+@@ 2bc94bc502 html
+<strong>It includes a risk premium</strong>: VIX is a risk-neutral number and on average runs above the realized volatility that follows (Section 6.3). In calm periods this range tends to be too wide.
+@@ 679b4fb978 html
+<strong>Fatter tails</strong>: real returns have more extreme months than a normal distribution predicts. Months beyond 2 standard deviations occur noticeably more often than 5% of the time.
+@@ 58e0ad5605 html
+<strong>Asymmetry</strong>: VIX includes skew, so downside risk is priced more heavily. Drawing the range symmetrically on both sides is a simplification.
+@@ ae39790845 html
+S&amp;P 500 level <input id="c-idx" type="number" value="7800" step="10" min="1">
+@@ 71eab3b53e html
+The range is computed symmetrically as “level × (1 ± percentage move),” with probabilities approximated by a normal distribution. You can also enter any stock’s 30-day IV in the VIX field and its share price in the level field to get that stock’s one-month expected move.
+@@ d846dcc482 html
+VIX futures: you can’t buy “spot VIX”
+@@ b0660d6772 html
+VIX itself is a calculated index and can’t be bought or sold directly. What you can trade are VIX futures and options, plus ETFs / ETNs that track VIX futures (collectively, ETPs). At expiration, VIX futures settle to a special opening quotation that morning; before expiration, a future’s price reflects the market’s pricing of “what VIX will be on that day,” which can be far from spot.
+@@ d02da2717c html
+In calm periods, VIX futures are usually in contango too: spot is lowest, and the further out the contract, the more expensive it is. The reason is again mean reversion, plus the willingness of insurance buyers to pay a bit extra.
+@@ a0e3ae1d1a html
+Roll decay: the trap in long VIX products
+@@ 4d6cf6d4de html
+To maintain a term of about 30 days, a long VIX ETP sells some front-month futures and buys second-month futures every day. In contango, that means constantly selling the cheap and buying the expensive. If the curve’s shape doesn’t change, each future’s price “slides” down toward the lower spot level as its expiration approaches.
+@@ 1c26d4d400 html
+Run the numbers with a hypothetical set of quotes: spot VIX 15, front-month future (expiring in 15 days) 16.0, second-month future (expiring in 45 days) 17.2. You buy the second month and hold it for 30 days, by which time it has become the front month with 15 days left. If spot and the curve’s shape stay the same, its price slides from 17.2 to 16.0, a drop of <span class="num">7.0%</span>, while VIX itself hasn’t moved at all. Repeat that for 12 months and the cumulative loss is 1 − (16.0 / 17.2)<sup>12</sup> = <span class="num">58%</span>.
+@@ b9d4b7e298 html
+In reality the curve doesn’t stay fixed, and these products soar when panic breaks out. But ETPs that hold long VIX futures have historically seen their NAV slide steadily lower over time, and many have needed reverse splits. They suit short-term trading or short-term hedging, not long-term holding.
+@@ e9cdec2089 html
+Inverse products: earn the roll most days, give it back in one
+@@ 0976dac730 html
+Inverse ETPs that short VIX futures are the mirror image: they earn roll yield in calm periods. But they rebalance daily to a fixed multiple, so on a day VIX soars they are forced to buy back a large amount of futures. The size of the rebalance can be calculated:
+@@ df0afb9de4 html
+<span class="v">L</span> is the target multiple (−1x for inverse, 2x for leveraged long, and so on), and <span class="v">r</span> is the futures’ gain that day. <span class="v">L</span>(<span class="v">L</span> − 1) equals 2 for both −1x and +2x, so both kinds of product have to buy when VIX rises, and their buying adds up and pushes futures prices higher still.
+@@ 679cf5246f html
+Example: a −1x product has a NAV of 100, and futures rise 50% in a day. It loses 50, leaving a NAV of 50, but its short exposure has grown to 150. To get back to −1x it can keep only 50 of short exposure, so it must buy back 100, which is exactly (−1) × (−2) × 50% × 100. If futures rise 100% in a day, a product like this goes to zero. A −0.5x product in the same situation needs to buy back 0.375 × 100 = 37.5, much less pressure.
+@@ 765998eebf html
+Some traders use VIX as a “price tag” for hedging: when VIX is low relative to its own history, they buy index put spreads ahead of time to insure known risk windows (CPI, FOMC, seasonally weak stretches); once VIX has already spiked, they stop chasing protection and consider selling put spreads instead. Another common practice is to watch VIX, the 10-year Treasury yield and oil prices together: only when all three fall back after a data release do they treat the risk as over; as long as any one of them is still surging, they are in no hurry to add to positions.

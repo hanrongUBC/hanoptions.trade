@@ -1,0 +1,1294 @@
+## source: rebound/index.html  (623 segments)
+@@ 33d05a9ed1 html
+322–327 美元区间（10 月 7–8 日低点）能否守住；跌破则关注 52 周低点 306.77 美元。
+@@ 45240f56dd html
+能否收复 200 日均线 354.99 美元，这是止跌转强的关键位置。
+@@ 7a659ffb9f html
+10 月 30 日财报中的湾流交付数量和 2026 年 EPS 指引（16.80–16.90 美元）。
+@@ 98dafc3539 html
+资料来源：<a href="https://stockanalysis.com/stocks/gd/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/gd/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/gd/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/gd/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/gd/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.govconwire.com/articles/general-dynamics-q2-2026-earnings-results" target="_blank" rel="noopener">govconwire.com</a> · <a href="https://www.tikr.com/blog/general-dynamics-reported-q2-earnings-management-raised-the-eps-guide-to-16-90" target="_blank" rel="noopener">tikr.com</a> · <a href="https://kfgo.com/2026/10/07/general-dynamics-taps-insider-danny-deep-as-next-ceo/" target="_blank" rel="noopener">kfgo.com</a> · <a href="https://investorrelations.gd.com/news/press-release-details/2026/Deep-Elected-CEO-of-General-Dynamics-Novakovic-to-Executive-Chairman/default.aspx" target="_blank" rel="noopener">investorrelations.gd.com</a> · <a href="https://investorrelations.gd.com/news/press-release-details/2026/General-Dynamics-to-Webcast-2026-Third-Quarter-Financial-Results-Conference-Call/default.aspx" target="_blank" rel="noopener">investorrelations.gd.com</a> · <a href="https://256today.com/general-dynamics-joins-7-year-push-to-triple-pac-3-quadruple-thaad-production/" target="_blank" rel="noopener">256today.com</a> · <a href="https://investorrelations.gd.com/news/press-release-details/2026/GDIT-Awarded-1-3-Billion-Enterprise-Network-Operations-and-Cybersecurity-Support-Contract-for-the-Army-National-Guard/default.aspx" target="_blank" rel="noopener">investorrelations.gd.com</a> · <a href="https://247wallst.com/investing/2026/09/22/defense-stocks-fall-while-oil-slides-on-hormuz-reopening-report-lockheed-martin-and-rtx-drop-3-boeing-dips/" target="_blank" rel="noopener">247wallst.com</a>
+@@ b17442e7bb html
+WM <span class="zh">废物管理公司（WM）</span>
+@@ f20e12364f html
+清单里的防御型公司，垃圾处理收入稳定，受经济周期影响小。
+@@ 2d89d52192 html
+WM 是北美最大的固体废物处理公司，业务覆盖垃圾收运、转运站、填埋场、回收和填埋气制可再生天然气。收入主要来自住宅、商业和工业客户的长期收运合同，收购 Stericycle 后又增加了医疗废物业务（WM Healthcare Solutions）。
+@@ 4b0b9254d9 html
+52 周区间<span class="ek">（52-week range）</span> 194.11 至 248.13 美元，现价比高点低 15.8%。分析师平均目标价<span class="ek">（Price target）</span> 255.56 美元（28 位分析师，平均评级 Buy），目标价反映的是乐观情景，常常滞后于股价。
+@@ 7bcd734c51 html
+收盘 208.83 美元，低于 50 日均线<span class="ek">（50-day moving average）</span> 217.10 美元 3.8%，低于 200 日均线<span class="ek">（200-day moving average）</span> 224.59 美元 7.0%；50 日线在 200 日线下方，中期趋势向下。
+@@ 226436ddd7 html
+RSI 44.5，处在中性区间，没有超卖<span class="ek">（Oversold）</span>。
+@@ e60726ddfa html
+支撑<span class="ek">（Support）</span>：近 30 日收盘低点 201.90 美元（10 月 1 日），盘中低点 200.58 美元（10 月 2 日）；再往下是 52 周低点 194.11 美元。
+@@ ef03dcce3e html
+阻力<span class="ek">（Resistance）</span>：50 日均线约 217 美元、近 30 日收盘高点 221.72 美元（9 月 3 日）、200 日均线约 225 美元；52 周高点 248.13 美元。
+@@ 69bf9018da html
+10 月 1 日以来从 201.90 美元反弹到 208–210 美元，现价与按历史收盘计算的 20 日均价 208.87 美元基本持平。
+@@ f38cb4b079 html
+835 亿美元
+@@ 2130ec7335 html
+257 亿美元
+@@ a031e13ced html
+234 / 6 亿美元
+@@ a0d6a5c8ed html
+36 亿美元
+@@ ed4157dd69 html
+过去十二个月收入 256.7 亿美元，同比增长 7.2%；二季度收入 66.8 亿美元，同比增长 4.0%，其中核心价格上涨 5.7%，收运与处置业务量下降 1.8%。
+@@ 51d05d85c0 html
+利润率<span class="ek">（Profit margin）</span>稳定：毛利率<span class="ek">（Gross margin）</span> 40.6%，经营利润率<span class="ek">（Operating margin）</span> 18.9%，净利率<span class="ek">（Net margin）</span> 11.1%；二季度调整后经营 EBITDA 利润率 30.9%，高于去年同期的 30.5%。
+@@ dee541058e html
+二季度 GAAP EPS 1.95 美元，同比增长 8.3%，调整后 EPS 2.02 美元；过去十二个月 EPS 7.07 美元，同比增长 4.9%。
+@@ 0d186c1d33 html
+2026 年指引<span class="ek">（Guidance）</span>：收入下调到 262.75–264.75 亿美元，调整后经营 EBITDA 81.5–82.5 亿美元和自由现金流<span class="ek">（Free cash flow (FCF)）</span> 37.5–38.5 亿美元维持不变。
+@@ 96255a521c html
+估值偏高：市盈率（TTM）29.5 倍，远期 24.6 倍，PEG 2.49，EV/EBITDA 13.7 倍；股息率<span class="ek">（Dividend yield）</span> 1.81%，派息率<span class="ek">（Payout ratio）</span> 53.5%。
+@@ 4c601f564e html
+负债较重：总债务 233.6 亿美元，现金 5.57 亿美元；过去十二个月自由现金流 35.7 亿美元，ROIC 11.6%；上半年回购<span class="ek">（Share buyback）</span> 10 亿美元、分红 7.64 亿美元。
+@@ 3e606f57e0 html
+<span class="nd">2026-07-28</span><span>二季度调整后 EPS 2.02 美元略超预期，但因业务量偏弱把全年收入指引下调约 0.6%，盘后股价下跌约 2–3%，此后股价从 239 美元一路回落。 <a href="https://www.sec.gov/Archives/edgar/data/0000823768/000110465926087575/tm2621414d1_ex99-1.htm" target="_blank" rel="noopener">sec.gov</a></span>
+@@ bd28cacfcd html
+<span class="nd">2026-08-24</span><span>董事会宣布每股 0.945 美元的季度股息<span class="ek">（Dividend）</span>，分红保持稳定，这是防御型持股者看重的一点。 <a href="https://www.businesswire.com/news/home/20260824253655/en/WM-Announces-Cash-Dividend" target="_blank" rel="noopener">businesswire.com</a></span>
+@@ d22ae3818c html
+<span class="nd">2026-08-25</span><span>CEO Jim Fish 宣布退休，总裁 John Morris 将于 2027 年 1 月 4 日接任 CEO；内部接班，但新 CEO 的资本配置思路值得关注。 <a href="https://www.businesswire.com/news/home/20260825879514/en/Jim-Fish-to-Retire-from-WM-John-Morris-Named-as-Next-CEO" target="_blank" rel="noopener">businesswire.com</a></span>
+@@ 93ac17fc6b html
+<span class="nd">2026-09-24</span><span>公司定于 10 月 27 日盘后公布三季度业绩，10 月 28 日上午 10 点（美东）开电话会，这是检验业务量是否企稳的时点。 <a href="https://www.businesswire.com/news/home/20260924859097/en/WM-Sets-Date-for-Third-Quarter-2026-Earnings-Conference-Call" target="_blank" rel="noopener">businesswire.com</a></span>
+@@ 6709e3ca40 html
+2026-10-27 盘后：三季度财报（10 月 28 日电话会），看业务量是否企稳、全年收入指引是否再次下调。
+@@ ef6cad5a9b html
+2027-01-04：John Morris 接任 CEO。
+@@ 904dcc7d8f html
+医疗废物业务整合后的利润率变化，二季度该业务调整后 EBITDA 利润率为 19.0%。
+@@ 85fa3aec64 html
+利率：WM 负债 233.6 亿美元、股息率 1.81%，属于偏类债券的防御股；长期利率下降通常有利于估值，利率上升则相反。
+@@ 45f8dc486a html
+经济周期：工业和建筑相关的特殊废物、商业收运量对经济敏感，二季度业务量下降 1.8%（剔除去年山火清理影响后下降 0.4%）。
+@@ 6574e602f8 html
+油价与通胀：柴油是车队主要成本，但公司有燃油附加费机制，二季度较高的能源附加费部分抵消了业务量下滑；通胀环境下的提价（核心价格 +5.7%）是主要增长动力。
+@@ 03cf85c415 html
+定价能力强：核心价格上涨 5.7%，利润率在扩张，EBITDA 和自由现金流指引都没有下调。
+@@ bc5e5efefd html
+股价较 52 周高点 248.13 美元已回落约 16%，10 月初在 200 美元上方企稳，RSI 44.5。
+@@ d0be8869ba html
+医疗废物业务整合见效：二季度该业务调整后 EBITDA 利润率从 17.0% 升到 19.0%。
+@@ 87c3789729 html
+业务量持续偏弱；如果三季度再下调收入指引，估值可能继续承压，远期市盈率<span class="ek">（Forward P/E）</span> 24.6 倍并不便宜。
+@@ 4d97b0fb93 html
+负债高、现金少（5.57 亿美元），长期利率上行会抬高融资成本并压低防御股估值。
+@@ 27c6b5acd0 html
+CEO 交接期间战略和资本配置可能出现调整。
+@@ f1b881d2a2 html
+200 美元一线（10 月 2 日盘中低点 200.58 美元）能否守住；跌破则看 52 周低点 194.11 美元。
+@@ c9b1ea748e html
+能否站回 50 日均线 217.10 美元，再往上是 200 日均线 224.59 美元。
+@@ 6db0cd9c8c html
+10 月 27 日财报中的业务量变化和全年收入指引（262.75–264.75 亿美元）。
+@@ 0b4d13e935 html
+资料来源：<a href="https://stockanalysis.com/stocks/wm/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/wm/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/wm/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/wm/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/wm/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0000823768/000110465926087575/tm2621414d1_ex99-1.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://ts2.tech/en/shares-of-waste-management-nysewm-drop-as-company-reduces-revenue-outlook-challenging-its-margin-focused-plan/" target="_blank" rel="noopener">ts2.tech</a> · <a href="https://www.businesswire.com/news/home/20260824253655/en/WM-Announces-Cash-Dividend" target="_blank" rel="noopener">businesswire.com</a> · <a href="https://www.businesswire.com/news/home/20260825879514/en/Jim-Fish-to-Retire-from-WM-John-Morris-Named-as-Next-CEO" target="_blank" rel="noopener">businesswire.com</a> · <a href="https://mediaroom.wm.com/2026-08-26-Jim-Fish-to-Retire-from-WM-John-Morris-Named-as-Next-CEO" target="_blank" rel="noopener">mediaroom.wm.com</a> · <a href="https://www.businesswire.com/news/home/20260924859097/en/WM-Sets-Date-for-Third-Quarter-2026-Earnings-Conference-Call" target="_blank" rel="noopener">businesswire.com</a> · <a href="https://www.wastedive.com/news/waste-recycling-earnings-results-q2-2026/826621/" target="_blank" rel="noopener">wastedive.com</a>
+@@ 614c36a79c html
+JBHT <span class="zh">J.B. Hunt 运输服务</span>
+@@ 31d3427f9d html
+清单里的运输股，他的「油价下降受益」清单里有「卡车」：柴油是它最大的成本之一。
+@@ abe3eabef5 html
+J.B. Hunt 是美国最大的多式联运公司之一，用卡车短驳加铁路长途运输集装箱；另有专属合同运输（Dedicated）、货运经纪（ICS）、整车运输和最后一公里配送。多式联运是最大部门，二季度收入 17.5 亿美元，约占总收入一半。
+@@ 794e91abd8 html
+52 周区间<span class="ek">（52-week range）</span> 136.46 至 299.76 美元，现价比高点低 23.5%。分析师平均目标价<span class="ek">（Price target）</span> 283.13 美元（24 位分析师，平均评级 Buy），目标价反映的是乐观情景，常常滞后于股价。
+@@ 25cabd01fa html
+收盘 229.26 美元，低于 50 日均线<span class="ek">（50-day moving average）</span> 255.59 美元 10.3%，低于 200 日均线<span class="ek">（200-day moving average）</span> 244.18 美元 6.1%；50 日线仍在 200 日线上方，但股价已明显跌破两者。
+@@ b2ad472b63 html
+RSI 40.2，偏弱但没有超卖<span class="ek">（Oversold）</span>。
+@@ 2d7a23360e html
+支撑<span class="ek">（Support）</span>：近 30 日收盘低点 222.64 美元（10 月 7 日），盘中低点 222.11 美元；9 月 30 日以来盘中多次在 222–224 美元止跌。52 周低点 136.46 美元离现价很远。
+@@ 394dc75527 html
+阻力<span class="ek">（Resistance）</span>：10 月 2 日反弹高点 234.63 美元，然后是 200 日均线约 244 美元、9 月 16 日留下的跳空<span class="ek">（Gap）</span>缺口（250–271 美元）和其中的 50 日均线约 256 美元。
+@@ 95a6d57b39 html
+52 周高点 299.76 美元，现价低 23.5%；过去 52 周仍上涨 56.4%，贝塔 1.31，波动大于大盘。
+@@ b1f66437ce html
+215 亿美元
+@@ 7b3fb6688d html
+127 亿美元
+@@ d65ebc0658 html
+14 / 0 亿美元
+@@ 26ac1acca7 html
+11 亿美元
+@@ 7baac33f47 html
+过去十二个月收入 127.0 亿美元，同比增长 5.3%；二季度收入 34.9 亿美元，同比增长 19.4%，多式联运量同比增长约 10%。
+@@ 42d4070d40 html
+二季度 EPS 1.91 美元，同比增长 45.8%，高于 1.73 美元的预期；过去十二个月 EPS 7.05 美元，同比增长 27.9%。
+@@ 176a5c744a html
+运输业利润率<span class="ek">（Profit margin）</span>薄：毛利率<span class="ek">（Gross margin）</span> 18.5%，经营利润率<span class="ek">（Operating margin）</span> 7.5%，净利率<span class="ek">（Net margin）</span> 5.3%；ROIC 14.2%。
+@@ 9e2dfb84a6 html
+9 月 16 日公司预警三季度 EPS 可能比二季度下降 5–10%，原因是柴油超过每加仑 6.30 美元、燃油附加费滞后（约 1000 万美元）和招聘司机的额外成本（约 2500 万美元）。
+@@ f65f81468f html
+估值：市盈率（TTM）32.5 倍，远期 28.2 倍，PEG 1.33，EV/EBITDA 13.7 倍；股息率<span class="ek">（Dividend yield）</span> 0.79%，派息率<span class="ek">（Payout ratio）</span> 25.5%。
+@@ 824421a83b html
+资产负债：总债务 14.0 亿美元，现金仅 416 万美元；过去十二个月自由现金流<span class="ek">（Free cash flow (FCF)）</span> 11.0 亿美元。
+@@ 3ea218c1b4 html
+<span class="nd">2026-07-15</span><span>二季度 EPS 1.91 美元、收入 34.9 亿美元均超预期，多式联运是主要动力，盘后一度涨 7.6% 并突破 52 周高点，奠定了夏季的高位。 <a href="https://talkbusiness.net/?p=299136" target="_blank" rel="noopener">talkbusiness.net</a></span>
+@@ 7b1ae9112d html
+<span class="nd">2026-09-16</span><span>公司预警三季度 EPS 环比下降 5–10%，柴油价格同比上涨超过 70%，股价当天下跌 13.3%，成为近期走势的转折点。 <a href="https://www.xtb.com/en/market-analysis/jb-hunt-shares-down-13-us-transportation-stocks-have-problems" target="_blank" rel="noopener">xtb.com</a></span>
+@@ 3525e2589e html
+<span class="nd">2026-09-17</span><span>Citizens 把评级上调到跑赢大盘、目标价 300 美元，理由是估值回落；同时承认燃油和招聘成本会在短期压制 2026 年 EPS。 <a href="https://tradersunion.com/news/financial-news/show/3368757-jb-hunt-upgrade-after-pullback/" target="_blank" rel="noopener">tradersunion.com</a></span>
+@@ 1d0320fd44 html
+<span class="nd">2026-10-01</span><span>公司确定 10 月 15 日盘后公布三季度业绩，市场将检验利润预警的实际幅度。 <a href="https://finviz.com/news/398058/jb-hunt-transport-services-inc-announces-third-quarter-2026-earnings-release-date-and-conference-call-information" target="_blank" rel="noopener">finviz.com</a></span>
+@@ 6a6a3415d9 html
+<span class="nd">2026-10-07</span><span>Truist（295 美元降到 235 美元）、Citi（309 降到 254）、BMO、摩根大通、TD Cowen 等在财报<span class="ek">（Earnings report）</span>前下调目标价，认为运价回升主要来自运力收缩，需求还没有全面好转。 <a href="https://stocktwits.com/news-articles/markets/equity/j-b-hunt-stock-analysts-trim-price-targets-ahead-of-q3-earnings-as-freight-recovery-remains-supply-driven/cZDvgGURBmp" target="_blank" rel="noopener">stocktwits.com</a></span>
+@@ 6e8440043a html
+2026-10-15 盘后：三季度财报，Fiscal AI 统计的市场预期为调整后 EPS 约 1.80 美元、收入约 35.8 亿美元。
+@@ 2ee581b411 html
+柴油价格走势，以及燃油附加费能否追上成本。
+@@ 1f8b5c013e html
+多式联运和合同运价谈判，摩根大通预计合同运价将上涨到 2027 年。
+@@ 23f65e649e html
+油价和柴油：伊朗冲突以来油价高企，9 月中旬柴油超过每加仑 6.30 美元、同比上涨超过 70%，燃油附加费滞后会直接吃掉利润。
+@@ 6fa1337d1b html
+货运周期：运力收缩推高了现货运价，但需求没有全面回升；卡车运价上涨通常会让更多货主转向铁路多式联运，这对 J.B. Hunt 有利。
+@@ 5560f06a44 html
+利率与消费：多式联运大量运输进口消费品，消费支出和进口量决定货量；长期利率上升会抬高融资成本并压低估值。
+@@ 0662b7867c html
+需求端有亮点：二季度多式联运量增长约 10%，卡车运力收缩支持公路转铁路。
+@@ 81f0437910 html
+成本压力偏短期：Citizens 等认为燃油附加费和提价会逐步抵消成本；柴油如果回落，利润压力会减轻。
+@@ 41f9a5517e html
+股价从 9 月 15 日 273.05 美元跌到 229 美元附近，222–224 美元多次止跌，市场预期已明显下调。
+@@ 2d737b12e2 html
+利润预警之后，10 月 15 日的财报或四季度展望可能继续让人失望。
+@@ 93a3ce1cb5 html
+估值不低：远期市盈率<span class="ek">（Forward P/E）</span> 28.2 倍，利润下修时容易被继续压缩。
+@@ 6009aed698 html
+柴油再涨、或者消费和进口放缓，会让货量和利润率同时受压；分析师在财报前集体下调目标价。
+@@ f983c096a5 html
+222 美元一线（10 月 7 日收盘低点 222.64 美元、盘中 222.11 美元）能否守住。
+@@ c353a7518f html
+能否突破 234.63 美元，并进一步站回 200 日均线 244.18 美元。
+@@ 0447f10f1e html
+10 月 15 日财报中三季度 EPS 与 1.80 美元预期的对比，以及管理层对燃油附加费和四季度的说法。
+@@ cc3cb5c6b7 html
+资料来源：<a href="https://stockanalysis.com/stocks/jbht/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/jbht/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/jbht/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/jbht/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/jbht/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://talkbusiness.net/?p=299136" target="_blank" rel="noopener">talkbusiness.net</a> · <a href="https://www.ajot.com/news/jb-hunt-reports-second-quarter-2026-results" target="_blank" rel="noopener">ajot.com</a> · <a href="https://www.xtb.com/en/market-analysis/jb-hunt-shares-down-13-us-transportation-stocks-have-problems" target="_blank" rel="noopener">xtb.com</a> · <a href="https://tradersunion.com/news/financial-news/show/3368757-jb-hunt-upgrade-after-pullback/" target="_blank" rel="noopener">tradersunion.com</a> · <a href="https://finviz.com/news/398058/jb-hunt-transport-services-inc-announces-third-quarter-2026-earnings-release-date-and-conference-call-information" target="_blank" rel="noopener">finviz.com</a> · <a href="https://stocktwits.com/news-articles/markets/equity/j-b-hunt-stock-analysts-trim-price-targets-ahead-of-q3-earnings-as-freight-recovery-remains-supply-driven/cZDvgGURBmp" target="_blank" rel="noopener">stocktwits.com</a>
+@@ 89650489c6 html
+SO <span class="zh">南方公司</span>
+@@ 28e8692fc3 html
+清单里的公用事业股，他的「利率下降受益」清单里有「公用事业」，9 月 30 日他还说 10 月加息概率下降，公用事业应该反弹。
+@@ 0cf64b1bec html
+南方公司是美国东南部的大型受监管公用事业集团，旗下有佐治亚电力、阿拉巴马电力、密西西比电力三家电力公司，还有燃气业务 Southern Company Gas 和批发发电业务 Southern Power。收入主要来自州监管机构核准电价下的售电和售气。利润增长靠不断扩大电网<span class="ek">（Power grid）</span>和电厂投资（费率基数），再通过电价回收。
+@@ 5c0b1df466 html
+52 周区间<span class="ek">（52-week range）</span> 81.69 至 100.84 美元，现价比高点低 14.5%。分析师平均目标价<span class="ek">（Price target）</span> 98.66 美元（23 位分析师，平均评级 Hold），目标价反映的是乐观情景，常常滞后于股价。
+@@ 8554eb4c7b html
+收盘价 86.17 美元，比 50 日均线<span class="ek">（50-day moving average）</span> 88.25 美元低 2.4%，比 200 日均线<span class="ek">（200-day moving average）</span> 92.15 美元低 6.5%；50 日线位于 200 日线下方，中期趋势仍然偏弱。
+@@ 5b8c744efc html
+RSI 为 51.75，处在中性区间，既不超卖<span class="ek">（Oversold）</span>也不超买<span class="ek">（Overbought）</span>；最近 5 个交易日上涨 2.9%，9 月底的抛压有所缓和。
+@@ 47474ccd49 html
+支撑<span class="ek">（Support）</span>：近 30 个交易日的最低收盘价 82.35 美元（9 月 28 日），再往下是 52 周低点 81.69 美元。
+@@ 4fb54e02c4 html
+阻力<span class="ek">（Resistance）</span>：先看 50 日均线 88.25 美元和近 30 个交易日最高收盘价 88.99 美元（9 月 8 日）这一带，再往上是 200 日均线 92.15 美元；52 周高点 100.84 美元距离较远。
+@@ 09d7c28c0b html
+991 亿美元
+@@ 6daaba2987 html
+302 亿美元
+@@ 3608092d04 html
+771 / 30 亿美元
+@@ ede18da1ab html
+-33 亿美元
+@@ b3927ab101 html
+过去十二个月收入 301.8 亿美元，同比增长 6.4%；但 2026 年二季度收入 69.8 亿美元，同比只增长 0.06%，低于市场预期的 72.3 亿美元。
+@@ 2a02373b3d html
+二季度每股收益<span class="ek">（Earnings per share (EPS)）</span> 1.03 美元，同比增长 30.4%；公司口径的调整后每股收益 1.13 美元，上年同期 0.92 美元，主要来自零售售电增长、在建工程资本化收益和较低的所得税。
+@@ dba7066771 html
+估值：市盈率（ttm）20.7 倍，远期市盈率<span class="ek">（Forward P/E）</span> 18.5 倍，PEG 2.25；年度股息<span class="ek">（Dividend）</span> 3.04 美元，股息率<span class="ek">（Dividend yield）</span> 3.53%，派息率<span class="ek">（Payout ratio）</span> 73.2%。
+@@ f32f2d3031 html
+利润率<span class="ek">（Profit margin）</span>：毛利率<span class="ek">（Gross margin）</span> 48.3%，经营利润率<span class="ek">（Operating margin）</span> 27.0%，净利率<span class="ek">（Net margin）</span> 15.4%；ROIC 只有 4.5%，这是重资产、受监管行业的常见水平。
+@@ 4f055cbb84 html
+资产负债：总债务 770.9 亿美元，现金 29.8 亿美元；过去十二个月自由现金流<span class="ek">（Free cash flow (FCF)）</span>为 -32.7 亿美元，投资开支大于经营现金流，需要持续发债融资，8 月发行的 23.75 亿美元可转债就是一例。
+@@ 3046d3fee8 html
+增长来源：截至二季度已签约大负荷用户 17 GW，比一季度多 6 GW；二季度数据中心<span class="ek">（Data center）</span>用电量同比增长 55%；2030 年前的资本开支<span class="ek">（Capital expenditure (capex)）</span>计划为 810 亿美元。
+@@ abc6c65f4c html
+<span class="nd">2026-08-03</span><span>南方公司定价发行 23.75 亿美元可转换票据（利率 2.125% 和 3.50%，转股价约 104.56 和 118.50 美元），用于回购<span class="ek">（Share buyback）</span>旧可转债和偿还短期债务；这说明公司在为巨额投资融资，将来转股会带来一定股本稀释。 <a href="https://www.streetinsider.com/Equity+Offerings/Southern+Company+prices+%242.375+billion+in+convertible+notes/26859889.html" target="_blank" rel="noopener">streetinsider.com</a></span>
+@@ bbeddd0510 html
+<span class="nd">2026-08-04</span><span>二季度电话会披露已签约大负荷 17 GW、另有约 8 GW 处于后期谈判，数据中心用电同比增长 55%，资本开支计划 810 亿美元；这是市场给南方公司增长溢价的核心依据。 <a href="https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/" target="_blank" rel="noopener">utilitydive.com</a></span>
+@@ 545f372c0d html
+<span class="nd">2026-08-26</span><span>佐治亚州公共服务委员会批准佐治亚电力为 OpenAI 在 Effingham 县的 3.2 GW 数据中心供电，OpenAI 承担配套基础设施成本，公司称大负荷合同组合从 2029 年起每年可节约约 9.5 亿美元系统成本；新增负荷得到锁定，居民电费压力也得到缓解。 <a href="https://www.walb.com/2026/08/27/georgia-powers-openai-contract-effingham-county-approved-expected-lower-residential-bills/" target="_blank" rel="noopener">walb.com</a></span>
+@@ 09aff32e1d html
+<span class="nd">2026-09-21</span><span>佐治亚电力与谷歌达成协议，由谷歌支持 Hatch 和 Vogtle 核电站扩容约 96 MW，公司估计在机组寿命内给客户带来约 9 亿美元收益，协议仍需监管批准；这显示大型科技公司愿意为清洁电力付费。 <a href="https://powermag.com/google-georgia-power-have-deal-to-support-nuclear-power-plant-uprates" target="_blank" rel="noopener">powermag.com</a></span>
+@@ ce6c32775a html
+<span class="nd">2026-09-23</span><span>股价盘中跌到 83.73 美元，创 52 周新低；此前 Morgan Stanley 在 9 月 18 日把目标价从 89 美元降到 85 美元并维持低配评级，反映利率上行和估值压力。 <a href="https://www.marketbeat.com/instant-alerts/price-southern-nyse-so-hits-new-52-week-low-whats-next-2026-09-23/" target="_blank" rel="noopener">marketbeat.com</a></span>
+@@ 5231c6efd0 html
+<span class="nd">2026-10-08</span><span>飓风 Isaias 预计在佛罗里达狭长地带、阿拉巴马南部和密西西比南部登陆，佐治亚电力提前部署抢修队伍；阿拉巴马电力和密西西比电力的服务区正在路径上，停电和修复成本是短期变量。 <a href="https://www.renewableenergyworld.com/power-grid/outage-management/southeastern-us-utilities-are-preparing-for-hurricane-isaias-to-make-landfall/" target="_blank" rel="noopener">renewableenergyworld.com</a></span>
+@@ fc7bf04a8f html
+2026-11-05 发布三季度财报<span class="ek">（Earnings report）</span>，关注调整后每股收益、大负荷签约量和资本开支计划是否上调。
+@@ 95b0676df4 html
+谷歌核电扩容协议和 Hatch 扩容申请等待佐治亚州公共服务委员会审批（时间未定）。
+@@ e350f2db0e html
+佐治亚和阿拉巴马的新增发电招标预计在年底前选定项目。
+@@ a830944bd6 html
+飓风 Isaias 过后的停电恢复进度和风暴成本回收安排。
+@@ 25e5820206 html
+长期利率是最大变量。美联储<span class="ek">（Federal Reserve (Fed)）</span> 9 月 16 日加息 25 个基点到 3.75% 至 4.00%，10 年期美债收益率 9 月 15 日升到 5.04%，10 月 7 日约 5.27%；南方公司股息率 3.53%，相对债券的吸引力下降。收益率回落对它有利，继续上升则不利。
+@@ 0ff981dbb4 html
+电力需求是正面变量。数据中心用电二季度同比增长 55%，已签约大负荷 17 GW，带动售电量和投资规模增长。
+@@ b081ca7101 html
+高利率同时推高融资成本。公司总债务 770.9 亿美元、自由现金流为负，利率越高，利息负担越重。
+@@ 4d558c8238 html
+数据中心负荷已经在合同层面落地，OpenAI 3.2 GW 合同获批、谷歌核电协议提交审批，收入增长的能见度较高。
+@@ 2b159c1300 html
+估值已经回落：远期市盈率 18.45 倍，分析师平均目标价 98.66 美元比现价高约 14.5%。
+@@ b07e95fb22 html
+24/7 Wall St. 10 月 2 日指出公用事业板块是 2023 年以来最超卖的时候；如果 10 年期美债收益率回落，资金可能回流防御性板块。
+@@ 60f859f3b9 html
+利率可能继续上行：美联储 9 月点阵图<span class="ek">（Dot plot）</span>显示年内可能还有一次加息，这会同时压低估值和抬高融资成本。
+@@ 1487b8eb28 html
+自由现金流为 -32.7 亿美元，810 亿美元资本开支要靠持续发债和可转债，存在股本稀释的可能。
+@@ acfef576f6 html
+二季度收入同比基本持平且低于预期，23 位分析师的共识评级只是“持有”；飓风修复成本也可能在短期内拖累利润。
+@@ b43a801948 html
+11 月 5 日三季报中调整后每股收益和大负荷签约量是否继续增加（二季度为 17 GW）。
+@@ 2cf83a016c html
+股价能否重新站上 88.25 至 88.99 美元区间（50 日均线和 30 日高点）；若跌破 82.35 美元和 81.69 美元，说明 9 月底的低点失守。
+@@ 6e273be37f html
+10 年期美债收益率能否回到 5% 以下。
+@@ e09b94015d html
+资料来源：<a href="https://stockanalysis.com/stocks/so/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/so/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/so/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/so/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/so/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://southerncompany.mediaroom.com/2026-07-30-Southern-Company-reports-second-quarter-2026-earnings" target="_blank" rel="noopener">southerncompany.mediaroom.com</a> · <a href="https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/" target="_blank" rel="noopener">utilitydive.com</a> · <a href="https://www.streetinsider.com/Equity+Offerings/Southern+Company+prices+%242.375+billion+in+convertible+notes/26859889.html" target="_blank" rel="noopener">streetinsider.com</a> · <a href="https://www.walb.com/2026/08/27/georgia-powers-openai-contract-effingham-county-approved-expected-lower-residential-bills/" target="_blank" rel="noopener">walb.com</a> · <a href="https://powermag.com/google-georgia-power-have-deal-to-support-nuclear-power-plant-uprates" target="_blank" rel="noopener">powermag.com</a> · <a href="https://www.marketbeat.com/instant-alerts/price-southern-nyse-so-hits-new-52-week-low-whats-next-2026-09-23/" target="_blank" rel="noopener">marketbeat.com</a> · <a href="https://www.renewableenergyworld.com/power-grid/outage-management/southeastern-us-utilities-are-preparing-for-hurricane-isaias-to-make-landfall/" target="_blank" rel="noopener">renewableenergyworld.com</a> · <a href="https://www.kiplinger.com/investing/live/fed-meeting-updates-and-commentary-september-2026" target="_blank" rel="noopener">kiplinger.com</a> · <a href="https://247wallst.com/investing/etf/2026/10/02/utility-stocks-are-the-most-oversold-since-2023/" target="_blank" rel="noopener">247wallst.com</a> · <a href="https://investinglive.com/news/investinglive-americas-market-news-wrap-fed-officials-prepared-to-hike-again-this-year/" target="_blank" rel="noopener">investinglive.com</a>
+@@ f272ce00b8 html
+DUK <span class="zh">杜克能源</span>
+@@ cbc4894752 html
+不在 17 只里，10 月 5 日买入，记录价 114.13 美元。和南方公司同属公用事业。
+@@ 5a91d2dbf2 html
+杜克能源是美国最大的受监管电力公司之一，在北卡罗来纳、南卡罗来纳、佛罗里达、印第安纳、俄亥俄和肯塔基供电，并在部分州经营燃气业务。收入主要来自州监管机构核准电价下的售电。利润增长取决于电网<span class="ek">（Power grid）</span>和电厂投资能否通过费率案获批，并计入电价回收。
+@@ 21799e6c67 html
+52 周区间<span class="ek">（52-week range）</span> 112.40 至 134.49 美元，现价比高点低 13.3%。分析师平均目标价<span class="ek">（Price target）</span> 135.67 美元（22 位分析师，平均评级 Buy），目标价反映的是乐观情景，常常滞后于股价。
+@@ 28594bbdc7 html
+收盘价 116.65 美元，比 50 日均线<span class="ek">（50-day moving average）</span> 119.56 美元低 2.4%，比 200 日均线<span class="ek">（200-day moving average）</span> 123.99 美元低 5.9%；50 日线在 200 日线下方，中期趋势偏弱。
+@@ 91c242c9a9 html
+RSI 为 48.98，处于中性区间；最近 5 个交易日上涨 2.2%，从 9 月底的低位小幅反弹。
+@@ cd79556722 html
+支撑<span class="ek">（Support）</span>：近 30 个交易日的最低收盘价 113.23 美元（9 月 24 日），再往下是 52 周低点 112.40 美元。
+@@ b5b3275d80 html
+阻力<span class="ek">（Resistance）</span>：先看 50 日均线 119.56 美元和近 30 个交易日最高收盘价 121.40 美元（9 月 3 日），再往上是 200 日均线 123.99 美元；52 周高点 134.49 美元。
+@@ 6ac3ebbfae html
+910 亿美元
+@@ 0b660cd631 html
+328 亿美元
+@@ 908f73968f html
+922 / 7 亿美元
+@@ 872eb652d9 html
+-43 亿美元
+@@ d96fc2b93d html
+过去十二个月收入 328.0 亿美元，同比增长 6.3%；2026 年二季度收入 75.9 亿美元，同比增长 1.1%，略低于市场预期的 76.6 亿美元。
+@@ edc1138d46 html
+二季度每股收益<span class="ek">（Earnings per share (EPS)）</span> 1.38 美元，同比增长 10.6%；调整后每股收益 1.43 美元，上年同期 1.25 美元。费率案贡献 0.10 美元、售电量贡献 0.08 美元，折旧摊销（-0.09 美元）和利息（-0.04 美元）是拖累。
+@@ 626ad9c9be html
+公司重申 2026 年调整后每股收益指引<span class="ek">（Guidance）</span> 6.55 至 6.80 美元，长期目标是到 2030 年每年增长 5% 至 7%，并预计从 2028 年起落在区间上半部。
+@@ da70dcd325 html
+估值：市盈率（ttm）17.6 倍，远期市盈率<span class="ek">（Forward P/E）</span> 17.3 倍，PEG 2.59；年度股息<span class="ek">（Dividend）</span> 4.34 美元，股息率<span class="ek">（Dividend yield）</span> 3.72%，派息率<span class="ek">（Payout ratio）</span> 65.2%。
+@@ 1145ab61f1 html
+资产负债：总债务 922.1 亿美元，现金只有 6.73 亿美元；过去十二个月自由现金流<span class="ek">（Free cash flow (FCF)）</span>为 -42.7 亿美元，ROIC 3.8%，大规模电网投资依赖持续融资。
+@@ d9423e83c8 html
+利润率<span class="ek">（Profit margin）</span>：毛利率<span class="ek">（Gross margin）</span> 52.0%，经营利润率<span class="ek">（Operating margin）</span> 27.0%，净利率<span class="ek">（Net margin）</span> 16.0%。
+@@ c3720a8c9a html
+<span class="nd">2026-08-04</span><span>杜克能源公布二季度调整后每股收益 1.43 美元（上年同期 1.25 美元），并重申全年 6.55 至 6.80 美元的指引；业绩稳定是这类防御股的基本支撑。 <a href="https://www.sec.gov/Archives/edgar/data/0001326160/000132616026000037/er-20260630xearningsreleas.htm" target="_blank" rel="noopener">sec.gov</a></span>
+@@ 052446e3fb html
+<span class="nd">2026-09-03</span><span>杜克能源佛罗里达申请从 2027 年 1 月起下调电价，典型居民月账单减少 0.71 美元，原因是燃料成本下降和一项每年节省 5000 万美元的税务安排，原计划 2% 的基本电价上调因此取消；这有利于监管关系，但也意味着该州短期收入增长放缓。 <a href="https://www.wftv.com/news/local/duke-energy-florida-asks-regulators-lower-customer-rates-2027/P7WFYOO4MFDJBEGK2QGR6RP47U/" target="_blank" rel="noopener">wftv.com</a></span>
+@@ 1c03b0a83b html
+<span class="nd">2026-09-14</span><span>北卡总检察长 Jeff Jackson 要求为数据中心<span class="ek">（Data center）</span>设立单独的电价类别，并且不支持杜克能源卡罗来纳费率案的和解方案（居民平均加价 9.5%）；这说明费率案面临的监管压力在上升。 <a href="https://www.wect.com/2026/09/14/nc-attorney-general-asks-state-make-data-centers-pay-fair-share-power-bills/" target="_blank" rel="noopener">wect.com</a></span>
+@@ 8d006e5d49 html
+<span class="nd">2026-10-07</span><span>杜克能源与数据中心运营商就北卡大负荷电价达成和解，新数据中心需预付专用设施成本，方案仍需北卡公用事业委员会批准；若获批，可降低普通用户为数据中心买单的政治风险。 <a href="https://www.wunc.org/2026-10-07/duke-energy-comes-to-an-agreement-on-long-sought-large-load-tariff-for-data-centers-in-north-carolina" target="_blank" rel="noopener">wunc.org</a></span>
+@@ 8c841917cb html
+<span class="nd">2026-10-08</span><span>飓风 Isaias 逼近美国墨西哥湾沿岸，杜克能源佛罗里达启动应急队伍并提醒修复可能“漫长而困难”；风暴修复成本和停电时长是短期变量。 <a href="https://www.renewableenergyworld.com/power-grid/outage-management/southeastern-us-utilities-are-preparing-for-hurricane-isaias-to-make-landfall/" target="_blank" rel="noopener">renewableenergyworld.com</a></span>
+@@ 640db2f10e html
+2026-11-05 盘前发布三季度财报<span class="ek">（Earnings report）</span>，看全年指引是否维持。
+@@ 66eaef9db2 html
+2026-11-13 除息日<span class="ek">（Ex-dividend date）</span>（年度股息 4.34 美元）。
+@@ af0167b806 html
+北卡公用事业委员会对大负荷电价和解的裁决（时间未定），以及卡罗来纳两家子公司费率案的进展。
+@@ 1959fce4c5 html
+杜克能源佛罗里达 2027 年电价申请的审批，以及飓风 Isaias 的修复成本回收。
+@@ b357b64488 html
+长期利率影响最大。美联储<span class="ek">（Federal Reserve (Fed)）</span> 9 月 16 日加息到 3.75% 至 4.00%，10 年期美债收益率 9 月中旬升破 5%，10 月 7 日约 5.27%，明显高于杜克 3.72% 的股息率，收息资金更愿意买债券。收益率回落对它有利。
+@@ 7768dacb81 html
+电力需求偏正面。卡罗来纳地区数据中心和制造业负荷增加，9 月 18 日公司还在用电高峰时段请卡罗来纳用户节电，说明系统负荷吃紧，这支持长期投资需求。
+@@ 04053578fd html
+燃料价格下降可以降低用户电费（如佛罗里达 2027 年调价申请），燃料成本一般通过燃料条款转嫁<span class="ek">（Pass-through）</span>，对利润影响较小，但会影响监管和舆论环境。
+@@ a753b5e145 html
+全年指引重申、调整后每股收益同比增长；22 位分析师共识为“买入”，平均目标价 135.67 美元比现价高约 16.3%。
+@@ 491211be05 html
+大负荷电价和解如果获批，数据中心相关投资的回收路径会更清晰，监管阻力减少。
+@@ 5a7487580d html
+远期市盈率 17.3 倍、股息率 3.72%，如果长期利率回落，防御和收息属性会重新受青睐。
+@@ 75c00c5817 html
+利率维持高位或继续上升：美联储 9 月加息后仍可能再加，公司总债务 922.1 亿美元，利息已是二季度每股收益的拖累项。
+@@ c68ca6d026 html
+监管风险：北卡总检察长反对费率案和解并要求数据中心单列电价类别，最终裁决可能低于公司预期。
+@@ 432553d2c7 html
+自由现金流为 -42.7 亿美元，需要持续融资；飓风和夏季风暴带来的修复成本可能在短期内压低利润。
+@@ 4adbe4d136 html
+11 月 5 日三季报是否继续重申 6.55 至 6.80 美元的全年指引。
+@@ c6364e22b7 html
+股价能否收复 119.56 美元（50 日均线）和 121.40 美元（30 日高点）；下方关注 113.23 美元和 112.40 美元两道支撑。
+@@ 1e21753fc1 html
+北卡公用事业委员会对大负荷电价和解的裁决，以及 10 年期美债收益率能否回落到 5% 以下。
+@@ 0f404f1f3d html
+资料来源：<a href="https://stockanalysis.com/stocks/duk/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/duk/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/duk/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/duk/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/duk/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0001326160/000132616026000037/er-20260630xearningsreleas.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://www.marketbeat.com/instant-alerts/duke-energy-nyseduk-issues-fy-2026-earnings-guidance-2026-08-04/" target="_blank" rel="noopener">marketbeat.com</a> · <a href="https://www.wftv.com/news/local/duke-energy-florida-asks-regulators-lower-customer-rates-2027/P7WFYOO4MFDJBEGK2QGR6RP47U/" target="_blank" rel="noopener">wftv.com</a> · <a href="https://www.wect.com/2026/09/14/nc-attorney-general-asks-state-make-data-centers-pay-fair-share-power-bills/" target="_blank" rel="noopener">wect.com</a> · <a href="https://www.wunc.org/2026-10-07/duke-energy-comes-to-an-agreement-on-long-sought-large-load-tariff-for-data-centers-in-north-carolina" target="_blank" rel="noopener">wunc.org</a> · <a href="https://www.renewableenergyworld.com/power-grid/outage-management/southeastern-us-utilities-are-preparing-for-hurricane-isaias-to-make-landfall/" target="_blank" rel="noopener">renewableenergyworld.com</a> · <a href="https://www.kiplinger.com/investing/live/fed-meeting-updates-and-commentary-september-2026" target="_blank" rel="noopener">kiplinger.com</a> · <a href="https://247wallst.com/investing/etf/2026/10/02/utility-stocks-are-the-most-oversold-since-2023/" target="_blank" rel="noopener">247wallst.com</a> · <a href="https://investinglive.com/news/investinglive-americas-market-news-wrap-fed-officials-prepared-to-hike-again-this-year/" target="_blank" rel="noopener">investinglive.com</a>
+@@ 0faad7c5a8 html
+SLB <span class="zh">斯伦贝谢（SLB）</span>
+@@ c9fb420e05 html
+在清单里，9 月 29 日也列入卖看跌关注名单。要注意它和「油价回落」的主线方向相反：油价下跌通常对油服公司不利。
+@@ dc8b794a25 html
+SLB（原斯伦贝谢）是全球最大的油田服务公司，为石油公司提供油藏评价、钻井建井、生产系统和数字化软件。收入大部分来自北美以外，二季度国际收入 66.7 亿美元，占总收入 89.7 亿美元的约四分之三。业绩跟油公司的勘探开发开支高度相关，近年还在发展数据中心<span class="ek">（Data center）</span>解决方案业务。
+@@ e4509b898b html
+52 周区间<span class="ek">（52-week range）</span> 31.64 至 60.46 美元，现价比高点低 19.0%。分析师平均目标价<span class="ek">（Price target）</span> 62.45 美元（30 位分析师，平均评级 Buy），目标价反映的是乐观情景，常常滞后于股价。
+@@ 8355876c1f html
+收盘价 48.95 美元，比 50 日均线<span class="ek">（50-day moving average）</span> 52.80 美元低 7.3%，也比 200 日均线<span class="ek">（200-day moving average）</span> 50.77 美元低 3.6%；跌破 200 日线说明 8 月底开始的回调已经伤到中期趋势，不过 50 日线仍在 200 日线上方。
+@@ a00a605110 html
+RSI 为 39.02，偏弱，但还没跌到 30 以下的超卖<span class="ek">（Oversold）</span>区。
+@@ 39fc559ac0 html
+近 20 个交易日下跌 12.7%，从 8 月 31 日的收盘价 60.10 美元算起跌幅约 18.6%。
+@@ 7840b65ddc html
+支撑<span class="ek">（Support）</span>：近 30 个交易日最低收盘价 47.96 美元（10 月 7 日）；再往下，52 周低点 31.64 美元距离太远，参考意义有限。
+@@ 35714381df html
+阻力<span class="ek">（Resistance）</span>：第一道是 200 日均线 50.77 美元，第二道是 50 日均线 52.80 美元；近 30 个交易日最高收盘价 60.10 美元（8 月 31 日），52 周高点 60.46 美元。
+@@ f68dc9c853 html
+726 亿美元
+@@ 469fefd3ac html
+128 / 41 亿美元
+@@ 6291edab79 html
+44 亿美元
+@@ 83f949072a html
+过去十二个月收入 363.7 亿美元，同比增长 2.5%；二季度收入 89.7 亿美元，同比增长 5.0%，其中并购来的 ChampionX 贡献 8.65 亿美元。
+@@ fb61a33bbf html
+盈利在下滑：二季度每股收益<span class="ek">（Earnings per share (EPS)）</span> 0.52 美元，同比下降 29.7%；剔除费用后为 0.55 美元，同比下降 26%；调整后 EBITDA 19.0 亿美元，利润率<span class="ek">（Profit margin）</span> 21.2%。中东冲突使该地区收入环比下降 13%。
+@@ 5937be4422 html
+现金流仍然稳健：过去十二个月自由现金流<span class="ek">（Free cash flow (FCF)）</span> 43.8 亿美元，二季度花 6.48 亿美元回购<span class="ek">（Share buyback）</span> 1200 万股；股息率<span class="ek">（Dividend yield）</span> 2.41%，派息率<span class="ek">（Payout ratio）</span> 57.2%。
+@@ dcfe1bb18c html
+估值：市盈率（ttm）23.8 倍，远期市盈率<span class="ek">（Forward P/E）</span> 17.5 倍，EV/EBITDA 11.0 倍；PEG 高达 26.1，是因为近期盈利增速为负，这个指标参考意义有限。
+@@ c587ede047 html
+资产负债：总债务 128.1 亿美元，现金 41.2 亿美元，ROIC 11.6%；毛利率<span class="ek">（Gross margin）</span> 17.0%，经营利润率<span class="ek">（Operating margin）</span> 14.2%，净利率<span class="ek">（Net margin）</span> 8.5%。
+@@ a8375c73a8 html
+新业务：数字业务二季度收入 6.97 亿美元，同比增长 18%；数据中心解决方案上半年收入同比增长 63%，公司预计年底年化收入超过 10 亿美元。
+@@ b1de8a0a53 html
+<span class="nd">2026-08-25</span><span>路透报道 SLB 与委内瑞拉国家石油公司 PDVSA 签约，获得其油藏和实时产量数据并负责升级数据库；这为 SLB 重返委内瑞拉市场打开入口，但付款方式和制裁<span class="ek">（Sanctions）</span>环境仍不明朗。 <a href="https://energynow.ca/2026/08/slb-gains-access-to-venezuelas-coveted-oilfield-data-through-contract-sources-say/" target="_blank" rel="noopener">energynow.ca</a></span>
+@@ 5b9ad50d55 html
+<span class="nd">2026-08-31</span><span>SLB 宣布以 41 亿美元（约 34 亿美元现金加承担约 7 亿美元债务）收购数据中心冷却企业 Kelvion，预计 2027 年上半年完成，目标 2028 年数据中心业务收入 45 至 50 亿美元；当天股价收涨约 4.8% 至 60.10 美元，接近 52 周高点。 <a href="https://worldoil.com/news/2026/8/31/slb-expands-data-center-business-with-4-1-billion-kelvion-acquisition/" target="_blank" rel="noopener">worldoil.com</a></span>
+@@ 16ccbf4dda html
+<span class="nd">2026-09-14</span><span>沙特因遭无人机<span class="ek">（Drone）</span>袭击关闭东西输油管道，花旗提示长期关闭会影响钻井活动，并认为 SLB 在沙特的敞口<span class="ek">（Exposure）</span>最大，股价当天下跌约 5%；这说明中东局势对 SLB 是双刃剑。 <a href="https://www.nasdaq.com/articles/why-slb-stock-slumped-today" target="_blank" rel="noopener">nasdaq.com</a></span>
+@@ 538bddfb25 html
+<span class="nd">2026-09-24</span><span>SLB 获得沙特阿美 4 份多年期一体化建井合同，涉及 450 多口井，基础期 3 年、可延长 2 年；这是中东业务恢复的一个具体信号。 <a href="https://www.slb.com/newsroom/press-release/2026/pr-2026-0924-slb-aramco" target="_blank" rel="noopener">slb.com</a></span>
+@@ 2983ae80a0 html
+<span class="nd">2026-10-08</span><span>TotalEnergies 与 SLB 签订为期 15 年的 DrillPlan 数字化钻井规划协议；长期软件合同能带来更稳定的经常性收入。 <a href="https://www.slb.com/newsroom/press-release/2026/pr-2026-1008-total-energies-drillplan" target="_blank" rel="noopener">slb.com</a></span>
+@@ 61ac0f66d1 html
+2026-10-23 盘前发布三季度财报<span class="ek">（Earnings report）</span>，关注中东收入是否回升、数据中心收入进度和 2027 年展望。
+@@ 48d11855f3 html
+Kelvion 收购预计 2027 年上半年完成，需要监管批准。
+@@ cbd7cfeba2 html
+沙特东西输油管道和霍尔木兹海峡航运的恢复情况。
+@@ dae82a80a6 html
+飓风 Isaias 对墨西哥湾海上生产和作业的影响。
+@@ e04b924da8 html
+油价：2026 年油价受伊朗战争和霍尔木兹海峡航运影响剧烈波动。9 月 14 日 WTI 约 103.29 美元；10 月 8 日因飓风 Isaias 威胁墨西哥湾生产，布伦特 12 月合约升到约 104.00 美元，WTI 11 月合约约 91.30 美元。油价高通常鼓励油公司加大开支，但中东冲突本身也打断了 SLB 在当地的作业。
+@@ bd45a3cd2d html
+利率和美元：美联储<span class="ek">（Federal Reserve (Fed)）</span> 9 月加息到 3.75% 至 4.00%，借款成本上升可能让油公司更谨慎；SLB 大部分收入来自美国以外，美元走强会压低换算后的美元收入。
+@@ 157599f0e7 html
+电力需求：收购 Kelvion 后，SLB 一部分增长将来自 AI 数据中心的冷却和电力基础设施需求，这部分与油价关系较小。
+@@ bdc9beedbe html
+订单持续落地：沙特阿美 450 多口井的合同、TotalEnergies 15 年数字合同和莫桑比克 Rovuma 海底系统合同，说明中东和海上需求在恢复。
+@@ e7d2310551 html
+估值不高：远期市盈率 17.46 倍；30 位分析师共识为“买入”，平均目标价 62.45 美元比现价高约 27.6%。
+@@ 1fe6c57e7a html
+数字和数据中心业务增长较快，过去十二个月 43.8 亿美元的自由现金流可以支撑回购和股息<span class="ek">（Dividend）</span>。
+@@ f8be59590b html
+中东冲突反复：沙特管道关闭这类事件会直接影响 SLB 的钻井业务，管理层也说中东完全恢复的时间仍不确定。
+@@ 6df35b0885 html
+盈利仍在下滑：最近一季每股收益同比下降 29.7%，如果三季报继续下滑，估值支撑会减弱。
+@@ 6490bfa8f8 html
+Kelvion 收购要支付约 34 亿美元现金并承担约 7 亿美元债务，存在整合风险；另外若和谈推动油价快速回落（8 月 26 日布伦特曾跌到约 86 美元），油公司可能削减预算。
+@@ ce0a50620a html
+10 月 23 日三季报：中东收入是否环比回升，数据中心收入是否朝年底 10 亿美元年化目标推进。
+@@ ff913b139b html
+股价能否收复 50.77 美元（200 日均线）；若有效跌破 47.96 美元（30 日低点），说明下跌趋势在延续。
+@@ 436ed1c225 html
+布伦特油价能否维持在 100 美元附近，以及沙特东西管道和霍尔木兹海峡航运何时恢复正常。
+@@ d7c846dadb html
+资料来源：<a href="https://stockanalysis.com/stocks/slb/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/slb/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/slb/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/slb/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/slb/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.01net.it/slb-announces-second-quarter-2026-results/" target="_blank" rel="noopener">01net.it</a> · <a href="https://energynow.ca/2026/08/slb-gains-access-to-venezuelas-coveted-oilfield-data-through-contract-sources-say/" target="_blank" rel="noopener">energynow.ca</a> · <a href="https://worldoil.com/news/2026/8/31/slb-expands-data-center-business-with-4-1-billion-kelvion-acquisition/" target="_blank" rel="noopener">worldoil.com</a> · <a href="https://www.nasdaq.com/articles/why-slb-stock-slumped-today" target="_blank" rel="noopener">nasdaq.com</a> · <a href="https://www.slb.com/newsroom/press-release/2026/pr-2026-0924-slb-aramco" target="_blank" rel="noopener">slb.com</a> · <a href="https://www.slb.com/newsroom/press-release/2026/pr-2026-1008-total-energies-drillplan" target="_blank" rel="noopener">slb.com</a> · <a href="https://oenergetice.cz/en/oil/hurricane-isaias-rattles-markets-oil-prices-surge-sharply" target="_blank" rel="noopener">oenergetice.cz</a> · <a href="https://www.oedigital.com/news/542438-iran-oman-talks-on-hormuz-reopening-drive-down-oil-prices" target="_blank" rel="noopener">oedigital.com</a> · <a href="https://www.kiplinger.com/investing/live/fed-meeting-updates-and-commentary-september-2026" target="_blank" rel="noopener">kiplinger.com</a>
+@@ d82e870d61 html
+ABT <span class="zh">雅培</span>
+@@ 9fb18452cd html
+清单里的医疗器械<span class="ek">（Medical devices）</span>股。有意思的是，他 9 月 29 日说过医疗板块「等大选后再进」，第二天的清单里却有雅培。
+@@ 75048a762f html
+雅培是多元化医疗保健公司，有四大业务：医疗器械（FreeStyle Libre 连续血糖监测、电生理、心衰和结构性心脏病器械）、诊断（2026 年 3 月完成收购 Exact Sciences，加入 Cologuard 结直肠癌筛查）、营养品（Similac 婴儿配方奶粉、Ensure）和品牌仿制药。医疗器械是目前的增长主力。
+@@ cc1264ec61 html
+52 周区间<span class="ek">（52-week range）</span> 81.97 至 135.13 美元，现价比高点低 26.3%。分析师平均目标价<span class="ek">（Price target）</span> 120.72 美元（28 位分析师，平均评级 Strong Buy），目标价反映的是乐观情景，常常滞后于股价。
+@@ acda533093 html
+收盘价 99.60 美元，比 50 日均线<span class="ek">（50-day moving average）</span> 106.17 美元低 6.2%，比 200 日均线<span class="ek">（200-day moving average）</span> 103.34 美元低 3.6%；50 日线还在 200 日线上方，但价格已经跌破两条均线，8 月的反弹趋势被破坏。
+@@ 0079614c2e html
+RSI 为 42.26，偏弱，但没有进入 30 以下的超卖<span class="ek">（Oversold）</span>区。
+@@ 1303b4bd00 html
+从 8 月 24 日收盘价 116.67 美元到 10 月 1 日的 96.69 美元，回落约 17.1%；最近 5 个交易日回升 2.2%。
+@@ 6bd8ae3c36 html
+支撑<span class="ek">（Support）</span>：近 30 个交易日最低收盘价 96.69 美元（10 月 1 日），再往下是 52 周低点 81.97 美元。
+@@ d4fc8c4c42 html
+阻力<span class="ek">（Resistance）</span>：先看 100 美元整数关口和 200 日均线 103.34 美元，再看 50 日均线 106.17 美元；近 30 个交易日最高收盘价 112.47 美元（8 月 28 日），52 周高点 135.13 美元。
+@@ be23f72be8 html
+1,724 亿美元
+@@ 176f61cb06 html
+466 亿美元
+@@ f6f08dc66e html
+327 / 56 亿美元
+@@ f1820c641f html
+过去十二个月收入 465.9 亿美元，同比增长 8.1%；二季度收入 125.9 亿美元，同比增长 13.0%，可比口径增长 4.8%，差额主要来自 Exact Sciences 并表。
+@@ 296adf421d html
+二季度每股收益<span class="ek">（Earnings per share (EPS)）</span> 0.53 美元，同比下降 47.5%；调整后每股收益 1.31 美元，上年同期 1.26 美元。两个口径差距很大，读财报<span class="ek">（Earnings report）</span>时要分清。
+@@ e6fe15ca16 html
+指引<span class="ek">（Guidance）</span>：全年调整后每股收益上调到 5.45 至 5.60 美元，可比销售增长 6.5% 至 7.5% 维持不变；三季度调整后每股收益指引 1.38 至 1.46 美元。
+@@ 650370599e html
+分部：医疗器械可比增长 8.4%，其中电生理 13.4%、连续血糖监测 9.5%；营养品可比下降 3.6%，快速与分子诊断下降 8.0%。
+@@ 1d173be1e9 html
+估值：市盈率（ttm）32.2 倍偏高，是因为 GAAP 利润被压低；远期市盈率<span class="ek">（Forward P/E）</span> 17.2 倍，PEG 1.87。股息率<span class="ek">（Dividend yield）</span> 2.53%，派息率<span class="ek">（Payout ratio）</span> 81.5%，已连续派发 411 个季度股息<span class="ek">（Dividend）</span>。
+@@ 1fcde9e2fb html
+资产负债：总债务 327.2 亿美元，现金 56.0 亿美元，过去十二个月自由现金流<span class="ek">（Free cash flow (FCF)）</span> 78.2 亿美元；毛利率<span class="ek">（Gross margin）</span> 56.9%，经营利润率<span class="ek">（Operating margin）</span> 17.7%，ROIC 7.5%。
+@@ 50b8af0dff html
+<span class="nd">2026-08-21</span><span>雅培同意支付 6.7 亿美元，和解约 2000 名原告关于早产儿配方奶粉导致坏死性小肠结肠炎（NEC）的诉讼，但不承认责任；这减少了一部分法律不确定性，但仍有大量案件未决。 <a href="https://www.claimsjournal.com/news/national/2026/08/21/339713.htm" target="_blank" rel="noopener">claimsjournal.com</a></span>
+@@ a1596adb7b html
+<span class="nd">2026-09-08</span><span>FDA 批准雅培 TactiFlex Duo 消融导管，可同时进行脉冲场消融和射频消融，用于治疗房颤；电生理是雅培增长最快的器械业务之一。 <a href="https://abbott.mediaroom.com/2026-09-08-Abbott-receives-FDA-approval-for-its-TactiFlex-TM-Duo-Ablation-Catheter-to-treat-people-with-abnormal-heart-rhythms?asPDF=1" target="_blank" rel="noopener">abbott.mediaroom.com</a></span>
+@@ b85621289d html
+<span class="nd">2026-09-14</span><span>美国司法部宣布雅培支付约 3.85 亿美元，和解 2022 年 Sturgis 工厂婴儿配方奶粉污染相关的《虚假申报法》指控，雅培未承认责任；2022 年召回事件的政府诉讼由此了结。 <a href="https://justice.gov/opa/pr/abbott-agrees-pay-over-384m-settle-allegations-related-contaminated-infant-formula" target="_blank" rel="noopener">justice.gov</a></span>
+@@ 15fae42e99 html
+<span class="nd">2026-10-02</span><span>Rothschild &amp; Co Redburn 把雅培从中性上调到买入，目标价从 119 美元升到 127 美元；股价跌到 100 美元附近后，卖方观点开始转向积极。 <a href="https://www.thestockobserver.com/?p=8937425" target="_blank" rel="noopener">thestockobserver.com</a></span>
+@@ f55f1aac37 html
+<span class="nd">2026-10-06</span><span>Barclays 首次覆盖雅培，给出增持评级和 120 美元目标价，理由是医疗科技板块近期走弱带来了更低的估值，并预计 2027 年行业基本面趋稳。 <a href="https://goldesel.de/aktien/news/abbott-laboratories-aktie-barclays-startet-mit-overweight-und-120-dollar-kursziel" target="_blank" rel="noopener">goldesel.de</a></span>
+@@ 6917ff4eb9 html
+2026-10-15 除息日<span class="ek">（Ex-dividend date）</span>（年度股息 2.52 美元）。
+@@ 3c812943fd html
+2026-10-21 盘前发布三季度财报，看调整后每股收益是否落在 1.38 至 1.46 美元，以及 Libre、癌症诊断和营养品的表现。
+@@ e5c78baa63 html
+SimpleScreen 结直肠癌血液检测（9 月 30 日上市）和 TactiFlex Duo 的放量情况。
+@@ f8c2a0600e html
+早产儿配方奶粉 NEC 诉讼的后续进展。
+@@ ed71dd4138 html
+长期利率：10 年期美债收益率 9 月中旬升破 5%，10 月 7 日约 5.27%，美联储<span class="ek">（Federal Reserve (Fed)）</span>也在 9 月加息，高利率会压低市场愿意给的估值倍数<span class="ek">（Valuation multiple）</span>；Barclays 也提到医疗科技板块近期整体走弱。
+@@ e5ee8670b1 html
+美元：雅培相当一部分收入来自美国以外，美元走强会压低以美元计的报告收入，所以财报会同时给出可比增长。
+@@ 846208ea48 html
+消费与通胀：营养品业务（奶粉、Ensure）偏消费属性，二季度可比下降 3.6%，消费者对价格的敏感度会影响这块业务能否恢复。
+@@ 3d241795db html
+卖方转向积极：10 月初 Redburn 上调到买入（目标价 127 美元），Barclays 首次覆盖给增持（目标价 120 美元），Evercore ISI 10 月 5 日把目标价从 120 美元上调到 124 美元；28 位分析师共识为“强力买入”，平均目标价 120.72 美元。
+@@ 8031dc91a9 html
+法律不确定性部分消除：8 月和 9 月两项配方奶粉相关和解合计约 10.5 亿美元（6.7 亿加 3.85 亿）。
+@@ 7538c02daf html
+远期市盈率 17.19 倍，自由现金流 78.2 亿美元；管理层在二季度预计下半年销售和利润增长会加快。
+@@ 660b91df4c html
+NEC 诉讼仍有大量案件未决，雅培称最多有 12,700 名索赔人（含重复和缺乏依据的索赔），后续可能还有赔偿。
+@@ 44e0a64e3a html
+FreeStyle Libre 质量问题：据 4 月报道，2026 年初 FDA 对部分传感器发布 I 类召回并下发警告信，若整改不顺，可能影响增长和新产品审批。
+@@ f69df5738a html
+Exact Sciences 收购带来股本稀释和债务（4 月因此下调过指引），营养品和快速诊断仍在下滑，GAAP 每股收益同比下降 47.5%。
+@@ 4b237d9440 html
+10 月 21 日三季报：调整后每股收益是否达到 1.38 至 1.46 美元，全年 5.45 至 5.60 美元指引是维持还是上调。
+@@ bbf411a905 html
+股价能否收复 103.34 美元（200 日均线）；若跌破 96.69 美元，说明 10 月初的低点失守。
+@@ 59d6337553 html
+连续血糖监测增速（二季度可比 9.5%）和癌症诊断下半年能否达到管理层说的中双位数增长。
+@@ 26322e419c html
+资料来源：<a href="https://stockanalysis.com/stocks/abt/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/abt/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/abt/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/abt/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/abt/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://abbott.mediaroom.com/2026-07-16-Abbott-Reports-Second-Quarter-2026-Results-and-Raises-Full-Year-EPS-Guidance" target="_blank" rel="noopener">abbott.mediaroom.com</a> · <a href="https://www.claimsjournal.com/news/national/2026/08/21/339713.htm" target="_blank" rel="noopener">claimsjournal.com</a> · <a href="https://abbott.mediaroom.com/2026-09-08-Abbott-receives-FDA-approval-for-its-TactiFlex-TM-Duo-Ablation-Catheter-to-treat-people-with-abnormal-heart-rhythms?asPDF=1" target="_blank" rel="noopener">abbott.mediaroom.com</a> · <a href="https://justice.gov/opa/pr/abbott-agrees-pay-over-384m-settle-allegations-related-contaminated-infant-formula" target="_blank" rel="noopener">justice.gov</a> · <a href="https://www.thestockobserver.com/?p=8937425" target="_blank" rel="noopener">thestockobserver.com</a> · <a href="https://goldesel.de/aktien/news/abbott-laboratories-aktie-barclays-startet-mit-overweight-und-120-dollar-kursziel" target="_blank" rel="noopener">goldesel.de</a> · <a href="https://www.marketbeat.com/stocks/NYSE/ABT/news" target="_blank" rel="noopener">marketbeat.com</a> · <a href="https://www.hudson-labs.com/research/abbott-q3-2026-earnings-preview-abt-revenue-guidance-key-drivers" target="_blank" rel="noopener">hudson-labs.com</a> · <a href="https://finance.yahoo.com/markets/stocks/articles/why-abbott-stock-trending-lower-201341959.html" target="_blank" rel="noopener">finance.yahoo.com</a> · <a href="https://www.kiplinger.com/investing/live/fed-meeting-updates-and-commentary-september-2026" target="_blank" rel="noopener">kiplinger.com</a> · <a href="https://investinglive.com/news/investinglive-americas-market-news-wrap-fed-officials-prepared-to-hike-again-this-year/" target="_blank" rel="noopener">investinglive.com</a>
+@@ 0d118fb762 html
+清单、模板与练习
+@@ e6c6601a05 html
+把二十章变成以后可以重复使用的方法。清单的勾选只保存在你自己的浏览器里。
+@@ cc33df74b1 html
+四张清单
+@@ 7e17d7cb98 html
+研究一只超卖股之前
+@@ 72e3e7551c html
+找到了股价下跌的原因
+@@ 3fb74b359a html
+分清是板块拖累还是公司自身问题
+@@ 11b8446607 html
+看过最近一季的收入、利润和指引
+@@ cc5dfa707d html
+知道下一次财报是哪一天
+@@ 0fdc69fe44 html
+决定要不要参与之前
+@@ 5bfbc5ec5b html
+宏观前提（利率、油价）有没有在改善
+@@ 7ffc0381e7 html
+价格出现止跌信号，没有继续创新低
+@@ e0fa507c8e html
+写下了止损价和认错的事实条件
+@@ 34f32cb295 html
+仓位小到止损也不影响心情
+@@ 6be049ad3a html
+财报前后
+@@ 73f089de9e html
+知道市场最担心的那个数字是什么
+@@ 6eb7ae6a09 html
+考虑过财报后跳空的两个方向
+@@ 4965fcdf2b html
+财报后第一个小时不追
+@@ 4be8c72925 html
+每周跟踪
+@@ 073cdd1340 html
+更新价格、均线和 RSI
+@@ 86cb783991 html
+记录新消息，判断逻辑有没有变
+@@ 3cfc5b89ed html
+对照「接下来盯什么」，看哪条已经出现
+@@ 947b5233d8 html
+单只股票研究卡
+@@ bcaef611ef html
+复制研究卡
+@@ 3483f62b36 html
+练习
+@@ ebdc877cda html
+<span class="k">01</span><span>美高梅的 RSI 只有 14，比所有公司都低。这是不是最好的反弹机会？</span>
+@@ e2903e4510 html
+RSI 14 说明卖压极其集中，但原因很具体：大股东撤回每股 48.30 美元的收购报价，并购溢价一天之内消失，拉斯维加斯游客和澳门博彩收入也在走弱。这属于「公司自身问题」，超卖<span class="ek">（Oversold）</span>可以持续。
+@@ 71332ace27 html
+更稳妥的做法是等确认：守住 52 周低点，收复缺口<span class="ek">（Gap）</span>位置，或者财报<span class="ek">（Earnings report）</span>证明拉斯维加斯业务没有恶化。
+@@ 994a970454 html
+<span class="k">02</span><span>SLB 也在这份「利率和油价回落」的反弹清单上。这合理吗？</span>
+@@ f56b3adaf3 html
+方向上有矛盾。油价回落有利于航空、游轮、卡车运输，但通常不利于油服公司。SLB 被列入，更像是因为它自己跌得多、估值不高，而不是因为轮动逻辑。
+@@ 5aad7e9bcb html
+研究清单时要检查每一只股票是否真的符合主线，不符合的要单独评估。
+@@ 36c4cb3bab html
+<span class="k">03</span><span>康卡斯特远期市盈率不到 6 倍，股息率超过 6%。为什么这么便宜还在跌？</span>
+@@ 92b299e7c3 html
+便宜往往有原因：宽带用户在流失，盈利在下降，分析师下调评级，公司又在进行分拆<span class="ek">（Spin-off）</span>。市场担心的是未来的利润，而不是过去的利润。
+@@ b996132ab4 html
+判断这种股票，要看派息率<span class="ek">（Payout ratio）</span>和自由现金流<span class="ek">（Free cash flow (FCF)）</span>能否支撑<span class="ek">（Support）</span>股息<span class="ek">（Dividend）</span>，以及用户流失有没有见底的迹象。
+@@ 52758c309e html
+<span class="k">04</span><span>10 月 14 日美国银行公布财报，你最该看哪几个数字？</span>
+@@ a133dee014 html
+投行费用<span class="ek">（Investment banking fees）</span>（管理层已经预告低于去年）、净利息收入<span class="ek">（Net interest income (NII)）</span>和净息差<span class="ek">（Net interest margin (NIM)）</span>（利率曲线变平的影响）、信用卡和消费贷款的坏账（消费者的健康程度）。
+@@ cab52482ec html
+它也是整个银行财报季的第一枪，市场会用它来判断金融板块和消费者的状况。
+@@ 9b965ded13 html
+中英术语表
+@@ 5825024006 html
+书中出现的主要术语和它们的英文原词，按首次出现的章节排列。读英文资料、用券商平台或者搜索时，用英文原词会准确得多。
+@@ 147b51b71b html
+中文
+@@ 79e91d826e html
+首次出现
+@@ 37c7c1b17b html
+52 周区间
+@@ 72ac7fd41c html
+导读
+@@ 42865129f7 html
+催化剂
+@@ d93f2d53cd html
+利润率
+@@ 3f160803e7 html
+到期日
+@@ 0fe2951094 html
+均线
+@@ 11d11dab32 html
+支撑
+@@ ba3d4c2f01 html
+期权到期
+@@ 56c6bccbbb html
+止损
+@@ 20ba16e510 html
+等权
+@@ a3f7478a73 html
+美联储
+@@ c317db02aa html
+财报
+@@ c46c4c36ca html
+超卖
+@@ f87400198b html
+阻力
+@@ 7bda037ecb html
+200 日均线
+@@ a63458a350 html
+第 1 章
+@@ dcf7db7792 html
+50 日均线
+@@ fd8e5271cb html
+价值陷阱
+@@ 96d2af49a4 html
+净利率
+@@ 4efe85fcf5 html
+净息差
+@@ ad639f9a75 html
+市净率
+@@ 1b12518dd3 html
+市盈率
+@@ 130cbf054d html
+指引
+@@ cd07313666 html
+接飞刀
+@@ ba3c8b7358 html
+派息率
+@@ 9b30d447ca html
+盈利预期
+@@ 7351764b29 html
+目标价
+@@ 1b7a99421d html
+空头排列
+@@ c9710819b7 html
+经营利润率
+@@ eb5d31d712 html
+股息
+@@ bf07a74171 html
+自由现金流
+@@ cfed40a233 html
+超买
+@@ 743f279d6d html
+跳空
+@@ 6baf96e61e html
+加盟商
+@@ 0a9182db90 html
+第 3 章
+@@ 56feee2fcc html
+同店销售
+@@ 8b0e64636c html
+回购
+@@ f537ed998a html
+毛利率
+@@ ca571d1655 html
+特许权使用费
+@@ bca800930c html
+除息日
+@@ 62aff3fdc7 html
+做空比例
+@@ 3b11941a57 html
+第 4 章
+@@ fc050d3472 html
+市销率
+@@ 85d3473d06 html
+私有化
+@@ 9d161c54d1 html
+空头回补
+@@ d90b680c1c html
+关税
+@@ 6648ec5f17 html
+第 5 章
+@@ c960498cc8 html
+季节性
+@@ d0243abec0 html
+第 7 章
+@@ 12ab6fb9dc html
+每股收益
+@@ a0835f26b9 html
+供应链
+@@ 3f60aec59f html
+第 8 章
+@@ 0f684a178c html
+杠杆
+@@ 04234f1edf html
+死叉
+@@ 72502c8768 html
+无人机
+@@ 31ac4811e8 html
+第 9 章
+@@ 17f3abf0cc html
+分拆
+@@ c2c124dc82 html
+第 10 章
+@@ ff4487edb1 html
+净利息收入
+@@ 7d7d98c805 html
+第 11 章
+@@ 8c1de794be html
+压力测试
+@@ 7be9a7aa2a html
+投行费用
+@@ a2a7f00dad html
+收益率曲线
+@@ 24088f3a79 html
+点阵图
+@@ 2127a59291 html
+议息会议
+@@ 88d2f88420 html
+数据中心
+@@ ab5d34100e html
+第 12 章
+@@ 5625dd35c2 html
+资金流
+@@ d5a9695ef6 html
+资本开支
+@@ 43bc4f7cc8 html
+第 13 章
+@@ ceef03794a html
+企业价值
+@@ f489b893dd html
+第 14 章
+@@ d69bf5224e html
+国防开支
+@@ ca119c244e html
+第 15 章
+@@ 019d1d2ed0 html
+备战
+@@ d4e697b144 html
+风险溢价
+@@ 0a825f7063 html
+弹药
+@@ fe602fe9ed html
+第 16 章
+@@ 656753166f html
+电网
+@@ 80a6b678fc html
+第 19 章
+@@ 0b0e6c2dbe html
+转嫁
+@@ 4ab5239396 html
+第 20 章
+@@ 9d84e9fb01 html
+制裁
+@@ 61d1120b73 html
+第 21 章
+@@ f8ba3804d9 html
+敞口
+@@ a0b50a392e html
+估值倍数
+@@ c89519a815 html
+第 22 章
+@@ b3cabe7895 html
+医疗器械
+@@ bca5cc409b html
+缺口
+@@ 2d863667ad html
+第 23 章
+@@ d865293b62 html
+数据从哪里查
+@@ 766e7cca5c html
+价格、估值、均线<span class="ek">（Moving average）</span>、RSI：stockanalysis.com 各公司的 Statistics 页面。
+@@ a714c9542c html
+财报和公告：公司投资者关系网站、美国证监会 EDGAR 数据库。
+@@ ae4165d153 html
+新闻：Reuters、CNBC、WSJ、Bloomberg、Barron's、MarketWatch。
+@@ 6ddcdbadb9 html
+宏观：美联储<span class="ek">（Federal Reserve (Fed)）</span>会议声明与纪要、美国财政部收益率数据、能源信息署（EIA）的油价数据。
+@@ 2e2ce2b286 html
+<small>上一章</small><span></span>
+@@ 5286a10ebc html
+<small>下一章</small><span></span>
+@@ 5e87d1ba99 html
+数据截至 2026 年 10 月 9 日收盘，来自 stockanalysis.com 和各章列出的新闻来源；交易者的原话和买入价来自群聊记录，未经核实。本手册用于学习，不构成投资建议。
+@@ 1e13fbd1d0 text
+美股期权课
+@@ 6985e3fc6d text
+交易心理学
+@@ 549cca660d text
+宏观交易框架
+@@ f691f691fc text
+政策叙事投资
+@@ f025c44d71 text
+超卖反弹清单
+@@ 77bbb565fc text
+清单公布后到 10 月 9 日，17 只股票的平均涨跌，其中 12 只上涨。同期 10 年期美债收益率升到约 5.27%，反弹的宏观前提还没有出现。
+@@ c3ec1ad57c text
+导读
+@@ 938ce87a96 text
+使用前请注意
+@@ 5b18922e99 text
+第一章
+@@ 09550b9e05 text
+读一张图：麦当劳的位置
+@@ e1021590e7 text
+图 1-1
+@@ b5b287fac6 text
+第二章
+@@ 542828783d text
+横轴是距离 200 日均线的幅度，纵轴可以切换
+@@ 2ff84551d0 text
+图 2-1 · 可切换
+@@ 4d1bbe8458 text
+9 月 30 日收盘到 10 月 9 日收盘的涨跌
+@@ 069085a6c7 text
+图 2-2
+@@ 7ee30a209f text
+可选消费 · 餐饮
+@@ 762a8f4529 text
+9/30 清单
+@@ 42f5c18e77 text
+10/2 记录买入 231.89
+@@ ff52de8551 text
+他为什么关注
+@@ 11c856c3d6 text
+10 月 9 日收盘
+@@ d8c6092985 text
+9/30 以来
+@@ 39611283e1 text
+相对他的买入价
+@@ 4abd435967 text
+远期市盈率
+@@ 1b9ae5f211 text
+股息率
+@@ 9c98fa0f80 text
+RSI（14 日）
+@@ a9a2095ac9 text
+11/4 盘前
+@@ ea92803fba text
+下次财报
+@@ 8a0dcd7003 text
+最近约 50 个交易日的收盘价，和几条关键价位
+@@ 8e16fe6f6b text
+MCD · 图 1
+@@ c4eb4202bc text
+收盘价
+@@ 2986711622 text
+50 日均线（当前值）
+@@ 25c10362ac text
+200 日均线（当前值）
+@@ 2ddff9f670 text
+他的买入价
+@@ a771801706 text
+现价在 52 周区间里的位置
+@@ 784d70c64b text
+MCD · 图 2
+@@ 97ea9b8148 text
+接下来盯什么
+@@ ad99b4c7c9 text
+10/5 记录买入 6.05
+@@ f169712176 text
+不在 17 只清单里
+@@ d0b614a25f text
+11/5 盘前
+@@ 63ff0e9af7 text
+WEN · 图 1
+@@ 21061761f4 text
+WEN · 图 2
+@@ ff1234a89f text
+必需消费 · 饮料与零食
+@@ 3df7a1b8bd text
+未公布
+@@ cc0eb23ccc text
+PEP · 图 1
+@@ 6c0103cc09 text
+PEP · 图 2
+@@ 07ccd36546 text
+必需消费 · 零食与糖果
+@@ b65bf12325 text
+10/27 盘后
+@@ 18cebce5b1 text
+MDLZ · 图 1
+@@ 51b2b02888 text
+MDLZ · 图 2
+@@ 109307fbb8 text
+必需消费 · 糖果零食
+@@ ac3d132ac3 text
+10/5 记录买入 160.19
+@@ 2113c32dba text
+10/29 盘前
+@@ ffc0b6ae23 text
+HSY · 图 1
+@@ e8f883ed40 text
+HSY · 图 2
+@@ 5d91fca73f text
+必需消费 · 饮料（瓶装水）
+@@ bea2df69c9 text
+10/5 记录买入 19.70
+@@ b9178b85bc text
+PRMB · 图 1
+@@ 5c8c5df685 text
+PRMB · 图 2
+@@ adccc7d07d text
+可选消费 · 家居建材零售
+@@ 034ee8329f text
+10/5 记录买入 180.00
+@@ 973dc34e32 text
+11/18 盘前
+@@ 07e0f51025 text
+LOW · 图 1
+@@ aee19a69a9 text
+LOW · 图 2
+@@ 7ff97469f3 text
+通信服务 · 有线宽带与媒体
+@@ 770cda4963 text
+10/22 盘前
+@@ eca082c2b5 text
+CMCSA · 图 1
+@@ ce3ce55093 text
+CMCSA · 图 2
+@@ 83a9037a88 text
+金融 · 大型银行
+@@ 56649d89ee text
+10/2 记录买入 53.75
+@@ a3e70b7183 text
+10/14 盘前
+@@ 79922f530a text
+BAC · 图 1
+@@ 0600d24800 text
+BAC · 图 2
+@@ 72fb9cfff2 text
+金融 · 另类资产管理
+@@ d115ed6a64 text
+BX · 图 1
+@@ 0f946c61ed text
+BX · 图 2
+@@ fc30e6a4cd text
+可选消费 · 邮轮旅游
+@@ 4409e3500e text
+无
+@@ c0d8420927 text
+VIK · 图 1
+@@ 5ab6a002ab text
+VIK · 图 2
+@@ 13f39a6e68 text
+可选消费 · 赌场度假村
+@@ 711a3bbe7b text
+10/2 记录买入 30.50
+@@ 2afdd185e3 text
+10/28 盘后
+@@ 3d41bab450 text
+MGM · 图 1
+@@ 322fde493c text
+MGM · 图 2
+@@ ec9ac0ef13 text
+工业 · 航空航天与国防
+@@ 1c56c115d8 text
+10/20 盘前
+@@ ded188a3a4 text
+RTX · 图 1
+@@ f771a14f8d text
+RTX · 图 2
+@@ 3d0e97e7e7 text
+工业 · 国防与公务机
+@@ 2f64c91ad7 text
+10/5 记录买入 331.50
+@@ fb420ba551 text
+10/30 盘前
+@@ 6b8ac4a2e8 text
+GD · 图 1
+@@ a633816b82 text
+GD · 图 2
+@@ fff9dd4e5f text
+工业 · 环境服务（固废处理）
+@@ 8f74b55abe text
+WM · 图 1
+@@ bb3902a1e9 text
+WM · 图 2
+@@ b470f1688d text
+工业 · 货运物流（多式联运）
+@@ 1aa4f4d074 text
+10/15 盘后
+@@ 758c3cb8c1 text
+JBHT · 图 1
+@@ a26b0934fd text
+JBHT · 图 2
+@@ df3cbdb1f5 text
+公用事业 · 受监管电力与燃气
+@@ 146e5aed84 text
+SO · 图 1
+@@ 7a9396d1d4 text
+SO · 图 2
+@@ e0763d4e67 text
+10/5 记录买入 114.13
+@@ 07dde5aee3 text
+DUK · 图 1
+@@ 7ff7b4af97 text
+DUK · 图 2
+@@ 03a77e6c88 text
+能源 · 油田服务
+@@ eaa1c03387 text
+10/23 盘前
+@@ e17e0b48ea text
+SLB · 图 1
+@@ 99bc54d498 text
+SLB · 图 2
+@@ e6b18844b1 text
+医疗保健 · 医疗器械与诊断
+@@ d5570c3593 text
+10/21 盘前
+@@ daa3f9e7b3 text
+ABT · 图 1
+@@ a242c68b24 text
+ABT · 图 2
+@@ da57b7e79b text
+工具箱
+@@ 237771ab1a text
+代码 / 公司：            日期：
+一、为什么在清单上：
+二、快照：收盘价 ___  距 50 日线 ___  距 200 日线 ___  RSI ___
+         远期市盈率 ___  股息率 ___  下次财报 ___
+三、基本面：收入增长 ___  利润率 ___  负债 ___  估值和历史比 ___
+四、消息面：下跌的主要原因 ___
+         板块拖累 / 公司自身问题
+         接下来的催化剂 ___
+五、技术面：支撑 ___  阻力 ___  趋势 ___
+六、正反两面：反弹的理由 ___   继续走弱的理由 ___
+七、确认信号：___     认错条件（写事实）：___
+八、一周后回看：发生了什么？哪一条判断对了？
+@@ e0075fa9e3 attr
+二十家「短线可能反弹」的候选公司，每家单独一章，从基本面、消息面和技术面分析。数据截至 2026 年 10 月 9 日。
+@@ 9ce7d3c4f4 attr
+站点导航
+@@ b4126ef441 attr
+章节
+@@ 9cdb4bad3f attr
+导读：这份清单从哪里来
+@@ a20a259e06 attr
+方法：一家公司看三面
+@@ e2b85119d0 attr
+麦当劳 52 周区间示例
+@@ 4c984a52e8 attr
+总览：二十家放在一起
+@@ f3d20b4b9b attr
+麦当劳
+@@ cb256eaf20 attr
+温蒂汉堡
+@@ cb761226ac attr
+百事公司
+@@ accaf98baa attr
+亿滋国际
+@@ ac55aeecfe attr
+好时
+@@ c4f4265bf1 attr
+劳氏
+@@ 26d527bb41 attr
+康卡斯特
+@@ 5f324c7be2 attr
+美国银行
+@@ 2fbe0a3651 attr
+黑石集团
+@@ 76cefb0aca attr
+维京游轮
+@@ 9be90073cd attr
+美高梅
+@@ d3125d6295 attr
+雷神
+@@ 6538133676 attr
+通用动力
+@@ 741b51b9ea attr
+废物管理
+@@ 4ce2afdb31 attr
+南方公司
+@@ 9f1b50e80f attr
+杜克能源
+@@ d7202a0a81 attr
+斯伦贝谢
+@@ d7f9faccb3 attr
+雅培
+@@ cdc5297a11 attr
+纵轴指标
+@@ 059cc9b989 attr
+二十家公司的散点图
+@@ e84bc787b7 attr
+二十家公司 9/30 以来涨跌
+@@ 9cd17826cf attr
+MCD 麦当劳
+@@ 6e0f849835 attr
+MCD 最近收盘价走势
+@@ 79fa45204d attr
+MCD 52 周区间
+@@ 64b43d82c7 attr
+WEN 温蒂汉堡
+@@ 2b4e639730 attr
+WEN 最近收盘价走势
+@@ 954bc15863 attr
+WEN 52 周区间
+@@ fde798f6c5 attr
+PEP 百事公司
+@@ da859d96e2 attr
+PEP 最近收盘价走势
+@@ 67e5703b5b attr
+PEP 52 周区间
+@@ c12b8f54c9 attr
+MDLZ 亿滋国际
+@@ 41d58db2c1 attr
+MDLZ 最近收盘价走势
+@@ d795a5820f attr
+MDLZ 52 周区间
+@@ 4a1f603f12 attr
+HSY 好时
+@@ cd4097db79 attr
+HSY 最近收盘价走势
+@@ fd4ea40651 attr
+HSY 52 周区间
+@@ 153f6e2ea5 attr
+PRMB 最近收盘价走势
+@@ d18c2cacd2 attr
+PRMB 52 周区间
+@@ 79e1cb0259 attr
+LOW 劳氏
+@@ 071c789166 attr
+LOW 最近收盘价走势
+@@ 2ab1d784cf attr
+LOW 52 周区间
+@@ 8decf74196 attr
+CMCSA 康卡斯特
+@@ 3f2940f700 attr
+CMCSA 最近收盘价走势
+@@ da35ed6bb3 attr
+CMCSA 52 周区间
+@@ 309e1ccde0 attr
+BAC 美国银行
+@@ 735ca98943 attr
+BAC 最近收盘价走势
+@@ 3669ba901a attr
+BAC 52 周区间
+@@ d733d0fa24 attr
+BX 黑石集团
+@@ 827e078462 attr
+BX 最近收盘价走势
+@@ 15f5d4efd9 attr
+BX 52 周区间
+@@ 7e6ece52ad attr
+VIK 维京游轮
+@@ b5d15f4357 attr
+VIK 最近收盘价走势
+@@ d946ac438f attr
+VIK 52 周区间
+@@ 591b3900b2 attr
+MGM 美高梅
+@@ 079eced200 attr
+MGM 最近收盘价走势
+@@ ec95d98610 attr
+MGM 52 周区间
+@@ c6d19f2b84 attr
+RTX 雷神
+@@ 63134690ce attr
+RTX 最近收盘价走势
+@@ 60f798bc33 attr
+RTX 52 周区间
+@@ 071d2fba0d attr
+GD 通用动力
+@@ 27a49f00a7 attr
+GD 最近收盘价走势
+@@ ea47c73e85 attr
+GD 52 周区间
+@@ 41ee5f030f attr
+WM 废物管理
+@@ c079a0fa8b attr
+WM 最近收盘价走势
+@@ 05091612f0 attr
+WM 52 周区间
+@@ 17a93a0a6a attr
+JBHT 最近收盘价走势
+@@ 244be9dbcc attr
+JBHT 52 周区间
+@@ fb88f42fb6 attr
+SO 南方公司
+@@ 8e83e92cf3 attr
+SO 最近收盘价走势
+@@ 66f1008e54 attr
+SO 52 周区间
+@@ 5f5760cb9a attr
+DUK 杜克能源
+@@ 73635e6df9 attr
+DUK 最近收盘价走势
+@@ b3af39b675 attr
+DUK 52 周区间
+@@ 14b8e56900 attr
+SLB 斯伦贝谢
+@@ 78adab1f52 attr
+SLB 最近收盘价走势
+@@ ea2266c470 attr
+SLB 52 周区间
+@@ 29eda832e0 attr
+ABT 雅培
+@@ c4a0efe2cc attr
+ABT 最近收盘价走势
+@@ e3572acf78 attr
+ABT 52 周区间
+@@ 0d13be7b1b attr
+工具箱：清单、模板与练习
+@@ f0852d355e attr
+章节翻页
+@@ f00546ce6d js
+## code: 4, "c930": 1.8576253572356372, "l17": true, "nm": "麦当劳"}, "WEN": {"h": [["07-30", 7.3
+麦当劳
+@@ fb9daf7795 js
+## code: , "c930": -2.351097178683381, "l17": false, "nm": "温蒂汉堡"}, "PEP": {"h": [["07-31", 139
+温蒂汉堡
+@@ b5a1909f4a js
+## code: , "c930": -0.5918560606060552, "l17": true, "nm": "百事公司"}, "MDLZ": {"h": [["07-31", 62
+百事公司
+@@ f628c0fe77 js
+## code: 5, "c930": 4.4794188861985385, "l17": true, "nm": "亿滋国际"}, "HSY": {"h": [["07-30", 177
+亿滋国际
+@@ 1fcbe3e463 js
+## code: 13, "c930": 3.254869614872158, "l17": true, "nm": "好时"}, "PRMB": {"h": [["07-31", 22
+好时
+@@ 7bc3d05a9b js
+## code: 3, "c930": 0.9278853980140056, "l17": true, "nm": "劳氏"}, "CMCSA": {"h": [["07-31", 2
+劳氏
+@@ f019e17fb4 js
+## code: 18, "c930": -5.05514705882354, "l17": true, "nm": "康卡斯特"}, "BAC": {"h": [["07-31", 61.
+康卡斯特
+@@ d6db99cb13 js
+## code:  "c930": -0.20209443321697051, "l17": true, "nm": "美国银行"}, "BX": {"h": [["07-31", 127.
+美国银行
+@@ f4c2e335bc js
+## code: 5, "c930": 1.9627085377821318, "l17": true, "nm": "黑石集团"}, "VIK": {"h": [["07-31", 104
+黑石集团
+@@ 6a34583d18 js
+## code: 396, "c930": 4.20017873100984, "l17": true, "nm": "维京游轮"}, "MGM": {"h": [["07-31", 44.
+维京游轮
+@@ b95dfab29a js
+## code: 8, "c930": -5.732689210950081, "l17": true, "nm": "美高梅"}, "RTX": {"h": [["07-31", 215
+美高梅
+@@ 6c8fe18eca js
+## code: , "c930": 0.17236735793157987, "l17": true, "nm": "雷神"}, "GD": {"h": [["07-31", 383.
+雷神
+@@ 81c8f15544 js
+## code:  "c930": -0.16876111261791005, "l17": true, "nm": "通用动力"}, "WM": {"h": [["07-31", 226.
+通用动力
+@@ a8b9534d4e js
+## code: 72, "c930": 2.407806983130656, "l17": true, "nm": "废物管理"}, "JBHT": {"h": [["07-31", 27
+废物管理
+@@ 67952c5f44 js
+## code: 5, "c930": 3.9570515140547657, "l17": true, "nm": "南方公司"}, "DUK": {"h": [["07-31", 125
+南方公司
+@@ 2ad240e064 js
+## code: , "c930": 2.3155863520743836, "l17": false, "nm": "杜克能源"}, "SLB": {"h": [["07-31", 49.
+杜克能源
+@@ 08b6566633 js
+## code: 3, "c930": 0.4720853858785068, "l17": true, "nm": "斯伦贝谢"}, "ABT": {"h": [["07-31", 105
+斯伦贝谢
+@@ c1287fc9ec js
+## code: 3, "c930": 0.7791156531417487, "l17": true, "nm": "雅培"}};   const ORDER = ["MCD", "W
+雅培
+@@ 219b811844 js
+## code: sh({ v: d.ma50, c: "var(--calm)", dash: "6 4", t: "50 日线 " + d.ma50.toFixed(2) });     i
+50 日线 
+@@ 5f104c1b51 js
+## code: ({ v: d.ma200, c: "var(--muted)", dash: "6 4", t: "200 日线 " + d.ma200.toFixed(2) });     
+200 日线 
+@@ 9fd4dd1274 js
+## code: push({ v: d.en, c: "var(--warn)", dash: "2 3", t: "买入价 " + d.en.toFixed(2) });     if 
+买入价 
+@@ 31f7b21936 js
+## code: push({ v: d.lo, c: "var(--loss)", dash: "1 3", t: "52 周低 " + d.lo.toFixed(2) });     con
+52 周低 
+@@ 51f089ae36 js
+## code: xed(1) : v.toFixed(2)),       xlabel: "", ylabel: "美元",       series: shown.map(L =>
+美元
+@@ ab7334b9e6 js
+## code: ).textContent = hidden.map(L => L.t + (L.v > hi ? "（在图上方）" : "（在图下方）")).join("　");   }  
+（在图上方）
+@@ 0b973b2a77 js
+## code: nt = hidden.map(L => L.t + (L.v > hi ? "（在图上方）" : "（在图下方）")).join("　");   }    // ------
+（在图下方）
+@@ 179b819a5c js
+## code: ove = [], below = [];     above.push({ v: d.p, t: "现价 " + d.p.toFixed(2), c: "var(--a
+现价 
+@@ 763cb552bc js
+## code:  "dot" });     if (d.tg) above.push({ v: d.tg, t: "目标价 " + d.tg.toFixed(2), c: "var(--
+目标价 
+@@ 694340196c js
+## code: arn)", k: "tick" });     below.push({ v: d.lo, t: "52周低 " + d.lo.toFixed(2), c: "var(--
+52周低 
+@@ 53a08d4d18 js
+## code: loss)", k: "end" });     below.push({ v: d.hi, t: "52周高 " + d.hi.toFixed(2), c: "var(--
+52周高 
+@@ 0fd4951f4e js
+## code: d" });     if (d.ma50) below.push({ v: d.ma50, t: "50日 " + d.ma50.toFixed(2), c: "var(
+50日 
+@@ 1841ff5f5a js
+## code:  });     if (d.ma200) below.push({ v: d.ma200, t: "200日 " + d.ma200.toFixed(2), c: "var
+200日 
+@@ a75bb8889c js
+## code: urn;     let metric = "pe";     const lab = { pe: "远期市盈率", dy: "股息率（%）", rsi: "RSI" }; 
+远期市盈率
+@@ 7ee01746a8 js
+## code: metric = "pe";     const lab = { pe: "远期市盈率", dy: "股息率（%）", rsi: "RSI" };     function d
+股息率（%）
+@@ 93df0b902e js
+## code: v => sgn(v, 0) + "%", yf: v => v,         xlabel: "收盘价距 200 日均线", ylabel: lab[metric], vlines:
+收盘价距 200 日均线
+@@ 040e680663 js
+## code: moveAllRanges(); s.addRange(r); msg.textContent = "已选中，按 ⌘C 或 Ctrl+C 复制"; };     if (navigator.clipboa
+已选中，按 ⌘C 或 Ctrl+C 复制
+@@ 2e746791f3 js
+## code: ard.writeText(txt).then(() => { msg.textContent = "已复制"; }, fallback); else fallback(
+已复制

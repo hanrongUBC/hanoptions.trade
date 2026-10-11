@@ -1,0 +1,228 @@
+@@ eceaf732f3 html
+Execution: ETFs, two stock baskets and options
+@@ 347f893070 html
+Picking the right theme is only the start. How you buy, how much you buy, whether you use options and when you admit you're wrong decide how much you finally take away from a correct narrative.
+@@ c7835e2368 html
+Layer 1: dollar-cost averaging into ETFs
+@@ 0b6b29276b html
+For most themes, the simplest approach is to pick one or two thematic ETFs and buy a fixed dollar amount every month:
+@@ dc64046c79 html
+Decide how much to invest each month first, then decide what to buy. Keep the amount small enough that you can keep investing through a big market drop.
+@@ 8654e0fb77 html
+Check once a month, not every day. What you're checking is whether the narrative has changed, not whether the price has gone up.
+@@ 3ed962d11b html
+If the narrative hasn't changed, keep investing. If your invalidation criteria are met, stop adding money, then decide whether to sell.
+@@ 1fbe3365e0 html
+An ETF spreads out single-company risk; it doesn't let you stop thinking. You still need to check the evidence for the theme once a quarter.
+@@ 97172f7bde html
+Layer 2: individual stocks in two baskets
+@@ 45db090fcc html
+Lower-risk basket
+@@ c15f509068 html
+Good companies with stable earnings and healthy finances
+@@ e8fe757f6f html
+Mostly own the shares: find good companies, then patiently pick them up “on the cheap”
+@@ cc787f788c html
+Sell puts only when implied volatility (IV) is high enough and you're willing to take the shares at that price
+@@ 1ef5a91028 html
+Once the stock position is built, consider selling covered calls into rebounds
+@@ 122033108a html
+Higher-risk basket
+@@ b65a72dd27 html
+Good companies with high valuations, cyclical stocks, turnaround companies, early-stage speculative companies
+@@ 3e129c20ae html
+Rules: small positions; wait for the price, wait for volatility, wait for the event
+@@ ab7634180d html
+Never add on the logic that “it's down 30%, so it's cheaper”
+@@ 9510741015 html
+A small call option position is sometimes cleaner than selling puts: the most you can lose is the premium
+@@ 92082275c0 html
+You can remember the rules for the higher-risk basket with three words: <strong>Small, Lazy, Late</strong>. Small positions, so that no single failure hurts the whole portfolio. Lazy: trade rarely and give the narrative time. Late: wait for the evidence before you get in, even if it means missing the earliest part of the rally.
+@@ 6d5f3a8db3 html
+Buy the stock or sell a put?
+@@ 2f8b565391 html
+A simple rule of thumb:
+@@ 2fe58479bd html
+For example: the stock is at $50 and IV is 45%. You sell a put that expires in 30 days with a strike of $47.5 and collect about $1.40 in premium. The probability of being assigned (buying the stock at $47.5) is about 36%. If the stock rises to $57.5 a month later, the person who bought the stock has made $7.5, while the put seller has made only $1.40. So selling puts suits underlyings where you can say, “If it falls, I'm happy to buy; if it rises, I won't mind missing it.”
+@@ 375f37b8b9 html
+Covered calls: premium is not profit
+@@ d6c18bfbd9 html
+Selling calls against shares you own and collecting premium every month is the most common way to enhance income. But first, look clearly at what it costs:
+@@ 9eff493e9b html
+Implied volatility <input id="cc-v" type="range" min="15" max="80" value="30"> <output id="cc-v-o">30%</output>
+@@ bbb637bd48 html
+Strike above current price <input id="cc-o" type="range" min="0" max="15" value="5"> <output id="cc-o-o">5%</output>
+@@ 64b6293bdb html
+Calculated with Black-Scholes: stock at $50, 30 days to expiry. With the default settings the monthly premium is about 1.66%, close to 20% simple annualized, but each month there is about a 28% chance of being assigned and giving up all the gains above the strike. In a fairly priced market, the premium is just the price of that upside, not free money. So the extra income you actually keep is much lower. For moderately volatile stocks, a conservative and more realistic expectation is an extra 5% to 10% a year.
+@@ c6d5963043 html
+Two principles:
+@@ 3d8fa1caf4 html
+<strong>High implied volatility is often there because the market really does see high risk.</strong> Behind a fat premium there is often an event such as an earnings report, a lawsuit or a regulatory approval.
+@@ d06e6c7113 html
+<strong>If you would regret having the shares called away, you shouldn't have sold the call in the first place.</strong> Don't sell covered calls on the stocks you like most and least want to sell.
+@@ c8eca8947d html
+By how well they suit covered calls, you can sort your holdings into four groups: moderately volatile stocks you'd be fine having called away (a good fit); more volatile stocks that need more active management (doable, but watch them closely); stocks you especially like and don't want to sell (only under certain conditions); and stocks where you haven't finished building the position (get the stock entry right first, then think about selling options).
+@@ 583889d40a html
+Real diversification is about sources of risk
+@@ 363cf22507 html
+Owning twenty stocks doesn't mean you're diversified. Group your holdings by the risk they really depend on:
+@@ 7dc71edbc7 html
+Source of risk
+@@ c343364626 html
+Holdings that may be hit at the same time
+@@ 3c2b252a63 html
+AI capital expenditure (capex)
+@@ d86f18aa2c html
+Chips, networking equipment, data center construction, power equipment, some power generators
+@@ 6553833c72 html
+Interest rates
+@@ b83e03ab11 html
+Small caps, real estate, utilities, high-valuation growth stocks
+@@ 211f464ca5 html
+Oil prices
+@@ 22c3a9d7b8 html
+Energy, oilfield services, airlines (inversely), chemicals
+@@ 64804c934b html
+One party's policies
+@@ 37d90e99fa html
+Industries that depend on specific subsidies or specific regulations
+@@ c10b5f15d6 html
+Single-country risk
+@@ 6faf0dc8a9 html
+Companies with large revenue or big supply chains in that country
+@@ 4999a63cfd html
+If fifteen of your twenty stocks are in the first row, you have really made only one trade.
+@@ d5998e18f1 html
+Cash is a position
+@@ af95f59fcf html
+Holding cash when there are no good prices is an active decision. Thematic investing especially needs cash: good themes always have pullbacks, and during a pullback only those with cash on hand can buy. Know clearly what you're waiting for: a price, an event or a data point. If you can't say what your cash is waiting for, it will soon be spent on impulsive trades.
+@@ 295d464554 html
+Toolkit: theme map, narrative cards and exercises
+@@ 62f4a1a198 html
+Turn the previous ten chapters into something you can use again and again. The ETFs in the table are only examples to help you find what to research, not recommendations. Checklist ticks are saved only in your own browser.
+@@ 5e598ac627 html
+Theme map
+@@ 613fd37c09 html
+Theme
+@@ 78790f64b4 html
+Core question
+@@ c823842727 html
+Who benefits
+@@ 696b020026 html
+Example ETFs
+@@ 302b6dc44d html
+Main counterargument
+@@ 182ec55646 html
+Invalidation signal
+@@ c5e31d3bef html
+Supply chain and the Western Hemisphere
+@@ dcb1733188 html
+Where production moves, and who builds it
+@@ dd5a1daa83 html
+Industrial real estate, cross-border rail, engineering and construction (E&amp;C)
+@@ fb9a3bdcce html
+Trade agreement reviews, public security
+@@ e8d353d43c html
+Foreign investment inflows slow, industrial vacancy rates rise
+@@ e7ad60d181 html
+How long can preparedness spending last?
+@@ 82810ed99f html
+Munitions, drones, shipbuilding, defense software
+@@ 14eb55a9a5 html
+Budget cuts; valuations already high
+@@ d8e7b0a47e html
+Appropriations bills cut procurement; order backlogs shrink
+@@ ad7e48d725 html
+Postwar trade
+@@ 3758b7a5f1 html
+Which war costs will go away?
+@@ 94814d975b html
+Airlines, travel, downstream chemicals
+@@ d411e6bf3e html
+The conflict flares up again
+@@ 8044a64918 html
+The ceasefire collapses; the risk premium in oil comes back
+@@ 18e0718c3b html
+Critical minerals
+@@ 7f8ca9e439 html
+Can the processing bottleneck be broken?
+@@ 0103df06ab html
+Mining and processing of copper, rare earths and lithium
+@@ 5c0d690fe4 html
+Highly cyclical; competitors can undercut prices
+@@ 23b62b2f06 html
+Government support fades; project cost overruns
+@@ 1061a906d8 html
+Energy and fuels
+@@ f9cf8e2687 html
+Does having oil mean having fuel?
+@@ 723657010a html
+Refining, oilfield services, upstream
+@@ ae94c80cfd html
+Slowing demand, falling oil prices
+@@ acb63d3755 html
+Crack spreads keep narrowing
+@@ 1b2729b471 html
+Long-term demand for reliable power
+@@ b78c0cac4b html
+Nuclear plant operators, uranium miners, fuel
+@@ 18bef73f77 html
+Slow approvals, cost overruns
+@@ 7be5732b3f html
+Fewer long-term power purchase agreements (PPAs)
+@@ 7073302648 html
+Is the monetary order fragmenting?
+@@ 457840a116 html
+Physical gold, gold miners
+@@ 7faea97d4a html
+Generates no cash flow
+@@ 4b49e7d59d html
+Central bank gold buying slows markedly; real yields rise sharply
+@@ d682e101fc html
+Reshoring
+@@ 49bb70520f html
+Who profits because everyone needs them?
+@@ 3132818085 html
+Engineering and construction, power equipment, automation
+@@ acb75909e7 html
+Rate-sensitive; subsidies phase out
+@@ d687ad682f html
+Industrial capex guidance is cut
+@@ a2cecb6b65 html
+Can the capex continue?
+@@ e609f0880e html
+Chips, networking, power grid equipment, power generation
+@@ 53c3d3fe0d html
+Doubtful returns on investment; crowded
+@@ e000f4668f html
+Big tech cuts capex
+@@ 9432566308 html
+Robotics
+@@ dfbb2b41aa html
+Can the cost of physical labor come down?
+@@ 9b64dc8aac html
+Industrial automation, logistics robots
+@@ 1144512c79 html
+Early-stage companies have little revenue
+@@ 4ab5f2aa85 html
+Orders and shipments miss expectations
+@@ 03ba267848 html
+Split consumer spending
+@@ d5c1052fc5 html
+Where does money go under inflation?
+@@ 0d311a1c7e html
+Discount retail, payment networks, luxury travel
+@@ d9bc00909e html
+Good companies are expensive
+@@ 7b05050234 html
+Inflation eases and trading down reverses
+@@ 82d22cec22 html
+Agriculture
+@@ 744eed551b html
+People have to eat
+@@ 184e73aa09 html
+Fertilizer, grain trading, farm machinery
+@@ 4993ed851d html
+Violent price cycles
+@@ d327c085b7 html
+Grain and fertilizer prices fall together

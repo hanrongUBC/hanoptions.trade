@@ -1,0 +1,621 @@
+## source: rebound/index.html  (310 segments)
+@@ 824ee77be5 html
+RSI 为 41.94，处于中性偏弱区域，没有超卖<span class="ek">（Oversold）</span>。
+@@ 8659c461ae html
+支撑<span class="ek">（Support）</span>：10 月 5 日收盘低点 179.50 美元是近 30 个交易日的最低收盘价，下方是 52 周低点 178.45 美元，178 至 180 美元是关键支撑区。
+@@ d80c33b219 html
+阻力<span class="ek">（Resistance）</span>：先看 10 月 8 日收盘的 188.85 美元，然后是 9 月 22 日的 196.08 美元和 9 月 14 日的 198.17 美元，再往上是 50 日均线 202.19 美元。
+@@ 8ac5a58d13 html
+最近一周股价从 180.80 美元回升到 186.00 美元，涨约 2.9%，短线在支撑区上方反弹；但近 30 个交易日仍下跌约 10.6%（8 月 28 日收盘 208.05 美元）。
+@@ c2355f9392 html
+1,044 亿美元
+@@ 382e573898 html
+904 亿美元
+@@ 0c15e31698 html
+420 / 32 亿美元
+@@ 837987d985 html
+过去十二个月收入 904.3 亿美元，同比增长 8.16%；二季度（截至 7 月 31 日）收入 259.6 亿美元，增长 8.33%，但可比销售只增长 0.2%，收入增长主要来自收购。
+@@ f2c0d90f7d html
+二季度每股收益<span class="ek">（Earnings per share (EPS)）</span> 4.27 美元，与上年持平；调整后每股收益 4.40 美元，增长 1.6%，其中包含 0.11 美元的关税<span class="ek">（Tariff）</span>退款收益。
+@@ 38686e9071 html
+毛利率<span class="ek">（Gross margin）</span> 32.99%，经营利润率<span class="ek">（Operating margin）</span> 11.35%，净利率<span class="ek">（Net margin）</span> 7.35%；投入资本回报率（ROIC）22.42%，资本使用效率高。
+@@ 93f0a97bf6 html
+8 月 19 日公司把 2026 财年指引<span class="ek">（Guidance）</span>降到原区间的低端：收入约 920 亿美元，可比销售持平，调整后每股收益约 12.25 美元。
+@@ a0535b894f html
+估值方面，市盈率（TTM）15.72 倍，远期市盈率<span class="ek">（Forward P/E）</span> 14.87 倍，EV/EBITDA 11.25 倍；股息率<span class="ek">（Dividend yield）</span> 2.69%，派息率<span class="ek">（Payout ratio）</span> 42.27%，下一次除息日<span class="ek">（Ex-dividend date）</span>为 10 月 21 日。
+@@ b7d9517425 html
+总债务 420.3 亿美元，现金 31.7 亿美元，过去十二个月自由现金流<span class="ek">（Free cash flow (FCF)）</span> 70.0 亿美元；35 位分析师共识评级为买入，平均目标价 249.39 美元。
+@@ 72c9e754f2 html
+<span class="nd">2026-08-18</span><span>同行家得宝二季度可比销售增长 1.7% 并维持全年指引，而劳氏次日公布的可比销售只增长 0.2%，两家的增速差距成为市场关注点。 <a href="https://www.sec.gov/Archives/edgar/data/0000354950/000035495026000145/hd_exhibit991x08022026.htm" target="_blank" rel="noopener">sec.gov</a></span>
+@@ 7ed4181d3e html
+<span class="nd">2026-08-19</span><span>劳氏二季度可比销售增长 0.2%、线上销售增长 15.7%，但把全年指引降到区间低端，CEO 提到 DIY 可选消费承压，说明需求复苏仍未到来。 <a href="https://www.sec.gov/Archives/edgar/data/0000060667/000006066726000113/exhibit991-07312026.htm" target="_blank" rel="noopener">sec.gov</a></span>
+@@ 218dd940e4 html
+<span class="nd">2026-09-15</span><span>股价跌到当时的 52 周低点附近，分析文章指出房地产交易冻结、竞争对手用关税退款降价而劳氏未跟进，以及新房建设疲软拖累新收购的 ADG 和 FBM。 <a href="https://www.tikr.com/blog/lowes-stock-just-hit-a-52-week-low-heres-where-the-stock-could-go" target="_blank" rel="noopener">tikr.com</a></span>
+@@ c3761bcd07 html
+<span class="nd">2026-09-24</span><span>劳氏在北卡罗来纳州 Matthews 门店与 Alphabet 旗下 Wing 和 DoorDash 试点无人机<span class="ek">（Drone）</span>送货，最快 20 分钟送达，对短期利润影响小，但体现了提升即时配送能力的方向。 <a href="https://dronexl.co/2026/09/24/lowes-wing-doordash-drone-delivery-matthews/" target="_blank" rel="noopener">dronexl.co</a></span>
+@@ f8b5291b2c html
+2026-10-21 除息日（年化股息<span class="ek">（Dividend）</span> 5.00 美元）。
+@@ 18fc1b6f62 html
+2026-11-18 盘前公布三季度业绩；管理层此前预计三季度调整后每股收益同比下降约 7%。
+@@ b395ec8904 html
+每月公布的成屋销售、新屋开工和抵押贷款利率数据。
+@@ 2e5a17c8cb html
+劳氏对长期利率很敏感：抵押贷款利率跟随 10 年期国债收益率变动，长期利率下降有利于房屋交易和装修需求，利率上升则相反。
+@@ 8b0212a508 html
+DIY 业务属于可选消费，消费者预算紧张时，大额装修项目最先被推迟；CEO 在二季报中提到 DIY 可选消费承压。
+@@ 56c76e20a2 html
+关税影响进口商品成本和售价；二季度利润包含每股 0.11 美元的关税退款，下半年指引没有计入更多退款。
+@@ e3953b8cbf html
+远期市盈率 14.87 倍，股价比 52 周高点 293.06 美元低约 36.5%，估值已经反映了较多悲观预期。
+@@ 100139e4a1 html
+线上销售增长 15.7%，专业客户和家装服务带动公司连续五个季度可比销售为正。
+@@ 8ac3533aa3 html
+如果长期利率回落带动房屋交易回暖，DIY 需求有望改善；分析师平均目标价 249.39 美元，比现价高约 34%。
+@@ 7cac26ac4c html
+可比销售只增长 0.2%，低于家得宝的 1.7%，市场担心份额流失。
+@@ d565fe9902 html
+管理层预计三季度调整后每股收益同比下降约 7%，全年指引已经降到低端，继续下修的可能性存在。
+@@ 0b62254fec html
+总债务 420.3 亿美元，新房建设疲软会拖累新收购的 ADG 和 FBM。
+@@ 15803d9864 html
+178 至 180 美元支撑区（52 周低点 178.45 美元、10 月 5 日收盘 179.50 美元）能否守住。
+@@ 9b5a1a86eb html
+股价能否重新站上 196 至 198 美元区域和 50 日均线 202.19 美元。
+@@ f56d035016 html
+11 月 18 日三季报的可比销售、DIY 客单量和全年指引。
+@@ 8d493b85c2 html
+资料来源：<a href="https://stockanalysis.com/stocks/low/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/low/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/low/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/low/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/low/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0000060667/000006066726000113/exhibit991-07312026.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://www.sec.gov/Archives/edgar/data/0000354950/000035495026000145/hd_exhibit991x08022026.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://www.tikr.com/blog/lowes-stock-just-hit-a-52-week-low-heres-where-the-stock-could-go" target="_blank" rel="noopener">tikr.com</a> · <a href="https://dronexl.co/2026/09/24/lowes-wing-doordash-drone-delivery-matthews/" target="_blank" rel="noopener">dronexl.co</a>
+@@ 8d30203aa3 html
+CMCSA <span class="zh">康卡斯特</span>
+@@ 2d0640823f html
+清单里的通讯股，他的「利率下降受益」清单里有「通讯」。股价跌到个位数市盈率<span class="ek">（Price-to-earnings ratio (P/E)）</span>，股息率<span class="ek">（Dividend yield）</span>很高。
+@@ ec2f1e6765 html
+康卡斯特是美国最大的有线宽带运营商之一，旗下 Xfinity 提供宽带、无线和电视服务，同时拥有 NBCUniversal（NBC 电视网、Peacock 流媒体、环球影业和环球主题公园）和欧洲的 Sky。宽带等连接业务贡献主要利润。公司 6 月 29 日宣布将以免税分拆<span class="ek">（Spin-off）</span>的方式把 NBCUniversal 和 Sky 拆成独立上市公司，预计约一年完成。
+@@ 75fab5a3c1 html
+52 周区间<span class="ek">（52-week range）</span> 20.48 至 32.86 美元，现价比高点低 37.1%。分析师平均目标价<span class="ek">（Price target）</span> 28.85 美元（27 位分析师，平均评级 Hold），目标价反映的是乐观情景，常常滞后于股价。
+@@ 2e400a11ed html
+收盘价 20.66 美元，比 50 日均线<span class="ek">（50-day moving average）</span> 24.46 美元低 15.5%，比 200 日均线<span class="ek">（200-day moving average）</span> 26.60 美元低 22.3%；50 日线在 200 日线下方，下跌趋势明显。
+@@ c86ab6e842 html
+RSI 为 24.52，低于 30，处于超卖<span class="ek">（Oversold）</span>区，说明短期跌得过快，但超卖不等于见底。
+@@ 16c0c7884b html
+支撑<span class="ek">（Support）</span>：10 月 9 日盘中低点 20.48 美元就是新的 52 周低点，当天收盘 20.66 美元也是近 30 个交易日的最低收盘价，20.5 美元附近是第一观察位。
+@@ 43d72cd5dd html
+阻力<span class="ek">（Resistance）</span>：先看 21.56 至 21.79 美元（9 月 28 日至 10 月 6 日的收盘区间），再看 50 日均线 24.46 美元和 9 月 14 日收盘的 24.88 美元。
+@@ 45e8452881 html
+近 30 个交易日从 8 月 28 日的 27.06 美元跌到 20.66 美元，跌幅约 23.7%。
+@@ 90ddb33d63 html
+733 亿美元
+@@ 236f607cbc html
+1,249 亿美元
+@@ 1c4138e105 html
+904 / 77 亿美元
+@@ 4d18b974cc html
+204 亿美元
+@@ 6f11d910cf html
+过去十二个月收入 1,249 亿美元，同比增长 0.58%；二季度收入 299.4 亿美元，同比下降 1.23%。
+@@ ac98959d44 html
+二季度每股收益<span class="ek">（Earnings per share (EPS)）</span> 0.99 美元，同比下降 66.8%；调整后每股收益 1.04 美元，下降 16.7%，调整后 EBITDA 下降 13.4%。
+@@ d7d900e13e html
+宽带用户仍在流失：二季度国内宽带净减少 16.7 万户，宽带收入下降 5.5% 至 62.8 亿美元；无线业务新增 44.8 万条线路，Peacock 二季度调整后 EBITDA 为 1.89 亿美元，实现盈利。
+@@ c000de8245 html
+估值很低：市盈率（TTM）6.69 倍，远期市盈率<span class="ek">（Forward P/E）</span> 5.90 倍，EV/EBITDA 4.58 倍，市销率<span class="ek">（Price-to-sales ratio (P/S)）</span> 0.59 倍；股息率 6.39%，派息率<span class="ek">（Payout ratio）</span> 42.73%。
+@@ 10c9133517 html
+总债务 903.8 亿美元，现金 76.6 亿美元；过去十二个月自由现金流<span class="ek">（Free cash flow (FCF)）</span> 204.4 亿美元，现金流仍然充足。公司从 6 月 29 日起暂停回购<span class="ek">（Share buyback）</span>，直到分拆完成。
+@@ f53946d886 html
+毛利率<span class="ek">（Gross margin）</span> 69.39%，经营利润率<span class="ek">（Operating margin）</span> 14.66%，净利率<span class="ek">（Net margin）</span> 8.97%，投入资本回报率（ROIC）8.15%；27 位分析师共识评级为持有，平均目标价 28.85 美元。
+@@ 487d2a2df6 html
+<span class="nd">2026-09-09</span><span>CFO Jason Armstrong 在高盛大会上表示三季度宽带用户流失没有改善，并称对手 30 至 40 美元的千兆套餐定价不理性，当天收盘从 26.33 美元跌到 24.59 美元，约跌 6.6%。 <a href="https://stocktwits.com/news-articles/markets/equity/cmcsa-cfo-sees-no-improvement-in-broadband-user-losses/cZt7kt5RJCc" target="_blank" rel="noopener">stocktwits.com</a></span>
+@@ 16a63f8fca html
+<span class="nd">2026-09-14</span><span>康卡斯特与派拉蒙天舞正在评估欧洲合资流媒体 SkyShowtime 的选项，包括可能关闭，说明公司在收缩竞争激烈的海外流媒体投入。 <a href="https://thedesk.net/2026/09/paramount-comcast-may-wind-down-skyshowtime-joint-venture/" target="_blank" rel="noopener">thedesk.net</a></span>
+@@ c4496bf4fc html
+<span class="nd">2026-09-25</span><span>KeyBanc 把评级从行业持平下调到低配，目标价 18 美元，理由是宽带份额流失和主题公园客流走弱；花旗把目标价从 30 美元降到 27.50 美元，股价跌到 2013 年以来最低。 <a href="https://247wallst.com/investing/2026/09/25/comcast-slips-as-keybanc-cuts-to-underweight-on-broadband-share-losses-att-and-verizon-hold-steady/" target="_blank" rel="noopener">247wallst.com</a></span>
+@@ aa68b045c4 html
+<span class="nd">2026-10-01</span><span>路透报道 NBCUniversal 裁减全球流媒体技术部门数百个岗位，多数在 Sky，属于分拆前的成本控制，对短期利润影响有限。 <a href="https://capital.com/en-au/news/comcast-s-nbcuniversal-cuts-streaming-technology-jobs" target="_blank" rel="noopener">capital.com</a></span>
+@@ 7ef0996aa7 html
+2026-10-22 盘前公布三季度业绩，重点看宽带净流失、无线新增和调整后 EBITDA。
+@@ 9519ea095e html
+NBCUniversal 与 Sky 分拆的进度（市场报道目标在 2027 年年中完成）。
+@@ 6427e5b84a html
+分拆完成后回购能否恢复。
+@@ 577a334c6a html
+康卡斯特总债务 903.8 亿美元，长期利率下降能降低再融资成本，也会让 6.39% 的股息率更有吸引力；长期利率上升则相反。
+@@ 2211d5bbe6 html
+主题公园和广告收入与消费支出相关，消费走弱会拖累 NBCUniversal；KeyBanc 指出主题公园客流自 6 月以来下滑。
+@@ bf68c349db html
+宽带的主要压力来自光纤和固定无线的价格竞争，这是行业结构问题，宏观变化对它的影响较小。
+@@ 7e717e5e64 html
+估值处在很低的水平：远期市盈率 5.90 倍，EV/EBITDA 4.58 倍，过去十二个月自由现金流 204.4 亿美元，股息率 6.39%。
+@@ 31982e5beb html
+RSI 为 24.52，处于超卖区，短线具备技术性反弹的条件。
+@@ f1f8d0e88a html
+分拆后市场可以分别给宽带和媒体资产定价；Peacock 已经盈利，无线业务持续增长。
+@@ 2e33c3d0b7 html
+宽带用户持续流失，CFO 表示三季度没有改善，KeyBanc 预计 2026 年宽带流失 55.8 万户。
+@@ 7ce87bcb6f html
+分拆前回购暂停，少了一个支撑股价的买盘来源。
+@@ 7013f161f9 html
+股价不断创新低，并且位于所有主要均线下方，还没有出现企稳信号。
+@@ 3c2420a015 html
+52 周低点 20.48 美元能否守住。
+@@ 07fd68545c html
+RSI 能否回到 30 以上，同时收盘重新站上 21.8 美元。
+@@ 2979ac39f2 html
+10 月 22 日三季报的宽带净流失数字和调整后 EBITDA 变化。
+@@ 22d63f7f23 html
+资料来源：<a href="https://stockanalysis.com/stocks/cmcsa/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/cmcsa/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/cmcsa/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/cmcsa/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/cmcsa/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0001166691/000162828026049274/ex991-6302026.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://www.valleynewslive.com/2026/06/29/comcast-plans-split-into-two-public-companies-by-spinning-off-nbcuniversal-sky/" target="_blank" rel="noopener">valleynewslive.com</a> · <a href="https://stocktwits.com/news-articles/markets/equity/cmcsa-cfo-sees-no-improvement-in-broadband-user-losses/cZt7kt5RJCc" target="_blank" rel="noopener">stocktwits.com</a> · <a href="https://thedesk.net/2026/09/paramount-comcast-may-wind-down-skyshowtime-joint-venture/" target="_blank" rel="noopener">thedesk.net</a> · <a href="https://247wallst.com/investing/2026/09/25/comcast-slips-as-keybanc-cuts-to-underweight-on-broadband-share-losses-att-and-verizon-hold-steady/" target="_blank" rel="noopener">247wallst.com</a> · <a href="https://parameter.io/comcast-cmcsa-stock-plunges-to-13-year-low-after-analyst-downgrades/" target="_blank" rel="noopener">parameter.io</a> · <a href="https://capital.com/en-au/news/comcast-s-nbcuniversal-cuts-streaming-technology-jobs" target="_blank" rel="noopener">capital.com</a>
+@@ 961c1348ea html
+BAC <span class="zh">美国银行</span>
+@@ 0e85439030 html
+在清单里，10 月 2 日记录以 53.75 美元买入。9 月 29 日他提到财报<span class="ek">（Earnings report）</span>季前银行股超卖<span class="ek">（Oversold）</span>，前提是收益率回落；10 月 1 日也押了银行股回升。
+@@ 8d0aac4703 html
+美国银行是美国资产规模第二大的商业银行，业务分为消费者银行、财富管理（美林）、企业与投资银行、全球市场交易四大块。收入大约一半来自净利息收入<span class="ek">（Net interest income (NII)）</span>，也就是贷款和证券的利息减去存款成本，第二季度净利息收入 160 亿美元，约占公司口径收入 316 亿美元的一半；其余来自投行、交易、财富管理和各类手续费。
+@@ 9b9953132b html
+52 周区间<span class="ek">（52-week range）</span> 46.12 至 65.23 美元，现价比高点低 16.7%。分析师平均目标价<span class="ek">（Price target）</span> 66.59 美元（25 位分析师，平均评级 Buy），目标价反映的是乐观情景，常常滞后于股价。
+@@ 54857d41b7 html
+收盘价 54.32 美元，比 50 日均线<span class="ek">（50-day moving average）</span> 60.07 美元低 9.57%，比 200 日均线<span class="ek">（200-day moving average）</span> 55.28 美元低 1.74%，股价在两条均线下方，短期趋势偏弱。
+@@ c4533883c1 html
+50 日均线仍高于 200 日均线，但最近 20 个交易日平均收盘价只有 55.88 美元，50 日线在下行；如果股价一直在 200 日线下方，两线可能形成死叉<span class="ek">（Death cross）</span>。
+@@ ad73583acd html
+RSI 为 31.84，接近 30 的超卖线，说明卖压已经比较集中，但还没有进入超卖区。
+@@ fb5572b174 html
+支撑<span class="ek">（Support）</span>位：最近 30 个交易日最低收盘价 53.52 美元（10 月 7 日），再往下是 52 周低点 46.12 美元。
+@@ e9f6f3a335 html
+阻力<span class="ek">（Resistance）</span>位：先看 200 日均线 55.28 美元，再看 9 月 14 日下跌后的收盘价 59.47 美元和 50 日均线 60.07 美元，然后是 30 日最高收盘价 63.04 美元（9 月 3 日）和 52 周高点 65.23 美元。
+@@ 7b0c5ace5e html
+3,798 亿美元
+@@ 7f97e7cf89 html
+1,139 亿美元
+@@ 7c1bcd53ce html
+银行不适用
+@@ 60e7cc96d3 html
+市净率 / ROE
+@@ 62de5d3058 html
+过去十二个月收入 1139 亿美元，同比增长 9.25%；净利润 321 亿美元，每股收益<span class="ek">（Earnings per share (EPS)）</span> 4.33 美元，同比增长约 27.8%。
+@@ 694cbb3e5f html
+第二季度收入 302 亿美元，同比增长 16.79%，每股收益 1.21 美元，同比增长 34.11%；其中净利息收入 160 亿美元，增长 9%，全球市场业务收入 80 亿美元，增长 34%。
+@@ a93d8cc890 html
+估值不高：市盈率<span class="ek">（Price-to-earnings ratio (P/E)）</span> 12.55 倍，远期市盈率<span class="ek">（Forward P/E）</span> 11.21 倍，市净率<span class="ek">（Price-to-book ratio (P/B)）</span> 1.38 倍，PEG 0.68。净资产收益率（ROE）11.20%，第二季度有形普通股回报率（ROTCE）17.0%。
+@@ 974d8c9e09 html
+股东回报稳定：年度股息<span class="ek">（Dividend）</span> 1.28 美元，股息率<span class="ek">（Dividend yield）</span> 2.36%，派息率<span class="ek">（Payout ratio）</span>只有 29.57%；过去一年股本减少 3.72%，第二季度回购<span class="ek">（Share buyback）</span> 60 亿美元、派息 20 亿美元。
+@@ 8a81e9e394 html
+资本充足：第二季度普通股一级资本充足率（CET1）11.2%。管理层 9 月表示，2026 年净利息收入增长预计落在 6% 至 8% 区间的上沿。
+@@ 2cf60341bd html
+提醒：银行报表里的「总债务」7890 亿美元和「现金」8681 亿美元主要是存款、同业和证券类项目，和工业公司不能直接比较；毛利率<span class="ek">（Gross margin）</span>、EV/EBITDA、ROIC 对银行没有意义，所以留空。
+@@ c6cbbfb478 html
+<span class="nd">2026-09-14</span><span>CEO 莫伊尼汉在巴克莱金融会议上表示第三季度投行费用<span class="ek">（Investment banking fees）</span>预计 16 亿至 18 亿美元，低于去年同期的 20 亿美元，交易收入大致持平，股价当天下跌 5.14% 至 59.47 美元，这是 9 月这轮下跌的起点。 <a href="https://www.sharecafe.com.au/2026/09/15/bank-of-america-flags-investment-banking-fee-dip/" target="_blank" rel="noopener">sharecafe.com.au</a></span>
+@@ 111fbf73b1 html
+<span class="nd">2026-09-16</span><span>美联储<span class="ek">（Federal Reserve (Fed)）</span>加息 25 个基点到 3.75% 至 4.00%，是 2023 年以来首次加息，多数官员预计年底前再加一次，存款成本和收益率曲线<span class="ek">（Yield curve）</span>形态因此成为银行股的焦点。 <a href="https://kuwaittimes.com/article/49973/business/fed-raises-rates-to-tackle-too-high-inflation-irking-trump/" target="_blank" rel="noopener">kuwaittimes.com</a></span>
+@@ c7b51490e7 html
+<span class="nd">2026-09-22</span><span>标普 500 银行指数当天下跌 3%，2 年与 10 年期美债利差收窄到约 21 个基点，为 2025 年 3 月以来最平，同时市场担心 Meta 的 AI 助手 Muse 会冲击理财和存款业务。 <a href="https://www.kitco.com/news/off-the-wire/2026-09-22/financial-stocks-fall-ai-and-flattening-yield-curve-focus" target="_blank" rel="noopener">kitco.com</a></span>
+@@ 889dfd59bd html
+<span class="nd">2026-09-28</span><span>Axios 报道 KBW 银行指数从 8 月 17 日高点 195.55 跌到 9 月 25 日的 175.57，跌幅 10.2%，原因是加息预期压平收益率曲线，以及 AI 助手可能让储户把低息存款转走。 <a href="https://axios.com/2026/09/28/bank-stocks-treasury-curve" target="_blank" rel="noopener">axios.com</a></span>
+@@ 6b95f163a8 html
+<span class="nd">2026-09-30</span><span>旗下美林同意支付 3900 万美元和解现金归集账户利率过低的集体诉讼，金额相对美国银行的利润很小，但反映监管和诉讼对存款定价的关注。 <a href="https://kfgo.com/?p=1358418" target="_blank" rel="noopener">kfgo.com</a></span>
+@@ 818d72f243 html
+<span class="nd">2026-09-30</span><span>美联储敲定压力测试<span class="ek">（Stress test）</span>改革，压力资本缓冲改为最近两次结果的平均值，预计资本要求的年度波动减少 50%，总资本水平基本不变，有利于大银行更稳定地规划回购和分红。 <a href="https://www.kitco.com/news/off-the-wire/2026-09-30/fed-finalizes-bank-stress-test-overhaul" target="_blank" rel="noopener">kitco.com</a></span>
+@@ 1010fc9810 html
+2026-10-14 美东早上约 6:45 发布第三季度财报，8:30 召开电话会；重点看投行费用是否落在 16 亿至 18 亿美元区间、净利息收入增速和信贷拨备。
+@@ 7a8664b7d7 html
+10 月中旬大型银行集中发布第三季度财报，同行的投行、交易和存款数据会影响整个板块。
+@@ 587029133b html
+10 月和 12 月的美联储议息会议<span class="ek">（FOMC meeting）</span>：9 月的点阵图<span class="ek">（Dot plot）</span>显示多数官员预计年底前还要加息一次。
+@@ eea4af154b html
+短端利率：美联储 9 月加息到 3.75% 至 4.00%，存款成本跟着上升；如果长端利率涨得更慢，收益率曲线变平，银行净息差<span class="ek">（Net interest margin (NIM)）</span>受压。9 月 22 日 2 年与 10 年期利差只有约 21 个基点。
+@@ e974a00093 html
+长端利率：10 月 7 日 10 年期美债收益率约 5.27%。长端走高有利于新发放贷款和再投资的收益，但会压低银行持有的固定利率债券市值，也会抑制企业发债和并购，影响投行收入。
+@@ 9419d8b29b html
+油价和通胀：美伊冲突推高油价，9 月 1 日 WTI 涨到 90.82 美元，10 月 7 日约 88.48 美元；通胀偏高是美联储继续加息的主要理由。管理层 9 月表示消费者支出强、信用质量好，坏账压力暂时不大。
+@@ 50bb6110e5 html
+估值偏低：远期市盈率 11.21 倍、市净率 1.38 倍，25 位分析师平均目标价 66.59 美元，共识评级为买入。
+@@ 50fa251280 html
+利润仍在增长：第二季度每股收益同比增长 34.11%，管理层把 2026 年净利息收入增速放在 6% 至 8% 的上沿；如果 10 月 14 日财报确认这一点，市场对利差收窄的担心可能缓解。
+@@ c69f1d28d1 html
+RSI 31.84 接近超卖，股价贴近 200 日均线 55.28 美元；持续回购（过去一年股本减少 3.72%）也在提供买盘。
+@@ 2988a5a942 html
+投行和交易放缓：管理层预计第三季度投行费用 16 亿至 18 亿美元，低于去年同期的 20 亿美元，交易收入大致持平，第二季度那种高增长难以延续。
+@@ 40c6f87bed html
+利率路径：美联储继续加息而曲线保持平坦，会挤压净息差；AI 理财助手让储户更容易把钱转到利率更高的地方，低成本存款可能流失。
+@@ b52fa300b5 html
+板块情绪：KBW 银行指数从 8 月高点已下跌 10.2%，如果财报季同行业绩不及预期，板块可能继续被抛售。
+@@ 602d27452c html
+10 月 14 日财报：投行费用是否高于 16 亿美元的下沿，净利息收入增速是否维持在指引<span class="ek">（Guidance）</span>上沿，拨备是否明显上升。
+@@ b42b39494d html
+价格：能否重新站上 200 日均线 55.28 美元；如果收盘跌破 30 日低点 53.52 美元，下一个参考是 52 周低点 46.12 美元。
+@@ 451a795991 html
+利差：2 年与 10 年期美债利差是走阔还是继续收窄，以及 10 月美联储会议的表态。
+@@ cb98a2646f html
+资料来源：<a href="https://stockanalysis.com/stocks/bac/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/bac/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/bac/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/bac/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/bac/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.theasianbanker.com/press-releases/bank-of-america-reports-27-rise-in-second-quarter-net-income-to-9-1-billion" target="_blank" rel="noopener">theasianbanker.com</a> · <a href="https://www.webull.com/news/15579059888587776" target="_blank" rel="noopener">webull.com</a> · <a href="https://www.sharecafe.com.au/2026/09/15/bank-of-america-flags-investment-banking-fee-dip/" target="_blank" rel="noopener">sharecafe.com.au</a> · <a href="https://kuwaittimes.com/article/49973/business/fed-raises-rates-to-tackle-too-high-inflation-irking-trump/" target="_blank" rel="noopener">kuwaittimes.com</a> · <a href="https://www.mufgresearch.com/rates/september-2026-fomc-recap/" target="_blank" rel="noopener">mufgresearch.com</a> · <a href="https://www.kitco.com/news/off-the-wire/2026-09-22/financial-stocks-fall-ai-and-flattening-yield-curve-focus" target="_blank" rel="noopener">kitco.com</a> · <a href="https://axios.com/2026/09/28/bank-stocks-treasury-curve" target="_blank" rel="noopener">axios.com</a> · <a href="https://kfgo.com/?p=1358418" target="_blank" rel="noopener">kfgo.com</a> · <a href="https://www.kitco.com/news/off-the-wire/2026-09-30/fed-finalizes-bank-stress-test-overhaul" target="_blank" rel="noopener">kitco.com</a> · <a href="https://investinglive.com/news/investinglive-americas-market-news-wrap-fed-officials-prepared-to-hike-again-this-year/" target="_blank" rel="noopener">investinglive.com</a> · <a href="https://www.swissinfo.ch/eng/us-stocks-fall-as-yields-climb-on-rate-hike-bets%3a-markets-wrap/91983315" target="_blank" rel="noopener">swissinfo.ch</a> · <a href="https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/09/bank-of-america-to-report-third-quarter-2026-financial-results-a.html" target="_blank" rel="noopener">newsroom.bankofamerica.com</a>
+@@ 595f879d94 html
+BX <span class="zh">黑石集团</span>
+@@ d89d91b1a4 html
+清单里的另类资产管理公司，他的「利率下降受益」清单里有「私募」。早在 8 月他也做过私募信贷危机的空头。
+@@ 3c1c3199a6 html
+黑石是全球最大的另类资产管理公司，管理私募股权、房地产、私募信贷、多资产投资等基金，第二季度末管理资产约 1.346 万亿美元。收入主要有两类：按管理规模收取的管理费，比较稳定；基金卖出资产获利后分得的业绩报酬，波动大，取决于退出环境。
+@@ 255ead4407 html
+52 周区间<span class="ek">（52-week range）</span> 101.73 至 166.39 美元，现价比高点低 31.3%。分析师平均目标价<span class="ek">（Price target）</span> 141.64 美元（24 位分析师，平均评级 Buy），目标价反映的是乐观情景，常常滞后于股价。
+@@ d51c611e0b html
+收盘价 114.29 美元，比 50 日均线<span class="ek">（50-day moving average）</span> 130.64 美元低 12.52%，比 200 日均线<span class="ek">（200-day moving average）</span> 127.39 美元低 10.28%，股价在两条均线下方，趋势偏弱。
+@@ 0c0abf74c8 html
+RSI 35.81，偏弱但还没到 30 的超卖<span class="ek">（Oversold）</span>区。8 月 13 日收盘 149.32 美元后一路下跌，到现在约跌了 23.5%。
+@@ e1bb3ce1b9 html
+支撑<span class="ek">（Support）</span>位：最近 30 个交易日最低收盘价 111.65 美元（10 月 5 日），9 月 30 日以来股价在 111.65 至 114.29 美元之间横盘；再往下是 52 周低点 101.73 美元。
+@@ 3380fe4ddb html
+阻力<span class="ek">（Resistance）</span>位：先看 9 月 25 日收盘价 118.42 美元，再看 200 日均线 127.39 美元和 50 日均线 130.64 美元；30 日最高收盘价 143.24 美元（8 月 31 日），52 周高点 166.39 美元。
+@@ 4b3066b8c9 html
+1,422 亿美元
+@@ 068c8ae3db html
+155 亿美元
+@@ ac9f41a820 html
+153 / 27 亿美元
+@@ 2d300302bb html
+55 亿美元
+@@ 102f076e11 html
+过去十二个月收入 154.8 亿美元，同比增长 14.64%；每股收益<span class="ek">（Earnings per share (EPS)）</span> 4.47 美元，同比增长 20.78%；经营利润率<span class="ek">（Operating margin）</span> 48.48%，净利率<span class="ek">（Net margin）</span> 22.73%。
+@@ 4dbae39231 html
+第二季度收入 48.87 亿美元，同比增长 28.57%，每股收益 1.54 美元，同比增长 57.32%；可分配收益 20 亿美元（每股 1.52 美元），增长 26%；费用相关收益 18 亿美元，增长 22%。
+@@ 709371a42c html
+规模继续扩大：第二季度末管理资产 1.346 万亿美元，同比增长 11%；单季流入 683 亿美元，过去十二个月流入 2625 亿美元；永续资本 5556 亿美元，约占 41%。
+@@ bdad61b7a6 html
+估值：市盈率<span class="ek">（Price-to-earnings ratio (P/E)）</span> 25.59 倍，远期市盈率<span class="ek">（Forward P/E）</span> 18.12 倍，PEG 1.28，市销率<span class="ek">（Price-to-sales ratio (P/S)）</span> 9.18 倍；股价过去 52 周下跌 29.65%。
+@@ ffd34e44a2 html
+股息<span class="ek">（Dividend）</span>：过去十二个月每股股息 4.74 美元，股息率<span class="ek">（Dividend yield）</span> 4.15%。按会计利润算派息率<span class="ek">（Payout ratio）</span> 117.08%，原因是黑石按可分配收益派息，会计每股收益口径不同；股息随业绩报酬波动，第二季度每股派 1.29 美元。
+@@ b1975bb0d1 html
+资产负债：总债务 153 亿美元，现金 26.6 亿美元；过去十二个月自由现金流<span class="ek">（Free cash flow (FCF)）</span> 54.9 亿美元，ROIC 17.03%，ROE 31.37%。
+@@ 57d11ee422 html
+<span class="nd">2026-09-03</span><span>旗舰私募信贷基金 BCRED（772 亿美元）第三季度收到约 10% 份额的赎回申请（43 亿美元），继续按 5% 上限兑付，净流出约 3%，显示富裕个人投资者对私募信贷仍有顾虑。 <a href="https://www.bnnbloomberg.ca/business/company-news/2026/09/03/blackstone-private-credit-fund-maintains-5-cap-as-redemption-requests-remain-high" target="_blank" rel="noopener">bnnbloomberg.ca</a></span>
+@@ 9d2527c7a8 html
+<span class="nd">2026-09-10</span><span>黑石宣布从 Audax 收购数据中心<span class="ek">（Data center）</span>液冷部件公司 Flow Control Holdings，预计第四季度完成，继续加码 AI 基础设施这条增长线。 <a href="https://www.blackstone.com/news/press/blackstone-to-acquire-flow-control-holdings-a-leader-in-highly-engineered-data-center-liquid-cooling-components/" target="_blank" rel="noopener">blackstone.com</a></span>
+@@ 85b57f6e65 html
+<span class="nd">2026-09-22</span><span>黑石发布季度内更新，7 月 1 日至 9 月 22 日已实现业绩报酬和投资收益超过 3.5 亿美元，其中约 90% 是业绩报酬；次日在金融股普跌中股价下跌 3.82%。 <a href="https://www.blackstone.com/news/press/blackstone-announces-intra-quarter-realization-update-relating-to-the-third-quarter-3/" target="_blank" rel="noopener">blackstone.com</a></span>
+@@ a71622b039 html
+<span class="nd">2026-09-26</span><span>私募股权业务负责人 Joe Baratta 将在年底前离开，公司表示不设继任者；此前房地产和成长基金负责人也已离开，最新旗舰私募股权基金募资 210 亿美元，低于 300 亿美元目标。 <a href="https://theedgemalaysia.com/node/819447" target="_blank" rel="noopener">theedgemalaysia.com</a></span>
+@@ db65455b9e html
+<span class="nd">2026-10-07</span><span>黑石旗下数据中心公司 AirTrunk 宣布在日本印西园区追加 10 亿美元投资部署液冷，由多家银行提供绿色贷款，说明数据中心资产仍在扩张。 <a href="https://www.thestar.com.my/tech/tech-news/2026/10/07/blackstone-backed-airtrunk-to-invest-1-billion-in-japan-data-centre-campus" target="_blank" rel="noopener">thestar.com.my</a></span>
+@@ 245ea7773c html
+2026-10-22 盘前发布第三季度业绩，美东 9:00 电话会；重点看可分配收益、单季资金流<span class="ek">（Fund flows）</span>入和 BCRED 赎回情况。
+@@ a8ee6864dd html
+BCRED 下一季度的赎回申请比例：第二、三季度都在 10% 左右，按 5% 上限兑付。
+@@ 7995a00cca html
+Flow Control Holdings 收购预计第四季度完成；私募股权负责人 Baratta 年底前离任。
+@@ 33ed71518d html
+长期利率：10 月 7 日 10 年期美债收益率约 5.27%，30 年期一度触及 24 年高点 5.73%。长端利率高会压低房地产和私募股权资产的估值，也让卖出资产更难，减少业绩报酬。
+@@ 43bb3a3b91 html
+美联储<span class="ek">（Federal Reserve (Fed)）</span>加息：9 月加息到 3.75% 至 4.00%，多数官员预计年底前再加一次。私募信贷贷款多为浮动利率，利息收入会增加，但借款企业的还款压力也会上升，尤其是受 AI 冲击的软件公司。
+@@ e09d531157 html
+资金情绪：富裕个人投资者从非上市私募信贷基金赎回，BCRED 第三季度申请赎回约 10%；个人投资者渠道是黑石近年募资增长的重要来源。
+@@ 07c343a442 html
+基本面仍在增长：第二季度可分配收益增长 26%，费用相关收益增长 22%，管理资产创 1.346 万亿美元新高。
+@@ e05b83e7aa html
+估值和股息：远期市盈率 18.12 倍，股息率 4.15%，24 位分析师平均目标价 141.64 美元，共识评级为买入。
+@@ 2385711a99 html
+AI 基础设施布局：收购液冷部件公司 Flow Control、AirTrunk 在日本追加 10 亿美元投资，数据中心相关资产是黑石的重要增长来源。
+@@ e2a4a9a4e2 html
+私募信贷赎回压力：BCRED 连续两个季度申请赎回约 10%，按 5% 上限兑付；如果赎回扩大，募资和管理费增长会放缓。
+@@ 6984b180c3 html
+退出环境：高利率和 AI 相关 IPO 推迟会拖慢资产出售，业绩报酬和股息可能低于预期。
+@@ c4e333df04 html
+人事变动：私募股权负责人年底离开且不设继任者，最新旗舰私募股权基金募资 210 亿美元，低于 300 亿美元目标。
+@@ 05893e9049 html
+10 月 22 日财报<span class="ek">（Earnings report）</span>：可分配收益和每股股息，单季流入与第二季度的 683 亿美元相比如何，BCRED 是否继续净流出。
+@@ ac6cc34fcc html
+价格：30 日低点 111.65 美元能否守住；向上先看 118.42 美元，再看 200 日均线 127.39 美元。
+@@ dd2b01973b html
+利率：10 年期美债收益率能否从 5.27% 附近回落，回落通常对房地产和私募资产估值有利。
+@@ 57d0bceb3d html
+资料来源：<a href="https://stockanalysis.com/stocks/bx/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/bx/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/bx/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/bx/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/bx/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://pulse2.com/blackstones-aum-reach-record-1-35-trillion-in-second-quarter-2026/amp/" target="_blank" rel="noopener">pulse2.com</a> · <a href="https://www.bnnbloomberg.ca/business/company-news/2026/09/03/blackstone-private-credit-fund-maintains-5-cap-as-redemption-requests-remain-high" target="_blank" rel="noopener">bnnbloomberg.ca</a> · <a href="https://www.blackstone.com/news/press/blackstone-to-acquire-flow-control-holdings-a-leader-in-highly-engineered-data-center-liquid-cooling-components/" target="_blank" rel="noopener">blackstone.com</a> · <a href="https://www.blackstone.com/news/press/blackstone-announces-intra-quarter-realization-update-relating-to-the-third-quarter-3/" target="_blank" rel="noopener">blackstone.com</a> · <a href="https://www.blackstone.com/?p=48748" target="_blank" rel="noopener">blackstone.com</a> · <a href="https://theedgemalaysia.com/node/819447" target="_blank" rel="noopener">theedgemalaysia.com</a> · <a href="https://www.thestar.com.my/tech/tech-news/2026/10/07/blackstone-backed-airtrunk-to-invest-1-billion-in-japan-data-centre-campus" target="_blank" rel="noopener">thestar.com.my</a> · <a href="https://www.kitco.com/news/off-the-wire/2026-09-22/financial-stocks-fall-ai-and-flattening-yield-curve-focus" target="_blank" rel="noopener">kitco.com</a> · <a href="https://kuwaittimes.com/article/49973/business/fed-raises-rates-to-tackle-too-high-inflation-irking-trump/" target="_blank" rel="noopener">kuwaittimes.com</a> · <a href="https://investinglive.com/news/investinglive-americas-market-news-wrap-fed-officials-prepared-to-hike-again-this-year/" target="_blank" rel="noopener">investinglive.com</a>
+@@ 18740aee51 html
+VIK <span class="zh">维京控股（维京游轮）</span>
+@@ 4e7282d6f5 html
+清单里的游轮股，他的「油价下降受益」清单里有「邮轮」。
+@@ 4c16c91f6e html
+维京控股是一家高端邮轮公司，主打欧洲内河游轮（莱茵河、多瑙河等），也经营海洋邮轮和探险邮轮，客户主要是北美年龄偏大、收入较高的游客。收入主要来自船票，客人通常提前一年以上预订，票价包含较多服务，船上额外消费占比较小。
+@@ 0baff8dcf2 html
+52 周区间<span class="ek">（52-week range）</span> 56.37 至 110.09 美元，现价比高点低 25.9%。分析师平均目标价<span class="ek">（Price target）</span> 109.55 美元（23 位分析师，平均评级 Strong Buy），目标价反映的是乐观情景，常常滞后于股价。
+@@ 3df6ee4ab5 html
+10 月 9 日收盘价 81.62 美元，比 50 日均线<span class="ek">（50-day moving average）</span> 90.11 美元低 9.42%，比 200 日均线<span class="ek">（200-day moving average）</span> 84.17 美元低 3.03%（均线和 RSI 是 10 月 8 日收盘后的数据）。
+@@ b17cf05681 html
+RSI 42.86，属于中性偏弱，没有超卖<span class="ek">（Oversold）</span>也没有超买<span class="ek">（Overbought）</span>；10 月 2 日以来股价在 80.56 至 81.64 美元之间窄幅整理。
+@@ 583705e972 html
+支撑<span class="ek">（Support）</span>位：最近 30 个交易日最低收盘价 78.20 美元（10 月 1 日）；52 周低点 56.37 美元距离较远。
+@@ 483cda1355 html
+阻力<span class="ek">（Resistance）</span>位：先看 200 日均线 84.17 美元，再看 9 月 21 日收盘价 86.05 美元和 30 日最高收盘价 88.50 美元（8 月 28 日），然后是 50 日均线 90.11 美元；52 周高点 110.09 美元。
+@@ b4e7345241 html
+8 月 5 日收盘 108.26 美元是近期高点，到现在下跌约 24.6%。
+@@ dd354f85dd html
+364 亿美元
+@@ 7742d2cdff html
+不派息
+@@ b4748b7988 html
+62 / 40 亿美元
+@@ e271eb8582 html
+过去十二个月收入 69.7 亿美元，同比增长 20.02%；净利润 13.5 亿美元，每股收益<span class="ek">（Earnings per share (EPS)）</span> 3.01 美元，同比增长 65.40%。毛利率<span class="ek">（Gross margin）</span> 44.28%，经营利润率<span class="ek">（Operating margin）</span> 23.27%，净利率<span class="ek">（Net margin）</span> 19.33%。
+@@ 44c2043c58 html
+第二季度收入 21.9 亿美元，同比增长 16.49%，每股收益 1.31 美元，同比增长 32.32%；入住率 94.4%，每客舱日净收益增长 6.2%。第一季度是淡季，当季亏损 5438 万美元，季节性<span class="ek">（Seasonality）</span>明显。
+@@ df3f3b5f18 html
+预订很满：截至 8 月 9 日，2026 年航季已售出 96% 的运力，预订额 63.86 亿美元，同比增长 13%；2027 年已售出 53%，预订额 47.11 亿美元，增长 21%。运力 2026 年增长 7%，2027 年增长 15%。
+@@ eb79e93298 html
+估值偏高：市盈率<span class="ek">（Price-to-earnings ratio (P/E)）</span> 27.14 倍，远期市盈率<span class="ek">（Forward P/E）</span> 22.55 倍，EV/EBITDA 20.25 倍，市销率<span class="ek">（Price-to-sales ratio (P/S)）</span> 5.23 倍；因为利润增长快，PEG 只有 0.85。
+@@ 56d2073460 html
+资产负债：总债务 61.9 亿美元，现金 40.0 亿美元，第二季度末净杠杆<span class="ek">（Leverage）</span> 1.2 倍；造船开支大，过去十二个月资本开支<span class="ek">（Capital expenditure (capex)）</span> 14.8 亿美元，自由现金流<span class="ek">（Free cash flow (FCF)）</span> 11.5 亿美元；ROIC 47.65%。
+@@ 8b3b660989 html
+不派股息<span class="ek">（Dividend）</span>；9 月宣布最多 10 亿美元的回购<span class="ek">（Share buyback）</span>计划，约占当前市值 364.5 亿美元的 2.7%。
+@@ c9cadfcb1d html
+<span class="nd">2026-08-19</span><span>第二季度收入 21.9 亿美元，增长 16.5%，每股收益 1.31 美元，2027 年预订额增长 21%，说明高端客群需求仍然稳健。 <a href="https://cruiseindustrynews.com/cruise-news/2026/08/viking-reports-second-quarter-2026-financial-results/" target="_blank" rel="noopener">cruiseindustrynews.com</a></span>
+@@ 00d06b7fb5 html
+<span class="nd">2026-08-19</span><span>管理层在电话会上说 7 月中到 8 月中超过一半的内河航行日受欧洲低水位影响，约 10% 至 12% 的受影响客人取消，公司发放补偿券，股价当天下跌 7.65%。 <a href="https://www.seatrade-cruise.com/river-cruising/half-of-viking-s-q3-river-cruises-impacted-by-low-water-so-far" target="_blank" rel="noopener">seatrade-cruise.com</a></span>
+@@ 1859175ad1 html
+<span class="nd">2026-09-09</span><span>市场消息称 MSC 邮轮可能订造最多 10 艘内河船，2028 至 2030 年交付，投资者担心长期竞争加剧，股价当天下跌 3.42%。 <a href="https://goldesel.de/aktien/news/viking-holdings-aktie-fallt-msc-konnte-mit-bis-zu-zehn-flussschiffen-starten" target="_blank" rel="noopener">goldesel.de</a></span>
+@@ da08375841 html
+<span class="nd">2026-09-10</span><span>董事会授权最多 10 亿美元的股票回购，公司称这体现了对长期前景的信心，回购可以在股价下跌时提供支撑。 <a href="https://www.financialcontent.com/article/bizwire-2026-9-10-viking-announces-1-billion-share-repurchase-program" target="_blank" rel="noopener">financialcontent.com</a></span>
+@@ 5c54378df1 html
+<span class="nd">2026-09-11</span><span>中东局势推动油价冲上每桶 100 美元附近，嘉年华和挪威邮轮股价创 52 周新低，维京也随板块下跌，燃油成本是邮轮股的共同压力。 <a href="https://www.travelextra.ie/cruise-operator-stocks-hit-52-week-lows-amid-oil-price-surge/" target="_blank" rel="noopener">travelextra.ie</a></span>
+@@ 85051ce996 html
+<span class="nd">2026-09-28</span><span>Stifel 把目标价从 120 美元下调到 115 美元，Truist 在 9 月 24 日从 102 美元下调到 98 美元，两家都维持买入，分析师在下调预期但没有改变看法。 <a href="https://stockanalysis.com/stocks/vik/forecast/" target="_blank" rel="noopener">stockanalysis.com</a></span>
+@@ 8df788b134 html
+2026-11-18 前后发布第三季度财报<span class="ek">（Earnings report）</span>（网站显示的日期，公司尚未正式公告），重点看低水位对第三季度成本和补偿券的影响，以及 2027 年预订进度。
+@@ 46609ce3c5 html
+欧洲秋季降雨和莱茵河、多瑙河水位：水位恢复可以减少行程调整和补偿。
+@@ c2e754e7be html
+10 亿美元回购的执行进度；新船交付，10 月 7 日刚接收内河船 Viking Rota。
+@@ e23295091d html
+油价：燃油是邮轮的主要成本之一。9 月 9 日布伦特油价超过每桶 101 美元，邮轮股普遍下跌；10 月 7 日 WTI 回到约 88.48 美元，油价回落对成本有利。
+@@ e3b9f2e217 html
+消费和财富效应：维京的客户年龄偏大、收入较高，对股市和资产价格更敏感，对一般通胀没那么敏感；股市大幅回调可能影响高端旅游预订。
+@@ d167ab1ae1 html
+美元和利率：客户主要来自北美，美元走强会让欧洲行程对美国游客更便宜；美联储<span class="ek">（Federal Reserve (Fed)）</span>加息、10 年期美债收益率约 5.27%，会提高新船融资成本。
+@@ 8492ecaad3 html
+需求数据强：2026 年已售 96%，2027 年预订额增长 21%、每客舱日预订价格增长 10%，说明低水位没有明显伤到预订。
+@@ 295ccd5b52 html
+公司授权 10 亿美元回购；23 位分析师共识为强力买入，平均目标价 109.55 美元。
+@@ 4e2836f5ae html
+10 月以来股价在 80 美元出头企稳，30 日低点 78.20 美元没有被跌破，卖压有所减弱。
+@@ 6744dfc795 html
+低水位影响：7 月中到 8 月中超过一半的内河航行日受影响，约 10% 至 12% 的受影响客人取消，补偿券的成本会延续到 2027 和 2028 年。
+@@ 03b4a8abc8 html
+竞争：有消息称 MSC 可能订造最多 10 艘内河船，2028 至 2030 年交付，长期会增加内河邮轮运力。
+@@ af65d91f1c html
+估值和油价：市盈率 27.14 倍，高于其他大型邮轮公司，增长一旦放慢估值压缩空间较大；油价若重回 100 美元，成本会上升。
+@@ e5785cfb8d html
+第三季度财报（预计 11 月 18 日前后）：低水位造成的成本和取消率，2027 年已售比例比 8 月时的 53% 提高了多少。
+@@ 8b861dc07a html
+价格：能否收复 200 日均线 84.17 美元；如果收盘跌破 78.20 美元，说明 10 月的企稳失败。
+@@ 20a86f2014 html
+莱茵河、多瑙河水位和油价：WTI 能否保持在每桶 90 美元以下。
+@@ f6c64bee80 html
+资料来源：<a href="https://stockanalysis.com/stocks/vik/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/vik/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/vik/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/vik/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/vik/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/vik/forecast/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://cruiseindustrynews.com/cruise-news/2026/08/viking-reports-second-quarter-2026-financial-results/" target="_blank" rel="noopener">cruiseindustrynews.com</a> · <a href="https://www.seatrade-cruise.com/river-cruising/half-of-viking-s-q3-river-cruises-impacted-by-low-water-so-far" target="_blank" rel="noopener">seatrade-cruise.com</a> · <a href="https://goldesel.de/aktien/news/viking-holdings-aktie-fallt-msc-konnte-mit-bis-zu-zehn-flussschiffen-starten" target="_blank" rel="noopener">goldesel.de</a> · <a href="https://cruiseindustrynews.com/cruise-news/2026/09/viking-announces-1-billion-share-repurchase-program/" target="_blank" rel="noopener">cruiseindustrynews.com</a> · <a href="https://www.financialcontent.com/article/bizwire-2026-9-10-viking-announces-1-billion-share-repurchase-program" target="_blank" rel="noopener">financialcontent.com</a> · <a href="https://www.travelextra.ie/cruise-operator-stocks-hit-52-week-lows-amid-oil-price-surge/" target="_blank" rel="noopener">travelextra.ie</a> · <a href="https://www.webull.ca/news-detail/15503101853115392" target="_blank" rel="noopener">webull.ca</a> · <a href="https://www.vikingcruises.com/press/press-releases/2026-10-07-viking-takes-delivery-of-newest-river-ship-in-europe.html" target="_blank" rel="noopener">vikingcruises.com</a> · <a href="https://www.swissinfo.ch/eng/asian-chip-shares-advance,-crude-oil-nears-$100:-markets-wrap/92025871" target="_blank" rel="noopener">swissinfo.ch</a> · <a href="https://investinglive.com/news/investinglive-americas-market-news-wrap-fed-officials-prepared-to-hike-again-this-year/" target="_blank" rel="noopener">investinglive.com</a>
+@@ c9697517e6 html
+MGM <span class="zh">美高梅国际酒店集团</span>
+@@ 3a6cecb2ed html
+在清单里，10 月 2 日记录以 30.50 美元买入，9 月 29 日的卖看跌观察名单也有它。值得对照的是：他 9 月 23 日做空 SPHR 的理由正是「拉斯维加斯很不景气」。
+@@ 8ba5c96586 html
+美高梅是大型赌场度假村运营商，在拉斯维加斯大道经营多家度假村（如百乐宫、MGM Grand），还经营美国地方赌场、澳门的美高梅中国，并与 Entain 合资经营在线博彩 BetMGM，日本大阪综合度假村计划 2030 年开业。收入来自博彩、客房、餐饮和娱乐，第二季度拉斯维加斯大道贡献约一半收入。
+@@ 4bec259251 html
+52 周区间<span class="ek">（52-week range）</span> 29.19 至 51.59 美元，现价比高点低 43.3%。分析师平均目标价<span class="ek">（Price target）</span> 48.12 美元（23 位分析师，平均评级 Buy），目标价反映的是乐观情景，常常滞后于股价。
+@@ 074bd6e2a8 html
+收盘价 29.27 美元，比 50 日均线<span class="ek">（50-day moving average）</span> 39.72 美元低 26.31%，比 200 日均线<span class="ek">（200-day moving average）</span> 39.62 美元低 26.12%（均线和 RSI 是 10 月 8 日收盘后的数据），偏离幅度很大。
+@@ dc2a165274 html
+RSI 只有 14.26，远低于 30，属于极度超卖<span class="ek">（Oversold）</span>；超卖状态可以持续一段时间，需要看到价格止跌的信号。
+@@ f8bd561638 html
+支撑<span class="ek">（Support）</span>位：股价贴近 52 周低点 29.19 美元，10 月 9 日的 29.27 美元也是最近 30 个交易日的最低收盘价；跌破 29.19 美元后，近一年没有更低的价格参考。
+@@ 9ace9aca0b html
+阻力<span class="ek">（Resistance）</span>位：9 月 24 日跳空<span class="ek">（Gap）</span>后的收盘价 33.69 美元，以及跳空前 9 月 23 日的收盘价 37.85 美元，这段缺口是重要阻力；再往上是两条均线 39.62 至 39.72 美元和 30 日最高收盘价 42.28 美元（8 月 28 日）。
+@@ 6180dac65f html
+从 8 月 28 日的 42.28 美元到现在下跌约 30.8%，距 52 周高点 51.59 美元下跌约 43.3%。
+@@ f934bdf0df html
+74 亿美元
+@@ ed7ff62a52 html
+178 亿美元
+@@ 02c70a1607 html
+302 / 28 亿美元
+@@ 7a965169fe html
+15 亿美元
+@@ 10514c2b54 html
+过去十二个月收入 177.6 亿美元，同比增长 3.19%；净利润只有 4.24 亿美元，净利率<span class="ek">（Net margin）</span> 2.40%，经营利润率<span class="ek">（Operating margin）</span> 6.49%；每股收益<span class="ek">（Earnings per share (EPS)）</span> 1.60 美元，同比下降 13.16%。
+@@ 3df7542c0a html
+第二季度收入 44.5 亿美元，同比增长 1.05%；稀释每股收益 1.11 美元，上年同期只有 0.18 美元，所以 519.40% 的增幅主要来自低基数；调整后每股收益 0.59 美元，低于上年的 0.79 美元，调整后 EBITDA 6.10 亿美元，低于上年的 6.48 亿美元。
+@@ aa3ce541c0 html
+分部：拉斯维加斯大道收入 21.7 亿美元，增长 3%，EBITDAR 7.35 亿美元，增长 3%；美高梅中国 EBITDAR 2.57 亿美元，下降 15%；美国地方赌场 EBITDAR 下降 9%。
+@@ b750516700 html
+估值看起来便宜：市盈率<span class="ek">（Price-to-earnings ratio (P/E)）</span> 18.32 倍，远期 17.87 倍，市销率<span class="ek">（Price-to-sales ratio (P/S)）</span> 0.43 倍，自由现金流<span class="ek">（Free cash flow (FCF)）</span>收益率 19.79%；但企业价值<span class="ek">（Enterprise value (EV)）</span> 349.5 亿美元远大于市值 73.6 亿美元，EV/EBITDA 15.62 倍，原因是负债很重。
+@@ 4061d858ac html
+负债：总债务 301.6 亿美元，其中包括把物业卖给房地产信托后再租回形成的大量租赁负债；现金 27.6 亿美元，债务与 EBITDA 之比 6.74 倍，利息覆盖率 2.82 倍。
+@@ f85979971e html
+不派股息<span class="ek">（Dividend）</span>，靠回购<span class="ek">（Share buyback）</span>回报股东：过去一年股本减少 9.11%，6 月底仍有约 14 亿美元回购额度。做空股数占流通股 10.59%，回补天数 9.75 天，偏高。
+@@ 7b97ec8944 html
+<span class="nd">2026-09-23</span><span>大股东 People Inc.（迪勒旗下，持股约 26.5%）撤回 6 月提出的每股 48.30 美元、总额约 180 亿美元的私有化<span class="ek">（Take-private）</span>报价，并购预期消失，股价次日下跌 10.99% 至 33.69 美元。 <a href="https://casino.org/news/diller-pulls-mgm-takeover-bid-casino-stock-tumbles" target="_blank" rel="noopener">casino.org</a></span>
+@@ f288d77d17 html
+<span class="nd">2026-09-24</span><span>据《华尔街日报》报道，美高梅反过来考虑收购 People Inc.，两家公司的关系从被收购方变成潜在收购方，后续交易结构仍不明朗。 <a href="https://www.thewrap.com/industry-news/deals-ma/mgm-resorts-eyes-people-inc-bid/" target="_blank" rel="noopener">thewrap.com</a></span>
+@@ d6f522f07c html
+<span class="nd">2026-09-30</span><span>CEO 霍恩巴克尔在全球博彩展上没有排除收购 People Inc.，并称公司被严重低估，点名 BetMGM、澳门、日本项目和拉斯维加斯资产的价值。 <a href="https://www.autobound.ai/companies/mgm-resorts/acquisitions/mgm-ceo-leaves-door-open-to-people-inc-bid-as-casino-a1682286" target="_blank" rel="noopener">autobound.ai</a></span>
+@@ 70ac63fe54 html
+<span class="nd">2026-09-30</span><span>拉斯维加斯 8 月游客约 303 万人次，同比下降 4.3%，酒店入住率 74.1%，平均房价下降 7.4% 至 150 美元，部分原因是劳动节假期挪到 9 月，但需求偏弱对美高梅最大的业务不利。 <a href="https://news3lv.com/news/local/las-vegas-tourism-drops-august-2026-lvcva-convention-visitation-hotel-hospitality-southern-nevada" target="_blank" rel="noopener">news3lv.com</a></span>
+@@ 0c4a1a3044 html
+<span class="nd">2026-10-01</span><span>澳门 9 月博彩收入 180.6 亿澳门元，同比下降 1.2%，连续第四个月下滑，高端中场和贵宾偏弱，美高梅中国的利润承压。 <a href="https://casino.org/news/macau-losing-streak-hits-four-months-september" target="_blank" rel="noopener">casino.org</a></span>
+@@ 97e947704d html
+2026-10-28 盘后发布第三季度财报<span class="ek">（Earnings report）</span>，美东 17:00 电话会。
+@@ 5a628bc73b html
+BetMGM 第三季度业绩更新（10 月 6 日已发布会议通知）。
+@@ 2bdbdaabf6 html
+People Inc. 与美高梅之间是否出现新的交易方案；拉斯维加斯 9 月游客数据（预计 10 月底）和澳门 10 月博彩收入（11 月初）。
+@@ b75821efce html
+消费：拉斯维加斯 8 月游客同比下降 4.3%，平均房价下降 7.4%；通胀偏高、油价上涨（10 月 7 日 WTI 约 88.48 美元）会压缩中低收入游客的旅游预算。
+@@ 3fa45534b0 html
+利率：美高梅总债务约 301.6 亿美元，美联储<span class="ek">（Federal Reserve (Fed)）</span> 9 月加息到 3.75% 至 4.00%，10 年期美债收益率约 5.27%，会提高再融资成本，高杠杆<span class="ek">（Leverage）</span>股票也更不受欢迎。
+@@ d7f9fd12a9 html
+中国和澳门：澳门 9 月博彩收入同比下降 1.2%，连续四个月下滑，前九个月累计增长 3.2%，增速从 1 至 5 月的 10.9% 明显放慢，和中国高端消费景气有关。
+@@ f0370aa879 html
+超卖和低估值：RSI 14.26 极度超卖，市销率 0.43 倍，自由现金流收益率 19.79%，23 位分析师平均目标价 48.12 美元。
+@@ 3da72edb5f html
+大股东态度：People Inc. 仍表示对战略性交易感兴趣，CEO 称公司被严重低估且不排除收购 People Inc.；People 曾报价每股 48.30 美元，说明有买方认为资产价值更高。
+@@ 782a4a4ebc html
+持续回购：过去一年股本减少 9.11%，股价越低同样金额能回购越多；做空比例<span class="ek">（Short interest）</span> 10.59% 较高，有利好消息时可能出现空头回补<span class="ek">（Short covering）</span>。
+@@ f43e6e5f28 html
+收购溢价消失：People Inc. 撤回 48.30 美元报价后股价一天下跌约 11%，之前支撑股价的并购预期已经没有了。
+@@ 99b536a2ee html
+基本面偏弱：调整后 EBITDA 同比下降，美高梅中国 EBITDAR 下降 15%，拉斯维加斯游客减少，澳门博彩收入连续四个月下滑。
+@@ fe2146e427 html
+高杠杆：债务与 EBITDA 之比 6.74 倍、利息覆盖率 2.82 倍，利率上行时股价对坏消息更敏感。
+@@ 9bacea1a45 html
+10 月 28 日财报：拉斯维加斯大道 EBITDAR 能否保持增长，美高梅中国利润率<span class="ek">（Profit margin）</span>是否企稳，BetMGM 的盈利情况。
+@@ 0f67b69e1e html
+价格：52 周低点 29.19 美元能否守住；向上先看 33.69 美元，收复 37.85 美元才算回补 9 月 24 日的缺口。
+@@ c949233fed html
+People Inc. 与美高梅的后续动作，拉斯维加斯 9 月游客数据（10 月底）和澳门 10 月博彩收入（11 月初）。
+@@ 91c59ec2d9 html
+资料来源：<a href="https://stockanalysis.com/stocks/mgm/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/mgm/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/mgm/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/mgm/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/mgm/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0000789570/000078957026000075/mgmex991q22026earningrelea.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://casino.org/news/diller-pulls-mgm-takeover-bid-casino-stock-tumbles" target="_blank" rel="noopener">casino.org</a> · <a href="https://thenevadaindependent.com/article/billionaire-barry-diller-ends-his-quest-to-acquire-mgm-resorts/" target="_blank" rel="noopener">thenevadaindependent.com</a> · <a href="https://www.thewrap.com/industry-news/deals-ma/mgm-resorts-eyes-people-inc-bid/" target="_blank" rel="noopener">thewrap.com</a> · <a href="https://www.autobound.ai/companies/mgm-resorts/acquisitions/mgm-ceo-leaves-door-open-to-people-inc-bid-as-casino-a1682286" target="_blank" rel="noopener">autobound.ai</a> · <a href="https://news3lv.com/news/local/las-vegas-tourism-drops-august-2026-lvcva-convention-visitation-hotel-hospitality-southern-nevada" target="_blank" rel="noopener">news3lv.com</a> · <a href="https://casino.org/news/macau-losing-streak-hits-four-months-september" target="_blank" rel="noopener">casino.org</a> · <a href="https://finviz.com/news/396109/mgm-resorts-international-announces-third-quarter-earnings-release-date" target="_blank" rel="noopener">finviz.com</a> · <a href="https://kuwaittimes.com/article/49973/business/fed-raises-rates-to-tackle-too-high-inflation-irking-trump/" target="_blank" rel="noopener">kuwaittimes.com</a> · <a href="https://investinglive.com/news/investinglive-americas-market-news-wrap-fed-officials-prepared-to-hike-again-this-year/" target="_blank" rel="noopener">investinglive.com</a>
+@@ 293f6a224e html
+RTX <span class="zh">雷神技术（RTX）</span>
+@@ 2f182c1dd9 html
+清单里的国防股，符合他「备战<span class="ek">（Military preparedness）</span>开支会持续」的长期主题，9 月下旬因为霍尔木兹海峡可能重开的报道被一起卖出。
+@@ 457da88503 html
+RTX 是美国最大的航空航天与国防公司之一，分三大部门：柯林斯宇航（航电、机舱和飞机系统）、普惠（商用和军用航空发动机）、雷神（导弹、防空和雷达）。收入大致分成商用航空和国防两块，截至 2026 年二季度末未完成订单 2890 亿美元，其中商用 1700 亿美元、国防 1190 亿美元。
+@@ 0027948b40 html
+52 周区间<span class="ek">（52-week range）</span> 155.64 至 226.88 美元，现价比高点低 18.0%。分析师平均目标价<span class="ek">（Price target）</span> 230.13 美元（24 位分析师，平均评级 Buy），目标价反映的是乐观情景，常常滞后于股价。
+@@ fa42f7ec06 html
+收盘 185.97 美元，低于 50 日均线<span class="ek">（50-day moving average）</span> 203.30 美元 8.5%，低于 200 日均线<span class="ek">（200-day moving average）</span> 194.99 美元 4.6%；50 日线仍在 200 日线上方，但股价已跌破两条均线，短期趋势偏弱。
+@@ 5d564d520c html
+RSI 37.3，偏弱，接近但还没进入 30 以下的超卖<span class="ek">（Oversold）</span>区。
+@@ 25b61a3071 html
+支撑<span class="ek">（Support）</span>：近 30 个交易日收盘低点 180.26 美元（10 月 7 日），盘中低点 179.02 美元（10 月 8 日）；再往下是 52 周低点 155.64 美元。
+@@ 3a2dedf558 html
+阻力<span class="ek">（Resistance）</span>：200 日均线约 195 美元、50 日均线约 203 美元，以及近 30 日收盘高点 211.71 美元（8 月 28 日）；52 周高点 226.88 美元。
+@@ 381316727b html
+从 8 月 18 日收盘 225.49 美元到 10 月 7 日 180.26 美元，跌幅约 20%；最近 10 个交易日收盘在 180.26–187.66 美元之间窄幅震荡。
+@@ 93997a756f html
+2,506 亿美元
+@@ 69e6a30dca html
+935 亿美元
+@@ c6983b46fe html
+389 / 83 亿美元
+@@ f1dfb54468 html
+114 亿美元
+@@ 6353f11598 html
+过去十二个月收入 935 亿美元，同比增长 11.8%；二季度收入 247 亿美元，同比增长 14.5%，有机增长 16%。
+@@ b3ce76731e html
+航空制造利润率<span class="ek">（Profit margin）</span>不高：毛利率<span class="ek">（Gross margin）</span> 20.4%，经营利润率<span class="ek">（Operating margin）</span> 12.3%，净利率<span class="ek">（Net margin）</span> 8.3%。过去十二个月 EPS 5.68 美元，同比增长 24.9%；二季度 GAAP EPS 1.57 美元，同比增长 28.7%，调整后 EPS 1.89 美元。
+@@ 66481a89e1 html
+7 月 23 日公司上调 2026 年指引<span class="ek">（Guidance）</span>：调整后销售 950–960 亿美元（原 925–935 亿），调整后 EPS 7.10–7.25 美元（原 6.70–6.90），自由现金流<span class="ek">（Free cash flow (FCF)）</span> 85–87.5 亿美元。
+@@ b8941905ab html
+估值偏高：市盈率（TTM）32.7 倍，远期市盈率<span class="ek">（Forward P/E）</span> 25.1 倍，PEG 2.49，EV/EBITDA 17.7 倍。
+@@ 3027024c82 html
+总债务 388.6 亿美元，现金 83.1 亿美元，净债务约 306 亿美元；过去十二个月自由现金流 114.1 亿美元，ROIC 9.4%。股息率<span class="ek">（Dividend yield）</span> 1.57%，派息率<span class="ek">（Payout ratio）</span> 51.4%。
+@@ 9ce5323d59 html
+导弹订单在加速：9 月底到 10 月初连续拿下 AMRAAM（最高 207 亿美元）、SM-6（最高 244 亿美元）和 SM-3 IB（63 亿美元）多年期合同。
+@@ 649df5c363 html
+<span class="nd">2026-10-08</span><span>雷神获得 63 亿美元 SM-3 IB 拦截弹多年期合同，这是约两周内第三份大额导弹合同，进一步锁定未来几年的导弹收入，当天股价收涨 2.3%。 <a href="https://www.rtx.com/news/news-center/2026/10/08/rtxs-raytheon-awarded-6-3-billion-multi-year-contract-for-sm-3-ib-interceptors" target="_blank" rel="noopener">rtx.com</a></span>
+@@ bb37457753 html
+<span class="nd">2026-10-01</span><span>美国海军授予雷神最高 244 亿美元的 SM-6 多年期合同（5 年加 2 个选择年），说明美国在补充导弹库存，但当天股价基本持平（-0.3%），市场更关心高需求能持续多久。 <a href="https://www.rtx.com/news/news-center/2026/10/01/rtxs-raytheon-awarded-24-4-billion-multi-year-contract-for-sm-6-interceptors" target="_blank" rel="noopener">rtx.com</a></span>
+@@ 88dd24730c html
+<span class="nd">2026-09-29</span><span>五角大楼授予雷神最高 207 亿美元的 AMRAAM 空空导弹合同，目标是把产量接近翻倍，提高雷神部门中期收入的能见度。 <a href="https://www.defensenews.com/pentagon/2026/09/29/pentagon-awards-raytheon-up-to-207-billion-to-nearly-double-amraam-production/" target="_blank" rel="noopener">defensenews.com</a></span>
+@@ 328ee213b8 html
+<span class="nd">2026-09-22</span><span>路透报道伊朗提出 7 天内重开霍尔木兹海峡，油价走低，国防股集体下跌，RTX 盘中一度跌约 3%、收跌 1.7%，说明股价里含有地缘冲突溢价。 <a href="https://247wallst.com/investing/2026/09/22/defense-stocks-fall-while-oil-slides-on-hormuz-reopening-report-lockheed-martin-and-rtx-drop-3-boeing-dips/" target="_blank" rel="noopener">247wallst.com</a></span>
+@@ 937e225fd8 html
+<span class="nd">2026-09-15</span><span>RTX 任命 Jill Albertelli 为普惠总裁；普惠二季度收入 88.9 亿美元，约占公司三分之一以上，管理层变动关系到发动机交付和维修成本控制。 <a href="https://www.rtx.com/news/news-center/2026/09/15/rtx-names-jill-albertelli-as-president-pratt-whitney" target="_blank" rel="noopener">rtx.com</a></span>
+@@ 59b98ce197 html
+2026-10-20 盘前：三季度财报<span class="ek">（Earnings report）</span>，重点看全年调整后 EPS 指引（7.10–7.25 美元）是否维持或上调，以及国防订单和普惠利润率。
+@@ f59c91e910 html
+AMRAAM、SM-6、SM-3 IB 等多年期合同的扩产和交付进度。
+@@ 166e30b831 html
+伊朗局势和霍尔木兹海峡谈判进展，影响国防股的风险溢价<span class="ek">（Risk premium）</span>。
+@@ 142c9dc193 html
+美国国会年度国防拨款进程，多年期导弹合同需要逐年拨款落实。
+@@ 19614aec9b html
+国防开支<span class="ek">（Defense spending）</span>：美国在补充导弹库存，多年期合同锁定需求；但合同依赖国会年度拨款，预算博弈会带来波动。
+@@ 487635a693 html
+地缘与油价：伊朗冲突推高了油价和国防股溢价，9 月 22 日霍尔木兹重开的报道让 WTI 跌到约 91.6 美元，国防股同步下跌；局势缓和对 RTX 估值是压力。
+@@ 0a7e849720 html
+商用航空：普惠和柯林斯依赖航空公司飞行小时和售后维修，高油价会挤压航空公司利润；长期利率下降则有利于这类长周期资产的估值。
+@@ a4b6cf4ac4 html
+基本面在改善：二季度有机增长 16%，全年 EPS 指引上调，未完成订单 2890 亿美元，导弹合同密集落地。
+@@ 5e4d5feacc html
+股价从 8 月高点回落约 20%，RSI 37.3，近两周在 180 美元上方止跌；分析师平均目标价 230.13 美元。
+@@ 16b70ab459 html
+10 月 20 日财报如果再次上调指引，可能缓解市场对需求持续性的担心。
+@@ 4424628ca9 html
+估值仍高：市盈率（TTM）32.7 倍、PEG 2.49，增长一旦放缓容易被压缩。
+@@ 8fd8d57936 html
+地缘局势缓和会继续压缩国防溢价；大额合同公布后股价反应平淡，说明利好已部分计入。
+@@ f1ae48697c html
+普惠 GTF 发动机的检修成本和交付是商用航空一侧的不确定因素；净债务约 306 亿美元。
+@@ 74b3d96547 html
+180 美元一线（10 月 7 日收盘低点 180.26 美元）能否守住；跌破则下一个参考是 52 周低点 155.64 美元。
+@@ 43556b3b67 html
+能否重新站上 200 日均线 194.99 美元，这是趋势转好的第一个信号；再上是 50 日均线 203.30 美元。
+@@ 299a8b6a05 html
+10 月 20 日财报：全年调整后 EPS 指引 7.10–7.25 美元是否上调，自由现金流 85–87.5 亿美元是否维持。
+@@ 9f79880a6d html
+资料来源：<a href="https://stockanalysis.com/stocks/rtx/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/rtx/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/rtx/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/rtx/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/rtx/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0000101829/000010182926000025/a2026-07x238xkerexhibit99.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://www.rtx.com/news/news-center/2026/10/08/rtxs-raytheon-awarded-6-3-billion-multi-year-contract-for-sm-3-ib-interceptors" target="_blank" rel="noopener">rtx.com</a> · <a href="https://www.rtx.com/news/news-center/2026/10/01/rtxs-raytheon-awarded-24-4-billion-multi-year-contract-for-sm-6-interceptors" target="_blank" rel="noopener">rtx.com</a> · <a href="https://www.defensenews.com/pentagon/2026/09/29/pentagon-awards-raytheon-up-to-207-billion-to-nearly-double-amraam-production/" target="_blank" rel="noopener">defensenews.com</a> · <a href="https://247wallst.com/investing/2026/09/22/defense-stocks-fall-while-oil-slides-on-hormuz-reopening-report-lockheed-martin-and-rtx-drop-3-boeing-dips/" target="_blank" rel="noopener">247wallst.com</a> · <a href="https://www.rtx.com/news/news-center/2026/09/15/rtx-names-jill-albertelli-as-president-pratt-whitney" target="_blank" rel="noopener">rtx.com</a> · <a href="https://www.rtx.com/news/news-center/2026/09/29/rtx-to-release-third-quarter-earnings-results-on-october-20-2026" target="_blank" rel="noopener">rtx.com</a>
+@@ 8690839037 html
+GD <span class="zh">通用动力</span>
+@@ 36c99e8384 html
+在清单里，10 月 5 日记录以 331.50 美元买入。和 RTX 一样是国防股。
+@@ 84e4f7b5da html
+通用动力是美国主要国防承包商，也是湾流（Gulfstream）公务机的制造商。四大部门按 2026 年预计收入：海事系统约 180 亿美元（核潜艇和舰船）、技术约 141 亿美元（GDIT 政府 IT 与任务系统）、航空航天约 138 亿美元（湾流公务机）、作战系统约 98 亿美元（装甲车辆和弹药<span class="ek">（Munitions）</span>）。
+@@ 9b1884c305 html
+52 周区间<span class="ek">（52-week range）</span> 306.77 至 400.00 美元，现价比高点低 17.2%。分析师平均目标价<span class="ek">（Price target）</span> 413.11 美元（24 位分析师，平均评级 Buy），目标价反映的是乐观情景，常常滞后于股价。
+@@ 434244607d html
+收盘 331.27 美元，低于 50 日均线<span class="ek">（50-day moving average）</span> 363.88 美元 9.0%，低于 200 日均线<span class="ek">（200-day moving average）</span> 354.99 美元 6.7%；两条均线都压在股价上方，趋势偏空。
+@@ 53849cc304 html
+RSI 30.6，贴近 30 的超卖<span class="ek">（Oversold）</span>线。
+@@ 616fb14417 html
+支撑<span class="ek">（Support）</span>：近 30 日收盘低点 326.63 美元（10 月 7 日）、盘中低点 322.00 美元（10 月 8 日）；再往下是 52 周低点 306.77 美元，距现价约 8%。
+@@ 6b5dbdc903 html
+阻力<span class="ek">（Resistance）</span>：200 日均线约 355 美元、50 日均线约 364 美元、近 30 日收盘高点 379.32 美元（8 月 28 日），52 周高点 400.00 美元。
+@@ 7fd46cab64 html
+最近 10 个交易日收盘在 326.63–334.16 美元之间横盘，下跌速度放缓；8 月 10 日收盘 395.97 美元以来累计下跌约 16%。
+@@ b5043d4860 html
+895 亿美元
+@@ 7412963c6a html
+549 亿美元
+@@ 9b9e19ae67 html
+95 / 43 亿美元
+@@ 7573af8d22 html
+64 亿美元
+@@ 2b68693a76 html
+过去十二个月收入 548.6 亿美元，同比增长 9.1%；二季度收入 140.9 亿美元，同比增长 8.1%，EPS 4.24 美元，同比增长 13.4%，高于 LSEG 统计的 3.97 美元预期。
+@@ 39d5c07f0a html
+未完成订单创纪录：1365 亿美元，同比增长 32%；二季度订单 200 亿美元，订单出货比 1.4，其中作战系统达到 2.1。
+@@ aacef0668f html
+全年 EPS 指引<span class="ek">（Guidance）</span>年内第二次上调，到 16.80–16.90 美元（1 月为 16.10–16.20，4 月为 16.45–16.55），收入约 557 亿美元，经营利润率<span class="ek">（Operating margin）</span> 10.5%。
+@@ 330f8ab146 html
+利润率<span class="ek">（Profit margin）</span>：毛利率<span class="ek">（Gross margin）</span> 15.4%，经营利润率 10.4%，净利率<span class="ek">（Net margin）</span> 8.2%；ROIC 14.6%。二季度航空航天部门利润率升到 14.5%，作战系统降 30 个基点到 13.9%。
+@@ 07f8e35d58 html
+估值低于 RTX：市盈率（TTM）20.2 倍，远期 18.9 倍（RTX 为 25.1 倍），PEG 2.05，EV/EBITDA 14.3 倍；股息率<span class="ek">（Dividend yield）</span> 1.92%，派息率<span class="ek">（Payout ratio）</span> 38.8%。
+@@ a633c0c4be html
+资产负债稳健：总债务 94.8 亿美元，现金 43.3 亿美元；过去十二个月自由现金流<span class="ek">（Free cash flow (FCF)）</span> 64.4 亿美元，约为市值的 7.2%。
+@@ 4e76d73ca7 html
+<span class="nd">2026-10-09</span><span>公司宣布 10 月 30 日上午 9 点（美东）召开三季度业绩电话会，这是股价连续下跌后的下一个基本面检验点。 <a href="https://investorrelations.gd.com/news/press-release-details/2026/General-Dynamics-to-Webcast-2026-Third-Quarter-Financial-Results-Conference-Call/default.aspx" target="_blank" rel="noopener">investorrelations.gd.com</a></span>
+@@ d03004d4af html
+<span class="nd">2026-10-07</span><span>总裁 Danny Deep 将于 2027 年 1 月 1 日接任 CEO，Novakovic（2013 年起任 CEO）改任执行董事长；内部接班，战略延续性较强。 <a href="https://investorrelations.gd.com/news/press-release-details/2026/Deep-Elected-CEO-of-General-Dynamics-Novakovic-to-Executive-Chairman/default.aspx" target="_blank" rel="noopener">investorrelations.gd.com</a></span>
+@@ 1906ad379e html
+<span class="nd">2026-09-22</span><span>伊朗提出重开霍尔木兹海峡的报道打压国防股，通用动力当天收跌 3.0%（353.90 美元到 343.39 美元），说明股价里含有地缘冲突溢价。 <a href="https://247wallst.com/investing/2026/09/22/defense-stocks-fall-while-oil-slides-on-hormuz-reopening-report-lockheed-martin-and-rtx-drop-3-boeing-dips/" target="_blank" rel="noopener">247wallst.com</a></span>
+@@ bf3aec6f96 html
+<span class="nd">2026-09-03</span><span>旗下 OTS 部门与美国国防部签署七年期框架协议，为 PAC-3 和 THAAD 拦截弹扩产提供弹体、导引头壳体等部件，目标分别是三倍和四倍产能；协议依赖年度拨款，金额未披露。 <a href="https://256today.com/general-dynamics-joins-7-year-push-to-triple-pac-3-quadruple-thaad-production/" target="_blank" rel="noopener">256today.com</a></span>
+@@ cff531378c html
+<span class="nd">2026-08-07</span><span>GDIT 获得陆军国民警卫队 13 亿美元网络运维与网络安全合同，支撑技术部门的订单。 <a href="https://investorrelations.gd.com/news/press-release-details/2026/GDIT-Awarded-1-3-Billion-Enterprise-Network-Operations-and-Cybersecurity-Support-Contract-for-the-Army-National-Guard/default.aspx" target="_blank" rel="noopener">investorrelations.gd.com</a></span>
+@@ 996df6a5e2 html
+2026-10-30 盘前：三季度财报<span class="ek">（Earnings report）</span>，上午 9 点电话会；看 EPS 指引 16.80–16.90 美元能否维持、湾流交付和潜艇进度。
+@@ f74d927377 html
+2027-01-01：Danny Deep 正式接任 CEO。
+@@ 62630735f9 html
+PAC-3 和 THAAD 七年期协议的具体订单和最低年度采购量。
+@@ 3ee9a0e332 html
+伊朗局势和美国年度国防拨款进程。
+@@ f4ac12146a html
+国防开支<span class="ek">（Defense spending）</span>：拦截弹和核潜艇是美国优先投入方向，七年期协议和潜艇项目提供长期需求，但都依赖国会年度拨款。
+@@ b60e6442a3 html
+地缘局势：伊朗冲突和霍尔木兹海峡的进展会改变国防股的风险溢价<span class="ek">（Risk premium）</span>，9 月 22 日的缓和报道就让股价单日跌 3%。
+@@ e5ae5798a3 html
+利率与公务机：湾流订单和企业利润、富裕人群财富、股市表现相关；长期利率下降、股市走强通常有利于公务机需求。
+@@ 9a5fdc3846 html
+基本面在加强：未完成订单 1365 亿美元创纪录，EPS 指引年内两次上调，二季度 EPS 超预期。
+@@ 2c43e6e9ea html
+估值相对不高：远期市盈率<span class="ek">（Forward P/E）</span> 18.9 倍，低于 RTX 的 25.1 倍；股价距 52 周低点约 8%，RSI 30.6 接近超卖。
+@@ a0184891e2 html
+自由现金流 64.4 亿美元、净债务约 52 亿美元，有能力继续派息和降债；分析师平均目标价 413.11 美元。
+@@ 7b122798c1 html
+整个国防板块在下调估值：股价从 8 月中旬约 396 美元跌到 331 美元，Citi、TD Cowen 等多家券商近期下调目标价。
+@@ 4da6f5e935 html
+潜艇项目的进度和供应链<span class="ek">（Supply chain）</span>是长期隐患；作战系统二季度收入持平、利润率下降。
+@@ 02030d706b html
+CEO 交接期可能带来战略和资本配置上的不确定性。

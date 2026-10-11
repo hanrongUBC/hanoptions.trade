@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Appendix · US Options Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  /* glossary */
+  .search { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin: 14px 0 6px; }
+  .search input { font: inherit; font-size: 15.5px; padding: 8px 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--plate); color: var(--ink); width: min(100%, 380px); }
+  .search input:focus-visible { outline: 2px solid var(--delta); outline-offset: 1px; }
+  .search .cnt { font-size: 13.5px; color: var(--muted); }
+  .search .cnt b { font-family: var(--font-mono); font-weight: 500; color: var(--ink); }
+  .gloss table { table-layout: fixed; }
+  .gloss th, .gloss td { white-space: normal; text-align: left; vertical-align: top; }
+  .gloss th:first-child, .gloss td:first-child { width: 36%; }
+  .gloss td b { display: block; font-weight: 700; }
+  .gloss td .en { display: block; font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+  .gloss[hidden], .gloss tr[hidden] { display: none; }
+  .empty { color: var(--muted); font-size: 14.5px; }
+  /* quick reference */
+  .qref table { min-width: 1080px; font-size: 13.5px; }
+  .qref th, .qref td { white-space: normal; text-align: left; vertical-align: top; padding: 8px 10px; }
+  .qref td:first-child, .qref th:first-child { position: sticky; left: 0; background: var(--plate); z-index: 1; min-width: 7.5em; box-shadow: 1px 0 0 var(--rule); }
+  .qref td.mono { font-size: 12.5px; }
+  .qref td:nth-child(2) { min-width: 11em; }
+  .qref td:nth-child(3) { min-width: 9.5em; }
+  .qref td:nth-child(4), .qref td:nth-child(5), .qref td:nth-child(6) { min-width: 9.5em; }
+  .qref td:nth-child(7) { min-width: 10em; }
+  .qref a { text-decoration: none; }
+  /* atlas */
+  .atlas { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 14px; margin: 18px 0 26px; }
+  .atlas figure.plate { margin: 0; padding: 12px 12px 10px; }
+  .atlas .fig-title { font-size: 14.5px; }
+  .atlas .fig-no { font-size: 11.5px; }
+  .atlas svg .ax { font-size: 14px; }
+  .atlas .stats { font-family: var(--font-mono); font-size: 12px; color: var(--muted); line-height: 1.65; margin-top: 2px; }
+  .atlas .stats b { color: var(--ink); font-weight: 500; }
+  /* templates */
+  .tpl { margin: 28px 0 8px; }
+  .tpl-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .tpl-head h3 { margin: 0; }
+  .tpl-head h3 .num { color: var(--delta); margin-right: 10px; font-weight: 500; }
+  .tpl-use { font-size: 14.5px; color: var(--muted); margin: 6px 0 0; }
+  .tpl-use .meta { font-family: var(--font-mono); font-size: 12.5px; color: var(--delta); margin-right: 10px; }
+  .btn.copy[data-state="ok"] { border-color: var(--theta); color: var(--theta); }
+  .btn.copy[data-state="sel"] { border-color: var(--warn); color: var(--warn); }
+  /* sources */
+  .src ul { list-style: none; padding: 0; margin: 8px 0 10px; }
+  .src li { font-size: 14.5px; line-height: 1.6; }
+  .src li + li { margin-top: 8px; }
+  .src .dom { font-family: var(--font-mono); font-size: 12.5px; color: var(--delta); margin-left: 6px; }
+  .src .desc { color: var(--muted); font-size: 13.5px; }
+  .src .tip { font-size: 13.5px; color: var(--ink); border-top: 1px solid var(--rule); padding-top: 8px; margin: 0; }
+</style>
+<link rel="alternate" hreflang="zh-CN" href="https://hanoptions.trade/options/appendix.html"><link rel="alternate" hreflang="en" href="https://hanoptions.trade/en/options/appendix.html">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap">
+<style id="en-overrides">
+html[lang="en"] { --font-display: "Source Serif 4", "Noto Serif SC", Georgia, serif; --font-body: "Source Sans 3", "Noto Sans SC", system-ui, sans-serif; }
+html[lang="en"] body { line-height: 1.7; }
+html[lang="en"] body * { letter-spacing: normal !important; }
+html[lang="en"] p, html[lang="en"] li, html[lang="en"] td, html[lang="en"] figcaption { hyphens: auto; -webkit-hyphens: auto; }
+html[lang="en"] p { text-wrap: pretty; }
+html[lang="en"] .toc a { grid-template-columns: 48px 1fr; }
+</style>
+</head>
+<body data-ch="17">
+<div class="topbar"><div class="topbar-inner"><div class="topbar-brand"><a class="site-home" href="/en/">hanoptions.trade</a><a class="brand" href="index.html">US Options <span>Course</span></a></div><div class="topbar-tools"><select id="ck-jump" aria-label="Jump to chapter"></select><a class="lang-switch" href="/options/appendix.html" hreflang="zh-CN" lang="zh-CN" data-lang="zh"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>中文</a></div></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">App</div>
+    <div class="eyebrow">US Options Course · Appendix Quick reference</div>
+    <h1>Glossary, quick reference and <span class="g">templates</span></h1>
+    <p class="deck">You don't need to read this page from start to finish. Look up unfamiliar words in A, check a structure in B and C before you place an order, use D to build your own trading system, and turn to E for data and tools. Every example uses the same set of parameters, so you can compare it with the main text.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="In this appendix">
+    <p class="toc-title">In this appendix</p>
+    <ol id="toc-list">
+      <li><a href="#a"><span class="n">A</span><span>Glossary</span></a></li>
+      <li><a href="#b"><span class="n">B</span><span>Strategy quick reference</span></a></li>
+      <li><a href="#c"><span class="n">C</span><span>Payoff diagram atlas</span></a></li>
+      <li><a href="#d"><span class="n">D</span><span>Four templates</span></a></li>
+      <li><a href="#e"><span class="n">E</span><span>Data sources and tools</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>In this appendix</summary>
+      <ol>
+        <li><a href="#a">A Glossary</a></li>
+        <li><a href="#b">B Strategy quick reference</a></li>
+        <li><a href="#c">C Payoff diagram atlas</a></li>
+        <li><a href="#d">D Four templates</a></li>
+        <li><a href="#e">E Data sources and tools</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>How to use this appendix</h4>
+        <ul>
+          <li>Hit an unfamiliar word in the text: search for it in A</li>
+          <li>Before an order: check the profit and loss limits in B and the shape in C</li>
+          <li>Building a system: copy the four templates in D into your own notes</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Related chapters</h4>
+        <ul>
+          <li>A: terms from all 16 chapters</li>
+          <li>B, C: strategies from Chapters 7–11</li>
+          <li>D: tools from Chapters 6, 10, 13 and 14</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Conventions</h4>
+        <ul>
+          <li>Stock at 100, 30 days, IV 25%, 4% rate, no dividends</li>
+          <li>Prices and P&amp;L are per share; one contract × 100</li>
+          <li>D is a net debit, C a net credit, K₁ &lt; K₂ &lt; K₃ &lt; K₄</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="a">
+      <h2><span class="sn">A</span>Glossary</h2>
+      <p>108 terms in six groups, each with a one-line explanation. The terms are written the way you will see them on broker platforms, in exchange documents and in other English-language sources.</p>
+      <div class="search" role="search">
+        <input type="search" id="g-q" placeholder="Search terms or explanations, e.g. Vega, skew, assignment" aria-label="Search the glossary" autocomplete="off">
+        <span class="cnt" id="g-cnt">All <b>108</b> terms</span>
+      </div>
+      <p class="empty" id="g-empty" hidden>No matching terms. Try another keyword.</p>
+      <div class="tbl gloss" data-group="basic">
+        <table>
+          <caption>A.1 Basics (24 terms)</caption>
+          <thead><tr><th>Term</th><th>Explanation</th></tr></thead>
+          <tbody>
+            <tr><td><b>Option</b><span class="en"></span></td><td>A contract to buy or sell an underlying at an agreed price within an agreed period: the buyer has the right, the seller has the obligation.</td></tr>
+            <tr><td><b>Call option</b><span class="en"></span></td><td>The right to buy the underlying at the strike price.</td></tr>
+            <tr><td><b>Put option</b><span class="en"></span></td><td>The right to sell the underlying at the strike price.</td></tr>
+            <tr><td><b>Underlying</b><span class="en"></span></td><td>The stock, ETF, index or futures contract an option is written on.</td></tr>
+            <tr><td><b>Strike price</b><span class="en"></span></td><td>The price at which the contract lets you buy or sell.</td></tr>
+            <tr><td><b>Expiration date</b><span class="en"></span></td><td>The date the contract expires; US options come with weekly, monthly, quarterly and other expirations.</td></tr>
+            <tr><td><b>Premium</b><span class="en"></span></td><td>The option's price. It is quoted per share; multiply by 100 for one standard contract.</td></tr>
+            <tr><td><b>Contract multiplier</b><span class="en"></span></td><td>One standard US option covers 100 shares of the underlying.</td></tr>
+            <tr><td><b>In the money</b><span class="en">ITM</span></td><td>Worth something if exercised now: for a call, the stock is above the strike; for a put, below it.</td></tr>
+            <tr><td><b>At the money</b><span class="en">ATM</span></td><td>The strike is roughly equal to the current stock price.</td></tr>
+            <tr><td><b>Out of the money</b><span class="en">OTM</span></td><td>An option that would be worth nothing if exercised now.</td></tr>
+            <tr><td><b>Intrinsic value</b><span class="en"></span></td><td>What you would get by exercising right now; never less than zero.</td></tr>
+            <tr><td><b>Time value</b><span class="en">Extrinsic value</span></td><td>The part of the premium above intrinsic value; it goes to zero at expiration.</td></tr>
+            <tr><td><b>American-style option</b><span class="en"></span></td><td>Can be exercised on any trading day before expiration; US single-stock and ETF options are American-style.</td></tr>
+            <tr><td><b>European-style option</b><span class="en"></span></td><td>Can be exercised only at expiration; options on broad indexes such as SPX are European-style.</td></tr>
+            <tr><td><b>Exercise</b><span class="en"></span></td><td>The buyer uses the right, buying or selling the underlying at the strike.</td></tr>
+            <tr><td><b>Assignment</b><span class="en"></span></td><td>The seller is required to fulfill the contract; sellers of American-style options can be assigned before expiration.</td></tr>
+            <tr><td><b>Cash settlement</b><span class="en"></span></td><td>At expiration the difference is paid in cash and no underlying changes hands, as with SPX options.</td></tr>
+            <tr><td><b>Physical settlement</b><span class="en"></span></td><td>At expiration the underlying itself is delivered, as with single-stock and SPY options.</td></tr>
+            <tr><td><b>Option chain</b><span class="en"></span></td><td>The table of quotes for every expiration and strike on one underlying.</td></tr>
+            <tr><td><b>Open interest</b><span class="en">OI</span></td><td>The total number of contracts not yet closed or exercised; updated once each trading day.</td></tr>
+            <tr><td><b>Volume</b><span class="en"></span></td><td>The number of contracts traded during the day.</td></tr>
+            <tr><td><b>Bid–ask spread</b><span class="en"></span></td><td>The gap between the highest bid and the lowest ask; a hidden cost of getting in and out.</td></tr>
+            <tr><td><b>Mid price</b><span class="en">Mid</span></td><td>The average of the bid and the ask; limit orders usually start here.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tbl gloss" data-group="pricing">
+        <table>
+          <caption>A.2 Pricing (12 terms)</caption>
+          <thead><tr><th>Term</th><th>Explanation</th></tr></thead>
+          <tbody>
+            <tr><td><b>Black-Scholes model</b><span class="en"></span></td><td>A model that prices European options from six inputs: stock price, strike, time to expiration, volatility, interest rate and dividends.</td></tr>
+            <tr><td><b>Put–call parity</b><span class="en"></span></td><td>With no dividends, C − P = S − K·e^(−rT), linking the call and the put at the same strike to the stock.</td></tr>
+            <tr><td><b>Risk-neutral pricing</b><span class="en"></span></td><td>Pricing that assumes the underlying grows at the risk-free rate and then discounts the expected payoff; the probabilities it produces are the market's pricing, not real-world probabilities.</td></tr>
+            <tr><td><b>Theoretical value</b><span class="en"></span></td><td>The fair price a model produces; also the center of market makers' quotes.</td></tr>
+            <tr><td><b>Implied probability</b><span class="en"></span></td><td>The probability of finishing in the money, backed out from option prices; N(d₂) under Black-Scholes.</td></tr>
+            <tr><td><b>Expected move</b><span class="en"></span></td><td>The size of move the market implies over a period, usually estimated as S × IV × √(days/365) or from the price of the ATM straddle.</td></tr>
+            <tr><td><b>Early exercise</b><span class="en"></span></td><td>Exercising an American option before expiration; most common with deep ITM calls just before an ex-dividend date.</td></tr>
+            <tr><td><b>Synthetic position</b><span class="en"></span></td><td>Replicating one position with a combination of options; for example, a long call plus a short put is roughly the same as owning the stock.</td></tr>
+            <tr><td><b>Forward price</b><span class="en"></span></td><td>The delivery price: the current price plus the cost of carry. Options on futures are priced off it.</td></tr>
+            <tr><td><b>Black-76 model</b><span class="en"></span></td><td>A variant of Black-Scholes that uses the futures price in place of the stock price; used for options on futures.</td></tr>
+            <tr><td><b>Binomial model</b><span class="en"></span></td><td>A pricing method that works backward step by step through a tree of prices; it can handle early exercise of American options.</td></tr>
+            <tr><td><b>Risk-free rate</b><span class="en"></span></td><td>The short-term Treasury rate used in pricing; this course uses 4% throughout.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tbl gloss" data-group="greeks">
+        <table>
+          <caption>A.3 The Greeks (15 terms)</caption>
+          <thead><tr><th>Term</th><th>Explanation</th></tr></thead>
+          <tbody>
+            <tr><td><b>Delta</b><span class="en">Delta</span></td><td>The change in the option price for each $1 move in the underlying; multiplied by 100, it is one contract's share equivalent.</td></tr>
+            <tr><td><b>Gamma</b><span class="en">Gamma</span></td><td>The change in Delta for each $1 move in the underlying; positive for long options, negative for short ones.</td></tr>
+            <tr><td><b>Theta</b><span class="en">Theta</span></td><td>The change in the option price as each day passes; usually negative for buyers and positive for sellers.</td></tr>
+            <tr><td><b>Vega</b><span class="en">Vega</span></td><td>The change in the option price for each 1-point change in implied volatility.</td></tr>
+            <tr><td><b>Rho</b><span class="en">Rho</span></td><td>The change in the option price for each 1% change in interest rates; more noticeable the longer the term.</td></tr>
+            <tr><td><b>Charm</b><span class="en">Charm</span></td><td>The change in Delta as time passes: an OTM option's Delta drifts toward 0 each day, an ITM option's toward 1.</td></tr>
+            <tr><td><b>Vanna</b><span class="en">Vanna</span></td><td>The change in Delta caused by a change in implied volatility.</td></tr>
+            <tr><td><b>Vomma</b><span class="en">Vomma (Volga)</span></td><td>Vega's sensitivity to volatility; larger for OTM options.</td></tr>
+            <tr><td><b>Dollar gamma</b><span class="en"></span></td><td>How many dollars of stock the change in Delta amounts to when the underlying moves 1%; used to compare across underlyings.</td></tr>
+            <tr><td><b>Share equivalent</b><span class="en"></span></td><td>Delta × 100 × contracts × direction; lets you add options and stock together directly.</td></tr>
+            <tr><td><b>Beta-weighted delta</b><span class="en"></span></td><td>Converts each position's Delta into share equivalents of an index (such as SPY), using beta and price.</td></tr>
+            <tr><td><b>Delta neutral</b><span class="en"></span></td><td>Portfolio Delta is about zero, so small price moves have little effect.</td></tr>
+            <tr><td><b>Gamma scalping</b><span class="en">Gamma scalping</span></td><td>Holding positive Gamma and repeatedly hedging Delta back to zero, using realized volatility to earn back the Theta cost.</td></tr>
+            <tr><td><b>Gamma flip</b><span class="en"></span></td><td>The estimated price level where market makers' net Gamma turns from positive to negative; below it, their hedging tends to amplify moves.</td></tr>
+            <tr><td><b>Discrete hedging error</b><span class="en"></span></td><td>The error left by adjusting Delta only at intervals; its standard deviation is roughly inversely proportional to the square root of the number of hedges.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tbl gloss" data-group="vol">
+        <table>
+          <caption>A.4 Volatility (16 terms)</caption>
+          <thead><tr><th>Term</th><th>Explanation</th></tr></thead>
+          <tbody>
+            <tr><td><b>Realized volatility</b><span class="en"></span></td><td>The annualized standard deviation of the underlying's actual returns; also called historical volatility.</td></tr>
+            <tr><td><b>Implied volatility</b><span class="en">IV</span></td><td>The volatility that makes the model price equal the market price; the market's price for future volatility.</td></tr>
+            <tr><td><b>Volatility risk premium</b><span class="en"></span></td><td>The amount by which implied volatility on average exceeds the realized volatility that follows; sellers earn it over time and also carry the tail risk.</td></tr>
+            <tr><td><b>IV Rank</b><span class="en">IV Rank</span></td><td>Where current IV sits between its lowest and highest levels over the past year, on a scale of 0 to 100.</td></tr>
+            <tr><td><b>IV percentile</b><span class="en"></span></td><td>The share of days in the past year when IV was below its current level.</td></tr>
+            <tr><td><b>Term structure</b><span class="en"></span></td><td>The curve traced by ATM IV across expirations.</td></tr>
+            <tr><td><b>Contango</b><span class="en"></span></td><td>Back-month IV above front-month IV; the normal state of a calm market.</td></tr>
+            <tr><td><b>Backwardation</b><span class="en">Inversion</span></td><td>Front-month IV above back-month IV; common in a panic or ahead of a major event.</td></tr>
+            <tr><td><b>Skew</b><span class="en"></span></td><td>Differences in IV across strikes at the same expiration; for stock indexes, OTM puts are usually more expensive.</td></tr>
+            <tr><td><b>Volatility smile</b><span class="en"></span></td><td>IV forms a U shape across strikes, with both wings more expensive than at the money.</td></tr>
+            <tr><td><b>Volatility surface</b><span class="en"></span></td><td>The two-dimensional grid of IV by strike × expiration.</td></tr>
+            <tr><td><b>25-delta risk reversal</b><span class="en"></span></td><td>25Δ call IV minus 25Δ put IV; measures the direction and steepness of the skew.</td></tr>
+            <tr><td><b>Forward volatility</b><span class="en"></span></td><td>The implied volatility for a future period, derived by subtracting the total variance of one expiration from that of another.</td></tr>
+            <tr><td><b>IV crush</b><span class="en"></span></td><td>The sharp drop in implied volatility once an event is out and the uncertainty is gone.</td></tr>
+            <tr><td><b>VIX</b><span class="en">VIX Index</span></td><td>Cboe's index of 30-day implied volatility, calculated from SPX options.</td></tr>
+            <tr><td><b>Implied correlation</b><span class="en"></span></td><td>The average correlation backed out from the index's IV and the IVs of its components.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tbl gloss" data-group="strat">
+        <table>
+          <caption>A.5 Strategies (21 terms)</caption>
+          <thead><tr><th>Term</th><th>Explanation</th></tr></thead>
+          <tbody>
+            <tr><td><b>Covered call</b><span class="en"></span></td><td>Own 100 shares and sell 1 call, giving up upside in exchange for premium.</td></tr>
+            <tr><td><b>Cash-secured put</b><span class="en"></span></td><td>Sell a put and set aside the full amount of cash, ready to buy the stock at the strike.</td></tr>
+            <tr><td><b>Protective put</b><span class="en"></span></td><td>Own the stock and buy a put: insurance against a fall.</td></tr>
+            <tr><td><b>Collar</b><span class="en"></span></td><td>Own the stock, buy a put and sell a call, using the call premium to pay for the protection.</td></tr>
+            <tr><td><b>Vertical spread</b><span class="en"></span></td><td>Buy one option and sell another with the same expiration and different strikes.</td></tr>
+            <tr><td><b>Debit spread</b><span class="en"></span></td><td>A spread that costs net premium to open; the maximum loss is the net debit.</td></tr>
+            <tr><td><b>Credit spread</b><span class="en"></span></td><td>A spread that collects net premium to open; the maximum loss is the width minus the net credit.</td></tr>
+            <tr><td><b>Straddle</b><span class="en"></span></td><td>A call plus a put at the same strike: buying it bets on a big move, selling it bets on no move.</td></tr>
+            <tr><td><b>Strangle</b><span class="en"></span></td><td>An OTM call plus an OTM put at different strikes.</td></tr>
+            <tr><td><b>Iron condor</b><span class="en"></span></td><td>A short strangle plus farther-out wings bought to cap the risk.</td></tr>
+            <tr><td><b>Iron butterfly</b><span class="en"></span></td><td>A short ATM straddle plus wings bought to cap the risk.</td></tr>
+            <tr><td><b>Butterfly</b><span class="en"></span></td><td>A three-strike structure, buy 1, sell 2, buy 1, that bets the stock ends near the middle strike.</td></tr>
+            <tr><td><b>Calendar spread</b><span class="en"></span></td><td>Sell the front month and buy the back month at the same strike, earning the front month's faster time decay.</td></tr>
+            <tr><td><b>Diagonal spread</b><span class="en"></span></td><td>Sell one option and buy another with a different strike and a different expiration.</td></tr>
+            <tr><td><b>Ratio spread</b><span class="en"></span></td><td>A spread with unequal numbers of long and short contracts, such as buy 1, sell 2; the extra short contracts are unprotected.</td></tr>
+            <tr><td><b>Risk reversal</b><span class="en"></span></td><td>Sell an OTM put and buy an OTM call (or the reverse): a low-cost way to express direction and trade the skew.</td></tr>
+            <tr><td><b>The wheel</b><span class="en">Wheel strategy</span></td><td>Sell puts, take the shares when assigned, then sell covered calls, collecting premium round and round.</td></tr>
+            <tr><td><b>LEAPS</b><span class="en">LEAPS</span></td><td>Long-dated options with more than a year to expiration; deep ITM calls are often used in place of owning the stock.</td></tr>
+            <tr><td><b>0DTE</b><span class="en">Zero days to expiration</span></td><td>Options that expire the same day; both Gamma and Theta are extremely large.</td></tr>
+            <tr><td><b>Roll</b><span class="en"></span></td><td>Close the current option and at the same time open one with a different strike or expiration.</td></tr>
+            <tr><td><b>Autocallable note</b><span class="en"></span></td><td>A structured product that ends early and pays a coupon once a knock-out condition is met; the investor has in effect sold a knock-in put. A common variant in China is called a “snowball.”</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tbl gloss" data-group="risk">
+        <table>
+          <caption>A.6 Risk and the account (20 terms)</caption>
+          <thead><tr><th>Term</th><th>Explanation</th></tr></thead>
+          <tbody>
+            <tr><td><b>Margin</b><span class="en"></span></td><td>Collateral the broker requires you to set aside for short positions or borrowing.</td></tr>
+            <tr><td><b>Maintenance margin</b><span class="en"></span></td><td>The minimum margin you must keep while you hold a position.</td></tr>
+            <tr><td><b>Margin call</b><span class="en"></span></td><td>The broker's demand to add funds or reduce positions when the account falls below maintenance margin.</td></tr>
+            <tr><td><b>Portfolio margin</b><span class="en"></span></td><td>Margin calculated from stress tests on the whole portfolio; the account requirements are higher, and so is the leverage available.</td></tr>
+            <tr><td><b>Buying power</b><span class="en"></span></td><td>The amount the account can currently use to open new positions.</td></tr>
+            <tr><td><b>Options approval level</b><span class="en"></span></td><td>The range of options strategies a broker approves you to trade, based on your experience and assets.</td></tr>
+            <tr><td><b>Defined risk</b><span class="en"></span></td><td>A structure whose maximum loss is known when you open it, such as spreads and iron condors.</td></tr>
+            <tr><td><b>Undefined risk</b><span class="en"></span></td><td>A structure whose theoretical loss is unlimited or very large, such as naked short calls and short straddles.</td></tr>
+            <tr><td><b>Max loss</b><span class="en"></span></td><td>A position's loss in the worst case; the basis for sizing the position.</td></tr>
+            <tr><td><b>Stress test</b><span class="en"></span></td><td>Repricing under assumed price and IV scenarios to see how much the portfolio would lose.</td></tr>
+            <tr><td><b>Tail risk</b><span class="en"></span></td><td>The risk of extreme moves that are unlikely but cause very large losses.</td></tr>
+            <tr><td><b>Gap risk</b><span class="en"></span></td><td>The risk that the price jumps sharply between trades (overnight, for example) before you can adjust.</td></tr>
+            <tr><td><b>Pin risk</b><span class="en"></span></td><td>The risk, when the stock is right at the strike at expiration, of not knowing whether you will be exercised or assigned.</td></tr>
+            <tr><td><b>Liquidity risk</b><span class="en"></span></td><td>The risk of not being able to get in or out at a reasonable price because spreads are too wide or trading is thin.</td></tr>
+            <tr><td><b>Expectancy</b><span class="en">Expected value</span></td><td>Win rate × avg win − loss rate × avg loss; worth trading only if it is positive after costs.</td></tr>
+            <tr><td><b>Kelly criterion</b><span class="en"></span></td><td>The bet size that maximizes long-run growth; in practice traders usually use only a quarter to a half of it.</td></tr>
+            <tr><td><b>Maximum drawdown</b><span class="en"></span></td><td>The largest drop in the account from a peak to a later low.</td></tr>
+            <tr><td><b>Trading journal</b><span class="en"></span></td><td>A record of each trade's reasons, execution, result and attribution.</td></tr>
+            <tr><td><b>Limit order</b><span class="en"></span></td><td>An order that sets the highest price you will pay or the lowest you will accept; the default when trading options.</td></tr>
+            <tr><td><b>Multi-leg order</b><span class="en">Combo order</span></td><td>Fills all the legs of a spread together as a single order, avoiding the risk of only one leg filling.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="b">
+      <h2><span class="sn">B</span>Strategy quick reference</h2>
+      <p>24 structures, in the order they first appear in the course. The table is wide: swipe left and right, and the first column stays put. All profits and losses are per share; multiply by 100 for one set of contracts.</p>
+      <div class="note">
+        <span class="tag">Notation</span>
+        <ul>
+          <li>K₁ &lt; K₂ &lt; K₃ &lt; K₄ are strikes; S₀ is the cost of the stock you bought.</li>
+          <li>D is the net premium paid to open (net debit) and C the net premium received to open (net credit); N is the net cost, positive if paid and negative if received.</li>
+          <li>The View column reads: direction · volatility · whether the passage of time helps you.</li>
+          <li>The two legs of calendars and diagonals expire on different dates, so their max profit and breakeven have to be repriced using the remaining value of the back-month option; see the charts in Section C.</li>
+        </ul>
+      </div>
+      <div class="tbl qref">
+        <table>
+          <caption>Table B-1 Strategy quick reference (per share; profit and loss limits at expiry)</caption>
+          <thead><tr><th>Structure</th><th>Construction</th><th>View (direction · vol · time)</th><th>Max profit</th><th>Max loss</th><th>Breakeven</th><th>Suits this IV environment</th><th>Chapter</th></tr></thead>
+          <tbody>
+            <tr><td><b>Long call</b></td><td>Buy call K</td><td>Up · rising · hurts</td><td class="mono">Unlimited</td><td class="mono">D</td><td class="mono">K + D</td><td>IV low; expected move underpriced</td><td class="mono"><a href="ch07.html">7</a></td></tr>
+            <tr><td><b>Long put</b></td><td>Buy put K</td><td>Down · rising · hurts</td><td class="mono">K − D</td><td class="mono">D</td><td class="mono">K − D</td><td>IV low; also works as a hedge</td><td class="mono"><a href="ch07.html">7</a></td></tr>
+            <tr><td><b>Bull call spread</b></td><td>Buy call K₁, sell call K₂</td><td>Up · minor · hurts</td><td class="mono">K₂ − K₁ − D</td><td class="mono">D</td><td class="mono">K₁ + D</td><td>Better value than a long call when IV is average or high</td><td class="mono"><a href="ch07.html">7</a></td></tr>
+            <tr><td><b>Bear put spread</b></td><td>Buy put K₂, sell put K₁</td><td>Down · minor · hurts</td><td class="mono">K₂ − K₁ − D</td><td class="mono">D</td><td class="mono">K₂ − D</td><td>The short leg is worth more when skew is steep</td><td class="mono"><a href="ch07.html">7</a></td></tr>
+            <tr><td><b>LEAPS as stock replacement</b></td><td>Buy deep ITM call K, more than a year out</td><td>Long-term up · rising · hurts slightly</td><td class="mono">Unlimited</td><td class="mono">D</td><td class="mono">K + D</td><td>Buy when IV is low</td><td class="mono"><a href="ch07.html">7</a></td></tr>
+            <tr><td><b>Naked short call</b></td><td>Sell call K</td><td>Not up · falling · helps</td><td class="mono">C</td><td class="mono">Unlimited</td><td class="mono">K + C</td><td>IV high; needs the highest approval level; not recommended</td><td class="mono"><a href="ch08.html">8</a></td></tr>
+            <tr><td><b>Cash-secured put</b></td><td>Sell put K, hold 100 × K in cash</td><td>Not down · falling · helps</td><td class="mono">C</td><td class="mono">K − C</td><td class="mono">K − C</td><td>IV high, and you're willing to buy at K</td><td class="mono"><a href="ch08.html">8</a></td></tr>
+            <tr><td><b>Covered call</b></td><td>Own 100 shares (cost S₀), sell call K</td><td>Mildly up · falling · helps</td><td class="mono">K − S₀ + C</td><td class="mono">S₀ − C</td><td class="mono">S₀ − C</td><td>IV high; you own the stock but accept having it called away</td><td class="mono"><a href="ch08.html">8</a></td></tr>
+            <tr><td><b>Bull put spread</b></td><td>Sell put K₂, buy put K₁</td><td>Not down · falling · helps</td><td class="mono">C</td><td class="mono">K₂ − K₁ − C</td><td class="mono">K₂ − C</td><td>IV high</td><td class="mono"><a href="ch08.html">8</a></td></tr>
+            <tr><td><b>Bear call spread</b></td><td>Sell call K₁, buy call K₂</td><td>Not up · falling · helps</td><td class="mono">C</td><td class="mono">K₂ − K₁ − C</td><td class="mono">K₁ + C</td><td>IV high</td><td class="mono"><a href="ch08.html">8</a></td></tr>
+            <tr><td><b>Long straddle</b></td><td>Buy call K, buy put K</td><td>Big move · rising · hurts</td><td class="mono">Unlimited on the upside; K − D on the downside</td><td class="mono">D</td><td class="mono">K − D and K + D</td><td>IV below the realized volatility you expect</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>Short straddle</b></td><td>Sell call K, sell put K</td><td>Flat · falling · helps</td><td class="mono">C</td><td class="mono">Unlimited</td><td class="mono">K − C and K + C</td><td>IV clearly high; needs strict risk control</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>Long strangle</b></td><td>Buy call K₂, buy put K₁</td><td>Big move · rising · hurts</td><td class="mono">Unlimited on the upside; K₁ − D on the downside</td><td class="mono">D</td><td class="mono">K₁ − D and K₂ + D</td><td>IV low, before an event</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>Short strangle</b></td><td>Sell call K₂, sell put K₁</td><td>Range-bound · falling · helps</td><td class="mono">C</td><td class="mono">Unlimited</td><td class="mono">K₁ − C and K₂ + C</td><td>IV high</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>Iron condor</b></td><td>Buy K₁ put, sell K₂ put, sell K₃ call, buy K₄ call</td><td>Range-bound · falling · helps</td><td class="mono">C</td><td class="mono">Width of the wider side − C</td><td class="mono">K₂ − C and K₃ + C</td><td>IV high, no event during the trade</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>Iron butterfly</b></td><td>Buy K₁ put, sell K₂ put and K₂ call, buy K₃ call</td><td>Flat · falling · helps</td><td class="mono">C</td><td class="mono">Width of the wider side − C</td><td class="mono">K₂ − C and K₂ + C</td><td>IV high; betting the stock pins at K₂</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>Long call butterfly</b></td><td>Buy K₁ call, sell 2 K₂ calls, buy K₃ call (equally spaced)</td><td>Pinned at K₂ · falling · helps near expiry</td><td class="mono">K₂ − K₁ − D</td><td class="mono">D</td><td class="mono">K₁ + D and K₃ − D</td><td>A low-cost bet on a target price</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>Calendar spread</b></td><td>Sell front-month K, buy back-month K</td><td>Flat · back-month IV rising · helps</td><td class="mono">Largest with the stock near K at front-month expiry; depends on back-month IV</td><td class="mono">About D (more if back-month IV drops sharply)</td><td class="mono">Reprice using the back month's value</td><td>Front-month IV above back-month</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>Diagonal spread</b></td><td>Buy back-month K₁, sell front-month K₂</td><td>Mildly up · rising · helps</td><td class="mono">Depends on back-month IV</td><td class="mono">About D</td><td class="mono">Needs repricing</td><td>Back-month IV not expensive</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>1×2 ratio spread</b></td><td>Buy call K₁, sell 2 calls K₂ (net cost N)</td><td>Mildly up · falling · helps</td><td class="mono">K₂ − K₁ − N (stock at K₂)</td><td class="mono">Unlimited on the upside</td><td class="mono">If N &gt; 0, K₁ + N below; 2K₂ − K₁ − N above</td><td>IV high, skew steep</td><td class="mono"><a href="ch09.html">9</a></td></tr>
+            <tr><td><b>Protective put</b></td><td>Own 100 shares (cost S₀), buy put K</td><td>Long stock, hedged · rising · hurts</td><td class="mono">Unlimited</td><td class="mono">S₀ − K + D</td><td class="mono">S₀ + D</td><td>Better value before events and when IV is low</td><td class="mono"><a href="ch11.html">11</a></td></tr>
+            <tr><td><b>Collar</b></td><td>Own stock, buy put K₁, sell call K₂ (net cost N)</td><td>Long stock · minor · minor</td><td class="mono">K₂ − S₀ − N</td><td class="mono">S₀ − K₁ + N</td><td class="mono">S₀ + N</td><td>With steep skew the call brings in less and the put costs more</td><td class="mono"><a href="ch11.html">11</a></td></tr>
+            <tr><td><b>Risk reversal</b></td><td>Sell put K₁, buy call K₂ (net cost N)</td><td>Up · trades skew · minor</td><td class="mono">Unlimited</td><td class="mono">K₁ + N</td><td class="mono">K₂ + N if N ≥ 0; K₁ − |N| for a net credit</td><td>Can open for a net credit when skew is steep</td><td class="mono"><a href="ch11.html">11</a></td></tr>
+            <tr><td><b>Synthetic long</b></td><td>Buy call K, sell put K (net cost N)</td><td>Up · neutral · neutral</td><td class="mono">Unlimited</td><td class="mono">K + N</td><td class="mono">K + N</td><td>Replaces owning the stock; ties up margin</td><td class="mono"><a href="ch03.html">3</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Three reminders for using the table. For any structure with “Unlimited” in the max loss column, you must have a clear stop-loss and a stress test before you trade (Chapter 13). The IV environment is only a leaning, not a reason to open a trade; that reason has to come from your own three signs (Chapter 14). The same structure can flip the signs of its Vega and Theta at different strikes; see the summary table in Chapter 16.</p>
+    </section>
+
+    <section id="c">
+      <h2><span class="sn">C</span>Payoff diagram atlas</h2>
+      <p>Payoff diagrams at expiry for 18 common structures, all with the same parameters: stock at 100, 30 days, IV 25%, 4% rate, strikes at 90, 95, 100, 105 and 110. The calendar spread shows P&amp;L at front-month expiry (with 30 days left on the back month, priced at IV 25%). The premiums and the figures under each chart are computed live with Black-Scholes.</p>
+      <p class="legend" style="margin-top: 0"><span><i style="border-color: var(--delta)"></i>P&amp;L at expiry (per share)</span><span><i style="border-color: var(--theta); opacity: .5"></i>Profit zone</span><span><i style="border-color: var(--gamma); opacity: .5"></i>Loss zone</span><span><i class="dash" style="border-color: var(--muted)"></i>Current price 100</span></p>
+      <div class="atlas" id="atlas"></div>
+      <div class="note">
+        <span class="tag">How to read these charts</span>
+        <ul>
+          <li>Start with the ends: if the line keeps falling at the right or left end, the loss is unlimited.</li>
+          <li>Then the slope: a slope of +1 on the right is like holding 100 shares, −1 is like being short 100 shares, and 0 means that side is capped.</li>
+          <li>Finally the kinks: every kink is a strike. The more kinks, the more the structure depends on the stock staying within a particular range.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="d">
+      <h2><span class="sn">D</span>Four templates</h2>
+      <p>These four templates correspond to the “four deliverables” described in Chapter 16. They are plain text and can be pasted into any notes app or spreadsheet. Click “Copy template”; if the browser won't allow copying, the text is selected automatically and you just press Ctrl + C (⌘ + C on a Mac).</p>
+      <div class="tpl">
+        <div class="tpl-head"><h3><span class="num">D.1</span>Strategy selection matrix</h3><button type="button" class="btn copy" data-target="tpl1">Copy template</button></div>
+        <p class="tpl-use"><span class="meta">Chapter 14</span>Fill one in before every order. Write the three signs first, then pick 2–3 candidates from the matrix and choose among them by maximum loss.</p>
+        <pre class="code" id="tpl1">STRATEGY SELECTION MATRIX  (write the three signs first, then find a structure)
+Underlying: ________  Date: ________
+IV / IV Rank: ____ / ____  Days to next event: ____
+
+1. My view (pick one per line)
+  Direction:  [ ] Up  [ ] Down  [ ] Flat  [ ] Big move, direction unclear
+  Volatility: [ ] Will rise (IV low)  [ ] Will fall (IV high)  [ ] No view
+  Time:       [ ] Plays out within 2 weeks  [ ] 1–3 months  [ ] 6 months or more
+  Three signs: direction __ / time __ / volatility __
+
+2. Check the matrix (direction × IV environment)
+  Bullish + IV low:    long call, bull call spread, LEAPS
+  Bullish + IV high:   cash-secured put, bull put spread
+  Bearish + IV low:    long put, bear put spread
+  Bearish + IV high:   bear call spread; add a collar if you own the stock
+  Flat + IV low:       calendar spread (when the back month is cheap)
+  Flat + IV high:      iron condor, iron butterfly, butterfly (defined risk first)
+  Big move + IV low:   long straddle, long strangle
+  Big move + IV high:  usually no trade; sellers are most at risk in a big move
+
+3. Candidate structures
+  Candidate 1: ____________  Signs: __/__/__
+               Max loss $____  Max profit $____  Breakeven ____
+  Candidate 2: ____________  Signs: __/__/__
+               Max loss $____  Max profit $____  Breakeven ____
+  Candidate 3: ____________  Signs: __/__/__
+               Max loss $____  Max profit $____  Breakeven ____
+
+4. Decision
+  Chosen: ____________
+  Reason (one sentence): ______________________________
+  If the view is wrong, where I admit it: ____________</pre>
+      </div>
+      <div class="tpl">
+        <div class="tpl-head"><h3><span class="num">D.2</span>Position rules card</h3><button type="button" class="btn copy" data-target="tpl2">Copy template</button></div>
+        <p class="tpl-use"><span class="meta">Chapter 13</span>Write it once and review it every 90 days; any change must state its reason. Check it line by line before every order and every addition to a position.</p>
+        <pre class="code" id="tpl2">POSITION RULES CARD  (review every 90 days; any change needs a written reason)
+Account equity: $________  Effective date: ________
+
+1. Per trade
+  Max loss per trade ≤ ___% of the account (1% while practicing, 2% cap)
+  Buyers: max loss = premium paid
+  Sellers: defined-risk structures only; max loss = width − credit received
+  Exit: at ___% of max loss, or ___ days before expiration, whichever comes first
+
+2. Portfolio
+  Open positions ≤ ___
+  Total max loss of all positions ≤ ___% of the account
+  Total beta-weighted Delta ≤ ___ SPY share equivalents
+  Portfolio Vega ≤ $____ / point; portfolio Theta ≥ −$____ / day
+  Positions tied to the same event (earnings, FOMC, CPI) count as one
+
+3. Stress tests (before every order, and once a week)
+  Underlying ±1 and ±2 standard deviations: portfolio loss ≤ ___%
+  Underlying −10% and IV +10 points: portfolio loss ≤ ___%
+
+4. Stop rules
+  Daily loss ≥ ___%: no new positions for the rest of the day
+  Monthly loss ≥ ___% or ___ rule violations: back to paper trading for two weeks
+  When you want to “win it back fast”: cut size first, decide the next day
+
+This change and the reason for it: ________________________________</pre>
+      </div>
+      <div class="tpl">
+        <div class="tpl-head"><h3><span class="num">D.3</span>Options trading journal</h3><button type="button" class="btn copy" data-target="tpl3">Copy template</button></div>
+        <p class="tpl-use"><span class="meta">Chapters 14, 15</span>One per trade. Finish the plan section before the order and the review section on the day you close. Be sure to flag the trades that “made money but were done wrong.”</p>
+        <pre class="code" id="tpl3">OPTIONS TRADING JOURNAL  No.: ____
+Open date: ________  Underlying: ____  Price: ____
+IV / IV Rank: ____ / ____  Next event: ________
+
+1. Plan (write before the order)
+  View (one sentence): ______________________________
+  Three signs: direction __ / time __ / volatility __
+  Structure and legs: __________________________________
+  Net premium: ____  Max profit: ____
+  Max loss: ____  Breakeven: ____
+  Delta / Theta / Vega: ____ / ____ / ____
+  Account at risk: ___% (rules card cap ___%)
+  Take-profit: ________  Stop-loss: ________  Time stop: ________
+
+2. Execution
+  Fill price: ____  Mid at the time: ____  Slippage: ____
+  Adjustments (date, action, reason):
+    ________________________________________
+
+3. Result (write after closing)
+  Close date: ________  Close price: ____
+  P&amp;L: $____ (____× risk)  Days held: ____
+  Change in underlying: ____  Change in IV: ____
+
+4. Review
+  Attribution: [ ] Judgment error  [ ] Execution error  [ ] Risk-control error  [ ] Normal variance
+  What I did right: __________________________________
+  What I did wrong: __________________________________
+  Made money but did it wrong?  [ ] Yes  [ ] No
+  Next time: __________________________________</pre>
+      </div>
+      <div class="tpl">
+        <div class="tpl-head"><h3><span class="num">D.4</span>Event calendar and IV dashboard</h3><button type="button" class="btn copy" data-target="tpl4">Copy template</button></div>
+        <p class="tpl-use"><span class="meta">Chapters 6, 10</span>Update the dashboard at each day's close, and the events for the next 8 weeks every Sunday. Use a single data source so the numbers are comparable.</p>
+        <pre class="code" id="tpl4">EVENT CALENDAR AND IV DASHBOARD  Week: ________  Data source: ________
+
+1. IV dashboard (update at each close)
+  Underlying | Price | ATM IV | IV Rank | 30-day expected move | 20-day realized vol | IV − realized
+  SPY        |       |        |         |                      |                     |
+  QQQ        |       |        |         |                      |                     |
+  ____       |       |        |         |                      |                     |
+  ____       |       |        |         |                      |                     |
+  ____       |       |        |         |                      |                     |
+  Expected move = price × IV × √(days / 365)
+
+2. Term structure (once a week)
+  Underlying: ____  Front-month IV: ____  Next-month IV: ____
+  Forward volatility = √((σ2² × T2 − σ1² × T1) / (T2 − T1)): ____
+  Shape: [ ] Contango  [ ] Inverted (reason: ________)
+
+3. Events in the next 8 weeks
+  Date | Event | Related underlyings | Implied move | Avg actual move, past 8
+  ____ | _____ | ___________________ | ____________ | _______________________
+  ____ | _____ | ___________________ | ____________ | _______________________
+  ____ | _____ | ___________________ | ____________ | _______________________
+  Event types: earnings / FOMC / CPI / jobs / options expiration / other
+
+4. This week's conclusions
+  Most expensive IV: ________  Cheapest: ________
+  Events worth preparing for: ________
+  Positions to cut ahead of time: ________</pre>
+      </div>
+    </section>
+
+    <section id="e">
+      <h2><span class="sn">E</span>Data sources and tools</h2>
+      <p>Below are only common categories and well-known public tools, with what each is good for. A listing is not a recommendation. Only the main domain is given; check it yourself before use. Fees and features change.</p>
+      <div class="grid2">
+        <div class="tile src">
+          <h4>Broker platforms</h4>
+          <p class="meta">Orders, real-time option chains, portfolio Greeks, P&amp;L analysis</p>
+          <ul>
+            <li><b>Interactive Brokers</b> <span class="dom">interactivebrokers.com</span><br><span class="desc">Broad product coverage, low costs and a full set of options analytics</span></li>
+            <li><b>Charles Schwab (thinkorswim platform)</b> <span class="dom">schwab.com</span><br><span class="desc">thinkorswim's Analyze tab can draw multi-leg payoff diagrams and run price and IV scenarios</span></li>
+            <li><b>Fidelity</b> <span class="dom">fidelity.com</span><br><span class="desc">A full-service broker with option chains and strategy analysis</span></li>
+            <li><b>tastytrade</b> <span class="dom">tastytrade.com</span><br><span class="desc">An options-focused broker whose interface is built around IV Rank and defined-risk strategies</span></li>
+          </ul>
+          <p class="tip">When choosing a broker, compare commissions and fees per contract, the requirements for each options approval level, support for multi-leg and conditional orders, and whether you can see Delta, Theta and Vega at the portfolio level.</p>
+        </div>
+        <div class="tile src">
+          <h4>Exchanges, clearing and education</h4>
+          <p class="meta">Contract specifications, rules, risk disclosures</p>
+          <ul>
+            <li><b>Cboe</b> <span class="dom">cboe.com</span><br><span class="desc">Contract specifications for SPX, XSP, VIX and other options; VIX methodology and historical data</span></li>
+            <li><b>OCC (Options Clearing Corporation)</b> <span class="dom">theocc.com</span><br><span class="desc">The disclosure document “Characteristics and Risks of Standardized Options,” which you should read before applying for options approval; volume statistics</span></li>
+            <li><b>Options Industry Council (OIC)</b> <span class="dom">optionseducation.org</span><br><span class="desc">Free courses on options basics, strategy guides and calculators</span></li>
+            <li><b>CME Group</b> <span class="dom">cmegroup.com</span><br><span class="desc">Contract specifications for futures and options on futures; the FedWatch tool shows market-implied probabilities for rate decisions</span></li>
+          </ul>
+          <p class="tip">The exchange's published specifications are what count: multiplier, exercise style, settlement method, last trading day.</p>
+        </div>
+        <div class="tile src">
+          <h4>Option chains and IV data</h4>
+          <p class="meta">Rich or cheap, open interest, historical IV</p>
+          <ul>
+            <li><b>Your broker's platform</b><br><span class="desc">Real-time data is most reliable here; most platforms show IV Rank, term structure and skew charts</span></li>
+            <li><b>Barchart</b> <span class="dom">barchart.com</span><br><span class="desc">Option chains, IV Rank, open interest and unusual volume; some features are free</span></li>
+            <li><b>Yahoo Finance</b> <span class="dom">finance.yahoo.com</span><br><span class="desc">Free option chains and quotes; the data is delayed, but it's fine for practice reading chains</span></li>
+          </ul>
+          <p class="tip">Data sources define IV differently: which expiration, whether it is interpolated to 30 days, whether it uses mid prices or last trades. Always compare using the same source.</p>
+        </div>
+        <div class="tile src">
+          <h4>Financial calendars</h4>
+          <p class="meta">Primary sources for the event calendar</p>
+          <ul>
+            <li><b>Federal Reserve</b> <span class="dom">federalreserve.gov</span><br><span class="desc">FOMC meeting schedule, statements and minutes</span></li>
+            <li><b>Bureau of Labor Statistics (BLS)</b> <span class="dom">bls.gov</span><br><span class="desc">Release schedules for CPI, PPI and nonfarm payrolls</span></li>
+            <li><b>Bureau of Economic Analysis (BEA)</b> <span class="dom">bea.gov</span><br><span class="desc">Release schedules for the PCE price index and GDP</span></li>
+            <li><b>Nasdaq earnings calendar</b> <span class="dom">nasdaq.com</span><br><span class="desc">Look up companies reporting earnings by date</span></li>
+            <li><b>Company investor relations pages</b><br><span class="desc">The company's official announcement is what counts for earnings dates; third-party calendars may show estimates</span></li>
+          </ul>
+          <p class="tip">Earnings dates often appear first as “estimated” and later as “confirmed.” Use only confirmed dates for event trades.</p>
+        </div>
+        <div class="tile src">
+          <h4>Macro and company data</h4>
+          <p class="meta">Rates, inflation, filings</p>
+          <ul>
+            <li><b>FRED</b> <span class="dom">fred.stlouisfed.org</span><br><span class="desc">Macro time series for rates, inflation, employment and more, including VIX history</span></li>
+            <li><b>US Treasury</b> <span class="dom">treasury.gov</span><br><span class="desc">Treasury yield curve data</span></li>
+            <li><b>SEC EDGAR</b> <span class="dom">sec.gov</span><br><span class="desc">Official company filings such as the 10-K, 10-Q and 8-K</span></li>
+          </ul>
+          <p class="tip">For macro data, look at “actual − forecast”: markets react most to the surprise.</p>
+        </div>
+        <div class="tile src">
+          <h4>Payoff diagrams, pricing and backtesting</h4>
+          <p class="meta">Simulation before the trade, statistics after it</p>
+          <ul>
+            <li><b>OptionStrat</b> <span class="dom">optionstrat.com</span><br><span class="desc">Draws payoff diagrams for multi-leg structures online; you can change the date and IV</span></li>
+            <li><b>Broker analysis tools</b><br><span class="desc">Such as thinkorswim's Analyze tab and Interactive Brokers' options analysis tools, which run scenarios directly on your positions</span></li>
+            <li><b>Python</b> <span class="dom">python.org</span><br><span class="desc">With NumPy and pandas, use this course's Black-Scholes formulas to do your own pricing, stress tests and Monte Carlo simulations</span></li>
+            <li><b>QuantLib</b> <span class="dom">quantlib.org</span><br><span class="desc">An open-source financial pricing library, good for studying American, barrier and other options once you're more advanced</span></li>
+            <li><b>Your own trading journal</b><br><span class="desc">The most important backtest data: only it reflects your real execution, slippage and discipline</span></li>
+          </ul>
+          <p class="tip">Every backtest must deduct slippage and commissions and be checked on out-of-sample data. Treat statistics from fewer than 30 trades as a rough guide only.</p>
+        </div>
+      </div>
+      <div class="note warn">
+        <span class="tag">Three ground rules for data</span>
+        <ul>
+          <li>Use your broker's real-time quotes for order prices; free websites are often delayed 15 minutes or more.</li>
+          <li>The same metric (IV Rank, expected move) can differ from site to site; stick to one source.</li>
+          <li>Any “signal” or “flow” data is an estimate: use it to raise questions, not to replace your judgment.</li>
+        </ul>
+      </div>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="Chapter navigation"></nav>
+
+    <footer class="end">
+      <p>Premiums and P&amp;L in this appendix are calculated with the Black-Scholes model (4% rate, no dividends, 365-day year). They are for teaching only and are not investment advice. The tools and data sources listed are examples of common categories, not recommendations.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+
+  // ---------- A. glossary search ----------
+  (function () {
+    const q = document.getElementById("g-q"), cnt = document.getElementById("g-cnt"), empty = document.getElementById("g-empty");
+    const groups = [...document.querySelectorAll(".gloss")];
+    const total = groups.reduce((s, g) => s + g.querySelectorAll("tbody tr").length, 0);
+    function run() {
+      const words = q.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      let shown = 0;
+      groups.forEach(g => {
+        let n = 0;
+        g.querySelectorAll("tbody tr").forEach(tr => {
+          const t = tr.textContent.toLowerCase();
+          const hit = words.every(w => t.includes(w));
+          tr.hidden = !hit; if (hit) n++;
+        });
+        g.hidden = n === 0; shown += n;
+      });
+      cnt.innerHTML = words.length ? `<b>${shown}</b> of ${total} terms match` : `All <b>${total}</b> terms`;
+      empty.hidden = shown !== 0;
+    }
+    q.addEventListener("input", run);
+    run();
+  })();
+
+  // ---------- C. payoff atlas ----------
+  (function () {
+    const IV = 0.25, S0 = 100;
+    const A = [
+      ["Long call", "+100C", [["c", 100, 30, 1]]],
+      ["Long put", "+100P", [["p", 100, 30, 1]]],
+      ["Short call", "−105C", [["c", 105, 30, -1]]],
+      ["Cash-secured put", "−95P", [["p", 95, 30, -1]]],
+      ["Covered call", "100 shares −105C", [["s", 0, 0, 1], ["c", 105, 30, -1]]],
+      ["Protective put", "100 shares +95P", [["s", 0, 0, 1], ["p", 95, 30, 1]]],
+      ["Collar", "100 shares +95P −105C", [["s", 0, 0, 1], ["p", 95, 30, 1], ["c", 105, 30, -1]]],
+      ["Bull call spread", "+100C −105C", [["c", 100, 30, 1], ["c", 105, 30, -1]]],
+      ["Bear put spread", "+100P −95P", [["p", 100, 30, 1], ["p", 95, 30, -1]]],
+      ["Bull put spread", "−95P +90P", [["p", 95, 30, -1], ["p", 90, 30, 1]]],
+      ["Bear call spread", "−105C +110C", [["c", 105, 30, -1], ["c", 110, 30, 1]]],
+      ["Long straddle", "+100C +100P", [["c", 100, 30, 1], ["p", 100, 30, 1]]],
+      ["Short strangle", "−105C −95P", [["c", 105, 30, -1], ["p", 95, 30, -1]]],
+      ["Iron condor", "+90P −95P −105C +110C", [["p", 90, 30, 1], ["p", 95, 30, -1], ["c", 105, 30, -1], ["c", 110, 30, 1]]],
+      ["Iron butterfly", "+95P −100P −100C +105C", [["p", 95, 30, 1], ["p", 100, 30, -1], ["c", 100, 30, -1], ["c", 105, 30, 1]]],
+      ["Long call butterfly", "+95C −2×100C +105C", [["c", 95, 30, 1], ["c", 100, 30, -2], ["c", 105, 30, 1]]],
+      ["Calendar spread", "−100C +100C (60 days)", [["c", 100, 30, -1], ["c", 100, 60, 1]]],
+      ["1×2 ratio spread", "+100C −2×105C", [["c", 100, 30, 1], ["c", 105, 30, -2]]]
+    ];
+    function value(L, St, days) {
+      let v = 0;
+      L.forEach(([k, K, dte, q]) => {
+        if (k === "s") { v += q * St; return; }
+        const left = dte - days;
+        if (left <= 1e-9) { v += q * (k === "c" ? Math.max(St - K, 0) : Math.max(K - St, 0)); return; }
+        v += q * bs(St, K, left / DAY, IV, k).price;
+      });
+      return v;
+    }
+    function nice(lo, hi, n) {
+      const span = Math.max(hi - lo, 1e-9), raw = span / n;
+      const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+      const step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => s >= raw) || 10 * mag;
+      const a = Math.floor(lo / step) * step, b = Math.ceil(hi / step) * step;
+      const t = []; for (let v = a; v <= b + step * 1e-6; v += step) t.push(+v.toFixed(6));
+      return { lo: a, hi: b, ticks: t };
+    }
+    const f2 = v => v.toFixed(2);
+    const box = document.getElementById("atlas");
+    const items = A.map(([title, legs, L], i) => {
+      const fig = document.createElement("figure");
+      fig.className = "plate";
+      fig.innerHTML = `<div class="fig-head"><span class="fig-title">${title}</span><span class="fig-no">C-${i + 1} · ${legs}</span></div>
+        <svg class="chart" viewBox="0 0 680 210" role="img" aria-label="Payoff at expiry: ${title}"></svg><div class="stats"></div>`;
+      box.appendChild(fig);
+      const svg = fig.querySelector("svg");
+      // stats on a wide grid
+      const optLegs = L.filter(l => l[0] !== "s");
+      const first = Math.min(...optLegs.map(l => l[2]));
+      const cost = value(L, S0, 0);
+      const optCost = optLegs.reduce((s, [k, K, dte, q]) => s + q * bs(S0, K, dte / DAY, IV, k).price, 0);
+      const grid = range(0, 400, 0.05);
+      const pnl = grid.map(S => value(L, S, first) - cost);
+      const n = pnl.length;
+      const slope = (pnl[n - 1] - pnl[n - 2]) / 0.05;
+      const mx = Math.max(...pnl), mn = Math.min(...pnl);
+      const be = [];
+      for (let j = 1; j < n; j++) if ((pnl[j - 1] < 0) !== (pnl[j] < 0)) be.push(grid[j - 1] + (0 - pnl[j - 1]) / (pnl[j] - pnl[j - 1]) * 0.05);
+      const prem = optCost >= 0 ? `Net debit <b>${f2(optCost)}</b>` : `Net credit <b>${f2(-optCost)}</b>`;
+      const maxP = slope > 0.3 ? "<b>Unlimited</b>" : `<b>${f2(mx)}</b>`;
+      const maxL = slope < -0.3 ? "<b>Unlimited</b>" : `<b>${f2(-mn)}</b>`;
+      fig.querySelector(".stats").innerHTML = `${prem} · Max profit ${maxP} · Max loss ${maxL}<br>Breakeven <b>${be.length ? be.map(f2).join(" / ") : "—"}</b>`;
+      const xs = range(75, 125, 0.25);
+      const pts = xs.map(S => [S, value(L, S, first) - cost]);
+      const ys = pts.map(p => p[1]);
+      let lo = Math.min(...ys), hi = Math.max(...ys);
+      const pad = (hi - lo) * 0.1 || 1; lo = Math.min(lo - pad, -0.5); hi = Math.max(hi + pad, 0.5);
+      const ny = nice(lo, hi, 4);
+      const draw = () => plot(svg, {
+        x: [75, 125], y: [ny.lo, ny.hi], xt: [80, 90, 100, 110, 120], yt: ny.ticks,
+        yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v), xlabel: "", ylabel: "", zero: 0, vline: 100,
+        series: [
+          { pts: pts.map(p => [p[0], Math.max(p[1], 0)]), color: "transparent", w: 0, fill: 0, fillColor: "var(--theta)", fillOp: 0.16 },
+          { pts: pts.map(p => [p[0], Math.min(p[1], 0)]), color: "transparent", w: 0, fill: 0, fillColor: "var(--gamma)", fillOp: 0.14 },
+          { pts, color: "var(--delta)", w: 2.6 }
+        ]
+      });
+      return draw;
+    });
+    items.forEach(d => CK.figure(d));
+  })();
+
+  // ---------- D. copy buttons ----------
+  (function () {
+    function selectText(node) {
+      const r = document.createRange(); r.selectNodeContents(node);
+      const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    }
+    document.querySelectorAll(".btn.copy").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const pre = document.getElementById(btn.dataset.target);
+        const text = pre.textContent;
+        let ok = false;
+        try {
+          if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(text); ok = true; }
+        } catch (e) { ok = false; }
+        if (!ok) {
+          try { selectText(pre); ok = document.execCommand("copy"); if (ok) window.getSelection().removeAllRanges(); } catch (e) { ok = false; }
+        }
+        if (ok) {
+          btn.dataset.state = "ok"; btn.textContent = "Copied";
+        } else {
+          selectText(pre); btn.dataset.state = "sel"; btn.textContent = "Selected; press Ctrl/⌘ + C";
+        }
+        clearTimeout(btn._t);
+        btn._t = setTimeout(() => { btn.dataset.state = ""; btn.textContent = "Copy template"; }, 2600);
+      });
+    });
+  })();
+})();
+</script>
+<script id="lang-js">(function(){document.querySelectorAll(".lang-switch").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("hl-lang",a.getAttribute("data-lang"))}catch(e){}var h=a.getAttribute("href");if(location.hash&&h.indexOf("#")<0)a.setAttribute("href",h+location.hash);});});})();</script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+@@ fc615434bf html
+<span class="num">9-3</span>Choosing a structure: iron condors and butterflies
+@@ eb73f8ff0b html
+Short-leg Delta 0.10–0.20; write down both breakevens
+@@ 9ae5c28142 html
+Work back from the maximum-loss budget to the wing width; contracts = budget ÷ max loss per contract
+@@ 9eb23ef8eb html
+Write down in advance the short-leg Delta at which you will deal with the tested side
+@@ 6777393443 html
+<span class="num">9-4</span>Calendars and events
+@@ 4dac276776 html
+Write down front-month and back-month IV and your post-earnings assumptions
+@@ fa6085bc6a html
+Compute the P&amp;L for three stock prices × two back-month IVs
+@@ 0142a6da1b html
+When you exit, close the whole combination together; don’t cut one leg on its own
+@@ a6f5d33bbc html
+Five self-test questions
+@@ 236ba6f2af html
+<span class="num">1</span><span>The stock is at $200 and IV is 40%. Roughly what does a 30-day ATM straddle cost? How far does the stock have to move for you to break even?</span>
+@@ 3745274619 html
+Mental math: <span class="num">0.8 × 200 × 0.40 × √(30/365) = 18.35</span>; Black-Scholes gives 18.27. At expiry the stock has to be about ±$18.3 away from 200, or ±9.1%, for the buyer to make money.
+@@ da2320ac2a html
+<span class="num">2</span><span>You buy a 30-day 95/105 strangle for 3.00. Where are the breakevens? If you think realized volatility will be only 25%, is the expectancy positive or negative?</span>
+@@ 25dcffb733 html
+The breakevens are <span class="num">95 − 3.00 = 92.00</span> and <span class="num">105 + 3.00 = 108.00</span>. Realized volatility of 25% is below the 30% IV you bought at, so the expectancy is negative: about −$93 per contract in Table 9-2.
+@@ 449724d83b html
+<span class="num">3</span><span>You sell the 86/91/112/117 iron condor for 1.13. What is the maximum loss? If your account allows a maximum loss of $2,000 per trade, how many contracts can you sell?</span>
+@@ 4b8ee45fb4 html
+The maximum loss is <span class="num">5 − 1.13 = 3.87</span>, or $387 per contract. <span class="num">2,000 ÷ 387 = 5.2</span>, so 5 contracts at most.
+@@ 7c6d053ccd html
+<span class="num">4</span><span>Over the past year a stock’s IV ranged from 18% to 60%, and it is now 45%; 20-day realized volatility is 30%; the term structure is steeply upward-sloping. Scored with Table 9-6, does it lean toward buying or selling volatility?</span>
+@@ d27ca7859a html
+IV Rank = <span class="num">(45 − 18) ÷ (60 − 18) = 64.3%</span>, +1 for sellers; realized ÷ implied = <span class="num">30 ÷ 45 = 0.67</span>, +1 for sellers (you still need to confirm it has held for more than a week); steeply upward-sloping term structure, +1 for sellers. A seller total of +3 leans toward selling volatility: use a defined-risk structure, and first confirm there is no unpriced event coming up.
+@@ 0975911182 html
+<span class="num">5</span><span>10 contracts of a 30-day ATM straddle (Gamma about 92.5 shares per dollar, stock at 100, bought at 30% IV), delta-hedged. If realized volatility is 35%, how much do you expect to make per day?</span>
+@@ 5df373b29b html
+<span class="num">½ × 92.5 × 100² × (0.35² − 0.30²) ÷ 365 = ½ × 92.5 × 10,000 × 0.0325 ÷ 365 ≈ $41.2</span>. It is 0 when realized volatility equals 30%, and negative below 30%.
+@@ b15402bc13 html
+The examples in this chapter are computed with the Black-Scholes model (4% rate, no dividends, 365-day year) and the IV assumptions and simulations stated in the text. They are for teaching and are not investment advice.
+@@ a70e23cc3d text
+US Options
+@@ 875f2902a9 text
+Course
+@@ 9aedd3e27d text
+US Options Course · Part 3 Strategies · Chapter 9
+@@ d88f79cfb4 text
+ATM straddle price
+@@ f9fe4286ba text
+The shape of a multi-leg structure decides where you make money and where you lose it
+@@ beba9e2950 text
+Figure 9-1 · Payoff diagram builder
+@@ be67428bf2 text
+Structure
+@@ b60f658c58 text
+P&amp;L at expiry (calendar: at front-month expiry)
+@@ b7c4a55ff6 text
+Current P&amp;L (after days elapsed and IV change)
+@@ d916ec3acb text
+Net premium (per contract)
+@@ 4eabd6c55c text
+Max profit / max loss at expiry
+@@ 0322e678a5 text
+Breakevens at expiry
+@@ 72cadcd46d text
+Current Θ / day, Vega / point (per contract)
+@@ 899a0b6dd8 text
+A straddle’s breakevens are the average move the market is quoting
+@@ f9d5955f50 text
+Figure 9-2 · Long ATM straddle, P&amp;L at expiry (per contract)
+@@ 572ffc6904 text
+P&amp;L at expiry
+@@ d2e298735a text
+Distribution of the move at expiry, at realized volatility (height illustrative only)
+@@ 9482268d00 text
+±1 standard deviation at IV
+@@ 7babbac023 text
+Straddle cost (% of stock price)
+@@ e1b24b339d text
+Move needed to break even
+@@ fe023bf7f1 text
+Buyer’s probability of profit (at realized volatility)
+@@ 17b56ac7bd text
+Buyer’s expectancy (per contract)
+@@ 8c0bad6d1a text
+Iron condor max loss
+@@ a95c89ced2 text
+wing width
+@@ 299e248ee8 text
+premium received&nbsp;&nbsp;&nbsp;&nbsp;Breakeven
+@@ 312c8e4eeb text
+short put
+@@ 7c118f53e0 text
+short call
+@@ aa7ddb9b55 text
+expiry
+@@ c770c6c2c8 text
+normal
+@@ bf9239f705 text
+Earnings calendars win on “small moves” and lose on big moves and back-month IV crush
+@@ c76b8ab8b5 text
+Figure 9-3 · Sell 7-day / buy 35-day 100 call, per contract
+@@ a74a5f3438 text
+At the selected back-month IV
+@@ 7e853fe2ce text
+Back-month IV doesn’t fall (stays at 37.6%)
+@@ 15202ffe3c text
+Move implied by the front-month straddle, ±6.5%
+@@ 9a28fff4fb text
+Entry cost (debit)
+@@ 7aed98739c text
+P&amp;L if the stock doesn’t move
+@@ a1de8559b0 text
+Profit zone
+@@ 4ab5c93648 text
+Max loss within the range
+@@ a1aa21848e text
+In practice
+@@ 79ee3b455a text
+Current IV
+@@ 4bdc8ab5d0 text
+Lowest IV in the past year
+@@ 9a4f3ed4a7 text
+Highest IV in the past year
+@@ 8e607851d1 text
+Only two cells have a “tailwind”; the other two call for waiting
+@@ fc2974109a text
+Figure 9-4 · Decision matrix for buying and selling volatility
+@@ 77c18b5780 text
+Daily hedged P&amp;L
+@@ 396bdd8e64 text
+realized
+@@ a679d3c9e4 text
+implied
+@@ 046dfb89e4 text
+Case 1
+@@ 411ced42ca text
+Case 2
+@@ f24f21ec35 text
+Key points
+@@ 81acdd30ad text
+Case 3
+@@ 5205b402f9 attr
+Jump to chapter
+@@ ae78ea9525 attr
+In this chapter
+@@ 05bf9e70a6 attr
+Direction
+@@ 0e521b5e07 attr
+Expiry and current P&L of multi-leg strategies
+@@ cdfcb20855 attr
+Straddle breakevens and the expected move
+@@ a294869f17 attr
+Evaluation time
+@@ e02e6254d2 attr
+Earnings calendar spread P&L across stock prices
+@@ cc8ad9dc97 attr
+Four quadrants by IV Rank and realized minus implied volatility
+@@ f0852d355e attr
+Chapter navigation
+@@ bb365ec354 js
+Strike distance ±
+@@ 78ba46297a js
+Wing width
+@@ e5324a09c7 js
+(not used here)
+@@ c87f6311bf js
+ days
+@@ f485df2f3e js
+ points
+@@ 34ae6467e4 js
+Stock price ($)
+@@ 1062b5c10a js
+P&L per contract ($)
+@@ 2f485dd0d4 js
+Debit
+@@ 4cd38f62c0 js
+Credit
+@@ 5f07ca4546 js
+Unlimited
+@@ f48563c8b4 js
+None
+@@ bb6a7bf0ab js
+d
+@@ 09f0065cc3 js
+Stock move at expiry
+@@ 4119509faa js
+Stock price after earnings ($)

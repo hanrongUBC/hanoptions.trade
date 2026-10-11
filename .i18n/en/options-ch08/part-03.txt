@@ -1,0 +1,130 @@
+@@ 211aad6b3d html
+Worst 5%
+@@ d597b3abd2 html
+Worst trade
+@@ 577e7cafd1 html
+Avg. hold
+@@ 459d4c27ca html
+Per day held
+@@ 5b7702e873 html
+A: hold to expiry; B: take profits at 50%; C: B plus closing with 21 days left; D: C plus a 2× stop. The spread is repriced daily at IV 30%, and the paths are generated with CK.rng seed 2026, so they are the same every time you open the page. Drag realized volatility to 30% (equal to IV) and all four rules average close to 0 per trade; drag it to 35% and they are all negative. Turn on “With gaps” (a −12% gap once every 250 days on average) and C and D are clearly better than A both in expected value per day held and in the tail.
+@@ 7aa438c75b html
+Table 8-10 Simulation summary (short Δ0.16, per contract)
+@@ f5d86acdac html
+Scenario
+@@ 5b68f3ba4b html
+Realized 25%, no gaps
+@@ 995f1af7fd html
+A hold to expiry
+@@ b3e12fd210 html
+45.0 days
+@@ cd9b3730ee html
+B 50% profit target
+@@ 222cbbce77 html
+18.6 days
+@@ e057396a99 html
+C B + 21 days
+@@ 796698f9d1 html
+14.6 days
+@@ 92697ebc94 html
+D C + 2× stop
+@@ 00e18bd680 html
+13.7 days
+@@ dbf99a4729 html
+Realized 20% + gaps
+@@ f75217196a html
+18.5 days
+@@ f1fa8e9555 html
+14.9 days
+@@ 37354d45dc html
+14.1 days
+@@ 563514fcdb html
+Read this table on three levels.
+@@ ab17c076b1 html
+<strong>Without a volatility premium, rules can't save you</strong>. At 30% realized volatility, the four rules average −$1.3, −$4.9, −$1.2 and −$2.2 per trade, all within random error (standard error about $2–5). Management rules can't turn a zero-expectancy trade into a positive one.
+@@ 214e01b53f html
+<strong>With a premium and no gaps, holding to expiry makes the most per trade</strong>. The rules cut the expected value per trade from $20 to $5–7, and in exchange the holding period drops from 45 days to 14 and the worst 5% improves from −$368 to −$141. Per day held, A and C are about the same.
+@@ 4a29ed4f0b html
+<strong>Only with gaps do the rules show their value</strong>. B and C earn more than 60% more per day held ($0.71 and $0.61) than A ($0.37), with much smaller tails. This is exactly the world the rules were designed for: real markets have gaps; Black-Scholes doesn't.
+@@ 9a5f02dc76 html
+Applies when: the options you sell carry a premium; the market has gaps; the capital freed up by closing can go straight into the next position on the same terms
+@@ d9613b96fe html
+Doesn't apply when: IV is below the realized volatility you expect (there is no premium to collect); the position spans a known event such as earnings (the gap is already in IV, and the rules can't help you); trading costs are high or option bid–ask spreads are wide, so frequent opening and closing eats the edge
+@@ b436af15ae html
+Also note: on a spread, convert the 2× stop using “width − premium”; don't copy the numbers used for naked selling
+@@ 06f7b3bd56 html
+<span class="sn">8.8</span>Position size: size by maximum loss, run a −20% gap test
+@@ e647e67683 html
+A seller's position size is set by “how much could I lose in the worst case,” not by how much premium you collect.
+@@ 2280d74fb2 html
+The same $50,000 account, the same $100 stock, three ways to sell puts; the next day the stock gaps −20% and IV rises to 45%:
+@@ a5e9b5498b html
+Table 8-11 Gap test for three ways of selling puts (30 days to expiry)
+@@ 5ee37a5890 html
+Approach
+@@ 772e245467 html
+Contracts
+@@ fd5af90f74 html
+Premium collected
+@@ 8b1c930e99 html
+Notional risk
+@@ 7a6ad5997b html
+Gap loss
+@@ 9c7f1a92ee html
+% of account
+@@ 9e23bd048e html
+Cash-secured 95 put
+@@ 7795399b6e html
+Assignment cost $47,500
+@@ 3f9c6ce853 html
+Naked 90 put (half the capital as margin)
+@@ 66f15def22 html
+Margin $24,960
+@@ 0d017357d9 html
+95/90 put spread (max loss ≤ 5%)
+@@ 601b85e4d7 html
+Max loss $2,440
+@@ 33d1ed82e5 html
+The premium the three approaches collect differs by less than a factor of two ($560 to $961), but their gap losses differ twelvefold. After the gap, the naked row's margin requirement is $64,285; the account can no longer support it, and the broker will close the position for you.
+@@ 02a158b2df html
+A workable set of sizing rules
+@@ a8e2b89259 html
+<strong>Per-trade cap</strong>: for defined-risk positions, the maximum loss is no more than 2%–5% of the account. For positions without defined risk (naked selling, cash-secured puts), use “the loss in a −20% gap” in place of the maximum loss.
+@@ 93bd91a0dd html
+<strong>Portfolio stress test</strong>: run all your short option positions through one scenario (every underlying −20% at once, IV up to 45% across the board), and keep the combined loss within 15%–20% of the account. Underlyings in the same sector, or ones that are all high-Beta, count as a single position in a gap.
+@@ 4550b26c94 html
+<strong>Work back to the number of contracts</strong>: allowed loss ÷ loss per contract under stress. With a 10% budget ($5,000), the cash-secured 95 put allows at most 3 contracts (5,000 ÷ 1,384 = 3.6), and the naked 90 put at most 4 (5,000 ÷ 1,038 = 4.8).
+@@ 920b2da5ef html
+<strong>Stress-test the margin too</strong>: you must be able to meet the margin requirement under the stress scenario (not just today's), or you will be forced out at the worst possible moment.
+@@ 01b639e766 html
+These percentages are common starting points, not theoretical optimums. The principle: after the worst day has passed, you still have enough money and nerve to keep trading. −20% is the usual scenario for single stocks; for indexes you can use −10%; for a stock held through earnings, use its largest historical earnings-day move.
+@@ 7978aa2667 html
+<span class="sn">8.9</span>A “90% win rate” can mean negative expectancy
+@@ 04e5a3f671 html
+A win rate on its own tells you nothing. The only thing that decides whether a strategy makes money over the long run is its expectancy.
+@@ 69d38b36c9 html
+<span class="v">p</span> is the win rate, <span class="v">W̄</span> and <span class="v">L̄</span> are the average amounts of the winning and losing trades, and <span class="v">p</span>* is the breakeven win rate. Note: use the average loss, not the maximum loss.
+@@ 9ba805285e html
+A strategy wins 90% of the time, makes $50 on average when it wins and loses $500 on average when it loses: <span class="num">E = 0.9 × 50 − 0.1 × 500 = −$5</span>. It needs a win rate of <span class="num">500 ÷ 550 = 90.9%</span> just to break even.
+@@ 833ae78cb5 html
+Go back to the 0.10 spread from Section 8.5. At market prices, its probability of profit at expiry is 89.4%; it makes $35.7 on average when it wins and loses $299.7 on average when it loses, so its breakeven win rate is <span class="num">299.7 ÷ (35.7 + 299.7) = 89.4%</span>, exactly equal to the win rate itself. That is no coincidence: under fair pricing every option strategy has an expected value of zero, and “win rate” and “payoff ratio” are just two ways of slicing the same zero.
+@@ e08008182c html
+The edge is thin. If the true win rate is 88%: <span class="num">0.88 × 35.7 − 0.12 × 299.7 = −$4.6</span>. If commissions plus slippage add up to $3 per round trip (an assumption), the breakeven win rate rises to <span class="num">(299.7 + 3) ÷ (35.7 + 299.7) = 90.2%</span>. One or two percentage points of win rate decide whether a high-win-rate strategy is positive or negative.
+@@ da16b7c8a3 html
+Win rate <input id="f5-p" type="range" min="50" max="99" value="90"> <output id="f5-p-o">90%</output>
+@@ d4ae9355ec html
+Avg. win ÷ avg. loss <input id="f5-r" type="range" min="0" max="100" value="19"> <output id="f5-r-o">0.10</output>
+@@ 33843072e5 html
+Spreads: fair pricing
+@@ 2ee67e5793 html
+Spreads: realized 25%
+@@ 5ca5d0344c html
+The greener the color, the higher the expectancy; the redder, the lower. The black line is the breakeven line. The three black dots are the three spreads from Section 8.5 (labeled with the short-leg Delta): at fair prices they all sit on the line; switch to realized 25% and they all move above it, but stay very close. Drag the win rate above 95% and look at the black line: it gets very steep, and a small error in the payoff ratio puts you below it.
+@@ f87fb213cc html
+Can you trust your win-rate estimate?
+@@ 9f0fd62f18 html
+Your sample has to cover different market conditions: a win rate measured only in calm years has never seen a gap.
+@@ fb5bb0f75b html
+Pull out your single biggest loss and look at it on its own; it is often several times the average loss. Recompute the expectancy with it.
+@@ f12c901f01 html
+Compare it with the probability implied by Delta. If your actual win rate stays clearly above what the market implies, the most likely explanation is that your sample hasn't hit that gap yet.

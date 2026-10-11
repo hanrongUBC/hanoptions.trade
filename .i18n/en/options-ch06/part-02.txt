@@ -1,0 +1,154 @@
+@@ f306dda2ab html
+<span class="sn">6.2</span>Implied vs. realized: expectation and outcome
+@@ a43d1047a8 html
+Implied volatility is the price you lock in when you buy; realized volatility is the outcome revealed while you hold. For a Delta-hedged option, P&amp;L depends almost entirely on the difference between the two.
+@@ fb53da7ca0 html
+Take the conclusion from Chapter 4 one step further. Buy an option and hedge its Delta every day, and one day’s P&amp;L is the Gamma gain minus Theta:
+@@ c1aa3636ae html
+The first term in the brackets is the square of the day’s actual price move; the second is the squared move “prepaid” in IV. If the stock moves more than IV expected, you make money that day; if it moves less, you lose.
+@@ 2838cec5b5 html
+Add up every day of the holding period, and the sum of (Δ<span class="v">S</span>/<span class="v">S</span>)² is σ<sub>R</sub>²<span class="v">T</span>. Then, using a Black-Scholes identity, Vega = Γ<span class="v">S</span>²σ<span class="v">T</span>, you can swap Gamma for Vega:
+@@ 5365c9a7fa html
+σ<sub>R</sub> is realized volatility over the holding period and σ<sub>I</sub> is implied volatility at purchase; Vega is per 1 vol point, and the difference is in points. When the two are close, the first form is approximately equal to the second. In simulations of an ATM straddle, the second form is actually more accurate, because Gamma changes with price and time and averages out to something close to linear.
+@@ dec2932556 html
+In one sentence: a hedged option position is a contract struck at IV and settled at RV, with each vol point worth one Vega.
+@@ 288d9590da html
+Table 6-3 P&amp;L at expiration on 10 long 30-day ATM straddles (stock 100, IV 30%), hedged daily
+@@ d8ac588ef0 html
+Realized vol over holding period
+@@ 7c5c7f8d6e html
+Formula estimate (per share)
+@@ 05e202b69f html
+Total, 10 contracts
+@@ f93f37b856 html
+Simulated mean (per share)
+@@ 60211b251c html
+Simulated 5%–95% range
+@@ 4786d9269e html
+−4.05 to −0.81
+@@ 79a63f2bbf html
++0.11 to +5.64
+@@ 82d0c558ba html
+The straddle costs <span class="num">6.854</span>, with Vega of <span class="num">0.228</span> per point (both legs combined). The simulation used 20,000 price paths, hedging once a day at the close. The averages almost match the formula, but individual paths are widely spread: with the same 20% realized volatility, an unlucky path loses more than $4 per share and a lucky one only $0.8. The reason is that Gamma is concentrated near the money: if the big moves happen while the stock is far from the strike, you earn less from them.
+@@ 1f72409b84 html
+The buyer bets that “realized will move more than implied”; the seller bets the opposite. An unhedged buyer is also betting on direction, but the underlying contest over volatility goes on regardless: even if you get the direction right, if realized volatility over the period is far below the IV you paid, Theta will eat a big chunk of what you make.
+@@ fa8fbb625a html
+<span class="sn">6.3</span>The volatility risk premium
+@@ dfa19bae5f html
+Over the long run, the implied volatility of index options is higher than the realized volatility that follows. This gap is called the volatility risk premium (VRP). It is the seller’s source of income and the seller’s reward for bearing tail risk.
+@@ 017b36acc9 html
+Take the S&amp;P 500: on long-run average, VIX runs a few percentage points above the realized volatility of the following 30 days. That is only an average: in the month a crisis breaks out, realized volatility can far exceed the implied volatility beforehand.
+@@ c561198563 html
+Where the premium comes from
+@@ f5ee70ed91 html
+<strong>Demand for insurance</strong>: pension funds, mutual funds and other institutions hold large amounts of stock and keep buying index puts to protect their portfolios. This demand isn’t very sensitive to price.
+@@ 460b0e1b58 html
+<strong>Crash aversion</strong>: people will pay more than the expected loss to avoid a big loss, just as they do with home insurance.
+@@ 129a2abdb8 html
+<strong>Sellers need capital</strong>: whoever sells options ties up margin and bears occasional huge losses. Without enough compensation, nobody would take that side.
+@@ ce9c5d88c2 html
+Sellers are like insurance companies
+@@ f6a32477c8 html
+An insurer collects premiums above its average claims, so it makes money over the long run. But claims come in clusters: one hurricane can wipe out several years of profit. Selling options is the same. Here is a calculation with a hypothetical model: each month you sell a 30-day ATM straddle on an index at IV 18%, and each month’s realized volatility falls into one of four cases.
+@@ ca0ab3e72d html
+Method: if realized volatility over the holding period is σ<sub>R</sub>, the average of |<span class="v">S<sub>T</sub></span> − <span class="v">K</span>| at expiration is about the price of a straddle priced at σ<sub>R</sub>. So the seller’s average P&amp;L is about “the straddle priced at IV” minus “the straddle priced at RV.”
+@@ 6441efd06d html
+Table 6-4 Selling a 30-day ATM straddle (index 100, IV 18%, premium collected 4.12): average P&amp;L in four kinds of month (hypothetical probabilities)
+@@ 6088624a6c html
+Type of month
+@@ b4f26863bf html
+Assumed probability
+@@ 60e6660430 html
+Realized volatility
+@@ 64da6d362d html
+Straddle priced at RV
+@@ 62c5bad6b4 html
+Seller P&amp;L per share
+@@ 618ef8c88d html
+Contribution to expectancy
+@@ f6992b104f html
+Calm
+@@ f8bf2ca745 html
+Normal
+@@ ca03820d2b html
+Turbulent
+@@ 2ab8dc0b7a html
+Crisis
+@@ 57eec06783 html
+Total
+@@ 78d0b19bb4 html
+Average 14.4%
+@@ b6e157aa15 html
+Average realized volatility is <span class="num">14.4%</span>, 3.6 points below IV, and the seller makes <span class="num">0.83</span> a month on average, about a fifth of the premium. But a single crisis month loses <span class="num">8.43</span>, the profit of <span class="num">5.3</span> calm months. In reality, crisis-month losses are often bigger still, because of price gaps, hedges that can’t be placed in time and margin calls, none of which are in the table above.
+@@ 2c4a601d15 html
+<strong>Single stocks</strong>: the VRP is smaller than for indexes and less stable. Single-stock options don’t have the heavy protection demand that index options do, and sometimes IV ends up below the RV that follows.
+@@ cb486cafd1 html
+<strong>Around events</strong>: IV before earnings is sometimes priced too low, and the actual move after the event exceeds the implied one (Section 6.8).
+@@ 3477f71426 html
+<strong>In the middle of a crisis</strong>: IV is already high, but realized volatility can keep climbing. Selling “expensive” options then is like selling insurance as the hurricane makes landfall.
+@@ b36848fab4 html
+For buyers, the VRP means “on average, you are paying up.” To win, buy when IV is low relative to its own history (Section 6.4), or when you have reason to believe realized volatility will clearly exceed implied. Chapter 7 turns this into concrete rules for buyers; Chapter 8 covers how sellers control position size to survive crisis months.
+@@ 6bb96f55c5 html
+<span class="sn">6.4</span>IV Rank and IV Percentile
+@@ ac11701b23 html
+Whether IV is high or low in absolute terms means little; what matters is where it sits in its own history. IV Rank measures where the current value sits between the one-year high and low; IV Percentile measures how many days in the past year were lower than now.
+@@ 2e8afaf178 html
+“Normal” volatility varies widely between stocks. IV of 60% may be the calmest a biotech stock gets all year, while 25% may already be a rare high for a utility. Comparing 60% with 25% directly tells you nothing; you have to compare each stock with itself.
+@@ 5f67e615d2 html
+“One year” usually means the past 252 trading days; IV usually means 30-day ATM IV or the platform’s own IV index. Definitions differ across platforms, so check before comparing.
+@@ f7332dbe24 html
+Why the same IV gives two very different numbers
+@@ ab74f04b39 html
+Rank uses only two points: the high and the low. A single extreme spike in the past year stretches the denominator, and Rank looks low for a long time afterward. Percentile uses every day’s data; a spike takes up only a few days, so its effect is small.
+@@ 5112e8a32e html
+The chart below shows a simulated year of IV: mostly between 20% and 30%, it spikes to <span class="num">62.5%</span> on day 59 after a sharp sell-off and falls back a few weeks later. The one-year low is <span class="num">19.2%</span>. With current IV at 30%:
+@@ 27d4a119bb html
+IV Rank = (30 − 19.2) / (62.5 − 19.2) × 100 = <span class="num">24.9</span>, which looks low
+@@ c59778e113 html
+IV Percentile: <span class="num">208</span> of 252 days were below 30%, giving <span class="num">82.5</span>, which is actually high
+@@ c84d12b397 html
+Current IV <input id="f2-iv" type="range" min="15" max="65" step="0.5" value="30"> <output id="f2-iv-o">30.0%</output>
+@@ 932f5dcd38 html
+Drag to 30%: Rank is only 24.9 but Percentile is 82.5, so the two indicators give opposite signals. Drag to 40%: Rank is 48.0, which looks middling; Percentile is 96.8, with only 8 days in the year higher. Only at 24%, with Rank 11.1 and Percentile 26.2, do both land low together.
+@@ c8ce1716e7 html
+How to use it
+@@ 85b85c4442 html
+Table 6-5 Reading IV Rank and IV Percentile together
+@@ ba2cd09a16 html
+Situation
+@@ 72f8ba9a3a html
+Meaning
+@@ 81f9eadfc7 html
+Leaning
+@@ c95c626d1a html
+Both high (&gt; 50)
+@@ 25e1e5d54b html
+IV is expensive relative to its own history
+@@ 7cc1c9a800 html
+Favors sellers, with VRP on top
+@@ 74afd51d26 html
+Both low (&lt; 20)
+@@ 8d7c2aabcc html
+IV is cheap relative to its own history
+@@ 96d16c724b html
+A buyer’s friend (Chapter 7)
+@@ 05bf16ca85 html
+Low Rank, high Percentile
+@@ 8d05d32412 html
+There was a spike in the past year
+@@ 7d2551ef56 html
+Go by Percentile and the RV comparison
+@@ 2aa4114046 html
+High Rank, middling Percentile
+@@ 9ae485a9a2 html
+IV was flat all year, with the high and low close together
+@@ eb61be8ec6 html
+Rank is magnified; a few points move it a lot
+@@ 90f9cd5e8d html
+These indicators are useful because IV tends to mean-revert: high IV usually falls back toward normal, and low IV drifts back up. But mean reversion is only a tendency. When the market shifts into a new regime (say, a bear market lasting months), high IV can go higher and stay there for a long time.
+@@ 2076d8ca74 html
+<strong>Earnings spikes</strong>: a stock’s IV jumps before every quarterly report, pulling up the one-year high. When comparing, it is best to use expirations that don’t include earnings, or to exclude the days around earnings.
+@@ 5d1d799dc1 html
+<strong>Lookback window</strong>: Rank computed over 252 days and over 120 days can differ by dozens of points. Once a spike rolls out of the window, the Rank for the same IV can suddenly jump (Case 2).
+@@ 2bf309fb2b html
+<strong>Structural change</strong>: if the company is mired in takeover rumors, has just gone public or has completely changed its business, the past year’s IV is no longer a meaningful reference.

@@ -1,0 +1,222 @@
+@@ 54e07b1acf text
+Chapter 4
+@@ 6ad4b428d4 text
+The dollar strengthens at both ends, but it means completely different things for US stocks
+@@ 67064df68f text
+Figure 4-1 · Schematic
+@@ bbd8a4c862 text
+Rule
+@@ 30b44a7821 text
+Chapter 5
+@@ 91abaa843c text
+Big declines tend to come in three steps, and each step kills something different
+@@ 5caa349fc9 text
+Figure 5-1
+@@ beebf2a721 text
+Set the four variables and see which regime fits best
+@@ ff98334763 text
+Figure 5-2 · Interactive
+@@ 1bc71a10ad text
+Rates (10-year trend)
+@@ a4d0b1b2df text
+Oil
+@@ 588fd94e2a text
+Earnings and estimates
+@@ 67b2416702 text
+Jobs
+@@ 45d7d3b76c text
+Chapter 6
+@@ 5408d6b5aa text
+Contribution to the index = weight × price change
+@@ cdd9577e75 text
+A stock with a 7% weight that falls 5% drags the index down 0.35 percentage points; ten stocks with 0.5% weights that each rise 3% add only 0.15 percentage points in total.
+@@ 8194f9ad68 text
+Ten giants rising can hide most stocks falling
+@@ 56f9d13a90 text
+Figure 6-1 · Adjustable
+@@ 240e651e1b text
+Cap-weighted index
+@@ 63e52f4471 text
+Equal-weight index (0.2% each)
+@@ 6b7c4669cf text
+Gap between them
+@@ aeccd92690 text
+Chapter 7
+@@ 44c2e54390 text
+Below the flip, declines feed on themselves
+@@ 3044e2a987 text
+Figure 7-1 · Adjustable
+@@ 8eedff5118 text
+Gamma flip
+@@ 47c126e633 text
+Net Gamma at the current 780 (per 1%)
+@@ cac8999724 text
+At 760, selling needed for each further 1% drop
+@@ 17fe14ac03 text
+These numbers are estimates
+@@ 9cbbf70c11 text
+Amount to buy = A × L × (L − 1) × r
+@@ e7694dd14b text
+The multiplier is 6 when L = 3, 2 when L = 2, 2 when L = −1 and 12 when L = −3. It is always positive: buy when the market rises, sell when it falls, inverse funds included.
+@@ 3c71071d80 text
+Leveraged ETF rebalancing always goes with the day's direction
+@@ ea5b6f3373 text
+Tool 7-A
+@@ d01aed03e2 text
+Leverage
+@@ c47ab8dcb7 text
+Amount to trade before the close
+@@ 295ed8c9ec text
+Direction
+@@ d0ed335ef9 text
+As a share of fund size
+@@ 6abb27b583 text
+Chapter 8
+@@ 52629652b3 text
+Each stage calls for something different; the most dangerous point is after consensus forms
+@@ f33cbd64a4 text
+Figure 8-1
+@@ 62402ec50b text
+Find the structural change
+@@ fb0c3c5597 text
+: a trend that will last several years and doesn't depend on any single piece of news.
+@@ eb0acf1d6f text
+Find the unavoidable beneficiaries
+@@ 18e7f0413c text
+: companies everyone has to buy from no matter who wins the competition, the “pick-and-shovel sellers.”
+@@ 501861c21a text
+Avoid the most crowded expression
+@@ 4574fb1e52 text
+: the one everybody is buying has often already priced in years of good news.
+@@ f466e42065 text
+Wait for the price
+@@ 2c9f5a2d81 text
+: a good company isn't the same as a good price. Wait for a pullback, for valuation to return to a reasonable range and for volatility to fall, then buy in stages.
+@@ 30f805314b text
+Chapter 9
+@@ 2a8711460f text
+Event-day variance = σ
+@@ be884cb036 text
+event
+@@ c770c6c2c8 text
+normal
+@@ 96c61d4f51 text
+Assume the week has 5 trading days, 4 of them normal. The expected move on the event day = the square root of the event-day variance.
+@@ a6ab49541c text
+The higher the weekly options' implied volatility, the bigger the move priced for the event day
+@@ 4820154cf8 text
+Figure 9-1 · Adjustable
+@@ 3dc9805bbf text
+Expected move on the event day
+@@ c48e418090 text
+Expected move on a normal day
+@@ a5a4c36e9e text
+For an index ETF at 780, roughly
+@@ ccc22c7da9 text
+Chapter 10
+@@ 4f916aca60 text
+Trade a small premium for most of the downside risk
+@@ f9274e4d9a text
+Figure 10-1 · Adjustable
+@@ ef9650b317 text
+Energy stocks only
+@@ c385af0c3f text
+Energy stocks + airline calls
+@@ 032933a63d text
+Hedge cost (premium)
+@@ 1ade6602fd text
+If oil falls 20% (unhedged
+@@ d4559ba1fe text
+If oil rises 20% (unhedged
+@@ cd055c5823 text
+Chapter 11
+@@ 682fefdc8e text
+Date:
+1. Overnight changes
+    2Y ___  10Y ___  Dollar ___  Crude ___  Gold ___  VIX ___  Credit spread ___
+    Biggest or most unusual move:
+2. Why
+    Event / data / speech / auction:
+    Already priced in?
+3. The bigger picture
+    Current regime (Chapter 5):      This week's calendar:      Seasonal position:
+4. Transmission chain
+    ___ → ___ → ___    Benefits:            Hurt:
+5. Check the tape
+    Equal-weight vs cap-weight:    Small caps:    Financials:    Semis:    Credit:
+6. Key levels (above: do what / below: do what)
+    Index:            Flip and large strikes:
+7. Today's plan
+    Structure:    Size:    Stop-loss:    Hedge:
+8. In one line: today the market is trading ___________
+9. Discipline: wait for confirmation, don't chase, keep size light, do little during events
+@@ ba8f93d6b1 attr
+A 12-chapter study handbook: the cross-asset dashboard, rates and valuation, market regimes, breadth and flows, event playbooks, and turning a view into a trade.
+@@ 9ce7d3c4f4 attr
+Site navigation
+@@ b4126ef441 attr
+Chapters
+@@ e34f975a4d attr
+Introduction: what macro trading is for
+@@ f5d73914fa attr
+The six-step macro trading loop and the chapters that cover each step
+@@ 76f4eb4cf5 attr
+The cross-asset dashboard: seven numbers first
+@@ 7a4949ddc9 attr
+10-year yield
+@@ f4eae05c02 attr
+Dollar index
+@@ 35bc47181b attr
+Crude oil
+@@ 9c2a5e0249 attr
+Gold
+@@ b675e4e6b7 attr
+High-yield spread
+@@ 21bc5c55e0 attr
+Transmission chains and second-order thinking
+@@ 61435e429f attr
+Choose a shock
+@@ ca8b23c575 attr
+Rates, the Fed and valuation
+@@ 53a9f38375 attr
+How valuation changes with the discount rate for companies with different growth rates
+@@ d95e5de679 attr
+The dollar, gold and energy
+@@ 3e6353cf80 attr
+The dollar smile, schematic
+@@ 42f088d1c1 attr
+Market regimes: four variables, three phases
+@@ 105ebf28e2 attr
+Direction of the four variables in the three phases of a decline
+@@ 55fcb64d99 attr
+Rates
+@@ b5a7c0e891 attr
+Oil
+@@ d926255fd1 attr
+Earnings
+@@ d41de89b53 attr
+Jobs
+@@ 95e30528f4 attr
+Breadth and rotation: the illusion of the index
+@@ e0fa7dd7c2 attr
+Cap-weighted versus equal-weight index performance
+@@ 4237b35942 attr
+Flows and options positioning
+@@ e8f740c5ee attr
+Market makers' net Gamma as the index price changes
+@@ caf1a5690e attr
+Narratives and information
+@@ 2d7fff7dd2 attr
+The narrative life cycle and price path, schematic
+@@ a375033aa4 attr
+Calendars, seasonality and event playbooks
+@@ 7677d702a1 attr
+Weekly implied volatility and the implied event-day move
+@@ 176ed5508b attr
+From view to trade
+@@ fbc0cb8e25 attr
+P&L of an energy position plus airline calls
+@@ 702b82ffb4 attr
+Toolkit: morning brief, trigger lines and exercises
+@@ f0852d355e attr
+Chapter navigation

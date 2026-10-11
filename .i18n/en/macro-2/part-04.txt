@@ -1,0 +1,166 @@
+@@ 3b31372e1d html
+Earnings are the third variable in the regime call
+@@ a3680f4d7e html
+Event playbooks: write the branches in advance
+@@ 77bf4206fb html
+On the day of an event, prices jump within seconds, and emotion most easily takes over your judgment. So write the playbook the day before, with a calm head: for each outcome, how each asset class will move and what you will do. Take CPI as an example:
+@@ 24c05dd1b7 html
+Result
+@@ 2a3f4f835e html
+2-year
+@@ 0ecb076fb2 html
+Nasdaq 100
+@@ fdab6ec265 html
+Small caps
+@@ d2f71def72 html
+My move
+@@ c76e056ea3 html
+Well above expectations
+@@ a347e1c451 html
+Up sharply
+@@ 5c3c598617 html
+Strengthens
+@@ ff78836d57 html
+Down more
+@@ 89d0f390b6 html
+Execute the hedge; don't buy the dip, wait for the first hour to pass
+@@ 78d9645c23 html
+In line
+@@ bfcbc4caf5 html
+Little change
+@@ 8ffa492062 html
+Volatility eases
+@@ f2109d9503 html
+Protection bought before the event loses some value as implied volatility (IV) falls; handle it according to plan
+@@ 0edf05b656 html
+Well below expectations
+@@ b5942e7929 html
+Down sharply
+@@ 136d74b540 html
+Up more
+@@ f638732fc6 html
+Add to preselected names as planned
+@@ a4d64fae7f html
+The most valuable column in a playbook is “what reaction would show the market is trading something else.” For example, if CPI comes in well below expectations and the 2-year drops sharply but stocks fall too, the market is more worried about growth than about inflation. A reaction that doesn't fit the playbook often matters more than the data itself.
+@@ 3f3cb86870 html
+How much options are pricing in for an event
+@@ 42a15badb1 html
+Option prices contain the market's expected move for an event. Using the implied volatility of options that expire in a week (which includes the event day) and of an ordinary day, you can isolate the event day. Calculated in trading days (252 a year):
+@@ 9084f86ef0 html
+Weekly IV incl. event <input id="ev-1" type="range" min="10" max="30" value="16"> <output id="ev-1-o">16%</output>
+@@ cc6e21f58f html
+Normal IV <input id="ev-0" type="range" min="8" max="20" value="13"> <output id="ev-0-o">13%</output>
+@@ d198f43e16 html
+With the default settings, the market expects a move of about 1.55% on CPI day, nearly twice the 0.82% of an ordinary day. If you think this release won't bring much of a surprise, the event volatility is “expensive,” and selling it with a defined-risk structure makes more sense. If you think the surprise will be large, only then does buying a straddle have a chance of making money, because it needs a move bigger than 1.55%.
+@@ c95d126b49 html
+Seasonality is a map, not a trigger
+@@ 7f1e9e2fe8 html
+In commonly cited statistics, September has historically been the S&amp;P 500's weakest month on average, and in US midterm election years the market often weakens from midyear into the fall, then does better from year-end into the following year. There are also month-end fund rebalancing, thin trading around long holidays, the buyback blackout period before earnings season, and so on.
+@@ efb5e6b978 html
+The problem with these patterns is that the samples are small (midterms come once every four years, so several decades give you only a dozen or so), and every year's macro backdrop is completely different. So the right way to use seasonality is:
+@@ 3d3b59d3b2 html
+Prepare in advance: before a seasonally weak stretch arrives, have cash, hedges and a shopping list ready, and write down what you'll buy on a 5%, 10% and 15% pullback.
+@@ a14e4c69b8 html
+Wait for confirmation: seasonality only tells you “maybe”; price breaking a key level, breadth deteriorating and credit spreads widening are the “confirmation.” Don't try to predict the pullback; let the market confirm it.
+@@ 35aa03b7e0 html
+Stack it with other signals: seasonal weakness, rich valuations and rising rates showing up together deserve more attention than seasonality alone.
+@@ 36ba087643 html
+Wall Street also has plenty of calendar sayings, such as selling before certain holidays and buying back afterward. It's enough to treat them as reminders worth noticing, not as trading signals.
+@@ 0b512e0829 html
+Discipline around events
+@@ 53db97d3ae html
+<strong>Hedge before the event; do little during it.</strong> Before a major event (a rate decision, key data, earnings from an important company), buy protection for existing positions, or cut size first. In the first hour after the result, prices often whipsaw, and that is when mistakes are easiest to make.
+@@ 566c25338e html
+<strong>In low-volume periods, beware of false breakouts.</strong> Around holidays and in thin summer weeks, small amounts of money can push prices around, and breakouts are less reliable.
+@@ afe3657a84 html
+<strong>Be careful at the Monday open.</strong> News that piles up over the weekend hits all at once at Monday's open, and prices in the first half hour often don't reflect the day's direction.
+@@ 205b88f27d html
+<strong>One day in line with expectations is not confirmation.</strong> An important turn needs at least the price action on the second and third days to confirm it.
+@@ 5d51f531a7 html
+From view to trade
+@@ 797cb73b3d html
+To turn a macro view into money, you still have to answer four questions: what instrument, how big, how long to hold, and what to do if you're wrong. Many correct macro calls lose money on exactly these four questions.
+@@ 79dbdf00f7 html
+A view needs all five parts written down
+@@ e767bf54d4 html
+Part
+@@ 3ac3a5d694 html
+Ask yourself
+@@ eb6a702073 html
+Example
+@@ e0551de2ea html
+Direction
+@@ 2dd97720c1 html
+Up or down, and relative to what
+@@ 88d2292911 html
+Small caps outperform the Nasdaq 100
+@@ 8b60687fb4 html
+Magnitude
+@@ 9b932fa6d5 html
+Roughly how much
+@@ cbf92eb23e html
+The ratio rises 5% to 8%
+@@ 29d5ebf63f html
+Timeframe
+@@ ea23615e6a html
+How long until it plays out
+@@ bfcbca5033 html
+4 to 8 weeks
+@@ 8fde8acbc0 html
+Confidence
+@@ 4d1ad34d62 html
+How sure, and based on what
+@@ 5f9f7704df html
+Medium: rates are falling, but the jobs data hasn't confirmed it yet
+@@ 7db2954701 html
+Invalidation criteria
+@@ f337849583 html
+What facts would make you admit you're wrong
+@@ 61901ce97e html
+The 10-year yield breaks back above its prior high, or credit spreads widen
+@@ 7798191086 html
+A view with only the first part written down is not a tradable view. The timeframe matters most, because it directly decides which instrument you should use.
+@@ 2fd9d56320 html
+Choose the instrument by timeframe
+@@ 58df7c1fb9 html
+Time to play out
+@@ e310b3ea45 html
+Suitable instruments
+@@ 67ddb6241e html
+Why
+@@ 13ebaed6ed html
+Events or levels within a few days
+@@ c8f598de58 html
+Short-dated options, spreads
+@@ d51a1ea698 html
+High leverage with a known max loss; the window is short, so time decay is acceptable
+@@ 0c0d912188 html
+Macro theses over weeks to months
+@@ 85e717202a html
+Macro theses take time to play out, and shares don't mind waiting
+@@ 298cde83c7 html
+Structural narratives of a year or more
+@@ 2b714d5ded html
+Scaling into shares, long-dated options
+@@ 7a6291c68d html
+Swings will be large; you need to be able to hold on
+@@ cfd5cdb7de html
+Expressing a call that needs six months to play out with call options that expire in three weeks means betting on direction and timing at once, and time is almost certain to be against you. When a macro thesis needs time, buy the stock rather than short-dated options: what we need is time, not excitement.
+@@ d06224b3b3 html
+Pick the cleanest, weakest link
+@@ d3bf564c11 html
+<strong>When bullish, find the most direct beneficiary.</strong> A view on higher oil is expressed more directly through upstream producers than through integrated energy companies; a view on falling rates, more directly through small caps or REITs than through big tech.
+@@ fe781f517f html
+<strong>When bearish, find the weakest sector.</strong> If you are bearish on tech, rather than shorting the Nasdaq 100, which has the strongest trend, short the sub-sector with the worst relative strength and fading momentum. Go after the soft target, not the hard one.
+@@ 20e3c943a5 html
+<strong>When you can't decide on direction, trade relative strength.</strong> Buying one and selling another hedges out the overall market's moves, so you bet only on the part of your view you are most sure of.
+@@ a09d839b67 html
+Hedging at the portfolio level
+@@ 1bb60d6490 html
+Let's run the numbers on the “surprise hedge” from Chapter 2. Suppose you hold $10,000 of energy stocks with an elasticity of 0.6 to oil (oil up 10%, the stocks up 6%). You worry that policy will suddenly push oil down, so you buy call options on an airline ETF as protection.
+@@ 4550a6fec7 html
+Airline calls <input id="hg-n" type="range" min="0" max="10" value="4"> <output id="hg-n-o">4 contracts</output>
+@@ 55566a338e html
+Assumptions: the airline ETF trades at $25 with an elasticity of −0.9 to oil; you buy 60-day calls with a strike price of $27 and implied volatility (IV) of 45%, at about $1.11 each. The chart shows P&amp;L after 30 days, with implied volatility unchanged. Four contracts cost about $444: if oil falls 20%, the loss shrinks from $1,200 to about $405; if oil rises 20%, the gain shrinks from $1,200 to about $764. In a real shock implied volatility usually rises, so the hedge would work better than shown here.
+@@ fa72204b9b html
+The point of this example is the shape. Hedging with call options, you pay a fixed, limited premium in exchange for protection against a large move in oil in the wrong direction. If you hedged by short selling energy stocks instead, you would cut your gains and your losses in equal proportion, and the view itself would be gone.

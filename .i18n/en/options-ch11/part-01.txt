@@ -1,0 +1,220 @@
+@@ 38f5079e12 html
+Chapter 11 Hedging and portfolio protection · US Options Course
+@@ 06a921a8e7 html
+Hedging and <span class="g">portfolio protection</span>
+@@ fc1c00326c html
+The goal of hedging is to get your portfolio through a big drop alive, while keeping as much upside as you can and not triggering taxes. This chapter puts a dollar figure on protective puts, collars, put spreads and the tail-hedge budget, so you know what each kind of insurance costs and which kinds of decline it pays out in.
+@@ 4a798dc727 html
+In this chapter
+@@ 0930049128 html
+<a href="#open"><span class="n">··</span><span>Opening: the three months after a big gain</span></a>
+@@ 312c05942e html
+<a href="#s1"><span class="n">11.1</span><span>Hedging versus trimming</span></a>
+@@ 38520b9bec html
+<a href="#s2"><span class="n">11.2</span><span>The cost of protective puts</span></a>
+@@ 6f9b4507fd html
+<a href="#s3"><span class="n">11.3</span><span>Collars: the price of zero cost</span></a>
+@@ 7b57cc6726 html
+<a href="#s4"><span class="n">11.4</span><span>Put spreads and four approaches</span></a>
+@@ 394220f88f html
+<a href="#s5"><span class="n">11.5</span><span>VIX calls: crash hedges</span></a>
+@@ c60103e4e3 html
+<a href="#s6"><span class="n">11.6</span><span>The tail-hedge budget</span></a>
+@@ 91430e7d43 html
+<a href="#s7"><span class="n">11.7</span><span>Monetization rules</span></a>
+@@ 99beaedb21 html
+<a href="#s8"><span class="n">11.8</span><span>Stock replacement: deep-in-the-money LEAPS</span></a>
+@@ daebb94882 html
+<a href="#s9"><span class="n">11.9</span><span>Adjusting portfolio beta with options</span></a>
+@@ 12c019ed82 html
+<a href="#cases"><span class="n">Cases</span><span>Three cases</span></a>
+@@ dd7ded685d html
+<a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a>
+@@ df7aa72c8f html
+<a href="#open">Opening: the three months after a big gain</a>
+@@ 6eeece0027 html
+<a href="#s1">11.1 Hedging versus trimming</a>
+@@ b9afea02c1 html
+<a href="#s2">11.2 The cost of protective puts</a>
+@@ e5e9651073 html
+<a href="#s3">11.3 Collars: the price of zero cost</a>
+@@ c6115630e4 html
+<a href="#s4">11.4 Put spreads and four approaches</a>
+@@ 3a33c54414 html
+<a href="#s5">11.5 VIX calls: crash hedges</a>
+@@ 63b680f532 html
+<a href="#s6">11.6 The tail-hedge budget</a>
+@@ 3baa8adf4e html
+<a href="#s7">11.7 Monetization rules</a>
+@@ 924dd2b0eb html
+<a href="#s8">11.8 Stock replacement: deep-in-the-money LEAPS</a>
+@@ fc0b3c62ef html
+<a href="#s9">11.9 Adjusting portfolio beta with options</a>
+@@ f3a78e0502 html
+<a href="#cases">Three cases</a>
+@@ 7ec24afd50 html
+<a href="#tools">Checklist and self-test</a>
+@@ 80161dff8a html
+After this chapter you can
+@@ 1c0f38dad5 html
+Calculate the annualized cost of protective puts at different strikes and expirations, and explain why short-dated at-the-money protection is the most expensive
+@@ 58f0de3658 html
+Solve for the call strike of a zero-cost collar, and say how much upside “zero cost” gives up
+@@ 165837cc85 html
+Design protection for a $200,000 portfolio and work out the results at −10%, −20% and −30%
+@@ fc4f43bd05 html
+Prerequisites
+@@ d9704e0a2a html
+Chapter 4: beta-weighted Delta
+@@ 19a33efb46 html
+Chapter 6: skew, IV Rank and VIX
+@@ 9010f98cf8 html
+Chapters 7 and 8: buyers, sellers and spreads
+@@ fe31444484 html
+Conventions
+@@ 29904071fd html
+Black-Scholes, 4% rate, no dividends, 365-day year
+@@ 279289427a html
+Index ATM IV 18%, skew as assumed in Section 11.2
+@@ 1a160b72f5 html
+The portfolio tracks the S&amp;P 500 (beta 1); commissions and interest on premium are ignored
+@@ 4f0a76db55 html
+<span class="sn">Opening</span>The three months after a big gain
+@@ a74a09c077 html
+This year your stock portfolio has grown from a cost of $160,000 to $200,000, an unrealized gain of $40,000. You're worried about the next three months, but you don't want to miss out if the rally keeps going.
+@@ 1183b91caf html
+You have two paths: sell 30%, or buy 3-month puts on the whole portfolio with the strike at 90% of the current price. Selling 30% realizes a $12,000 gain, and at a 15% long-term capital gains rate (an assumption) you owe <span class="num">$1,800</span> in tax. The puts cost <span class="num">1.01%</span> of the portfolio, or <span class="num">$2,021</span>.
+@@ 90e27484db html
+Table 11-0 Results after three months (dollars, including tax and premium)
+@@ 9f7bd2080a html
+Approach
+@@ 154d1731cb html
+Market −30%
+@@ 7221418176 html
+No change
+@@ 18dfea5ed8 html
+Do nothing
+@@ 8b33c218bf html
+Sell 30%
+@@ 6c57b29955 html
+Buy 90% puts
+@@ 7ab3382f04 html
+Selling 30% cuts gains and losses by the same proportion: at −30% you still lose $43,800. The puts lock the loss at $22,021 no matter how deep the fall, and at +15% you keep 93% of the gain. The cost is just as clear: at −10% the puts pay nothing, and you lose the premium on top. The $60,000 in cash from selling would earn about $600 in interest over three months; the table leaves that out.
+@@ 968a771102 html
+This table is the whole chapter in miniature: every kind of protection has declines it pays out on and declines it doesn't. The sections below work through each one.
+@@ daa6d0b4a3 html
+<span class="sn">11.1</span>Hedging versus trimming
+@@ b232445ef9 html
+Trimming cuts upside and downside by the same proportion. Hedging cuts only the downside, and the price is the premium.
+@@ 15dbe6a5ff html
+Trimming
+@@ c4333aee23 html
+No premium, and you earn interest on the cash
+@@ 1c703397a2 html
+Losses are still linear, with no floor
+@@ a244d65693 html
+Selling realizes the gain and triggers capital gains tax
+@@ 66c26ab16f html
+If you were wrong and want back in, you risk missing the rally
+@@ 03b53a6956 html
+Hedging (with a protective put as the example)
+@@ fda33f8003 html
+You pay premium every year, on an ongoing basis
+@@ f371952080 html
+Losses have a floor: maximum loss = distance to the strike + premium
+@@ ffef48f019 html
+You don't sell, so in principle no gain is realized
+@@ 81392bc687 html
+You keep almost all the upside, minus the premium
+@@ d3aa3be9f6 html
+Two tax traps
+@@ 6e64a3d66a html
+“Hedging doesn't trigger taxes” comes with conditions, and US tax law has specific rules for it:
+@@ 917f015a56 html
+<strong>Constructive sale.</strong> If the hedge removes almost all the risk and return of the shares, as a very tight collar does (buy the 98 put, sell the 102 call), the tax law may treat you as having sold.
+@@ bfb42a878e html
+<strong>Straddle rules.</strong> The shares and the options hedging them may be treated as a “straddle” position: losses on the hedge leg may have to be deferred, and buying a protective put on stock held less than a year may also affect how the holding period is counted.
+@@ 5eba208c8f html
+The details of these rules are complex; when real amounts are involved, consult a tax professional. This chapter's approach: keep strikes some distance from the current price, and don't try to “lock everything in.”
+@@ 3858113eb8 html
+When you should just trim
+@@ c11456ac33 html
+The reason you bought no longer holds: what you need is to sell, and insurance can't fix a wrong call
+@@ e4ce306cb8 html
+A single holding is too concentrated (say, 40% of the portfolio): hedging only postpones the problem
+@@ 3be2b725a5 html
+In a tax-exempt or tax-deferred account: selling has no tax cost, so trimming is cleaner
+@@ 5d8a15ffe3 html
+You can't afford ongoing premium: protection costing 3% a year will eat half your expected return
+@@ bcff99e709 html
+<span class="sn">11.2</span>Protective puts: the cost by strike and expiration
+@@ 742ea26e71 html
+The closer the protection is to the current price and the shorter its term, the more it costs per year: rolling a 30-day at-the-money put every month costs 23% of the portfolio a year.
+@@ 68d47b23b8 html
+This chapter's skew assumption
+@@ 78daf57acc html
+In real markets, OTM puts carry higher IV than at-the-money options, OTM calls slightly lower (the skew from Chapter 6), and skew is steeper at short expirations. This chapter approximates that with a simple assumption:
+@@ f7860ae9c0 html
+On the put side (strikes below the current price), <span class="v">a</span> = 0.6 points: add 0.6 vol points for each 1% OTM (with 91 days as the baseline). On the call side, subtract 0.2 points for each 1% OTM. IV never goes below 8%. √(91/days) makes short-dated skew steeper and long-dated skew flatter. Puts and calls at the same strike use the same IV.
+@@ 6edc6ef821 html
+Table 11-1 Assumed IV surface (%)
+@@ ab32578019 html
+Expiry
+@@ 343909b5b4 html
+30 days
+@@ affd0de4cb html
+91 days
+@@ 781742d461 html
+182 days
+@@ 42c02b08b7 html
+365 days
+@@ 961e66b173 html
+Cost table
+@@ 6de2303651 html
+Set the current price at 100, so a put's price is a percentage of portfolio value. Annualized cost = price × 365 ÷ days, meaning “how much it would cost per year to keep rolling under the same conditions.”
+@@ 378abeae9f html
+Table 11-2 Protective put price and annualized cost (% of portfolio)
+@@ 4a14863fad html
+Strike
+@@ 828824c301 html
+100 (ATM)
+@@ e42e17bc56 html
+1.90 / annualized 23.1
+@@ 1c575854a9 html
+95 (5% OTM)
+@@ 7e8df26dd7 html
+90 (10% OTM)
+@@ 12bced9180 html
+80 (20% OTM)
+@@ fdbf491e7a html
+Three takeaways:
+@@ c16a8945bb html
+<strong>The shorter the term, the higher the annualized cost.</strong> At-the-money protection rolled monthly costs 23.1% a year; buying one year outright costs 5.2%. Time value decays with the square root of time (Chapter 5), so short-dated options lose the most each day.
+@@ 4c8e5111c5 html
+<strong>Each step further out of the money cuts the cost fast.</strong> At 91 days the at-the-money put costs 3.09%, the 90 just 1.01% and the 80 just 0.34%. The price is a deductible: the 90 put pays only for the part of the drop beyond 10%.
+@@ 4506164e6a html
+<strong>Annualized costs are only comparable when they protect against the same risk.</strong> The 30-day 80 put annualizes to just 1.0%, cheaper than the one-year put's 1.5%. That doesn't make it a bargain: it pays only on “a 20% drop within a month,” which is far rarer than “a 20% drop within a year.”
+@@ dc6debf696 html
+ATM IV <input id="f1-iv" type="range" min="10" max="40" value="18"> <output id="f1-iv-o">18%</output>
+@@ 32d67d1088 html
+Skew <span class="v">a</span> <input id="f1-a" type="range" min="0" max="1.2" step="0.1" value="0.6"> <output id="f1-a-o">0.6</output>
+@@ d61be82c7a html
+The four lines are furthest apart at the money and cross around 10%–15% OTM: further right, the short-dated ones are actually cheaper, because they protect against rarer events. Drag ATM IV to 35% (a panic-level reading) and every line shifts up; the 91-day 90 put rises to about 14% annualized. That is the price of “buying insurance after the fire.” Drag skew to 0 and OTM puts get cheaper, with the 30-day line falling fastest at the right end: skew adds most of its markup to short-dated OTM puts.
+@@ 112e2c2af1 html
+A common middle ground in practice is 3–6 months and 5%–15% OTM: much cheaper than monthly at-the-money puts, and it starts paying out sooner than a far-OTM one-year put. Which one to pick depends on the decline you fear most (Section 11.4) and your budget (Section 11.6).
+@@ 1e3399ca2c html
+Buy long, sell early: when to roll
+@@ b96f6829d6 html
+Time value decays fastest in the final weeks (Chapter 5). Since you'll keep rolling the protection anyway, you can hold only the “slow-decay” stretch of each option and sell it for a new one before it enters the steep part. Take the 90 put, assuming the market stays flat and the IV surface doesn't change:
+@@ cda076a9f1 html
+Table 11-3 Same 90 strike, three ways to roll: annualized cost (% of portfolio)
+@@ 5ee37a5890 html
+Method
+@@ c90c30e21b html
+Net cost each time
+@@ 971fabfa2c html
+Annualized cost
+@@ 9efa47234a html
+Buy 91 days, hold to expiry
+@@ 7571f547f4 html
+1.01 (per quarter)

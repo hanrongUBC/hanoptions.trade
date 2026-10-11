@@ -1,0 +1,206 @@
+@@ 76fc557033 html
+<span class="sn">Tools</span>Checklist and self-test
+@@ b4640d623d html
+Your checkmarks are saved only in your own browser.
+@@ 9bfb6770ec html
+<span class="num">2-1</span>Before the order: liquidity check
+@@ cd998200eb html
+Spread no more than 10% of the mid; otherwise, trade less often
+@@ 334792c1f8 html
+Open interest and volume can absorb the number of contracts I'm trading
+@@ ff53afc1f9 html
+Limit order starting at the mid; combo order for multiple legs
+@@ 90625087c1 html
+<span class="num">2-2</span>While holding: ex-dividend check
+@@ f8184056c3 html
+Mark the ex-dividend dates of the underlyings I hold
+@@ 1df031d47a html
+Short in-the-money calls: is the dividend larger than the put price plus interest?
+@@ ee33b01081 html
+Short deep in-the-money puts: have the cash ready to take the shares
+@@ 5077f37f41 html
+<span class="num">2-3</span>Expiration-day afternoon
+@@ c3263a832a html
+In-the-money longs I don't want as stock: sell before the close
+@@ 5c5827f8d8 html
+Short legs within 1% of the strike: buy back before the close
+@@ eea6f81a9b html
+Confirm the account can handle any stock position that may result
+@@ f1ce9733ac html
+<span class="num">2-4</span>Account and products
+@@ 44be8d3bda html
+Know my approval level and account type
+@@ 73744f85b3 html
+Short positions: work out the margin requirement if the stock falls 10%
+@@ e21256ca14 html
+Index exposure: choose SPY, SPX or XSP by size, settlement and taxes
+@@ a6f5d33bbc html
+Self-test: five questions
+@@ 89c2c5a5f0 html
+<span class="num">1</span><span>You are short an XYZ 50 call that is in the money, with the stock at 58. The stock goes ex-dividend tomorrow, with a 0.80 dividend. After that there are 30 days to expiration, and the same-strike put, priced at the post-dividend stock price of 57.20, is worth 0.04. Will you be assigned tonight?</span>
+@@ 599fb0f0a9 html
+Interest: <span class="num">50 × (1 − e<sup>−0.04×30/365</sup>) = 0.164</span>. Remaining time value: <span class="num">0.04 + 0.164 = 0.20</span>, less than the 0.80 dividend. The holder gains about 0.60 per share by exercising, so you should prepare as if you will be assigned tonight.
+@@ 9c75594941 html
+<span class="num">2</span><span>An option is bid 1.20 and offered at 1.40, with a Delta of 0.35. You buy 10 contracts and later sell them, crossing the spread both times. What is the round-trip cost? What share of the premium is it? How much extra does the stock have to move?</span>
+@@ 63074e011a html
+Round-trip cost: <span class="num">0.20 × 100 × 10 = $200</span>. The mid is 1.30, so it is <span class="num">0.20 / 1.30 = 15.4%</span> of the premium. The stock has to move an extra <span class="num">0.20 / 0.35 = $0.57</span>.
+@@ b5d4bbfb4f html
+<span class="num">3</span><span>The stock is at 50, and you sell 1 naked 45 put in a margin account for 0.60. What is the margin requirement under the Reg T formula?</span>
+@@ 6a1d0ef045 html
+<span class="num">0.60 + max(20% × 50 − 5, 10% × 45) = 0.60 + max(5, 4.5) = 5.60</span>, or $560 per contract; minus the $60 received, $500 is actually tied up. A cash account would tie up <span class="num">45 × 100 − 60 = $4,440</span>.
+@@ 5e603c6190 html
+<span class="num">4</span><span>You hold 2 SPY 780 calls. At the close on expiration day SPY is at 780.02, and you do nothing. What happens?</span>
+@@ b315895832 html
+The calls are 0.02 in the money, above the $0.01 threshold, so they are exercised automatically. On the next trading day you buy 200 shares of SPY at $780, which takes <span class="num">$156,000</span>, while the intrinsic value of the exercise is only <span class="num">0.02 × 200 = $4</span>. If you don't have the funds, you face a margin call or a forced sale. You should have sold the options before the close or submitted a “do not exercise” instruction.
+@@ cedb83514d html
+<span class="num">5</span><span>Assume a short-term capital gains rate of 32% and a long-term rate of 15%. A US tax resident makes $20,000 of short-term trading profit in a year. Roughly how much federal tax is due if the profit comes from SPX options, and how much if it comes from SPY options?</span>
+@@ 80459de275 html
+SPX at 60/40: <span class="num">20,000 × (0.6 × 15% + 0.4 × 32%) = 20,000 × 21.8% = $4,360</span>. SPY at the short-term rate: <span class="num">20,000 × 32% = $6,400</span>. The difference is $2,040. For an actual return, consult a tax professional.
+@@ d98c7211a2 html
+Examples in this chapter are calculated with the Black-Scholes model (4% rate, 365-day year), a binomial tree model and the assumptions stated in the text. Trading rules are governed by the current rules of the exchanges, the clearinghouse and your broker; the tax content covers concepts only. For education only; not investment or tax advice.
+@@ a70e23cc3d text
+US Options 
+@@ 875f2902a9 text
+Course
+@@ 347b034fd7 text
+US Options Course · Part 1 Foundations · Chapter 2
+@@ 84d5b2fa50 text
+Trading ends at 16:00, but you won't know the assignment result until the next trading day
+@@ 410d6327cc text
+Figure 2-1 · How a physically settled option expires
+@@ 55d4591d12 text
+Three things to do on expiration afternoon
+@@ f24f21ec35 text
+Key point
+@@ 3ded54d8d2 text
+Early exercise pays
+@@ 0c5fcab8c7 text
+Where the dividend exceeds the time value, early exercise pays
+@@ 7a4790a5b7 text
+Figure 2-2 · A call with a 100 strike, the day before the ex-dividend date
+@@ cf3002605e text
+Time value left after ex-div
+@@ 4e48fc378e text
+Dividend
+@@ da1c577dde text
+Early-exercise zone
+@@ 97af0a1a36 text
+Time value left at the current price
+@@ c56d2fc120 text
+Extra gain per contract from exercising early
+@@ 994f009ada text
+Threshold stock price
+@@ f371a60faf text
+A quick check for sellers
+@@ f6ff8e826e text
+Time value of a European put
+@@ 599ce76e6b text
+The higher the rate, the sooner deep in-the-money puts get exercised
+@@ c0fc7b50b7 text
+Figure 2-3 · A put with a 100 strike, IV 30%
+@@ a3fdd5eebd text
+European time value
+@@ e2eccdc814 text
+American time value
+@@ 8ecf103d26 text
+Optimal American early-exercise zone
+@@ 3cb87c597d text
+Interest on the strike
+@@ c4368096b7 text
+Price where European time value turns negative
+@@ 0706e5f550 text
+Optimal American exercise boundary
+@@ ffe5fa5360 text
+Naked put margin
+@@ 5323e31707 text
+Premium
+@@ 22728b8509 text
+OTM amount, 10%
+@@ 7cd1355a6e text
+As the stock falls toward the strike, both kinds of margin rise
+@@ 0fccd90697 text
+Figure 2-4 · One naked 30-day 90 put, IV 30%
+@@ 5da8b382a8 text
+Reg T (excluding option value)
+@@ 7ffe39722e text
+Portfolio margin (±15% scenarios)
+@@ 3f668d58ef text
+Three facts about margin calls
+@@ 64d23a51cb text
+Round-trip cost
+@@ bbabe57514 text
+contracts&emsp;&emsp;Extra stock move needed
+@@ 5adb620aaf text
+Bid–ask spread cost calculator
+@@ f90d07db3e text
+Tool 2-A · Editable
+@@ 9e2eb5c166 text
+Round-trip cost as a share of the mid, for the same spread width
+@@ dd6c87b23d text
+Mid price
+@@ cbce018c99 text
+Share of premium
+@@ 56313f4da5 text
+Extra stock move needed
+@@ a1aa21848e text
+In practice
+@@ 5fd40aa62d text
+Read this first
+@@ 8516b8a3a5 text
+The special risk of AM settlement
+@@ 046dfb89e4 text
+Case 1
+@@ c076194320 text
+Takeaways
+@@ 411ced42ca text
+Case 2
+@@ 81acdd30ad text
+Case 3
+@@ 5205b402f9 attr
+Jump to chapter
+@@ ae78ea9525 attr
+In this chapter
+@@ 06ac5c1189 attr
+The four steps that longs and shorts each go through after 4 p.m. on expiration day
+@@ c727737b74 attr
+Remaining time value after the ex-dividend date compared with the dividend
+@@ d0f7512276 attr
+Time value of European and American puts
+@@ 37d2892abe attr
+Reg T and portfolio margin as the stock price changes
+@@ 23607df86f attr
+How you fill
+@@ bb2d9b9c5e attr
+Round-trip cost as a share of premium as the mid price changes
+@@ f0852d355e attr
+Chapter navigation
+@@ c87f6311bf js
+ days
+@@ 3659213048 js
+Stock price the day before ex-div ($)
+@@ ad08111eab js
+Per share ($)
+@@ b6f3493a3c js
+Dividend 
+@@ 8ceb5db1d8 js
+Interest floor 
+@@ fa72931644 js
+Holding is better
+@@ eebede7e3b js
+No early exercise
+@@ 34ae6467e4 js
+Stock price ($)
+@@ 439f13410a js
+Time value (per share)
+@@ 5f97af1929 js
+Never negative
+@@ 34212a9604 js
+No early exercise
+@@ a3817a4ebc js
+Margin per contract ($)
+@@ b2529a281a js
+Option mid price ($)
+@@ 37955463c7 js
+Round-trip cost / premium
+@@ 36406b4bbc js
+Now 

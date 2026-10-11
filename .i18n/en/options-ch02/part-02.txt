@@ -1,0 +1,236 @@
+@@ b09e9a10bb html
+<span class="sn">2.4</span>Two reasons for early assignment
+@@ d80f2a2d5b html
+Early exercise pays in only two situations: for a call before an ex-dividend date, when the dividend is larger than the remaining time value; and for a deep in-the-money put, when the interest on the strike is larger than the put's remaining “rebound value.”
+@@ 10532d2d67 html
+Reason 1: dividends
+@@ 88d4b87376 html
+At the open on the ex-dividend date, the stock drops by roughly the amount of the dividend, and option holders don't receive the dividend. At the close on the day before the ex-dividend date, a call holder has two choices:
+@@ 281c142b5e html
+<strong>Exercise today</strong>: take the shares, worth <span class="v">S</span> − <span class="v">K</span>, and collect the dividend tomorrow.
+@@ 9307ac95ea html
+<strong>Keep holding</strong>: tomorrow the stock becomes <span class="v">S</span> − <span class="v">D</span>, and the option is worth its new intrinsic value plus the remaining time value.
+@@ 4ef43105e6 html
+Subtract one from the other and the stock price itself cancels out, leaving a very simple comparison:
+@@ e03537d702 html
+The right-hand side is the call's remaining time value after the ex-dividend date. It has two parts: the value of the put at the same strike (protection in case the stock falls back below the strike), and the interest saved by paying the strike later. <span class="v">T</span> is the time from the ex-dividend date to expiration. The derivation uses put–call parity: once the dividend is paid there are no more dividends, so the American call is equivalent to a European call.
+@@ c9e7490a32 html
+Table 2-3 Strike 100, dividend 1.50, 20 days left after ex-dividend, IV 30%: exercise early or not?
+@@ 5e0be91f9c html
+Stock price before ex-div
+@@ 55fa16a8bb html
+Put value
+@@ 0f158c24e5 html
+Interest
+@@ a4a45318fb html
+Remaining time value
+@@ 50561294fa html
+Dividend − time value
+@@ 2950a569b1 html
+Verdict
+@@ c868ee781a html
+Keep holding
+@@ 131c3f291e html
+Exercise early
+@@ 67cc9485b5 html
+The threshold stock price is about <span class="num">105.30</span>: above it, exercising pays more. The threshold moves with conditions. With a dividend of only 0.50, it rises to <span class="num">110.44</span>; with 60 days left after the ex-dividend date, it rises to <span class="num">115.41</span>, because the more time remains, the larger the time value and the less it is worth giving up for the dividend. The deeper in the money the stock, the closer the put value gets to zero, and the time value approaches its floor: the interest of 0.219.
+@@ 949d1a41c7 html
+Timing matters too. US stocks now settle T+1, so the ex-dividend date is the record date. To get the dividend, the holder must exercise on the trading day before the ex-dividend date so the shares arrive by the record date. That is why early assignment almost always happens <strong>the night before the ex-dividend date</strong>.
+@@ 59e50ccf59 html
+Stock price <input id="f2-s" type="range" min="95" max="140" step="0.5" value="115"> <output id="f2-s-o">115.0</output>
+@@ 715597c76f html
+Dividend per share <input id="f2-d" type="range" min="0.1" max="3" step="0.05" value="1.5"> <output id="f2-d-o">1.50</output>
+@@ e87b27e154 html
+Days left after ex-div <input id="f2-t" type="range" min="1" max="120" step="1" value="20"> <output id="f2-t-o">20 days</output>
+@@ 3a99c6ad86 html
+Implied volatility <input id="f2-iv" type="range" min="10" max="80" step="1" value="30"> <output id="f2-iv-o">30%</output>
+@@ 524f982abe html
+The blue line is the time value left after the ex-dividend date. It falls as the stock price rises and eventually hugs the interest floor. Drag the dividend below 0.2 and the dashed line drops below the floor: no early exercise at any stock price. Lengthen the days remaining or raise volatility and the whole blue line shifts up, moving the threshold price to the right.
+@@ d06408aac3 html
+Your short call is in the money and the stock goes ex-dividend tomorrow. How do you tell whether you'll be assigned tonight? Look at the quote for the put with the same strike and expiration. If the put price plus a little interest is still less than the dividend, prepare as if you will be assigned tonight. A covered call position will lose the dividend; a naked short call, or the short leg of a spread, becomes a short stock position on the ex-dividend date, and you also have to pay the dividend on the shares you borrowed (Case 1). Not every holder runs the numbers precisely, so assignment isn't 100% certain, but you can't bet on it not happening.
+@@ 6d406ab394 html
+Reason 2: interest
+@@ 21ec513ec7 html
+With a deep in-the-money put, exercising early gets you the strike in cash right away, and that cash starts earning interest. The cost is giving up the chance that the stock rebounds above the strike, and that chance is worth exactly the price of the call at the same strike. By put–call parity, the time value of a European put is:
+@@ 1943727149 html
+When the same-strike call is worth less than the interest on the strike, the European put's time value turns negative, as with the 115 put in Table 1-2 of Chapter 1. The holder of an American put won't accept negative time value; they will exercise early.
+@@ 49d1194b80 html
+In numbers: strike 100, 60 days left, IV 30%, rate 4%. The interest on the strike is <span class="num">100 × (1 − e<sup>−0.04×60/365</sup>) = 0.655</span>.
+@@ 07bb61010a html
+Table 2-4 Put with strike 100, 60 days, IV 30%: European vs. American time value
+@@ 32cf37f9ae html
+Stock price
+@@ 49b41354d1 html
+Same-strike call
+@@ 7b2190b242 html
+European time value
+@@ 0ae35f2417 html
+American time value (binomial tree)
+@@ fbfeaf4a1f html
+0 (exercise now)
+@@ f9cfabb280 html
+European time value turns negative below a stock price of about <span class="num">86.05</span>, a signal that early exercise is “starting to be worth considering.” But the optimal boundary for the American option is lower, around <span class="num">80.6</span>: between 80.6 and 86, waiting and exercising once the put is deeper is still better than exercising right away. The exact boundary has to be computed with an American pricing method such as a binomial tree; the Black-Scholes formula itself can't give it.
+@@ f3bcee6966 html
+Interest rates determine how often this comes up. With the same 60 days, at a 1% rate the American boundary falls to <span class="num">75.3</span>; with rates near zero, a deep in-the-money put has almost no reason to be exercised early. The shorter the time left, the closer the boundary is to the strike: at a 4% rate with 30 days left, the boundary is at <span class="num">84.7</span>.
+@@ 4b8ed131e5 html
+Interest rate <input id="f3-r" type="range" min="0" max="8" step="0.25" value="4"> <output id="f3-r-o">4.00%</output>
+@@ 5dbc8283d8 html
+Days left <input id="f3-t" type="range" min="10" max="180" step="1" value="60"> <output id="f3-t-o">60 days</output>
+@@ 4725bab774 html
+Drag the rate to 0 and the dashed line no longer dips below zero, and the amber area disappears: with no interest to earn, there's no reason to exercise early. Drag the rate above 6% and the boundary moves right, pulling more “ordinary” in-the-money puts into the early-exercise zone. If you sell deep in-the-money puts, be ready at any time to buy the shares at the strike.
+@@ c55c045d7b html
+<span class="sn">2.5</span>Reading an option chain
+@@ ee2d93976b html
+An option chain is a table of quotes, with one page per expiration and one row per strike. Look at the bid and ask first, then volume and open interest, and the theoretical measures last.
+@@ 3e3642f5cc html
+Below is a simulated option chain: XYZ at 102.35, expiring in 30 days. The quotes are generated from Black-Scholes plus an assumed volatility skew and bid–ask spreads; volume and open interest are made up.
+@@ 009192aee1 html
+Table 2-5 Simulated option chain (XYZ 102.35, 30 days to expiration; shaded = in the money)
+@@ 9229989ddf html
+Calls
+@@ fdfcae5a05 html
+Puts
+@@ 3037b0e08d html
+Bid<span class="mk">①</span>
+@@ 0ff966e69c html
+Ask<span class="mk">②</span>
+@@ 9e902a75ba html
+Volume<span class="mk">③</span>
+@@ 7cb5009087 html
+Open int.<span class="mk">④</span>
+@@ ac4c473917 html
+Strike<span class="mk">⑥</span>
+@@ d1ff079ffa html
+Bid
+@@ fc1612693c html
+Ask
+@@ babce842e3 html
+Volume
+@@ 888317d10f html
+Open int.
+@@ 0f0633a453 html
+Stock at 102.35
+@@ 57d295ddcb html
+① Bid
+@@ 03e548f815 html
+The highest buy order in the market: the price at which you can <strong>sell</strong> immediately.
+@@ 7de9f9d9a9 html
+② Ask
+@@ 092473b0df html
+The lowest sell order in the market: the price at which you can <strong>buy</strong> immediately. The midpoint between the two is called the mid price (Mid); some brokers show it as Mark.
+@@ d2eb6abe60 html
+③ Volume
+@@ 5aa5f28f41 html
+Contracts traded so far today. It starts from zero every day.
+@@ 7eca3f2084 html
+④ Open interest
+@@ 0d1deded40 html
+The total number of contracts in the market that have not been closed. The clearinghouse updates it once a day after the close; it doesn't change during the session.
+@@ be3d39e9de html
+How many shares one contract is equivalent to (multiply by 100). It can also serve as a rough probability of finishing in the money (Chapter 4).
+@@ af19045ec1 html
+⑥ Strike
+@@ 57ce7f94f4 html
+The spine of the chain. A bar marks where the current price sits; the calls above it and the puts below it are in the money.
+@@ c56bf6d8e3 html
+⑦ Implied volatility
+@@ 5bfc8f40f1 html
+The volatility backed out from the mid price. Here the lower strikes have higher IV; this “skew” is normal for stock options (Chapter 6).
+@@ 5d369745a9 html
+One chain, three levels of liquidity
+@@ 3169817ae9 html
+<strong>105 call</strong>: bid 2.28, ask 2.35, a spread of 0.07, only <span class="num">3.0%</span> of the mid; 2,240 contracts traded today and open interest is 8,400. Liquid: an order at the mid will probably fill.
+@@ 2b1daf1645 html
+<strong>112.5 call</strong>: 0.41 / 0.52. A spread of 0.11 looks small, but it is <span class="num">23.7%</span> of the mid. Buy and then sell right away, and nearly a quarter of your money is gone.
+@@ 4b0c990b41 html
+<strong>92.5 call</strong>: 10.65 / 10.85, a spread of only <span class="num">1.9%</span> of the mid, but only 12 contracts traded today and open interest is 150. The percentage looks good, but a round trip actually costs $20 per contract, and there may be few real counterparties behind the quotes.
+@@ 3a2d70e035 html
+Another column you'll often see is the last traded price (Last). For thinly traded contracts, it may be hours old and have nothing to do with the current quotes. Base both valuations and orders on the bid, the ask and the mid.
+@@ 9b2f173193 html
+<span class="sn">2.6</span>Accounts, approval levels and margin
+@@ 52a336cc42 html
+What you can trade depends on two things: the options approval level your broker grants you, and whether your account is a cash account or a margin account.
+@@ 6da3dcd314 html
+Table 2-6 Typical options approval levels (names and number of levels vary by broker)
+@@ e84cc4ede8 html
+Level
+@@ 0d5c274e2e html
+Allowed trades
+@@ 5d06bec40b html
+Account requirement
+@@ 53df52fc12 html
+Nature of the maximum loss
+@@ 6e69fbefc0 html
+Level 1
+@@ 41f895b950 html
+Covered calls, protective puts
+@@ d34c5f88fd html
+Cash or margin
+@@ 717b5fea87 html
+Similar to owning the stock
+@@ 9c88643c04 html
+Level 2
+@@ 0b1e58cb36 html
+Buying calls and puts; cash-secured puts
+@@ 91349a0841 html
+The premium; or buying the shares at the strike
+@@ 7dd817b542 html
+Level 3
+@@ 50b678189e html
+Spreads: debit, credit, iron condors, butterflies
+@@ f9e20dfcab html
+Usually requires a margin account
+@@ 138847f21b html
+Limited; depends on the width of the spread
+@@ c2d73a843a html
+Level 4
+@@ 7b37efcbae html
+Naked puts
+@@ 85ea2c7b2b html
+Margin account
+@@ f118a41f12 html
+Close to strike × 100
+@@ 07c25d3b50 html
+Level 5
+@@ 050b1bfb79 html
+Naked calls
+@@ 730c0bac44 html
+Unlimited in theory
+@@ 62371d7466 html
+Some brokers put cash-secured puts in Level 1; some combine the two kinds of naked selling into one level. Approval usually depends on the trading experience, income, net worth and investment objectives you report. The logic of the levels is clear: the higher you go, the harder it is to put a bound on the maximum loss.
+@@ 52bedb2343 html
+Cash accounts and margin accounts
+@@ 667bd1fc0f html
+<strong>Cash account</strong>: you pay for options in full. Selling a put requires setting aside the full amount in cash; for example, selling one 90 put for $40 ties up <span class="num">90 × 100 − 40 = $8,960</span>. A covered call requires owning 100 shares. Most brokers don't allow spreads in a cash account. Proceeds from a sale can be used again only after settlement (T+1 for options).
+@@ 5e8f412571 html
+<strong>Margin account</strong>: you can borrow to buy stock (Reg T initial margin is 50%), and you can trade spreads and sell naked. Options themselves generally can't be bought with borrowed money: options expiring within 9 months must be paid for in full, and longer-dated options can be financed up to 25%.
+@@ 991f1c15ca html
+Reg T and portfolio margin
+@@ 698121698a html
+US brokers use Reg T rules by default, which calculate margin for each position with a fixed formula. The standard formula for a naked stock option is:
+@@ 0bd8d4c8ba html
+Per share; multiply by 100 for each contract. For a naked call, replace the last term with 10% × <span class="v">S</span>. For broad-based index options, replace 20% with 15%. The premium received can be applied toward this requirement, and brokers can add more on top.
+@@ 4ef920d5ae html
+Example: stock at 100, sell a 30-day 90 put (0.40). The margin is <span class="num">0.40 + max(20 − 10, 9) = 10.40</span>, or $1,040 per contract; minus the $40 received, $1,000 is actually tied up. The same trade in a cash account would tie up $8,960.
+@@ 8494d845c1 html
+<strong>Portfolio margin</strong> takes a different approach: it reprices the whole portfolio under a set of price scenarios and uses the largest loss as the margin. The scenario range is ±15% for individual stocks and roughly −8% to +6% for broad market indexes. Counting only the price shock, with volatility unchanged, the 90 put above is worth 5.92 if the stock falls 15%, so portfolio margin is about <span class="num">5.92 − 0.40 = 5.52</span>, or $552 per contract, roughly half of Reg T. Portfolio margin generally requires at least $100,000 in account equity; the minimum varies by broker.
+@@ 44adc84793 html
+Both lines show the amount that account equity needs to cover. The option's market value has already been deducted from equity, so for Reg T only the second term of the formula is plotted. With the stock at 100, Reg T requires $1,000 and portfolio margin $552; if the stock falls to 92, Reg T rises to $1,640. Once the put is deep in the money, Reg T eases slightly, because the loss is already reflected in equity.
+@@ ad6148d00b html
+Margin calls
+@@ f2a0f93287 html
+When account equity falls below the margin requirement, your broker issues a margin call. The example below shows how fast it can come.
+@@ 5597d8c789 html
+Your account has $20,000, and you sell 15 of the 90 puts above for 0.40. Reg T requires <span class="num">15 × $1,000 = $15,000</span>, which looks like room to spare. Two days later the stock falls to 92, panic pushes IV to 40%, and the put rises to <span class="num">2.98</span>:
+@@ 3cab3c03b2 html
+Unrealized loss of <span class="num">(2.98 − 0.40) × 1,500 = $3,870</span>; account equity drops to <span class="num">$16,130</span>.
+@@ 2bdbd9cd7d html
+The margin requirement rises to <span class="num">15 × (20% × 92 − 2) × 100 = $24,600</span>.
+@@ c710c329d9 html
+A shortfall of <span class="num">$8,470</span>. The stock fell only 8%, and you have to put in more than 40% of your starting capital.
+@@ b05c2c1e13 html
+The margin requirement and the loss grow at the same time, and usually just when volatility spikes and liquidity is at its worst.
+@@ 6f7afa58da html
+Brokers usually give you very little time to meet a call, but account agreements generally reserve the right to liquidate without notice, at a price the broker chooses, with the loss on you.
+@@ bd0201ef58 html
+Portfolio margin is cheaper in calm markets and rises faster in violent ones. The closer you run to your margin limit, the sooner the call comes. Chapter 13 discusses the margin spiral.

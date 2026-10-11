@@ -1,0 +1,172 @@
+@@ a70e23cc3d text
+US Options
+@@ 875f2902a9 text
+ Course
+@@ af0e8c3b07 text
+US Options Course · Part 2 The core variables · Chapter 5
+@@ 7020ce8cb8 text
+call
+@@ 81e09c80f1 text
+ATM options lose value fastest in the last month; OTM options lose most of theirs in the first two
+@@ 0a0e1ceb36 text
+Figure 5-1 · Stock at $100, time value, interactive
+@@ aee9f5741b text
+ATM: share lost in the last 30 days
+@@ 0f563e67dd text
+110 call: share lost in the first 60 days
+@@ b784c2ea4d text
+ATM Theta on the last day
+@@ 5673a2ee01 text
+110 call: days left at peak Theta
+@@ 596d152608 text
+Same total decay for the week; the calendar-day clock piles the weekend onto Monday
+@@ 46982b31b4 text
+Figure 5-2 · Daily decay from Table 5-3
+@@ 7d79c8a621 text
+Calendar-day clock
+@@ d9fea9f24b text
+Trading-day clock
+@@ bcbbb7163c text
+(ATM)
+@@ a1415042e1 text
+The longer the term and the closer to the money, the larger the Vega
+@@ 75ff925a2e text
+Figure 5-3 · Stock at $100, interactive
+@@ 4f3e769980 text
+7-day ATM · per contract per point
+@@ dbb0774e55 text
+30-day ATM · per contract per point
+@@ 4faaf5a991 text
+90-day ATM · per contract per point
+@@ 492f1027a2 text
+365-day ATM · per contract per point
+@@ 3eeac65026 text
+event
+@@ 0a3dbe2c21 text
+The P&amp;L equation for event trades
+@@ 25fd27abb2 text
+IV crush makes buyers lose even when they get the direction right
+@@ a4e136c601 text
+Figure 5-4 · 7-day ATM, day after earnings, P&amp;L per contract
+@@ b63a9dc5f6 text
+Profit zone
+@@ 642ddc0f39 text
+Loss zone
+@@ d844689297 text
+Breakeven line
+@@ 42089dc508 text
+Pre-event IV
+@@ 5bb82415e9 text
+P&amp;L at this point (per contract)
+@@ fba9e83827 text
+Same move, IV unchanged
+@@ 7a4a32aa88 text
+Breakeven move at this IV
+@@ 528b8fd586 text
+Cost to open (per contract)
+@@ a1aa21848e text
+Field notes
+@@ 70d9c88461 text
+put
+@@ 1bf74072bd text
+Rates barely affect short-dated options but clearly move LEAPS prices
+@@ f3eccf5708 text
+Figure 5-5 · Stock at $100, IV 30%, interactive
+@@ 111f078032 text
+LEAPS call
+@@ e038b99f22 text
+LEAPS put
+@@ 729d4cc226 text
+30-day call
+@@ c331dfa588 text
+30-day put
+@@ 76686182fd text
+LEAPS call Rho (per contract per 1%)
+@@ 62d19ec917 text
+30-day call Rho (per contract per 1%)
+@@ 497b6fb9b2 text
+Rates 4% → 6%: LEAPS call
+@@ 20905159ea text
+Rates 4% → 6%: LEAPS put
+@@ 31c383b8a1 text
+Check the units before reading your broker’s Greeks
+@@ 312b3d01bf text
+The position in one sentence
+@@ 046dfb89e4 text
+Case 1
+@@ c076194320 text
+Takeaway
+@@ 411ced42ca text
+Case 2
+@@ 81acdd30ad text
+Case 3
+@@ 5205b402f9 attr
+Jump to chapter
+@@ ae78ea9525 attr
+In this chapter
+@@ 850799db99 attr
+Vertical axis units
+@@ 01d41bf76a attr
+Time value of options at different strikes decaying as days run out
+@@ 6f58688ed0 attr
+Daily time decay under the two clocks compared
+@@ 1c24452493 attr
+Call Vega across strikes for different terms
+@@ 47f417ac1f attr
+Choose a position
+@@ 6005db2edc attr
+P&L heat map across next-day stock moves and post-event IV
+@@ 252c8225a5 attr
+Option prices vs. interest rates: LEAPS compared with 30-day options
+@@ f0852d355e attr
+Chapter navigation
+@@ b4c3bf8705 js
+95 call (ITM)
+@@ 9413890787 js
+100 call (ATM)
+@@ 5eece20ce6 js
+105 call
+@@ 0fe3d8bc68 js
+110 call
+@@ c693f56951 js
+Time value ($/share)
+@@ f2b71f3b50 js
+% of 90-day value
+@@ 544ba9818d js
+Days left
+@@ 9a56bd4bbf tpl
+<span><i class="dash" style="border-color: var(--muted)"></i>30 days left</span>
+@@ 9c83d1f453 js
+<empty>
+@@ c87f6311bf js
+ days
+@@ 2a3ac37db1 js
+Mon
+@@ f191363d69 js
+Tue
+@@ dc19ada58e js
+Wed
+@@ 7b0a937d0d js
+Thu
+@@ 8987d87b8e js
+Fri
+@@ e792bd5660 js
+Daily decay ($/share)
+@@ 562fc7a64c js
+Strike ($)
+@@ 938d66210a js
+Vega ($/share/point)
+@@ 93954ab0e9 js
+Vega ÷ price
+@@ 18f82df4e0 tpl
+<span><i style="border-color: var(--delta); opacity: {0}"></i>{1} days left</span>
+@@ 9d9dd2a4ec js
+Next-day stock move
+@@ d93353fe51 js
+Post-event IV
+@@ a64c1bcc7c js
+None within ±15%
+@@ 0ba4749b1b js
+Risk-free rate
+@@ b6bd303400 js
+Option price ($/share)

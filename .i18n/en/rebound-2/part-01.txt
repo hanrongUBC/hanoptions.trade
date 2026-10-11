@@ -1,0 +1,208 @@
+@@ 824ee77be5 html
+RSI is 41.94, in neutral-to-weak territory, and not oversold.
+@@ 8659c461ae html
+Support: the October 5 closing low of $179.50 is the lowest close of the past 30 trading days. Below it is the 52-week low of $178.45, which makes $178 to $180 the key support zone.
+@@ d80c33b219 html
+Resistance: first the October 8 close of $188.85, then $196.08 (September 22) and $198.17 (September 14), and above that the 50-day moving average at $202.19.
+@@ 8ac5a58d13 html
+Over the past week the stock recovered from $180.80 to $186.00, up about 2.9%, a short-term bounce above the support zone. Over the past 30 trading days it is still down about 10.6% (it closed at $208.05 on August 28).
+@@ c2355f9392 html
+$104.4 billion
+@@ 382e573898 html
+$90.4 billion
+@@ 0c15e31698 html
+$42.0 / $3.2 billion
+@@ 837987d985 html
+Trailing-twelve-month revenue was $90.43 billion, up 8.16% year over year. Second-quarter revenue (quarter ended July 31) was $25.96 billion, up 8.33%, but comparable sales grew only 0.2%; most of the revenue growth came from acquisitions.
+@@ f2c0d90f7d html
+Second-quarter earnings per share (EPS) were $4.27, flat from a year earlier. Adjusted EPS was $4.40, up 1.6%, including a $0.11 gain from tariff refunds.
+@@ 38686e9071 html
+Gross margin is 32.99%, operating margin 11.35% and net margin 7.35%. Return on invested capital (ROIC) is 22.42%, a sign that capital is used efficiently.
+@@ 93f0a97bf6 html
+On August 19 the company cut its fiscal 2026 guidance to the low end of the previous range: revenue of about $92 billion, flat comparable sales and adjusted EPS of about $12.25.
+@@ a0535b894f html
+On valuation, the P/E (TTM) is 15.72, the forward P/E 14.87 and EV/EBITDA 11.25. The dividend yield is 2.69% and the payout ratio 42.27%; the next ex-dividend date is October 21.
+@@ b7d9517425 html
+Total debt is $42.03 billion and cash $3.17 billion; trailing-twelve-month free cash flow (FCF) was $7.00 billion. The consensus rating from 35 analysts is Buy, with an average price target of $249.39.
+@@ 72c9e754f2 html
+<span class="nd">2026-08-18</span><span>Peer Home Depot's second-quarter comparable sales grew 1.7% and it kept its full-year guidance. The next day Lowe's reported comparable sales up only 0.2%, and the gap between the two became a focus for the market. <a href="https://www.sec.gov/Archives/edgar/data/0000354950/000035495026000145/hd_exhibit991x08022026.htm" target="_blank" rel="noopener">sec.gov</a></span>
+@@ 7ed4181d3e html
+<span class="nd">2026-08-19</span><span>Lowe's second-quarter comparable sales grew 0.2% and online sales 15.7%, but it cut full-year guidance to the low end of its range. The CEO said discretionary DIY spending was under pressure, a sign that the demand recovery has not arrived yet. <a href="https://www.sec.gov/Archives/edgar/data/0000060667/000006066726000113/exhibit991-07312026.htm" target="_blank" rel="noopener">sec.gov</a></span>
+@@ 218dd940e4 html
+<span class="nd">2026-09-15</span><span>The stock fell to near what was then its 52-week low. An analysis pointed to a frozen housing market, competitors using tariff refunds to cut prices while Lowe's did not follow, and weak new-home construction weighing on the newly acquired ADG and FBM. <a href="https://www.tikr.com/blog/lowes-stock-just-hit-a-52-week-low-heres-where-the-stock-could-go" target="_blank" rel="noopener">tikr.com</a></span>
+@@ c3761bcd07 html
+<span class="nd">2026-09-24</span><span>Lowe's began piloting drone delivery with Alphabet's Wing and DoorDash at its store in Matthews, North Carolina, with delivery in as little as 20 minutes. The near-term profit impact is small, but it shows the push toward faster on-demand delivery. <a href="https://dronexl.co/2026/09/24/lowes-wing-doordash-drone-delivery-matthews/" target="_blank" rel="noopener">dronexl.co</a></span>
+@@ f8b5291b2c html
+2026-10-21: ex-dividend date (annualized dividend $5.00).
+@@ 18fc1b6f62 html
+2026-11-18: third-quarter results before the open. Management had earlier forecast third-quarter adjusted EPS down about 7% year over year.
+@@ b395ec8904 html
+Monthly data on existing-home sales, housing starts and mortgage rates.
+@@ 2e5a17c8cb html
+Lowe's is very sensitive to long-term rates. Mortgage rates follow the 10-year Treasury yield; falling long-term rates help home sales and renovation demand, and rising rates do the opposite.
+@@ 8b0212a508 html
+DIY is discretionary spending. When household budgets are tight, big renovation projects are the first to be put off; in the second-quarter report the CEO said discretionary DIY spending was under pressure.
+@@ 56c76e20a2 html
+Tariffs affect the cost and selling price of imported goods. Second-quarter profit included $0.11 per share of tariff refunds, and second-half guidance assumes no further refunds.
+@@ e3953b8cbf html
+The forward P/E is 14.87 and the stock is about 36.5% below its 52-week high of $293.06; the valuation already prices in a good deal of pessimism.
+@@ 100139e4a1 html
+Online sales grew 15.7%, and professional customers and home services have kept comparable sales positive for five straight quarters.
+@@ 8ac3533aa3 html
+If falling long-term rates revive home sales, DIY demand could improve. The average analyst price target of $249.39 is about 34% above the current price.
+@@ 7cac26ac4c html
+Comparable sales grew only 0.2%, behind Home Depot's 1.7%, and the market worries about lost share.
+@@ d565fe9902 html
+Management expects third-quarter adjusted EPS to fall about 7% year over year. Full-year guidance is already at the low end, and further cuts are possible.
+@@ 0b62254fec html
+Total debt is $42.03 billion, and weak new-home construction will weigh on the newly acquired ADG and FBM.
+@@ 15803d9864 html
+Whether the $178 to $180 support zone holds (52-week low $178.45, October 5 close $179.50).
+@@ 9b5a1a86eb html
+Whether the stock can get back above the $196 to $198 area and the 50-day moving average at $202.19.
+@@ f56d035016 html
+Comparable sales, DIY transaction counts and full-year guidance in the November 18 third-quarter report.
+@@ 8d493b85c2 html
+Sources: <a href="https://stockanalysis.com/stocks/low/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/low/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/low/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/low/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/low/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0000060667/000006066726000113/exhibit991-07312026.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://www.sec.gov/Archives/edgar/data/0000354950/000035495026000145/hd_exhibit991x08022026.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://www.tikr.com/blog/lowes-stock-just-hit-a-52-week-low-heres-where-the-stock-could-go" target="_blank" rel="noopener">tikr.com</a> · <a href="https://dronexl.co/2026/09/24/lowes-wing-doordash-drone-delivery-matthews/" target="_blank" rel="noopener">dronexl.co</a>
+@@ 8d30203aa3 html
+CMCSA <span class="zh">Comcast</span>
+@@ 2d0640823f html
+On the list as a communications stock; his “benefits from falling rates” list includes “communications.” The stock has fallen to a single-digit P/E, and the dividend yield is high.
+@@ ec2f1e6765 html
+Comcast is one of the largest cable broadband providers in the US. Its Xfinity brand sells broadband, wireless and TV service, and it also owns NBCUniversal (the NBC network, the Peacock streaming service, Universal Pictures and the Universal theme parks) and Sky in Europe. Broadband and the other connectivity businesses provide most of the profit. On June 29 the company announced that it would separate NBCUniversal and Sky into an independent public company through a tax-free spin-off, expected to take about a year.
+@@ 75fab5a3c1 html
+52-week range: $20.48 to $32.86; the current price is 37.1% below the high. The average analyst price target is $28.85 (27 analysts, average rating Hold). Price targets reflect an optimistic scenario and often lag the stock price.
+@@ 2e400a11ed html
+The close of $20.66 is 15.5% below the 50-day moving average ($24.46) and 22.3% below the 200-day moving average ($26.60). The 50-day is below the 200-day, a clear downtrend.
+@@ c86ab6e842 html
+RSI is 24.52, below 30 and in oversold territory. The stock has fallen too fast in the short term, but oversold does not mean it has bottomed.
+@@ 16c0c7884b html
+Support: the October 9 intraday low of $20.48 is the new 52-week low, and that day's $20.66 close is also the lowest close of the past 30 trading days. The first level to watch is around $20.5.
+@@ 43d72cd5dd html
+Resistance: first $21.56 to $21.79 (the closing range from September 28 to October 6), then the 50-day moving average at $24.46 and the September 14 close of $24.88.
+@@ 45e8452881 html
+Over the past 30 trading days the stock fell from $27.06 on August 28 to $20.66, a drop of about 23.7%.
+@@ 90ddb33d63 html
+$73.3 billion
+@@ 236f607cbc html
+$124.9 billion
+@@ 1c4138e105 html
+$90.4 / $7.7 billion
+@@ 4d18b974cc html
+$20.4 billion
+@@ 6f11d910cf html
+Trailing-twelve-month revenue was $124.9 billion, up 0.58% year over year. Second-quarter revenue was $29.94 billion, down 1.23% year over year.
+@@ ac98959d44 html
+Second-quarter earnings per share (EPS) were $0.99, down 66.8% year over year. Adjusted EPS was $1.04, down 16.7%, and adjusted EBITDA fell 13.4%.
+@@ d7d900e13e html
+Broadband customers are still leaving: domestic broadband had a net loss of 167,000 customers in the second quarter, and broadband revenue fell 5.5% to $6.28 billion. Wireless added 448,000 lines, and Peacock turned profitable, with second-quarter adjusted EBITDA of $189 million.
+@@ c000de8245 html
+The valuation is very low: P/E (TTM) 6.69, forward P/E 5.90, EV/EBITDA 4.58 and price-to-sales (P/S) 0.59. The dividend yield is 6.39% and the payout ratio 42.73%.
+@@ 10c9133517 html
+Total debt is $90.38 billion and cash $7.66 billion. Trailing-twelve-month free cash flow (FCF) was $20.44 billion, so cash flow is still ample. The company suspended share buybacks on June 29 until the spin-off is complete.
+@@ f53946d886 html
+Gross margin is 69.39%, operating margin 14.66%, net margin 8.97% and return on invested capital (ROIC) 8.15%. The consensus rating from 27 analysts is Hold, with an average price target of $28.85.
+@@ 487d2a2df6 html
+<span class="nd">2026-09-09</span><span>At a Goldman Sachs conference, CFO Jason Armstrong said broadband customer losses had not improved in the third quarter and called rivals' $30 to $40 gigabit plans irrational pricing. The stock closed at $24.59, down from $26.33, a drop of about 6.6%. <a href="https://stocktwits.com/news-articles/markets/equity/cmcsa-cfo-sees-no-improvement-in-broadband-user-losses/cZt7kt5RJCc" target="_blank" rel="noopener">stocktwits.com</a></span>
+@@ 16a63f8fca html
+<span class="nd">2026-09-14</span><span>Comcast and Paramount Skydance are weighing options for SkyShowtime, their European streaming joint venture, including possibly shutting it down. The company is pulling back from crowded overseas streaming markets. <a href="https://thedesk.net/2026/09/paramount-comcast-may-wind-down-skyshowtime-joint-venture/" target="_blank" rel="noopener">thedesk.net</a></span>
+@@ c4496bf4fc html
+<span class="nd">2026-09-25</span><span>KeyBanc downgraded the stock from Sector Weight to Underweight with an $18 price target, citing broadband share losses and weaker theme-park attendance. Citi cut its target from $30 to $27.50, and the stock fell to its lowest level since 2013. <a href="https://247wallst.com/investing/2026/09/25/comcast-slips-as-keybanc-cuts-to-underweight-on-broadband-share-losses-att-and-verizon-hold-steady/" target="_blank" rel="noopener">247wallst.com</a></span>
+@@ aa68b045c4 html
+<span class="nd">2026-10-01</span><span>Reuters reported that NBCUniversal is cutting several hundred jobs in its global streaming technology unit, mostly at Sky. It is cost control ahead of the spin-off, with limited near-term impact on profit. <a href="https://capital.com/en-au/news/comcast-s-nbcuniversal-cuts-streaming-technology-jobs" target="_blank" rel="noopener">capital.com</a></span>
+@@ 7ef0996aa7 html
+2026-10-22: third-quarter results before the open. Watch net broadband losses, wireless additions and adjusted EBITDA.
+@@ 9519ea095e html
+Progress on the NBCUniversal and Sky spin-off (reports put the target at mid-2027).
+@@ 6427e5b84a html
+Whether buybacks resume once the spin-off is done.
+@@ 577a334c6a html
+Comcast has $90.38 billion of total debt. Lower long-term rates would cut its refinancing costs and make the 6.39% dividend yield more attractive; higher long-term rates do the opposite.
+@@ 2211d5bbe6 html
+Theme-park and advertising revenue track consumer spending, so weaker spending would weigh on NBCUniversal. KeyBanc says theme-park attendance has been falling since June.
+@@ bf68c349db html
+The main pressure on broadband is price competition from fiber and fixed wireless. That is a structural problem in the industry, and macro shifts do little to change it.
+@@ 7e717e5e64 html
+The valuation is very low: forward P/E 5.90, EV/EBITDA 4.58, trailing-twelve-month free cash flow of $20.44 billion and a 6.39% dividend yield.
+@@ 31982e5beb html
+RSI is 24.52, in oversold territory, which sets up a possible short-term technical bounce.
+@@ f1f8d0e88a html
+After the spin-off the market can value the broadband and media assets separately. Peacock is already profitable, and wireless keeps growing.
+@@ 2e33c3d0b7 html
+Broadband customers keep leaving. The CFO said there was no improvement in the third quarter, and KeyBanc expects 558,000 broadband losses in 2026.
+@@ 7ce87bcb6f html
+Buybacks are suspended until the spin-off, which removes one source of buying that supported the stock.
+@@ 7013f161f9 html
+The stock keeps making new lows and sits below all its major moving averages, with no sign yet of stabilizing.
+@@ 3c2420a015 html
+Whether the 52-week low of $20.48 holds.
+@@ 07fd68545c html
+Whether RSI climbs back above 30 while the stock closes back above $21.8.
+@@ 2979ac39f2 html
+Net broadband losses and the change in adjusted EBITDA in the October 22 third-quarter report.
+@@ 22d63f7f23 html
+Sources: <a href="https://stockanalysis.com/stocks/cmcsa/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/cmcsa/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/cmcsa/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/cmcsa/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/cmcsa/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0001166691/000162828026049274/ex991-6302026.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://www.valleynewslive.com/2026/06/29/comcast-plans-split-into-two-public-companies-by-spinning-off-nbcuniversal-sky/" target="_blank" rel="noopener">valleynewslive.com</a> · <a href="https://stocktwits.com/news-articles/markets/equity/cmcsa-cfo-sees-no-improvement-in-broadband-user-losses/cZt7kt5RJCc" target="_blank" rel="noopener">stocktwits.com</a> · <a href="https://thedesk.net/2026/09/paramount-comcast-may-wind-down-skyshowtime-joint-venture/" target="_blank" rel="noopener">thedesk.net</a> · <a href="https://247wallst.com/investing/2026/09/25/comcast-slips-as-keybanc-cuts-to-underweight-on-broadband-share-losses-att-and-verizon-hold-steady/" target="_blank" rel="noopener">247wallst.com</a> · <a href="https://parameter.io/comcast-cmcsa-stock-plunges-to-13-year-low-after-analyst-downgrades/" target="_blank" rel="noopener">parameter.io</a> · <a href="https://capital.com/en-au/news/comcast-s-nbcuniversal-cuts-streaming-technology-jobs" target="_blank" rel="noopener">capital.com</a>
+@@ 961c1348ea html
+BAC <span class="zh">Bank of America</span>
+@@ 0e85439030 html
+On the list; on October 2 he recorded a buy at $53.75. On September 29 he said bank stocks were oversold heading into earnings season, provided yields came down, and on October 1 he also bet on a bank rebound.
+@@ 8d0aac4703 html
+Bank of America is the second-largest US commercial bank by assets. It has four main businesses: consumer banking, wealth management (Merrill), corporate and investment banking, and global markets trading. About half of revenue is net interest income (NII), the interest earned on loans and securities minus the cost of deposits. Second-quarter NII was $16 billion, about half of the company's reported revenue of $31.6 billion; the rest comes from investment banking, trading, wealth management and various fees.
+@@ 9b9953132b html
+52-week range: $46.12 to $65.23; the current price is 16.7% below the high. The average analyst price target is $66.59 (25 analysts, average rating Buy). Price targets reflect an optimistic scenario and often lag the stock price.
+@@ 54857d41b7 html
+The close of $54.32 is 9.57% below the 50-day moving average ($60.07) and 1.74% below the 200-day moving average ($55.28). With the price under both averages, the short-term trend is weak.
+@@ c4533883c1 html
+The 50-day moving average is still above the 200-day, but the average close over the last 20 trading days is only $55.88, so the 50-day is turning down. If the price stays below the 200-day, the two lines could form a death cross.
+@@ ad73583acd html
+RSI is 31.84, close to the oversold line at 30. Selling has been heavy, but the stock is not yet oversold.
+@@ fb5572b174 html
+Support: the lowest close of the past 30 trading days, $53.52 (October 7), and below that the 52-week low of $46.12.
+@@ e9f6f3a335 html
+Resistance: first the 200-day moving average at $55.28, then $59.47 (the close after the September 14 drop) and the 50-day moving average at $60.07, then the 30-day high close of $63.04 (September 3) and the 52-week high of $65.23.
+@@ 7b0c5ace5e html
+$379.8 billion
+@@ 7f97e7cf89 html
+$113.9 billion
+@@ 7c1bcd53ce html
+N/A for banks
+@@ 60e7cc96d3 html
+Price-to-book / ROE
+@@ 62de5d3058 html
+Trailing-twelve-month revenue was $113.9 billion, up 9.25% year over year. Net income was $32.1 billion and earnings per share (EPS) $4.33, up about 27.8%.
+@@ 694cbb3e5f html
+Second-quarter revenue was $30.2 billion, up 16.79% year over year, and EPS was $1.21, up 34.11%. Net interest income was $16 billion, up 9%, and global markets revenue was $8 billion, up 34%.
+@@ a93d8cc890 html
+The valuation is modest: P/E 12.55, forward P/E 11.21, price-to-book (P/B) 1.38 and PEG 0.68. Return on equity (ROE) is 11.20%, and second-quarter return on tangible common equity (ROTCE) was 17.0%.
+@@ 974d8c9e09 html
+Shareholder returns are steady: an annual dividend of $1.28, a 2.36% dividend yield and a payout ratio of only 29.57%. The share count fell 3.72% over the past year, and in the second quarter the bank bought back $6 billion of stock and paid $2 billion in dividends.
+@@ 8a81e9e394 html
+Capital is solid: the second-quarter common equity tier 1 (CET1) ratio was 11.2%. In September management said it expects 2026 net interest income growth at the top of its 6% to 8% range.
+@@ 2cf60341bd html
+Note: the “total debt” of $789 billion and “cash” of $868.1 billion on a bank's statements are mostly deposits, interbank items and securities, and can't be compared directly with an industrial company's. Gross margin, EV/EBITDA and ROIC mean nothing for a bank, so they are left blank.
+@@ c6cbbfb478 html
+<span class="nd">2026-09-14</span><span>At a Barclays financial services conference, CEO Moynihan said third-quarter investment banking fees should come in at $1.6 billion to $1.8 billion, below $2 billion a year earlier, with trading revenue roughly flat. The stock fell 5.14% that day to $59.47, the start of September's decline. <a href="https://www.sharecafe.com.au/2026/09/15/bank-of-america-flags-investment-banking-fee-dip/" target="_blank" rel="noopener">sharecafe.com.au</a></span>
+@@ 111fbf73b1 html
+<span class="nd">2026-09-16</span><span>The Fed raised rates 25 basis points to 3.75% to 4.00%, its first hike since 2023, and most officials expect one more before year-end. That made deposit costs and the shape of the yield curve the focus for bank stocks. <a href="https://kuwaittimes.com/article/49973/business/fed-raises-rates-to-tackle-too-high-inflation-irking-trump/" target="_blank" rel="noopener">kuwaittimes.com</a></span>
+@@ c7b51490e7 html
+<span class="nd">2026-09-22</span><span>The S&amp;P 500 banks index fell 3% that day. The spread between 2-year and 10-year Treasury yields narrowed to about 21 basis points, the flattest since March 2025, and the market worried that Meta's AI assistant Muse could disrupt wealth management and deposit businesses. <a href="https://www.kitco.com/news/off-the-wire/2026-09-22/financial-stocks-fall-ai-and-flattening-yield-curve-focus" target="_blank" rel="noopener">kitco.com</a></span>
+@@ 889dfd59bd html
+<span class="nd">2026-09-28</span><span>Axios reported that the KBW Bank Index fell 10.2%, from a high of 195.55 on August 17 to 175.57 on September 25, because expected rate hikes flattened the yield curve and AI assistants could help savers move low-rate deposits elsewhere. <a href="https://axios.com/2026/09/28/bank-stocks-treasury-curve" target="_blank" rel="noopener">axios.com</a></span>
+@@ 6b95f163a8 html
+<span class="nd">2026-09-30</span><span>Its Merrill unit agreed to pay $39 million to settle a class action over low interest rates on cash sweep accounts. The amount is small next to Bank of America's profits, but it shows that regulators and litigants are watching deposit pricing. <a href="https://kfgo.com/?p=1358418" target="_blank" rel="noopener">kfgo.com</a></span>
+@@ 818d72f243 html
+<span class="nd">2026-09-30</span><span>The Fed finalized its stress test overhaul. The stress capital buffer will now be the average of the two most recent results, which should cut year-to-year swings in capital requirements by 50% while leaving overall capital levels about the same. That helps big banks plan buybacks and dividends more steadily. <a href="https://www.kitco.com/news/off-the-wire/2026-09-30/fed-finalizes-bank-stress-test-overhaul" target="_blank" rel="noopener">kitco.com</a></span>
+@@ 1010fc9810 html
+2026-10-14: third-quarter results at about 6:45 a.m. ET, conference call at 8:30. Watch whether investment banking fees land in the $1.6 billion to $1.8 billion range, net interest income growth and credit provisions.
+@@ 7a8664b7d7 html
+The big banks report third-quarter results in mid-October, and peers' investment banking, trading and deposit numbers will move the whole sector.
+@@ 587029133b html
+The October and December FOMC meetings: the September dot plot showed most officials expect one more hike before year-end.
+@@ eea4af154b html
+Short-term rates: the Fed raised rates to 3.75% to 4.00% in September, and deposit costs are rising with them. If long-term rates rise more slowly, the yield curve flattens and squeezes the bank's net interest margin (NIM). On September 22 the 2-year/10-year spread was only about 21 basis points.
+@@ e974a00093 html
+Long-term rates: the 10-year Treasury yield was about 5.27% on October 7. Higher long rates lift returns on new loans and reinvested funds, but they lower the market value of the fixed-rate bonds the bank holds and discourage corporate bond issuance and M&amp;A, which hurts investment banking revenue.
+@@ 9419d8b29b html
+Oil and inflation: the US–Iran conflict pushed oil higher, with WTI reaching $90.82 on September 1 and about $88.48 on October 7. High inflation is the Fed's main reason to keep hiking. In September management said consumer spending was strong and credit quality good, so pressure from bad loans is limited for now.
+@@ 50bb6110e5 html
+Cheap valuation: forward P/E 11.21 and price-to-book 1.38. The average price target from 25 analysts is $66.59, with a consensus Buy rating.

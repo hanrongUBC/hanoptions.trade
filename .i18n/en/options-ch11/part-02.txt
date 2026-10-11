@@ -1,0 +1,220 @@
+@@ 7dd9a235f2 html
+Buy 182 days, sell and replace with 91 days left
+@@ eb2e6d3151 html
+1.78 − 1.01 = 0.77 (per quarter)
+@@ a6cf6c1cb7 html
+Buy 365 days, sell and replace with 182 days left
+@@ 1593c47ef8 html
+2.82 − 1.78 = 1.04 (per half-year)
+@@ 9be34f8bf4 html
+For the same level of protection, the annualized cost falls from 4.05% to 2.07%, almost by half. There are two costs: you pay more cash up front (2.82% vs. 1.01%), and longer-dated options have more Vega, so a drop in IV means a bigger paper loss (and a rise in IV, the reverse). Also, as the market rises, the original strike drifts further from the current price, and you'll need to move the strike up to the new level; that step's cost isn't in the table.
+@@ 76acd91425 html
+<span class="sn">11.3</span>Collars: the price of “zero cost”
+@@ d96282b9dc html
+A zero-cost collar trades the upside above an OTM call for the protection of an OTM put. With skew, you sell more upside than you'd think.
+@@ 847d2da942 html
+Collar = shares + long OTM put + short OTM call. The money from selling the call pays for the put; when the two are equal, it's called “zero cost.” It does have a cost: you just pay it in upside instead of cash.
+@@ 4e2d3f0dbf html
+Working out a zero-cost collar
+@@ 080e1e91f7 html
+The 91-day 90 put is worth 1.01% (IV 24%). You need a call strike whose price is also 1.01%. Under this chapter's skew, the answer is <span class="num">107.9</span> (IV 16.4%): you give up the upside above 7.9% in exchange for protection below −10%.
+@@ 6914250bb3 html
+Without skew, every strike has an IV of 18%, the 90 put is worth only 0.40%, and the zero-cost call strike is <span class="num">113.9</span>. Skew makes you give up 6 more percentage points of upside: the put is marked up and the call marked down, and both work against the collar buyer.
+@@ 1134533001 html
+Table 11-4 Some 91-day collar combinations (% of portfolio)
+@@ 18c986e013 html
+Combination
+@@ 89ee1d38ed html
+Put cost
+@@ fb0a5472cf html
+Call income
+@@ dc48cf223f html
+Net cost
+@@ 6b94f0ae46 html
+Floor
+@@ a090ab2acf html
+Cap
+@@ c07c67f617 html
+Symmetric 90 / 110
+@@ aa0e494cdc html
+Pay 0.40
+@@ ef52cab1b1 html
+Zero-cost 90 / 107.9
+@@ 248c2bc039 html
+Zero-cost 95 / 105.2
+@@ f4493d07ee html
+Asymmetric 95 / 110
+@@ 73664e1e4a html
+Pay 1.15
+@@ 240d47b9a6 html
+Asymmetric collars
+@@ 60673ce45e html
+“Zero cost” often pulls the cap in too close. Two common ways to loosen it:
+@@ 84cde2c6aa html
+<strong>Pay a little for more upside.</strong> 95 / 110 costs a net 1.15%: protection starts at −5%, and you keep the upside up to +10%.
+@@ 8d036a169e html
+<strong>Sell calls on only part of the holding.</strong> Buy the 90 put on the full amount and sell calls on only half the shares, and the zero-cost call strike drops to <span class="num">104.5</span>. Half the holding is capped at +4.5%; the other half has no cap. This suits times when you believe “the upside could be big.”
+@@ de601a9baf html
+Put OTM <input id="f2-k" type="range" min="2" max="20" value="10"> <output id="f2-k-o">10%</output>
+@@ 0f433c6078 html
+ATM IV <input id="f2-iv" type="range" min="10" max="40" value="18"> <output id="f2-iv-o">18%</output>
+@@ 0c33e95290 html
+Skew <span class="v">a</span> <input id="f2-a" type="range" min="0" max="1.2" step="0.1" value="0.6"> <output id="f2-a-o">0.6</output>
+@@ a2a6e0a2b4 html
+The default is 91 days and a 90 put, with a cap of 107.9. Switch the expiry to 365 days and the cap moves out to about 115; switch to 30 days and it's only 105.5: short-dated skew is steeper, so the call is worth even less. Drag the put to 5% OTM and the cap falls to 105.2; drag it to 20% and the cap rises to 112.1. For every 5 points closer the protection moves, the cap gives up roughly 2–3 points.
+@@ 4a1ca2ba70 html
+After a big rally: rolling the collar
+@@ 23e3e71f0b html
+You don't have to hold a collar to expiry. Suppose that 45 days after you open it, the market is up 10% (index at 110) and ATM IV has fallen to 15%. The 107.9 call is now in the money, worth 4.10; the 90 put is nearly worthless, at 0.12. Closing the whole collar costs <span class="num">4.10 − 0.12 = 3.99</span>; add the stock's +10, and you've netted about 6.0 over those 45 days.
+@@ 2b9cb02bd9 html
+Then open a new 91-day zero-cost collar at the new price: buy the 99 put (90% of 110), and the zero-cost call strike is <span class="num">118.2</span>. The new floor of 99 is only 1% below the original 100, which locks in most of the gain, and the new cap still leaves 7.4% of room above the current price. That's the rhythm of a rolling collar: when the market rises, shift the whole thing up and the floor rises with it.
+@@ dffc51242c html
+<strong>After a big rally.</strong> The stock runs through the call strike, and you either accept assignment and sell (a taxable event) or buy back the call at a high price, which on paper looks like “losing money”
+@@ 4adb3235e9 html
+<strong>Early assignment on single stocks.</strong> Single-stock calls are American-style, and an in-the-money call may be exercised early before the ex-dividend date
+@@ b6de071de1 html
+<strong>Too tight is a sale.</strong> If the floor and the cap are each only a point or two from the current price, there's no room to make money, and the tax law may treat it as a constructive sale
+@@ e8cb1732c6 html
+<span class="sn">11.4</span>Put spreads and four approaches
+@@ 3908cd38d7 html
+A put-spread hedge protects against a “moderate” decline; the deeper the drop, the more it looks like no protection at all.
+@@ 6055bb5738 html
+Put-spread hedge = shares + long higher-strike put + short lower-strike put. The 91-day 95 put is worth 1.76% and the 80 put 0.34%, for a net cost of <span class="num">1.42%</span> ($2,831). It pays in full between −5% and −20%, up to a maximum of 15%; below −20%, every extra 1% of decline costs you another 1%.
+@@ aaf144857f html
+Why does selling the 80 put bring back so much? Skew again: the 80 put's IV is 30%, 12 points above at-the-money. You're selling the most expensive insurance in the market. If what you fear most is a 10%–20% pullback, this trade makes good sense; if what you fear most is a 2008-style crash, it isn't enough.
+@@ b4bd9c0c61 html
+Put the four approaches on the same $200,000 portfolio (91 days, covering the notional 1:1):
+@@ df8018d7e9 html
+<strong>No hedge.</strong>
+@@ c78f921b90 html
+<strong>Protective put</strong>: buy the 90 put, premium $2,021.
+@@ fbf10ec5e5 html
+<strong>Zero-cost collar</strong>: buy the 90 put, sell the 107.9 call.
+@@ 5a3f48b332 html
+<strong>Put spread</strong>: buy the 95 put, sell the 80 put, cost $2,831.
+@@ e3a2d93b59 html
+Market move at expiry <input id="f3-m" type="range" min="-40" max="30" value="-20"> <output id="f3-m-o">−20%</output>
+@@ ae595368cf html
+Drag the slider left from −5%: the put spread starts paying first and stays the best approach from −10% to −20%. Past −20% its line turns down again, and by −30% it has fallen behind the protective put and the collar. Drag right past +10% and the collar flattens out at +$15,775 while the others keep rising.
+@@ cbcfea61a0 html
+How much to hedge: notional by beta
+@@ cbcb96ed3c html
+So far we've assumed a portfolio beta of 1. If the beta is 1.25 (tech-heavy, high-beta), the portfolio falls about 12.5% when SPY falls 10%, and the notional to cover is <span class="num">200,000 × 1.25 = $250,000</span>: about 320.5 shares at SPY 780, or 3.2 contracts. With the 91-day 702 put (90% of SPY, IV 24%, $7.88 per share), 3 contracts cost <span class="num">$2,365</span>.
+@@ 986da8b784 html
+If SPY falls 20%, the 3 puts pay <span class="num">300 × (702 − 624) = $23,400</span>, while the beta-1.25 portfolio loses about $50,000. The protection covers only the part of the move below 702, and the portfolio has already lost about 12.5% before that. Also remember that all of this assumes beta holds steady: if the stocks in your portfolio fall further for reasons of their own, index puts won't pay any more.
+@@ 4bfdb9b1f8 html
+Nor does the hedge ratio have to be 100%. Cover only half the notional ($100,000 of 90 puts) and the premium halves to <span class="num">$1,011</span>; at −20% the portfolio loses <span class="num">−40,000 + 10,000 − 1,011 = −$31,011</span>, and at −30% it loses <span class="num">−$41,011</span>. The point of a half hedge is that it makes the “worst case” bearable while keeping the premium low enough that you'll stick with it year after year. There's no standard answer for the ratio. The best test is to ask yourself whether you'd panic-sell at that worst-case number.
+@@ cac21077e6 html
+The full numbers are in Case 1. For now, remember the logic of the choice: first answer “which kind of decline do I fear most,” then pick the structure.
+@@ ee23984819 html
+Afraid of a 10%–20% pullback: put spread
+@@ 4043255255 html
+Afraid of a crash and want to keep the upside: protective put
+@@ 692addfa07 html
+Afraid of a crash and willing to cap the upside: collar
+@@ f98ab8e7da html
+<span class="sn">11.5</span>VIX calls: crash hedges
+@@ f06cba510c html
+VIX calls have the most explosive payoff in a crash, but they track VIX futures, so they cost more to hold and demand better timing than index puts.
+@@ 424088142a html
+<strong>Explosive.</strong> When the market drops sharply, VIX often jumps, and nonlinearly. A small position in VIX calls can gain far more in a crash than index puts bought with the same money.
+@@ ab10b4e096 html
+<strong>The underlying is a future (Chapter 10, Section 10.8).</strong> In calm markets VIX futures usually sit above spot VIX and converge toward spot as expiration nears. If you buy a 20 call with spot at 14, the distance you actually have to cover is measured from the futures price, and the future itself is drifting down.
+@@ 29ea2191b5 html
+<strong>The expiration dilemma.</strong> Front-month VIX calls respond most to a spike, but they expire quickly and have to be rolled again and again. Back-month futures move less in a panic, so back-month calls respond weakly too.
+@@ ef33a27141 html
+<strong>Spikes are short.</strong> VIX mean-reverts strongly, and peaks often last only a few days. Without a monetization rule written in advance (Section 11.7), the gains can slip away while you hesitate.
+@@ a930e63e9f html
+<strong>Basis risk.</strong> A rise in VIX doesn't mean your portfolio fell by a lot. In a slow, grinding bear market, VIX may rise only modestly and VIX calls won't help; index puts are more reliable there.
+@@ 097c6671a0 html
+The safer way to use them is as a supplement to index puts, taking only a small slice of the tail-hedge budget and aimed specifically at “a sharp drop over a day or two.” When sizing, ask two questions first. If VIX futures jump sharply over a few days, roughly how much would these calls pay, and what share of the portfolio's loss over the same period would that cover? If there's no spike all year and they go to zero, what share of the tail-hedge budget is that? The answer to the second should be “a small slice.”
+@@ 67d7a8a821 html
+Table 11-5 Five kinds of protection compared qualitatively
+@@ 61dc9de432 html
+Tool
+@@ 3b4873ab9d html
+Keeps upside
+@@ f5b531f0d2 html
+Cost in normal times
+@@ 9c3182865e html
+Slow declines
+@@ 9e89f57cff html
+Sharp drops
+@@ 2c5fd852cd html
+Main risk
+@@ c6354432d6 html
+Protective put
+@@ 79fcfdec34 html
+Nearly all
+@@ 19dedf8b21 html
+Medium to high
+@@ 9815c1c31b html
+Has a deductible
+@@ ecbb0e7d43 html
+Good
+@@ ee6cc4794f html
+Ongoing premium
+@@ 4941e9b200 html
+Zero-cost collar
+@@ d30d98da53 html
+Capped
+@@ 2f636c9dd5 html
+No cash cost
+@@ 79b7ff7610 html
+Missing a big rally
+@@ f41b826e8e html
+Put spread
+@@ fd6b764510 html
+Medium
+@@ 82c02cdbbd html
+Pays only down to the short strike
+@@ fcdb9de3bd html
+Fails in deep drops
+@@ f445d05364 html
+VIX calls
+@@ 433791b989 html
+All
+@@ 067ec5bd89 html
+Medium; costly to roll
+@@ 94ae507f85 html
+Weak
+@@ a997b81907 html
+Most explosive
+@@ c34bc977dc html
+Timing and basis
+@@ ca1dd3b91e html
+Reduced proportionally
+@@ 60e7381044 html
+None (triggers taxes)
+@@ 860ba6ebd4 html
+Proportional
+@@ e305a6a3d8 html
+Missing out, and taxes
+@@ c86f8f37b2 html
+<span class="sn">11.6</span>The tail-hedge budget: buy insurance before the fire
+@@ fba4983ebf html
+Buy protection on a fixed budget of 1%–2% of the portfolio a year. It's cheaper than buying all at once in a panic, and easier to stick with.
+@@ cc5b7ec04e html
+Where 1%–2% comes from
+@@ 7252176b08 html
+There's no rigorous theory behind this number; it comes from a simple trade-off. The long-run excess return of stocks over cash is roughly a few percentage points a year (an assumption; it varies a lot from period to period). Spending 1%–2% a year on insurance still leaves most of that excess return. Beyond 2%–3%, the insurance itself eats most of the edge stocks have over cash, and you'd be better off simply holding less stock.
+@@ b650002781 html
+Under this chapter's assumptions (ATM IV 18%), here is the one-year put each budget buys:
+@@ 9f239cbeab html
+Budget 1%: strike about <span class="num">74.9</span>, 25% OTM
+@@ 40469cc187 html
+Budget 1.5%: strike about <span class="num">80.5</span>, 19.5% OTM
+@@ bf4a366ac3 html
+Budget 2%: strike about <span class="num">84.8</span>, 15% OTM
+@@ 1a43953611 html
+With the same 1.5% budget, if you wait until after a crash to buy, when ATM IV has risen to 32%, you can only get a put struck at <span class="num">58.5</span>: the premium is higher and the coverage lower. That's what “buy when IV Rank is low, not after the fire” means in numbers.
+@@ 040e8f057c html
+A twenty-year simulation
+@@ 3c1eb2079c html
+Below is a simulation over two hypothetical 20-year paths. Path A has two crashes (−35% in year 6, −24% in year 14); Path B has none. At the start of each year the budget buys a one-year put, with the strike solved at the IV of the time: ATM IV 18% in normal years, 32% if the previous year fell more than 15%.
+@@ b9c308802b html
+Path A: two crashes
+@@ 1446a21c0e html
+Path B: no crash
+@@ 04240b05c9 html
+Annual budget <input id="f4-b" type="range" min="0" max="3" step="0.25" value="1.5"> <output id="f4-b-o">1.5%</output>

@@ -1,0 +1,206 @@
+@@ adf9a17969 html
+Technicals: price, moving averages, RSI and key levels
+@@ c3ce3f19ee html
+Tool
+@@ e7aa89bce1 html
+How to use it in an oversold rebound
+@@ 01568a72c0 html
+50-day and 200-day moving averages
+@@ d6922ce48c html
+Price above a moving average leans strong, below it leans weak; the 50-day below the 200-day is called “bearish alignment”
+@@ b96f32e89a html
+The first confirmation of a rebound is reclaiming the 50-day moving average
+@@ 1e7ae40e29 html
+RSI (14-day)
+@@ 8cdb1db6da html
+Runs from 0 to 100; below 30 is oversold, above 70 is overbought
+@@ e5b84b3a5f html
+Oversold means it fell fast, not that it has hit bottom; RSI can stay below 30 for a long time
+@@ 87965d3ddb html
+52-week range
+@@ 61b188f1bc html
+How far the price is from its one-year high and low
+@@ f1d08a0820 html
+Near the 52-week low, holding that low is the first test
+@@ 3e6d8253c6 html
+Support and resistance
+@@ 10ee2e9536 html
+Levels where the price has repeatedly stopped falling or stalled
+@@ 09ea588fcf html
+A break below support means you were wrong; a rebound starts only when resistance breaks
+@@ 3f1bfb72a7 html
+Gap
+@@ 808544ab21 html
+A price range with no trading between two sessions, often caused by news
+@@ 1b8919dc52 html
+A gap caused by bad news often becomes resistance later
+@@ 0d79235ecb html
+The price sits near the 52-week low, both moving averages are above it, and the price target is far higher. This is the classic “oversold, but still in a downtrend” pattern: the price is cheap, and buyers have yet to prove themselves.
+@@ e512efe8e0 html
+Putting the three together
+@@ 18c986e013 html
+Combination
+@@ 72f8ba9a3a html
+What it means
+@@ 6438f9e44c html
+Common approach
+@@ fda252902c html
+Solid fundamentals, news is a sector drag, technically oversold
+@@ 7bc90e8b4d html
+The textbook oversold rebound candidate
+@@ 7dc4bb41c7 html
+Wait for signs it has stopped falling; build small positions in stages
+@@ def7a86eff html
+Weakening fundamentals, company-specific bad news, technically oversold
+@@ 9a9010d8cd html
+May be “catching a falling knife”
+@@ 6ee2dfb9ad html
+Wait for earnings or new news to show the worst is over
+@@ b4383e3793 html
+Solid fundamentals, price has already reclaimed the moving averages
+@@ c9cb555f99 html
+The rebound has already started
+@@ 9f71d8c696 html
+You miss the bottom, but with more certainty
+@@ b100730d9a html
+Very low valuation, very high dividend yield, but falling earnings
+@@ 47eae381d6 html
+May be a value trap
+@@ 91480df192 html
+First check whether the payout ratio and free cash flow can support the dividend
+@@ ec451a3562 html
+Oversold means it was sold too fast; cheap means the price is low. Neither means it is about to rise.
+@@ 8ccea75157 html
+Overview: all twenty side by side
+@@ 7dab41ac27 html
+Compare across first, then look at each one in depth. This chapter puts all twenty companies in one table and one chart to find which are the most oversold, which are the cheapest and whose earnings report comes first.
+@@ 91fa75b193 html
+Comparison table
+@@ 3c39f19488 html
+Click a column header to sort; click a row to jump to that company's chapter. Data as of the October 9 close.
+@@ f13fd1ca36 html
+Ticker
+@@ f1e5ffd199 html
+Company
+@@ 738e83c4b1 html
+Close
+@@ 0ece13ccf7 html
+Since 9/30
+@@ b421172dae html
+vs. 50-day
+@@ e0fc7a72d0 html
+vs. 200-day
+@@ 1ae79c88ff html
+Forward P/E
+@@ c31b100cc9 html
+Dividend yield
+@@ 7fc79f33c6 html
+Next earnings
+@@ f7284cdc4d html
+McDonald's
+@@ be6249e9d9 html
+Wendy's
+@@ a5132107e7 html
+PepsiCo
+@@ 0cb33d3c3f html
+TBA
+@@ 8c8223f390 html
+Mondelez
+@@ 5c0aa577cb html
+Hershey
+@@ fa9b0b323d html
+Lowe's
+@@ c808d19ea7 html
+Comcast
+@@ 717e5203ac html
+Bank of America
+@@ dacaaf59cd html
+Blackstone
+@@ fdcc95f002 html
+Viking Holdings
+@@ 0e05ad701b html
+MGM Resorts
+@@ 3de3046803 html
+RTX (Raytheon)
+@@ 417020fd9f html
+General Dynamics
+@@ b0b021fcda html
+Waste Management
+@@ ee48d842d5 html
+Southern Company
+@@ e16905d7ef html
+Duke Energy
+@@ 402890ff4b html
+SLB (Schlumberger)
+@@ 2a27592cf9 html
+Abbott Laboratories
+@@ 4325193201 html
+A few facts jump out: 19 of the twenty closed below their 200-day moving average; WEN, CMCSA and MGM have an RSI below 30; MGM Resorts and Wendy's are furthest from their 50-day lines, and both have bad news of their own.
+@@ b8490758f7 html
+Are the biggest decliners also the cheapest?
+@@ f78d9af0b7 html
+The further left, the deeper below the 200-day moving average. Switch to “Forward P/E” and the lower left holds the companies that have fallen hard and are also cheap; switch to “Dividend yield” to see whether a high dividend yield comes from a falling price; switch to “RSI” to see which are close to oversold.
+@@ a3501b9935 html
+Performance since the list went out
+@@ 68f7e20e75 html
+Gray marks the three stocks he bought that were not among the 17 on the list. Moves over a little more than a week are mostly noise; the point of this chart is to remind you that no broad, orderly rebound followed the list.
+@@ 23ab19251e html
+Earnings calendar
+@@ bcfcf0b246 html
+Oversold stocks swing the most around earnings. Sort them by date and you can see whose “test day” comes first.
+@@ 52e686d196 html
+Notes
+@@ 9afd2e30ad html
+2026-10-14 before the open
+@@ ca3363a544 html
+2026-10-15 after the close
+@@ f6b41862e4 html
+<b>RTX</b> RTX (Raytheon)
+@@ 231ad7ccfb html
+2026-10-20 before the open
+@@ 4af6dea8e7 html
+<b>ABT</b> Abbott Laboratories
+@@ 7ac2e3c435 html
+2026-10-21 before the open
+@@ f893471089 html
+<b>BX</b> Blackstone
+@@ b7040bc263 html
+2026-10-22 before the open
+@@ df41711e70 html
+<b>CMCSA</b> Comcast
+@@ 2911543885 html
+<b>SLB</b> SLB (Schlumberger)
+@@ ab0bda000d html
+2026-10-23 before the open
+@@ 28279906bb html
+<b>MDLZ</b> Mondelez
+@@ b64cceed3b html
+2026-10-27 after the close (estimated; not yet confirmed by the company)
+@@ 1150bc9045 html
+<b>WM</b> Waste Management
+@@ 8b093cb903 html
+2026-10-27 after the close
+@@ e2a3c6f3c3 html
+2026-10-28 after the close
+@@ 6e288a0e0f html
+2026-10-29 before the open
+@@ 3b118d29a3 html
+2026-10-30 before the open
+@@ 92a95cf863 html
+2026-11-04 before the open
+@@ d7564df683 html
+2026-11-05 before the open
+@@ 0db8c863ab html
+<b>SO</b> Southern Company
+@@ 6b3dc66d1d html
+2026-11-18 before the open
+@@ 259de63411 html
+<b>VIK</b> Viking Holdings
+@@ 61ed1ef386 html
+2026-11-18 (date shown on data sites; not yet officially announced by the company)
+@@ 4263bb0b42 html
+<b>PEP</b> PepsiCo
+@@ 5235047e63 html
+Q3 reported on 2026-10-08; the date of the next (Q4) report has not been announced
+@@ bb00d14d56 html
+Bank of America on October 14 is first, and it also kicks off bank earnings season. Company announcements are the final word on dates; those marked “estimated” or “not yet announced” may change.

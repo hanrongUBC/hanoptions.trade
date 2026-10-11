@@ -1,0 +1,200 @@
+@@ 3f63d26fb6 html
+Little premium; IV can jump any time
+@@ cbe3ee1121 html
+Sell less or none; calendars, debit flies
+@@ ef87754d4b html
+A “range” view without selling naked
+@@ 514b4d8b60 html
+Risk: collect less, lose just as much
+@@ c94ae1313c html
+Best for selling volatility
+@@ 9d886b7635 html
+Rich premium, low realized volatility
+@@ 3e9ff28a13 html
+Condors, credit spreads, capped strangles
+@@ 433040bb59 html
+Better when the term structure is steep
+@@ 45dc62816b html
+Risk: gaps; size with Chapter 8 stress tests
+@@ efca4ba5d3 html
+Term structure: steep upward → favors sellers; flat/inverted → favors buyers, sellers wait
+@@ 0fc20d2027 html
+The top-left and bottom-right cells are where the three indicators tend to agree. The top-right cell is the most tempting and the most dangerous: premium is at its most expensive, but it is expensive because realized volatility is happening right now. The problem with the bottom-left cell is that the return is too thin for the same tail risk.
+@@ 67d28d51ce html
+Table 9-6 A simple scorecard (each item +1 / 0 / −1; consider a trade only if the total is ≥ +2)
+@@ 34000dcf18 html
+Indicator
+@@ be98ea2237 html
++1 for buyers
+@@ 114cbf38f3 html
+Neutral 0
+@@ f48517efba html
++1 for sellers
+@@ af939a9720 html
+Term structure (front − back)
+@@ 33ce303f25 html
+Flat or inverted, with an unpriced catalyst
+@@ 4f17ebae2f html
+Slightly upward-sloping
+@@ 1b3ea3596c html
+Steeply upward-sloping
+@@ 35fe671d73 html
+20-day realized volatility ÷ 30-day IV
+@@ a15ba497c7 html
+&gt; 1.1 for more than a week
+@@ 71c67bd6f0 html
+&lt; 0.8 for more than a week
+@@ ac71a90fb9 html
+The thresholds are common starting points; calibrate them to each underlying’s own history. There is also one exception: before a known event (earnings, FOMC), high front-month IV is normal pricing, and IV Rank will read “high.” Whether that premium is worth selling depends on the historical distribution of event moves (Chapter 10), not on this table.
+@@ 14c728ff11 html
+Three hypothetical examples:
+@@ cd3a1a91f3 html
+<strong>Stock A</strong>: IV Rank 15, flat term structure, 20-day realized volatility ÷ IV = 1.25, holding for two weeks now. All three items go to buyers, for a buyer total of +3: you can buy a straddle and hedge it with the thresholds from Section 9.5.
+@@ c4ac92ffe8 html
+<strong>Stock B</strong>: IV Rank 72, steeply upward-sloping term structure, ratio 0.70. A seller total of +3: sell an iron condor and size it with the gap test from Chapter 8.
+@@ 8fa52957ef html
+<strong>Stock C</strong>: IV Rank 88, inverted term structure, ratio 1.30. IV Rank gives sellers +1, and the other two items give buyers +1 each, for a buyer total of +1, short of +2: don’t trade, and wait for the inversion to clear. This is exactly the top-right cell of Figure 9-4: the moment the premium is most tempting is the moment the rules tell you to stand aside.
+@@ 19b9ef53c9 html
+<span class="sn">9.7</span>Gamma scalping revisited
+@@ e15ddc4d9c html
+Buying a straddle and delta-hedging it isolates the bet on “realized vs implied volatility.” The expected daily P&amp;L is about ½ Γ S² (σ²<sub>realized</sub> − σ²<sub>implied</sub>) ÷ 365.
+@@ 67bdf9235e html
+This follows from Θ ≈ −½ σ² S² Γ in Chapter 4: Gamma earns ½ Γ (Δ<span class="v">S</span>)² each day, which averages out to ½ Γ <span class="v">S</span>² σ²<sub>realized</sub> ÷ 365, while Theta charges you at σ<sub>implied</sub>. The difference between the two is this formula.
+@@ e561125d1b html
+Take the position from Chapter 4, Section 4.7: 10 contracts of a 30-day ATM straddle, Gamma about 92.5 shares per dollar, Theta about −$114 a day. By the formula, the expected daily P&amp;L is +$88.7 at 40% realized volatility, +$41.2 at 35%, 0 at 30% and −$34.8 at 25%. The process, in review:
+@@ ba45c3c33c html
+Buy a straddle when realized volatility looks likely to come in above IV (the top-left cell, Section 9.6).
+@@ 2360e7ff8e html
+When you open the position, hedge Delta to zero with stock.
+@@ 9d50fc48e9 html
+Re-hedge on thresholds: sell stock when it rises, buy stock when it falls (Section 9.5).
+@@ 6700040758 html
+Record realized volatility every day and compare it with the IV you bought at.
+@@ 40f84a996c html
+Exit when realized volatility falls back below IV, or when IV jumps (you can sell the Vega gain).
+@@ dd1b3ae5b3 html
+For the full five-day walkthrough, see <a href="ch04.html#s7">Chapter 4, Section 4.7</a>. The simulation in Section 9.5 is its mirror image: sell a straddle and hedge it, and you earn the amount by which realized volatility falls short of implied. That is a market maker’s everyday business.
+@@ 594a14a2bf html
+The difference between hedging and not hedging is what you are “watching.” An unhedged straddle only cares how far the stock is from the strike at the moment of expiry; a hedged straddle cares about the volatility accumulated along the whole path. In scenario A of Chapter 4, the stock swung back and forth sharply and ended up almost where it started: holding only the straddle lost $304, while hedging every day made $797. If your view is “it will swing violently but may not trend,” hedging is the way to cash in on that view.
+@@ a9dd9e4635 html
+<span class="sn">Cases</span>Three cases
+@@ 5dd3315566 html
+Same stock, same view, three structures
+@@ b80814de8e html
+The stock is at 100 and IV is 30%. Your view: over the next 45 days it will be quieter than the market expects, with realized volatility of about 25%, and you have no view on direction. All three short structures can express this view:
+@@ a7439d9ae5 html
+Table 9-7 Short straddle, short strangle, short iron condor (45 days, per contract)
+@@ e9b9c5edba html
+Item
+@@ bdc2a6fcd9 html
+Short 100 straddle
+@@ 5bf442abec html
+Short 91/112 strangle
+@@ 5ca4b5e09a html
+Unlimited
+@@ 3945a2bebb html
+Margin (exchange minimum)
+@@ 55e32df612 html
+Expectancy (25% realized)
+@@ ab46740ed1 html
+Next day −10% (IV 40%)
+@@ b9905284e5 html
+Next day +10% (IV 35%)
+@@ e771a1209f html
+Next day −20% (IV 45%)
+@@ 34bff468bf html
+Next day +20% (IV 40%)
+@@ 29a0009789 html
+Expectancy ÷ worst gap loss
+@@ f7375d5cf9 html
+Theta per day / Vega per point
+@@ 4cb6ea8171 html
+How these were computed: expectancy integrates the P&amp;L at expiry using 25% realized volatility and a drift equal to the risk-free rate; the gap scenarios reprice with Black-Scholes at 44 days left, with assumed post-jump IVs; margin is the naked requirement on the larger side plus the premium on the other side, and the iron condor uses its maximum loss.
+@@ d13614d183 html
+<strong>Expectancy per contract</strong>: the straddle is highest (+$140), because it collects the most premium and carries the most Gamma. If your view is wrong (35% realized), it also loses the most.
+@@ fb1a5dda50 html
+<strong>Expectancy per unit of tail risk</strong>: the iron condor is best (14.6%) and the strangle worst (7.5%). The strangle looks “far away, high win rate,” but it collects a thin premium while its tail is almost as fat as the straddle’s.
+@@ af2854b45d html
+<strong>Whether you can sleep at night</strong>: only the iron condor’s worst case is a number you know in advance. Under Chapter 8’s rule of “−20% gap loss ≤ 10% of the account,” a $20,000 account can sell 1 straddle (−$1,334), or 1 strangle, or 7 iron condors (7 × $267 = $1,869). The 7 iron condors have an expectancy of about $274, higher than the 1 straddle’s $140.
+@@ c9691b2dc1 html
+The takeaway: for the same view, the structure decides how much tail risk you carry for it. For an individual account, once you size by tail risk, the defined-risk iron condor is often the most efficient of the three ways to express it.
+@@ 9f1e77cfc8 html
+An earnings calendar spread, worked through from start to finish
+@@ 135fe1d090 html
+<strong>IV assumptions</strong> (all of them assumed, for illustration): the stock is at 100, normal volatility is 30%, and the market expects a 7% move on earnings day. Earnings come out after the close on day 3. The front month expires in 7 days, with IV of 58.8%; the back month expires in 35 days, with IV of 37.6% (the event-variance formula from Section 9.4). After earnings, IV for both expirations returns to 30%.
+@@ c4be8d1e0c html
+<strong>Entry</strong>: sell the 7-day 100 call for 3.284, buy the 35-day 100 call for 4.823, for a net debit of 1.539, or $154 per contract. At entry, Theta is +$16.56/day (the front month’s high IV makes it lose value quickly every day) and Vega is +$6.78/point: front-month Vega is 0.055 and back-month Vega 0.123, so the calendar as a whole is long IV. That is why it fears a drop in back-month IV. The front-month straddle is priced at 6.49, so the market implies a move of about ±6.5%.
+@@ 631bc88cec html
+Table 9-8 P&amp;L on the first trading day after earnings (3 days left in the front month, 31 in the back month) (per share)
+@@ 76d04117bb html
+Stock move
+@@ 8932a6e750 html
+Back-month IV back to 30%
+@@ acbadff9ae html
+Back-month IV falls only to 33%
+@@ a88583e2cc html
+<strong>Stock unchanged</strong>: you make 1.01, 66% of the cost. The front-month call drops from 3.284 to 1.10 (only 3 days left, IV 30%), while the back-month call only drops from 4.823 to 3.65.
+@@ e867bd4088 html
+<strong>Breakevens</strong>: about 95.0 and 106.1 with back-month IV at 30%; if back-month IV only falls to 33%, they widen to 94.0 and 107.4. How far back-month IV falls decides how wide the profit zone is.
+@@ 6a119bad09 html
+<strong>At the implied move</strong>: if the stock moves about ±6.5%, the result is close to 0. A calendar makes money when the actual jump is clearly smaller than the jump implied by the front-month straddle.
+@@ 77bdda4f9a html
+<strong>Big moves</strong>: at ±15% you lose 1.03 to 1.43, close to the full cost of 1.539, but never more than that.
+@@ c2bd3c851a html
+If you don’t close the day after earnings and instead hold to front-month expiry (28 days left in the back month, IV 30%), the profit with the stock at 100 rises to 1.925, and the profit zone narrows to about 95.4 to 105.6: a few more days of Theta, paid for with a narrower range and a longer window of jump risk. The two buttons in Figure 9-3 correspond to these two points in time.
+@@ bc05dfc79a html
+Writing down your IV assumptions is the most important step in an earnings calendar. The same structure gives a completely different result if the market also pushes back-month IV down hard, or if the actual jump is close to the big jumps in the stock’s history. Before you place the order, work out at least three cases: the stock doesn’t move, the stock moves by the implied move, and the stock moves by its largest historical jump; and pair each case with two back-month IVs.
+@@ 536cca39fb html
+An iron condor in a trending market: close, tighten or leave it
+@@ 3701bdd381 html
+15 days ago, you sold the 45-day 86/91/112/117 iron condor for 1.129. Since then the stock has climbed steadily to 110, with 30 days left. Now:
+@@ 60cc721dec html
+The iron condor shows an open loss of 0.503, or −$50 per contract. The Delta of the short 112 call has risen to 0.449, and the whole position’s Delta is −0.177 (the same as being short 17.7 shares per contract).
+@@ 3ae38dafba html
+The 2× stop-loss line (the spread’s value rising to 3.386) is still far away: even at 113, the open loss is only 1.068. The stop-loss rule hasn’t triggered, but the direction has clearly turned against you.
+@@ 200db47c09 html
+Three choices:
+@@ 3f4020a90d html
+<strong>Close</strong>: lock in −$50.
+@@ 2d7949c499 html
+<strong>Tighten (roll the put spread up)</strong>: pay 0.033 to buy back the 86/91 put spread, then sell the 102/97 put spread for 0.627 (short-leg Delta −0.169). Total premium becomes 1.723, the maximum loss on the call side falls from 3.871 to 3.277, position Delta goes from −0.177 back to −0.079, and Theta rises from $1.67 to $3.23 a day.
+@@ d0f6ee7ad2 html
+<strong>Leave it</strong>: keep holding the original iron condor.
+@@ 89499916b0 html
+Another common approach is to roll the call spread up and out to the 60-day 120/125, but that costs a net debit of 0.668, cuts total premium to 0.461 and raises the maximum loss to 4.54. In this example it isn’t worth it.
+@@ 2691fe3001 html
+Table 9-9 Results of the three choices at expiry (per share)
+@@ 7221418176 html
+Unchanged
+@@ 7445e1f347 html
+Close now
+@@ 6f8be6c9ac html
+Tighten (put spread moved up to 102/97)
+@@ 54d1c14291 html
+<strong>Tightening</strong> does best if the trend continues gently (105 to 112), but it starts losing as soon as the stock falls back to 100, and hits its maximum loss at 95. You traded the newly collected 0.594 for the risk that “either side can get hit”: the profit zone shrinks from 89.9–113.1 to 100.3–113.7.
+@@ a7bf7ae157 html
+<strong>Leaving it</strong> does best if the stock pulls back or goes sideways; if the trend runs another 5%, it starts losing heavily.
+@@ 4bc1fada0a html
+<strong>Closing</strong> gives up profit in every scenario in exchange for certainty.
+@@ 51eb0a71e9 html
+No choice wins in every scenario. What decides it is your view of the trend, and the job of management rules is to decide for you when you don’t have a view. A practical order: first check whether a preset stop-loss or Delta threshold has triggered (for example, deal with the tested side once the short leg’s Delta goes above 0.30); then ask, “If I had no position today, would I open this adjusted one?”; if you can’t answer, close.
+@@ 76fc557033 html
+<span class="sn">Tools</span>Checklist and self-test
+@@ b4640d623d html
+Your checkmarks are saved only in your own browser.
+@@ c35f9a2e4e html
+<span class="num">9-1</span>Before you bet: know what you are betting on
+@@ 04f2f088f4 html
+Compute the implied average move with 0.8 × S × σ × √T
+@@ 148ac3a6fe html
+Write down your estimate of realized volatility and what it is based on
+@@ d90f09cdbe html
+Know whether this trade makes money from Gamma/Theta or from Vega
+@@ 2d61d00a2a html
+<span class="num">9-2</span>Timing: the three-item score
+@@ cdb0a53f66 html
+IV Rank and IV Percentile
+@@ 618ce5fc6d html
+Term structure: upward-sloping, flat or inverted
+@@ 29b4d4e0dd html
+20-day realized volatility ÷ 30-day IV, and whether it has held for more than a week

@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chapter 11 Hedging and portfolio protection · US Options Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  .seg { flex-wrap: wrap; max-width: 100%; }
+  .seg button { white-space: nowrap; }
+</style>
+<link rel="alternate" hreflang="zh-CN" href="https://hanoptions.trade/options/ch11.html"><link rel="alternate" hreflang="en" href="https://hanoptions.trade/en/options/ch11.html">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap">
+<style id="en-overrides">
+html[lang="en"] { --font-display: "Source Serif 4", "Noto Serif SC", Georgia, serif; --font-body: "Source Sans 3", "Noto Sans SC", system-ui, sans-serif; }
+html[lang="en"] body { line-height: 1.7; }
+html[lang="en"] body * { letter-spacing: normal !important; }
+html[lang="en"] p, html[lang="en"] li, html[lang="en"] td, html[lang="en"] figcaption { hyphens: auto; -webkit-hyphens: auto; }
+html[lang="en"] p { text-wrap: pretty; }
+html[lang="en"] .toc a { grid-template-columns: 48px 1fr; }
+</style>
+</head>
+<body data-ch="11">
+<div class="topbar"><div class="topbar-inner"><div class="topbar-brand"><a class="site-home" href="/en/">hanoptions.trade</a><a class="brand" href="index.html">US Options <span>Course</span></a></div><div class="topbar-tools"><select id="ck-jump" aria-label="Jump to chapter"></select><a class="lang-switch" href="/options/ch11.html" hreflang="zh-CN" lang="zh-CN" data-lang="zh"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>中文</a></div></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">11</div>
+    <div class="eyebrow">US Options Course · Part 3 Strategies · Chapter 11</div>
+    <h1>Hedging and <span class="g">portfolio protection</span></h1>
+    <p class="deck">The goal of hedging is to get your portfolio through a big drop alive, while keeping as much upside as you can and not triggering taxes. This chapter puts a dollar figure on protective puts, collars, put spreads and the tail-hedge budget, so you know what each kind of insurance costs and which kinds of decline it pays out in.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="In this chapter">
+    <p class="toc-title">In this chapter</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>Opening: the three months after a big gain</span></a></li>
+      <li><a href="#s1"><span class="n">11.1</span><span>Hedging versus trimming</span></a></li>
+      <li><a href="#s2"><span class="n">11.2</span><span>The cost of protective puts</span></a></li>
+      <li><a href="#s3"><span class="n">11.3</span><span>Collars: the price of zero cost</span></a></li>
+      <li><a href="#s4"><span class="n">11.4</span><span>Put spreads and four approaches</span></a></li>
+      <li><a href="#s5"><span class="n">11.5</span><span>VIX calls: crash hedges</span></a></li>
+      <li><a href="#s6"><span class="n">11.6</span><span>The tail-hedge budget</span></a></li>
+      <li><a href="#s7"><span class="n">11.7</span><span>Monetization rules</span></a></li>
+      <li><a href="#s8"><span class="n">11.8</span><span>Stock replacement: deep-in-the-money LEAPS</span></a></li>
+      <li><a href="#s9"><span class="n">11.9</span><span>Adjusting portfolio beta with options</span></a></li>
+      <li><a href="#cases"><span class="n">Cases</span><span>Three cases</span></a></li>
+      <li><a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>In this chapter</summary>
+      <ol>
+        <li><a href="#open">Opening: the three months after a big gain</a></li>
+        <li><a href="#s1">11.1 Hedging versus trimming</a></li>
+        <li><a href="#s2">11.2 The cost of protective puts</a></li>
+        <li><a href="#s3">11.3 Collars: the price of zero cost</a></li>
+        <li><a href="#s4">11.4 Put spreads and four approaches</a></li>
+        <li><a href="#s5">11.5 VIX calls: crash hedges</a></li>
+        <li><a href="#s6">11.6 The tail-hedge budget</a></li>
+        <li><a href="#s7">11.7 Monetization rules</a></li>
+        <li><a href="#s8">11.8 Stock replacement: deep-in-the-money LEAPS</a></li>
+        <li><a href="#s9">11.9 Adjusting portfolio beta with options</a></li>
+        <li><a href="#cases">Three cases</a></li>
+        <li><a href="#tools">Checklist and self-test</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>After this chapter you can</h4>
+        <ul>
+          <li>Calculate the annualized cost of protective puts at different strikes and expirations, and explain why short-dated at-the-money protection is the most expensive</li>
+          <li>Solve for the call strike of a zero-cost collar, and say how much upside “zero cost” gives up</li>
+          <li>Design protection for a $200,000 portfolio and work out the results at −10%, −20% and −30%</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Prerequisites</h4>
+        <ul>
+          <li>Chapter 4: beta-weighted Delta</li>
+          <li>Chapter 6: skew, IV Rank and VIX</li>
+          <li>Chapters 7 and 8: buyers, sellers and spreads</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Conventions</h4>
+        <ul>
+          <li>Black-Scholes, 4% rate, no dividends, 365-day year</li>
+          <li>Index ATM IV 18%, skew as assumed in Section 11.2</li>
+          <li>The portfolio tracks the S&amp;P 500 (beta 1); commissions and interest on premium are ignored</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">Opening</span>The three months after a big gain</h2>
+      <p class="lead">This year your stock portfolio has grown from a cost of $160,000 to $200,000, an unrealized gain of $40,000. You're worried about the next three months, but you don't want to miss out if the rally keeps going.</p>
+      <p>You have two paths: sell 30%, or buy 3-month puts on the whole portfolio with the strike at 90% of the current price. Selling 30% realizes a $12,000 gain, and at a 15% long-term capital gains rate (an assumption) you owe <span class="num">$1,800</span> in tax. The puts cost <span class="num">1.01%</span> of the portfolio, or <span class="num">$2,021</span>.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 11-0 Results after three months (dollars, including tax and premium)</caption>
+          <thead><tr><th>Approach</th><th>Market −30%</th><th>−20%</th><th>−10%</th><th>No change</th><th>+15%</th></tr></thead>
+          <tbody>
+            <tr><td>Do nothing</td><td class="mono neg">−60,000</td><td class="mono neg">−40,000</td><td class="mono neg">−20,000</td><td class="mono">0</td><td class="mono pos">+30,000</td></tr>
+            <tr><td>Sell 30%</td><td class="mono neg">−43,800</td><td class="mono neg">−29,800</td><td class="mono neg">−15,800</td><td class="mono neg">−1,800</td><td class="mono pos">+19,200</td></tr>
+            <tr class="hl"><td>Buy 90% puts</td><td class="mono neg">−22,021</td><td class="mono neg">−22,021</td><td class="mono neg">−22,021</td><td class="mono neg">−2,021</td><td class="mono pos">+27,979</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Selling 30% cuts gains and losses by the same proportion: at −30% you still lose $43,800. The puts lock the loss at $22,021 no matter how deep the fall, and at +15% you keep 93% of the gain. The cost is just as clear: at −10% the puts pay nothing, and you lose the premium on top. The $60,000 in cash from selling would earn about $600 in interest over three months; the table leaves that out.</p>
+      <p>This table is the whole chapter in miniature: every kind of protection has declines it pays out on and declines it doesn't. The sections below work through each one.</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">11.1</span>Hedging versus trimming</h2>
+      <p>Trimming cuts upside and downside by the same proportion. Hedging cuts only the downside, and the price is the premium.</p>
+      <div class="grid2">
+        <div class="tile">
+          <h4>Trimming</h4>
+          <ul>
+            <li>No premium, and you earn interest on the cash</li>
+            <li>Losses are still linear, with no floor</li>
+            <li>Selling realizes the gain and triggers capital gains tax</li>
+            <li>If you were wrong and want back in, you risk missing the rally</li>
+          </ul>
+        </div>
+        <div class="tile">
+          <h4>Hedging (with a protective put as the example)</h4>
+          <ul>
+            <li>You pay premium every year, on an ongoing basis</li>
+            <li>Losses have a floor: maximum loss = distance to the strike + premium</li>
+            <li>You don't sell, so in principle no gain is realized</li>
+            <li>You keep almost all the upside, minus the premium</li>
+          </ul>
+        </div>
+      </div>
+      <h3>Two tax traps</h3>
+      <p>“Hedging doesn't trigger taxes” comes with conditions, and US tax law has specific rules for it:</p>
+      <ul>
+        <li><strong>Constructive sale.</strong> If the hedge removes almost all the risk and return of the shares, as a very tight collar does (buy the 98 put, sell the 102 call), the tax law may treat you as having sold.</li>
+        <li><strong>Straddle rules.</strong> The shares and the options hedging them may be treated as a “straddle” position: losses on the hedge leg may have to be deferred, and buying a protective put on stock held less than a year may also affect how the holding period is counted.</li>
+      </ul>
+      <p>The details of these rules are complex; when real amounts are involved, consult a tax professional. This chapter's approach: keep strikes some distance from the current price, and don't try to “lock everything in.”</p>
+      <h3>When you should just trim</h3>
+      <ul>
+        <li>The reason you bought no longer holds: what you need is to sell, and insurance can't fix a wrong call</li>
+        <li>A single holding is too concentrated (say, 40% of the portfolio): hedging only postpones the problem</li>
+        <li>In a tax-exempt or tax-deferred account: selling has no tax cost, so trimming is cleaner</li>
+        <li>You can't afford ongoing premium: protection costing 3% a year will eat half your expected return</li>
+      </ul>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">11.2</span>Protective puts: the cost by strike and expiration</h2>
+      <p>The closer the protection is to the current price and the shorter its term, the more it costs per year: rolling a 30-day at-the-money put every month costs 23% of the portfolio a year.</p>
+      <h3>This chapter's skew assumption</h3>
+      <p>In real markets, OTM puts carry higher IV than at-the-money options, OTM calls slightly lower (the skew from Chapter 6), and skew is steeper at short expirations. This chapter approximates that with a simple assumption:</p>
+      <div class="formula">
+        <div class="eq">IV<span class="up">(</span><span class="v">K</span><span class="up">) =</span> 18% <span class="up">+</span> <span class="v">a</span> <span class="up">×</span> OTM% <span class="up">×</span> √<span class="up">(</span>91 / days<span class="up">)</span></div>
+        <p class="where">On the put side (strikes below the current price), <span class="v">a</span> = 0.6 points: add 0.6 vol points for each 1% OTM (with 91 days as the baseline). On the call side, subtract 0.2 points for each 1% OTM. IV never goes below 8%. √(91/days) makes short-dated skew steeper and long-dated skew flatter. Puts and calls at the same strike use the same IV.</p>
+      </div>
+      <div class="tbl">
+        <table>
+          <caption>Table 11-1 Assumed IV surface (%)</caption>
+          <thead><tr><th>Expiry</th><th>80</th><th>90</th><th>95</th><th>100</th><th>105</th><th>110</th></tr></thead>
+          <tbody>
+            <tr><td>30 days</td><td class="mono">38.9</td><td class="mono">28.4</td><td class="mono">23.2</td><td class="mono">18.0</td><td class="mono">16.3</td><td class="mono">14.5</td></tr>
+            <tr><td>91 days</td><td class="mono">30.0</td><td class="mono">24.0</td><td class="mono">21.0</td><td class="mono">18.0</td><td class="mono">17.0</td><td class="mono">16.0</td></tr>
+            <tr><td>182 days</td><td class="mono">26.5</td><td class="mono">22.2</td><td class="mono">20.1</td><td class="mono">18.0</td><td class="mono">17.3</td><td class="mono">16.6</td></tr>
+            <tr><td>365 days</td><td class="mono">24.0</td><td class="mono">21.0</td><td class="mono">19.5</td><td class="mono">18.0</td><td class="mono">17.5</td><td class="mono">17.0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Cost table</h3>
+      <p>Set the current price at 100, so a put's price is a percentage of portfolio value. Annualized cost = price × 365 ÷ days, meaning “how much it would cost per year to keep rolling under the same conditions.”</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 11-2 Protective put price and annualized cost (% of portfolio)</caption>
+          <thead><tr><th>Strike</th><th>30 days</th><th>91 days</th><th>182 days</th><th>365 days</th></tr></thead>
+          <tbody>
+            <tr><td>100 (ATM)</td><td class="mono">1.90 / annualized 23.1</td><td class="mono">3.09 / 12.4</td><td class="mono">4.09 / 8.2</td><td class="mono">5.24 / 5.2</td></tr>
+            <tr><td>95 (5% OTM)</td><td class="mono">0.75 / 9.2</td><td class="mono">1.76 / 7.1</td><td class="mono">2.70 / 5.4</td><td class="mono">3.86 / 3.9</td></tr>
+            <tr class="hl"><td>90 (10% OTM)</td><td class="mono">0.33 / 4.0</td><td class="mono">1.01 / 4.1</td><td class="mono">1.78 / 3.6</td><td class="mono">2.82 / 2.8</td></tr>
+            <tr><td>80 (20% OTM)</td><td class="mono">0.08 / 1.0</td><td class="mono">0.34 / 1.4</td><td class="mono">0.75 / 1.5</td><td class="mono">1.45 / 1.5</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Three takeaways:</p>
+      <ul>
+        <li><strong>The shorter the term, the higher the annualized cost.</strong> At-the-money protection rolled monthly costs 23.1% a year; buying one year outright costs 5.2%. Time value decays with the square root of time (Chapter 5), so short-dated options lose the most each day.</li>
+        <li><strong>Each step further out of the money cuts the cost fast.</strong> At 91 days the at-the-money put costs 3.09%, the 90 just 1.01% and the 80 just 0.34%. The price is a deductible: the 90 put pays only for the part of the drop beyond 10%.</li>
+        <li><strong>Annualized costs are only comparable when they protect against the same risk.</strong> The 30-day 80 put annualizes to just 1.0%, cheaper than the one-year put's 1.5%. That doesn't make it a bargain: it pays only on “a 20% drop within a month,” which is far rarer than “a 20% drop within a year.”</li>
+      </ul>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">The closer and shorter the protection, the more you pay each year</span><span class="fig-no">Figure 11-1 · Annualized cost, log scale on the vertical axis</span></div>
+        <div class="controls">
+          <label class="ctl" for="f1-iv">ATM IV <input id="f1-iv" type="range" min="10" max="40" value="18"> <output id="f1-iv-o">18%</output></label>
+          <label class="ctl" for="f1-a">Skew <span class="v">a</span> <input id="f1-a" type="range" min="0" max="1.2" step="0.1" value="0.6"> <output id="f1-a-o">0.6</output></label>
+        </div>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 320" role="img" aria-label="Annualized cost of protective puts by moneyness and expiry"></svg>
+        <div class="legend"><span><i style="border-color: var(--gamma)"></i>30 days</span><span><i style="border-color: var(--delta)"></i>91 days</span><span><i style="border-color: var(--theta)"></i>182 days</span><span><i style="border-color: var(--warn)"></i>365 days</span></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small>30-day ATM, annualized</small></div>
+          <div><b id="f1-r2">—</b><small>91-day 90 put, annualized</small></div>
+          <div><b id="f1-r3">—</b><small>365-day 90 put, annualized</small></div>
+          <div><b id="f1-r4">—</b><small>365-day 80 put, annualized</small></div>
+        </div>
+        <figcaption>The four lines are furthest apart at the money and cross around 10%–15% OTM: further right, the short-dated ones are actually cheaper, because they protect against rarer events. Drag ATM IV to 35% (a panic-level reading) and every line shifts up; the 91-day 90 put rises to about 14% annualized. That is the price of “buying insurance after the fire.” Drag skew to 0 and OTM puts get cheaper, with the 30-day line falling fastest at the right end: skew adds most of its markup to short-dated OTM puts.</figcaption>
+      </figure>
+      <p>A common middle ground in practice is 3–6 months and 5%–15% OTM: much cheaper than monthly at-the-money puts, and it starts paying out sooner than a far-OTM one-year put. Which one to pick depends on the decline you fear most (Section 11.4) and your budget (Section 11.6).</p>
+      <h3>Buy long, sell early: when to roll</h3>
+      <p>Time value decays fastest in the final weeks (Chapter 5). Since you'll keep rolling the protection anyway, you can hold only the “slow-decay” stretch of each option and sell it for a new one before it enters the steep part. Take the 90 put, assuming the market stays flat and the IV surface doesn't change:</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 11-3 Same 90 strike, three ways to roll: annualized cost (% of portfolio)</caption>
+          <thead><tr><th>Method</th><th>Net cost each time</th><th>Annualized cost</th></tr></thead>
+          <tbody>
+            <tr><td>Buy 91 days, hold to expiry</td><td class="mono">1.01 (per quarter)</td><td class="mono">4.05</td></tr>
+            <tr><td>Buy 182 days, sell and replace with 91 days left</td><td class="mono">1.78 − 1.01 = 0.77 (per quarter)</td><td class="mono">3.07</td></tr>
+            <tr class="hl"><td>Buy 365 days, sell and replace with 182 days left</td><td class="mono">2.82 − 1.78 = 1.04 (per half-year)</td><td class="mono">2.07</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>For the same level of protection, the annualized cost falls from 4.05% to 2.07%, almost by half. There are two costs: you pay more cash up front (2.82% vs. 1.01%), and longer-dated options have more Vega, so a drop in IV means a bigger paper loss (and a rise in IV, the reverse). Also, as the market rises, the original strike drifts further from the current price, and you'll need to move the strike up to the new level; that step's cost isn't in the table.</p>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">11.3</span>Collars: the price of “zero cost”</h2>
+      <p>A zero-cost collar trades the upside above an OTM call for the protection of an OTM put. With skew, you sell more upside than you'd think.</p>
+      <p>Collar = shares + long OTM put + short OTM call. The money from selling the call pays for the put; when the two are equal, it's called “zero cost.” It does have a cost: you just pay it in upside instead of cash.</p>
+      <h3>Working out a zero-cost collar</h3>
+      <p>The 91-day 90 put is worth 1.01% (IV 24%). You need a call strike whose price is also 1.01%. Under this chapter's skew, the answer is <span class="num">107.9</span> (IV 16.4%): you give up the upside above 7.9% in exchange for protection below −10%.</p>
+      <p>Without skew, every strike has an IV of 18%, the 90 put is worth only 0.40%, and the zero-cost call strike is <span class="num">113.9</span>. Skew makes you give up 6 more percentage points of upside: the put is marked up and the call marked down, and both work against the collar buyer.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 11-4 Some 91-day collar combinations (% of portfolio)</caption>
+          <thead><tr><th>Combination</th><th>Put cost</th><th>Call income</th><th>Net cost</th><th>Floor</th><th>Cap</th></tr></thead>
+          <tbody>
+            <tr><td>Symmetric 90 / 110</td><td class="mono">1.01</td><td class="mono">0.61</td><td class="mono">Pay 0.40</td><td class="mono">−10%</td><td class="mono">+10%</td></tr>
+            <tr class="hl"><td>Zero-cost 90 / 107.9</td><td class="mono">1.01</td><td class="mono">1.01</td><td class="mono">0</td><td class="mono">−10%</td><td class="mono">+7.9%</td></tr>
+            <tr><td>Zero-cost 95 / 105.2</td><td class="mono">1.76</td><td class="mono">1.76</td><td class="mono">0</td><td class="mono">−5%</td><td class="mono">+5.2%</td></tr>
+            <tr><td>Asymmetric 95 / 110</td><td class="mono">1.76</td><td class="mono">0.61</td><td class="mono">Pay 1.15</td><td class="mono">−5%</td><td class="mono">+10%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Asymmetric collars</h3>
+      <p>“Zero cost” often pulls the cap in too close. Two common ways to loosen it:</p>
+      <ul>
+        <li><strong>Pay a little for more upside.</strong> 95 / 110 costs a net 1.15%: protection starts at −5%, and you keep the upside up to +10%.</li>
+        <li><strong>Sell calls on only part of the holding.</strong> Buy the 90 put on the full amount and sell calls on only half the shares, and the zero-cost call strike drops to <span class="num">104.5</span>. Half the holding is capped at +4.5%; the other half has no cap. This suits times when you believe “the upside could be big.”</li>
+      </ul>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">The closer and shorter the protection, the lower the zero-cost cap</span><span class="fig-no">Tool 11-A · Zero-cost collar solver</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Expiry">
+            <button type="button" data-d="30" aria-pressed="false">30 days</button>
+            <button type="button" data-d="91" aria-pressed="true">91 days</button>
+            <button type="button" data-d="182" aria-pressed="false">182 days</button>
+            <button type="button" data-d="365" aria-pressed="false">365 days</button>
+          </div>
+          <label class="ctl" for="f2-k">Put OTM <input id="f2-k" type="range" min="2" max="20" value="10"> <output id="f2-k-o">10%</output></label>
+          <label class="ctl" for="f2-iv">ATM IV <input id="f2-iv" type="range" min="10" max="40" value="18"> <output id="f2-iv-o">18%</output></label>
+          <label class="ctl" for="f2-a">Skew <span class="v">a</span> <input id="f2-a" type="range" min="0" max="1.2" step="0.1" value="0.6"> <output id="f2-a-o">0.6</output></label>
+        </div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 320" role="img" aria-label="Payoff at expiry: collar vs. stock only"></svg>
+        <div class="legend"><span><i class="dash" style="border-color: var(--muted)"></i>Stock only</span><span><i style="border-color: var(--delta)"></i>Stock + put</span><span><i style="border-color: var(--theta)"></i>Zero-cost collar</span></div>
+        <div class="readout">
+          <div><b id="f2-r1">—</b><small>Put cost (% of portfolio)</small></div>
+          <div><b id="f2-r2">—</b><small>Zero-cost call strike</small></div>
+          <div><b id="f2-r3">—</b><small>Strike without skew</small></div>
+          <div><b id="f2-r4">—</b><small>Call IV</small></div>
+        </div>
+        <figcaption>The default is 91 days and a 90 put, with a cap of 107.9. Switch the expiry to 365 days and the cap moves out to about 115; switch to 30 days and it's only 105.5: short-dated skew is steeper, so the call is worth even less. Drag the put to 5% OTM and the cap falls to 105.2; drag it to 20% and the cap rises to 112.1. For every 5 points closer the protection moves, the cap gives up roughly 2–3 points.</figcaption>
+      </figure>
+      <h3>After a big rally: rolling the collar</h3>
+      <p>You don't have to hold a collar to expiry. Suppose that 45 days after you open it, the market is up 10% (index at 110) and ATM IV has fallen to 15%. The 107.9 call is now in the money, worth 4.10; the 90 put is nearly worthless, at 0.12. Closing the whole collar costs <span class="num">4.10 − 0.12 = 3.99</span>; add the stock's +10, and you've netted about 6.0 over those 45 days.</p>
+      <p>Then open a new 91-day zero-cost collar at the new price: buy the 99 put (90% of 110), and the zero-cost call strike is <span class="num">118.2</span>. The new floor of 99 is only 1% below the original 100, which locks in most of the gain, and the new cap still leaves 7.4% of room above the current price. That's the rhythm of a rolling collar: when the market rises, shift the whole thing up and the floor rises with it.</p>
+      <div class="note warn">
+        <span class="tag">Three collar pitfalls</span>
+        <ul>
+          <li><strong>After a big rally.</strong> The stock runs through the call strike, and you either accept assignment and sell (a taxable event) or buy back the call at a high price, which on paper looks like “losing money”</li>
+          <li><strong>Early assignment on single stocks.</strong> Single-stock calls are American-style, and an in-the-money call may be exercised early before the ex-dividend date</li>
+          <li><strong>Too tight is a sale.</strong> If the floor and the cap are each only a point or two from the current price, there's no room to make money, and the tax law may treat it as a constructive sale</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">11.4</span>Put spreads and four approaches</h2>
+      <p>A put-spread hedge protects against a “moderate” decline; the deeper the drop, the more it looks like no protection at all.</p>
+      <p>Put-spread hedge = shares + long higher-strike put + short lower-strike put. The 91-day 95 put is worth 1.76% and the 80 put 0.34%, for a net cost of <span class="num">1.42%</span> ($2,831). It pays in full between −5% and −20%, up to a maximum of 15%; below −20%, every extra 1% of decline costs you another 1%.</p>
+      <p>Why does selling the 80 put bring back so much? Skew again: the 80 put's IV is 30%, 12 points above at-the-money. You're selling the most expensive insurance in the market. If what you fear most is a 10%–20% pullback, this trade makes good sense; if what you fear most is a 2008-style crash, it isn't enough.</p>
+      <p>Put the four approaches on the same $200,000 portfolio (91 days, covering the notional 1:1):</p>
+      <ul>
+        <li><strong>No hedge.</strong></li>
+        <li><strong>Protective put</strong>: buy the 90 put, premium $2,021.</li>
+        <li><strong>Zero-cost collar</strong>: buy the 90 put, sell the 107.9 call.</li>
+        <li><strong>Put spread</strong>: buy the 95 put, sell the 80 put, cost $2,831.</li>
+      </ul>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">No protection is best in every kind of decline</span><span class="fig-no">Figure 11-2 · Protection comparison, $200,000 portfolio, after 91 days</span></div>
+        <div class="controls">
+          <label class="ctl" for="f3-m">Market move at expiry <input id="f3-m" type="range" min="-40" max="30" value="-20"> <output id="f3-m-o">−20%</output></label>
+        </div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 340" role="img" aria-label="Portfolio P&amp;L of the four protection approaches as the market moves"></svg>
+        <div class="legend"><span><i class="dash" style="border-color: var(--muted)"></i>No hedge</span><span><i style="border-color: var(--delta)"></i>Protective put 90</span><span><i style="border-color: var(--theta)"></i>Zero-cost collar 90 / 107.9</span><span><i style="border-color: var(--gamma)"></i>Put spread 95 / 80</span></div>
+        <div class="readout">
+          <div><b id="f3-r1">—</b><small>No hedge</small></div>
+          <div><b id="f3-r2">—</b><small>Protective put</small></div>
+          <div><b id="f3-r3">—</b><small>Zero-cost collar</small></div>
+          <div><b id="f3-r4">—</b><small>Put spread</small></div>
+        </div>
+        <figcaption>Drag the slider left from −5%: the put spread starts paying first and stays the best approach from −10% to −20%. Past −20% its line turns down again, and by −30% it has fallen behind the protective put and the collar. Drag right past +10% and the collar flattens out at +$15,775 while the others keep rising.</figcaption>
+      </figure>
+      <h3>How much to hedge: notional by beta</h3>
+      <p>So far we've assumed a portfolio beta of 1. If the beta is 1.25 (tech-heavy, high-beta), the portfolio falls about 12.5% when SPY falls 10%, and the notional to cover is <span class="num">200,000 × 1.25 = $250,000</span>: about 320.5 shares at SPY 780, or 3.2 contracts. With the 91-day 702 put (90% of SPY, IV 24%, $7.88 per share), 3 contracts cost <span class="num">$2,365</span>.</p>
+      <p>If SPY falls 20%, the 3 puts pay <span class="num">300 × (702 − 624) = $23,400</span>, while the beta-1.25 portfolio loses about $50,000. The protection covers only the part of the move below 702, and the portfolio has already lost about 12.5% before that. Also remember that all of this assumes beta holds steady: if the stocks in your portfolio fall further for reasons of their own, index puts won't pay any more.</p>
+      <p>Nor does the hedge ratio have to be 100%. Cover only half the notional ($100,000 of 90 puts) and the premium halves to <span class="num">$1,011</span>; at −20% the portfolio loses <span class="num">−40,000 + 10,000 − 1,011 = −$31,011</span>, and at −30% it loses <span class="num">−$41,011</span>. The point of a half hedge is that it makes the “worst case” bearable while keeping the premium low enough that you'll stick with it year after year. There's no standard answer for the ratio. The best test is to ask yourself whether you'd panic-sell at that worst-case number.</p>
+      <p>The full numbers are in Case 1. For now, remember the logic of the choice: first answer “which kind of decline do I fear most,” then pick the structure.</p>
+      <ul>
+        <li>Afraid of a 10%–20% pullback: put spread</li>
+        <li>Afraid of a crash and want to keep the upside: protective put</li>
+        <li>Afraid of a crash and willing to cap the upside: collar</li>
+      </ul>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">11.5</span>VIX calls: crash hedges</h2>
+      <p>VIX calls have the most explosive payoff in a crash, but they track VIX futures, so they cost more to hold and demand better timing than index puts.</p>
+      <ul>
+        <li><strong>Explosive.</strong> When the market drops sharply, VIX often jumps, and nonlinearly. A small position in VIX calls can gain far more in a crash than index puts bought with the same money.</li>
+        <li><strong>The underlying is a future (Chapter 10, Section 10.8).</strong> In calm markets VIX futures usually sit above spot VIX and converge toward spot as expiration nears. If you buy a 20 call with spot at 14, the distance you actually have to cover is measured from the futures price, and the future itself is drifting down.</li>
+        <li><strong>The expiration dilemma.</strong> Front-month VIX calls respond most to a spike, but they expire quickly and have to be rolled again and again. Back-month futures move less in a panic, so back-month calls respond weakly too.</li>
+        <li><strong>Spikes are short.</strong> VIX mean-reverts strongly, and peaks often last only a few days. Without a monetization rule written in advance (Section 11.7), the gains can slip away while you hesitate.</li>
+        <li><strong>Basis risk.</strong> A rise in VIX doesn't mean your portfolio fell by a lot. In a slow, grinding bear market, VIX may rise only modestly and VIX calls won't help; index puts are more reliable there.</li>
+      </ul>
+      <p>The safer way to use them is as a supplement to index puts, taking only a small slice of the tail-hedge budget and aimed specifically at “a sharp drop over a day or two.” When sizing, ask two questions first. If VIX futures jump sharply over a few days, roughly how much would these calls pay, and what share of the portfolio's loss over the same period would that cover? If there's no spike all year and they go to zero, what share of the tail-hedge budget is that? The answer to the second should be “a small slice.”</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 11-5 Five kinds of protection compared qualitatively</caption>
+          <thead><tr><th>Tool</th><th>Keeps upside</th><th>Cost in normal times</th><th>Slow declines</th><th>Sharp drops</th><th>Main risk</th></tr></thead>
+          <tbody>
+            <tr><td>Protective put</td><td>Nearly all</td><td>Medium to high</td><td>Has a deductible</td><td>Good</td><td>Ongoing premium</td></tr>
+            <tr><td>Zero-cost collar</td><td>Capped</td><td>No cash cost</td><td>Has a deductible</td><td>Good</td><td>Missing a big rally</td></tr>
+            <tr><td>Put spread</td><td>Nearly all</td><td>Medium</td><td>Good</td><td>Pays only down to the short strike</td><td>Fails in deep drops</td></tr>
+            <tr><td>VIX calls</td><td>All</td><td>Medium; costly to roll</td><td>Weak</td><td>Most explosive</td><td>Timing and basis</td></tr>
+            <tr><td>Trimming</td><td>Reduced proportionally</td><td>None (triggers taxes)</td><td>Proportional</td><td>Proportional</td><td>Missing out, and taxes</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">11.6</span>The tail-hedge budget: buy insurance before the fire</h2>
+      <p>Buy protection on a fixed budget of 1%–2% of the portfolio a year. It's cheaper than buying all at once in a panic, and easier to stick with.</p>
+      <h3>Where 1%–2% comes from</h3>
+      <p>There's no rigorous theory behind this number; it comes from a simple trade-off. The long-run excess return of stocks over cash is roughly a few percentage points a year (an assumption; it varies a lot from period to period). Spending 1%–2% a year on insurance still leaves most of that excess return. Beyond 2%–3%, the insurance itself eats most of the edge stocks have over cash, and you'd be better off simply holding less stock.</p>
+      <p>Under this chapter's assumptions (ATM IV 18%), here is the one-year put each budget buys:</p>
+      <ul>
+        <li>Budget 1%: strike about <span class="num">74.9</span>, 25% OTM</li>
+        <li>Budget 1.5%: strike about <span class="num">80.5</span>, 19.5% OTM</li>
+        <li>Budget 2%: strike about <span class="num">84.8</span>, 15% OTM</li>
+      </ul>
+      <p>With the same 1.5% budget, if you wait until after a crash to buy, when ATM IV has risen to 32%, you can only get a put struck at <span class="num">58.5</span>: the premium is higher and the coverage lower. That's what “buy when IV Rank is low, not after the fire” means in numbers.</p>
+      <h3>A twenty-year simulation</h3>
+      <p>Below is a simulation over two hypothetical 20-year paths. Path A has two crashes (−35% in year 6, −24% in year 14); Path B has none. At the start of each year the budget buys a one-year put, with the strike solved at the IV of the time: ATM IV 18% in normal years, 32% if the previous year fell more than 15%.</p>
+
+      <figure class="plate" id="fig4">
+        <div class="fig-head"><span class="fig-title">Without a crash, insurance is pure cost; with one, it cuts a chunk off the maximum drawdown</span><span class="fig-no">Figure 11-3 · Tail-hedge budget and long-run drag, hypothetical paths</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Choose a path">
+            <button type="button" data-p="A" aria-pressed="true">Path A: two crashes</button>
+            <button type="button" data-p="B" aria-pressed="false">Path B: no crash</button>
+          </div>
+          <label class="ctl" for="f4-b">Annual budget <input id="f4-b" type="range" min="0" max="3" step="0.25" value="1.5"> <output id="f4-b-o">1.5%</output></label>
+        </div>
+        <svg class="chart" id="f4-svg" viewBox="0 0 680 320" role="img" aria-label="Twenty-year value of hedged and unhedged portfolios"></svg>
+        <div class="legend"><span><i class="dash" style="border-color: var(--muted)"></i>No hedge</span><span><i style="border-color: var(--theta)"></i>One-year puts bought each year on budget</span></div>
+        <div class="readout">
+          <div><b id="f4-r1">—</b><small id="f4-r1s">Strike bought in normal years</small></div>
+          <div><b id="f4-r2">—</b><small>Value after 20 years: hedged / unhedged</small></div>
+          <div><b id="f4-r3">—</b><small>Annualized return: hedged / unhedged</small></div>
+          <div><b id="f4-r4">—</b><small>Max drawdown: hedged / unhedged</small></div>
+        </div>
+        <figcaption>Path A, 1.5% budget: after 20 years the two lines end up at almost the same point (322 vs. 326), and the maximum drawdown shrinks from −35% to −21%. Switch to Path B: the insurance never pays, and the annualized return drops from 8.99% to 7.48%, a gap close to the annual budget. Drag the budget to 3% and Path A's drawdown shrinks further to −12%, while the drag on Path B doubles.</figcaption>
+      </figure>
+      <p>You don't know in advance which path you're living on. So the point of a tail-hedge budget isn't “making money.” It does two things: it keeps you from panic-selling in a −35% year, and the cash the insurance pays out lets you rebalance and add at low prices. The simulation counts neither benefit, and they are the real return on protection.</p>
+      <h3>How to spend the budget: laddering</h3>
+      <p>Buying once a year bets all your protection on the IV at one moment and on one expiration date. A smoother approach is a ladder: each quarter, spend a quarter of the budget on one-year puts covering a quarter of the portfolio. After a year you always hold four puts with staggered expirations, and the strikes update to each quarter's market level. The annual spend is the same, but you won't overpay because IV happened to be high on one day, and you won't suddenly be left “naked” after a single expiration date.</p>
+      <div class="note">
+        <span class="tag">When to buy</span>
+        <ul>
+          <li>When IV Rank is low (say, below 30), spend the budget on plain puts</li>
+          <li>When IV Rank is high, insurance is expensive: switch to put spreads or collars, selling equally expensive options to offset the cost</li>
+          <li>After a big drop, with IV high, rather than chasing protection, check whether the position is too big, and trim if necessary</li>
+        </ul>
+      </div>
+      <div class="note warn">
+        <span class="tag">Limits of the simulation</span>
+        <p>These two paths were made up to illustrate the point, and the results depend entirely on the assumptions: the number and depth of crashes, the level of IV, and puts that settle only at year-end (a real crash can happen mid-year and recover by year-end). What it shows you is “what the cost and payout of insurance look like,” not “whether insurance makes money.”</p>
+      </div>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">11.7</span>Monetization rules: after the protection pays off</h2>
+      <p>Once your protection has made money, sell part of it. Otherwise, as soon as the market bounces and IV falls back, the paper profit vanishes quickly.</p>
+      <h3>An example</h3>
+      <p>You bought the 91-day 90 put for 1.01 (index at 100). Thirty days later the index has fallen 15% to 85 and ATM IV has risen to 34%. The put is now in the money, worth <span class="num">7.16</span>, <span class="num">7.1</span> times its cost, with a Delta of <span class="num">−0.62</span>.</p>
+      <p>Monetization rule: sell half, and roll the other half from the 90 put to the 80 put with the same expiration (IV 38.3%, price 2.83).</p>
+      <ul>
+        <li>Sell half: recover <span class="num">0.5 × 7.16 = 3.58</span></li>
+        <li>Roll the other half: <span class="num">0.5 × (7.16 − 2.83) = 2.16</span></li>
+        <li>Total cash recovered: <span class="num">5.74</span> (5.7% of the original portfolio, 5.7 times the premium), and you still hold 0.5 units of the 80 put</li>
+      </ul>
+      <div class="tbl">
+        <table>
+          <caption>Table 11-6 Thirty days later: the protection's value under the two approaches (per 100 notional)</caption>
+          <thead><tr><th>Scenario</th><th>Index</th><th>ATM IV</th><th>Keep holding the 90 put</th><th>Monetize + roll</th></tr></thead>
+          <tbody>
+            <tr><td>Rebound</td><td class="mono">95</td><td class="mono">22%</td><td class="mono">1.02</td><td class="mono pos">5.86</td></tr>
+            <tr><td>Crash continues</td><td class="mono">72</td><td class="mono">45%</td><td class="mono pos">17.75</td><td class="mono">10.10</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>On a rebound, the investor who held on watches 7.16 shrink to 1.02; the one who monetized keeps 5.86. If the crash continues, the one who monetized makes less (10.10 vs. 17.75) but still has the 80 put paying out. A monetization rule gives up part of the payoff in extreme cases in exchange for certainty in most cases.</p>
+      <h3>The other direction: moving up after a rally</h3>
+      <p>Monetizing handles declines; rallies need a rule too. Say you bought a one-year 90 put (2.82), and three months later the market is at 110. The old put is now 18% from the current price and worth only <span class="num">1.42</span>; a new one-year 99 put (90% of 110) costs <span class="num">3.10</span>. Selling the old one and buying the new one costs a net <span class="num">1.68</span>, about 1.5% of the new portfolio value. That money raises your protection floor from 90 to 99. A common rule: once the market is up 10% or more from where you bought, move the strike up, and count the cost against that year's tail-hedge budget.</p>
+      <h3>Rules written in advance</h3>
+      <ul>
+        <li>When the protection is worth 3–5 times its cost, or its Delta goes past −0.6, sell half first</li>
+        <li>Roll the rest to a lower strike or a longer expiration, recovering cash while keeping tail protection</li>
+        <li>Monetizing while VIX is spiking and the term structure is inverted beats waiting until VIX has come back down</li>
+        <li>Put the cash from monetizing into a rebalancing plan: buying stock back at low prices is one of the real sources of return on protection</li>
+      </ul>
+      <p>The rebalancing arithmetic is worth doing. If the 5.74 you recovered goes back into stock with the index at 85, and the index later returns to 100, that money earns an extra <span class="num">5.74 × (100 ÷ 85 − 1) = 1.01</span>, roughly the premium you paid in the first place. The payout in the decline, plus the gain from using that payout to buy low, is the full return on protection.</p>
+      <p>Neither the 3–5× threshold nor the −0.6 threshold is theoretically optimal. A Delta past −0.6 means the put is moving more and more like a short stock position: the advantage from convexity is shrinking, and you're holding volatility at its most expensive. The thresholds give you a rule to follow when emotions run highest. You can adjust the numbers to your own style, but write them down on the same day you buy the protection.</p>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">11.8</span>Stock replacement: deep-in-the-money LEAPS</h2>
+      <p>Sell the stock and buy deep-in-the-money long-dated calls (LEAPS), and you keep about 90% of the directional exposure while capping your maximum loss at the premium.</p>
+      <p>Example: you hold 200 shares of a $150 stock, worth $30,000. Instead, you buy 2 one-year calls struck at 110 (IV 30%; a single stock, so skew is ignored here):</p>
+      <ul>
+        <li><span class="num">$46.56</span> each, Delta <span class="num">0.906</span>; 2 contracts are equivalent to 181 shares</li>
+        <li>Cost <span class="num">$9,312</span>, freeing <span class="num">$20,688</span> in cash, which earns about <span class="num">$844</span> in interest over a year at 4%</li>
+      </ul>
+      <h3>What's inside the time value</h3>
+      <p>Put–call parity lets you take the call apart:</p>
+      <div class="formula">
+        <div class="eq"><span class="v">C</span> <span class="up">=</span> <span class="up">(</span><span class="v">S</span> <span class="up">−</span> <span class="v">K</span><span class="up">)</span> <span class="up">+</span> <span class="v">K</span><span class="up">(</span>1 <span class="up">−</span> <span class="v">e</span><sup>−<span class="v">rT</span></sup><span class="up">)</span> <span class="up">+</span> <span class="v">P</span></div>
+        <p class="where">46.56 = intrinsic value 40 + interest component 4.31 + one 110 put 2.25. The time value of 6.56 is made up of “interest on borrowed money” and “an insurance policy.”</p>
+      </div>
+      <p>The interest component is roughly offset by the interest the freed-up cash earns, so what you're really paying for is the 110 put: stock replacement equals “shares + a protective put 27% OTM.”</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 11-7 Results after one year (dollars; the LEAPS row includes interest on cash)</caption>
+          <thead><tr><th>Stock price at expiry</th><th>75</th><th>105</th><th>120</th><th>150</th><th>180</th></tr></thead>
+          <tbody>
+            <tr><td>Hold 200 shares</td><td class="mono neg">−15,000</td><td class="mono neg">−9,000</td><td class="mono neg">−6,000</td><td class="mono">0</td><td class="mono pos">+6,000</td></tr>
+            <tr class="hl"><td>Two 110 LEAPS</td><td class="mono neg">−8,468</td><td class="mono neg">−8,468</td><td class="mono neg">−6,468</td><td class="mono neg">−468</td><td class="mono pos">+5,532</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>If the stock doesn't move, the replacement loses $468, about the value of the two puts; at 180 it makes $468 less; below 110, the loss is capped at $8,468.</p>
+      <h3>When stock replacement makes sense</h3>
+      <ul>
+        <li>The position has an unrealized loss or only a small gain, so selling costs almost nothing in tax (while steering clear of the wash-sale rule)</li>
+        <li>In a tax-exempt or tax-deferred account, selling creates no current tax</li>
+        <li>You still like the stock but want a hard limit on the worst case, without paying for puts every quarter</li>
+        <li>IV is low: the “implied put” inside the LEAPS is cheaper</li>
+      </ul>
+      <div class="note warn">
+        <span class="tag">Watch out for</span>
+        <ul>
+          <li><strong>Taxes.</strong> Selling the stock realizes the gain or loss. Selling at a loss and then buying calls on the same stock within 30 days may trigger the wash-sale rule, and the loss can't be deducted in the current year</li>
+          <li><strong>Dividends.</strong> In the real world, LEAPS holders don't receive dividends, so replacement costs more on high-dividend stocks</li>
+          <li><strong>The lure of leverage.</strong> The freed-up cash belongs in short-term Treasuries. Using it to buy more LEAPS turns a risk-reducing move into adding leverage</li>
+          <li><strong>Liquidity.</strong> LEAPS bid–ask spreads are usually wide, so you lose a little on the way in and on the way out</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s9">
+      <h2><span class="sn">11.9</span>Adjusting portfolio beta with options</h2>
+      <p>Without touching your holdings, you can use index options to bring portfolio beta from 1.25 down to 0.75. But option Deltas change, so the beta you set will drift.</p>
+      <p>Using the beta weighting from Chapter 4: a $200,000 portfolio with beta 1.25 and SPY at 780 is equivalent to <span class="num">200,000 × 1.25 ÷ 780 = 320.5</span> shares of SPY. A target beta of 0.75 corresponds to 192.3 shares, so you need <span class="num">−128.2</span> shares of SPY Delta. The options are 91-day, with IV from this chapter's skew assumption.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 11-8 Four ways to lower beta, and the effective beta after an instant ±5% move in SPY</caption>
+          <thead><tr><th>Method</th><th>Quantity</th><th>Cash</th><th>Beta at entry</th><th>After SPY −5%</th><th>After SPY +5%</th></tr></thead>
+          <tbody>
+            <tr><td>Short SPY</td><td class="mono">128 shares</td><td class="mono">None (margin required)</td><td class="mono">0.75</td><td class="mono">0.74</td><td class="mono">0.76</td></tr>
+            <tr><td>Buy 741 puts (Delta −0.26)</td><td class="mono">5 contracts</td><td class="mono neg">Pay $6,857</td><td class="mono">0.74</td><td class="mono">0.37</td><td class="mono">1.00</td></tr>
+            <tr><td>Sell 819 calls (Delta 0.34)</td><td class="mono">4 contracts</td><td class="mono pos">Receive $5,703</td><td class="mono">0.72</td><td class="mono">0.90</td><td class="mono">0.38</td></tr>
+            <tr class="hl"><td>Collar 741 / 819</td><td class="mono">2 sets</td><td class="mono pos">Receive $109</td><td class="mono">0.78</td><td class="mono">0.73</td><td class="mono">0.71</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>“After −5%” assumes SPY instantly drops to 741 and ATM IV rises to 24%; “after +5%” assumes it rises to 819 and ATM IV falls to 15%. A few ways to read the table:</p>
+      <ul>
+        <li><strong>Buying puts: more defensive the further it falls.</strong> As the market drops, the puts' Delta grows and portfolio beta falls from 0.74 to 0.37, exactly the direction you want. The catch is cost: $6,857 a quarter, 3.4% of the portfolio.</li>
+        <li><strong>Selling calls: more defensive the further it rises.</strong> You collect cash, but in a decline the calls' Delta shrinks and beta climbs back to 0.90, so the protection weakens just when you need it most. In a rally beta is pushed down to 0.38, and you get no share of the gains however far it rises.</li>
+        <li><strong>The collar is the most stable.</strong> The long put and the short call have Gamma of opposite sign, which cancels out, so after ±5% beta stays around 0.7, at almost zero cash cost.</li>
+      </ul>
+      <p>Check regularly after adjusting. You can write the rule as: when effective beta drifts more than ±0.15 from target, readjust the number of contracts. Remember two more things. Beta itself is estimated from historical data, and in a crash, correlations between stocks rise and beta changes. And index options can't hedge stock-specific risk: if one stock in your portfolio blows up on earnings, SPY puts won't help.</p>
+      <div class="note field">
+        <span class="tag">Field notes</span>
+        <p>Hedging doesn't have to use options. One trader who was bullish on oil bought an energy-stock ETF and a leveraged crude oil ETF, and at the same time built a heavy position in an airline ETF in stages as a hedge: rising oil helps energy and drives up airlines' fuel costs, and falling oil does the reverse. Later a news item sent oil sharply lower. The leveraged crude ETF lost heavily, the airline ETF rose, and the portfolio as a whole still made money. Cross-asset hedges like this have no time decay, but they depend on correlation and lack the convexity of options: in extreme scenarios such as a recession, oil and airline stocks can fall together. Another common habit: when the market-wide cost of hedging is at multi-year lows, use rallies to put downside protection in place, rather than chasing it once the decline has started.</p>
+      </div>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">Cases</span>Three cases</h2>
+
+      <div class="case">
+        <div class="case-no">Case 1</div>
+        <h3>A $200,000 portfolio falls 10%, 20% or 30%: what's left under each of the four approaches</h3>
+        <p>Same conditions as Section 11.4: a $200,000 portfolio tracking the S&amp;P 500, 91 days of protection, covering the notional 1:1 (with SPY options that's about 2.56 contracts; you can only buy whole contracts, so you might choose 3 and slightly over-hedge). ATM IV 18%, skew as in Section 11.2. Results are settled at expiry after 91 days and include premium.</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 11-9 Portfolio P&amp;L under the four approaches (dollars)</caption>
+            <thead><tr><th>Approach</th><th>Cost</th><th>−30%</th><th>−20%</th><th>−10%</th><th>No change</th><th>+15%</th></tr></thead>
+            <tbody>
+              <tr><td>No hedge</td><td class="mono">0</td><td class="mono neg">−60,000</td><td class="mono neg">−40,000</td><td class="mono neg">−20,000</td><td class="mono">0</td><td class="mono pos">+30,000</td></tr>
+              <tr><td>Protective put 90</td><td class="mono">2,021</td><td class="mono neg">−22,021</td><td class="mono neg">−22,021</td><td class="mono neg">−22,021</td><td class="mono neg">−2,021</td><td class="mono pos">+27,979</td></tr>
+              <tr><td>Zero-cost collar 90 / 107.9</td><td class="mono">0</td><td class="mono neg">−20,000</td><td class="mono neg">−20,000</td><td class="mono neg">−20,000</td><td class="mono">0</td><td class="mono pos">+15,775</td></tr>
+              <tr><td>Put spread 95 / 80</td><td class="mono">2,831</td><td class="mono neg">−32,831</td><td class="mono neg">−12,831</td><td class="mono neg">−12,831</td><td class="mono neg">−2,831</td><td class="mono pos">+27,169</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li><strong>−10%:</strong> The put spread is best (−$12,831), because it starts paying at −5%. The protective put pays nothing and loses the premium on top of the unhedged loss. The collar does the same as no hedge.</li>
+          <li><strong>−20%:</strong> The put spread is still best, using exactly its full 15% payout range. The protective put and the collar both hold the loss to just over $20,000.</li>
+          <li><strong>−30%:</strong> The put spread stops paying below −20%, loses $32,831 and drops to third. The collar (−$20,000) and the protective put (−$22,021) deliver on their promise of a floor.</li>
+          <li><strong>+15%:</strong> The collar makes only $15,775, nearly half less than with no hedge. That's the real cost of “zero cost.”</li>
+        </ul>
+        <p>The lesson: no protection is best in every scenario. Before you buy protection, write down “the decline I fear most,” such as “a pullback of about 15% within three months” or “a single 30% crash,” then pick the structure that matches it. If the answer is “both,” you can combine them: a put spread for pullbacks, plus a small amount of far-OTM puts for the tail.</p>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 2</div>
+        <h3>A cautionary example: paying too much for protection</h3>
+        <p>The same $200,000 portfolio, two investors, the same hypothetical market:</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 11-10 Hypothetical market path</caption>
+            <thead><tr><th>Time</th><th>Index</th><th>ATM IV</th><th>Portfolio value</th></tr></thead>
+            <tbody>
+              <tr><td>Day 0</td><td class="mono">100</td><td class="mono">14%</td><td class="mono">$200,000</td></tr>
+              <tr><td>Day 30</td><td class="mono">85</td><td class="mono">40%</td><td class="mono">$170,000</td></tr>
+              <tr><td>Day 60</td><td class="mono">90</td><td class="mono">28%</td><td class="mono">$180,000</td></tr>
+              <tr><td>Day 90</td><td class="mono">94</td><td class="mono">20%</td><td class="mono">$188,000</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Investor A buys while things are calm.</strong> On day 0 A buys the 91-day 90 put at IV 20% for 0.58%, or <span class="num">$1,158</span>. On day 30, with the index down to 85 and IV up to 40%, the put is worth <span class="num">$15,913</span>, 13.7 times its cost.</p>
+        <p><strong>Investor B buys after the fire.</strong> On day 0, B thinks protection is unnecessary. On day 30, scared, he buys a 30-day at-the-money 85 put at IV 40% for 4.40%, or <span class="num">$7,485</span>. On day 60 the index is back at 90 and the put expires worthless; still nervous, he buys another 30-day at-the-money 90 put at IV 28% for 3.03%, or <span class="num">$5,463</span>. On day 90 the index is at 94, and that one expires worthless too.</p>
+        <p>B spent <span class="num">$12,947</span> in total and got nothing back, and by the time he bought protection, the biggest drop was already over. Rolling at-the-money puts monthly at IV 40% costs <span class="num">52.8%</span> a year. The same 30-day at-the-money put costs <span class="num">3.06</span> times as much at IV 40% as at IV 14%.</p>
+        <ul>
+          <li><strong>Buy protection when IV is low.</strong> That's why the tail-hedge budget (Section 11.6) exists: buy on a schedule while things are calm, not on emotion in a panic.</li>
+          <li><strong>Protection bought after a panic often protects against a risk that has already passed.</strong> After a big drop the market can keep falling or bounce, and you're paying the highest price.</li>
+          <li><strong>If you really do need protection while IV is high,</strong> use a put spread or a collar, selling equally expensive options to offset part of the cost; or admit the position is too big and trim it.</li>
+        </ul>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 3</div>
+        <h3>Right direction, wrong underlying: basis risk in hedging</h3>
+        <p>Your $200,000 portfolio is mostly tech stocks, with a beta of 1.25 to SPY. Two hedges (91 days, strikes at 90% of the current price; all market data below are hypothetical):</p>
+        <ul>
+          <li>3 SPY 702 puts (SPY 780, IV 24%): cost <span class="num">$2,365</span></li>
+          <li>3 QQQ 630 puts (QQQ 700, ATM IV 22%, IV 28% at this strike): cost <span class="num">$3,183</span>, because the tech index is more volatile</li>
+        </ul>
+        <div class="tbl">
+          <table>
+            <caption>Table 11-11 Two decline scenarios: portfolio P&amp;L at expiry (dollars, including premium)</caption>
+            <thead><tr><th>Scenario</th><th>SPY</th><th>QQQ</th><th>Combination</th><th>With SPY puts</th><th>With QQQ puts</th></tr></thead>
+            <tbody>
+              <tr><td>Tech selloff</td><td class="mono">−8%</td><td class="mono">−18%</td><td class="mono neg">−50,000</td><td class="mono neg">−52,365</td><td class="mono neg">−36,383</td></tr>
+              <tr><td>Broad decline</td><td class="mono">−25%</td><td class="mono">−30%</td><td class="mono neg">−64,000</td><td class="mono neg">−31,265</td><td class="mono neg">−25,183</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>In the first scenario, money rotates out of tech into other sectors. SPY falls only 8%, the 702 puts pay nothing, and the portfolio is down 25%: you bought insurance and the accident happened, but the policy didn't cover this kind of accident. The QQQ puts paid $16,800. In the second scenario both pay, and QQQ still pays somewhat more.</p>
+        <ul>
+          <li><strong>The hedge should match what you actually own.</strong> Mostly tech, use QQQ; mostly small caps, use IWM. Paying a bit more is usually worth it.</li>
+          <li><strong>Beta is an average relationship, not a guarantee.</strong> The portfolio fell 25% while QQQ fell only 18%. The extra 7% came from the individual stocks themselves, and no index option can hedge that.</li>
+          <li><strong>With concentrated holdings, reduce the concentration first.</strong> If one or two stocks make up most of the portfolio, index protection alone leaves a big gap.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">Tools</span>Checklist and self-test</h2>
+      <p>Checkbox states are saved only in your own browser.</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">11-1</span>Before buying protection</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">Write down the decline you fear most: how big, how fast</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">Work out the annualized cost; the year's total stays within budget (1%–2% of the portfolio)</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">Check IV Rank: buy puts when it's low; use spreads or collars when it's high</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">11-2</span>Choosing the structure</h4>
+          <ul>
+            <li><input type="checkbox" id="k4"><label for="k4">Fear a pullback: put spread. Fear a crash: puts or a collar</label></li>
+            <li><input type="checkbox" id="k5"><label for="k5">For a zero-cost collar, first work out how much upside you give up</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">For single-stock collars, check the ex-dividend date and early-assignment risk</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">11-3</span>While holding</h4>
+          <ul>
+            <li><input type="checkbox" id="k7"><label for="k7">When value reaches 3–5 times cost or Delta goes past −0.6, sell half first</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">Roll the rest to a lower strike or a longer expiration</label></li>
+            <li><input type="checkbox" id="k9"><label for="k9">Put the cash from monetizing into the rebalancing plan</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">11-4</span>Taxes and the portfolio</h4>
+          <ul>
+            <li><input type="checkbox" id="k10"><label for="k10">Don't set the floor and cap too tight, to avoid a constructive sale</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">Check the adjusted portfolio with beta-weighted Delta</label></li>
+            <li><input type="checkbox" id="k12"><label for="k12">Readjust when effective beta drifts more than ±0.15 from target</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Five self-test questions</h3>
+      <details class="q"><summary><span class="num">1</span><span>A 91-day 90 put costs 1.01%. What is that annualized? The 30-day 80 put annualizes to only 1.0%. Why can't you say it's cheaper?</span></summary>
+        <div class="ans"><p><span class="num">1.01% × 365 ÷ 91 = 4.05%</span>. The 30-day 80 put pays only on “a 20% drop within a month,” a far rarer risk than “a 10% drop within three months.” Annualized costs are only comparable when they protect against the same risk.</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>For the same 91-day 90 put, the zero-cost call strike is 107.9 with skew and 113.9 without. Why does skew lower the cap?</span></summary>
+        <div class="ans"><p>Skew makes OTM puts more expensive (IV 24% vs. 18%) and OTM calls cheaper (IV 16.4% at 107.9). You have more premium to pay, and each call you sell is worth less, so you have to pull the strike closer to the current price and sell more of the upside.</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>A $200,000 portfolio is protected with a 95 / 80 put spread (cost 1.42%). How much does the portfolio lose if the market falls 30%?</span></summary>
+        <div class="ans"><p>The stock loses $60,000; the spread pays at most 15%, or $30,000; subtract the $2,831 cost. Total: <span class="num">−60,000 + 30,000 − 2,831 = −$32,831</span>.</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>The stock is at $150 and a one-year 110 call is worth $46.56. Which two parts make up its time value, and how much is each?</span></summary>
+        <div class="ans"><p>Time value is <span class="num">46.56 − 40 = 6.56</span>. Put–call parity splits it into an interest component of <span class="num">110 × (1 − e<sup>−0.04</sup>) = 4.31</span> and one 110 put worth <span class="num">2.25</span>.</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>A $200,000 portfolio, beta 1.25, SPY 780. To bring beta down to 0.75, how many shares of short SPY Delta do you need? Using SPY puts with a Delta of −0.40, how many contracts do you buy?</span></summary>
+        <div class="ans"><p><span class="num">200,000 × (1.25 − 0.75) ÷ 780 = 128.2</span> shares. Each put provides −40 shares, so you need <span class="num">128.2 ÷ 40 ≈ 3.2</span> contracts. Watch the units: it's 128 shares, not 128 contracts.</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="Chapter navigation"></nav>
+
+    <footer class="end">
+      <p>This chapter's examples are calculated with the Black-Scholes model and the assumptions stated in the text (4% rate, no dividends, 365-day year; the skew and market paths are hypothetical). They are for teaching only and are not investment or tax advice.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+  /* 本章的偏度假设: IV(K) = 平值 + a·虚值%·√(91/天数) (看跌一侧), 看涨一侧每虚值 1% 减 b 个点 */
+  function smile(K, S, D, atm, a, b) {
+    a = a === undefined ? 0.6 : a; b = b === undefined ? 0.2 : b;
+    const x = (K / S - 1) * 100, k = Math.sqrt(91 / D);
+    return Math.max(atm + (x < 0 ? a * k * (-x) : -b * k * x) / 100, 0.08);
+  }
+  const opt = (K, S, D, atm, kind, a, b) => bs(S, K, D / DAY, smile(K, S, D, atm, a, b), kind);
+  const pctS = (v, d) => (v * 100).toFixed(d === undefined ? 1 : d) + "%";
+
+  // ---------- fig 11-1: annualized cost ----------
+  (function () {
+    const svg = document.getElementById("f1-svg");
+    const ivS = document.getElementById("f1-iv"), aS = document.getElementById("f1-a");
+    const tenors = [[30, "var(--gamma)"], [91, "var(--delta)"], [182, "var(--theta)"], [365, "var(--warn)"]];
+    const ann = (otm, D, atm, a) => opt(100 - otm, 100, D, atm, "p", a).price * 365 / D;
+    function draw() {
+      const atm = +ivS.value / 100, a = +aS.value;
+      document.getElementById("f1-iv-o").textContent = ivS.value + "%";
+      document.getElementById("f1-a-o").textContent = a.toFixed(1);
+      const xs = range(0, 25, 0.25);
+      plot(svg, {
+        x: [0, 25], y: [0.1, 80], ylog: true, xt: [0, 5, 10, 15, 20, 25], yt: [0.1, 0.3, 1, 3, 10, 30],
+        xf: v => v + "%", yf: v => v + "%", xlabel: "Put OTM distance", ylabel: "Annualized cost (% of portfolio)",
+        series: tenors.map(([D, c]) => ({ pts: xs.map(x => [x, ann(x, D, atm, a)]), color: c, w: 2.4 }))
+      });
+      document.getElementById("f1-r1").textContent = ann(0, 30, atm, a).toFixed(1) + "%";
+      document.getElementById("f1-r2").textContent = ann(10, 91, atm, a).toFixed(2) + "%";
+      document.getElementById("f1-r3").textContent = ann(10, 365, atm, a).toFixed(2) + "%";
+      document.getElementById("f1-r4").textContent = ann(20, 365, atm, a).toFixed(2) + "%";
+    }
+    ivS.addEventListener("input", draw); aS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- tool 11-A: zero-cost collar ----------
+  (function () {
+    const svg = document.getElementById("f2-svg");
+    const kS = document.getElementById("f2-k"), ivS = document.getElementById("f2-iv"), aS = document.getElementById("f2-a");
+    const btns = document.querySelectorAll("#fig2 .seg button");
+    let D = 91;
+    function solve(target, D, atm, a) {
+      let lo = 50, hi = 400;
+      for (let i = 0; i < 80; i++) { const m = (lo + hi) / 2; if (opt(m, 100, D, atm, "c", a).price > target) lo = m; else hi = m; }
+      return (lo + hi) / 2;
+    }
+    function draw() {
+      const otm = +kS.value, atm = +ivS.value / 100, a = +aS.value;
+      document.getElementById("f2-k-o").textContent = otm + "%";
+      document.getElementById("f2-iv-o").textContent = ivS.value + "%";
+      document.getElementById("f2-a-o").textContent = a.toFixed(1);
+      const Kp = 100 - otm;
+      const put = opt(Kp, 100, D, atm, "p", a).price;
+      const Kc = solve(put, D, atm, a);
+      const flatPut = bs(100, Kp, D / DAY, atm, "p").price;
+      let lo = 50, hi = 400;
+      for (let i = 0; i < 80; i++) { const m = (lo + hi) / 2; if (bs(100, m, D / DAY, atm, "c").price > flatPut) lo = m; else hi = m; }
+      const KcFlat = (lo + hi) / 2;
+      const xs = range(-30, 30, 0.25);
+      const fl = Kp / 100 - 1, cap = Kc / 100 - 1;
+      plot(svg, {
+        x: [-30, 30], y: [-30, 30], xt: range(-30, 30, 10), yt: range(-30, 30, 10),
+        xf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%", yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%",
+        xlabel: "Stock move at expiry", ylabel: "Portfolio return (incl. premium)", zero: 0, vline: 0,
+        series: [
+          { pts: xs.map(m => [m, m]), color: "var(--muted)", w: 1.6, dash: "5 5" },
+          { pts: xs.map(m => [m, m + Math.max(Kp - 100 - m, 0) - put]), color: "var(--delta)", w: 2 },
+          { pts: xs.map(m => [m, Math.min(Math.max(m, fl * 100), cap * 100)]), color: "var(--theta)", w: 2.8 }
+        ],
+        labels: [[20, cap * 100, "Cap " + (cap >= 0 ? "+" : "−") + Math.abs(cap * 100).toFixed(1) + "%", 0, -10, "middle", "var(--theta)"],
+                 [-20, fl * 100, "Floor −" + otm + "%", 0, 18, "middle", "var(--theta)"]]
+      });
+      document.getElementById("f2-r1").textContent = put.toFixed(2) + "%";
+      document.getElementById("f2-r2").textContent = Kc.toFixed(1) + "(" + (cap >= 0 ? "+" : "−") + Math.abs(cap * 100).toFixed(1) + "%)";
+      document.getElementById("f2-r3").textContent = KcFlat.toFixed(1);
+      document.getElementById("f2-r4").textContent = (smile(Kc, 100, D, atm, a) * 100).toFixed(1) + "%";
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      D = +b.dataset.d;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    [kS, ivS, aS].forEach(s => s.addEventListener("input", draw));
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 11-2: scheme comparator ----------
+  (function () {
+    const svg = document.getElementById("f3-svg");
+    const mS = document.getElementById("f3-m");
+    const W = 200000, D = 91, atm = 0.18;
+    const p90 = opt(90, 100, D, atm, "p").price / 100, p95 = opt(95, 100, D, atm, "p").price / 100, p80 = opt(80, 100, D, atm, "p").price / 100;
+    let lo = 100, hi = 200;
+    for (let i = 0; i < 80; i++) { const m = (lo + hi) / 2; if (opt(m, 100, D, atm, "c").price / 100 > p90) lo = m; else hi = m; }
+    const kc = (lo + hi) / 200;
+    const f = [
+      m => W * m,
+      m => W * (m + Math.max(0.9 - (1 + m), 0) - p90),
+      m => W * (m + Math.max(0.9 - (1 + m), 0) - Math.max((1 + m) - kc, 0)),
+      m => W * (m + Math.max(0.95 - (1 + m), 0) - Math.max(0.80 - (1 + m), 0) - (p95 - p80))
+    ];
+    const cols = ["var(--muted)", "var(--delta)", "var(--theta)", "var(--gamma)"];
+    function draw() {
+      const mv = +mS.value;
+      document.getElementById("f3-m-o").textContent = (mv > 0 ? "+" : mv < 0 ? "−" : "") + Math.abs(mv) + "%";
+      const xs = range(-40, 30, 0.5);
+      plot(svg, {
+        x: [-40, 30], y: [-80000, 60000], xt: range(-40, 30, 10), yt: range(-80000, 60000, 20000),
+        xf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%", yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v / 1000) + "k",
+        xlabel: "Market move after 91 days", ylabel: "Portfolio P&L ($)", zero: 0, vline: mv,
+        series: f.map((fn, i) => ({ pts: xs.map(x => [x, fn(x / 100)]), color: cols[i], w: i === 0 ? 1.8 : 2.4, dash: i === 0 ? "5 5" : null })),
+        dots: f.map((fn, i) => [mv, fn(mv / 100), cols[i], 4.5])
+      });
+      ["f3-r1", "f3-r2", "f3-r3", "f3-r4"].forEach((id, i) => { document.getElementById(id).textContent = money(f[i](mv / 100)); });
+    }
+    mS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 11-3: tail budget simulation ----------
+  (function () {
+    const svg = document.getElementById("f4-svg");
+    const bS = document.getElementById("f4-b");
+    const btns = document.querySelectorAll("#fig4 .seg button");
+    const paths = {
+      A: [12, 18, -6, 22, 9, -35, 28, 14, 7, 16, -12, 20, 11, -24, 24, 5, 15, 19, -4, 10],
+      B: [12, 18, -6, 22, 9, 4, 13, 14, 7, 16, -8, 20, 11, 2, 14, 5, 15, 12, -4, 10]
+    };
+    const put1y = (K, atm) => bs(100, K, 1, smile(K, 100, 365, atm), "p").price;
+    function strikeFor(b, atm) {
+      let lo = 30, hi = 100;
+      for (let i = 0; i < 80; i++) { const m = (lo + hi) / 2; if (put1y(m, atm) > b) hi = m; else lo = m; }
+      return (lo + hi) / 2;
+    }
+    let cur = "A";
+    function run(path, b) {
+      let W = 100, U = 100, pk = 100, pu = 100, mdd = 0, mddu = 0, prev = 0;
+      const hw = [[0, 100]], uw = [[0, 100]];
+      path.forEach((r, i) => {
+        const atm = prev <= -15 ? 0.32 : 0.18;
+        let pay = 0;
+        if (b > 0) { const K = strikeFor(b * 100, atm); pay = Math.max(K / 100 - (1 + r / 100), 0); }
+        W = W * (1 + r / 100 + pay - b); U = U * (1 + r / 100);
+        pk = Math.max(pk, W); pu = Math.max(pu, U);
+        mdd = Math.min(mdd, W / pk - 1); mddu = Math.min(mddu, U / pu - 1);
+        hw.push([i + 1, W]); uw.push([i + 1, U]); prev = r;
+      });
+      return { W, U, mdd, mddu, hw, uw };
+    }
+    function draw() {
+      const b = +bS.value / 100;
+      document.getElementById("f4-b-o").textContent = (+bS.value).toFixed(2).replace(/0$/, "").replace(/\.$/, "") + "%";
+      const path = paths[cur], R = run(path, b);
+      const top = Math.max(...R.hw.map(p => p[1]), ...R.uw.map(p => p[1]));
+      const hi = Math.ceil(top * 1.08 / 100) * 100;
+      const yt = range(0, hi, hi > 400 ? 100 : 50);
+      const labels = [];
+      path.forEach((r, i) => { if (r <= -15) labels.push([i + 1, R.uw[i + 1][1], "−" + Math.abs(r) + "%", 0, 18, "middle", "var(--gamma)"]); });
+      plot(svg, {
+        x: [0, 20], y: [0, hi], xt: [0, 5, 10, 15, 20], yt, yf: v => v.toFixed(0),
+        xlabel: "Year", ylabel: "Value (start = 100)",
+        series: [{ pts: R.uw, color: "var(--muted)", w: 1.8, dash: "5 5" }, { pts: R.hw, color: "var(--theta)", w: 2.6 }],
+        labels
+      });
+      const K = b > 0 ? strikeFor(b * 100, 0.18) : null;
+      const cagr = v => Math.pow(v / 100, 1 / 20) - 1;
+      document.getElementById("f4-r1").textContent = K ? K.toFixed(1) : "None";
+      document.getElementById("f4-r1s").textContent = K ? "Strike in normal years (OTM " + (100 - K).toFixed(1) + "%)" : "Budget is 0, no protection bought";
+      document.getElementById("f4-r2").textContent = R.W.toFixed(0) + " / " + R.U.toFixed(0);
+      document.getElementById("f4-r3").textContent = pctS(cagr(R.W), 2) + " / " + pctS(cagr(R.U), 2);
+      document.getElementById("f4-r4").textContent = pctS(R.mdd, 0).replace("-", "−") + " / " + pctS(R.mddu, 0).replace("-", "−");
+    }
+    btns.forEach(bt => bt.addEventListener("click", () => {
+      cur = bt.dataset.p;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === bt ? "true" : "false"));
+      draw();
+    }));
+    bS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+})();
+</script>
+<script id="lang-js">(function(){document.querySelectorAll(".lang-switch").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("hl-lang",a.getAttribute("data-lang"))}catch(e){}var h=a.getAttribute("href");if(location.hash&&h.indexOf("#")<0)a.setAttribute("href",h+location.hash);});});})();</script>
+</body>
+</html>

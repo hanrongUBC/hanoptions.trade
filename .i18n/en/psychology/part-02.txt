@@ -1,0 +1,220 @@
+@@ 81fd45df91 html
+“Take a little profit and run; when it's losing, hold on.” Your win rate isn't low, yet you lose money overall
+@@ 6ffe997664 html
+Preset take-profit rules (e.g., sell half when it doubles); track your own average win and average loss
+@@ 252eadd577 html
+Anchoring to cost<small>ANCHORING BIAS</small>
+@@ 75532f59c9 html
+Treating your purchase price as the stock's “true value”
+@@ 36b9c55bd5 html
+“I'll sell once it's back to my cost”; the market has no idea what your cost was
+@@ 9de190b76d html
+Ask every day: if I had no position, would I buy at this price?
+@@ d2b6534b18 html
+Sunk cost<small>SUNK COST FALLACY</small>
+@@ cbcd195b63 html
+The more you've already put in, the less willing you are to let go
+@@ 0470552d06 html
+You keep adding to a losing position, and each add becomes a “rescue” rather than a new decision
+@@ e737f34563 html
+At most one planned add to a losing position, and only after a confirming signal
+@@ 8c5ac37db7 html
+Confirmation bias<small>CONFIRMATION BIAS</small>
+@@ 25101f0e6b html
+Seeking only information that supports your view
+@@ 08d6829624 html
+Once in a position, you read only good news and bullish posts
+@@ c66495ca7d html
+For every position, write down “the strongest case against”; deliberately read the opposite view
+@@ d311dd9ef0 html
+Overconfidence<small>OVERCONFIDENCE</small>
+@@ 02787c6c79 html
+Overestimating how accurate your judgment is
+@@ b49d49eb07 html
+You size up after a few wins; accounts often blow up right after a winning streak
+@@ a1e2117cd9 html
+Let risk rules, not confidence, set position size; after a winning streak, size down instead
+@@ aa8672a3ad html
+Recency bias<small>RECENCY BIAS</small>
+@@ 425dc2a55e html
+Assuming whatever just happened will keep happening
+@@ 31556039cb html
+Three up days and you think it will keep rising; one recent loss and you doubt the whole system
+@@ 39cd321a62 html
+Look at long-term charts and large-sample statistics, not the last few candles
+@@ cf2e29bedf html
+Hindsight bias<small>HINDSIGHT BIAS</small>
+@@ e3706bae80 html
+Feeling afterward that “I knew it all along”
+@@ e5d3af35e6 html
+You overestimate your predictive power and underestimate how uncertain things were at the time
+@@ febd6994f4 html
+Write down your view and your confidence beforehand; compare afterward
+@@ 6287de55a2 html
+Herding and FOMO<small>HERDING / FOMO</small>
+@@ 491b0bf179 html
+Everyone else is making money, and being on the sidelines hurts
+@@ 862e4ea082 html
+You chase and buy when emotions run hottest
+@@ ba6cf4e22d html
+Take only planned trades; a missed move is missed, and the market opens every day
+@@ 9235416d70 html
+Gambler's fallacy<small>GAMBLER'S FALLACY</small>
+@@ 06c1b1c1fa html
+After a few losses, thinking you're “due for a win”
+@@ 17784d312d html
+After several stop-outs in a row, you size up the next trade to win it back
+@@ 462aac6d42 html
+Each trade is independent; in a losing streak, cut size by rule instead of adding (Chapter 6)
+@@ 1a4ac5c7a8 html
+Narrative fallacy<small>NARRATIVE FALLACY</small>
+@@ 4594d6d3c4 html
+A good story makes you ignore the numbers and the price
+@@ 24a37be727 html
+You fall for a theme and keep consoling yourself with the story after the price breaks down
+@@ 76790af20b html
+The narrative decides what to research; price and valuation decide when to buy. Write down the facts that would break the narrative
+@@ 16fb2df869 html
+Survivorship bias<small>SURVIVORSHIP BIAS</small>
+@@ 3add138e72 html
+Seeing only the people who survived
+@@ a9a56fe822 html
+Everyone posting trades on social media is a winner; people who blew up their accounts don't post
+@@ 637d32f576 html
+Treat someone else's one-off windfall as noise; compare yourself only with your own long-term record
+@@ ec9f0265a4 html
+Biases come in chains
+@@ 3e76cfc3a4 html
+A single bias does limited damage. Real disasters come from a chain of biases amplifying each other. A typical path:
+@@ 6b8d18bd90 html
+The position starts losing, and <strong>loss aversion</strong> keeps you from exiting at your stop;
+@@ e412050708 html
+You start reading only good news (<strong>confirmation bias</strong>) and tell yourself “I'll get out once it's back to my cost” (<strong>anchoring</strong>);
+@@ 8044d2d9b3 html
+It keeps falling, and you average down because you've already put in so much (<strong>sunk cost fallacy</strong>);
+@@ c7f5a4d986 html
+The position keeps getting heavier, and a small loss turns into a big one that damages the account.
+@@ beadf765b1 html
+Don't count on willpower to see through a bias in the moment. Write the rules while you're calm (stop level, at most one add, a cap on position size) and let them make the decisions for you when things heat up. That is the subject of Chapter 5.
+@@ c934c343c7 html
+Emotion and state: when your body places the order
+@@ 87cd9f1937 html
+Emotions are not something to eliminate. Fear tells you risk is rising; excitement warns you that you may be overconfident. The problem is never having emotions. It is letting them press the buy or sell button.
+@@ ec52c5fa6e html
+Under stress, the brain narrows
+@@ a6d923b77d html
+When your account is losing money fast, your body goes into something like a “fight or flight” stress response: your attention narrows to the price in front of you, and long-term plans and probabilistic thinking get pushed aside. Decisions made then are usually aimed at making the bad feeling stop right away, not at the best outcome. So there is a physiological basis for “the closer you watch the screen, the more mistakes you make.”
+@@ 65a5a91d03 html
+Research has also found that the more often people evaluate their results, the more losses they feel and the more risk-averse they become. Someone who checks their account every five minutes lives through more “losing moments” than someone who checks once a week, even if they hold exactly the same position.
+@@ 37170c70dc html
+The six most common out-of-control states
+@@ 044bd66bf3 html
+State
+@@ 96f165769b html
+What it makes you do
+@@ 588eb9879b html
+Warning signs
+@@ cf9fd4e329 html
+What to do
+@@ db5f5ff38b html
+<strong>Fear</strong>
+@@ 507ed0054a html
+Afraid to enter as planned; closing as soon as you're slightly ahead
+@@ 36fa74d28e html
+Checking the chart again and again without placing the order; sweaty palms
+@@ 14d87fe3d4 html
+Cut the position to a size that no longer scares you
+@@ 631437a281 html
+<strong>Greed</strong>
+@@ 90af102f3b html
+Not taking profit; adding to chase the rally
+@@ 37987561f3 html
+Starting to calculate “how much I'd make if it rose another 20%”
+@@ 0455f0276f html
+Follow your preset take-profit rule
+@@ f3985edb00 html
+<strong>Revenge trading</strong>
+@@ 57924ee986 html
+Opening a new trade right after a loss to win it back
+@@ 7f4725f254 html
+Anger; feeling the market “owes” you
+@@ 5817ac0c82 html
+Stop trading for the day
+@@ 42127d2c48 html
+<strong>Euphoria</strong>
+@@ 39ab0e6d75 html
+Sizing up and lowering your standards after a run of wins
+@@ 12596271f2 html
+Feeling you've found the holy grail
+@@ 7a80aea8d5 html
+Force a one-day cooldown; halve the size of your next trade
+@@ cc181917c2 html
+<strong>Boredom</strong>
+@@ ff388d3943 html
+Doing something even when there's no good opportunity
+@@ e3d5300c57 html
+Your reason for opening a trade is “I haven't traded in a while”
+@@ 40b1ffae82 html
+Count not trading as a correct decision
+@@ efef18f414 html
+<strong>Regret</strong>
+@@ d7c05fd08e html
+Chasing after missing a move, or buying back after selling too early
+@@ 106586ee8b html
+Checking the stock you didn't buy, over and over
+@@ c4b232db0c html
+Write it down, then close that page
+@@ 71d174b53d html
+When not to trade
+@@ 252b96df52 html
+A simple check that's easy to remember: <strong>hungry, angry, lonely, tired</strong>. If any one of them is clearly present, make no new decisions. Add three more: short on sleep, have been drinking, or just had a big loss or a big win.
+@@ 76c13e5810 html
+The excitement after a run of profits is also a state that needs cooling down. Many people are wary of their emotions after a loss, yet mistake the high after a win for being “in the zone.” That is exactly where position size most often gets out of control.
+@@ 2cd67eedc6 html
+Position size is the best emotional regulator
+@@ 8d53c9940d html
+If the swings in a trade start to affect your sleep, mood or judgment, the problem usually isn't your mental toughness; the position is too big. Cut it to the point where “I can sleep even if it drops,” and most emotional problems go away on their own. You're calm because your position size lets you be calm, not because you're calm by nature.
+@@ 8ececc114d html
+Your position should be small enough that you can make decisions calmly.
+@@ 1ea7ef39bc html
+Your body is part of your trading system
+@@ 141b06f40e html
+<strong>Sleep</strong>: lack of sleep weakens impulse control and risk judgment, the two abilities trading needs most.
+@@ 0fcd220a95 html
+<strong>Exercise</strong>: regular exercise lowers your baseline stress level and helps you recover faster from losses.
+@@ ba51e87cdb html
+<strong>Routine</strong>: fixed hours for watching the market and trading lead to fewer mistakes than watching the screen all day. Good opportunities tend to cluster near the open and the close; the rest of the time you can step away from the screen.
+@@ 5962d6a7de html
+Position size is psychology: a positive edge can still go to zero
+@@ f39ef53463 html
+Many people think that finding a method that makes money is enough. The math says something else: with the same positive-edge method, if your position is too large, the long-run result is a loss, or even zero.
+@@ 361f7f4710 html
+Losses and recovery are not symmetric
+@@ 909f30ffe0 html
+A 50% loss takes a 100% gain to get back to even; a 75% loss takes 300%. The deeper the drawdown, the harder the recovery, and it gets harder at an accelerating rate.
+@@ 9f19bb86b8 html
+A 10% drawdown needs only an 11.1% gain to recover, a 30% drawdown needs 42.9%, and a 50% drawdown needs 100%. So the first goal of risk management is to keep drawdowns out of the steep region on the right side of the curve.
+@@ a7564f95ae html
+Position size sets the long-run growth rate
+@@ f86328ee0d html
+Take the system from Chapter 1 (45% win rate, 2:1 reward-to-risk ratio): what fraction of the account should you risk per trade to get the fastest compound growth over time?
+@@ 88dad8819e html
+Win rate <input id="k-p" type="range" min="30" max="70" value="45"> <output id="k-p-o">45%</output>
+@@ 61ce95520f html
+Reward-to-risk <input id="k-b" type="range" min="5" max="40" value="20"> <output id="k-b-o">2.0 : 1</output>
+@@ 8630a71b84 html
+The vertical axis is the average compound growth rate per trade. With the default settings, risking 17.5% per trade grows fastest, but above 35.6% growth turns negative: the method itself makes money, yet the position size shrinks the account over time. In practice most people use half of this optimum or less, because growth is only a little lower while drawdowns are much smaller.
+@@ ce608c21ba html
+Mathematically, the optimum in the chart above is called the Kelly criterion. It assumes you know your win rate and reward-to-risk ratio exactly; in reality both are estimates, and they change as the market changes. Bet full Kelly on estimates that are too high and you land straight on the right side of the curve. That is why experienced traders usually risk only 0.5% to 2% of the account per trade.
+@@ 7838b8c410 html
+Same system, different sizes, different lives
+@@ 78f0998f2e html
+Risk per trade <input id="mc-r" type="range" min="1" max="40" value="2"> <output id="mc-r-o">2%</output>
+@@ b513ed60bf html
+Resample
+@@ da000916ea html
+Each line is the same system (45% win rate, 2:1 reward-to-risk) over 200 trades with different luck. The vertical axis is on a log scale, and 1× is your starting capital. Drag the risk from 2% to above 25% and watch the curves go from a neat fan to a mess.
+@@ 1882d578ca html
+Turn “how big a position” into an arithmetic problem
+@@ fd2b44e1ca html
+First decide what percentage of the account you're willing to lose per trade, then work back from the stop-loss distance to the number of shares. That way your position size no longer depends on your mood at the time.

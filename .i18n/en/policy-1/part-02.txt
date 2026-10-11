@@ -1,0 +1,174 @@
+@@ cdc3fb6e9f html
+The related budget is cut in an appropriations bill
+@@ aa31b1b87d html
+Major customers cut capital expenditure (capex) two quarters in a row
+@@ cb42f5bc32 html
+The subsidy rules exclude this company
+@@ 1eeee97aa6 html
+A narrative is a tool, not a creed.
+@@ 4793d3274b html
+First decide what to avoid: countries and markets
+@@ 592392e53e html
+The first step in thematic investing is often subtraction. Rule out the markets that are structurally disadvantaged or whose risks can't be clearly stated, and the remaining choices get much clearer.
+@@ 716d0afc4c html
+Cheap is not the same as undervalued
+@@ 0bdb7397a0 html
+Many countries' stock markets trade at low price-to-earnings ratios (P/E) for years and look cheap. But low valuations usually have reasons: slow growth, an old-fashioned industry mix, low returns on capital, unstable policy, a currency that keeps losing value. If those reasons don't change, cheap things can stay cheap, or get cheaper. That's a value trap.
+@@ 53a976c193 html
+To judge whether a market is really undervalued, ask: are there signs that the reasons it's cheap are changing? For example, corporate governance reform, a shift in the rate environment, or a cyclical turn in its main industries. Without a catalyst like that, a low valuation by itself is not a reason to buy.
+@@ 9478043f8f html
+Buying a country's index means buying its industry mix
+@@ 0666844339 html
+Country indexes are usually market-cap weighted, so a country's stock market performance is largely decided by its few biggest industries:
+@@ 33c9de3c90 html
+Market
+@@ 0a32a09238 html
+Rough index makeup
+@@ b3a2609e50 html
+What it's really a bet on
+@@ 160ced475e html
+South Korea
+@@ 70a1232c07 html
+Heavy weighting in semiconductors and memory chips
+@@ 84525d901d html
+The global memory cycle and tech capital expenditure (capex)
+@@ f1496a99ea html
+Taiwan
+@@ 2c9d662e0c html
+A single leading chip foundry makes up a very large share
+@@ 6a569705ed html
+Demand for leading-edge chipmaking, plus geopolitical risk
+@@ b56a753547 html
+United Kingdom
+@@ d561f8f698 html
+Heavy in energy, financials, consumer staples and mining
+@@ eeb206595b html
+Commodity prices and dividends; very little tech
+@@ 5d9b3c580a html
+Germany
+@@ becac5dab8 html
+Heavy in industrials, autos and chemicals; highly dependent on exports
+@@ 0bf1ca4cd6 html
+The global manufacturing cycle, energy costs, foreign trade
+@@ 2c2c8482ef html
+Mexico
+@@ 5a01085068 html
+Consumer, financials and materials, plus nearshore manufacturing
+@@ 854f44d411 html
+US demand and trade relations with the US
+@@ 47bff00b7f html
+United States
+@@ ec42cb1d8f html
+Heavy weighting in big tech companies
+@@ 289aafbb90 html
+The profitability of AI and the platform economy
+@@ dd7fe0fc9f html
+This table shows that “I'm bullish on country X” is too coarse. Which of its industries are you actually bullish on? If it's that industry, buying a global sector ETF or the industry leaders directly may be cleaner than buying the whole country.
+@@ d4899e44f9 html
+Capital has no nationality
+@@ 0e2c1e79b9 html
+Capital flows to wherever returns are highest and risk is most manageable, whatever the country. So judge a market the way capital does, comparing coolly:
+@@ 0edea1f5c3 html
+<strong>Growth and returns on capital</strong>: can companies keep earning returns above their cost of capital?
+@@ 4252621f14 html
+<strong>Currency</strong>: for a dollar-based investor, a falling local currency eats directly into stock returns.
+@@ 068bcd8c06 html
+<strong>Governance and shareholder returns</strong>: do companies care about minority shareholders, and do they pay steady dividends and buy back shares?
+@@ 090b8dde87 html
+<strong>Policy predictability</strong>: could the rules change suddenly, and could foreign investors be treated differently?
+@@ ab2ba8626e html
+<strong>Geopolitical and sanctions risk</strong>: this used to be widely overlooked. After the Russia–Ukraine war broke out in 2022, Russian stocks held by foreign investors became untradable almost overnight, and the major index providers then removed Russia from their indexes. The holdings were still there, but they could no longer be sold.
+@@ 8a0ed157e4 html
+Markets that call for extra caution
+@@ b7a96fb783 html
+Type
+@@ 4b678c25cd html
+Why be cautious
+@@ a5532611c7 html
+If you must take part
+@@ 8daa333168 html
+Developed markets with long-term low growth and low valuations
+@@ 4c689b5268 html
+May be a value trap; no catalyst
+@@ e98720cbbf html
+Take part only on clear reform or a cyclical turning point
+@@ 67587241d0 html
+Highly concentrated markets in a geopolitical hot spot
+@@ 0d2c7af0cf html
+Rise fast in good times, and fall just as fast once geopolitical risk rises, like a “hot potato”
+@@ f1466ab046 html
+Small size; treat it as a trade, not a long-term allocation
+@@ e6c0a833f6 html
+Markets unfriendly to foreign capital, with high risk of capital controls
+@@ 2e662de22c html
+However low the valuation, a rule change could leave you unable to get out
+@@ 9d1ccc2462 html
+Use ETFs with good liquidity; avoid holding local shares directly
+@@ cd20c3428c html
+“Emerging markets ex-[one country]” portfolios
+@@ 7b201a056f html
+Removing one big country's risk doesn't make the rest low-risk. Each remaining country has its own currency and political risks
+@@ b010fb8491 html
+Check the top ten holdings and country weights; don't go by the name alone
+@@ 66c2348b29 html
+The benefit of subtraction
+@@ db465f2876 html
+Writing a “do-not-touch list” first protects you when the market gets excited. When some market suddenly surges and everyone on social media is talking about it, just glance at the list: why is it on there? Has that reason changed? If not, let this opportunity pass. Missing an opportunity costs far less than getting trapped in a market whose rules no one can pin down.
+@@ 1ae2752e54 html
+Traders who invest by theme often publish a list of “markets to avoid” before announcing the themes they plan to research. The order itself means something: first rule out the places whose risks can't be pinned down; only what's left is worth your time.
+@@ c0003a49dd html
+The Western Hemisphere and supply-chain realignment
+@@ 1975459c7b html
+For the past thirty years, globalization ran on one principle: “make it wherever it's cheapest.” Now more and more policy asks a different question: where is it safe? The answer is often at home, or in a nearby neighbor with stable relations.
+@@ 5a4e574222 html
+From efficiency first to security first
+@@ 0980b09c53 html
+Supply disruptions during the pandemic, regional conflicts hitting shipping, and export controls on key technologies have made governments reassess supply-chain risk. The new thinking goes by several names:
+@@ f335c03dcd html
+<strong>Reshoring</strong>: moving production back home.
+@@ ea23dc4d14 html
+<strong>Nearshoring</strong>: moving to a neighboring country, such as from Asia to Mexico.
+@@ 1488b20a10 html
+<strong>Friend-shoring</strong>: moving to allies with stable political relations.
+@@ ec8e4439b7 html
+The shift already shows up in the data: in 2023, Mexico overtook China as the largest source of US imports. For investors, the key question is: as supply chains reorganize, which pieces must be newly built, and which services must be bought?
+@@ c3ca7c71db html
+The Western Hemisphere gets new attention
+@@ d90fd7a9cf html
+US policy debate increasingly treats the Western Hemisphere (North, Central and South America) as America's strategic backyard: both a destination for relocated supply chains and a source of resources and security. This brings a risk that used to get little attention: <strong>commercial assets can be redefined as national security assets.</strong>
+@@ d6e72d39f3 html
+In 2025, the sale of port operating rights at both ends of the Panama Canal was debated in terms of national security and great-power competition. What had been an ordinary commercial asset sale became a diplomatic issue. This means the ownership of strategically located ports, mines, power grids and communications facilities can change suddenly with policy, and the companies holding them may benefit or may be forced to sell.
+@@ 598ffeef18 html
+Three phases: security first, then resources, then manufacturing
+@@ 084bfc927b html
+1. Security and law enforcement
+@@ 8497a943a2 html
+Border, surveillance, intelligence
+@@ d5976da5e6 html
+Drones, maritime patrol
+@@ f82dcbffcc html
+Data analytics software
+@@ 16240c9cff html
+Government budgets arrive first
+@@ af74e469bc html
+2. Resource development
+@@ 0a3e94745f html
+Copper, lithium, critical minerals
+@@ f4778efbc0 html
+Oil and gas, oil services
+@@ 0e5a097e70 html
+Ports and transport
+@@ d07e67db1d html
+Capital arrives once security improves
+@@ c2ea1cc8e8 html
+3. Nearshore manufacturing and logistics
+@@ b47a4dcb64 html
+Industrial real estate, warehousing
+@@ 072186fbc3 html
+Rail, trucking, cross-border logistics
+@@ a29922ba62 html
+Engineering and construction, electrical equipment
+@@ 52624e15fa html
+Longest timeline, largest scale
+@@ fd03ba03d9 html
+Each phase has different beneficiaries and a different pace. Phase one money comes from government budgets: it arrives fast but is limited in size. Phase three money comes from corporate capital expenditure (capex): it arrives slowly but lasts the longest.

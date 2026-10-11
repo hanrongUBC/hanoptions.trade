@@ -1,0 +1,200 @@
+@@ a70e23cc3d text
+US Options&nbsp;
+@@ 875f2902a9 text
+Course
+@@ 3dcdec04e4 text
+US Options Course · Part 5 Mindset and next steps · Chapter 15
+@@ 8d8067ab66 text
+A lottery ticket’s expectancy is about zero minus costs, but 100 tries come down entirely to luck
+@@ dec278eddd text
+Figure 15-1 · 0DTE calls, 1 contract each time, 100 simulated trades
+@@ 02329bf47a text
+Cumulative P&amp;L
+@@ a5313d825a text
+● Winning trades
+@@ 215fbd0f91 text
+Theoretical expectancy
+@@ 7c5dc8200a text
+Wins (out of 100)
+@@ 160b3347a2 text
+Average payout on winners (× cost)
+@@ e9b821b47e text
+Cumulative P&amp;L over 100 trades
+@@ 692ba3566a text
+Theoretical expectancy per trade (% of cost)
+@@ bbd8a4c862 text
+Rule
+@@ f88aca99a1 text
+A year of “easy money” can be given back in a week
+@@ b839f9018c text
+Figure 15-2 · Selling 7-day puts every week, $50,000 account
+@@ f9be1f42b7 text
+Current structure
+@@ 25203672e5 text
+Other structure (same contracts)
+@@ 2734e4f2b3 text
+Winning weeks (out of 52)
+@@ b33e70cc78 text
+Longest winning streak
+@@ 53cd46f097 text
+Account peak before the gap
+@@ 39778c07e6 text
+Gap-week loss (of equity:
+@@ c0379b9788 text
+Account at year end
+@@ 07ce59866f text
+Daily P&amp;L
+@@ c047e59393 text
+The last-week temptation
+@@ 0c412ac180 text
+A conversion habit
+@@ 673d43044d text
+All five paths start out “looking reasonable,” and an amplifier drives each one to its end
+@@ 8c6413bb87 text
+Figure 15-3 · Schematic
+@@ 29f59c89f4 text
+Options impulse log
+@@ 1bf47bf046 text
+Tool 15-A · Copyable
+@@ dbf68f1b35 text
+[Options impulse log] Date ____  Time ____
+Trade I want to make: underlying ____  structure ____  contracts ____  amount ____
+What triggered me: sudden price jump / news / someone’s screenshot or trade call / just lost a trade / just won a trade / boredom / other ____
+Is it on this week’s shortlist: yes / no
+Can I write the three sentences: direction ____  volatility ____  time ____
+Minutes since my last trade ____; last trade: win / loss ____
+Max loss on this trade ____, ____% of this month’s risk budget
+If it’s a 0DTE: lottery budget used this month ____ / ____
+Look again after 15 minutes: still want it / no longer want it
+Final: traded / skipped
+Fill in after the close: result if traded ____; hypothetical result if skipped ____
+@@ c8a38da079 text
+Scaling up on streaks makes the average look better and most people’s outcomes worse
+@@ 82cc6d7593 text
+Figure 15-4 · 2,000 accounts × 100 trades
+@@ 721d1555d7 text
+Fixed size: median
+@@ 1abafc90ea text
+Fixed size: worst 5%
+@@ 48397eedf2 text
+Streak scaling: median
+@@ 7ce13e85b4 text
+Streak scaling: worst 5%
+@@ 25e668b869 text
+Fixed size: median outcome (chance of loss:
+@@ e431614a17 text
+Streak scaling: median outcome (chance of loss:
+@@ 4ecded3481 text
+Streak scaling: chance of being cut in half along the way
+@@ 83bb7be555 text
+Streak scaling: mean outcome (fixed size:
+@@ a1aa21848e text
+Field notes
+@@ 046dfb89e4 text
+Case 1
+@@ c076194320 text
+Lessons
+@@ 411ced42ca text
+Case 2
+@@ 5205b402f9 attr
+Jump to chapter
+@@ ae78ea9525 attr
+In this chapter
+@@ aa9ea479f5 attr
+Cumulative P&L of 100 0DTE trades
+@@ bd1a300571 attr
+Structure
+@@ d521cfd4dc attr
+A seller’s account equity curve and one gap
+@@ 5fb6b5e3a3 attr
+Five paths to a dead account: 0DTE options expiring worthless day after day, naked selling meets a gap, rolling bigger and bigger, the margin spiral, losing both ways on event days
+@@ c847aadfb4 attr
+Strategy edge
+@@ 46ef0e62dc attr
+Distribution of account equity under fixed sizing and streak scaling
+@@ f0852d355e attr
+Chapter navigation
+@@ b70184324e js
+ (OTM 
+@@ 4af6b45d0c js
+Trade number
+@@ e777152329 js
+Cumulative P&L ($)
+@@ 90d3e8ff65 js
+×
+@@ d4e9920610 js
+Week
+@@ 2109e463ba js
+Account equity
+@@ a47b16c7a9 js
+Gap
+@@ 2a1cc8609c js
+ weeks
+@@ 95e8a2870d js
+0DTE wipeouts
+@@ bb563b3fde js
+A small 0DTE each day
+@@ f5d1145f83 js
+Wins about 1 in 10
+@@ ccf9c97dbf js
+Double to “win it back”
+@@ 7be4e9da3b js
+5 losing days: 53%
+@@ 4ee3b719ef js
+−50% in a month
+@@ 3452ee636f js
+Naked meets gap
+@@ 544563ee9a js
+Steady premium income
+@@ 92eaf82e90 js
+Months without a loss
+@@ 8f22424974 js
+Notional exceeds equity
+@@ 4235638eb9 js
+Gap jumps the stop
+@@ e02d0d8204 js
+Year’s profit gone
+@@ abbe5573b5 js
+Rolling bigger
+@@ 13ad44b69c js
+Short leg breached
+@@ 4cd83dc6e0 js
+Roll for a “net credit”
+@@ 9b94c06622 js
+Contracts 5 → 6 → 10
+@@ a35534adf2 js
+Realized losses hidden
+@@ 15b58a43da js
+Runaway exposure
+@@ fb67240c59 js
+Margin spiral
+@@ 09af7bd0bb js
+Underlying falls
+@@ f5369bd2bb js
+while IV rises
+@@ 530a68ee93 js
+Margin requirement up
+@@ c528a3f98f js
+while equity falls
+@@ 9bfd1d5fce js
+Liquidated at worst
+@@ 17f7f2d570 js
+Event whipsaw
+@@ d5aeb23dc3 js
+Buy earnings straddle
+@@ 4db62dac21 js
+Lose on IV crush
+@@ 93c607f010 js
+Next time, sell instead
+@@ ac9bccf2e0 js
+Hit by an outsized gap
+@@ e024d3667c js
+Lose on both sides
+@@ 04068e456a js
+Trade number
+@@ 517027a5ca js
+Account equity (start = 1)
+@@ b175462556 js
+All text selected. Press Ctrl+C to copy (long-press on a phone).
+@@ 8f1cf91a45 js
+Copied to clipboard.

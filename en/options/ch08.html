@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chapter 8: Strategies for sellers · US Options Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  #f4-tbl tr.on td { background: var(--tint-theta); }
+  #f3-tbl td:nth-child(3), #f3-tbl td:nth-child(6) { font-family: var(--font-body); text-align: left; }
+  #t810 td:nth-child(2), #t810 th:nth-child(2) { text-align: left; }
+</style>
+<link rel="alternate" hreflang="zh-CN" href="https://hanoptions.trade/options/ch08.html"><link rel="alternate" hreflang="en" href="https://hanoptions.trade/en/options/ch08.html">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap">
+<style id="en-overrides">
+html[lang="en"] { --font-display: "Source Serif 4", "Noto Serif SC", Georgia, serif; --font-body: "Source Sans 3", "Noto Sans SC", system-ui, sans-serif; }
+html[lang="en"] body { line-height: 1.7; }
+html[lang="en"] body * { letter-spacing: normal !important; }
+html[lang="en"] p, html[lang="en"] li, html[lang="en"] td, html[lang="en"] figcaption { hyphens: auto; -webkit-hyphens: auto; }
+html[lang="en"] p { text-wrap: pretty; }
+html[lang="en"] .toc a { grid-template-columns: 48px 1fr; }
+</style>
+</head>
+<body data-ch="8">
+<div class="topbar"><div class="topbar-inner"><div class="topbar-brand"><a class="site-home" href="/en/">hanoptions.trade</a><a class="brand" href="index.html">US Options <span>Course</span></a></div><div class="topbar-tools"><select id="ck-jump" aria-label="Jump to chapter"></select><a class="lang-switch" href="/options/ch08.html" hreflang="zh-CN" lang="zh-CN" data-lang="zh"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>中文</a></div></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">08</div>
+    <div class="eyebrow">US Options Course · Part 3 Strategies · Chapter 8</div>
+    <h1>Strategies for <span class="g">sellers</span></h1>
+    <p class="deck">Selling options is selling insurance: you collect a certain sum up front and take on an uncertain, occasionally very large payout. This chapter puts covered calls, put selling, the wheel, credit spreads and naked selling on the same set of books: how big the maximum loss is, what the real win rate is, whether the expectancy is positive or negative, and when to get out.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="In this chapter">
+    <p class="toc-title">In this chapter</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>Opening: two years of premium</span></a></li>
+      <li><a href="#s1"><span class="n">8.1</span><span>What selling really is: selling insurance</span></a></li>
+      <li><a href="#s2"><span class="n">8.2</span><span>Covered calls</span></a></li>
+      <li><a href="#s3"><span class="n">8.3</span><span>Cash-secured puts</span></a></li>
+      <li><a href="#s4"><span class="n">8.4</span><span>The wheel</span></a></li>
+      <li><a href="#s5"><span class="n">8.5</span><span>Credit spreads</span></a></li>
+      <li><a href="#s6"><span class="n">8.6</span><span>Naked selling and margin</span></a></li>
+      <li><a href="#s7"><span class="n">8.7</span><span>Three rules of thumb for management</span></a></li>
+      <li><a href="#s8"><span class="n">8.8</span><span>Position size and the gap test</span></a></li>
+      <li><a href="#s9"><span class="n">8.9</span><span>High win rates and negative expectancy</span></a></li>
+      <li><a href="#cases"><span class="n">Cases</span><span>Three cases</span></a></li>
+      <li><a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>In this chapter</summary>
+      <ol>
+        <li><a href="#open">Opening: two years of premium</a></li>
+        <li><a href="#s1">8.1 What selling really is: selling insurance</a></li>
+        <li><a href="#s2">8.2 Covered calls</a></li>
+        <li><a href="#s3">8.3 Cash-secured puts</a></li>
+        <li><a href="#s4">8.4 The wheel</a></li>
+        <li><a href="#s5">8.5 Credit spreads</a></li>
+        <li><a href="#s6">8.6 Naked selling and margin</a></li>
+        <li><a href="#s7">8.7 Three rules of thumb for management</a></li>
+        <li><a href="#s8">8.8 Position size and the gap test</a></li>
+        <li><a href="#s9">8.9 High win rates and negative expectancy</a></li>
+        <li><a href="#cases">Three cases</a></li>
+        <li><a href="#tools">Checklist and self-test</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>After this chapter you can</h4>
+        <ul>
+          <li>Write down the maximum loss, the breakeven and the loss in a −20% gap for any short option position</li>
+          <li>Compute expectancy from the win rate and the average win and loss, and spot “high win rate, negative expectancy” strategies</li>
+          <li>Explain what the 50% profit target, the 21-day rule and the 2× stop each guard against, and when they don't apply</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Prerequisites</h4>
+        <ul>
+          <li>Chapter 4: reading Delta as a probability, probability of touch, negative Gamma</li>
+          <li>Chapter 5: the shape of Theta</li>
+          <li>Chapter 6: the volatility risk premium and IV Rank</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Conventions</h4>
+        <ul>
+          <li>Black-Scholes, 4% rate, no dividends, 365-day year</li>
+          <li>Default underlying: a hypothetical stock at $100 with IV 30%</li>
+          <li>One contract = 100 shares; commissions not included unless stated</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">Opening</span>Two years of premium, given back in a day</h2>
+      <p class="lead">The stock is at $100, IV 30%. You sell one put with a strike of 90 that expires in 30 days, and collect $40.</p>
+      <p>This option's Delta is <span class="num">−0.096</span>, and the market-implied probability that it finishes in the money is about <span class="num">11%</span>. About nine times out of ten it expires worthless and the $40 is yours. It sounds like a steady monthly income.</p>
+      <p>Now look at the other side. One day earnings disappoint and the stock gaps down to 80 at the open. At expiry you have to buy, at 90, a stock worth 80, a loss of $10 per share. Subtract the $0.40 you collected and each contract loses <span class="num">$960</span>, the equivalent of <span class="num">24</span> months of premium.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 8-0 Selling one 30-day 90 put (for $40.1): P&amp;L by stock price at expiry</caption>
+          <thead><tr><th>Stock at expiry</th><th>100</th><th>90</th><th>88</th><th>85</th><th>80</th><th>75</th><th>70</th></tr></thead>
+          <tbody>
+            <tr><td>P&amp;L per contract</td><td class="mono pos">+40</td><td class="mono pos">+40</td><td class="mono neg">−160</td><td class="mono neg">−460</td><td class="mono neg">−960</td><td class="mono neg">−1,460</td><td class="mono neg">−1,960</td></tr>
+            <tr class="hl"><td>Months of premium</td><td class="mono">—</td><td class="mono">—</td><td class="mono">4.0</td><td class="mono">11.5</td><td class="mono">23.9</td><td class="mono">36.4</td><td class="mono">48.9</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>A seller's problem is never “will I win?” The real questions are: how big is the loss when you do lose, how often does it come, and can you survive long enough to see the next one? Every tool in this chapter is built around those three questions.</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">8.1</span>What selling really is: selling insurance</h2>
+      <p>Selling options earns two things: time value, and the premium by which implied volatility usually exceeds realized volatility. The cost is negative convexity: as the stock rises you make money more and more slowly, and as it falls you lose money faster and faster.</p>
+
+      <h3>Premiums, claims and the loss ratio</h3>
+      <p>An insurer's profit is premiums minus claims, and the same is true for an option seller. Sell a 30-day put with a 95 strike and you collect $1.33; at expiry you pay out max(95 − <span class="v">S<sub>T</sub></span>, 0). The expected size of that payout depends on how much the stock actually moves over the next 30 days, not on the IV at which you sold.</p>
+      <div class="formula">
+        <div class="eq">Seller's expected P&amp;L <span class="up">≈</span> option price<span class="up">(</span>IV<span class="up">)</span> <span class="up">−</span> option price<span class="up">(</span>realized volatility<span class="up">)</span></div>
+        <p class="where">Both terms are computed with Black-Scholes; only the volatility input differs. This assumes the stock drifts at the risk-free rate, which means no directional bet. Strictly, the whole thing should also be multiplied by e<sup>rT</sup>, about 1.003 for 30 days, which can be ignored.</p>
+      </div>
+      <div class="tbl">
+        <table>
+          <caption>Table 8-1 Selling one 30-day put (filled at IV 30%): expected P&amp;L at different realized volatilities (per contract, $)</caption>
+          <thead><tr><th>Strike</th><th>Premium received</th><th>Realized 22%</th><th>Realized 25%</th><th>Realized 30%</th><th>Realized 35%</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">90</td><td class="mono">40</td><td class="mono pos">+30</td><td class="mono pos">+21</td><td class="mono">0</td><td class="mono neg">−27</td></tr>
+            <tr><td class="mono">95</td><td class="mono">133</td><td class="mono pos">+68</td><td class="mono pos">+44</td><td class="mono">0</td><td class="mono neg">−47</td></tr>
+            <tr><td class="mono">100</td><td class="mono">326</td><td class="mono pos">+92</td><td class="mono pos">+57</td><td class="mono">0</td><td class="mono neg">−57</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The table shows three things. First, when realized volatility equals implied volatility, the expected value is zero: the option is fairly priced and the seller has no edge. Second, the seller's entire edge comes from the gap between IV and realized volatility, which is the volatility risk premium from Chapter 6. Third, that edge as a share of the premium grows the further OTM you go: at 25% realized volatility, the expected profit on the 95 put is <span class="num">33%</span> of the premium and on the 90 put <span class="num">52%</span>, but in dollars it is only $21. In insurance terms, deep OTM policies have a lower loss ratio, but each one brings in only a few tens of dollars.</p>
+      <p>Most of the time, implied volatility on index options is higher than the volatility that is later realized, and that is why selling strategies can survive over the long run. The gap reverses in a few periods, and when it does it often reverses by a lot at once. The rightmost column of the table is that kind of period.</p>
+
+      <h3>Negative convexity: a drop hurts more than a rise of the same size helps</h3>
+      <div class="tbl">
+        <table>
+          <caption>Table 8-2 Selling one 30-day 95 put (for $133): P&amp;L after a next-day move (per contract, IV unchanged)</caption>
+          <thead><tr><th>Next-day move</th><th>−20%</th><th>−10%</th><th>−5%</th><th>−2%</th><th>+2%</th><th>+5%</th><th>+10%</th></tr></thead>
+          <tbody>
+            <tr><td>Repriced</td><td class="mono neg">−1,343</td><td class="mono neg">−468</td><td class="mono neg">−172</td><td class="mono neg">−53</td><td class="mono pos">+47</td><td class="mono pos">+88</td><td class="mono pos">+120</td></tr>
+            <tr><td>Delta estimate only</td><td class="mono">−498</td><td class="mono">−249</td><td class="mono">−125</td><td class="mono">−50</td><td class="mono">+50</td><td class="mono">+125</td><td class="mono">+249</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>A 10% rise adds only $120, because the most you can ever make is $133; a 10% drop loses $468, and a 20% drop loses $1,343, nearly three times the Delta estimate. That is negative Gamma: the position automatically gets bigger as the stock falls and smaller as it rises (Chapter 4, Section 4.4).</p>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">You can push the win rate as high as you like; the expected value depends only on the volatility gap</span><span class="fig-no">Figure 8-1 · 30 days, filled at IV 30%</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Structure">
+            <button type="button" data-mode="put" aria-pressed="true">Short put</button>
+            <button type="button" data-mode="spread" aria-pressed="false">Put credit spread ($5 wide)</button>
+          </div>
+          <label class="ctl" for="f1-d">Delta sold <input id="f1-d" type="range" min="5" max="50" value="16"> <output id="f1-d-o">0.16</output></label>
+          <label class="ctl" for="f1-rv">Realized volatility <input id="f1-rv" type="range" min="15" max="45" value="30"> <output id="f1-rv-o">30%</output></label>
+        </div>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 320" role="img" aria-label="Seller&#x27;s P&amp;L at expiry and the stock price distribution"></svg>
+        <div class="legend"><span><i style="border-color: var(--theta)"></i>P&amp;L at expiry (per contract)</span><span><i style="border-color: var(--delta); opacity: .5"></i>Distribution of the stock price at expiry (at realized volatility; height illustrative only)</span><span><i style="border-color: var(--tint-gamma); border-top-width: 8px"></i>Loss zone</span></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small>Strike · premium received</small></div>
+          <div><b id="f1-r2">—</b><small>Prob. of profit at expiry</small></div>
+          <div><b id="f1-r3">—</b><small>Expected P&amp;L per contract</small></div>
+          <div><b id="f1-r4">—</b><small id="f1-r4s">Stock at 80 at expiry</small></div>
+        </div>
+        <figcaption>With realized volatility at 30% (equal to IV), the expected value is 0 wherever you drag Delta: the short put's win rate falls from 95% at Delta 0.05 to 63% at 0.50, and that change is exactly offset by the change in the payoff ratio. Drag realized volatility to 25% and the expected value turns positive at every Delta; drag it to 35% and it turns negative everywhere. Switch to the credit spread and the maximum loss shrinks from over $9,000 to $400–500, with almost no change in win rate.</figcaption>
+      </figure>
+      <div class="note gam">
+        <span class="tag">Bottom line</span>
+        <p>Choosing a Delta is choosing how to split “how often you win” against “how much you lose”; it doesn't change the expected value. A seller is really making just one bet: that future realized volatility will be lower than today's implied volatility.</p>
+      </div>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">8.2</span>Covered calls</h2>
+      <p>A covered call sells part of the stock's future upside for cash today. On the way down, it gives you only the small cushion of the premium.</p>
+      <p>Structure: hold 100 shares and sell one call. If the stock is below the strike at expiry, the call expires worthless and you keep both the shares and the premium; if it is above, your shares are called away at the strike. By put–call parity (Chapter 3), a covered call has exactly the same payoff at expiry as a cash-secured put at the same strike. They are the same risk, and the covered call is not more “conservative.”</p>
+
+      <h3>Choosing the strike and expiration</h3>
+      <div class="tbl">
+        <table>
+          <caption>Table 8-3 Holding stock at $100, selling a 30-day call (IV 30%)</caption>
+          <thead><tr><th>Strike</th><th>Premium</th><th>Delta</th><th>Prob. called away*</th><th>Return if not called</th><th>Total return if called</th><th>Downside cushion to</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">100</td><td class="mono">3.59</td><td class="mono">0.53</td><td class="mono">50%</td><td class="mono">3.6%</td><td class="mono">3.6%</td><td class="mono">96.41</td></tr>
+            <tr><td class="mono">103</td><td class="mono">2.31</td><td class="mono">0.40</td><td class="mono">36%</td><td class="mono">2.3%</td><td class="mono">5.3%</td><td class="mono">97.69</td></tr>
+            <tr class="hl"><td class="mono">105</td><td class="mono">1.66</td><td class="mono">0.31</td><td class="mono">28%</td><td class="mono">1.7%</td><td class="mono">6.7%</td><td class="mono">98.34</td></tr>
+            <tr><td class="mono">110</td><td class="mono">0.66</td><td class="mono">0.15</td><td class="mono">13%</td><td class="mono">0.7%</td><td class="mono">10.7%</td><td class="mono">99.34</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 14px; color: var(--muted);">* Risk-neutral probability of finishing in the money at expiry, N(d₂).</p>
+      <p>Choosing a strike means dividing among three things: how much you collect now, how much upside you keep, and how likely you are to lose the shares. Practical rules:</p>
+      <ul>
+        <li><strong>You want to keep the shares for the long run</strong>: sell Delta 0.15–0.25. The chance of being called away is 10%–20%, and you keep plenty of upside.</li>
+        <li><strong>You don't mind the shares being called away and want to turn them into cash income</strong>: sell ATM or Delta 0.40 and above. The premium is rich, and being called away is the norm.</li>
+        <li><strong>Expiration</strong>: 30–45 days is the usual compromise. A 45-day 105 call brings in 2.42, or 1.61 per 30 days, slightly less than the 1.66 of the 30-day call. Shorter options have higher daily Theta, but you have to trade more often, and Gamma is bigger too.</li>
+        <li><strong>Earnings and ex-dividend dates</strong>: earnings can carry the stock past the strike in one jump; when there is a dividend, an ITM call may be exercised early on the day before the ex-dividend date. This chapter's examples pay no dividends.</li>
+      </ul>
+
+      <h3>The real cost of “selling the upside”</h3>
+      <div class="tbl">
+        <table>
+          <caption>Table 8-4 Different stock prices one month later: covered 105 call vs. stock only (per share, $)</caption>
+          <thead><tr><th>Stock at expiry</th><th>Stock only</th><th>Covered 105</th><th>Difference</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">90</td><td class="mono neg">−10.00</td><td class="mono neg">−8.34</td><td class="mono pos">+1.66</td></tr>
+            <tr><td class="mono">100</td><td class="mono">0.00</td><td class="mono pos">+1.66</td><td class="mono pos">+1.66</td></tr>
+            <tr><td class="mono">110</td><td class="mono pos">+10.00</td><td class="mono pos">+6.66</td><td class="mono neg">−3.34</td></tr>
+            <tr class="hl"><td class="mono">120</td><td class="mono pos">+20.00</td><td class="mono pos">+6.66</td><td class="mono neg">−13.34</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>When the stock moves a little up or down, the covered call makes an extra $1.66 a month; when the stock rises 20%, it makes $13.34 less, the equivalent of eight months of premium. A covered call cuts off the right tail of the return distribution, and a stock's long-run return happens to be concentrated in a handful of big up months. Case 2 shows this over a full year's path.</p>
+
+      <h3>Handling assignment</h3>
+      <p>When the stock rises above the strike, you have three choices.</p>
+      <ol>
+        <li><strong>Accept assignment</strong>. You sell at 105; add the 1.66 premium and you have effectively sold at 106.66. If that was a price you were happy to sell at anyway, do nothing.</li>
+        <li><strong>Roll up and out</strong>. With 5 days left and the stock at 108, the 105 call is worth 3.49, of which only 0.49 is time value. Buy it back and sell a 35-day 110 call for 3.29: you pay a net 0.20 and lift your cap from 105 to 110. Sell a 63-day 110 call for 4.80 instead and you take in a net 1.31, but your shares are locked up for two more months. Rolling isn't free: you are trading more time for a higher cap.</li>
+        <li><strong>Buy back after being called away</strong>. If you still want to own the stock, buy it back after assignment; that is the second half of the wheel (Section 8.4). The buyback price is usually higher than the price you sold at, and that difference is the real cost of the covered call.</li>
+      </ol>
+      <p>Without dividends, American-style calls are rarely exercised early, because the holder would throw away the remaining time value. Only when time value is close to zero (deep ITM, near expiry) or the stock goes ex-dividend the next day does the chance of early assignment rise noticeably.</p>
+
+      <h3>Selling ITM calls to “lower your cost”: keep the books separate</h3>
+      <p>Some traders repeatedly sell ITM calls against a stock they hold at a very low cost, and call it “lowering their cost basis.” Break it down: the stock is at 15 and you sell an 18-day 14 call (IV 80%, hypothetical) for 1.62. Of that, 1.00 is intrinsic value and 0.62 is time value. Your cost on paper really does fall by 1.62, but the 1.00 of intrinsic value is just the money for selling your stock at 14 ahead of time. Your real income is only 0.62.</p>
+      <p>This option's Delta is <span class="num">0.69</span>, so after you sell it only about 30% of your directional exposure is left. What it really amounts to is “cut the position by 70% + collect time value,” which suits someone who was planning to trim near 14 anyway. If you want to keep a full position, selling ITM calls quietly sells most of it.</p>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">8.3</span>Cash-secured puts</h2>
+      <p>A cash-secured put is like a “limit buy order with cash back,” but in the worst case it does worse than a real limit order.</p>
+      <p>Structure: sell one put and keep enough cash in the account to buy 100 shares at the strike. With the stock at 100, sell a 30-day 95 put for $133 and set aside $9,500. If the stock is below 95 at expiry, you buy at 95, for an effective cost of <span class="num">95 − 1.33 = 93.67</span>; otherwise you keep the premium and the cash is released.</p>
+      <p>“Buy at a price you'd be happy to own it at” sounds reasonable: you wanted to buy at 95 anyway, so why not sell a put and get paid first? Put it side by side with simply placing a limit buy order at 95:</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 8-5 Three approaches with the stock at $100 (per share, valued at expiry 30 days later)</caption>
+          <thead><tr><th>Scenario</th><th>Buy now</th><th>Limit buy at 95</th><th>Sell 95 put</th></tr></thead>
+          <tbody>
+            <tr><td>110 at expiry</td><td class="mono pos">+10.00</td><td class="mono">Not filled 0</td><td class="mono pos">+1.33</td></tr>
+            <tr><td>100 at expiry</td><td class="mono">0.00</td><td class="mono">Not filled 0</td><td class="mono pos">+1.33</td></tr>
+            <tr><td>Dips to 93, back to 100 at expiry</td><td class="mono">0.00</td><td class="mono pos">Filled at 95: +5.00</td><td class="mono pos">+1.33</td></tr>
+            <tr><td>93 at expiry</td><td class="mono neg">−7.00</td><td class="mono neg">Filled at 95: −2.00</td><td class="mono neg">Assigned, net 93.67: −0.67</td></tr>
+            <tr class="hl"><td>Gaps to 80 and stays there</td><td class="mono neg">−20.00</td><td class="mono">Filled at the 80 open: 0.00</td><td class="mono neg">Assigned, net 93.67: −13.67</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The first two rows are the put seller's “cash back”: as long as the stock is above 95 at expiry, you collect an extra 1.33. The last row is the trap: when the stock gaps to 80, the limit order fills at an opening price near 80 (your order said “95 or lower”), but the put seller has to buy at 95. The bigger the gap, the worse the short put does compared with the limit order. The third row shows that a short put only cares about the moment of expiration: it can't catch any low along the way.</p>
+
+      <h3>Four common traps</h3>
+      <ol>
+        <li><strong>“Happy to own it at 95” comes with conditions</strong>. You are picturing a normal pullback to 95, but assignment usually comes after bad news, and by then 95 may no longer be a price you like. Before you trade, ask yourself: if it drops to 80 on disastrous earnings, would I still want to buy at 95?</li>
+        <li><strong>The annualized-return illusion</strong>. $133 ÷ $9,500 = 1.4% a month, about 17% a year in simple terms. That number assumes nothing goes wrong in any month. It is a premium yield, not a return.</li>
+        <li><strong>“Secured” means actually setting the cash aside</strong>. In a margin account, selling a 95 put naked requires only about $1,633 (formula in Section 8.6), so it is easy to sell five times as many by accident, and the position goes from “secured” to “naked.”</li>
+        <li><strong>Selling because the premium is high</strong>. A high premium means high IV, which means the market expects a big move. High-IV stocks are more likely to fall through the strike.</li>
+      </ol>
+      <p>There is just one rule: only sell puts on stocks you would be willing to own in full, and set the number of contracts by “the market value of the position after assignment,” not by margin.</p>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">8.4</span>The wheel</h2>
+      <p>The wheel does best in flat and gently rising markets. In a sustained decline it gets stuck holding a losing stock and collects less and less premium.</p>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">Every box on the wheel sells put risk</span><span class="fig-no">Figure 8-2 · Diagram</span></div>
+        <div class="scroll-x"><svg class="chart wide" viewBox="0 0 680 236" role="img" aria-label="The wheel: cash, sell put, hold shares, sell call, repeat">
+          <defs>
+            <marker id="w-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--muted)"></path></marker>
+            <marker id="w-arr-t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--theta)"></path></marker>
+            <marker id="w-arr-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--gamma)"></path></marker>
+          </defs>
+          <g style="font-family: var(--font-body); font-size: 13.5px">
+            <rect x="16" y="64" width="120" height="52" rx="6" style="fill: var(--tint-delta); stroke: var(--delta)"></rect>
+            <text x="76" y="95" text-anchor="middle" style="fill: var(--ink)">Hold cash</text>
+            <rect x="184" y="64" width="146" height="52" rx="6" style="fill: none; stroke: var(--rule)"></rect>
+            <text x="257" y="95" text-anchor="middle" style="fill: var(--ink)">Sell cash-secured put</text>
+            <rect x="378" y="64" width="120" height="52" rx="6" style="fill: var(--tint-delta); stroke: var(--delta)"></rect>
+            <text x="438" y="95" text-anchor="middle" style="fill: var(--ink)">Hold 100 shares</text>
+            <rect x="546" y="64" width="120" height="52" rx="6" style="fill: none; stroke: var(--rule)"></rect>
+            <text x="606" y="95" text-anchor="middle" style="fill: var(--ink)">Sell covered call</text>
+            <path d="M136 90 H182" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#w-arr)"></path>
+            <path d="M330 90 H376" style="stroke: var(--gamma)" stroke-width="1.6" marker-end="url(#w-arr-g)"></path>
+            <text x="353" y="132" text-anchor="middle" style="fill: var(--gamma); font-size: 12.5px">Assigned</text>
+            <path d="M498 90 H544" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#w-arr)"></path>
+            <path d="M606 64 V30 H76 V62" style="fill: none; stroke: var(--gamma)" stroke-width="1.6" marker-end="url(#w-arr-g)"></path>
+            <text x="341" y="22" text-anchor="middle" style="fill: var(--gamma); font-size: 12.5px">Called away: shares sold at the strike, back to cash</text>
+            <path d="M226 116 C 220 160, 294 160, 288 118" style="fill: none; stroke: var(--theta)" stroke-width="1.5" marker-end="url(#w-arr-t)"></path>
+            <text x="257" y="172" text-anchor="middle" style="fill: var(--theta); font-size: 12.5px">Expires: keep the premium, sell again</text>
+            <path d="M576 116 C 570 160, 644 160, 638 118" style="fill: none; stroke: var(--theta)" stroke-width="1.5" marker-end="url(#w-arr-t)"></path>
+            <text x="606" y="172" text-anchor="middle" style="fill: var(--theta); font-size: 12.5px">Expires: sell again</text>
+            <text x="341" y="214" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Shares + short call = synthetic short put. All the way around, you are short put risk.</text>
+          </g>
+        </svg></div>
+        <figcaption>Each of the two “sell” boxes has two outcomes: if the option expires worthless you stay where you are and sell again; if it finishes in the money you move to the next box. The wheel only turns on assignment or when the shares are called away.</figcaption>
+      </figure>
+
+      <p>Below is a simulation over three hypothetical 12-month paths. Rules: start with $10,000 in cash; with no shares, sell a 30-day put at about Delta 0.30 (strike rounded to a whole number); with shares, sell a 30-day call at about Delta 0.30, but with the strike no lower than the price you were assigned at, so a sale never locks in a loss. IV is constant at 30%; no interest on cash and no commissions.</p>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">The wheel wins in flat markets and loses in one-way moves</span><span class="fig-no">Figure 8-3 · Three hypothetical paths, settled monthly</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Choose a path">
+            <button type="button" data-path="up" aria-pressed="false">Up</button>
+            <button type="button" data-path="flat" aria-pressed="true">Flat</button>
+            <button type="button" data-path="down" aria-pressed="false">Down</button>
+          </div>
+        </div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 280" role="img" aria-label="Equity curves of the wheel vs. buy and hold"></svg>
+        <div class="legend"><span><i style="border-color: var(--theta)"></i>Wheel equity</span><span><i class="dash" style="border-color: var(--muted)"></i>Buy 100 shares at the start and hold</span><span style="color: var(--gamma)">● Assigned, shares bought</span><span style="color: var(--delta)">● Called away, shares sold</span></div>
+        <div class="tbl" style="margin-bottom: 8px;">
+          <table id="f3-tbl">
+            <thead><tr><th>Month</th><th>Start price</th><th>Action</th><th>Premium (per contract)</th><th>End price</th><th>Result</th><th>End equity</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="readout">
+          <div><b id="f3-r1">—</b><small id="f3-r1s">Wheel year-end equity</small></div>
+          <div><b id="f3-r2">—</b><small id="f3-r2s">Buy and hold, year-end</small></div>
+          <div><b id="f3-r3">—</b><small>Total premium for the year</small></div>
+          <div><b id="f3-r4">—</b><small>Times assigned / called away</small></div>
+        </div>
+        <figcaption>On the up path the put is never assigned, so the wheel reduces to selling a put every month: it collects $2,355 and ends the year at $12,355, behind buy-and-hold's $13,600. The flat path is the wheel's home ground: two assignments and one call-away, ending at $11,847, while buy-and-hold only gets back to $10,000. On the down path the shares are put to you at 96 in month 1; after that the rules allow only 96 calls, the premium shrinks from $151 per contract all the way to $0, and the year ends at $7,670.</figcaption>
+      </figure>
+
+      <p>The down path exposes the wheel's core flaw. Once you've been assigned, you face two bad choices:</p>
+      <ul>
+        <li><strong>Insist on a strike no lower than your cost</strong>: once the stock has fallen far, the 96 call is worth almost nothing and the wheel stops turning. You become an ordinary stockholder, taking the −35% decline with only $770 of premium as a cushion, and end the year at −23.3%.</li>
+        <li><strong>Keep selling Delta 0.30 calls anyway</strong>: on the same path you collect more premium and end the year at $8,492. But as soon as the stock bounces off its lows through a strike below your cost—say you are called away at 74—you have sold stock bought at 96 for 74, locking in −22 per share, and you miss the rest of the rebound.</li>
+      </ul>
+      <p>At its core, the wheel is a continuous sale of put risk: you sell puts when you have no shares and sell calls when you do (shares + short call = synthetic short put). Throughout the cycle you are a seller of puts, and a different path doesn't change that. It suits underlyings you would be happy to own for the long run anyway, with moderate volatility and no risk of a trending decline.</p>
+      <h3>Four rules to keep the wheel out of trouble</h3>
+      <ul>
+        <li>Only start the wheel on stocks you would be willing to hold for more than a year, and set aside the full cost of buying one contract's worth of shares.</li>
+        <li>After assignment, first ask: if I had no position today, would I buy this? If the answer is no, sell it right away; don't let the covered call make the decision for you.</li>
+        <li>In a decline, set the strike of the call you sell at “the price you'd be willing to sell at,” not mechanically by cost or Delta.</li>
+        <li>Skip a cycle before earnings, or switch from selling puts to a put spread, so you don't get assigned in a gap.</li>
+      </ul>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">8.5</span>Credit spreads</h2>
+      <p>A credit spread sells one option and at the same time buys a further OTM option of the same type, limiting the maximum loss from “almost all your capital” to “the width minus the premium.”</p>
+      <div class="formula">
+        <div class="eq">Max profit <span class="up">=</span> <span class="v">C</span>  Max loss <span class="up">=</span> <span class="v">W</span> <span class="up">−</span> <span class="v">C</span>  Breakeven <span class="up">=</span> <span class="v">K</span><sub>short</sub> <span class="up">∓</span> <span class="v">C</span></div>
+        <p class="where"><span class="v">C</span> is the net premium received and <span class="v">W</span> is the distance between the two strikes. A put credit spread breaks even at the short strike minus <span class="v">C</span>; a call credit spread at the short strike plus <span class="v">C</span>.</p>
+      </div>
+      <p>Example: stock at 100, sell a 45-day 91 put and buy an 86 put for a net credit of 0.631. The maximum loss is <span class="num">5 − 0.631 = 4.369</span>, or $437 per contract; you make money if the stock is above 90.37 at expiry.</p>
+
+      <h3>Choosing the Delta: 0.10, 0.16, 0.30</h3>
+      <div class="tbl">
+        <table>
+          <caption>Table 8-6 45-day put credit spreads, $5 wide, IV 30%</caption>
+          <thead><tr><th>Short-leg Delta</th><th>0.10</th><th>0.16</th><th>0.30</th></tr></thead>
+          <tbody>
+            <tr><td>Strike</td><td class="mono">88 / 83</td><td class="mono">91 / 86</td><td class="mono">96 / 91</td></tr>
+            <tr><td>Credit (per share)</td><td class="mono">0.36</td><td class="mono">0.63</td><td class="mono">1.32</td></tr>
+            <tr><td>Max loss (per share)</td><td class="mono">4.64</td><td class="mono">4.37</td><td class="mono">3.68</td></tr>
+            <tr><td>Loss : profit</td><td class="mono">13.0 : 1</td><td class="mono">6.9 : 1</td><td class="mono">2.8 : 1</td></tr>
+            <tr><td>Prob. of profit at expiry*</td><td class="mono">89.4%</td><td class="mono">83.0%</td><td class="mono">69.6%</td></tr>
+            <tr><td>Prob. of touching short strike*</td><td class="mono">22.7%</td><td class="mono">37.3%</td><td class="mono">70.0%</td></tr>
+            <tr><td>Daily Theta (per contract)</td><td class="mono">+$1.08</td><td class="mono">+$1.29</td><td class="mono">+$1.12</td></tr>
+            <tr><td>Expected value, realized 30% (per contract)</td><td class="mono">$0</td><td class="mono">$0</td><td class="mono">$0</td></tr>
+            <tr><td>Expected value, realized 25% (per contract)</td><td class="mono pos">+$16</td><td class="mono pos">+$22</td><td class="mono pos">+$22</td></tr>
+            <tr class="hl"><td>Expected value ÷ max loss (realized 25%)</td><td class="mono">3.5%</td><td class="mono">5.0%</td><td class="mono">6.0%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 14px; color: var(--muted);">* Computed at IV 30% with drift equal to the risk-free rate. The probability of touch uses the reflection formula for geometric Brownian motion and is roughly twice the probability of finishing in the money (Table 4-1 in Chapter 4).</p>
+      <ul>
+        <li><strong>Delta 0.10</strong>: the highest win rate, but each win brings in only $36, while a loss can cost up to $464. It rarely needs managing, but once it is hit it is often already close to max loss, with no room to adjust. It is the most sensitive to estimation error: if the true win rate is just a point or two below 89.4%, the expected value turns negative (Section 8.9).</li>
+        <li><strong>Delta 0.16</strong>: about one standard deviation away, and the most common compromise. It has the highest Theta and less than a 40% chance of being touched.</li>
+        <li><strong>Delta 0.30</strong>: more credit, a better payoff ratio and the highest expected value per unit of risk. The cost is a 70% chance of being touched while you hold it, which means frequent management, and Gamma risk shows up sooner.</li>
+      </ul>
+      <p>In a model with flat IV, the expected value of all three depends only on the gap between realized volatility and IV, and the closer to the money, the higher the expected value per unit of risk. In reality puts have skew (Chapter 6): the further OTM, the higher the IV. That lets the 0.10 spread collect more than the table shows, but the high IV on deep OTM options is itself the market's price for gaps, and not all of it is premium you get to keep.</p>
+
+      <h3>Defined risk has surprises too: early assignment</h3>
+      <p>A spread's short leg is an American-style option and can be assigned before expiration. When the short leg of a put spread is deep in the money and its time value is close to zero, exercising early is a rational choice for the holder (Case 3 has the full numbers). After assignment you hold 100 shares per contract, the protective leg is still in place, and the final loss is still limited by the width. The trouble is capital: the shares have to be paid for in full or on margin, and the account may get a margin call the same day.</p>
+
+      <div class="note field">
+        <span class="tag">From the field</span>
+        <p>In traders' records of real trades, a few mature ways of selling options show up again and again. One: sell puts only on stocks you plan to hold for the long run, write “ready to take the shares” on the order, keep the position at 10%–20% of the account measured at its post-assignment market value, and simply accept assignment when it comes. Two: sell ITM calls against shares whose cost is already very low, using the richer premium to keep pushing down the cost on paper, at the price of giving up most of the upside (see the breakdown in Section 8.2). Three: while short the stock, sell covered puts to collect premium, and switch to deeper ITM puts as the stock rises, which effectively lifts the average price of the short position. Four: credit spreads exercised early after a sharp move up or down; some brokers ignore the protective leg when computing margin, the account is asked to put up more money, and the trader ends up closing the whole thing at a bad price. What these have in common is that before placing the order, the trader had already answered: “If I'm assigned, what will I be holding, and can I live with it?”</p>
+      </div>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">8.6</span>Naked selling: margin and unlimited risk</h2>
+      <p>The margin on a naked option covers only “normal” moves. In a gap the loss can exceed the margin itself, and the loss on a naked call has no theoretical limit.</p>
+      <div class="formula">
+        <div class="eq">Naked put margin<span class="up"> (per share) =</span> premium <span class="up">+ max(</span>20% <span class="up">×</span> <span class="v">S</span> <span class="up">−</span> OTM amount<span class="up">,</span> 10% <span class="up">×</span> <span class="v">K</span><span class="up">)</span></div>
+        <p class="where">For naked calls, replace 10% × <span class="v">K</span> with 10% × <span class="v">S</span>. This is the exchange minimum; brokers usually require more, and raise it temporarily when markets are volatile.</p>
+      </div>
+      <p>Example: stock at 100, sell a 30-day 90 put naked for 0.40. Margin is <span class="num">0.40 + max(20 − 10, 9) = 10.40</span>, or $1,040 per contract. If the put expires worthless, the return on margin is 3.85%, or 47% a year in simple terms. That number makes naked selling look very tempting.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 8-7 After selling the 90 put naked: next-day stock moves (per contract; post-move IV is assumed)</caption>
+          <thead><tr><th>Next-day price</th><th>Assumed IV</th><th>Option price</th><th>Loss</th><th>New margin requirement</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">100 (open)</td><td class="mono">30%</td><td class="mono">0.40</td><td class="mono">—</td><td class="mono">$1,040</td></tr>
+            <tr><td class="mono">90</td><td class="mono">30%</td><td class="mono">2.89</td><td class="mono neg">−$249</td><td class="mono">$2,089</td></tr>
+            <tr><td class="mono">85</td><td class="mono">40%</td><td class="mono">6.73</td><td class="mono neg">−$633</td><td class="mono">$2,373</td></tr>
+            <tr class="hl"><td class="mono">80</td><td class="mono">45%</td><td class="mono">10.79</td><td class="mono neg">−$1,038</td><td class="mono">$2,679</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>On a 20% drop, each contract loses $1,038, already wiping out all of the original margin; meanwhile the margin requirement climbs to $2,679. Suppose a $20,000 account sold 10 contracts, using half its capital as margin: the next day equity is down to $9,620, but the margin requirement is $26,790. The broker will force the position closed, and at the worst prices.</p>
+      <p>Naked calls are even more extreme. Sell a 30-day 110 call for 0.66, with $1,066 of margin. A takeover announcement sends the stock to 140 (assume IV rises to 50%): the call is worth 30.64 and each contract loses $2,999; at 150, the loss is $3,978. The stock has no ceiling, and neither does the loss.</p>
+      <h3>Why institutions can do it and individuals shouldn't</h3>
+      <ul>
+        <li><strong>Diversification</strong>: an institution's book of short options is spread across thousands of strikes and underlyings, so a single gap hurts only a small part of it; individuals tend to concentrate in a few familiar stocks.</li>
+        <li><strong>Hedging</strong>: market makers hedge Delta continuously and buy OTM wings to control the tails; individuals usually can't hedge overnight.</li>
+        <li><strong>Margin and risk control</strong>: institutions use scenario-based portfolio margin and independent risk management, and know in advance how much they would lose at −20%; most individuals do that math for the first time after the gap.</li>
+        <li><strong>Survival</strong>: institutions earn the market-making spread plus the volatility premium, a business with a capital cushion behind it; for an individual, one blown-up account means there is no next time.</li>
+      </ul>
+      <p>An individual seller's default choice should be a defined-risk structure (credit spreads, iron condors; see Chapter 9) or a truly cash-secured position. Naked selling is suitable only in small size, on liquid index products, and after running the stress test in Section 8.8.</p>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">8.7</span>Three rules of thumb for management</h2>
+      <p>“Take profits at 50%, act at 21 days to expiration, stop out when the loss reaches twice the premium” are rules of thumb. They change the shape of the return distribution; they don't create expected value out of nothing.</p>
+      <p>These three rules are widely repeated. They come mainly from backtests of US index options and from the trader education published by options brokers, and the backtests mostly cover short puts, strangles and iron condors opened at around 45 days. The specific numbers aren't stable across years or underlyings. Below we first explain the mechanism behind each rule, then test them with a simulation.</p>
+
+      <h3>50% profit target: the second half isn't worth waiting for</h3>
+      <div class="tbl">
+        <table>
+          <caption>Table 8-8 45-day 91/86 put spread (credit 0.631): value with the stock steady at 100</caption>
+          <thead><tr><th>Days left</th><th>45</th><th>35</th><th>30</th><th>24</th><th>21</th><th>14</th><th>7</th></tr></thead>
+          <tbody>
+            <tr><td>Spread value</td><td class="mono">0.631</td><td class="mono">0.489</td><td class="mono">0.408</td><td class="mono">0.301</td><td class="mono">0.245</td><td class="mono">0.113</td><td class="mono">0.015</td></tr>
+            <tr><td>Share earned</td><td class="mono">0%</td><td class="mono">22%</td><td class="mono">35%</td><td class="mono">52%</td><td class="mono">61%</td><td class="mono">82%</td><td class="mono">98%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>With the stock unchanged, it takes about 21 days to earn half. At that point only 0.315 is left to earn, yet you still carry up to 4.685 of potential loss. At entry the profit-to-loss ratio was <span class="num">0.631 : 4.369 ≈ 1 : 6.9</span>; after earning half it becomes <span class="num">0.315 : 4.685 ≈ 1 : 14.9</span>. Holding on is like opening a new trade on terms twice as bad. Close it, put the capital into a new 45-day position, and you get 1 : 6.9 back.</p>
+
+      <h3>21 days: avoid the last three weeks “going binary”</h3>
+      <div class="tbl">
+        <table>
+          <caption>Table 8-9 The same spread with the stock down to the 91 short strike (per contract)</caption>
+          <thead><tr><th>Days left</th><th>45</th><th>21</th><th>7</th><th>2</th></tr></thead>
+          <tbody>
+            <tr><td>Gamma (per share)</td><td class="mono">−0.0074</td><td class="mono">−0.0185</td><td class="mono">−0.0658</td><td class="mono">−0.1900</td></tr>
+            <tr><td>Delta (per share)</td><td class="mono">0.198</td><td class="mono">0.276</td><td class="mono">0.404</td><td class="mono">0.486</td></tr>
+            <tr class="hl"><td>Loss on a further 3% drop next day</td><td class="mono neg">−$56</td><td class="mono neg">−$81</td><td class="mono neg">−$129</td><td class="mono neg">−$191</td></tr>
+            <tr><td>Daily Theta</td><td class="mono">+$0.5</td><td class="mono">+$1.6</td><td class="mono">+$6.3</td><td class="mono">+$18.9</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The same −3% move costs $56 at 45 days and $191 at 2 days. Theta grows in step; this is the Gamma–Theta trade-off from Chapter 4, Section 4.6. In a model with no gaps, the “risk versus income” of the last few days doesn't become unfair. What really changes is two things:</p>
+      <ul>
+        <li><strong>The position turns binary</strong>. With 2 days left and the stock at 95, the spread's Delta is only 0.025; at 91, Delta becomes 0.486. A 4% move in the stock takes the position from “almost no risk” to “close to full exposure,” too fast for you to react.</li>
+        <li><strong>A gap doesn't let you collect Theta day by day</strong>. Theta comes in one day at a time; a gap's loss arrives all at once. The closer to expiration, the bigger the share of the premium a single gap eats.</li>
+      </ul>
+      <p>What the 21-day rule means: get out before Gamma climbs steeply, and leave the last three weeks of “collect Theta and bet nothing happens” to someone else. By then there isn't much premium left anyway (only 0.245 in Table 8-8, while the maximum loss is still 4.76).</p>
+
+      <h3>2× stop: pin each trade's loss to a known number</h3>
+      <p>Set the stop at “loss = 2 × premium,” that is, close when the spread's value rises to <span class="num">3 × 0.631 = 1.89</span>. The most you lose on a trade is then about $126 instead of $437. Combined with the 50% profit target, a win makes 0.315 and a loss costs 1.262, so the breakeven win rate is <span class="num">1.262 ÷ (1.262 + 0.315) = 80%</span>, regardless of the size of the premium.</p>
+      <p>The rule comes from naked strangles, which have no maximum loss, so you have to draw a line yourself. On a spread, it has to be converted for the structure. The 0.30 96/91 spread collects 1.321; a 2× stop corresponds to a loss of 2.64, while the maximum loss is only 3.68 to begin with. The stop saves little, yet it is easily knocked out by back-and-forth chop. Also, an overnight gap jumps right over a stop order, and the actual fill can be far worse than the stop level.</p>
+
+      <h3>Testing the three rules with a simulation</h3>
+      <figure class="plate" id="fig4">
+        <div class="fig-head"><span class="fig-title">Management rules narrow the distribution; whether the expected value is positive or negative still depends on the volatility gap</span><span class="fig-no">Figure 8-4 · 1,000 reproducible paths, 45-day put spread</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Short-leg Delta">
+            <button type="button" data-d="0.16" aria-pressed="true">Short Δ0.16</button>
+            <button type="button" data-d="0.30" aria-pressed="false">Short Δ0.30</button>
+          </div>
+          <div class="seg" role="group" aria-label="Gaps">
+            <button type="button" data-j="0" aria-pressed="true">No gaps</button>
+            <button type="button" data-j="1" aria-pressed="false">With gaps</button>
+          </div>
+          <label class="ctl" for="f4-rv">Realized volatility <input id="f4-rv" type="range" min="15" max="40" value="25"> <output id="f4-rv-o">25%</output></label>
+          <div class="seg" role="group" aria-label="Rule shown">
+            <button type="button" data-r="A" aria-pressed="false">A</button>
+            <button type="button" data-r="B" aria-pressed="false">B</button>
+            <button type="button" data-r="C" aria-pressed="true">C</button>
+            <button type="button" data-r="D" aria-pressed="false">D</button>
+          </div>
+        </div>
+        <svg class="chart" id="f4-svg" viewBox="0 0 680 300" role="img" aria-label="Distribution of P&amp;L per trade"></svg>
+        <div class="legend"><span><i style="border-color: var(--theta); border-top-width: 8px"></i>Selected rule: wins</span><span><i style="border-color: var(--gamma); border-top-width: 8px"></i>Selected rule: losses</span><span><i class="dash" style="border-color: var(--muted)"></i>Rule A (hold to expiry)</span></div>
+        <div class="tbl" style="margin-bottom: 8px;">
+          <table id="f4-tbl">
+            <thead><tr><th>Rule</th><th>Win rate</th><th>Avg. per trade</th><th>Worst 5%</th><th>Worst trade</th><th>Avg. hold</th><th>Per day held</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="readout">
+          <div><b id="f4-r1">—</b><small>Selected rule: win rate</small></div>
+          <div><b id="f4-r2">—</b><small>Avg. per trade (per contract)</small></div>
+          <div><b id="f4-r3">—</b><small>Worst 5%</small></div>
+          <div><b id="f4-r4">—</b><small>Expected value per day held</small></div>
+        </div>
+        <figcaption>A: hold to expiry; B: take profits at 50%; C: B plus closing with 21 days left; D: C plus a 2× stop. The spread is repriced daily at IV 30%, and the paths are generated with CK.rng seed 2026, so they are the same every time you open the page. Drag realized volatility to 30% (equal to IV) and all four rules average close to 0 per trade; drag it to 35% and they are all negative. Turn on “With gaps” (a −12% gap once every 250 days on average) and C and D are clearly better than A both in expected value per day held and in the tail.</figcaption>
+      </figure>
+
+      <div class="tbl">
+        <table id="t810">
+          <caption>Table 8-10 Simulation summary (short Δ0.16, per contract)</caption>
+          <thead><tr><th>Scenario</th><th>Rule</th><th>Win rate</th><th>Avg. per trade</th><th>Worst 5%</th><th>Avg. hold</th><th>Per day held</th></tr></thead>
+          <tbody>
+            <tr><td>Realized 25%, no gaps</td><td>A hold to expiry</td><td class="mono">87.6%</td><td class="mono pos">+$20.4</td><td class="mono neg">−$368</td><td class="mono">45.0 days</td><td class="mono">+$0.45</td></tr>
+            <tr><td></td><td>B 50% profit target</td><td class="mono">90.8%</td><td class="mono pos">+$7.1</td><td class="mono neg">−$293</td><td class="mono">18.6 days</td><td class="mono">+$0.38</td></tr>
+            <tr><td></td><td>C B + 21 days</td><td class="mono">76.7%</td><td class="mono pos">+$6.7</td><td class="mono neg">−$141</td><td class="mono">14.6 days</td><td class="mono">+$0.46</td></tr>
+            <tr><td></td><td>D C + 2× stop</td><td class="mono">75.8%</td><td class="mono pos">+$4.7</td><td class="mono neg">−$143</td><td class="mono">13.7 days</td><td class="mono">+$0.34</td></tr>
+            <tr><td>Realized 20% + gaps</td><td>A hold to expiry</td><td class="mono">87.3%</td><td class="mono pos">+$16.6</td><td class="mono neg">−$437</td><td class="mono">45.0 days</td><td class="mono">+$0.37</td></tr>
+            <tr><td></td><td>B 50% profit target</td><td class="mono">93.6%</td><td class="mono pos">+$13.1</td><td class="mono neg">−$202</td><td class="mono">18.5 days</td><td class="mono">+$0.71</td></tr>
+            <tr class="hl"><td></td><td>C B + 21 days</td><td class="mono">81.8%</td><td class="mono pos">+$9.0</td><td class="mono neg">−$120</td><td class="mono">14.9 days</td><td class="mono">+$0.61</td></tr>
+            <tr><td></td><td>D C + 2× stop</td><td class="mono">81.2%</td><td class="mono pos">+$8.2</td><td class="mono neg">−$147</td><td class="mono">14.1 days</td><td class="mono">+$0.58</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Read this table on three levels.</p>
+      <ol>
+        <li><strong>Without a volatility premium, rules can't save you</strong>. At 30% realized volatility, the four rules average −$1.3, −$4.9, −$1.2 and −$2.2 per trade, all within random error (standard error about $2–5). Management rules can't turn a zero-expectancy trade into a positive one.</li>
+        <li><strong>With a premium and no gaps, holding to expiry makes the most per trade</strong>. The rules cut the expected value per trade from $20 to $5–7, and in exchange the holding period drops from 45 days to 14 and the worst 5% improves from −$368 to −$141. Per day held, A and C are about the same.</li>
+        <li><strong>Only with gaps do the rules show their value</strong>. B and C earn more than 60% more per day held ($0.71 and $0.61) than A ($0.37), with much smaller tails. This is exactly the world the rules were designed for: real markets have gaps; Black-Scholes doesn't.</li>
+      </ol>
+      <div class="note warn">
+        <span class="tag">When the rules apply</span>
+        <ul>
+          <li>Applies when: the options you sell carry a premium; the market has gaps; the capital freed up by closing can go straight into the next position on the same terms</li>
+          <li>Doesn't apply when: IV is below the realized volatility you expect (there is no premium to collect); the position spans a known event such as earnings (the gap is already in IV, and the rules can't help you); trading costs are high or option bid–ask spreads are wide, so frequent opening and closing eats the edge</li>
+          <li>Also note: on a spread, convert the 2× stop using “width − premium”; don't copy the numbers used for naked selling</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">8.8</span>Position size: size by maximum loss, run a −20% gap test</h2>
+      <p>A seller's position size is set by “how much could I lose in the worst case,” not by how much premium you collect.</p>
+      <p>The same $50,000 account, the same $100 stock, three ways to sell puts; the next day the stock gaps −20% and IV rises to 45%:</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 8-11 Gap test for three ways of selling puts (30 days to expiry)</caption>
+          <thead><tr><th>Approach</th><th>Contracts</th><th>Premium collected</th><th>Notional risk</th><th>Gap loss</th><th>% of account</th></tr></thead>
+          <tbody>
+            <tr><td>Cash-secured 95 put</td><td class="mono">5</td><td class="mono">$667</td><td class="mono">Assignment cost $47,500</td><td class="mono neg">−$6,918</td><td class="mono neg">−13.8%</td></tr>
+            <tr class="hl"><td>Naked 90 put (half the capital as margin)</td><td class="mono">24</td><td class="mono">$961</td><td class="mono">Margin $24,960</td><td class="mono neg">−$24,924</td><td class="mono neg">−49.8%</td></tr>
+            <tr><td>95/90 put spread (max loss ≤ 5%)</td><td class="mono">6</td><td class="mono">$560</td><td class="mono">Max loss $2,440</td><td class="mono neg">−$2,071</td><td class="mono neg">−4.1%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The premium the three approaches collect differs by less than a factor of two ($560 to $961), but their gap losses differ twelvefold. After the gap, the naked row's margin requirement is $64,285; the account can no longer support it, and the broker will close the position for you.</p>
+      <h3>A workable set of sizing rules</h3>
+      <ol>
+        <li><strong>Per-trade cap</strong>: for defined-risk positions, the maximum loss is no more than 2%–5% of the account. For positions without defined risk (naked selling, cash-secured puts), use “the loss in a −20% gap” in place of the maximum loss.</li>
+        <li><strong>Portfolio stress test</strong>: run all your short option positions through one scenario (every underlying −20% at once, IV up to 45% across the board), and keep the combined loss within 15%–20% of the account. Underlyings in the same sector, or ones that are all high-Beta, count as a single position in a gap.</li>
+        <li><strong>Work back to the number of contracts</strong>: allowed loss ÷ loss per contract under stress. With a 10% budget ($5,000), the cash-secured 95 put allows at most 3 contracts (5,000 ÷ 1,384 = 3.6), and the naked 90 put at most 4 (5,000 ÷ 1,038 = 4.8).</li>
+        <li><strong>Stress-test the margin too</strong>: you must be able to meet the margin requirement under the stress scenario (not just today's), or you will be forced out at the worst possible moment.</li>
+      </ol>
+      <p>These percentages are common starting points, not theoretical optimums. The principle: after the worst day has passed, you still have enough money and nerve to keep trading. −20% is the usual scenario for single stocks; for indexes you can use −10%; for a stock held through earnings, use its largest historical earnings-day move.</p>
+    </section>
+
+    <section id="s9">
+      <h2><span class="sn">8.9</span>A “90% win rate” can mean negative expectancy</h2>
+      <p>A win rate on its own tells you nothing. The only thing that decides whether a strategy makes money over the long run is its expectancy.</p>
+      <div class="formula">
+        <div class="eq"><span class="v">E</span> <span class="up">=</span> <span class="v">p</span> <span class="up">·</span> <span class="v">W̄</span> <span class="up">−</span> <span class="up">(1 −</span> <span class="v">p</span><span class="up">) ·</span> <span class="v">L̄</span>  <span class="v">p</span>* <span class="up">=</span> <span class="frac"><span><span class="v">L̄</span></span><span><span class="v">W̄</span> <span class="up">+</span> <span class="v">L̄</span></span></span></div>
+        <p class="where"><span class="v">p</span> is the win rate, <span class="v">W̄</span> and <span class="v">L̄</span> are the average amounts of the winning and losing trades, and <span class="v">p</span>* is the breakeven win rate. Note: use the average loss, not the maximum loss.</p>
+      </div>
+      <p>A strategy wins 90% of the time, makes $50 on average when it wins and loses $500 on average when it loses: <span class="num">E = 0.9 × 50 − 0.1 × 500 = −$5</span>. It needs a win rate of <span class="num">500 ÷ 550 = 90.9%</span> just to break even.</p>
+      <p>Go back to the 0.10 spread from Section 8.5. At market prices, its probability of profit at expiry is 89.4%; it makes $35.7 on average when it wins and loses $299.7 on average when it loses, so its breakeven win rate is <span class="num">299.7 ÷ (35.7 + 299.7) = 89.4%</span>, exactly equal to the win rate itself. That is no coincidence: under fair pricing every option strategy has an expected value of zero, and “win rate” and “payoff ratio” are just two ways of slicing the same zero.</p>
+      <p>The edge is thin. If the true win rate is 88%: <span class="num">0.88 × 35.7 − 0.12 × 299.7 = −$4.6</span>. If commissions plus slippage add up to $3 per round trip (an assumption), the breakeven win rate rises to <span class="num">(299.7 + 3) ÷ (35.7 + 299.7) = 90.2%</span>. One or two percentage points of win rate decide whether a high-win-rate strategy is positive or negative.</p>
+
+      <figure class="plate" id="fig5">
+        <div class="fig-head"><span class="fig-title">At a 90% win rate, a payoff ratio below 1 : 9 means negative expectancy</span><span class="fig-no">Figure 8-5 · Expectancy heat map, interactive</span></div>
+        <div class="controls">
+          <label class="ctl" for="f5-p">Win rate <input id="f5-p" type="range" min="50" max="99" value="90"> <output id="f5-p-o">90%</output></label>
+          <label class="ctl" for="f5-r">Avg. win ÷ avg. loss <input id="f5-r" type="range" min="0" max="100" value="19"> <output id="f5-r-o">0.10</output></label>
+          <div class="seg" role="group" aria-label="Strategy points">
+            <button type="button" data-s="fair" aria-pressed="true">Spreads: fair pricing</button>
+            <button type="button" data-s="vrp" aria-pressed="false">Spreads: realized 25%</button>
+          </div>
+        </div>
+        <svg class="chart" id="f5-svg" viewBox="0 0 680 320" role="img" aria-label="Expectancy heat map by win rate and payoff ratio"></svg>
+        <div class="legend"><span><i style="border-color: var(--ink)"></i>Breakeven line</span><span><i style="border-color: color-mix(in srgb, var(--theta) 60%, var(--plate)); border-top-width: 8px"></i>Positive expectancy</span><span><i style="border-color: color-mix(in srgb, var(--gamma) 60%, var(--plate)); border-top-width: 8px"></i>Negative expectancy</span><span style="color: var(--delta)">● Your point</span></div>
+        <div class="readout">
+          <div><b id="f5-r1">—</b><small>Expected value per $100 of average loss</small></div>
+          <div><b id="f5-r2">—</b><small>Breakeven win rate at this payoff ratio</small></div>
+          <div><b id="f5-r3">—</b><small>Expected value if the win rate is 3 points too high</small></div>
+        </div>
+        <figcaption>The greener the color, the higher the expectancy; the redder, the lower. The black line is the breakeven line. The three black dots are the three spreads from Section 8.5 (labeled with the short-leg Delta): at fair prices they all sit on the line; switch to realized 25% and they all move above it, but stay very close. Drag the win rate above 95% and look at the black line: it gets very steep, and a small error in the payoff ratio puts you below it.</figcaption>
+      </figure>
+      <h3>Can you trust your win-rate estimate?</h3>
+      <ul>
+        <li>Your sample has to cover different market conditions: a win rate measured only in calm years has never seen a gap.</li>
+        <li>Pull out your single biggest loss and look at it on its own; it is often several times the average loss. Recompute the expectancy with it.</li>
+        <li>Compare it with the probability implied by Delta. If your actual win rate stays clearly above what the market implies, the most likely explanation is that your sample hasn't hit that gap yet.</li>
+      </ul>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">Cases</span>Three cases</h2>
+
+      <div class="case">
+        <div class="case-no">Case 1</div>
+        <h3>A simulated year of selling puts: eleven months of small gains, one gap wipes out the year</h3>
+        <p>Assumptions: a $50,000 account sells 4 contracts of 30-day cash-secured puts at about Delta 0.20 at the start of each month, settled at expiry; when assigned, the shares are sold at the expiration price and the loss is booked in that month. IV is 25% for the first 9 months; in month 9 the stock gaps from 108.1 to 85.0 (−21.4%), and IV over the following four months is 45%, 38%, 33% and 30%.</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 8-12 12-month put-selling ledger (4 contracts, $)</caption>
+            <thead><tr><th>Month</th><th>Start price</th><th>IV</th><th>Strike</th><th>Delta</th><th>Premium collected</th><th>End price</th><th>Payout</th><th>Month P&amp;L</th><th>Cumulative</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">1</td><td class="mono">100.0</td><td class="mono">25%</td><td class="mono">95</td><td class="mono">−0.21</td><td class="mono">359</td><td class="mono">102.1</td><td class="mono">0</td><td class="mono pos">+359</td><td class="mono pos">+359</td></tr>
+              <tr><td class="mono">2</td><td class="mono">102.1</td><td class="mono">25%</td><td class="mono">97</td><td class="mono">−0.21</td><td class="mono">367</td><td class="mono">103.5</td><td class="mono">0</td><td class="mono pos">+367</td><td class="mono pos">+726</td></tr>
+              <tr><td class="mono">3</td><td class="mono">103.5</td><td class="mono">25%</td><td class="mono">98</td><td class="mono">−0.20</td><td class="mono">342</td><td class="mono">101.2</td><td class="mono">0</td><td class="mono pos">+342</td><td class="mono pos">+1,068</td></tr>
+              <tr><td class="mono">4</td><td class="mono">101.2</td><td class="mono">25%</td><td class="mono">96</td><td class="mono">−0.21</td><td class="mono">350</td><td class="mono">104.0</td><td class="mono">0</td><td class="mono pos">+350</td><td class="mono pos">+1,418</td></tr>
+              <tr><td class="mono">5</td><td class="mono">104.0</td><td class="mono">25%</td><td class="mono">98</td><td class="mono">−0.18</td><td class="mono">304</td><td class="mono">105.3</td><td class="mono">0</td><td class="mono pos">+304</td><td class="mono pos">+1,722</td></tr>
+              <tr><td class="mono">6</td><td class="mono">105.3</td><td class="mono">25%</td><td class="mono">100</td><td class="mono">−0.21</td><td class="mono">374</td><td class="mono">103.9</td><td class="mono">0</td><td class="mono pos">+374</td><td class="mono pos">+2,096</td></tr>
+              <tr><td class="mono">7</td><td class="mono">103.9</td><td class="mono">25%</td><td class="mono">98</td><td class="mono">−0.18</td><td class="mono">311</td><td class="mono">106.8</td><td class="mono">0</td><td class="mono pos">+311</td><td class="mono pos">+2,407</td></tr>
+              <tr><td class="mono">8</td><td class="mono">106.8</td><td class="mono">25%</td><td class="mono">101</td><td class="mono">−0.19</td><td class="mono">342</td><td class="mono">108.1</td><td class="mono">0</td><td class="mono pos">+342</td><td class="mono pos">+2,749</td></tr>
+              <tr class="hl"><td class="mono">9</td><td class="mono">108.1</td><td class="mono">25%</td><td class="mono">102</td><td class="mono">−0.19</td><td class="mono">327</td><td class="mono">85.0</td><td class="mono neg">−6,800</td><td class="mono neg">−6,473</td><td class="mono neg">−3,724</td></tr>
+              <tr><td class="mono">10</td><td class="mono">85.0</td><td class="mono">45%</td><td class="mono">77</td><td class="mono">−0.20</td><td class="mono">508</td><td class="mono">87.6</td><td class="mono">0</td><td class="mono pos">+508</td><td class="mono neg">−3,216</td></tr>
+              <tr><td class="mono">11</td><td class="mono">87.6</td><td class="mono">38%</td><td class="mono">81</td><td class="mono">−0.21</td><td class="mono">481</td><td class="mono">90.3</td><td class="mono">0</td><td class="mono pos">+481</td><td class="mono neg">−2,735</td></tr>
+              <tr><td class="mono">12</td><td class="mono">90.3</td><td class="mono">33%</td><td class="mono">84</td><td class="mono">−0.20</td><td class="mono">396</td><td class="mono">92.0</td><td class="mono">0</td><td class="mono pos">+396</td><td class="mono neg">−2,339</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The year's premium totals $4,461, with 11 winning months: a 92% win rate, even higher than the roughly 80% implied by Delta 0.20. Yet the ledger ends at <span class="num">−$2,339</span>. The payout in month 9 is <span class="num">(102 − 85) × 400 = $6,800</span>, and that one month's loss is 2.4 times the cumulative profit of the first 8 months.</p>
+        <p>Over the same 12 months, if you had sold $5-wide put spreads each month instead (short leg also at Delta 0.20, 4 contracts), you would have collected about a quarter less premium each month, $3,343 for the year. In the gap month the payout is capped at <span class="num">5 × 400 = $2,000</span>, the month's loss is $1,748, and the year ends at <span class="num">+$1,343</span>.</p>
+        <ul>
+          <li><strong>Lesson 1</strong>: a seller's annual result is decided by the single worst month. When you evaluate a strategy, first ask “how much will the worst month lose,” then ask “how much does a normal month make.”</li>
+          <li><strong>Lesson 2</strong>: after a gap, IV rises and premiums get noticeably fatter ($508 in month 10 alone), and it is tempting to sell more contracts to win the money back. Right after a gap is exactly when you most need to redo the stress test from Section 8.8.</li>
+          <li><strong>Lesson 3</strong>: buying a cheap protective leg turns “the worst month” from −$6,473 into −$1,748. This insurance costs about $93 of premium a month, and on this path it earned back $3,682.</li>
+        </ul>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 2</div>
+        <h3>The opportunity cost of covered calls in a strong rally</h3>
+        <p>Assumptions: a high-growth stock with IV 45% rises from 100 to 260 over a year. Each month you sell a 30-day call at about Delta 0.30; when called away, you buy the shares back at the expiration price and carry on (ignoring frictions).</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 8-13 Per-share results ($)</caption>
+            <thead><tr><th>Month</th><th>Start</th><th>Strike</th><th>Premium</th><th>End</th><th>Stock, month</th><th>Covered call, month</th><th>Upside given up</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">1</td><td class="mono">100</td><td class="mono">108</td><td class="mono">2.36</td><td class="mono">112</td><td class="mono">+12</td><td class="mono">+10.36</td><td class="mono neg">4</td></tr>
+              <tr><td class="mono">2</td><td class="mono">112</td><td class="mono">121</td><td class="mono">2.64</td><td class="mono">125</td><td class="mono">+13</td><td class="mono">+11.64</td><td class="mono neg">4</td></tr>
+              <tr><td class="mono">3</td><td class="mono">125</td><td class="mono">135</td><td class="mono">2.95</td><td class="mono">121</td><td class="mono">−4</td><td class="mono">−1.05</td><td class="mono">0</td></tr>
+              <tr class="hl"><td class="mono">4</td><td class="mono">121</td><td class="mono">131</td><td class="mono">2.78</td><td class="mono">150</td><td class="mono">+29</td><td class="mono">+12.78</td><td class="mono neg">19</td></tr>
+              <tr><td class="mono">5</td><td class="mono">150</td><td class="mono">162</td><td class="mono">3.54</td><td class="mono">162</td><td class="mono">+12</td><td class="mono">+15.54</td><td class="mono">0</td></tr>
+              <tr><td class="mono">6</td><td class="mono">162</td><td class="mono">175</td><td class="mono">3.82</td><td class="mono">158</td><td class="mono">−4</td><td class="mono">−0.18</td><td class="mono">0</td></tr>
+              <tr class="hl"><td class="mono">7</td><td class="mono">158</td><td class="mono">171</td><td class="mono">3.64</td><td class="mono">190</td><td class="mono">+32</td><td class="mono">+16.64</td><td class="mono neg">19</td></tr>
+              <tr><td class="mono">8</td><td class="mono">190</td><td class="mono">206</td><td class="mono">4.28</td><td class="mono">205</td><td class="mono">+15</td><td class="mono">+19.28</td><td class="mono">0</td></tr>
+              <tr><td class="mono">9</td><td class="mono">205</td><td class="mono">222</td><td class="mono">4.69</td><td class="mono">199</td><td class="mono">−6</td><td class="mono">−1.31</td><td class="mono">0</td></tr>
+              <tr class="hl"><td class="mono">10</td><td class="mono">199</td><td class="mono">215</td><td class="mono">4.68</td><td class="mono">230</td><td class="mono">+31</td><td class="mono">+20.68</td><td class="mono neg">15</td></tr>
+              <tr><td class="mono">11</td><td class="mono">230</td><td class="mono">249</td><td class="mono">5.28</td><td class="mono">242</td><td class="mono">+12</td><td class="mono">+17.28</td><td class="mono">0</td></tr>
+              <tr><td class="mono">12</td><td class="mono">242</td><td class="mono">262</td><td class="mono">5.55</td><td class="mono">260</td><td class="mono">+18</td><td class="mono">+23.55</td><td class="mono">0</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>For the year, holding the stock makes $160 and the covered call $145.22, a shortfall of <span class="num">$14.78</span>, or about $1,478 per 100 shares. Premium collected totals $46.22 and the upside given up is $61.00, of which $53 came in just three months, 4, 7 and 10: in those months the stock rose 24%, 20% and 16%, the three best stretches of the year.</p>
+        <p>The real opportunity cost is often bigger, because people rarely chase the price and buy back right after being called away. If, after being called away at 131 in month 4, you wait for a pullback and never buy back, you make only <span class="num">$33.73</span> for the year, about a fifth of what holding the stock made. On the same path, selling calls at about Delta 0.15 instead makes $161.76 for the year, roughly even with holding the stock: only $18.76 of premium collected, and only $17 of upside given up.</p>
+        <ul>
+          <li><strong>Lesson 1</strong>: covered calls lose out in a trend because of drift, not volatility. Options are priced with drift at the risk-free rate, so all of the stock's real strong-trend return goes to the call buyer. Realized volatility on this path was only about 28%, far below the 45% IV: the seller won on “volatility” but lost more on “direction.”</li>
+          <li><strong>Lesson 2</strong>: the more bullish you are on a stock, the further OTM the calls you sell should be, or don't sell them at all.</li>
+          <li><strong>Lesson 3</strong>: decide before you open the position whether you will buy back after being called away. Don't leave it to emotion after the stock has already run up.</li>
+        </ul>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 3</div>
+        <h3>A defined-risk spread assigned early: the loss is capped, the capital isn't</h3>
+        <p>Assumptions: a $20,000 account, with the stock at 100, sells 10 contracts of a 30-day 97/92 put spread for 1.294; maximum loss <span class="num">(5 − 1.294) × 1,000 = $3,706</span>. After 25 days the stock has fallen to 88, with 5 days left and IV at 35%.</p>
+        <ul>
+          <li>The 97 put's European theoretical value is 8.958, below its intrinsic value of 9.00, so its time value is <span class="num">−0.042</span>. For the holder of an American option, exercising now is the better deal: sell the stock at 97 immediately and earn 5 more days of interest (about 0.053). Early assignment is the rational outcome.</li>
+          <li>That evening you are assigned on all 10 contracts and buy 1,000 shares at 97, paying $97,000. Account equity is <span class="num">20,000 + 1,294 + 88,000 − 97,000 + 4,217 = $16,511</span> (the last term is the value of the 10 92 puts, 4.217 each, Delta −0.853).</li>
+          <li>$88,000 of stock requires $44,000 at 50% initial margin, but account equity is only $16,511, so a margin call follows.</li>
+        </ul>
+        <p><strong>The right move</strong>: at the next day's open, sell the 1,000 shares and the 10 92 puts together. The result is <span class="num">1.294 − (97 − 88) + 4.217 = −3.489</span>, or −$349 per contract and −$3,489 in total; had you not been assigned and simply closed the spread, the result would have been −$3,447, almost the same. Selling the 92 puts beats exercising them, because they still have 0.217 of time value.</p>
+        <p><strong>The wrong move</strong>: sell the 92 puts first to “free up cash” and hold the shares waiting for a rebound. Now you own 1,000 shares with no protection at all; another 5% drop costs <span class="num">−$4,400</span>, and the loss already exceeds the original maximum loss.</p>
+        <ul>
+          <li><strong>Lesson 1</strong>: “defined risk” defines your P&amp;L, not the capital tied up. After assignment, the shares and the protective leg are one unit and must be handled together.</li>
+          <li><strong>Lesson 2</strong>: when the short leg is deep ITM and its time value is close to zero, that is your signal to close early. Don't wait for the final week.</li>
+          <li><strong>Lesson 3</strong>: before you open the position, find out your broker's rules on spread margin and on handling assignment, including whether it will liquidate automatically before you have time to act.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">Tools</span>Checklist and self-test</h2>
+      <p>Your checkmarks are saved only in your own browser.</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">8-1</span>Before you open: work out the bad side first</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">Max loss written down; if uncapped, the loss in a −20% gap</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">Breakeven win rate L̄ ÷ (W̄ + L̄) computed and compared with my estimate</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">Answered: if assigned, what will I be holding, and can I accept it</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">8-2</span>Size: set contracts by the worst case</h4>
+          <ul>
+            <li><input type="checkbox" id="k4"><label for="k4">Max loss per trade ≤ 2%–5% of the account</label></li>
+            <li><input type="checkbox" id="k5"><label for="k5">All short option positions −20% at once: combined loss ≤ 15%–20%</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">Margin requirement under stress is affordable too</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">8-3</span>While holding: three rules</h4>
+          <ul>
+            <li><input type="checkbox" id="k7"><label for="k7">Profit reaches 50% of the premium: consider closing and opening a new trade</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">21 days left and still open: close or roll</label></li>
+            <li><input type="checkbox" id="k9"><label for="k9">Loss reaches the stop line (converted by width for spreads): execute, no bargaining</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">8-4</span>Around assignment</h4>
+          <ul>
+            <li><input type="checkbox" id="k10"><label for="k10">Short leg deep ITM, time value near zero: close early</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">After assignment, handle the shares and the protective leg together</label></li>
+            <li><input type="checkbox" id="k12"><label for="k12">Assigned shares: if I had no position today, would I buy them?</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Self-test: five questions</h3>
+      <details class="q"><summary><span class="num">1</span><span>With the stock at 100, you sell one 30-day 90 put for 0.40. The stock is at 82 at expiry. How much does the contract lose, and how many months of premium is that?</span></summary>
+        <div class="ans"><p><span class="num">(90 − 82 − 0.40) × 100 = $760</span>, about <span class="num">760 ÷ 40 = 19</span> months of premium.</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>A 96/91 put credit spread collects 1.32. What are the max loss, the breakeven and the ratio of loss to profit?</span></summary>
+        <div class="ans"><p>Max loss <span class="num">5 − 1.32 = 3.68</span>, or $368 per contract; breakeven <span class="num">96 − 1.32 = 94.68</span>; loss : profit = <span class="num">3.68 : 1.32 ≈ 2.8 : 1</span>.</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>A strategy wins 85% of the time, makes $60 on average per winning trade and loses $400 on average per losing trade. What is its expectancy, and what is the breakeven win rate?</span></summary>
+        <div class="ans"><p><span class="num">E = 0.85 × 60 − 0.15 × 400 = 51 − 60 = −$9</span>; breakeven win rate <span class="num">400 ÷ 460 = 87.0%</span>. Even an 85% win rate can mean negative expectancy.</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>You have a $40,000 account and want to sell 30-day 90 puts naked (stock at 100). Your rule: “a −20% gap the next day must not cost more than 10% of the account.” What is the most contracts you can sell?</span></summary>
+        <div class="ans"><p>From Table 8-7, a gap to 80 with IV up to 45% loses $1,038 per contract. <span class="num">4,000 ÷ 1,038 = 3.85</span>, so at most 3 contracts. Margin would let you sell more than 30; the stress test allows only 3.</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>If the stock doesn't move, a covered call earns extra premium every month. Why, then, does it fall behind simply holding the stock over a year in a strong trend?</span></summary>
+        <div class="ans"><p>A covered call cuts off the right tail of returns, and the return in a strong trend is concentrated in a few big up months. Options are priced with drift at the risk-free rate, so the real trend return goes to the call buyer. In Case 2, the premium collected was $46.22 and the upside given up was $61.00, leaving the covered call $14.78 per share behind for the year.</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="Chapter navigation"></nav>
+
+    <footer class="end">
+      <p>This chapter's examples are computed with the Black-Scholes model (4% rate, no dividends, 365-day year) and the hypothetical paths noted in the text. For education only; not investment advice.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY, R = CK.R;
+  const signedK = v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toLocaleString("en-US");
+  const probAbove = (S, X, T, sig) => X <= 0 ? 1 : CK.N((Math.log(S / X) + (R - sig * sig / 2) * T) / (sig * Math.sqrt(T)));
+  const seg = (selector, onPick) => {
+    const btns = document.querySelectorAll(selector);
+    btns.forEach(b => b.addEventListener("click", () => {
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      onPick(b);
+    }));
+  };
+
+  // ---------- fig 8-1 ----------
+  (function () {
+    const svg = document.getElementById("f1-svg");
+    const dS = document.getElementById("f1-d"), rvS = document.getElementById("f1-rv");
+    const T = 30 / DAY, IV = 0.30;
+    let mode = "put";
+    function strikeFor(t) {
+      let best = null;
+      for (let k = 60; k <= 110; k++) { const d = Math.abs(bs(100, k, T, IV, "p").delta); if (!best || Math.abs(d - t) < best[1]) best = [k, Math.abs(d - t)]; }
+      return best[0];
+    }
+    function draw() {
+      const tgt = +dS.value / 100, rv = +rvS.value / 100;
+      document.getElementById("f1-d-o").textContent = tgt.toFixed(2);
+      document.getElementById("f1-rv-o").textContent = rvS.value + "%";
+      const sp = mode === "spread";
+      const K = strikeFor(tgt), KL = K - 5;
+      const prem = bs(100, K, T, IV, "p").price - (sp ? bs(100, KL, T, IV, "p").price : 0);
+      const fair = bs(100, K, T, rv, "p").price - (sp ? bs(100, KL, T, rv, "p").price : 0);
+      const pnl = S => (prem - Math.max(K - S, 0) + (sp ? Math.max(KL - S, 0) : 0)) * 100;
+      const be = K - prem;
+      const win = probAbove(100, be, T, rv);
+      const ev = Math.exp(R * T) * (prem - fair) * 100;
+      const maxLoss = sp ? (5 - prem) * 100 : (K - prem) * 100;
+      const y = sp ? [-600, 300] : [-3600, 700];
+      const yt = sp ? [-600, -400, -200, 0, 200] : [-3000, -2000, -1000, 0];
+      const xs = range(65, 115, 0.25);
+      const sT = rv * Math.sqrt(T), mu = Math.log(100) + (R - rv * rv / 2) * T;
+      const pdf = S => Math.exp(-Math.pow(Math.log(S) - mu, 2) / (2 * sT * sT)) / (S * sT * Math.sqrt(2 * Math.PI));
+      const pm = Math.max(...xs.map(pdf));
+      const dens = xs.map(S => [S, y[0] + pdf(S) / pm * 0.36 * (y[1] - y[0])]);
+      plot(svg, {
+        x: [65, 115], y, xt: [70, 80, 90, 100, 110], yt,
+        yf: v => sp ? signedK(v) : (v === 0 ? "0" : "−" + Math.abs(v / 1000) + "k"), xlabel: "Stock price at expiry ($)", ylabel: "P&L at expiry (per contract, $)", zero: 0, vline: 100,
+        band: [65, be, "var(--tint-gamma)"],
+        series: [
+          { pts: dens, color: "var(--delta)", w: 1.2, op: 0.5, fill: y[0], fillOp: 0.10 },
+          { pts: xs.map(S => [S, pnl(S)]), color: "var(--theta)", w: 2.6 }
+        ],
+        dots: [[be, 0, "var(--gamma)", 4.5]],
+        labels: [[be, 0, "Breakeven " + be.toFixed(2), -6, -10, "end", "var(--gamma)"]]
+      });
+      document.getElementById("f1-r1").textContent = K + " · $" + Math.round(prem * 100);
+      document.getElementById("f1-r2").textContent = (win * 100).toFixed(1) + "%";
+      document.getElementById("f1-r3").textContent = Math.abs(ev) < 0.5 ? "$0" : money(ev);
+      document.getElementById("f1-r4").textContent = money(pnl(80));
+      document.getElementById("f1-r4s").textContent = "Stock at 80 at expiry (max loss " + CK.usd(-maxLoss) + ")";
+    }
+    seg("#fig1 .seg button", b => { mode = b.dataset.mode; draw(); });
+    dS.addEventListener("input", draw); rvS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 8-3 wheel ----------
+  (function () {
+    const D = {
+      up: { path: [100,104,103,109,112,110,116,121,119,126,131,129,136], eq: [10000,10163,10338,10509,10699,10897,11090,11300,11492,11711,11918,12139,12355],
+        rows: [[1,100,"Sell 96 put",1.63,104,"Expired"],[2,104,"Sell 100 put",1.75,103,"Expired"],[3,103,"Sell 99 put",1.72,109,"Expired"],[4,109,"Sell 105 put",1.89,112,"Expired"],[5,112,"Sell 108 put",1.98,110,"Expired"],[6,110,"Sell 106 put",1.92,116,"Expired"],[7,116,"Sell 112 put",2.10,121,"Expired"],[8,121,"Sell 116 put",1.92,119,"Expired"],[9,119,"Sell 115 put",2.19,126,"Expired"],[10,126,"Sell 121 put",2.07,131,"Expired"],[11,131,"Sell 126 put",2.21,129,"Expired"],[12,129,"Sell 124 put",2.15,136,"Expired"]],
+        prem: 2355, n: "0 / 0" },
+      flat: { path: [100,104,97,101,106,98,95,102,105,99,103,97,100], eq: [10000,10163,10038,10595,11264,10621,10481,11132,11301,11279,11842,11390,11847],
+        rows: [[1,100,"Sell 96 put",1.63,104,"Expired"],[2,104,"Sell 100 put",1.75,97,"Assigned, bought at 100"],[3,97,"Sell 102 call",1.57,101,"Expired"],[4,101,"Sell 106 call",1.69,106,"Expired"],[5,106,"Sell 112 call",1.57,98,"Expired"],[6,98,"Sell 103 call",1.60,95,"Expired"],[7,95,"Sell 100 call",1.51,102,"Called away, sold at 100"],[8,102,"Sell 98 put",1.69,105,"Expired"],[9,105,"Sell 101 put",1.78,99,"Assigned, bought at 101"],[10,99,"Sell 104 call",1.63,103,"Expired"],[11,103,"Sell 109 call",1.48,97,"Expired"],[12,97,"Sell 102 call",1.57,100,"Expired"]],
+        prem: 1947, n: "2 / 1" },
+      down: { path: [100,95,97,91,87,89,82,78,80,73,70,72,65], eq: [10000,10063,10414,9971,9710,9963,9352,8963,9165,8470,8170,8370,7670],
+        rows: [[1,100,"Sell 96 put",1.63,95,"Assigned, bought at 96"],[2,95,"Sell 100 call",1.51,97,"Expired"],[3,97,"Sell 102 call",1.57,91,"Expired"],[4,91,"Sell 96 call",1.39,87,"Expired"],[5,87,"Sell 96 call (Δ0.30 would be 92)",0.53,89,"Expired"],[6,89,"Sell 96 call (would be 94)",0.88,82,"Expired"],[7,82,"Sell 96 call (would be 86)",0.11,78,"Expired"],[8,78,"Sell 96 call (would be 82)",0.02,80,"Expired"],[9,80,"Sell 96 call (would be 84)",0.05,73,"Expired"],[10,73,"Sell 96 call (would be 77)",0.00,70,"Expired"],[11,70,"Sell 96 call (would be 74)",0.00,72,"Expired"],[12,72,"Sell 96 call (would be 76)",0.00,65,"Expired"]],
+        prem: 770, n: "1 / 0" }
+    };
+    const svg = document.getElementById("f3-svg");
+    const tbody = document.querySelector("#f3-tbl tbody");
+    let cur = "flat";
+    function draw() {
+      const d = D[cur];
+      const months = range(0, 12, 1);
+      const dots = [];
+      d.rows.forEach((r, i) => {
+        if (r[5].indexOf("bought") >= 0) dots.push([i + 1, d.eq[i + 1], "var(--gamma)", 5]);
+        if (r[5].indexOf("sold") >= 0) dots.push([i + 1, d.eq[i + 1], "var(--delta)", 5]);
+      });
+      plot(svg, {
+        x: [0, 12], y: [6000, 14000], xt: [0, 2, 4, 6, 8, 10, 12], yt: [6000, 8000, 10000, 12000, 14000],
+        xf: v => v === 0 ? "Start" : v + " mo", yf: v => "$" + (v / 1000) + "k", xlabel: "", ylabel: "Account equity ($)", zero: 10000,
+        series: [
+          { pts: months.map(m => [m, d.path[m] * 100]), color: "var(--muted)", w: 1.8, dash: "6 5" },
+          { pts: months.map(m => [m, d.eq[m]]), color: "var(--theta)", w: 2.6 }
+        ],
+        dots
+      });
+      tbody.innerHTML = d.rows.map((r, i) => `<tr><td class="mono">${r[0]}</td><td class="mono">${r[1]}</td><td>${r[2]}</td><td class="mono">${Math.round(r[3] * 100)}</td><td class="mono">${r[4]}</td><td>${r[5]}</td><td class="mono">${CK.usd(d.eq[i + 1])}</td></tr>`).join("");
+      const ret = v => "(" + (v >= 10000 ? "+" : "−") + Math.abs((v / 10000 - 1) * 100).toFixed(1) + "%)";
+      document.getElementById("f3-r1").textContent = CK.usd(d.eq[12]);
+      document.getElementById("f3-r1s").textContent = "Wheel year-end equity" + ret(d.eq[12]);
+      document.getElementById("f3-r2").textContent = CK.usd(d.path[12] * 100);
+      document.getElementById("f3-r2s").textContent = "Buy and hold, year-end" + ret(d.path[12] * 100);
+      document.getElementById("f3-r3").textContent = CK.usd(d.prem);
+      document.getElementById("f3-r4").textContent = d.n;
+    }
+    seg("#fig3 .seg button", b => { cur = b.dataset.path; draw(); });
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 8-4 management rules ----------
+  (function () {
+    const N = 1000, D = 45, IV = 0.30, W = 5, LAM = 1 / 250, JUMP = Math.log(0.88);
+    const Z = new Float64Array(N * D), U = new Float64Array(N * D);
+    const r1 = CK.rng(2026); for (let i = 0; i < N * D; i++) Z[i] = CK.gauss(r1);
+    const r2 = CK.rng(2027); for (let i = 0; i < N * D; i++) U[i] = r2();
+    const svg = document.getElementById("f4-svg"), rvS = document.getElementById("f4-rv");
+    const tbody = document.querySelector("#f4-tbl tbody");
+    let target = 0.16, jump = false, rule = "C", cache = null, cacheKey = "";
+    const NAMES = { A: "A hold to expiry", B: "B 50% profit target", C: "C B + 21 days", D: "D C + 2× stop" };
+    function sim(rv) {
+      const T0 = D / DAY;
+      let best = null;
+      for (let k = 1; k < 300; k++) { const d = Math.abs(bs(100, k, T0, IV, "p").delta); if (!best || Math.abs(d - target) < best[1]) best = [k, Math.abs(d - target)]; }
+      const Ks = best[0], Kl = Ks - W;
+      const credit = bs(100, Ks, T0, IV, "p").price - bs(100, Kl, T0, IV, "p").price;
+      const dt = 1 / DAY, comp = jump ? -LAM * (Math.exp(JUMP) - 1) : 0, sq = rv * Math.sqrt(dt), drift = (R - 0.5 * rv * rv) * dt;
+      const out = { A: [], B: [], C: [], D: [] };
+      const vals = new Float64Array(D);
+      for (let i = 0; i < N; i++) {
+        let S = 100;
+        for (let d = 1; d <= D; d++) {
+          const ix = i * D + d - 1;
+          S *= Math.exp(drift + comp + sq * Z[ix] + (jump && U[ix] < LAM ? JUMP : 0));
+          vals[d - 1] = d === D ? Math.max(Ks - S, 0) - Math.max(Kl - S, 0) : bs(S, Ks, (D - d) / DAY, IV, "p").price - bs(S, Kl, (D - d) / DAY, IV, "p").price;
+        }
+        out.A.push([credit - vals[D - 1], D]);
+        let b = null; for (let d = 1; d <= D; d++) if (vals[d - 1] <= 0.5 * credit) { b = [credit - vals[d - 1], d]; break; }
+        out.B.push(b || [credit - vals[D - 1], D]);
+        let c = null; for (let d = 1; d <= D; d++) { const v = vals[d - 1]; if (v <= 0.5 * credit || d === D - 21) { c = [credit - v, d]; break; } }
+        out.C.push(c);
+        let e = null; for (let d = 1; d <= D; d++) { const v = vals[d - 1]; if (v >= 3 * credit || v <= 0.5 * credit || d === D - 21) { e = [credit - v, d]; break; } }
+        out.D.push(e);
+      }
+      const stats = {};
+      for (const k of ["A", "B", "C", "D"]) {
+        const p = out[k].map(x => x[0] * 100), days = out[k].map(x => x[1]);
+        const sorted = p.slice().sort((a, b) => a - b);
+        const mean = p.reduce((a, b) => a + b, 0) / N, md = days.reduce((a, b) => a + b, 0) / N;
+        stats[k] = { p, win: p.filter(x => x > 0).length / N, mean, p5: sorted[Math.floor(0.05 * N)], worst: sorted[0], days: md, perday: mean / md };
+      }
+      return { Ks, Kl, credit, stats };
+    }
+    function hist(p) {
+      const lo = -450, w = 25, nb = 24, h = new Array(nb).fill(0);
+      p.forEach(v => { let i = Math.floor((v - lo) / w); i = Math.max(0, Math.min(nb - 1, i)); h[i]++; });
+      return h.map((c, i) => [lo + (i + 0.5) * w, c / p.length * 100]);
+    }
+    function draw() {
+      const rv = +rvS.value / 100;
+      document.getElementById("f4-rv-o").textContent = rvS.value + "%";
+      const key = target + "|" + jump + "|" + rv;
+      if (key !== cacheKey) { cache = sim(rv); cacheKey = key; }
+      const st = cache.stats, s = st[rule];
+      const hs = hist(s.p), ha = hist(st.A.p);
+      const ymax = Math.max(...hs.map(x => x[1]), ...ha.map(x => x[1]));
+      const top = Math.ceil(ymax * 1.12 / 10) * 10;
+      const step = [];
+      ha.forEach(([x, y]) => { step.push([x - 12.5, y]); step.push([x + 12.5, y]); });
+      const yt = []; for (let v = 0; v <= top + 1e-9; v += top > 60 ? 20 : 10) yt.push(v);
+      plot(svg, {
+        x: [-450, 150], y: [0, top], xt: [-400, -300, -200, -100, 0, 100], yt,
+        xf: v => signedK(v), yf: v => v + "%", xlabel: "P&L per trade (per contract, $)", ylabel: "Share of all trades", vline: 0,
+        bars: hs.map(([x, y]) => ({ x, y, w: 21, color: x > 0 ? "var(--theta)" : "var(--gamma)" })),
+        series: rule === "A" ? [] : [{ pts: step, color: "var(--muted)", w: 1.6, dash: "5 4" }],
+        labels: [[-450, top, "Short " + cache.Ks + " / long " + cache.Kl + ", credit " + cache.credit.toFixed(3), 8, 16, "start", "var(--muted)"]]
+      });
+      tbody.innerHTML = ["A", "B", "C", "D"].map(k => {
+        const v = st[k];
+        return `<tr class="${k === rule ? "on" : ""}"><td>${NAMES[k]}</td><td class="mono">${(v.win * 100).toFixed(1)}%</td><td class="mono ${v.mean >= 0 ? "pos" : "neg"}">${money(v.mean, 1)}</td><td class="mono neg">${money(v.p5)}</td><td class="mono neg">${money(v.worst)}</td><td class="mono">${v.days.toFixed(1)} days</td><td class="mono">${money(v.perday, 2)}</td></tr>`;
+      }).join("");
+      document.getElementById("f4-r1").textContent = (s.win * 100).toFixed(1) + "%";
+      document.getElementById("f4-r2").textContent = money(s.mean, 1);
+      document.getElementById("f4-r3").textContent = money(s.p5);
+      document.getElementById("f4-r4").textContent = money(s.perday, 2);
+    }
+    seg("#fig4 .seg button[data-d]", b => { target = +b.dataset.d; draw(); });
+    seg("#fig4 .seg button[data-j]", b => { jump = b.dataset.j === "1"; draw(); });
+    seg("#fig4 .seg button[data-r]", b => { rule = b.dataset.r; draw(); });
+    rvS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 8-5 heatmap ----------
+  (function () {
+    const svg = document.getElementById("f5-svg");
+    const pS = document.getElementById("f5-p"), rS = document.getElementById("f5-r");
+    const R0 = 0.05, RSPAN = 40;
+    const rOf = v => R0 * Math.pow(RSPAN, v / 100);
+    const PTS = {
+      fair: [[0.894, 0.119, "0.10"], [0.830, 0.204, "0.16"], [0.696, 0.437, "0.30"]],
+      vrp: [[0.935, 0.137, "0.10"], [0.878, 0.228, "0.16"], [0.737, 0.465, "0.30"]]
+    };
+    let which = "fair";
+    const cells = [];
+    for (let i = 0; i < 20; i++) for (let j = 0; j < 20; j++) {
+      const p0 = 0.5 + i * 0.025, rLo = R0 * Math.pow(RSPAN, j / 20), rHi = R0 * Math.pow(RSPAN, (j + 1) / 20);
+      const pc = p0 + 0.0125, rc = Math.sqrt(rLo * rHi), ev = pc * rc - (1 - pc);
+      const k = Math.round(10 + 62 * Math.min(Math.abs(ev) / 0.6, 1));
+      cells.push({ x: pc, y: rHi, y0: rLo, w: 0.0245, color: `color-mix(in srgb, ${ev >= 0 ? "var(--theta)" : "var(--gamma)"} ${k}%, var(--plate))` });
+    }
+    const curve = range(0.5, 0.995, 0.005).map(p => [p, (1 - p) / p]);
+    function draw() {
+      const p = +pS.value / 100, r = rOf(+rS.value);
+      document.getElementById("f5-p-o").textContent = pS.value + "%";
+      document.getElementById("f5-r-o").textContent = r.toFixed(2);
+      const pts = PTS[which];
+      plot(svg, {
+        x: [0.5, 1.0], y: [R0, R0 * RSPAN], ylog: true, xt: [0.5, 0.6, 0.7, 0.8, 0.9, 1.0], yt: [0.05, 0.1, 0.2, 0.5, 1, 2],
+        xf: v => Math.round(v * 100) + "%", yf: v => String(v), xlabel: "Win rate", ylabel: "Avg. win ÷ avg. loss (log)",
+        bars: cells,
+        series: [{ pts: curve, color: "var(--ink)", w: 2.2 }],
+        dots: pts.map(q => [q[0], q[1], "var(--ink)", 4.5]).concat([[p, r, "var(--delta)", 6.5]]),
+        labels: pts.map(q => [q[0], q[1], q[2], -8, 4, "end", "var(--ink)"])
+      });
+      const ev = (p * r - (1 - p)) * 100, ev3 = ((p - 0.03) * r - (1 - p + 0.03)) * 100;
+      document.getElementById("f5-r1").textContent = money(ev, 1);
+      document.getElementById("f5-r2").textContent = (100 / (1 + r)).toFixed(1) + "%";
+      document.getElementById("f5-r3").textContent = money(ev3, 1);
+    }
+    seg("#fig5 .seg button", b => { which = b.dataset.s; draw(); });
+    pS.addEventListener("input", draw); rS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+})();
+</script>
+<script id="lang-js">(function(){document.querySelectorAll(".lang-switch").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("hl-lang",a.getAttribute("data-lang"))}catch(e){}var h=a.getAttribute("href");if(location.hash&&h.indexOf("#")<0)a.setAttribute("href",h+location.hash);});});})();</script>
+</body>
+</html>

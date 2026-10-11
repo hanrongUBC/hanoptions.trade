@@ -1,0 +1,691 @@
+## source: policy/index.html  (345 segments)
+@@ 9634077e57 html
+政策叙事投资 · hanoptions.trade
+@@ 0a41270e95 html
+研习手册 · 十二章
+@@ b651e7dbd9 html
+政策叙事投资
+@@ 2fee74dced html
+政治口号每天都在变，政策带来的资本流向却能持续好几年。这本手册讲怎样把新闻里的宏大叙事，拆成可以验证、可以下注、也可以认错的投资主题。
+@@ ec16d60e39 html
+章节
+@@ 3ccd376a93 html
+交易政策，不交易口号
+@@ 7ab59f1a74 html
+政治新闻是市场里噪音最大的一类信息。但在噪音下面，有一些真正会改变钱往哪里流的东西：预算、法律、关税<span class="ek">（Tariff）</span>、出口限制、补贴<span class="ek">（Subsidy）</span>和采购合同。这本手册只关心后者。
+@@ 5e39ceb5a0 html
+口号和政策的区别
+@@ 02e005415b html
+一位政治人物说「要把工厂带回来」，这是口号。国会通过一部法律，给在本土建厂的企业提供补贴，财政部发布细则，企业宣布投资计划，工程公司拿到合同，这是政策和它产生的资本流向。前者第二天可能就被忘掉，后者会在财报<span class="ek">（Earnings report）</span>里持续体现好几年。
+@@ 4ea71012c8 html
+为什么要把政治立场放到一边
+@@ 967eeae6f5 html
+每个人都有政治观点，这很正常。问题是政治观点会悄悄地进入仓位：你支持的一方上台，你倾向于相信它的政策都会成功；你反对的一方上台，你倾向于认为经济要出问题。两种倾向都会让你看错。
+@@ b84d222c71 html
+市场不关心你支持谁，它只关心政策会让哪些公司的收入增加、哪些公司的成本上升。一个有用的检验：如果你支持的一方失势，你的仓位会不会让你睡不着？如果会，你押注的就是信念，而不是可以验证的逻辑。
+@@ 4ff69695b1 html
+这本手册里的主题从哪里来
+@@ bee18343b4 html
+近几年，美国的政策方向出现了几条相对持续的主线，而且很多获得了两党不同程度的支持：
+@@ 4ada26c153 html
+主线
+@@ 7a51d7779d html
+背后的逻辑
+@@ 17feb5928a html
+本书章节
+@@ 0b766579e5 html
+供应链<span class="ek">（Supply chain）</span>安全与西半球<span class="ek">（Western Hemisphere）</span>
+@@ d7ef9411ef html
+把关键产业链从地缘<span class="ek">（Geopolitics）</span>风险高的地区移开，移到本土或邻近国家
+@@ 0a9182db90 html
+第 3 章
+@@ b0bd76a8f0 html
+国防与备战<span class="ek">（Military preparedness）</span>
+@@ b0c73390ac html
+大国竞争和地区冲突让各国长期提高国防开支<span class="ek">（Defense spending）</span>
+@@ 3b11941a57 html
+第 4 章
+@@ f53d669e80 html
+资源与能源独立
+@@ 8d4a01df86 html
+关键矿产<span class="ek">（Critical minerals）</span>、能源和燃料的供应被视为国家安全<span class="ek">（National security）</span>问题
+@@ 6648ec5f17 html
+第 5 章
+@@ 59fc8cc0c3 html
+制造业回流<span class="ek">（Reshoring）</span>与关税
+@@ bf191c3c05 html
+用关税、补贴和采购偏好把制造业拉回本土
+@@ 3013c461eb html
+第 6 章
+@@ 4a0f168a42 html
+人工智能与电力
+@@ 08c4fca5ad html
+人工智能被视为生产率和国家竞争力的核心，带动电力和基础设施投资
+@@ d0243abec0 html
+第 7 章
+@@ d8e08f9e9c html
+通胀、消费与人口
+@@ 305e1c25bf html
+通胀对不同收入人群的影响不同；人口老龄化<span class="ek">（Population aging）</span>带来长期需求
+@@ 3f60aec59f html
+第 8 章
+@@ 5aff0285e6 html
+第 1、2 章讲方法：怎样给一个叙事<span class="ek">（Narrative）</span>打分，以及先决定什么不碰。第 9 章讲选举和政策周期，第 10 章讲具体怎么执行，第 11 章是工具箱。
+@@ 7608f72f83 html
+书中提到的公司和 ETF 只是帮助理解主题的例子，是研究的起点，不是买入建议。
+@@ 540bae6a6c html
+政策会变。书中写的是框架和截至成书时的公开事实，用之前要核对最新的法律和预算状态。
+@@ 8c23afe8dd html
+每一个主题都有反方观点，书里会一起列出。只看支持自己的证据，是主题投资<span class="ek">（Thematic investing）</span>里最常见的亏钱方式。
+@@ f105eecd7b html
+叙事评分：从口号到现金流
+@@ 902ba9f3c9 html
+叙事<span class="ek">（Narrative）</span>决定你研究什么，估值决定你什么时候买。把这两件事分开打分，是避免「故事对了、钱亏了」的第一步。
+@@ 6fe3d5ace9 html
+四步：从变化到价格
+@@ 5c1fbb6ffa html
+政策的耐久度，比政策的力度更重要
+@@ e822f94f66 html
+一项政策能给相关行业带来多少收入，取决于它能持续多久。比较 2022 年通过的两部法律：
+@@ c7023d82eb html
+芯片与科学法案（2022）
+@@ ddca0f9926 html
+两党都有议员投赞成票
+@@ 8d8c2d74cb html
+逻辑是国家安全<span class="ek">（National security）</span>和对华竞争，两党都认同
+@@ 8687be8490 html
+之后几年基本延续，补贴<span class="ek">（Subsidy）</span>陆续落地
+@@ 6b5060db71 html
+通胀削减法案（2022）
+@@ f7df45b34e html
+参议院以一党票数通过
+@@ 60ad4e27c5 html
+清洁能源税收抵免<span class="ek">（Tax credit）</span>是核心
+@@ e7113ba7f7 html
+2025 年的税收法案大幅缩减了电动车和风电、光伏的抵免
+@@ 2195af599a html
+这不是在评价哪部法律更好，而是说明一个规律：<strong>只有一党支持的政策，换届后被改写的概率高得多。</strong>押注它的公司，股价会随着选举结果大幅波动。两党都支持的方向，比如国防、供应链<span class="ek">（Supply chain）</span>安全、对关键技术的出口管制<span class="ek">（Export controls）</span>，耐久度通常更高。
+@@ 62ebe0d9d1 html
+六个打分维度
+@@ 0be401127b html
+前四项衡量叙事有多可靠，后两项衡量价格有多吸引人。把它们分开，才能回答两个不同的问题：值不值得研究，现在值不值得买。
+@@ 511fe995be html
+只是表态
+@@ 1c9c9cb710 html
+行政命令
+@@ a49e627cd9 html
+立法与预算
+@@ 7809d3270f html
+一党
+@@ 41a5f7b54b html
+部分跨党
+@@ 443beed98f html
+两党共识
+@@ 6a6e09dbf8 html
+一次性
+@@ 263c724d3b html
+几年
+@@ 96e6b664b4 html
+十年以上
+@@ a73a7423c8 html
+容易替代
+@@ e767bf54d4 html
+部分
+@@ 481ad7c6ae html
+绕不开
+@@ 6bbf0085c7 html
+人人都在聊
+@@ 9e2853606a html
+有人关注
+@@ 696c96bf2c html
+少有人看
+@@ 273bac0db6 html
+昂贵
+@@ b4e6d1e1fc html
+合理
+@@ 1900e771b3 html
+便宜
+@@ d79903d7db html
+叙事耐久度满分 8 分，价格吸引力满分 4 分。耐久度 5 分以上、价格 3 分以上，才落在「分批建仓」的象限。大多数热门主题会落在右上角：叙事很好，价格太贵，适合放进观察名单等待。
+@@ 104aab96a0 html
+叙事正确，表达工具可能是错的
+@@ dc1aaa4023 html
+一个正确的趋势里，会有大量公司因为执行不力、竞争、负债或稀释而失败。叙事对了，只说明这个方向会有钱流进去，不说明钱会流进你买的那一家。几个常见的错配：
+@@ bc475ca8d5 html
+<strong>买了最纯粹的故事，没买到最赚钱的环节。</strong>一个新技术的利润，经常先落在设备、材料和基础设施供应商身上，而不是最出名的终端公司。
+@@ e14d2b4d73 html
+<strong>买了概念，没买到收入。</strong>名字里带着热门词、但相关收入占比很小的公司，涨跌会跟着主题，长期表现却取决于它的主业。
+@@ d143191bdd html
+<strong>买了单一公司，承担了单一公司的风险。</strong>一家公司的事故、诉讼或管理层变动，就能抹掉整个主题带来的收益。主题 ETF 可以分散这一层风险。
+@@ 73a44b65eb html
+写下失效条件
+@@ 0c0e9ed3ae html
+买入一个主题之前，写下「什么事实出现以后，我会承认这个判断错了」。注意是事实，不是价格：
+@@ 1e1f167aa2 html
+不好的失效条件
+@@ d6be11492e html
+股价跌 20% 就认错
+@@ 4e3d893e97 html
+感觉风向变了
+@@ 6eb7ab745a html
+好的失效条件
+@@ cdc3fb6e9f html
+相关预算在拨款法案<span class="ek">（Appropriations bill）</span>中被削减
+@@ aa31b1b87d html
+主要客户连续两个季度下调资本开支<span class="ek">（Capital expenditure (capex)）</span>
+@@ cb42f5bc32 html
+补贴细则把这家公司排除在外
+@@ 1eeee97aa6 html
+叙事是工具，不是信仰。
+@@ 4793d3274b html
+先决定不碰什么：国家与市场
+@@ 592392e53e html
+主题投资<span class="ek">（Thematic investing）</span>的第一步，常常是做减法。先排除那些结构上不利、风险说不清的市场，剩下的选择会清楚得多。
+@@ 716d0afc4c html
+便宜不等于低估
+@@ 0bdb7397a0 html
+很多国家的股市长期市盈率<span class="ek">（Price-to-earnings ratio (P/E)）</span>很低，看起来很便宜。但低估值往往有它的原因：增长慢、行业结构偏旧、资本回报率低、政策不稳定、货币长期贬值。如果这些原因没有改变，便宜的东西可以一直便宜下去，甚至更便宜。这就是价值陷阱<span class="ek">（Value trap）</span>。
+@@ 53a976c193 html
+判断一个市场是不是真的被低估，要问：让它便宜的原因，有没有正在改变的迹象？比如公司治理改革、利率环境变化、主要行业的周期反转。没有这样的催化剂，低估值本身不构成买入理由。
+@@ 9478043f8f html
+买一个国家的指数，其实是在买它的行业结构
+@@ 0666844339 html
+国家指数<span class="ek">（Country index）</span>通常按市值加权<span class="ek">（Market-cap weighted）</span>，所以一个国家的股市表现，很大程度上由它最大的几个行业决定：
+@@ 33c9de3c90 html
+市场
+@@ 0a32a09238 html
+指数的大致结构
+@@ b3a2609e50 html
+它其实在押注什么
+@@ 160ced475e html
+韩国
+@@ 70a1232c07 html
+半导体和存储芯片权重很高
+@@ 84525d901d html
+全球存储周期和科技资本开支<span class="ek">（Capital expenditure (capex)）</span>
+@@ f1496a99ea html
+台湾地区
+@@ 2c9d662e0c html
+单一晶圆代工龙头占比极高
+@@ 6a569705ed html
+先进制程需求，以及地缘<span class="ek">（Geopolitics）</span>风险
+@@ b56a753547 html
+英国
+@@ d561f8f698 html
+能源、金融、必需消费、矿业占比高
+@@ eeb206595b html
+大宗商品价格和股息<span class="ek">（Dividend）</span>，科技成分很少
+@@ 5d9b3c580a html
+德国
+@@ becac5dab8 html
+工业、汽车、化工占比高，出口依赖重
+@@ 0bf1ca4cd6 html
+全球制造业周期、能源成本、对外贸易
+@@ 2c2c8482ef html
+墨西哥
+@@ 5a01085068 html
+消费、金融、材料，叠加近岸制造
+@@ 854f44d411 html
+美国需求和对美贸易关系
+@@ 47bff00b7f html
+美国
+@@ ec42cb1d8f html
+大型科技公司权重很高
+@@ 289aafbb90 html
+人工智能和平台经济的盈利能力
+@@ dd7fe0fc9f html
+这张表告诉你，「看好某个国家」这句话太粗了。你看好的到底是它的哪个行业？如果是那个行业，直接买全球的行业 ETF 或者行业龙头，可能比买整个国家更干净。
+@@ d4899e44f9 html
+资本没有国籍
+@@ 0e2c1e79b9 html
+资本会流向回报最高、风险最可控的地方，不管它在哪个国家。所以判断一个市场，要像资本一样冷静地比较：
+@@ 0edea1f5c3 html
+<strong>增长和资本回报</strong>：企业能不能持续赚到高于资金成本的回报。
+@@ 4252621f14 html
+<strong>货币</strong>：对美元投资者来说，当地货币贬值会直接吃掉股票的收益。
+@@ 068bcd8c06 html
+<strong>治理和股东回报</strong>：公司是否重视小股东，有没有持续的分红和回购<span class="ek">（Share buyback）</span>。
+@@ 090b8dde87 html
+<strong>政策可预期性</strong>：规则会不会突然改变，外资会不会被区别对待。
+@@ ab2ba8626e html
+<strong>地缘与制裁<span class="ek">（Sanctions）</span>风险</strong>：这一点过去常被忽视。2022 年俄乌冲突爆发后，外国投资者持有的俄罗斯股票几乎在一夜之间无法交易，主要指数公司随后把俄罗斯从指数中剔除。持有的东西还在，但已经卖不掉了。
+@@ 8a0ed157e4 html
+几类需要格外谨慎的市场
+@@ b7a96fb783 html
+类型
+@@ 4b678c25cd html
+为什么要谨慎
+@@ a5532611c7 html
+如果一定要参与
+@@ 8daa333168 html
+长期低增长、低估值的发达市场
+@@ 4c689b5268 html
+可能是价值陷阱，缺少催化剂
+@@ e98720cbbf html
+只在出现明确的改革或周期拐点时参与
+@@ 67587241d0 html
+高度集中、又处在地缘热点的市场
+@@ 0d2c7af0cf html
+好的时候涨得很快，一旦地缘风险上升，跌得也很快，像一个「烫手山芋」
+@@ f1466ab046 html
+小仓位，当成交易而不是长期配置
+@@ e6c0a833f6 html
+政策对外资不友好、资本管制<span class="ek">（Capital controls）</span>风险高的市场
+@@ 2e662de22c html
+估值再低，也可能因为规则变化而无法退出
+@@ 9d1ccc2462 html
+用流动性<span class="ek">（Liquidity）</span>好的 ETF，避免直接持有当地股票
+@@ cd20c3428c html
+「新兴市场<span class="ek">（Emerging markets）</span>除某国」的组合
+@@ 7b201a056f html
+去掉一个大国的风险，不等于剩下的就低风险。剩下的国家各有自己的货币和政治风险
+@@ b010fb8491 html
+看清楚前十大持仓和国家权重，不要只看名字
+@@ 66c2348b29 html
+做减法的好处
+@@ db465f2876 html
+先写一份「不碰清单」，好处是在市场热闹的时候保护你。某个市场突然大涨，社交平台上人人都在讨论，你只需要看一眼清单：它为什么在上面？那个原因改变了吗？没有改变，就让这次机会过去。错过一个机会的代价，远小于在一个规则说不清的市场里被困住的代价。
+@@ 1ae2752e54 html
+做主题投资的交易者，常常先公布一份「回避的市场」，再公布要研究的主题。顺序本身就有意义：先把风险说不清的地方排除掉，剩下的才值得花时间。
+@@ c0003a49dd html
+西半球与供应链重组
+@@ 1975459c7b html
+过去三十年，全球化的原则是「哪里便宜在哪里生产」。现在越来越多的政策在问另一个问题：哪里安全？答案常常是本土，或者离本土近、关系稳定的邻国。
+@@ 5a4e574222 html
+从效率优先到安全优先
+@@ 0980b09c53 html
+疫情期间的断供、地区冲突对航运的冲击、关键技术的出口管制<span class="ek">（Export controls）</span>，让各国政府重新评估供应链<span class="ek">（Supply chain）</span>的风险。新的思路有几个名字：
+@@ f335c03dcd html
+<strong>回流<span class="ek">（Reshoring）</span></strong>：把生产搬回本国。
+@@ ea23dc4d14 html
+<strong>近岸外包<span class="ek">（Nearshoring）</span></strong>：搬到邻近的国家，比如从亚洲搬到墨西哥。
+@@ 1488b20a10 html
+<strong>友岸外包<span class="ek">（Friend-shoring）</span></strong>：搬到政治上关系稳定的盟友国家。
+@@ ec8e4439b7 html
+这种转变已经体现在数据里：2023 年，墨西哥取代中国，成为美国最大的进口来源国。对投资者来说，关键问题是：供应链重组的过程中，哪些环节必须新建、哪些服务必须被购买？
+@@ c3ca7c71db html
+西半球被重新重视
+@@ d90fd7a9cf html
+美国的政策讨论里，越来越多地把西半球<span class="ek">（Western Hemisphere）</span>（北美、中美和南美）视为自己的战略后院：既是供应链转移的目的地，也是资源和安全的来源。这带来了一个以前不太被注意的风险：<strong>商业资产可能被重新定义为国家安全<span class="ek">（National security）</span>资产。</strong>
+@@ d6e72d39f3 html
+2025 年，巴拿马运河两端港口经营权的出售，就被放在了国家安全和大国竞争的框架下讨论。一项原本只是商业交易的资产买卖，变成了外交议题。这意味着，在战略位置上的港口、矿山、电网<span class="ek">（Power grid）</span>和通信设施，所有权结构可能随着政策突然改变，持有它们的公司既可能受益，也可能被迫出售。
+@@ 598ffeef18 html
+三个阶段：先安全，后资源，再制造
+@@ 084bfc927b html
+一、安全与执法
+@@ 8497a943a2 html
+边境、监控、情报
+@@ d5976da5e6 html
+无人机、海上巡逻
+@@ f82dcbffcc html
+数据分析软件
+@@ 16240c9cff html
+政府预算先到
+@@ af74e469bc html
+二、资源开发
+@@ 0a3e94745f html
+铜、锂、关键矿产
+@@ f4778efbc0 html
+油气与油服
+@@ 0e5a097e70 html
+港口与运输
+@@ d07e67db1d html
+安全改善后资本进入
+@@ c2ea1cc8e8 html
+三、近岸制造与物流
+@@ b47a4dcb64 html
+工业地产、仓储
+@@ 072186fbc3 html
+铁路、卡车、跨境物流
+@@ a29922ba62 html
+工程建设、电力设备
+@@ 52624e15fa html
+时间最长，规模最大
+@@ fd03ba03d9 html
+每个阶段的受益者不同，节奏也不同。第一阶段的钱来自政府预算，来得快但规模有限；第三阶段来自企业的资本开支<span class="ek">（Capital expenditure (capex)）</span>，来得慢但持续时间最长。
+@@ 198c2bd774 html
+这个顺序的道理很朴素：资本不会进入一个不安全的地方。所以当一个地区成为政策重点时，最先拿到订单的往往是安全、执法和监控相关的公司；安全环境改善之后，资源开发的投资才会跟进；等到基础设施和政治环境都稳定了，制造业和物流的长期投资才会大规模到来。
+@@ d171cad4f6 html
+常被归入这条链条的公司类型，比如无人机<span class="ek">（Drone）</span>和海上装备制造商、政府数据分析软件公司（第一阶段），铜矿和油服公司（第二阶段），工业地产<span class="ek">（Industrial real estate）</span>、跨境铁路和工程建设<span class="ek">（Engineering and construction (E&C)）</span>公司（第三阶段）。投资拉丁美洲整体的懒人方式，是区域 ETF，比如拉美 40 指数基金或墨西哥国家 ETF。
+@@ 0c4d49f6d2 html
+墨西哥：一枚硬币的两面
+@@ 90645af10f html
+支持的一面
+@@ 46555d8549 html
+离美国近，运输时间短
+@@ f5fe8de187 html
+劳动力成本相对较低
+@@ 5c928d2f9f html
+北美贸易协定<span class="ek">（Trade agreement）</span>提供框架
+@@ 70daf3f369 html
+已经是美国最大的进口来源国
+@@ 9a6c074631 html
+反对的一面
+@@ aafbef1552 html
+贸易协定会定期审议，关税<span class="ek">（Tariff）</span>威胁随时可能出现
+@@ 8f8bbf022f html
+治安和安全问题影响投资意愿
+@@ 384356a91f html
+电力和水资源等基础设施跟不上
+@@ a17f3a5e98 html
+部分投资只是把中国零部件在墨西哥组装
+@@ c016979435 html
+对这种「双面叙事<span class="ek">（Narrative）</span>」，最好的做法是同时盯住两边的证据：外商直接投资<span class="ek">（Foreign direct investment (FDI)）</span>和工业地产的空置率<span class="ek">（Vacancy rate）</span>（支持面），以及贸易协定审议、关税公告和安全事件（反对面）。哪一边的证据在累积，就往哪一边调整仓位。
+@@ 5ccde1684d html
+区域政治也在变化
+@@ 1b091cd5a9 html
+近几年，拉美有些国家选出了更强调市场化和吸引外资的政府，也有国家在加强资源国有化<span class="ek">（Resource nationalism）</span>。对投资者来说，政府的政治光谱不是重点，重点是几件具体的事：外资能不能自由进出，合同和产权是否被尊重，资源税和特许权使用费<span class="ek">（Royalty）</span>会不会突然上调。这些比选举口号更能决定一个矿山或一条铁路的价值。
+@@ b1bae7a3fc html
+国防：战争会结束，备战不会
+@@ 727faf38d8 html
+一场冲突会结束，但它带来的教训会改变各国未来十年的预算。投资国防主题，要区分两种钱：冲突期间的应急开支<span class="ek">（Emergency spending）</span>，和冲突结束后仍然会持续的备战<span class="ek">（Military preparedness）</span>开支。
+@@ 79db9d2b8c html
+为什么国防开支是长周期
+@@ 072e096049 html
+<strong>欧洲在补课</strong>：2025 年北约峰会上，成员国同意在 2035 年前把国防及相关开支提高到 GDP 的 5%，其中核心国防开支<span class="ek">（Defense spending）</span> 3.5%。这比过去普遍不到 2% 的水平高出一大截。
+@@ d59f14d9af html
+<strong>库存要重建</strong>：近年的冲突消耗了大量弹药<span class="ek">（Munitions）</span>和防空导弹，许多国家的库存需要好几年才能补回来。
+@@ 7ac128188c html
+<strong>两党支持</strong>：在美国，国防预算是少数两党都愿意支持的支出项目之一，耐久度高。
+@@ 04d81d9af6 html
+<strong>采购周期长</strong>：一艘军舰、一款战机的合同动辄持续十年以上，承包商的收入能见度很高。
+@@ b046b7a31c html
+现代战争需要「便宜、够用、能大量生产」
+@@ fa5f4140c0 html
+近年的冲突显示，大量廉价的无人机<span class="ek">（Drone）</span>和弹药，常常比少量昂贵的平台更有效。用一枚几百万美元的导弹去拦截一架几万美元的无人机，在经济上是不可持续的。这改变了采购的重点：
+@@ e0551de2ea html
+方向
+@@ 01ed9c20c1 html
+逻辑
+@@ 2507e9ea2b html
+常被讨论的公司类型
+@@ 1cb0f77296 html
+无人机与巡飞弹<span class="ek">（Loitering munition）</span>
+@@ d3d6714e72 html
+便宜、可大量生产、可消耗
+@@ 212cb918bd html
+小型无人机和目标机制造商
+@@ 0a96e7950d html
+弹药与推进剂
+@@ 777fc90c93 html
+消耗最大，产能不足
+@@ c4fc810001 html
+弹药生产商、化工原料商
+@@ e986f6814a html
+防空与反无人机
+@@ 09a7a4650b html
+需要更便宜的拦截手段
+@@ e82ec67411 html
+传感器、电子战、定向能
+@@ e74dbf7c5e html
+造船与维修
+@@ 7e86aa27dc html
+海军扩张，船厂产能是瓶颈
+@@ 3d294948d7 html
+军用船厂
+@@ 75b4f9be27 html
+软件与数据
+@@ 0cd103214f html
+战场信息整合和决策速度
+@@ c8dad1208c html
+国防数据分析软件公司
+@@ 7d666304d6 html
+懒人表达是美国航空航天与国防 ETF（例如 ITA、PPA）。需要注意：这类 ETF 里商用航空的权重不小，它会同时受到航空旅行周期的影响。
+@@ aae39ef572 html
+战后交易：哪些成本会消失
+@@ a9818a1776 html
+冲突期间，市场会为风险付出很多额外的成本：原油里的风险溢价<span class="ek">（Risk premium）</span>、航运保险<span class="ek">（Marine insurance）</span>费、绕行带来的运费、航空公司的燃油成本。冲突缓和时，最值得问的问题是：<strong>战争制造的哪些成本会消失？谁会从这些成本的消失中受益最多？</strong>
+@@ 511dd62427 html
+冲突升级
+@@ f9bee2a520 html
+长期对峙
+@@ 4978762c20 html
+停火谈判
+@@ 9592e4ea2b html
+战后重建
+@@ 1f8e3bc086 html
+以一场影响产油区和航运通道的地区冲突为例。真实的冲突很少按顺序走完四个阶段，常常在升级和对峙之间反复，所以要盯的是「验证信号」，而不是新闻标题。
+@@ 1fb754746c html
+还有一点容易被忽视：<strong>战后，国防股不一定下跌。</strong>如果冲突的教训推动了长期的备战开支，国防承包商的订单会继续增长；下跌的往往是那些只靠应急开支、短期订单的公司。所以在冲突高峰时追高国防股，和在冲突缓和时恐慌卖出，都是常见的错误。
+@@ 3d53a4c2dd html
+别把冲突当成交易的唯一理由
+@@ df86442c1e html
+地缘<span class="ek">（Geopolitics）</span>事件的时间和结果极难预测，而且市场对它们的反应常常比想象中短暂。一个更稳妥的做法：
+@@ b9ee612a5b html
+长期仓位押注备战开支的结构性增长，而不是某一场冲突。
+@@ a977301eb9 html
+短期的冲突交易用小仓位、有限风险的工具（比如价差），并预先写好退出条件。
+@@ 0c0e6f2c3f html
+用组合对冲<span class="ek">（Hedge）</span>：持有受益于冲突升级的资产时，用一小部分资金持有受益于冲突缓和的资产，比如航空股或它们的看涨期权<span class="ek">（Call option）</span>。
+@@ df03681d8b html
+资源独立：能源、关键矿产与黄金
+@@ 2816e3503f html
+真正的工业独立，首先来自资源独立。没有铜，就没有电网<span class="ek">（Power grid）</span>；没有稀土<span class="ek">（Rare earths）</span>磁体，就没有电机和导弹；没有燃料，原油再多也开不动卡车。
+@@ a958534848 html
+关键矿产：瓶颈在加工，不在矿山
+@@ 1209e45694 html
+很多关键矿产<span class="ek">（Critical minerals）</span>在地球上并不稀缺，稀缺的是开采之后的分离、提炼和加工能力。以稀土为例，全球大约九成的稀土加工能力集中在中国。这让它成了一种地缘<span class="ek">（Geopolitics）</span>工具：
+@@ 177680428d html
+2023 年起，镓、锗、石墨等材料陆续被纳入出口管制<span class="ek">（Export controls）</span>。
+@@ 668847ea36 html
+2025 年，管制扩大到多种稀土元素和相关技术，一些海外的汽车和电子制造商一度面临零部件短缺。
+@@ b1c7cbe8b6 html
+各国的回应是想办法建立「从矿山到磁体」的完整本土链条。这需要很多年，投资巨大，而且在早期往往没有经济效益，因为对手的加工成本更低、可以压低价格。于是政府开始用更直接的工具介入。
+@@ 1ea8a166a0 html
+政府入股和价格底线
+@@ a7bac9d563 html
+2025 年，美国政府采取了一些过去少见的做法：国防部入股一家本土稀土公司，并承诺长期的价格底线<span class="ek">（Price floor）</span>和采购；政府还入股了一家大型芯片制造商。无论你怎样评价这种做法，它对投资的含义很清楚：<strong>政府站到了某些公司的身后，替它们承担了一部分价格风险。</strong>
+@@ cd21a5f1a7 html
+价格底线的效果，相当于政府免费送给公司一张看跌期权<span class="ek">（Put option）</span>。下面用一个假设的例子算一下：
+@@ ad04500d44 html
+市场价格 <input id="pf-m" type="range" min="30" max="160" value="60"> <output id="pf-m-o">$60</output>
+@@ 7c41c2404d html
+政府底价 <input id="pf-f" type="range" min="0" max="140" step="5" value="110"> <output id="pf-f-o">$110</output>
+@@ 865a5b28eb html
+假设：生产成本每公斤 70 美元。看跌期权按 Black-Scholes 估值，期限 1 年、价格波动率 40%、利率 4%，只是为了说明这份保底在金融上值多少钱。市场价格越低，这份保底越值钱，公司的盈利也越不受价格周期影响，估值方式会从「周期股<span class="ek">（Cyclical stocks）</span>」向「公用事业」靠拢。
+@@ 73c0d857d9 html
+反过来也要看到风险：政府的支持可以随着政策改变而减弱；有政府入股<span class="ek">（Government equity stake）</span>的公司，经营决策可能受到非商业因素的影响；而且一旦所有人都意识到这个保底，股价会很快把它算进去。
+@@ f9e1f926de html
+能源：有油不代表有燃料
+@@ 15591fb8a0 html
+能源独立不只是能开采多少原油，还包括能炼出多少汽油、柴油和航空煤油。美国是原油生产大国，但炼油<span class="ek">（Refining）</span>能力几十年来增长有限，一些炼厂还在关闭。成品油（尤其是柴油）紧张时，炼油公司的利润（裂解价差）会大幅扩大，而原油生产商不一定受益。
+@@ 35a75a4e41 html
+能源主题里的几个环节，对应的驱动并不相同：
+@@ 276905077a html
+环节
+@@ 3381fb6cd0 html
+主要驱动
+@@ 10c6ffb222 html
+政策风险
+@@ 77dab4ecae html
+上游油气生产
+@@ 9e5df3f5fa html
+油价、产量、资本纪律
+@@ 65a46599d6 html
+开采许可、出口政策
+@@ 0ace61948b html
+油服
+@@ ad69d427a0 html
+全球钻井和开发投资
+@@ d7d0ae9486 html
+地区安全、资源国政策
+@@ 05f19d5aab html
+炼油
+@@ 37a9ea31c4 html
+裂解价差<span class="ek">（Crack spread）</span>、炼厂开工率
+@@ 6ad5244e9b html
+出口限制、环保法规
+@@ c96d725179 html
+核电与铀
+@@ 276843e16e html
+电力需求、长期购电合同<span class="ek">（Power purchase agreement (PPA)）</span>
+@@ 5498f496a7 html
+审批速度、燃料供应
+@@ db412410f3 html
+电网设备
+@@ 0ace47ebee html
+电力需求增长、老化电网更新
+@@ 8d11dcd36a html
+审批和地方阻力
+@@ ba2b98d016 html
+黄金：对冲货币秩序的分裂
+@@ 33506f63e1 html
+传统上，黄金和实际利率<span class="ek">（Real yield）</span>反向变动。但 2022 年以后，各国央行每年购买超过一千吨黄金，这股买盘让黄金和实际利率的关系明显变弱。央行买金的动机，很大程度上是为了减少对单一货币和单一金融体系的依赖：2022 年俄罗斯的外汇储备被冻结，让许多国家意识到，以别国货币持有的资产可能在冲突中被冻结。
+@@ fa57b788c8 html
+所以在今天的叙事<span class="ek">（Narrative）</span>里，黄金更像是对「货币秩序<span class="ek">（Monetary order）</span>分裂」和「主要经济体内部风险」的对冲<span class="ek">（Hedge）</span>。一些大型经济体的居民在房地产和本地金融资产承压时，也在增加黄金配置，这让黄金的需求有了宏观之外的支撑。
+@@ 8b0f4538d8 html
+黄金
+@@ 210da81e66 html
+央行和居民的结构性需求
+@@ f1fc1fc8cf html
+对冲信誉风险、地缘风险
+@@ ac7c8ad133 html
+相对「干净」，没有工业周期
+@@ 2708e23f7b html
+白银
+@@ 22091366cc html
+贵金属叙事加上工业需求（电子、光伏）
+@@ e55948d0d7 html
+波动更大，受经济周期影响
+@@ 3e886bc150 html
+适合想放大黄金叙事、能承受更大波动的人
+@@ d3e388d732 html
+反方观点同样要记住：黄金不产生现金流，持有它的回报完全来自别人愿意支付的更高价格。央行买盘一旦放缓，或者实际利率大幅上升，黄金可能经历很长的横盘甚至下跌。
+@@ 634c4e06c0 html
+制造业回流与关税
+@@ 6632b10432 html
+不要问谁会把工厂搬回来，要问谁会因为所有人都需要它而赚钱。工厂建在哪里、由谁来建，充满了不确定性；但不管谁建，都要买设备、用电、请工程公司、租仓库。
+@@ ea2a66dcaa html
+回流需要的「铲子」
+@@ 725a71c973 html
+为什么绕不开
+@@ 895238ac52 html
+工程建设<span class="ek">（Engineering and construction (E&C)）</span>
+@@ 00ea09073d html
+每座工厂、每条产线都要有人设计和建造
+@@ 5dd3c0a830 html
+大型工程建设公司
+@@ 02501ae4ba html
+电力设备
+@@ 2016c08dcb html
+新工厂和数据中心<span class="ek">（Data center）</span>都需要接入电网<span class="ek">（Power grid）</span>；大型变压器<span class="ek">（Transformer）</span>的交货周期一度长达数年
+@@ 42c85f7428 html
+变压器、开关柜、电网设备制造商
+@@ c94e7b825b html
+工业自动化<span class="ek">（Industrial automation）</span>
+@@ 67ce048c8e html
+本土人工贵，回流<span class="ek">（Reshoring）</span>的工厂必须更自动化
+@@ ee7ed53dce html
+机器人、控制系统、传感器公司
+@@ a0006452b3 html
+电子制造服务<span class="ek">（Electronics manufacturing services (EMS)）</span>
+@@ 9ff9b953fb html
+品牌商不想自己建厂，外包给本土代工
+@@ f0b2dd5d1e html
+电子代工和组装公司
+@@ d52d3048e2 html
+运输与物流
+@@ f0572c4c2a html
+零部件和成品要在新的地点之间流动
+@@ be8bf81245 html
+重型卡车制造商、铁路、工业地产<span class="ek">（Industrial real estate）</span>
+@@ af42ff44fd html
+技术工人培训
+@@ cb732b2f0e html
+电工、焊工、机械师长期短缺
+@@ ebcaa4368b html
+职业教育、人力服务
+@@ e022ccdd07 html
+懒人表达是美国基础设施类 ETF（例如 PAVE）和电网设备类 ETF。主题里最大的风险是周期：工业资本开支<span class="ek">（Capital expenditure (capex)）</span>对利率很敏感，利率上升、补贴<span class="ek">（Subsidy）</span>退坡时，项目会推迟甚至取消。
+@@ 8cbc77d797 html
+关税到底由谁来付
+@@ ef12b00062 html
+关税<span class="ek">（Tariff）</span>在法律上由进口商缴纳，但经济上的负担会在三方之间分摊：外国出口商（降价来保住订单）、进口商（压缩自己的利润）、消费者（买更贵的东西）。各自承担多少，取决于谁的议价能力更强。
+@@ 40908b4cde html
+对股票投资者来说，最重要的是一家公司能把多少成本转嫁<span class="ek">（Pass-through）</span>给客户，以及转嫁以后客户会不会少买。下面用一个假设的公司算一下：收入 100，商品成本 60（毛利率 40%），成本里一半来自进口。
+@@ 40960efe62 html
+关税税率 <input id="tf-t" type="range" min="0" max="60" step="5" value="25"> <output id="tf-t-o">25%</output>
+@@ 903f2bffc2 html
+转嫁比例 <input id="tf-p" type="range" min="0" max="100" step="5" value="50"> <output id="tf-p-o">50%</output>
+@@ a3e04679e8 html
+需求弹性 <input id="tf-e" type="range" min="0" max="20" value="10"> <output id="tf-e-o">1.0</output>
+@@ bb452376e7 html
+需求弹性<span class="ek">（Price elasticity of demand）</span> 1.0 的意思是：价格每涨 1%，销量减少 1%。默认参数下，25% 的关税让成本增加 7.5，公司转嫁一半、提价 3.75%，销量减少 3.75%，毛利润下降约 12.8%。把弹性拖到 0，全额转嫁可以完全保住毛利润；拖到 2.0，就算全额转嫁，毛利润也要下降 15%。品牌强、产品难替代的公司弹性低，这就是「定价权<span class="ek">（Pricing power）</span>」。
+@@ 249ed25575 html
+关税的二阶影响
+@@ 79e679b4ac html
+<strong>本土竞争者受益</strong>：进口品变贵以后，本土生产同类产品的公司可以提价或抢份额。钢铁、部分化工和制造业是典型例子。
+@@ 84af8bf890 html
+<strong>下游用户受损</strong>：以钢铁、铝为原料的制造商，成本跟着上升。
+@@ 76f4172ad0 html
+<strong>贸易绕道</strong>：部分商品改从第三国转口，第三国的物流和组装业务增加，直到规则堵上这个漏洞。
+@@ de0cef3ed2 html
+<strong>报复和谈判</strong>：对方的反制关税会打击出口型行业，比如农产品和飞机。很多关税最后成为谈判筹码，宣布、暂缓、调整反复出现。
+@@ d96ef2e440 html
+最后一点特别重要。关税政策经常出现「先强硬宣布、再部分让步」的节奏。2025 年 4 月，大规模关税宣布后，股市和美债同时剧烈下跌，一周之内多数关税就宣布暂缓 90 天。交易关税新闻时，要把「暂缓或豁免」当成一种随时可能出现的情景，不要在第一天的恐慌里把仓位砍光，也不要在第一天的欢呼里追高。
+@@ 0cea9fe08a html
+读一家公司的财报<span class="ek">（Earnings report）</span>电话会，找三个问题的答案：进口成本占比多少？已经提价了多少，客户反应如何？有没有在调整供应链<span class="ek">（Supply chain）</span>，需要多久？三个答案都清楚的公司，关税风险通常已经被管理住了。
+@@ 59fce3723a html
+人工智能、电力与机器人
+@@ c551b33f44 html
+在政策叙事<span class="ek">（Narrative）</span>里，人工智能不只是一项技术，而是降低单位劳动成本、维持国家竞争力的工具。不管哪家公司在模型竞赛中胜出，它都必须买电、买硬件、连网络。
+@@ 961f3f9f8d html
+从应用到电厂：钱往下游流
+@@ a0f6af7bb7 html
+不管谁赢都要买的程度
+@@ c244afb6bf html
+最大的风险
+@@ a8ab62ee5a html
+应用与软件
+@@ 7c37977890 html
+竞争最激烈，商业化未知
+@@ 0cae8d93e2 html
+模型公司
+@@ 9a490024fc html
+烧钱，赢家难料
+@@ c29e9423a2 html
+云计算与大型科技
+@@ 2dcace2e9d html
+投资能否带来回报
+@@ abe3c8c0ac html
+芯片与存储
+@@ 1347ec56fb html
+周期性，客户集中
+@@ a63756bf35 html
+网络与服务器
+@@ 783db6af80 html
+订单随资本开支波动
+@@ ad9d0ac2b1 html
+数据中心建设与冷却
+@@ 65df800801 html
+项目延期，融资成本
+@@ 2de1d4cf76 html
+电力与电网
+@@ 5ac41b65be html
+审批慢，地方阻力
+@@ 3e07c461b8 html
+↓ 钱从上层的资本开支流向下层的订单
+@@ a779fd6019 html
+上层的竞争最激烈，赢家通吃也最明显；下层的需求来自所有上层玩家的总和，但同时受物理约束（电力、审批、设备交货期）。右侧标注的是每一层最大的风险。
+@@ da43b6cee2 html
+这张图解释了为什么「卖铲子<span class="ek">（Picks and shovels）</span>」的逻辑在人工智能主题里特别流行：模型公司之间谁胜谁负很难判断，但它们加起来的资本开支<span class="ek">（Capital expenditure (capex)）</span>，最终会变成芯片、网络设备、数据中心<span class="ek">（Data center）</span>建设和电力的订单。
+@@ 55b4108bfc html
+电力：最硬的约束
+@@ 5736ec64e2 html
+数据中心的用电量增长，让电力从一个增长缓慢的公用事业，变成了科技主题的一部分。几个值得关注的环节：
+@@ e8c8f27bf2 html
+<strong>发电</strong>：能长期稳定供电的电源最受欢迎，核电和天然气发电的长期购电合同<span class="ek">（Power purchase agreement (PPA)）</span>受到大型科技公司追捧。
+@@ c616557d76 html
+<strong>电网<span class="ek">（Power grid）</span>设备</strong>：变压器<span class="ek">（Transformer）</span>、开关设备、输电线路，交货期长，产能扩张慢。
+@@ dc68156cfd html
+<strong>燃气轮机<span class="ek">（Gas turbine）</span>和冷却设备</strong>：数据中心自建电源和散热的需求。
+@@ 42747131ef html
+<strong>网络和连接</strong>：数据中心内部和之间的高速网络，拥有相关专利和设备的公司也会受益。
+@@ 77c4343782 html
+反方观点：电力需求的预测历史上多次过于乐观；芯片能效的提升可能降低单位算力的耗电；一些地方的居民和政府开始反对新建数据中心，理由是电价、用水和土地。这些都会限制增长速度。
+@@ d6f8e8abe3 html
+机器人：人工智能的实体化
+@@ d753d5f74d html
+如果说人工智能降低的是脑力劳动的成本，机器人就是在降低体力劳动的成本。它的第一站最可能是工厂和物流仓库：环境可控、任务重复、人工成本高、招工难。这和制造业回流<span class="ek">（Reshoring）</span>的主题正好衔接：回流的工厂要在高人工成本的地方赚钱，必须大量使用自动化。
+@@ d2f353cb68 html
+机器人主题里的风险等级差别很大。成熟的工业自动化<span class="ek">（Industrial automation）</span>公司有稳定的收入和客户；人形机器人<span class="ek">（Humanoid robot）</span>和早期创业公司则多数还没有规模化的收入，有的还通过特殊目的收购公司（SPAC）上市，稀释和失败的风险都很高。把它们放在同一个篮子里，等于把两种完全不同的风险混在一起。

@@ -1,0 +1,186 @@
+@@ b60fc41b30 html
+<span class="sn">6.8</span>Event volatility
+@@ f0d96b8908 html
+Scheduled events such as earnings, FOMC meetings and CPI releases lift the IV of options that span them before the event, and IV is pushed back down once the event passes. This part of IV can be stripped out and converted into the price the market puts on the event.
+@@ 0f87fe3698 html
+Stripping the event out of IV
+@@ f5316080bc html
+Again, variance adds up: for an option that spans an event, total variance = ordinary daily variance × number of days + the extra variance of the event day.
+@@ 9d73523286 html
+<span class="v">m</span> is the one-standard-deviation move the market prices for the event day. σ<sub>base</sub> can be estimated from the IV of a neighboring expiration that doesn’t include the event.
+@@ 5429e2466b html
+Example: before earnings, weekly options expiring in 7 days are at IV 80%, and the base IV without earnings is about 35%. <span class="v">m</span> = √[(0.80² − 0.35²) × 7/365] = <span class="num">9.96%</span>. The market has priced a one-standard-deviation move of about ±10% for this report. Student C’s ±5.3% in the opening was calculated the same way: √[(0.32² − 0.26²) × 30/365].
+@@ 1b0cc03e68 html
+Straddle price ≈ average move
+@@ a03806aada html
+An ATM straddle’s price has an easy-to-remember approximation:
+@@ 0e423a516a html
+The 0.8 comes from √(2/π) ≈ 0.798: under a normal distribution, the mean absolute move is about 0.8 times the standard deviation. So the straddle price corresponds to “how much it moves on average,” about 20% less than one standard deviation.
+@@ 7d412ef96f html
+The 7-day straddle above, priced at 80%, costs <span class="num">8.83</span>; the approximation gives 0.8 × 0.80 × √(7/365) × 100 = <span class="num">8.86</span>. The market often calls “straddle price ÷ stock price” the expected move; here it is 8.8%.
+@@ 768eaa5fa5 html
+Table 6-8 A 7-day ATM straddle bought before earnings (8.83), with IV back at 35% the day after: value for different moves
+@@ 4f4417b87c html
+Stock move after earnings
+@@ 4153f3b2e0 html
+Straddle value
+@@ 2ddb18c85f html
+Buyer P&amp;L per share
+@@ ec361d86bd html
+Buyer return
+@@ 3a3c2fde8c html
+About −44%
+@@ e780f7f7c6 html
+About −8%
+@@ c24f024eda html
+About +14%
+@@ 7b04018813 html
+About +81%
+@@ a424da8a83 html
+In each cell, the figure before the slash is for a drop and the one after is for a rise. The buyer’s breakevens are a rise of <span class="num">8.65%</span> or a drop of <span class="num">8.83%</span>. If the stock doesn’t move, the buyer loses 59% overnight: the event variance priced in before earnings vanishes instantly, leaving only 6 days of base time value.
+@@ 9a3e41a286 html
+How to judge whether an event is expensively priced
+@@ 9c76bdb5fd html
+Compare the expected move with the company’s actual moves (in absolute terms) after its past 8–12 earnings reports. If the historical average is clearly smaller than the expected move, history has favored sellers; if it is clearly larger, history has favored buyers.
+@@ 8d4df22a4a html
+The sample is small: only 4 reports a year. If the business has changed or the market’s attention has shifted, discount the past numbers.
+@@ 742ece4fca html
+Look at the distribution, not just the average. One huge move in 8 can eat most of a seller’s average profit (Case 3).
+@@ 0da0e9c094 html
+Macro events
+@@ 9a07343817 html
+The same method works for indexes. Suppose that before a CPI release, SPX options expiring in 2 days are at IV 18%, against about 13% normally. One standard deviation on the event day = √[(0.18² − 0.13²) × 2/365] = <span class="num">0.92%</span>. FOMC decision days can be broken down the same way. Macro-event humps are much smaller than earnings humps, but they affect every stock and recur throughout the year. The post-event IV compression is the IV crush from Chapter 5; Chapter 10 is devoted to trading events.
+@@ a9dd9e4635 html
+<span class="sn">Cases</span>Three cases
+@@ 2d08c07e9b html
+February 2018: the term structure inverts overnight
+@@ 8f38b39df1 html
+2017 was an unusually calm year. VIX stayed near historic lows for long stretches and closed below 10 many times. The VIX futures curve stayed in steep contango, and inverse ETPs that shorted VIX futures rose steadily on roll yield, drawing in a lot of money.
+@@ 0491b2cb5c html
+Stocks began to pull back in late January 2018. On February 5, the S&amp;P 500 fell about 4% in a single day and VIX more than doubled, a record for the largest one-day percentage gain. The VIX futures curve flipped from contango to backwardation: front-month futures traded well above later months.
+@@ 9d7045cd5b html
+After the close that day, inverse VIX products rebalanced as their rules required and had to buy back large amounts of VIX futures. The market widely believed this buying pushed futures prices even higher. One of them, the ETN tracking the “daily −1x short-term VIX futures index” (ticker XIV), saw its indicative value fall by more than 90%, and the issuer then announced it would terminate the product early. Another inverse product, SVXY, later changed its target multiple from −1x to −0.5x.
+@@ 90f38159ca html
+Here is the mechanism through the formula from Section 6.7 (the numbers are illustrative):
+@@ 39ec8eb536 html
+Table 6-9 An inverse product with a NAV of 100: what happens when futures rise in a single day
+@@ 287cd200e8 html
+Futures one-day gain
+@@ b1d882ceea html
+−1x product NAV
+@@ e22b3ad670 html
+−1x futures to buy back
+@@ 3af98a7dce html
+−0.5x product NAV
+@@ bbdb107e72 html
+−0.5x futures to buy back
+@@ c47d8676c4 html
+200 (can no longer execute)
+@@ 1e7902cd9d html
+The bigger the product, the more futures it has to buy before the close; the more it buys, the higher futures go; and the higher they go, the more it has to buy. This loop is invisible in calm years and erupts all at once on a shock day.
+@@ e487df1110 html
+<strong>Takeaway 1</strong>: steady roll yield in contango is, at bottom, an insurance premium. The moment the term structure inverts is when the insurance pays out.
+@@ 25c7a21b1b html
+<strong>Takeaway 2</strong>: leveraged or inverse products that rebalance daily can be wiped out in a day. If you hold them, size the position on the assumption that “it could go to zero.”
+@@ 8f3a58dd92 html
+<strong>Takeaway 3</strong>: VIX at extremely low levels is itself a risk signal. When IV Rank is very low, there is little return left in selling volatility, while the tail risk is not one bit smaller.
+@@ 67114a2676 html
+Two ways IV Rank misled
+@@ 0d8841cb1d html
+Go back to the stock in Figure 6-2. Its 30-day IV is now 30%, and realized volatility over the past 20 trading days is 22% (hypothetical).
+@@ 92f4d62431 html
+<strong>The first time</strong>: a student sees IV Rank at only <span class="num">24.9</span>, decides options are cheap, and buys 10 contracts of the 30-day ATM straddle, planning to hedge daily and earn Gamma. He doesn’t look at Percentile (<span class="num">82.5</span>) and doesn’t compare against RV. By the formula in Section 6.2, if realized volatility next month is still 22%, the trade loses about Vega × (22 − 30) per share; calculated exactly from the difference between the two straddle prices, that is 6.854 − 5.030 = <span class="num">1.82</span>, so 10 contracts lose <span class="num">$1,824</span>, 27% of the premium.
+@@ 807447e644 html
+<strong>The second time</strong>: another student’s platform looks back only 150 trading days. The sell-off falls outside the window, so the high IV is only 33.9% and the low 19.4%. For the same 30% IV, he sees a Rank of <span class="num">73.1</span> and a Percentile of <span class="num">89.5</span>. Two students look at the same IV; one thinks it is cheap, the other expensive.
+@@ 34000dcf18 html
+Indicator
+@@ 6084674e88 html
+252-day lookback
+@@ bebbadf8bd html
+150-day lookback
+@@ 7f01b040d4 html
+Range low / high
+@@ 4560cbce8a html
+IV / 20-day RV
+@@ 9343c9d31d html
+Takeaway: Percentile is more robust to both the window and spikes, and the IV/RV ratio isn’t affected by the lookback window at all. Of the three indicators, Rank is the easiest for a single extreme event to throw off. Before deciding anything on Rank, at least glance at the other two.
+@@ 14b8ff3631 html
+Earnings: read the market’s expectation from option prices, then compare it with history
+@@ ac4a862604 html
+Continue the example from Section 6.8: before earnings, the 7-day straddle is 8.83, an expected move of 8.8%; the event’s one-standard-deviation move, once stripped out, is about 10%. Suppose the company’s absolute moves after its past 8 reports were 4.1%, 6.3%, 12.5%, 3.2%, 7.8%, 5.0%, 9.4% and 2.7%, an average of <span class="num">6.4%</span>.
+@@ 9b91847119 html
+The average move is 2.4 points below the expected move, so sellers seem to have the edge. Work out the per-share P&amp;L of selling the straddle each time (closing the day after earnings, with IV back at 35%):
+@@ 7696c17bf9 html
+Past moves
+@@ 2958574500 html
+Seller P&amp;L
+@@ cbb73cc75b html
+The seller wins 6 times out of 8, averaging <span class="num">+1.77</span> per report. But the 12.5% move loses 3.75, nearly wiping out two ordinary wins. If the next move is 20%, the seller loses more than $11 per share.
+@@ c0b6ea24b2 html
+Takeaway: “expected move vs. historical moves” is a good starting point for judging how an event is priced, but 8 data points are few, so you must look at the worst few and size the position for the worst case. Buyers need to think it through: buying a straddle before earnings only makes sense when you have a specific reason to believe this move will be bigger than 8.8%.
+@@ 76fc557033 html
+<span class="sn">Tools</span>Checklist and self-test
+@@ b4640d623d html
+Your checkmarks are saved only in your own browser.
+@@ f80aa95295 html
+<span class="num">6-1</span>Is IV expensive or cheap?
+@@ a3239bb7d4 html
+IV relative to 20-day and 60-day RV
+@@ 59eda0772f html
+Check both IV Rank and IV Percentile; if they disagree, look for a spike
+@@ 9e75e1b7a0 html
+Is there an earnings report or macro event before this expiration?
+@@ 77206a82fc html
+Confirm how your platform defines IV and the lookback window
+@@ 0a01738d6b html
+<span class="num">6-2</span>Reading term structure and skew
+@@ fe01f1ea61 html
+30-day / 90-day IV ratio: above 1 means backwardation
+@@ 24fd1a72e0 html
+Compute a forward volatility to see how the market prices “later”
+@@ 7a1a874326 html
+Find humps: which expirations include events
+@@ 55bff1e7c3 html
+Compare the 25 Delta risk reversal with its own history
+@@ 1159b9db53 html
+<span class="num">6-3</span>Estimating ranges from VIX
+@@ ef8b5411be html
+One month: VIX ÷ 3.46; one day: VIX ÷ 16
+@@ 4cb3d373cc html
+Remember the range includes a risk premium and runs wide in calm markets
+@@ e37a6634c6 html
+Prepare for fat tails: months beyond 2 standard deviations happen more than 5% of the time
+@@ cd006b5089 html
+<span class="num">6-4</span>Before you touch VIX products
+@@ 231363ae90 html
+It tracks futures, not spot VIX
+@@ 0d3bf04a9f html
+Check the futures curve: in contango, long products lose value every month
+@@ a15de89d92 html
+Size inverse and leveraged products assuming “they could go to zero”
+@@ 816afb5e45 html
+Set a holding period; don’t treat them as long-term assets
+@@ a6f5d33bbc html
+Five self-test questions
+@@ d03e3800f0 html
+<span class="num">1</span><span>A stock’s daily returns over the past 20 days have a standard deviation of 1.5%. Roughly what is its annualized realized volatility?</span>
+@@ b6a46ad0ba html
+<span class="num">1.5% × √252 = 1.5% × 15.87 ≈ 23.8%</span>. Note that the estimation error for a 20-day window is about 23.8% × 0.158 ≈ ±3.8 points.
+@@ cb898199fa html
+<span class="num">2</span><span>Over the past year, a stock’s IV ranged from a low of 20% to a high of 80%. It is now 35%, and IV was below 35% on 70% of the year’s trading days. What are its IV Rank and IV Percentile? Which should you trust?</span>
+@@ 3e7b374512 html
+IV Rank = (35 − 20) / (80 − 20) × 100 = <span class="num">25</span>; IV Percentile = <span class="num">70</span>. The disagreement suggests the 80% high was probably a brief spike. Percentile is the more reliable of the two; combine it with the IV/RV ratio to decide.
+@@ aeb4cf11e3 html
+<span class="num">3</span><span>VIX is 25 and the S&amp;P 500 is at 7,000. What is the one-month, one-standard-deviation range?</span>
+@@ 4dd6c63dee html
+<span class="num">25 / 3.46 = 7.22%</span>, about <span class="num">±505</span> points, so the range is roughly 6,495 to 7,505. Under a normal approximation, there is about a 68% chance of ending up inside it.
+@@ 23923dbc4b html
+<span class="num">4</span><span>A stock’s 30-day IV is 40% and its 60-day IV is 32%. What volatility is the market pricing for days 30–60? What does that tell you?</span>
+@@ d30d059ac9 html
+Forward = √[(0.32² × 60 − 0.40² × 30) / 30] = √[(6.144 − 4.8) / 30] = <span class="num">21.2%</span>. The term structure is in backwardation: the market sees the high volatility as concentrated in the first month, quite possibly because of an earnings report or another event in that window; after the event, volatility should return to just over 20%.
+@@ b6f8606fe6 html
+<span class="num">5</span><span>You buy a long VIX product whose futures start at 18.0. A month later, spot VIX and the shape of the curve are unchanged, and that future has become the front month, quoted at 16.5. How much did you lose, and why?</span>
+@@ 664aae757c html
+<span class="num">16.5 / 18.0 − 1 = −8.3%</span>. This is roll decay: in contango, a future converges toward the lower spot level as its expiration approaches, so you lose money even when VIX doesn’t move.
+@@ d7feee1f56 html
+Option examples in this chapter are computed with the Black-Scholes model (4% interest rate, no dividends, 365-day year). Price series, IV series and futures quotes are simulated or hypothetical, and historical events are described only in qualitative terms. For education only; not investment advice.

@@ -1,0 +1,226 @@
+@@ 3d36e9877d html
+A.4 Volatility (16 terms)
+@@ 44a0c08ec3 html
+<b>Realized volatility</b><span class="en"></span>
+@@ 8a1ce04b39 html
+The annualized standard deviation of the underlying's actual returns; also called historical volatility.
+@@ 8c9a5b9cfa html
+<b>Implied volatility</b><span class="en">IV</span>
+@@ 7027d40dff html
+The volatility that makes the model price equal the market price; the market's price for future volatility.
+@@ 77ad44f6a1 html
+<b>Volatility risk premium</b><span class="en"></span>
+@@ 3cbc33285f html
+The amount by which implied volatility on average exceeds the realized volatility that follows; sellers earn it over time and also carry the tail risk.
+@@ c2aad73935 html
+Where current IV sits between its lowest and highest levels over the past year, on a scale of 0 to 100.
+@@ 48fbe47e36 html
+<b>IV percentile</b><span class="en"></span>
+@@ 289960dc4e html
+The share of days in the past year when IV was below its current level.
+@@ 6fccefe608 html
+<b>Term structure</b><span class="en"></span>
+@@ d9b51494bc html
+The curve traced by ATM IV across expirations.
+@@ d5346110ff html
+<b>Contango</b><span class="en"></span>
+@@ cd7b1f1c09 html
+Back-month IV above front-month IV; the normal state of a calm market.
+@@ ca9e574087 html
+<b>Backwardation</b><span class="en">Inversion</span>
+@@ f8520d2f99 html
+Front-month IV above back-month IV; common in a panic or ahead of a major event.
+@@ 18f2e44002 html
+<b>Skew</b><span class="en"></span>
+@@ f95008f91c html
+Differences in IV across strikes at the same expiration; for stock indexes, OTM puts are usually more expensive.
+@@ 068bc46bd8 html
+<b>Volatility smile</b><span class="en"></span>
+@@ b2da130e0c html
+IV forms a U shape across strikes, with both wings more expensive than at the money.
+@@ cf5b8efab8 html
+<b>Volatility surface</b><span class="en"></span>
+@@ c017473fbb html
+The two-dimensional grid of IV by strike × expiration.
+@@ 9141dbf7a0 html
+<b>25-delta risk reversal</b><span class="en"></span>
+@@ c3ef6abcfb html
+25Δ call IV minus 25Δ put IV; measures the direction and steepness of the skew.
+@@ c314272eca html
+<b>Forward volatility</b><span class="en"></span>
+@@ d07d39cbcb html
+The implied volatility for a future period, derived by subtracting the total variance of one expiration from that of another.
+@@ d80bd29160 html
+<b>IV crush</b><span class="en"></span>
+@@ 7f9c4b0550 html
+The sharp drop in implied volatility once an event is out and the uncertainty is gone.
+@@ be6a85cb32 html
+Cboe's index of 30-day implied volatility, calculated from SPX options.
+@@ 3f9e829344 html
+<b>Implied correlation</b><span class="en"></span>
+@@ e1bc45f4ee html
+The average correlation backed out from the index's IV and the IVs of its components.
+@@ f2c68ad904 html
+A.5 Strategies (21 terms)
+@@ ea08532d31 html
+<b>Covered call</b><span class="en"></span>
+@@ 7b56595e8f html
+Own 100 shares and sell 1 call, giving up upside in exchange for premium.
+@@ 4d2b95ca2b html
+<b>Cash-secured put</b><span class="en"></span>
+@@ d4ce3985e2 html
+Sell a put and set aside the full amount of cash, ready to buy the stock at the strike.
+@@ 25b7d01f1a html
+<b>Protective put</b><span class="en"></span>
+@@ f167384715 html
+Own the stock and buy a put: insurance against a fall.
+@@ 7aaf6896f7 html
+<b>Collar</b><span class="en"></span>
+@@ 1d8733ad5b html
+Own the stock, buy a put and sell a call, using the call premium to pay for the protection.
+@@ 0584d4da48 html
+<b>Vertical spread</b><span class="en"></span>
+@@ 9361cbf6bc html
+Buy one option and sell another with the same expiration and different strikes.
+@@ 1fc52f83e9 html
+<b>Debit spread</b><span class="en"></span>
+@@ a8a456daa8 html
+A spread that costs net premium to open; the maximum loss is the net debit.
+@@ 41f38b804a html
+<b>Credit spread</b><span class="en"></span>
+@@ 610a9d83be html
+A spread that collects net premium to open; the maximum loss is the width minus the net credit.
+@@ 33467945cc html
+<b>Straddle</b><span class="en"></span>
+@@ 89678eecbb html
+A call plus a put at the same strike: buying it bets on a big move, selling it bets on no move.
+@@ 2be242a721 html
+<b>Strangle</b><span class="en"></span>
+@@ 70bfb9e3d7 html
+An OTM call plus an OTM put at different strikes.
+@@ 07051c8971 html
+<b>Iron condor</b><span class="en"></span>
+@@ d93b14afc2 html
+A short strangle plus farther-out wings bought to cap the risk.
+@@ 0b2ff82103 html
+<b>Iron butterfly</b><span class="en"></span>
+@@ 4d8f98b37f html
+A short ATM straddle plus wings bought to cap the risk.
+@@ f2db4d6f21 html
+<b>Butterfly</b><span class="en"></span>
+@@ 20a91eed4f html
+A three-strike structure, buy 1, sell 2, buy 1, that bets the stock ends near the middle strike.
+@@ 425494fb76 html
+<b>Calendar spread</b><span class="en"></span>
+@@ 360d83e945 html
+Sell the front month and buy the back month at the same strike, earning the front month's faster time decay.
+@@ 461f9e0096 html
+<b>Diagonal spread</b><span class="en"></span>
+@@ f94dfee58d html
+Sell one option and buy another with a different strike and a different expiration.
+@@ 65e9f87bb8 html
+<b>Ratio spread</b><span class="en"></span>
+@@ bf37fee30e html
+A spread with unequal numbers of long and short contracts, such as buy 1, sell 2; the extra short contracts are unprotected.
+@@ 9544ed589f html
+<b>Risk reversal</b><span class="en"></span>
+@@ eaae1eda8e html
+Sell an OTM put and buy an OTM call (or the reverse): a low-cost way to express direction and trade the skew.
+@@ 9452c83c58 html
+<b>The wheel</b><span class="en">Wheel strategy</span>
+@@ dcaa989925 html
+Sell puts, take the shares when assigned, then sell covered calls, collecting premium round and round.
+@@ bbd8a955b8 html
+Long-dated options with more than a year to expiration; deep ITM calls are often used in place of owning the stock.
+@@ 7c6ad71410 html
+Options that expire the same day; both Gamma and Theta are extremely large.
+@@ 453ebeb0d9 html
+<b>Roll</b><span class="en"></span>
+@@ 1e16f40c75 html
+Close the current option and at the same time open one with a different strike or expiration.
+@@ 6aa71cdd7f html
+<b>Autocallable note</b><span class="en"></span>
+@@ 6b8614c96e html
+A structured product that ends early and pays a coupon once a knock-out condition is met; the investor has in effect sold a knock-in put. A common variant in China is called a “snowball.”
+@@ 063e357b6b html
+A.6 Risk and the account (20 terms)
+@@ f0de5029fe html
+<b>Margin</b><span class="en"></span>
+@@ bdf83c6872 html
+Collateral the broker requires you to set aside for short positions or borrowing.
+@@ fd0acea4c2 html
+<b>Maintenance margin</b><span class="en"></span>
+@@ a6cc861b7c html
+The minimum margin you must keep while you hold a position.
+@@ ba5ad31ff6 html
+<b>Margin call</b><span class="en"></span>
+@@ 8ce29eb7e3 html
+The broker's demand to add funds or reduce positions when the account falls below maintenance margin.
+@@ b9d676893c html
+<b>Portfolio margin</b><span class="en"></span>
+@@ 4f2edb2db0 html
+Margin calculated from stress tests on the whole portfolio; the account requirements are higher, and so is the leverage available.
+@@ f1852701b3 html
+<b>Buying power</b><span class="en"></span>
+@@ bcdf0ac9ae html
+The amount the account can currently use to open new positions.
+@@ dae0eb524d html
+<b>Options approval level</b><span class="en"></span>
+@@ 266c0f2029 html
+The range of options strategies a broker approves you to trade, based on your experience and assets.
+@@ 7d2235f222 html
+<b>Defined risk</b><span class="en"></span>
+@@ 42b6d07fb1 html
+A structure whose maximum loss is known when you open it, such as spreads and iron condors.
+@@ 76961f2c83 html
+<b>Undefined risk</b><span class="en"></span>
+@@ b72b8ed42f html
+A structure whose theoretical loss is unlimited or very large, such as naked short calls and short straddles.
+@@ a4a59eb6d1 html
+<b>Max loss</b><span class="en"></span>
+@@ fa849713a7 html
+A position's loss in the worst case; the basis for sizing the position.
+@@ c057893ce1 html
+<b>Stress test</b><span class="en"></span>
+@@ eee5f9bb90 html
+Repricing under assumed price and IV scenarios to see how much the portfolio would lose.
+@@ bbd00f3d0c html
+<b>Tail risk</b><span class="en"></span>
+@@ 1df32daed4 html
+The risk of extreme moves that are unlikely but cause very large losses.
+@@ 8bffbe504d html
+<b>Gap risk</b><span class="en"></span>
+@@ 6be3f2813a html
+The risk that the price jumps sharply between trades (overnight, for example) before you can adjust.
+@@ 25bbab2f87 html
+<b>Pin risk</b><span class="en"></span>
+@@ 2a6eb1bd73 html
+The risk, when the stock is right at the strike at expiration, of not knowing whether you will be exercised or assigned.
+@@ 2071fff9c9 html
+<b>Liquidity risk</b><span class="en"></span>
+@@ 71f376e9e1 html
+The risk of not being able to get in or out at a reasonable price because spreads are too wide or trading is thin.
+@@ 4523bb3ce8 html
+<b>Expectancy</b><span class="en">Expected value</span>
+@@ 9e6e835413 html
+Win rate × avg win − loss rate × avg loss; worth trading only if it is positive after costs.
+@@ 382352ba0f html
+<b>Kelly criterion</b><span class="en"></span>
+@@ fd55db17d7 html
+The bet size that maximizes long-run growth; in practice traders usually use only a quarter to a half of it.
+@@ 8769cbd74a html
+<b>Maximum drawdown</b><span class="en"></span>
+@@ 455ed43fb7 html
+The largest drop in the account from a peak to a later low.
+@@ a278644f63 html
+<b>Trading journal</b><span class="en"></span>
+@@ 318a7e81a4 html
+A record of each trade's reasons, execution, result and attribution.
+@@ f98ab86cea html
+<b>Limit order</b><span class="en"></span>
+@@ 816bf1368d html
+An order that sets the highest price you will pay or the lowest you will accept; the default when trading options.
+@@ 2f676ea530 html
+<b>Multi-leg order</b><span class="en">Combo order</span>
+@@ 21ea95bade html
+Fills all the legs of a spread together as a single order, avoiding the risk of only one leg filling.

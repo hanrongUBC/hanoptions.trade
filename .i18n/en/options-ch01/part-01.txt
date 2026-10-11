@@ -1,0 +1,196 @@
+@@ adab680442 html
+Chapter 1: What an option is, and where the money comes from · US Options Course
+@@ 9fed31143b html
+What an option is, <span class="g">and where the money comes from</span>
+@@ c630be2715 html
+An option contract is defined by six numbers, and four basic positions build every strategy. This chapter first teaches you to read a contract and draw its payoff diagram at expiry, then answers a more fundamental question: where does the profit on an options trade actually come from?
+@@ 4a798dc727 html
+In this chapter
+@@ e9dc004b40 html
+<a href="#open"><span class="n">··</span><span>Opening: right call, total loss</span></a>
+@@ ecf97a14be html
+<a href="#s1"><span class="n">1.1</span><span>The six terms of a contract</span></a>
+@@ 82fa4e3a43 html
+<a href="#s2"><span class="n">1.2</span><span>The four basic positions</span></a>
+@@ 0c2c77bac2 html
+<a href="#s3"><span class="n">1.3</span><span>Drawing a payoff diagram at expiry</span></a>
+@@ 5408de95a9 html
+<a href="#s4"><span class="n">1.4</span><span>Intrinsic value and time value</span></a>
+@@ c5b95531cf html
+<a href="#s5"><span class="n">1.5</span><span>Three ways options differ from stock</span></a>
+@@ 6d7f8ccd0a html
+<a href="#s6"><span class="n">1.6</span><span>Stock or option</span></a>
+@@ f8dbe22c8d html
+<a href="#s7"><span class="n">1.7</span><span>Five sources of profit</span></a>
+@@ 3f166a2972 html
+<a href="#s8"><span class="n">1.8</span><span>Win rate, payoff ratio and expectancy</span></a>
+@@ 12c019ed82 html
+<a href="#cases"><span class="n">Cases</span><span>Three cases</span></a>
+@@ dd7ded685d html
+<a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a>
+@@ a02d30bd64 html
+<a href="#open">Opening: right call, total loss</a>
+@@ 443b9717fc html
+<a href="#s1">1.1 The six terms of a contract</a>
+@@ 7caa10faa5 html
+<a href="#s2">1.2 The four basic positions</a>
+@@ de6cd21b9e html
+<a href="#s3">1.3 Drawing a payoff diagram at expiry</a>
+@@ 87744d294c html
+<a href="#s4">1.4 Intrinsic value and time value</a>
+@@ 909abfc149 html
+<a href="#s5">1.5 Three ways options differ from stock</a>
+@@ f7ddb91739 html
+<a href="#s6">1.6 Stock or option</a>
+@@ 787f9869de html
+<a href="#s7">1.7 Five sources of profit</a>
+@@ be0128eee7 html
+<a href="#s8">1.8 Win rate, payoff ratio and expectancy</a>
+@@ f3a78e0502 html
+<a href="#cases">Three cases</a>
+@@ 7ec24afd50 html
+<a href="#tools">Checklist and self-test</a>
+@@ 80161dff8a html
+After this chapter you can
+@@ 6407acf2dc html
+Read the six terms of any contract and work out what you actually pay
+@@ a7ba4efdbf html
+Draw the payoff diagram at expiry for the four basic positions, with maximum profit, maximum loss and breakeven
+@@ 3938137b14 html
+Say which of the five sources of profit a trade makes its money from
+@@ fc4f43bd05 html
+Prerequisites
+@@ d9a1217d85 html
+This chapter is the starting point; no earlier chapters needed
+@@ 40e4d9d107 html
+Know what buying a stock and selling a stock short mean
+@@ 074b58cadc html
+Can calculate returns as percentages
+@@ fe31444484 html
+Conventions
+@@ 303316b017 html
+Examples use Black-Scholes, a 4% rate, no dividends
+@@ 6c3d5d82a2 html
+Days are calendar days; a year is 365 days
+@@ e5f8add8ff html
+One contract = 100 shares; P&amp;L excludes commissions
+@@ 47b481dcaa html
+<span class="sn">Opening</span>Right call, total loss
+@@ 5064df2e79 html
+On October 21, XYZ is at $100. You and a friend both think it will rise within a month. Your friend spends $10,000 on 100 shares; you spend $498 on 3 call contracts with a 105 strike expiring November 20, quoted at 1.66 each.
+@@ 99fb5d7fcf html
+A month later the stock is at $104, up 4%. Your friend makes <span class="num">$400</span>. At expiry the stock is not above 105, so your 3 contracts are worthless and the whole <span class="num">$498</span> is gone. You both called the direction right; one of you made money and the other lost everything.
+@@ f7e3ec1744 html
+Now a different ending: the stock rises to $115. Your friend makes <span class="num">$1,500</span>, a 15% return. Each of your options is worth $10 at expiry, <span class="num">$3,000</span> for all 3; after the cost you make <span class="num">$2,502</span>, a return of more than 500%.
+@@ cb00e6aa36 html
+Table 1-0 The same bullish view: P&amp;L at expiry for 100 shares vs. 3 contracts of the 105 call
+@@ ae4224123c html
+Stock at expiry
+@@ 6d71ae8f4e html
+Stock P&amp;L
+@@ 0b60d799d7 html
+Stock return
+@@ b675bacef9 html
+Option P&amp;L
+@@ 0a9a0fc20d html
+Option return
+@@ ccc1816e7a html
+The same view on direction, and the option turned the outcome into two extremes. The reason is that an option bets on two things a stock doesn't: <strong>how far</strong> the price rises and <strong>how fast</strong> it gets there. This chapter starts with the contract itself and ends by coming back to this question: where does the money in options actually come from?
+@@ 96476036d9 html
+<span class="sn">1.1</span>The six terms of a contract
+@@ aef36340ce html
+Six terms fully define an option contract. Miss one and you don't know what you bought.
+@@ bf4b7bb4ba html
+① Underlying<span class="en"></span>
+@@ 025b088d67 html
+The asset the option is written on: a single stock (such as AAPL), an ETF (such as SPY) or an index (such as SPX). The underlying determines what is delivered on exercise: stock and ETF options deliver shares; index options settle in cash.
+@@ bd25f2e83f html
+② Type<span class="en">Call / Put</span>
+@@ ba38e1c1f3 html
+A call gives the buyer the right to <strong>buy</strong> the underlying at the strike; a put gives the buyer the right to <strong>sell</strong> the underlying at the strike.
+@@ 7a1f7baa73 html
+③ Strike<span class="en"></span>
+@@ c6f9ba66f2 html
+The agreed price for the trade. Each expiration lists a ladder of strikes, commonly $1, $2.5 or $5 apart; higher-priced stocks have wider spacing.
+@@ 62c2b91562 html
+④ Expiration<span class="en"></span>
+@@ 996eb17bd1 html
+The day the right lapses. Standard monthly options expire on the third Friday of the month; there are also weekly and daily expirations (Chapter 2).
+@@ 0a746c5a79 html
+⑤ Multiplier<span class="en"></span>
+@@ 0bc131eaa2 html
+One standard contract covers 100 shares. The quote is a per-share price; the actual amount is 100 times that. After a stock split or a special dividend you may see adjusted contracts that deliver something other than 100 shares.
+@@ a8339ea28c html
+⑥ Premium<span class="en"></span>
+@@ 8fe0ed3882 html
+The price the buyer pays the seller, that is, the option's quote. For the buyer it is the maximum loss; for the seller it is the maximum income.
+@@ cfe41a52fe html
+Reading a quote in full
+@@ 98ac457057 html
+A broker's platform usually shows the contract from the opening as “XYZ Nov 20 '26 105 Call.” The clearinghouse uses a standard 21-character code:
+@@ bb3fa3b2b6 html
+<strong>First 6 characters</strong>: the underlying's symbol, padded with spaces if it is shorter than 6
+@@ d6d0099dbf html
+<strong>Next 6</strong>: the expiration date as <span class="num">YYMMDD</span>, here November 20, 2026
+@@ 5abdf6226b html
+<strong>1 character</strong>: <span class="num">C</span> for a call, <span class="num">P</span> for a put
+@@ b9646166d2 html
+<strong>Last 8</strong>: the strike times 1000; <span class="num">00105000</span> is 105.000
+@@ 094605daf8 html
+The 1.66 quote is per share. One contract costs <span class="num">1.66 × 100 = $166</span>, and 3 contracts cost $498. The contract covers 100 shares, so at a $100 stock price it controls a notional <span class="num">$10,000</span> of stock. Controlling $10,000 for $166 is the leverage we will get to later.
+@@ 29de7c6714 html
+Who has the right, and who has the obligation
+@@ c6ddfac4c1 html
+The buyer pays and gets a right, which can be exercised or abandoned. The seller is paid and takes on an obligation: when called on, the seller of a call must sell the stock at the strike, and the seller of a put must buy the stock at the strike. The premium is the seller's compensation for taking on that obligation.
+@@ 4653d26ec5 html
+Opening, closing and four endings
+@@ f79a5c338c html
+Your broker's order ticket asks whether you are opening or closing. Buy to Open creates a long position and Sell to Close sells it; Sell to Open creates a short position and Buy to Close buys it back.
+@@ b342113664 html
+An option position can end in only four ways: closed with an offsetting trade before expiry, exercised by the buyer, assigned to the seller, or expiring worthless. Most option positions are closed before expiry; the option itself is a price you can trade at any time. So when you buy a call, you don't need the $10,000 that exercise would take; just sell the call before expiry. But if you hold to expiry and the option is in the money, it will be exercised automatically (Chapter 2), and your account must have enough cash or margin.
+@@ 8a7b9d64a5 html
+“Buy / sell” and “call / put” are two independent dimensions. Buying a put is bearish, but selling a put is bullish: as long as the stock doesn't fall, the seller keeps the premium. The most common beginner mistake is to read “selling a put” as “going short.”
+@@ bdb4d6a48c html
+<span class="sn">1.2</span>The four basic positions
+@@ f5c3674a58 html
+Pair buy or sell with call or put and you get the four basic positions. However complex a strategy is, it is built from these four positions plus the stock itself.
+@@ 0574cff9b7 html
+<span class="v">S<sub>T</sub></span> is the stock price at expiry, <span class="v">K</span> is the strike, and <span class="v">c</span> and <span class="v">p</span> are the call and put premiums paid at purchase. These are per-share P&amp;L at expiry; multiply by 100 for one contract. A short position's P&amp;L is the negative of the matching long position's.
+@@ 41eeab54ab html
+Now some concrete numbers: stock at $100, strike 100, 30 days to expiry, implied volatility 30%. Black-Scholes prices the call at <span class="num">3.59</span> and the put at <span class="num">3.26</span>.
+@@ 9268189e37 html
+Table 1-1 The four basic positions (strike 100, call 3.59, put 3.26, per contract)
+@@ 78d030d5ca html
+Position
+@@ a59a252054 html
+View
+@@ 35e53239a8 html
+Cash flow at open
+@@ 343fd5ea1e html
+Max profit
+@@ a59f077925 html
+Max loss
+@@ 139a585097 html
+Breakeven
+@@ e3413735a4 html
+Long call
+@@ a347e1c451 html
+Big rise
+@@ 5ca4b5e09a html
+Unlimited
+@@ 0d89eb8430 html
+Long put
+@@ b5942e7929 html
+Big drop
+@@ 20422666a1 html
+Short call
+@@ 5eb5a9fa87 html
+No rise
+@@ 158ff16158 html
+Short put
+@@ 027753ae96 html
+No drop
+@@ 0b9f5105c2 html
+Breakeven is easy to work out: for a call it is the strike plus the premium; for a put, the strike minus the premium. A long put makes its maximum profit if the stock falls to zero: <span class="num">(100 − 3.26) × 100 = $9,674</span>. That is also the short put's maximum loss.
+@@ 4035e03234 html
+Long call

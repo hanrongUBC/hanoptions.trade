@@ -1,0 +1,767 @@
+## source: macro/index.html  (383 segments)
+@@ ff7749f90d html
+用四个变量代替单点预测
+@@ 735afa645b html
+预测「下个月标普涨还是跌」几乎不可能做好。更可行的是持续观察四个变量，它们分别对应估值和盈利的四个来源：
+@@ 2bc6def622 html
+变量
+@@ d3fe9737ea html
+看什么
+@@ 1c75c4aae8 html
+它影响的是
+@@ 6553833c72 html
+利率
+@@ d5a736bc63 html
+10 年期收益率的趋势（以周为单位）
+@@ b5aa03bc35 html
+折现率<span class="ek">（Discount rate）</span>，也就是估值倍数<span class="ek">（Valuation multiple）</span>
+@@ 211f464ca5 html
+油价
+@@ 7ce296216b html
+原油和柴油的趋势
+@@ ab72405ffc html
+通胀、企业成本、消费者负担
+@@ 0acd08b57b html
+财报<span class="ek">（Earnings report）</span>
+@@ e76857dcab html
+分析师盈利预期<span class="ek">（Earnings estimates）</span>是在上修还是下修，财报季公司的指引
+@@ 3f2fae0f69 html
+每股盈利
+@@ 5f02db3db3 html
+就业
+@@ d492653ffe html
+失业率<span class="ek">（Unemployment rate）</span>、每周首次申领失业金<span class="ek">（Initial jobless claims）</span>人数、非农<span class="ek">（Nonfarm payrolls (NFP)）</span>就业
+@@ 5510d5bbb2 html
+消费能力和衰退<span class="ek">（Recession）</span>风险
+@@ c1978ed234 html
+六种组合，六种打法
+@@ f5d86acdac html
+情景
+@@ c317db02aa html
+财报
+@@ d4b0865686 html
+通常怎么做
+@@ 2cd622409d html
+全面上涨
+@@ 80855c6204 html
+跌
+@@ ecbb0e7d43 html
+好
+@@ 279958ec14 html
+强
+@@ a2e3ded54e html
+做多指数和周期股<span class="ek">（Cyclical stocks）</span>，小盘也会参与
+@@ 0126e13703 html
+轮动<span class="ek">（Sector rotation）</span>
+@@ ee9e7a7dec html
+一般
+@@ 1bea19179f html
+指数横盘，板块轮换；买前期输家的回调，减持拥挤赢家
+@@ ea7881fa43 html
+好消息推高利率
+@@ 70dd1aa351 html
+升
+@@ 8d4174a3fc html
+周期股、银行领涨；留意利率上升的速度
+@@ 2db9521741 html
+下跌第一阶段
+@@ 542031975c html
+估值压缩期，减少长久期<span class="ek">（Duration）</span>成长股<span class="ek">（Growth stocks）</span>，趁波动率便宜买保护
+@@ f42c0f0bcb html
+下跌第二阶段
+@@ d0188b40fc html
+转弱
+@@ b65b9a7c12 html
+开始系统性保护，提高现金，防御板块<span class="ek">（Defensive sectors）</span>相对强
+@@ 76406d67ce html
+下跌第三阶段
+@@ 8fabd2a55e html
+差
+@@ 5b5e69a7ce html
+恶化
+@@ bbdc0428f2 html
+盈利下修和衰退，现金和长期国债为主，等政策催化剂
+@@ df2e766465 html
+「轮动」那一行里，财报一项最关键：盈利不算好，但也没有坏到引发恐慌，资金就不会全面撤离股市，而是在板块之间换手。
+@@ 4a15245d68 html
+下跌的三个阶段
+@@ a671ad557e html
+第一阶段
+@@ 6ff1c1e4e8 html
+经济还很好
+@@ cf897bf511 html
+第二阶段
+@@ 04836a608b html
+增长开始受伤
+@@ 14348237f3 html
+第三阶段
+@@ d7b1aebc81 html
+衰退
+@@ 6e5e928738 html
+↑ 上升
+@@ a7255ef52e html
+↓ 开始下跌
+@@ f380e571f0 html
+↑ 仍高
+@@ abb5c44d09 html
+还不错
+@@ c9417ec25d html
+↓ 大跌
+@@ 03cc92e610 html
+↓ 下跌
+@@ c7d853b9e9 html
+下修
+@@ 2c4c96e1e4 html
+估值杀
+@@ c06a1f6bd1 html
+成长股、小盘先跌
+@@ 4e35ce0972 html
+增长担忧
+@@ f332ea3212 html
+周期股、消费股接棒
+@@ 86420de8b8 html
+盈利杀
+@@ eaa7efa237 html
+普跌，等政策出手
+@@ 4049771572 html
+第一阶段最容易被忽视：财报和就业都很好，人们觉得「经济这么强怎么会跌」，但利率和油价在一起压缩估值。第二阶段的标志是利率开始下跌，而原因不是通胀降温。
+@@ c318244e50 html
+从第一阶段到第二阶段的转折最值得监控。一个很实用的规则：<strong>如果收益率开始下跌，而油价还在高位、就业开始转弱，就要开始保护</strong>，可以缩小仓位，也可以买入保护性的看跌价差<span class="ek">（Put spread）</span>。
+@@ 008fefdd6b html
+利率下跌，是好消息还是坏消息
+@@ 555d258d15 html
+同样是 10 年期收益率下跌 30 个基点，可能是通胀降温（好），也可能是市场在担心衰退（坏）。分辨的方法是看它和其他资产的组合：
+@@ bb00806542 html
+好的下跌：通胀降温
+@@ cc5a99b086 html
+盈亏平衡通胀率<span class="ek">（Breakeven inflation）</span>下降，实际利率<span class="ek">（Real yield）</span>稳定
+@@ 563789fabb html
+周期股、小盘股<span class="ek">（Small caps）</span>跟着涨
+@@ 73c5b526e2 html
+信用利差<span class="ek">（Credit spread）</span>稳定或收窄
+@@ c369a04ad5 html
+油价回落
+@@ a857f1de42 html
+坏的下跌：增长担忧
+@@ ac3902482e html
+实际利率下降，曲线牛陡<span class="ek">（Bull steepening）</span>
+@@ 38fbd20990 html
+周期股、小盘股跑输，防御板块跑赢
+@@ 79450a63dd html
+信用利差扩大
+@@ 80ca0f6cc2 html
+就业数据走弱，初请上升
+@@ c03cc44451 html
+下降
+@@ 40cd0f76e9 html
+四项完全符合某个原型的情况很少。匹配度 3/4 时，看那一项不符合的变量往哪个方向走：它通常就是体制下一步要切换的方向。
+@@ 3fb208b496 html
+回看过去几次大回调
+@@ b478a9b8ad html
+把框架放到历史里检验一下。下表只列定性特征和大致跌幅（标普 500 从高点到低点），具体数据可以在 FRED 等公开数据库里复核。
+@@ e3b5977b85 html
+时期
+@@ 6599f729af html
+跌幅（约）
+@@ 6114172ebd html
+美债有没有对冲
+@@ b1d421e6da html
+底部由什么确认
+@@ 0ba3e49812 html
+2018 年第四季度
+@@ 82f2e0c19f html
+加息叠加缩表<span class="ek">（Quantitative tightening (QT)）</span>，贸易摩擦
+@@ a80538065f html
+后半段有，收益率回落
+@@ a4af6a1b08 html
+美联储<span class="ek">（Federal Reserve (Fed)）</span>转向「耐心」
+@@ d98eb2abaa html
+2020 年 2–3 月
+@@ 48b2dc72b8 html
+疫情冲击，流动性枯竭<span class="ek">（Liquidity crunch）</span>
+@@ 92a27796cb html
+大部分时间有，3 月中旬一度股债同跌
+@@ 58f3116ecc html
+美联储无限量宽松与财政救助
+@@ d3dd7e97cc html
+2022 年
+@@ 6bc7012e2c html
+高通胀与快速加息
+@@ 18a4f96362 html
+没有，股债同跌
+@@ 02fa78e467 html
+没有单一的政策转向，通胀见顶迹象与估值压缩到位
+@@ d827caccc8 html
+2023 年 8–10 月
+@@ 276b13d150 html
+长端收益率逼近 5%，期限溢价<span class="ek">（Term premium）</span>上升
+@@ ce462d9d79 html
+没有
+@@ 58ee9b0f2f html
+财政部放慢长债发行，美联储暗示暂停
+@@ 7ebeb85f8c html
+2025 年 2–4 月
+@@ b2b3b729aa html
+关税冲击，增长和通胀担忧并存
+@@ 8d4d5a0855 html
+不稳定，长端一度上行
+@@ 514b72483b html
+关税暂缓
+@@ fe3afdc600 html
+能看出两条规律：
+@@ fbfb2cddf2 html
+<strong>美债对冲<span class="ek">（Hedge）</span>的是增长冲击，对冲不了利率和通胀冲击。</strong>五次里有三次，下跌由利率、通胀或政策引起，国债和股票一起跌。这时候真正有效的保护是期权，或者干脆降低仓位。
+@@ 55734867cc html
+<strong>底部多半由政策确认，而不是由估值自然修复。</strong>五次里有四次，市场是在某个政策变化出现前后见底的。所以在下跌中，与其问「跌够了吗」，不如问「什么政策会让决策者出手，离那个点还有多远」。
+@@ a1c740da0e html
+体制判断的纪律
+@@ c257d9ac8b html
+以周为单位更新，不要每天改。日线的噪音会让你在两种体制之间来回横跳。
+@@ 3ff67a556c html
+至少两个变量同时变化，才考虑切换体制。
+@@ 78fc03f757 html
+把判断写下来，并写明「什么数据出现我会改判」，事后对照。
+@@ ff2e895502 html
+体制决定仓位和打法，不决定具体的入场时机。时机交给第 6、7、9 章。
+@@ 594864059c html
+广度与轮动：指数的假象
+@@ a136a123a3 html
+指数在涨，不代表大多数股票在涨。在一个由少数巨头主导的市场里，读懂广度<span class="ek">（Market breadth）</span>，等于读懂指数背后到底发生了什么。
+@@ ca3600db17 html
+市值加权是一面放大镜
+@@ 8f05038df5 html
+标普 500 和纳斯达克 100 都按市值加权<span class="ek">（Market-cap weighted）</span>，最大的十家公司可以占到指数的三分之一以上。每只股票对指数的贡献等于它的权重乘以涨跌幅：
+@@ fd88c0b844 html
+所以判断指数方向时，要看的是「权重乘以速度」。两组大权重股票反向拉扯时，比如芯片股在跌、云计算巨头在涨，谁的权重更大、跌得或涨得更快，谁就决定指数方向。一组权重大的股票下跌速度一旦加快，其余几百只股票涨得再好也拉不住。
+@@ f7eb9617f9 html
+前十大权重 <input id="cs-w" type="range" min="15" max="45" value="38"> <output id="cs-w-o">38%</output>
+@@ bbc54cdea8 html
+前十大涨跌 <input id="cs-a" type="range" min="-10" max="10" value="6"> <output id="cs-a-o">+6%</output>
+@@ e40ba6be7d html
+其余股票涨跌 <input id="cs-b" type="range" min="-10" max="10" value="-2"> <output id="cs-b-o">−2%</output>
+@@ 2087d02e2a html
+假设指数有 500 只股票，前十大在等权<span class="ek">（Equal-weight）</span>指数里只占 2%。默认参数下市值加权指数上涨 1.04%，等权指数却下跌 1.84%。新闻会说「股市上涨」，而你持有的大多数股票在跌。
+@@ 7679398d7f html
+几组用来验证的比值
+@@ 789bf7fff5 html
+把两只 ETF 的价格相除，画成一条线，就得到一个相对强弱<span class="ek">（Relative strength）</span>比值。比值上升说明前者跑赢后者。下面几组最常用：
+@@ 3ffe046985 html
+比值
+@@ ff6420c977 html
+上升说明
+@@ 2250105c14 html
+背离时要警惕
+@@ 2459a94909 html
+等权标普 ÷ 标普（RSP / SPY）
+@@ 5c6d6a3914 html
+上涨在扩散，多数股票参与
+@@ fd5cff7e4d html
+指数新高而比值创新低：上涨越来越集中
+@@ 03dfe8f6f4 html
+小盘 ÷ 纳斯达克 100（IWM / QQQ）
+@@ 6f781624f1 html
+利率环境和国内经济在改善
+@@ 33646bfd4c html
+真正的大级别上涨，小盘很少长期缺席
+@@ 0a52c4617c html
+金融 ÷ 纳斯达克 100（XLF / QQQ）
+@@ 66865acac5 html
+信用和利率环境友好
+@@ f1bbb029b5 html
+金融板块经常比科技早一步转向
+@@ c861b07a65 html
+半导体 ÷ 纳斯达克 100（SMH / QQQ）
+@@ 3c92192208 html
+科技领导力还在芯片手里
+@@ 965c8a19d7 html
+芯片先走弱，指数往往随后跟上
+@@ 6a63710c73 html
+可选消费 ÷ 必需消费（XLY / XLP）
+@@ 0a7dc1917b html
+消费者风险偏好<span class="ek">（Risk appetite）</span>在上升
+@@ f4cf411c7e html
+防御板块<span class="ek">（Defensive sectors）</span>持续跑赢，市场在为放缓做准备
+@@ 3acc82df86 html
+高收益债<span class="ek">（High-yield bonds）</span> ÷ 中期国债（HYG / IEF）
+@@ 94a36104d7 html
+信用市场愿意承担风险
+@@ f86bb5c817 html
+股票涨、信用跌：债券投资者更早看到了问题
+@@ ff0f9f7b3b html
+此外，韩国股市的权重集中在存储芯片和半导体上，它常常领先全球存储芯片股的拐点。美股存储芯片股走强而韩国股市持续疲弱，这种背离通常不会维持很久。
+@@ d97aab2bdf html
+轮动和下跌，看起来很像，其实不同
+@@ b94989ecd0 html
+特征
+@@ b125e64f3b html
+轮动
+@@ 50878fa6ee html
+真正的下跌
+@@ b115e0cc66 html
+指数
+@@ 3a8fad732b html
+横盘或小幅波动
+@@ 4377ce6fe6 html
+持续下跌
+@@ 90160a0bd7 html
+板块
+@@ 087437d7e7 html
+有的大跌，有的大涨，分化很大
+@@ 8e55bba081 html
+几乎全部下跌
+@@ a15c50fb97 html
+个股之间的相关性<span class="ek">（Correlation）</span>
+@@ 970855daef html
+低
+@@ 11978e32a2 html
+快速上升，接近「一起跌」
+@@ 22217a2b6a html
+广度
+@@ abeadd13aa html
+等权、小盘可能反而改善
+@@ afd63c55fa html
+全面恶化
+@@ a4f1cb5d7b html
+信用利差<span class="ek">（Credit spread）</span>
+@@ 334258af17 html
+稳定
+@@ 75b1dc77c3 html
+适合的做法
+@@ a5e04497b9 html
+换仓，不减总仓位
+@@ 736ffac2f2 html
+减仓、对冲<span class="ek">（Hedge）</span>、持有现金
+@@ f1a7d975e4 html
+轮动<span class="ek">（Sector rotation）</span>期最常见的错误，是把拥挤赢家的下跌当成整个市场的下跌，于是清仓离场，错过了资金正在流入的那些板块。反过来，下跌期最常见的错误是把普跌当成轮动，以为换个板块就能躲过去。相关性和信用利差是最好的分辨工具。
+@@ 8f705ecc7f html
+轮动期的打法
+@@ 7df37f5e73 html
+<strong>买前期输家的回调，卖前期赢家的反弹。</strong>资金从拥挤的赢家流向被冷落的板块，这个过程通常要持续几周。
+@@ cc7aa916e5 html
+<strong>用正股或较长期限的工具。</strong>轮动需要时间兑现，短期期权的时间损耗<span class="ek">（Time decay）</span>会吃掉利润。
+@@ e296043ecf html
+<strong>等确认再加仓。</strong>一天的等权跑赢说明不了什么。连续几天到一两周，比值稳定上行，同时资金持续流入被抛售过的板块，才算确认。
+@@ 59b38ac026 html
+<strong>做空挑最弱的，不挑最强的。</strong>想表达看空观点时，做空相对强弱最差的板块，比做空最强的指数安全得多。最强的东西有资金在买，空它要和趋势、和空头回补<span class="ek">（Short covering）</span>一起对抗。
+@@ 6a32d4ffe4 html
+拥挤交易的代价
+@@ 841326934a html
+一笔交易所有人都知道、所有人都持有的时候，它最大的风险往往是<strong>没有下一个买家</strong>，逻辑本身倒未必有错。买盘一旦停下，价格只需要一点点坏消息就会快速下跌，因为每个人都想从同一扇门出去。
+@@ 67c4f847b0 html
+判断拥挤的线索：媒体和社交平台反复讨论，身边不炒股的人开始问，期权市场上看涨期权<span class="ek">（Call option）</span>的需求明显高于看跌期权<span class="ek">（Put option）</span>，相关 ETF 持续大额流入，以及好消息出来以后股价不再上涨。看到这些信号，不一定要立刻卖出，但应该停止加仓，并且想清楚：买盘停止时，谁来接？
+@@ c7489dfa0d html
+资金流与期权结构
+@@ 83f565ab0e html
+几个月的方向由宏观决定，几天之内的路径常常由机械性的资金流<span class="ek">（Fund flows）</span>决定。这些资金不看新闻，只按规则买卖，但它们足以让一次正常的回调变成急跌，或者把指数钉在某个价位附近。
+@@ 5456ae6143 html
+做市商的对冲方向
+@@ 82be9a883d html
+做市商<span class="ek">（Market maker）</span>卖出期权以后，通常会用股票或期货对冲<span class="ek">（Hedge）</span> Delta，让自己对方向保持中性。随着价格变化，Delta 会变（变化速度就是 Gamma），他们就要不断调整对冲。调整的方向，取决于他们整体是持有 Gamma 还是卖出了 Gamma：
+@@ 380bd87d1a html
+做市商持有正 Gamma
+@@ 0ab70469a8 html
+价格上涨，他们的多头敞口<span class="ek">（Exposure）</span>变大，要卖出
+@@ 78a22e6f72 html
+价格下跌，他们要买入
+@@ 3b391a919e html
+结果：涨了有人卖，跌了有人买，波动被压低
+@@ 44054dbdca html
+做市商持有负 Gamma
+@@ 3c3b4c69a1 html
+价格下跌，他们的多头敞口变大，要卖出
+@@ 17f43e795e html
+价格上涨，他们要买入
+@@ 89d1d6d2b8 html
+结果：跌了有人追着卖，涨了有人追着买，波动被放大
+@@ 6fd51a3a62 html
+典型的指数期权市场里，客户（机构）大量买入看跌期权<span class="ek">（Put option）</span>做保护，同时卖出看涨期权<span class="ek">（Call option）</span>增强收益。做市商站在另一边：卖出看跌期权（负 Gamma），买入看涨期权（正 Gamma）。价格在高位时看涨期权的影响更大，做市商整体是正 Gamma；价格跌到看跌期权集中的区域，就会翻转成负 Gamma。翻转的那个价位，就是常说的 <strong>Gamma 分水岭（Gamma Flip）</strong>。
+@@ 4e7b98abc7 html
+看跌期权需求 <input id="gx-m" type="range" min="5" max="20" value="10"> <output id="gx-m-o">1.0×</output>
+@@ 075980239f html
+距到期 <input id="gx-d" type="range" min="3" max="30" value="10"> <output id="gx-d-o">10 天</output>
+@@ 072579b852 html
+一个假想的指数 ETF，现价 780。做市商持有 790、800、810 的看涨期权，卖出了 740 到 770 的看跌期权，隐含波动率<span class="ek">（Implied volatility (IV)）</span>统一按 16% 计算。纵轴是价格每变动 1% 做市商需要调整的对冲金额。把看跌需求拖到 2.0×，分水岭上移到 790 附近：同样的现价，市场从「有人托底」变成「有人追杀」。把到期天数拖短，曲线变得更陡，集中在行权价<span class="ek">（Strike price）</span>附近。
+@@ 92f4f1d103 html
+没有人能直接看到做市商的真实仓位。数据服务商发布的 Gamma 分水岭、Gamma 敞口，都是根据未平仓合约<span class="ek">（Open interest (OI)）</span>加上一些假设（比如「客户买看跌、卖看涨」）推算的。把它们当作一张大致的地形图，而不是精确的坐标。价格跌破估算的分水岭后，还要看跌破后的价格行为：成交是否放大、反弹是否无力。
+@@ 167d880dfb html
+到期日附近的效应
+@@ 8961c112f6 html
+<strong>月度到期<span class="ek">（Monthly expiration (OpEx)）</span></strong>（每月第三个周五）和<strong>季度四重到期<span class="ek">（Quad witching）</span></strong>（3、6、9、12 月的第三个周五）前后，大量期权集中失效，做市商的对冲仓位随之释放。到期前价格常被大额未平仓的行权价「吸住」，到期后束缚解除，波动常常变大。
+@@ 51ba531120 html
+<strong>最大痛点<span class="ek">（Max pain）</span></strong>是让所有期权买方总损失最大的那个到期价。它在到期前一两天对价格有一定的吸引力，离到期越远越没有意义。
+@@ cbdba30411 html
+<strong>0DTE 期权</strong>（当天到期）的 Gamma 极大，会放大日内的波动，尤其是在大额行权价附近。它们对日内的路径影响大，对几周的方向影响小。
+@@ 8fa2dfcb5c html
+<strong>单个行权价的堆积</strong>：某个整数行权价上看涨期权特别多，价格接近时做市商需要买入对冲，可能形成一段加速上涨；越过以后买盘消失，也可能变成阻力。
+@@ aa220ab70c html
+杠杆 ETF 的收盘再平衡
+@@ b128ac4cc4 html
+杠杆 ETF<span class="ek">（Leveraged ETF）</span> 承诺每天提供标的涨跌的固定倍数，所以每天收盘前都必须调整仓位。推导一下：一只杠杆<span class="ek">（Leverage）</span>倍数为 <span class="v">L</span>、净资产为 <span class="v">A</span> 的基金，需要持有 <span class="v">L·A</span> 的敞口。标的当天涨了 <span class="v">r</span>，敞口变成 <span class="v">L·A·(1+r)</span>，净资产变成 <span class="v">A·(1+L·r)</span>，需要的敞口是 <span class="v">L·A·(1+L·r)</span>。两者相减：
+@@ 63d239af55 html
+基金规模（亿美元）<input id="lf-aum" type="number" value="100" step="10">
+@@ fa22c6fe63 html
+3 倍
+@@ fa1e1f6232 html
+2 倍
+@@ 6382c92ff4 html
+−1 倍（反向）
+@@ 085858e09b html
+−2 倍
+@@ 160ac315b5 html
+−3 倍
+@@ b503c64b45 html
+标的当天涨跌（%）<input id="lf-r" type="number" value="5" step="0.5">
+@@ 9dbcedb122 html
+规模 100 亿美元、标的上涨 5% 时：3 倍基金要买 30 亿，2 倍和 −1 倍各买 10 亿，−3 倍要买 60 亿。反向基金的规模往往不大，但系数最大。
+@@ f5c9ff0956 html
+对于有大规模杠杆 ETF 跟踪的个股（一些热门科技股和半导体股），这股资金会在大涨大跌的日子里放大尾盘的走势：标的大涨，杠杆基金在收盘前买入，第二天开盘更高，又推动更多买入。下跌时反过来。理解这一点，就能理解为什么某些股票的波动总是比基本面消息所能解释的更极端。
+@@ ff7bf738d0 html
+其他机械性资金
+@@ 2c14503e50 html
+<strong>波动率目标基金<span class="ek">（Volatility-targeting fund）</span>和趋势跟踪<span class="ek">（Trend following (CTA)）</span>基金</strong>：前者在实际波动率<span class="ek">（Realized volatility）</span>上升时自动降低股票仓位，后者在价格跌破趋势时减仓。两者都会在下跌时卖、在平静上涨时慢慢买回。
+@@ 74d3e1af13 html
+<strong>季末和月末再平衡<span class="ek">（Rebalancing）</span></strong>：股债配置型的养老金和基金，在股票大涨的季度末要卖出股票、买入债券，反之亦然。
+@@ 8102f46850 html
+<strong>回购静默期<span class="ek">（Buyback blackout period）</span></strong>：公司在财报<span class="ek">（Earnings report）</span>发布前几周通常暂停回购<span class="ek">（Share buyback）</span>，市场少了一个稳定的买家。财报后回购恢复，买盘回来。
+@@ 0c6d2bc546 html
+<strong>指数调整</strong>：成分股的加入、剔除和权重调整，会在生效日集中产生成交。
+@@ 54dbde354e html
+怎么用这些信息
+@@ 92f95593f4 html
+机械性资金<span class="ek">（Mechanical flows）</span>解释的是<strong>路径和时机</strong>，不是方向。宏观判断告诉你大概往哪走，资金流告诉你哪几天可能走得特别快，哪些价位附近可能被吸住或者突然加速。
+@@ 0124a6fb91 html
+期权数据还有一个用途：识破叙事<span class="ek">（Narrative）</span>。一只股票连续大涨，新闻会给出一个基本面的理由，但如果它恰好伴随着大量短期看涨期权的买入，做市商被迫买入股票对冲，那么这段上涨里有相当一部分是机械性的。这时要问的问题是：看涨期权的买盘停下来以后，谁来接？
+@@ 1449b65f06 html
+不少交易者在给出当天的关键点位时，会优先用期权结构<span class="ek">（Options positioning）</span>里的价位（分水岭、大额行权价、到期痛点），再用技术位（缺口、均线、形态）作为更远的目标，并且总是写成二分法：「守在某价位之上偏多，跌破偏空」。这比单纯说「我看涨」更容易执行，也更容易认错。
+@@ b65e4250a7 html
+叙事与信息
+@@ a0349c9dab html
+市场交易的是故事，但最后付账的是现金流。会用叙事<span class="ek">（Narrative）</span>的人，用它决定研究什么；被叙事用的人，用它决定什么时候全仓。
+@@ dee0be53c0 html
+叙事的生命周期
+@@ 1c521f1a8c html
+「所有人都知道」
+@@ 71d1705c4d html
+萌芽
+@@ 4a84f1df26 html
+扩散
+@@ 4b623d3298 html
+共识
+@@ b5d01e8537 html
+拥挤与疲劳
+@@ 462fe6a0b3 html
+证伪或沉寂
+@@ fd12a841bf html
+研究，小仓位
+@@ 4833f5d713 html
+数据验证后加仓
+@@ a8393f5463 html
+持有，不再加
+@@ e3baf484e0 html
+分批减仓
+@@ d47b5beeda html
+观望，等下一条
+@@ 627c35c27b html
+价格上涨最快的往往是「扩散」到「共识」那一段，但风险收益比<span class="ek">（Risk-reward ratio）</span>最好的是「萌芽」和「扩散」早期。到了共识阶段，好消息已经很难再推动价格，坏消息却能让它大跌。
+@@ 7a4569e964 html
+叙事决定研究什么，估值决定何时买
+@@ d6a2e9a34d html
+一个好的叙事回答的是「未来几年，世界会被迫把钱花在哪里」。比如人工智能需要电力、网络和数据中心<span class="ek">（Data center）</span>；制造业回流<span class="ek">（Reshoring）</span>需要工程建设<span class="ek">（Engineering and construction (E&C)）</span>、工业设备和物流；人口老龄化<span class="ek">（Population aging）</span>需要医疗器械<span class="ek">（Medical devices）</span>和服务；安全和资源独立需要国防、关键矿产<span class="ek">（Critical minerals）</span>和能源基础设施。
+@@ e8323c5788 html
+从叙事到具体标的，可以按四步走：
+@@ b754ea0633 html
+叙事对，不代表这家公司就是好的表达工具。一个正确的趋势里，有大量公司会因为执行、竞争或负债而失败。真正的分散，要看风险来源<span class="ek">（Risk factor）</span>，而不是看持有多少只股票：五只都靠同一个叙事上涨的股票，其实是一笔交易。
+@@ 1abbb388dc html
+写下失效条件，而且要写事实
+@@ fe53b7ce9e html
+买入一个叙事之前，先写下「什么事实出现以后，我会承认这个判断错了」。注意是事实，不是价格。
+@@ 1e1f167aa2 html
+不好的失效条件
+@@ d6be11492e html
+股价跌 20% 就认错
+@@ 0eab9ae032 html
+感觉不对就走
+@@ 6eb7ab745a html
+好的失效条件
+@@ 4717dda1da html
+主要客户连续两个季度下调资本开支<span class="ek">（Capital expenditure (capex)）</span>指引
+@@ 9ef50c5e2e html
+政策补贴被取消或推迟
+@@ 61a844fd73 html
+关键产品的价格开始持续下跌
+@@ 1058c9c42a html
+价格止损<span class="ek">（Stop-loss）</span>用来控制单笔亏损，事实失效条件<span class="ek">（Invalidation criteria）</span>用来判断叙事本身。两者都需要，但不要混为一谈。价格跌了而事实没变，可能是机会；价格没跌而事实变了，更应该走。
+@@ 46a477e99b html
+一条新闻重不重要，问六个问题
+@@ a286fc08b9 html
+问题
+@@ fb6f622034 html
+为什么要问
+@@ 18c5ef7626 html
+市场怎么反应？
+@@ a29bf6ecc1 html
+真金白银的反应比标题更有分量（第 2 章）
+@@ 93b1ffe319 html
+它超出预期了吗？
+@@ a814468688 html
+已知的事情不是新闻，只有预期差<span class="ek">（Expectation gap）</span>才会推动价格
+@@ 046850318d html
+它改变了四个变量中的哪一个？
+@@ a23df19aed html
+不改变利率、油价、盈利、就业的新闻，影响通常很短
+@@ 82a3e8df0b html
+谁获益，谁被迫花钱？
+@@ 34d28004c9 html
+顺着钱的流向找标的
+@@ f04ad4d46b html
+影响范围多大？
+@@ a6964d7dee html
+单个公司、一个行业，还是整个宏观
+@@ 96066f2c86 html
+有没有资金流<span class="ek">（Fund flows）</span>或期权数据佐证？
+@@ e9a4630457 html
+有资金跟随的叙事才会在价格上兑现
+@@ 7d7a926843 html
+内部人、大资金和散户情绪
+@@ 26faf1c3a4 html
+<strong>内部人<span class="ek">（Insiders）</span>买入比卖出更有信息量。</strong>高管卖股票的理由很多：分散财富、缴税、买房，很多还是提前设定好的交易计划<span class="ek">（Trading plan）</span>。但他们用自己的钱在公开市场买入，理由通常只有一个。多名高管同时买入，信号更强。
+@@ 18b4b32e77 html
+<strong>异常期权活动<span class="ek">（Unusual options activity (UOA)）</span>是信息，不是命令。</strong>某个行权价<span class="ek">（Strike price）</span>上突然出现大额成交，可能是看多，也可能是某个大机构在对冲<span class="ek">（Hedge）</span>正股仓位，甚至是在平仓。要结合未平仓量<span class="ek">（Open interest (OI)）</span>的变化和成交价位判断，而且只把它当作一条线索。
+@@ daf15fb314 html
+<strong>散户情绪的极端值是反向参考。</strong>身边从不炒股的人开始推荐股票，某只股票成为社交平台上所有人都在聊的话题，这些都是情绪接近高点的信号。它不告诉你明天跌，但提醒你不要在这时候加仓。
+@@ 3ccd376a93 html
+交易政策，不交易口号
+@@ 0f1836e3ce html
+政治新闻会带来大量噪音。宏观交易者关心的是政策会让资本流向哪里：一项产业补贴、一项关税、一笔国防预算、一项出口限制，都会让某些行业的收入在几年里确定性地增加或减少。至于谁说了什么、你认同哪一方，市场并不在乎。
+@@ 315da79749 html
+把个人信念和交易判断分开，是这门手艺里最难的一部分。一个有用的检验：如果你支持的一方失势，你的仓位会不会让你睡不着？如果会，你押注的就是信念，而不是可以验证的市场逻辑。
+@@ a8995cc302 html
+日历、季节性与事件剧本
+@@ eae2d2b73a html
+宏观交易者的一个月，是被日历切开的。重要的数据和会议都提前公布了日期，所以你完全可以在事件发生之前，把每一种结果下要做什么都写好。
+@@ eb99010ab3 html
+一个月里的固定日程
+@@ 82698770af html
+事件
+@@ dc84651473 html
+大致时间
+@@ 224ae85805 html
+为什么重要
+@@ 1c3b3452de html
+就业报告（非农、失业率<span class="ek">（Unemployment rate）</span>）
+@@ 87329575b5 html
+通常是每月第一个周五
+@@ d57a33467e html
+就业是体制<span class="ek">（Regime）</span>判断的第四个变量，也是美联储<span class="ek">（Federal Reserve (Fed)）</span>的目标之一
+@@ b61b4c6bef html
+首次申领失业金<span class="ek">（Initial jobless claims）</span>人数
+@@ 8e023066be html
+每周四
+@@ 8e8e31c19e html
+最及时的就业数据，看四周平均的趋势
+@@ 8d5e92973b html
+ISM 制造业与服务业指数
+@@ 20e59df938 html
+每月初
+@@ fd4c5619dd html
+领先指标，价格分项能提前看到通胀压力
+@@ b00e5c1950 html
+CPI 与 PPI
+@@ 290d2a961b html
+每月中旬
+@@ 1e1311be2e html
+通胀数据，直接影响加息和降息的定价
+@@ c32427e09f html
+PCE 物价指数
+@@ a21c5483a9 html
+每月下旬
+@@ be7bd4288e html
+美联储最看重的通胀指标
+@@ 77b5ad93e6 html
+FOMC 议息会议<span class="ek">（FOMC meeting）</span>
+@@ ad1350ddda html
+每年 8 次，会后有声明和记者会
+@@ 0dbd021b0c html
+政策利率<span class="ek">（Policy rate）</span>、点阵图<span class="ek">（Dot plot）</span>和对未来的指引
+@@ 12459bb900 html
+美债拍卖<span class="ek">（Treasury auction）</span>与季度再融资<span class="ek">（Quarterly refunding）</span>公告
+@@ bcfddba4eb html
+拍卖几乎每周都有；再融资每季度一次
+@@ 07c46d7786 html
+长端利率的供需（第 3 章）
+@@ 4581d243eb html
+期权月度到期<span class="ek">（Monthly expiration (OpEx)）</span>与季度四重到期<span class="ek">（Quad witching）</span>
+@@ d6fd3a2f20 html
+每月第三个周五；3、6、9、12 月为四重到期
+@@ 7e03ae8b96 html
+对冲<span class="ek">（Hedge）</span>仓位集中释放（第 7 章）
+@@ fcde8c15d4 html
+财报<span class="ek">（Earnings report）</span>季
+@@ 3c9a9d74b3 html
+每季度结束后约两到六周最集中
+@@ 3b31372e1d html
+盈利是体制判断的第三个变量
+@@ a3680f4d7e html
+事件剧本：提前把分支写好
+@@ 77bf4206fb html
+事件当天，价格在几秒内跳动，情绪最容易主导判断。所以要在前一天，用平静的头脑把剧本写好：每一种结果，每一类资产会怎么走，自己要做什么。以 CPI 为例：
+@@ 24c05dd1b7 html
+结果
+@@ 2a3f4f835e html
+2 年期
+@@ 0ecb076fb2 html
+纳斯达克 100
+@@ fdab6ec265 html
+小盘股
+@@ d2f71def72 html
+我的动作
+@@ c76e056ea3 html
+明显高于预期
+@@ a347e1c451 html
+大涨
+@@ 5c3c598617 html
+走强
+@@ ff78836d57 html
+跌得更多
+@@ 89d0f390b6 html
+执行对冲；不抄底，等第一个小时过去
+@@ 78d9645c23 html
+符合预期
+@@ bfcbc4caf5 html
+小动
+@@ 8ffa492062 html
+波动率回落
+@@ f2109d9503 html
+事件前买的保护会因为隐含波动率<span class="ek">（Implied volatility (IV)）</span>下降而亏一些，按计划处理
+@@ 0edf05b656 html
+明显低于预期
+@@ b5942e7929 html
+大跌
+@@ 136d74b540 html
+涨得更多
+@@ f638732fc6 html
+按计划加仓预先选好的标的
+@@ a4d64fae7f html
+剧本里最有价值的一栏，是「什么样的反应说明市场在交易别的东西」。比如 CPI 明显低于预期，2 年期大跌，股市却也在跌，说明市场更担心的是增长，而不是通胀。这种与剧本不符的反应，往往比数据本身更重要。
+@@ 3f3cb86870 html
+期权在为事件定价多少
+@@ 42a15badb1 html
+期权价格里藏着市场对一个事件的波动预期。用一周后到期的期权（包含事件当天）和平常日子的隐含波动率，可以把事件当天单独分离出来。按交易日计算（一年 252 个交易日）：
+@@ 9084f86ef0 html
+含事件的周度 IV <input id="ev-1" type="range" min="10" max="30" value="16"> <output id="ev-1-o">16%</output>
+@@ cc6e21f58f html
+平常的 IV <input id="ev-0" type="range" min="8" max="20" value="13"> <output id="ev-0-o">13%</output>
+@@ d198f43e16 html
+默认参数下，市场预期 CPI 当天的波幅约 1.55%，是平常一天 0.82% 的近两倍。如果你认为这次数据不会带来太大意外，事件波动就是「贵」的，用有限风险的结构卖出它更合适；如果你认为意外会很大，买入跨式<span class="ek">（Straddle）</span>期权才有可能赚钱，因为需要的波幅超过 1.55%。
+@@ c95d126b49 html
+季节性是地图，不是扳机
+@@ 7f1e9e2fe8 html
+常被引用的统计里，9 月是标普 500 历史上平均表现最弱的月份；在美国中期选举<span class="ek">（Midterm elections）</span>年，市场常在年中到秋季走弱，然后在年底到第二年表现较好。还有月末基金调仓、长假前后成交清淡、财报季前的回购静默期<span class="ek">（Buyback blackout period）</span>等等。
+@@ efb5e6b978 html
+这些规律的问题在于：样本少（中期选举每四年一次，几十年也只有十几个样本），而且每一年的宏观背景完全不同。所以季节性<span class="ek">（Seasonality）</span>的正确用法是：
+@@ 3d3b59d3b2 html
+提前准备：季节性偏弱的时段到来前，准备好现金、对冲和一份购物清单，写下回调 5%、10%、15% 时分别买什么。
+@@ a14e4c69b8 html
+等待确认：季节性只告诉你「可能」，价格跌破关键位、广度<span class="ek">（Market breadth）</span>恶化、信用利差<span class="ek">（Credit spread）</span>扩大，才是「确认」。不要去预测回调，等市场自己确认。
+@@ 35aa03b7e0 html
+和其他信号叠加：季节性偏弱、估值偏贵、利率上升同时出现，比单独一个季节性更值得重视。
+@@ 36ba087643 html
+华尔街还流传着不少日历谚语，比如某些节日前卖出、节日后买回。把它们当成值得留意的提醒就够了，不要当成交易信号。
+@@ 0b512e0829 html
+事件前后的纪律
+@@ 53db97d3ae html
+<strong>事件前对冲，事件中少动。</strong>重大事件（议息会议、关键数据、重要公司财报）前，为现有仓位买好保护，或者先降低仓位。结果出来的第一个小时，价格常常来回反转，最容易做错。
+@@ 566c25338e html
+<strong>低成交量的时段，小心假突破。</strong>假期前后、夏季成交清淡的周，价格容易被少量资金推动，突破的可靠性下降。
+@@ afe3657a84 html
+<strong>周一开盘要谨慎。</strong>周末累积的新闻集中在周一开盘释放，开盘头半个小时的价格往往不能代表当天的方向。
+@@ 205b88f27d html
+<strong>一天符合预期，不等于确认。</strong>重要的转折，至少要等到第二天、第三天的价格行为来验证。
+@@ 5d51f531a7 html
+从观点到交易
+@@ 797cb73b3d html
+宏观观点要变成钱，还要回答四个问题：用什么工具，下多大，拿多久，错了怎么办。很多正确的宏观判断，就输在这四个问题上。
+@@ 79dbdf00f7 html
+一个观点要写全五个部分
+@@ e767bf54d4 html
+部分
+@@ 3ac3a5d694 html
+问自己
+@@ eb6a702073 html
+示例
+@@ e0551de2ea html
+方向
+@@ 2dd97720c1 html
+涨还是跌，相对什么
+@@ 88d2292911 html
+小盘股<span class="ek">（Small caps）</span>相对纳斯达克 100 跑赢
+@@ 8b60687fb4 html
+幅度
+@@ 9b932fa6d5 html
+大概多少
+@@ cbf92eb23e html
+比值上升 5% 到 8%
+@@ 29d5ebf63f html
+时间
+@@ ea23615e6a html
+多久兑现
+@@ bfcbca5033 html
+4 到 8 周
+@@ 8fde8acbc0 html
+置信度
+@@ 4d1ad34d62 html
+有多确定，依据是什么
+@@ 5f9f7704df html
+中等：利率在下行，但就业数据还没确认
+@@ 7db2954701 html
+失效条件<span class="ek">（Invalidation criteria）</span>
+@@ f337849583 html
+什么事实出现就认错
+@@ 61901ce97e html
+10 年期收益率重新突破前高，或信用利差<span class="ek">（Credit spread）</span>扩大
+@@ 7798191086 html
+只写了第一部分的观点，不是一个可以交易的观点。时间这一栏尤其重要，它直接决定你该用什么工具。
+@@ 2fd9d56320 html
+按时间选工具
+@@ 58df7c1fb9 html
+兑现时间
+@@ e310b3ea45 html
+适合的工具
+@@ 67ddb6241e html
+原因
+@@ 13ebaed6ed html
+几天内的事件或点位
+@@ c8f598de58 html
+短期期权、价差
+@@ d51a1ea698 html
+杠杆<span class="ek">（Leverage）</span>高，最大亏损<span class="ek">（Max loss）</span>确定；时间短，时间损耗<span class="ek">（Time decay）</span>可以接受
+@@ 0c0d912188 html
+几周到几个月的宏观逻辑
+@@ 85e717202a html
+宏观逻辑需要时间兑现，正股不怕等
+@@ 298cde83c7 html
+一年以上的结构性叙事<span class="ek">（Narrative）</span>
+@@ 2b714d5ded html
+正股分批<span class="ek">（Scaling in）</span>买入、长期限期权
+@@ 7a6291c68d html
+波动会很大，要能拿得住
+@@ cfd5cdb7de html
+一个需要半年才能兑现的判断，用三周后到期的看涨期权<span class="ek">（Call option）</span>去表达，等于同时押了方向和时间，而时间几乎一定会站在你的对面。当宏观逻辑需要时间的时候，宁可买股票，也不要买短期期权：我们需要的是时间，而不是刺激。
+@@ d06224b3b3 html
+挑最干净、最薄弱的那一环
+@@ d3bf564c11 html
+<strong>看多时，找最直接的受益者。</strong>油价上涨的观点，用上游生产商表达比用综合性能源公司更直接；利率下行的观点，用小盘股或房地产信托比用大型科技股更直接。
+@@ fe781f517f html
+<strong>看空时，找最弱的板块。</strong>看空科技，与其做空走势最强的纳斯达克 100，不如做空相对强弱<span class="ek">（Relative strength）</span>最差、动能已经转弱的子板块。软柿子比硬石头好捏。
+@@ 20e3c943a5 html
+<strong>想不清楚方向时，交易相对强弱。</strong>买入一个、卖出另一个，可以把整体市场的涨跌对冲<span class="ek">（Hedge）</span>掉，只押你最有把握的那部分判断。
+@@ a09d839b67 html
+组合层面的对冲
+@@ 1bb60d6490 html
+第 2 章提到的「意外对冲」可以算一下。假设你持有 10,000 美元的能源股，它对油价的弹性是 0.6（油价涨 10%，它涨 6%）。你担心政策突然把油价压下来，于是买入航空 ETF 的看涨期权作为保护。
+@@ 4550a6fec7 html
+航空看涨期权 <input id="hg-n" type="range" min="0" max="10" value="4"> <output id="hg-n-o">4 张</output>
+@@ 55566a338e html
+假设：航空 ETF 现价 25 美元，对油价的弹性是 −0.9；买入 60 天到期、行权价<span class="ek">（Strike price）</span> 27 美元的看涨期权，隐含波动率<span class="ek">（Implied volatility (IV)）</span> 45%，每张约 1.11 美元。图中是 30 天后、隐含波动率不变时的盈亏。4 张期权花费约 444 美元：油价跌 20% 时亏损从 1,200 美元降到约 405 美元，油价涨 20% 时盈利从 1,200 美元降到约 764 美元。真实冲击中隐含波动率通常会上升，对冲效果会比这里更好。
+@@ fa72204b9b html
+这个例子的重点在于形状。用看涨期权对冲，你付出的是一笔确定的、有限的权利金<span class="ek">（Premium）</span>，换来的是油价朝不利方向大幅变动时的保护。如果用卖空<span class="ek">（Short selling）</span>能源股来对冲，你会把盈利和亏损同比例削掉，观点本身也就没了。

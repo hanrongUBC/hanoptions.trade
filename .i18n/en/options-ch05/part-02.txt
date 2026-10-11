@@ -1,0 +1,218 @@
+@@ 9e090795ac html
+<span class="sn">5.3</span>Weekends and holidays: two clocks
+@@ fe86021041 html
+Black-Scholes has a single time variable. Count calendar days and Theta is charged for both weekend days; count trading days and the weekend is free, but each trading day is charged more. Over a week the total decay is the same; only its distribution differs.
+@@ 0eb34a3e82 html
+This course uses calendar days, 365 to a year. The other convention is trading days, about 252 to a year, with weekends and holidays not counted as time. The same price corresponds to slightly different IV numbers under the two clocks: to keep total variance σ²<span class="v">T</span> equal, trading-day IV = calendar-day IV × √(calendar days / 365) ÷ √(trading days / 252).
+@@ 547b6ad473 html
+Example: it is Friday’s close, and the option expires on the Friday 4 weeks from now, with 28 calendar days or 20 trading days left. Priced at a calendar-day IV of 30%, it has an IV of 29.49% under the trading-day convention, and under both today’s price is <span class="num">$3.464</span>. With the stock not moving, here is the price at each close over the next week:
+@@ 5d9aeeaa20 html
+Table 5-3 One week of the same ATM call under two clocks (stock unchanged, per share)
+@@ 746ad05f93 html
+Close
+@@ d7011f4291 html
+Calendar: days left
+@@ f36e49014c html
+Price
+@@ 553b24e241 html
+Day’s decay
+@@ 5071b1c333 html
+Trading: days left
+@@ 63cde1ece0 html
+Fri
+@@ d15c602377 html
+Mon
+@@ 3915f9d736 html
+Tue
+@@ 1e03e400e7 html
+Wed
+@@ e38f390ba9 html
+Thu
+@@ 2b330f2c94 html
+Each set of bars adds up to 0.481. The calendar-day clock charges three days at once on Monday (0.198) and about 0.07 on each other day; the trading-day clock charges an even 0.09–0.10 a day and nothing for the weekend. The two prices are identical at every Friday close.
+@@ 4f1369ff17 html
+Which clock the market actually uses
+@@ 607e0728fa html
+Stock prices move almost entirely during trading hours; over a weekend there is news risk but no continuous price movement. So for describing volatility, the trading-day clock is closer to reality; for computing interest, calendar days are correct. Many market makers build the weekend’s decay into their quotes as early as Friday, typically by lowering the volatility they price with on Friday, or by simply measuring time in trading hours. The result:
+@@ ecd30174ba html
+Option quotes on Friday afternoon often look “cheap” by a calendar-day model, and Monday’s open doesn’t show the big drop the calendar-day model expects.
+@@ 35a26efb82 html
+As for the idea of “sell Friday, buy back Monday, and pocket two days of weekend Theta for free”: most of that profit is already priced in before Friday’s close. What’s left is the insurance premium you collect for weekend gap risk.
+@@ 517c76616f html
+Holidays work the same way: market holidays such as Thanksgiving and Christmas don’t count as time on the trading-day clock, and options price them in ahead of the holiday.
+@@ 477d483197 html
+Distortion in very short-dated options
+@@ e261ded331 html
+The shorter the term, the bigger the gap between the two clocks. Suppose a stock’s true volatility, measured in trading days, is 30%. On Friday you buy an option expiring Monday: 1 day left on the trading-day clock, 3 days on the calendar-day clock. If your platform backs out IV using calendar days, it will show <span class="num">30% × √(1/252) ÷ √(3/365) ≈ 20.8%</span>. Buy an option on Monday that expires Tuesday, and it will show <span class="num">30% × √(365/252) ≈ 36.1%</span>. Same stock, same true volatility: very short-dated IV looks low on Friday and high midweek. That comes from how time is counted, not from market sentiment. When comparing IV on short-dated options, first check which clock your platform uses.
+@@ 77262274a4 html
+<span class="sn">5.4</span>Vega: what one vol point is worth
+@@ 5baf4df1e3 html
+Vega is the change in an option’s price when IV moves by 1 percentage point. The longer the term and the closer to the money, the larger the Vega; but as a percentage of price, OTM options are more sensitive to IV.
+@@ 28b0932520 html
+A call and a put with the same strike and expiration have the same Vega, again a consequence of parity. The ATM approximation comes from the 0.4 rule in Chapter 3: <span class="v">C</span> ≈ 0.4<span class="v">S</span>σ√<span class="v">T</span>; differentiate with respect to σ and you get 0.4<span class="v">S</span>√<span class="v">T</span>.
+@@ b93320f03f html
+Table 5-4 Stock at $100, IV 30%: call Vega (per share) and Vega as a percentage of price
+@@ b0f79df369 html
+90 (ITM)
+@@ 828824c301 html
+100 (ATM)
+@@ 25bbfd0d2e html
+110 (OTM)
+@@ 5336487bd2 html
+ATM approximation 0.4·S·√T/100
+@@ 37a2a6e381 html
+Four observations:
+@@ 4aa07b258b html
+<strong>Vega is proportional to √<span class="v">T</span>.</strong> The 365-day ATM Vega (0.383) is 7 times the 7-day figure. This is exactly the reverse of Theta, which is proportional to 1/√<span class="v">T</span>. The longer the term, the more the position behaves like a volatility position; the shorter the term, the more it behaves like a time position (Case 1).
+@@ 40ae23ccd9 html
+<strong>The peak sits slightly above the current price.</strong> The strike with the largest Vega is <span class="v">S</span>e<sup>(<span class="v">r</span>+σ²/2)<span class="v">T</span></sup>: 100.7 at 30 days and 108.9 at one year. So the one-year 110 call has a larger Vega (0.399) than the ATM call (0.383).
+@@ a3b48aa09f html
+<strong>In dollars, look at ATM; in percentage terms, look at OTM.</strong> The 30-day 110 call has a Vega of only 0.068, but that is 10.3% of its price. When IV rises from 30% to 35%, it goes from 0.655 to <span class="num">1.022</span>, up 56%; over the same move the ATM call goes from 3.591 to 4.161, up only 16%. If you want to bet a small amount on rising IV, OTM options give you the most leverage; by the same token, they also shrink the most when IV falls.
+@@ 0c23a8824a html
+<strong>ATM Vega barely changes with IV.</strong> At IV of 15%, 30% and 60%, a 30-day ATM call has Vega of 0.1138, 0.1140 and 0.1137. The OTM 110 call, by contrast, goes from 0.012 to 0.068 to 0.103. That difference is Volga, covered in Section 5.7.
+@@ c8a8cac2dd html
+Dollar Vega
+@@ 89e34c7e87 html
+Vega ÷ price
+@@ d363382205 html
+Implied volatility <input id="f3-iv" type="range" min="10" max="80" value="30"> <output id="f3-iv-o">30%</output>
+@@ fd1ff1de0f html
+In the “Dollar Vega” view, all four curves peak near 100, growing taller and wider as the term lengthens, and the one-year peak shifts noticeably toward about 109. Switch to “Vega ÷ price” and the shape flips: the further OTM and the shorter the term, the higher the ratio. Raise IV and the dollar curves widen, so strikes far away start to carry Vega too.
+@@ 2fe4913ea4 html
+The first thing to do with Vega is to ask, before you buy: “If IV goes back to this stock’s normal level, how much do I lose?” Suppose a 30-day ATM call is at IV 45% now and the stock’s usual IV is 30%. IV reverting alone would cost about <span class="num">15 × 0.114 = 1.71</span>/share (a full repricing also gives 1.71), equal to 19 days of this option’s Theta (−0.091 a day at IV 45%). Weigh this potential loss together with your view on direction.
+@@ 005dc76ba3 html
+An IV point is not the same across terms
+@@ cfe4403416 html
+Vega answers “what is a 1-point move in IV worth,” but IV at different expirations doesn’t move by the same amount. When the market gets a scare, 30-day IV might jump 10 points while one-year IV moves only three or four: short-term IV is like the waves, long-term IV like the tide. Comparing the one-year Vega of 0.383 directly with the 30-day 0.114 overstates the IV risk of long-dated options.
+@@ 5b5306eb6e html
+A common fix is “time-weighted Vega”: Vega × √(30 / days), which assumes that IV at a <span class="v">T</span>-day term moves √(30/<span class="v">T</span>) times as much as 30-day IV. On this basis, ATM options at 7, 30, 90 and 365 days come out at <span class="num">0.114</span>, <span class="num">0.114</span>, <span class="num">0.113</span> and <span class="num">0.110</span>, almost the same. In other words, when 30-day IV rises 10 points (ATM call +1.14) and one-year IV rises only 2.9 points, the one-year ATM call gains +1.10, a similar dollar impact; if one-year IV also rose the full 10 points, it would gain 3.83. The square-root relationship is only a rule of thumb, and how closely short- and long-term IV move together varies a lot from period to period. We look at this more closely with term structure in Chapter 6.
+@@ 81bfe0dbb9 html
+Vega of a position
+@@ edc6d77736 html
+Position Vega = per-option Vega × 100 × number of contracts × direction. Long options have positive Vega; short options, negative. The two legs of a spread partly offset: a 30-day 100/110 call spread (buy the 100, sell the 110) has a Vega of <span class="num">0.114 − 0.068 = 0.046</span>, only 40% of a single long ATM call. That is why many traders use spreads instead of single legs before an event: they keep part of the directional exposure and cut more than half of the IV risk.
+@@ 84d3fd3a63 html
+<span class="sn">5.5</span>IV crush
+@@ b59daefe84 html
+IV gets bid up before an event and collapses back to normal as soon as the event passes. If the collapse is big enough, a buyer who got the direction right still loses money.
+@@ c2ea187113 html
+Take an earnings scenario (the IVs are hypothetical): the stock is at $100 and reports earnings tonight. ATM options expiring in 7 days are at IV 80%: the call is <span class="num">$4.454</span>, the put <span class="num">$4.378</span> and the straddle <span class="num">$8.832</span>. Tomorrow, with 6 days left, IV drops back to the stock’s usual 35%.
+@@ 50bb91fcd2 html
+First, read the price the market puts on earnings
+@@ a76c26193f html
+Variance adds up day by day. Total variance over 7 days = the variance of 6 ordinary days + the variance of earnings day:
+@@ 7866d53bc6 html
+The market prices earnings day at a standard deviation of about 10.1%, which corresponds to a mean absolute move of about 0.8 × 10.1% ≈ 8.1% (the 0.8 rule from Chapter 3).
+@@ bcf323488c html
+Table 5-5 P&amp;L the day after earnings (per share, IV from 80% to 35%, 6 days left)
+@@ 32cf37f9ae html
+Stock price
+@@ 2a56399463 html
+Call price
+@@ 2ca204c339 html
+Call P&amp;L
+@@ c89cc9e1ad html
+If IV unchanged
+@@ 3a48788fba html
+Straddle price
+@@ 2bf16acbec html
+Straddle P&amp;L
+@@ 0e1b21bb76 html
+Reading it row by row:
+@@ 0fc5a9bb46 html
+<strong>Up 3%, and the call still loses 16%.</strong> With IV unchanged, the same rise would have made $1.41/share. The call’s breakeven is <span class="num">+3.90%</span>: any smaller rise loses money even though the direction was right.
+@@ c8a86fbe2b html
+<strong>Breaking down the loss with the stock unchanged.</strong> −2.632 = one day of time decay, −0.333, + the IV drop, −2.299. The latter ≈ the Vega with 6 days left, 0.051 × 45 points = 2.30. Multiplying by the Vega at entry (0.055) would overstate it a little, because Vega also shrinks over time.
+@@ 6eecaf545e html
+<strong>The straddle needs a move of more than 8.7% to break even.</strong> The breakevens are <span class="num">−8.83%</span> and <span class="num">+8.65%</span>, close to the 8.1% mean absolute move the market priced. Buying the straddle is a bet that “this move will be even bigger than the market expects.”
+@@ 9ab0c07bc0 html
+P&amp;L after the event ≈ Delta × Δ<span class="v">S</span> + ½ Gamma × Δ<span class="v">S</span>² − Vega × points of IV drop − one day of Theta. For the buyer to make money, the first two terms must outweigh the last two. Plug in “IV falls back to its usual level” before you trade, and you’ll know how big a move you need.
+@@ 26798d774b html
+IV creep before an event, and deferred theta
+@@ fa51ed6eb8 html
+IV climbs all the way into an event, partly out of fear and partly from pure arithmetic. The event-day variance is a fixed chunk; the fewer days remain, the more of that chunk falls on each day, so annualized IV naturally rises. Keeping the setup above (usual IV 35%, earnings-day standard deviation 10.1%), take an ATM call that expires 3 days after earnings and assume the stock never moves:
+@@ 8ce00ff3fa html
+Table 5-6 IV and price of the same option before and after earnings (stock unchanged, per share)
+@@ 1c8c171498 html
+To earnings
+@@ 4d5a54d374 html
+Implied volatility
+@@ c4e49edded html
+ATM call
+@@ 8baa81a405 html
+Theta at constant IV
+@@ a43af5d3aa html
+17 days
+@@ 70866298aa html
+3 days
+@@ 66de089f57 html
+1 day
+@@ f2233027c0 html
+After earnings
+@@ 42f652993c html
+From 30 days before earnings to 1 day before, the option loses only 1.69 over 29 days, an average of 0.058 a day, far less than the “constant IV” Theta the platform shows. Once earnings pass, it drops 2.97 overnight, 70% of its remaining value. The time value of the event day doesn’t bleed away early; it is “stored” in IV and paid out all at once when the event happens. Seen this way, IV crush is simply deferred Theta.
+@@ 70bc21facc html
+Two corollaries: the high Theta readings you see before an event overstate daily decay, because they assume IV stays constant; and if you buy an event option a week or two early, you pay little day-to-day Theta. The real cost is that last night.
+@@ 4035e03234 html
+Long call
+@@ 04a06f6b21 html
+Long put
+@@ 7eef68f946 html
+Long straddle
+@@ 05b0a4b548 html
+Pre-event IV <input id="f4-pre" type="range" min="40" max="120" value="80"> <output id="f4-pre-o">80%</output>
+@@ bbce31e608 html
+Next-day stock move <input id="f4-mv" type="range" min="-15" max="15" step="0.5" value="3"> <output id="f4-mv-o">+3.0%</output>
+@@ d3eef1d7d5 html
+Post-event IV <input id="f4-post" type="range" min="10" max="100" value="35"> <output id="f4-post-o">35%</output>
+@@ 72ce4ba8b1 html
+The darker the color, the larger the profit or loss. The default dot sits at “up 3%, IV down to 35%”: the direction is right, yet it is in the magenta loss zone. Follow the dashed line (IV unchanged) to the right, and a 0.6% rise already puts you in the green zone. Drag post-event IV down and the breakeven line shifts right; switch to “Long straddle,” and the width of the loss band in the middle is the size of move you need.
+@@ 4d9f963fbb html
+What to do about it
+@@ 96f3badd87 html
+<strong>Use a spread</strong>: the two legs’ Vega partly offsets (Section 5.4), so IV crush does much less damage. The price is a capped payoff.
+@@ 2beef80153 html
+<strong>Go further out in time</strong>: the event’s variance is spread over more days, so a longer-dated option’s IV is lifted by only a few points. In the same setup, a 60-day ATM call has a pre-event IV of about 42.8% and loses 18% the next day if the stock doesn’t move; the 7-day call loses 59%.
+@@ a3414869a7 html
+<strong>Use a different instrument</strong>: if your view is on direction rather than volatility, consider the stock itself, or enter after the event.
+@@ e5b73b58f7 html
+<strong>Take the other side</strong>: sellers collect exactly this IV premium, but they carry the gap risk. Chapter 10 is devoted to choosing structures for event trades.
+@@ 2ea3604641 html
+A few common ways traders handle IV: IV tends to run high at the open, which suits selling options rather than chasing them; around earnings, use a debit spread instead of a single leg so the IV crush on the two legs partly cancels out; when you want to bet on a stock’s direction but its IV is too high, switch to a correlated substitute with lower IV (such as an ETF in the same industry); and when your view needs a long time to play out, prefer longer-dated options or the stock itself, because the time value of near-month options can make even a correct view lose money.
+@@ 09dcc78a42 html
+<span class="sn">5.6</span>Rho, and LEAPS when rates are high
+@@ d47bf020db html
+Rho is the change in an option’s price when interest rates move by 1 percentage point. It is proportional to term: negligible for a 30-day option, but for a two-year LEAPS it is worth about two months of Theta.
+@@ 8158ebdbb5 html
+The formula contains a <span class="v">T</span>, so Rho grows linearly with term. The intuition comes from parity, <span class="v">C</span> − <span class="v">P</span> = <span class="v">S</span> − <span class="v">K</span>e<sup>−<span class="v">rT</span></sup>: the higher the rate, the lower the present value of the strike, and the more expensive the call is relative to the put. Buying a call is like “locking in the price now and paying at expiration”; the higher the rate, the more paying later is worth.
+@@ 209a84b3f1 html
+Table 5-7 ATM option prices (stock = strike = 100, IV 30%) at different interest rates
+@@ ab32578019 html
+Term
+@@ 355fd7c34b html
+Call @1%
+@@ 37827d4fdf html
+Put @1%
+@@ d5b129a365 html
+Call Rho @4%
+@@ 5afb4642e8 html
+1 year
+@@ 747caf3e1f html
+2 years
+@@ e79eea04c4 html
+<strong>Short-dated options</strong>: when rates rise from 4% to 6%, a 30-day call gains only 0.082, a little more than one day of Theta. You can safely ignore it.
+@@ 6860970ff0 html
+<strong>LEAPS</strong>: for the same change in rates, a 2-year call gains <span class="num">1.84</span> and the put loses <span class="num">1.78</span>. A 2-year ATM call has Rho of $90.6 per contract and Theta of $1.57 a day: a 1-percentage-point move in rates equals 58 days of time decay.
+@@ fe3b5a939b html
+<strong>Low-rate vs. high-rate environments</strong>: at a 1% rate, a 2-year ATM call and put differ by only $2; at 6%, by $11. The same LEAPS call costs noticeably more when rates are high, and the put noticeably less.
+@@ 1e08855861 html
+LEAPS term <input id="f5-d" type="range" min="180" max="1095" step="5" value="730"> <output id="f5-d-o">730 days</output>
+@@ a33cb653d6 html
+Strike <input id="f5-k" type="range" min="70" max="130" step="1" value="100"> <output id="f5-k-o">100</output>
+@@ 3b63a64ad4 html
+The two dashed lines are nearly flat: 30-day options are insensitive to rates. The slope of the solid lines is Rho, steepest when you drag the term out to 1095 days (3 years). Drag the strike to 70 and the LEAPS call’s Rho is actually larger than at the money ($102 per contract), while the put becomes very cheap: deep in the money, the call’s rate sensitivity comes almost entirely from discounting the strike (Case 3).
+@@ 334e2b6702 html
+Dividends: the other “interest rate” in LEAPS
+@@ cc4a8e0a22 html
+Dividends push option prices the opposite way from interest rates: shareholders receive the dividend, call holders don’t. For a 30-day option, a 2% dividend yield makes the ATM call only 0.09 cheaper (Chapter 3, Table 3-2); for a 2-year ATM call, as the dividend yield goes from 0 to 1% to 2%, the price falls from <span class="num">20.28</span> to <span class="num">19.00</span> to <span class="num">17.78</span>, while the put rises from 12.59 to 14.01. When you use a LEAPS call in place of a high-dividend stock, the two years of dividends you give up are already deducted from the premium; if the company unexpectedly raises or cuts its dividend, the LEAPS price changes with it.
+@@ 5eb7bf07cb html
+Falling rates while you hold LEAPS cost you money: if rates drop from 6% back to 4%, a 2-year ATM call loses $184 per contract without the stock or IV moving at all. When you hold LEAPS for a long time, Rho is a risk to watch, just like Delta and Vega.

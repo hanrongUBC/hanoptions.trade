@@ -1,0 +1,166 @@
+## source: options/assets/course.js  (55 segments)
+@@ eb5ff5f8b3 js
+## code: ";   const CK = {};    CK.catalog = [     { part: "第一部分", partTitle: "基础", items: [   
+第一部分
+@@ fafbaabf07 js
+## code:     CK.catalog = [     { part: "第一部分", partTitle: "基础", items: [       { n: 1, file:
+基础
+@@ 190ba17643 js
+## code:  items: [       { n: 1, file: "ch01.html", title: "期权是什么，钱从哪里来", sum: "合约六要素、四种基本头寸、到期盈亏图，以及期
+期权是什么，钱从哪里来
+@@ 1e48ce7eab js
+## code:  1, file: "ch01.html", title: "期权是什么，钱从哪里来", sum: "合约六要素、四种基本头寸、到期盈亏图，以及期权利润的五种来源。" },       { n: 2, file: "ch02.
+合约六要素、四种基本头寸、到期盈亏图，以及期权利润的五种来源。
+@@ 19360ba32c js
+## code: 五种来源。" },       { n: 2, file: "ch02.html", title: "美股期权实务", sum: "美式与欧式、到期日体系、行权与指派、账户与保
+美股期权实务
+@@ ef8aeb76d7 js
+## code:  { n: 2, file: "ch02.html", title: "美股期权实务", sum: "美式与欧式、到期日体系、行权与指派、账户与保证金、下单与流动性。" },       { n: 3, file: "ch03.
+美式与欧式、到期日体系、行权与指派、账户与保证金、下单与流动性。
+@@ bfd3bd8127 js
+## code: 与流动性。" },       { n: 3, file: "ch03.html", title: "期权定价的直觉", sum: "六个输入、Black-Scholes 的直觉
+期权定价的直觉
+@@ 2b21770827 js
+## code: { n: 3, file: "ch03.html", title: "期权定价的直觉", sum: "六个输入、Black-Scholes 的直觉、买卖权平价、概率读法与心算法则。" }     ]},     { part: "第二部分",
+六个输入、Black-Scholes 的直觉、买卖权平价、概率读法与心算法则。
+@@ ebdf5548b7 js
+## code: holes 的直觉、买卖权平价、概率读法与心算法则。" }     ]},     { part: "第二部分", partTitle: "核心变量", items: [ 
+第二部分
+@@ 43ce0f8478 js
+## code: 法与心算法则。" }     ]},     { part: "第二部分", partTitle: "核心变量", items: [       { n: 4, file:
+核心变量
+@@ 71480339db js
+## code:  items: [       { n: 4, file: "ch04.html", title: "Delta 与 Gamma", sum: "方向敞口与它的速度：等效股数、Beta 加权
+Delta 与 Gamma
+@@ 09cbf322f0 js
+## code: , file: "ch04.html", title: "Delta 与 Gamma", sum: "方向敞口与它的速度：等效股数、Beta 加权、盈亏近似与 Gamma scalping。" },       { n: 5, file: "ch05.
+方向敞口与它的速度：等效股数、Beta 加权、盈亏近似与 Gamma scalping。
+@@ 0a65cacfb4 js
+## code: ping。" },       { n: 5, file: "ch05.html", title: "Theta 与 Vega", sum: "时间损耗的形状、波动率敏感度、IV 崩塌，以
+Theta 与 Vega
+@@ bff5f49483 js
+## code: 5, file: "ch05.html", title: "Theta 与 Vega", sum: "时间损耗的形状、波动率敏感度、IV 崩塌，以及 Rho 和二阶希腊字母。" },       { n: 6, file: "ch06.
+时间损耗的形状、波动率敏感度、IV 崩塌，以及 Rho 和二阶希腊字母。
+@@ 576e41e225 js
+## code: 希腊字母。" },       { n: 6, file: "ch06.html", title: "波动率", sum: "实际与隐含、波动率风险溢价、IV Rank、
+波动率
+@@ e35d0ad349 js
+## code:     { n: 6, file: "ch06.html", title: "波动率", sum: "实际与隐含、波动率风险溢价、IV Rank、期限结构、偏度与 VIX。" }     ]},     { part: "第三部分",
+实际与隐含、波动率风险溢价、IV Rank、期限结构、偏度与 VIX。
+@@ aec3bafd43 js
+## code: 风险溢价、IV Rank、期限结构、偏度与 VIX。" }     ]},     { part: "第三部分", partTitle: "策略", items: [   
+第三部分
+@@ c4cc7972f9 js
+## code: 度与 VIX。" }     ]},     { part: "第三部分", partTitle: "策略", items: [       { n: 7, file:
+策略
+@@ 3d6967db86 js
+## code:  items: [       { n: 7, file: "ch07.html", title: "买方策略", sum: "买方的三个敌人、行权价与期限的选择、借记价差
+买方策略
+@@ fb6bba615b js
+## code:    { n: 7, file: "ch07.html", title: "买方策略", sum: "买方的三个敌人、行权价与期限的选择、借记价差、LEAPS 与管理规则。" },       { n: 8, file: "ch08.
+买方的三个敌人、行权价与期限的选择、借记价差、LEAPS 与管理规则。
+@@ eb7c90e370 js
+## code: 管理规则。" },       { n: 8, file: "ch08.html", title: "卖方策略", sum: "卖出保险的本质：备兑、现金担保卖沽、轮子策略
+卖方策略
+@@ dc81211b0b js
+## code:    { n: 8, file: "ch08.html", title: "卖方策略", sum: "卖出保险的本质：备兑、现金担保卖沽、轮子策略、信用价差与仓位压力测试。" },       { n: 9, file: "ch09.
+卖出保险的本质：备兑、现金担保卖沽、轮子策略、信用价差与仓位压力测试。
+@@ 551385de6e js
+## code: 压力测试。" },       { n: 9, file: "ch09.html", title: "中性与波动率策略", sum: "跨式、宽跨式、铁鹰、蝶式、日历与对角，什么时
+中性与波动率策略
+@@ 0d213a94e6 js
+## code:  n: 9, file: "ch09.html", title: "中性与波动率策略", sum: "跨式、宽跨式、铁鹰、蝶式、日历与对角，什么时候买波动率、什么时候卖。" },       { n: 10, file: "ch10
+跨式、宽跨式、铁鹰、蝶式、日历与对角，什么时候买波动率、什么时候卖。
+@@ bf62119244 js
+## code: 时候卖。" },       { n: 10, file: "ch10.html", title: "事件交易", sum: "财报的 IV 周期、预期变动与历史变动、宏观
+事件交易
+@@ fea487cfca js
+## code:   { n: 10, file: "ch10.html", title: "事件交易", sum: "财报的 IV 周期、预期变动与历史变动、宏观事件日、0DTE 与到期日效应。" },       { n: 11, file: "ch11
+财报的 IV 周期、预期变动与历史变动、宏观事件日、0DTE 与到期日效应。
+@@ cbc37ed6ea js
+## code: 日效应。" },       { n: 11, file: "ch11.html", title: "对冲与组合保护", sum: "保护性看跌、领口、看跌价差保护、尾部预算，以
+对冲与组合保护
+@@ e6d193e501 js
+## code:  n: 11, file: "ch11.html", title: "对冲与组合保护", sum: "保护性看跌、领口、看跌价差保护、尾部预算，以及用期权重塑组合。" }     ]},     { part: "第四部分",
+保护性看跌、领口、看跌价差保护、尾部预算，以及用期权重塑组合。
+@@ 28015a2dc6 js
+## code: 、领口、看跌价差保护、尾部预算，以及用期权重塑组合。" }     ]},     { part: "第四部分", partTitle: "组合与风险管理", items:
+第四部分
+@@ a3de84b67b js
+## code: 期权重塑组合。" }     ]},     { part: "第四部分", partTitle: "组合与风险管理", items: [       { n: 12, file
+组合与风险管理
+@@ 6ec1783bc1 js
+## code: items: [       { n: 12, file: "ch12.html", title: "组合 Greeks 与调仓", sum: "汇总组合的四个希腊字母、判断组合形状、滚仓的
+组合 Greeks 与调仓
+@@ 922077b6d6 js
+## code: , file: "ch12.html", title: "组合 Greeks 与调仓", sum: "汇总组合的四个希腊字母、判断组合形状、滚仓的三种方向与何时直接平仓。" },       { n: 13, file: "ch13
+汇总组合的四个希腊字母、判断组合形状、滚仓的三种方向与何时直接平仓。
+@@ 746e18fb75 js
+## code: 接平仓。" },       { n: 13, file: "ch13.html", title: "期权的风险管理", sum: "三种仓位度量、买方与卖方规则、压力测试、分散
+期权的风险管理
+@@ 2b9d656b12 js
+## code:  n: 13, file: "ch13.html", title: "期权的风险管理", sum: "三种仓位度量、买方与卖方规则、压力测试、分散的幻觉与保证金螺旋。" },       { n: 14, file: "ch14
+三种仓位度量、买方与卖方规则、压力测试、分散的幻觉与保证金螺旋。
+@@ d007416976 js
+## code: 金螺旋。" },       { n: 14, file: "ch14.html", title: "系统与流程", sum: "九步流程、观点三维化、策略选择矩阵、交易日志
+系统与流程
+@@ 75f4538a0f js
+## code:  { n: 14, file: "ch14.html", title: "系统与流程", sum: "九步流程、观点三维化、策略选择矩阵、交易日志与期望值统计。" }     ]},     { part: "第五部分",
+九步流程、观点三维化、策略选择矩阵、交易日志与期望值统计。
+@@ 44c19b14c5 js
+## code: 程、观点三维化、策略选择矩阵、交易日志与期望值统计。" }     ]},     { part: "第五部分", partTitle: "心性与进阶", items: [
+第五部分
+@@ 45e40c05dc js
+## code: 与期望值统计。" }     ]},     { part: "第五部分", partTitle: "心性与进阶", items: [       { n: 15, file
+心性与进阶
+@@ a86ebc9cb9 js
+## code: items: [       { n: 15, file: "ch15.html", title: "心理与常见死法", sum: "买方与卖方的心理陷阱、账户死亡的五条路径和它
+心理与常见死法
+@@ ed35c0ba87 js
+## code:  n: 15, file: "ch15.html", title: "心理与常见死法", sum: "买方与卖方的心理陷阱、账户死亡的五条路径和它们的早期信号。" },       { n: 16, file: "ch16
+买方与卖方的心理陷阱、账户死亡的五条路径和它们的早期信号。
+@@ d3b9bc1683 js
+## code: 期信号。" },       { n: 16, file: "ch16.html", title: "进阶方向与总结", sum: "波动率交易的进阶方向、策略总表、九十天练习计
+进阶方向与总结
+@@ 970703c0be js
+## code:  n: 16, file: "ch16.html", title: "进阶方向与总结", sum: "波动率交易的进阶方向、策略总表、九十天练习计划与全课总结。" }     ]},     { part: "附录", p
+波动率交易的进阶方向、策略总表、九十天练习计划与全课总结。
+@@ 8e711d7935 js
+## code: 交易的进阶方向、策略总表、九十天练习计划与全课总结。" }     ]},     { part: "附录", partTitle: "速查", items: [   
+附录
+@@ 04ed50b0a7 js
+## code: 习计划与全课总结。" }     ]},     { part: "附录", partTitle: "速查", items: [       { n: 17, file
+速查
+@@ dbdd6e80a0 js
+## code: s: [       { n: 17, file: "appendix.html", title: "附录：术语、速查与模板", sum: "术语表、策略速查表、盈亏图集、四份模板、数据
+附录：术语、速查与模板
+@@ 64fad0b171 js
+## code: file: "appendix.html", title: "附录：术语、速查与模板", sum: "术语表、策略速查表、盈亏图集、四份模板、数据源与工具。", label: "附" }     ]}   ];   C
+术语表、策略速查表、盈亏图集、四份模板、数据源与工具。
+@@ 3bd73a3e97 js
+## code: 查与模板", sum: "术语表、策略速查表、盈亏图集、四份模板、数据源与工具。", label: "附" }     ]}   ];   CK.flat = CK.
+附
+@@ fe67b9118f tpl
+## code: );     if (sel) {       sel.innerHTML = `<option value="inde
+<option value="index.html">课程首页</option>
+@@ 45f24f7dfa js
+## code: it.label ? it.label : "第 " + it.n + " 章"
+第 
+@@ e33a7b3c68 js
+## code: it.label ? it.label : "第 " + it.n + " 章"
+ 章
+@@ df348d82ed js
+## code: prev.label ? "" : "第 " + prev.n + " 章　"
+ 章　
+@@ 67b6a4229e tpl
+## code: i + 1];       pager.innerHTML = (prev ? `<a class="prev" hre
+<a class="prev" href="{0}"><small>上一章</small>{1}{2}</a>
+@@ 5f2f37a844 tpl
+## code: " + prev.n + " 章　"}${prev.title}</a>` : `<a class="prev" hre
+<a class="prev" href="index.html"><small>返回</small>课程首页</a>
+@@ 54c9f91347 tpl
+## code: >返回</small>课程首页</a>`) +         (next ? `<a class="next" hre
+<a class="next" href="{0}"><small>下一章</small>{1}{2}</a>
+@@ 9e4529cf05 tpl
+## code: " + next.n + " 章　"}${next.title}</a>` : `<a class="next" hre
+<a class="next" href="index.html"><small>完成</small>回到课程首页</a>

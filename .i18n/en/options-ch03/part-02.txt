@@ -1,0 +1,238 @@
+@@ 8941c1ce3e html
+<span class="sn">3.2</span>What Black-Scholes calculates
+@@ 4064f47f53 html
+There are two ways to read the Black-Scholes price: as the expected payoff at expiration, discounted; or as the cost of replicating the option with stock and cash. Both readings give the same number.
+@@ 69e37927e6 html
+<span class="v">N</span>(·) is the cumulative probability of the standard normal distribution. The put price follows directly from parity (Section 3.5), so there's no need to memorize a separate formula.
+@@ f1dc3d1582 html
+Reading 1: the expected payoff, discounted
+@@ 220b9b2b13 html
+At expiration, a call pays max(<span class="v">S<sub>T</sub></span> − <span class="v">K</span>, 0). If you know the distribution of the stock price at expiration, average this payoff and discount it back to today at the interest rate, and you have the option price. The two terms of the formula do exactly that:
+@@ 4ce2eb1dbf html
+<strong>Second term</strong> <span class="v">K</span>e<sup>−<span class="v">rT</span></sup><span class="v">N</span>(<span class="v">d</span><sub>2</sub>): if the option finishes in the money, you pay the strike <span class="v">K</span>. <span class="v">N</span>(<span class="v">d</span><sub>2</sub>) is the probability of finishing in the money; multiply by it and discount. In the base case this is <span class="num">99.672 × 0.498 = 49.646</span>.
+@@ 9ba29d45e9 html
+<strong>First term</strong> <span class="v">S</span><span class="v">N</span>(<span class="v">d</span><sub>1</sub>): if the option finishes in the money, you get one share of stock. Whenever it finishes in the money, the stock is above 100, averaging about <span class="num">$107.23</span>; weighted by the probability of finishing in the money and discounted, that comes to <span class="num">100 × 0.532 = 53.237</span>.
+@@ 265b3e947a html
+Subtract one from the other: <span class="num">53.237 − 49.646 = 3.591</span>. Taking the expectation directly over the lognormal distribution by numerical integration and then discounting also gives <span class="num">3.591</span>.
+@@ 67609cd9d9 html
+The “probability” and “expectation” here come with a condition: they are calculated under the <strong>risk-neutral</strong> distribution, which assumes the stock's expected return is exactly the risk-free rate of 4%. Why are we allowed to assume that? The second reading explains.
+@@ 854e24b151 html
+Reading 2: the replicating portfolio
+@@ 8131bec121 html
+Take the simplest possible example. The stock is at $100, and in one month it can do only one of two things: rise to 110 or fall to 90. A call with a 100 strike then pays 10 or 0.
+@@ 3e99a05367 html
+Now buy 0.5 shares and at the same time borrow <span class="num">$44.85</span> (repaying 45, with interest, in one month). In one month: if the stock is at 110, the 0.5 shares are worth 55, and after repaying 45 you have 10 left; if it is at 90, the 0.5 shares are worth 45, and after repaying 45 you have 0. In both cases this portfolio pays exactly what the call pays, and it costs <span class="num">50 − 44.85 = $5.15</span>. So the call is worth $5.15.
+@@ e04106fbd3 html
+The whole calculation never used “the probability that the stock goes up.” Even if you're 90% sure it will rise, the call is still worth only $5.15 in this model. If someone sells it for more, anyone can sell the option, replicate it with 0.5 shares plus borrowing, and lock in a riskless profit. Going the other way, the probability of a rise that makes the “expected payoff, discounted” also equal $5.15 is <span class="num">0.516</span>. That is the risk-neutral probability: it is backed out of prices and does not predict the real odds of a rise or fall.
+@@ b339a36b27 html
+Black-Scholes breaks this step into countless tiny steps, readjusting the number of shares at each one to the ratio at that moment. That ratio is <span class="v">N</span>(<span class="v">d</span><sub>1</sub>), which is Delta. That is why Delta appears in the price formula and is also the hedge ratio (Chapter 4).
+@@ be46c90216 html
+This has an important consequence for trading: <strong>an option's price contains no view on direction, only a view on how big the moves will be.</strong> Whether you're bullish or bearish is expressed through whether you buy or sell and which strike you choose; whether an option is expensive depends only on whether its implied volatility is high or low compared with the actual volatility you expect.
+@@ 650daef7ac html
+<span class="sn">3.3</span>The distribution of prices at expiration
+@@ f18614289b html
+Black-Scholes assumes that the stock's log returns are normally distributed, so the stock price at expiration follows a right-skewed lognormal distribution: it can fall no lower than 0, and it has no upper limit.
+@@ 2bae450f59 html
+The −σ²/2 in the mean is the conversion term between log returns and percentage returns: the higher the volatility, the further the median falls below the mean.
+@@ 86ae83c47f html
+This assumption has three direct consequences:
+@@ 78620b1425 html
+<strong>The median is below the mean.</strong> The mean is <span class="v">S</span>e<sup><span class="v">rT</span></sup> and the median is <span class="v">S</span>e<sup>(<span class="v">r</span>−σ²/2)<span class="v">T</span></sup>. At 30 days and IV 30%, they are <span class="num">100.33</span> and <span class="num">99.96</span>, nearly the same. At one year and IV 60%, they become <span class="num">104.08</span> and <span class="num">86.94</span>: the probability that the stock is lower than today in a year is <span class="num">59.2%</span>, yet the average is higher than today. High-volatility stocks that “fall most of the time and occasionally soar” have exactly this shape.
+@@ e85f846256 html
+<strong>The ±1 standard deviation range is asymmetric.</strong> At 30 days and IV 30%, the range containing 68% of the probability is <span class="num">[91.72, 108.94]</span>: +8.94 on the upside and −8.28 on the downside.
+@@ 0c7f5e03ed html
+<strong>Symmetric distances, asymmetric probabilities.</strong> For the same $10 away from the current price, the probability of finishing above 110 is <span class="num">13.3%</span>, and the probability of finishing below 90 is <span class="num">11.1%</span>.
+@@ a5673d4ff5 html
+Days left <input id="f2-d" type="range" min="7" max="365" value="30"> <output id="f2-d-o">30 days</output>
+@@ 77c95357ad html
+Implied volatility <input id="f2-iv" type="range" min="10" max="80" value="30"> <output id="f2-iv-o">30%</output>
+@@ 30b6f28b12 html
+At the default 30 days and IV 30%, the solid and dashed lines nearly coincide, and the normal approximation is perfectly adequate. Drag the days to 365 and IV to 60%, and the solid line's peak shifts clearly to the left while the right tail stretches out: the median drops to $87, while the mean is still $104. The dashed line now gives negative stock prices about a 6% probability (the amber area), an obvious error of the normal assumption at long terms and high volatility.
+@@ 943cd45a32 html
+This chart also shows why options are priced in “log” terms. A move from 100 to 200 is +100%, and a move from 100 to 50 is −50%, but on a log scale the two are the same distance (both ln 2). The lognormal distribution handles these “multiplicative” moves naturally and guarantees that the stock price always stays positive.
+@@ cb48e7e4fc html
+<span class="sn">3.4</span>Limits of the normal assumption
+@@ f378b9bd24 html
+Real stock returns have two features that the lognormal distribution can't describe: extreme moves happen much more often than the model says (fat tails), and big drops tend to be more common and more violent than big rallies (negative skew).
+@@ dbd671bd4f html
+First, see how “optimistic” the normal distribution is about extreme days. Assume daily returns are normally distributed, with 252 trading days a year:
+@@ 3cbe9f8959 html
+Table 3-3 How often a one-day drop of more than k standard deviations occurs, on average
+@@ 1099e600be html
+Normal: daily probability
+@@ 9cf0a3b2f6 html
+Normal: average interval
+@@ 3a33eff2d8 html
+Fat-tail illustration: t distribution (3 degrees of freedom)
+@@ 97cc513ce6 html
+2.9 years
+@@ cbf3c17908 html
+0.6 years
+@@ 5f0ad0fa6e html
+125 years
+@@ 71ef339a02 html
+1.3 years
+@@ cbf2a29e94 html
+14,000 years
+@@ 132ac309ba html
+2.5 years
+@@ 426d84e333 html
+4 million years
+@@ 3ef86c9989 html
+4.2 years
+@@ 95190055d8 html
+The t distribution column is only an illustration: it is scaled to the same standard deviation as the normal distribution, so the only difference is how thick the tails are. Tail thickness in real markets changes from period to period, and there is no single fixed number. But the direction is certain: measured against long-run average daily volatility, US stock indexes have had several one-day drops of more than 5 standard deviations over the past few decades. Under a normal distribution, a day like that wouldn't come around even once in ten thousand years.
+@@ e3e66af2b2 html
+Each step on the vertical axis is a factor of ten. From 3σ to 6σ, the normal distribution's interval explodes from a few years to millions of years; the fat-tailed distribution's only goes from half a year to four years. Almost all the risk of selling far out-of-the-money options lies in the gap between these two sets of bars.
+@@ a94bc07221 html
+What this means for option prices
+@@ b29b2d2c1a html
+<strong>The market charges extra for far out-of-the-money puts.</strong> Black-Scholes prices every strike with the same σ. If the tails are fatter, far out-of-the-money puts, which protect against big drops, should cost more. The market does exactly that: for the same expiration, out-of-the-money puts usually carry higher implied volatility than at-the-money options. This is called volatility skew (Chapter 6). For example, a 30-day 90 put is worth <span class="num">$0.40</span> at IV 30%; if the market quotes it at 36%, it is <span class="num">$0.74</span>, more than 80% more expensive.
+@@ 66ecc60ebb html
+<strong>Volatility itself changes.</strong> The model assumes σ is constant; in reality, volatility jumps during sharp drops and drifts slowly back down when things are calm. That is exactly the problem Vega deals with in Chapter 5.
+@@ 922634ad8e html
+<strong>Stocks gap.</strong> Earnings, mergers and regulatory news can make a stock jump past many price levels in a single step. The replication argument in Section 3.2 requires continuous rebalancing, which is impossible across a gap, so option sellers carry more risk in a gap than the model calculates.
+@@ a39da2fe83 html
+Treat it as a “quoting language” and a “ruler”: use it to convert prices into IV and then compare IV across options, and use it to calculate sensitivities such as Delta and Gamma. Don't take the probabilities it produces as real-world probabilities, especially in the tails.
+@@ cdc48544a9 html
+<span class="sn">3.5</span>Put–call parity
+@@ 1b14cd3df8 html
+The prices of a call and a put with the same strike and expiration are locked together by one equation: call − put = stock − present value of the strike.
+@@ 087cf09119 html
+Applies to European options on stocks that pay no dividend. <span class="v">K</span>e<sup>−<span class="v">rT</span></sup> is the present value of the strike: deposit this much today, and at rate <span class="v">r</span> it grows to exactly <span class="v">K</span> by expiration.
+@@ 21fe14ffb4 html
+Why it must hold
+@@ 83e7554065 html
+Compare two portfolios. Portfolio A: buy 1 call and deposit <span class="v">K</span>e<sup>−<span class="v">rT</span></sup> in cash. Portfolio B: buy 1 put and hold 1 share of stock. Here is what each is worth at expiration (strike 100):
+@@ 8128086f49 html
+Table 3-4 The two portfolios' values at expiration (per share, strike 100)
+@@ ae4224123c html
+Stock at expiration
+@@ d2647d0d20 html
+A: call payoff
+@@ ce6c48f636 html
+A: cash
+@@ 8e962b32ab html
+A total
+@@ ec1fdf728b html
+B: put payoff
+@@ 6ef9c6a7fe html
+B: stock
+@@ 04a971bbfd html
+B total
+@@ c68d218cef html
+Wherever the stock ends up, both portfolios are worth max(<span class="v">S<sub>T</sub></span>, <span class="v">K</span>) at expiration. Two portfolios with exactly the same value at expiration must also cost the same today: <span class="v">C</span> + <span class="v">K</span>e<sup>−<span class="v">rT</span></sup> = <span class="v">P</span> + <span class="v">S</span>. Rearrange it and you have the parity formula.
+@@ aed5848a07 html
+Check it with the base-case numbers: <span class="num">3.591 − 3.263 = 0.328</span>, <span class="num">100 − 99.672 = 0.328</span>. Note that the whole derivation never used volatility, a distribution or Black-Scholes. As long as you can freely buy, sell, borrow and lend, parity holds. This is also why the change in IV in Section 3.1 raised the call and the put by the same 0.570.
+@@ 5e226a055f html
+What happens when parity is violated
+@@ 2f0f0c4d57 html
+Suppose the call is quoted at 3.80 while the put is still 3.263. Sell the call, buy the put and buy the stock (a combination called a conversion): you pay out <span class="num">100 + 3.263 − 3.80 = 99.463</span>. At expiration, wherever the stock is, you sell it at 100: if it has risen, it is called away through the call; if it has fallen, you sell it with the put. You pay 99.463 today and are certain to get 100 back in a month; after 4% interest costs, you still make an extra <span class="num">$0.21</span> per share, or $21 per contract. Market makers and arbitrage programs would do this trade immediately, until prices moved back near parity. For individual traders, parity is useful for checking quotes and understanding positions; leave the arbitrage to the market makers.
+@@ 3b12528c96 html
+American options and dividends
+@@ 9a74bbcd68 html
+<strong>American options</strong>: US single-stock options are American-style and can be exercised early, so parity turns from an equation into a range. With no dividends, <span class="v">S</span> − <span class="v">K</span> ≤ <span class="v">C</span> − <span class="v">P</span> ≤ <span class="v">S</span> − <span class="v">K</span>e<sup>−<span class="v">rT</span></sup>. For 30-day at-the-money options the range is 0 to 0.328, which is very narrow; for 1-year at-the-money options it is 0 to 3.92.
+@@ 62fc99e447 html
+<strong>With dividends</strong>: <span class="v">C</span> − <span class="v">P</span> = <span class="v">S</span> − PV(dividends) − <span class="v">K</span>e<sup>−<span class="v">rT</span></sup>. If a $1 dividend will be paid before expiration, the call is about $1 cheaper relative to the put. This is also why in-the-money calls tend to be exercised early before an ex-dividend date (Chapter 2).
+@@ 0d089f9043 html
+<strong>Hard-to-borrow stocks</strong>: when short selling means paying a borrow fee, puts become more expensive relative to calls by that cost, and parity seems to “break.” In fact, the formula has simply picked up an extra cost term.
+@@ bbca70b061 html
+<span class="sn">3.6</span>Synthetic positions
+@@ e9d01f4758 html
+Rearrange the parity equation and you get four pairs of equivalent positions, each “holding the same risk in a different form.”
+@@ 7dc07b9de6 html
+Table 3-5 Four rearrangements of parity (same strike, same expiration)
+@@ 0be43622e2 html
+The position you want
+@@ 4ef081b3f8 html
+Equivalent combination
+@@ 2490691e97 html
+Equation
+@@ 94f5b43557 html
+Long stock
+@@ 06cb91b2e5 html
+Buy call + sell put + cash
+@@ 6a1e35e06f html
+Short stock
+@@ b2076bd772 html
+Sell call + buy put + borrowing
+@@ fcb9a2bd37 html
+Covered call
+@@ 21cd5c9cd6 html
+Sell put + cash
+@@ c6354432d6 html
+Protective put
+@@ e21dd0e772 html
+Buy call + cash
+@@ 989098892a html
+Synthetic long and synthetic short
+@@ 593524aa92 html
+Buy one 100 call (3.591) and sell one 100 put (3.263), for a net debit of <span class="num">$0.328</span> per share. This combination has a Delta of <span class="num">0.532 + 0.468 = 1.000</span>, and the Gammas cancel exactly (a call and a put at the same strike have the same Gamma): its risk is exactly the same as 100 shares of stock, and so is its profit and loss at expiration. The only difference is the money: buying the stock costs $10,000, while the synthetic long costs only $32.8 plus the margin required for the short put. If you deposit the money you save and earn interest on it, the result is identical to buying the stock; if you use it to add more contracts, you are adding leverage.
+@@ 28eca5bdb0 html
+A synthetic short is the reverse: sell the call and buy the put. It's often used on stocks that are hard or expensive to borrow; the catch is that by then the market has already marked up the puts (see the previous section).
+@@ 64410224c5 html
+Synthetic long
+@@ dd38d06acb html
+Synthetic short
+@@ 8608c4daa6 html
+Covered call = short put
+@@ 81d9d49cf8 html
+Protective put = call
+@@ 78ed6b7c1d html
+Strike <input id="f4-k" type="range" min="90" max="110" step="1" value="100"> <output id="f4-k-o">100</output>
+@@ 4a3e20a0f8 html
+In all four combinations, the thick solid line and the dashed line coincide exactly; the thin lines are the two legs of portfolio A. Drag the strike and watch the third readout: the difference in starting cash between the two sides always equals the present value of the strike, K·e<sup>−rT</sup>. In other words, the entire difference between the two ways of holding the position is a sum of cash. P&amp;L assumes the starting cash earns 4% interest; for the difference when cash earns no interest, see Case 1.
+@@ bd8150d126 html
+Covered call = short put
+@@ 4a20361acc html
+The third row is the one most often overlooked. Owning stock and selling a call (a covered call) has exactly the same payoff at expiration as selling a put at the same strike with the full cash set aside (a cash-secured put): above the strike, both earn a fixed maximum gain; below it, both take the loss from the falling stock. Case 1 compares them point by point.
+@@ 29d81e0db8 html
+Protective put = long call
+@@ 12f07c27eb html
+Owning stock and buying a put as insurance is equivalent to keeping most of the money in cash and buying just a call. The two have the same maximum loss on the way down and the same gain on the way up. This also shows that the cost of “buying insurance” can be measured directly by the call's time value.
+@@ ea7f6afc94 html
+<span class="sn">3.7</span>Reading probabilities
+@@ 4a8d078cd5 html
+Option prices contain the market's view of the distribution at expiration: Delta approximates the probability of finishing in the money, and the probability of touching the strike before expiration is about twice that.
+@@ f03298cbaf html
+As Chapter 4 covers, Delta is <span class="v">N</span>(<span class="v">d</span><sub>1</sub>), and the risk-neutral probability of finishing in the money is <span class="v">N</span>(<span class="v">d</span><sub>2</sub>). A call's Delta is slightly higher than its probability of finishing in the money. For a put it's the reverse: |Delta| = <span class="v">N</span>(−<span class="v">d</span><sub>1</sub>) is slightly lower than the probability of finishing in the money, <span class="v">N</span>(−<span class="v">d</span><sub>2</sub>). The table below puts them side by side:
+@@ 3721a5d258 html
+Table 3-6 Stock at $100, 30 days, IV 30%: Delta, probability of finishing in the money and probability of touching
+@@ 337a35cbdf html
+Prob. ITM at expiration
+@@ 78a63e18f1 html
+2 × prob. ITM
+@@ 2721020168 html
+Prob. of touching (exact)
+@@ 250fc5b796 html
+105 call
+@@ 31034e0e9a html
+110 call
+@@ b00cf995dd html
+115 call
+@@ 33497fbaa5 html
+95 put
+@@ b9d822aa78 html
+90 put
+@@ efa507e1c5 html
+85 put
+@@ fc70e40b78 html
+Why the probability of touching is about double
+@@ a7f20fed2a html
+Imagine the stock touches 110 at some moment before expiration. From then on, the remaining paths are about equally likely to go up or down, because drift is small over short periods. So “finishing above 110” is only about half as likely as “having touched 110.” Put the other way, probability of touching ≈ 2 × probability of finishing in the money. In mathematics this idea is called the reflection principle; the exact formula, with a correction for drift, differs from the “double” approximation by less than 0.003 in the table above.
+@@ eba0989f95 html
+The approximation breaks down in three situations:
+@@ 47c325f344 html
+<strong>Larger drift</strong>: with very long terms or high interest rates, “equally likely up or down” no longer holds.
+@@ b47ee76298 html
+<strong>Closing prices only</strong>: the touch probabilities in the table assume continuous monitoring. If you check only once a day at the close (simulated with 30 observation points), the probability of touching 110 falls from 0.266 to about 0.22, and for 105 from 0.57 to about 0.50. Intraday touches that reverse by the close don't count.
+@@ c551ef4585 html
+<strong>Real distributions have fat tails and gaps</strong>: then both probabilities are underestimated.
+@@ c19bf351f3 html
+Finding “one standard deviation” on the option chain
+@@ b332e07b71 html
+You'll often hear that “16 Delta is about one standard deviation.” This comes from <span class="v">N</span>(−1) = 0.159 in the standard normal distribution. At 30 days and IV 30%, the strikes one standard deviation away are <span class="num">100 × e<sup>±0.086</sup></span>, or 108.98 and 91.76. At these two strikes the probability of finishing in the money is indeed about 0.16, but the Deltas are <span class="num">0.179</span> for the call and <span class="num">−0.140</span> for the put, because <span class="v">d</span><sub>1</sub> and <span class="v">d</span><sub>2</sub> differ by σ√<span class="v">T</span>. So to find one standard deviation on the chain, look for about 0.18 on the call side and about 0.14 on the put side. The higher the IV and the longer the term, the bigger the gap.
+@@ 9ede301ca8 html
+These probabilities are backed out of option prices, so they include the risk-neutral assumption and the premium the market charges for the tails. Over the long run, out-of-the-money index puts have usually been priced above their average payout after the fact, so the probability of a drop implied by options is often higher than how often drops actually happen (the volatility risk premium in Chapter 6). Using them as a reference is fine; treating them as forecasts is a mistake.
+@@ 6596950292 html
+Many covered call sellers choose strikes by Delta: sell calls with a Delta of around 0.2 that expire in one to one and a half months, and buy them back when only about 30% of the premium is left. By the reading in this section, a Delta of 0.2 means less than a 20% chance of finishing in the money, but close to a 40% chance of being touched during the holding period. So decide when you open the trade what you'll do if the stock runs up to the strike (roll, buy back or let the shares be called away), rather than making it up on the spot once it gets touched.

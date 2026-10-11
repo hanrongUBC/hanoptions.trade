@@ -1,0 +1,208 @@
+@@ b4152d34c1 html
+The same approach works for any macro position. First ask, “Which scenario do I fear most?” Then find the asset that gains the most in that scenario and hold it in small size or through options. Don't judge one trade on its own; look at what the whole portfolio does in each scenario.
+@@ 14d071c090 html
+Scale in, and add after confirmation
+@@ c7f913dc42 html
+Macro calls rarely get the timing right on the first try. A simple way to scale in:
+@@ 418e14a511 html
+When the view forms, build one third of the planned position and make sure you can live with its swings.
+@@ 8ad5108f07 html
+Write a confirmation checklist in advance, for example “equal-weight outperforms for a full week,” “credit spreads are not widening,” “oil is stable.” Once the checklist is met, add another third.
+@@ 0fb659ed27 html
+Once the trend has emerged and makes its first healthy pullback, add the final third.
+@@ b20b4bac1c html
+At any point, if an invalidation condition appears, exit everything. Without new evidence, never add to a losing macro position.
+@@ 87b7036938 html
+Size reflects uncertainty, not excitement
+@@ f29415c837 html
+<strong>The less certain you are, the smaller the position.</strong> The more excited you are, the more you should suspect you've fallen into a narrative.
+@@ 7e8f9ebfd5 html
+<strong>Count correlated positions together.</strong> Three tech stocks, a small-cap ETF and two call options may be six ways of writing the same bet. Count risk factors, not tickers.
+@@ a13d116135 html
+<strong>Manage total exposure and a daily loss limit.</strong> Beyond limits on each position, set a cap on how much the whole portfolio may lose in one day. When you hit it, stop.
+@@ d97322ab31 html
+<strong>Cash is a position.</strong> Holding cash when there's no clear opportunity is an active decision. It leaves you able to buy when others are forced to sell.
+@@ 698bc3f47f html
+A final check with scenarios and probabilities
+@@ 6b9c7773c8 html
+Before you place the trade, list the two or three scenarios that could play out over the next one to three months, and give each a subjective probability and an estimated market move. For example:
+@@ 9056d02287 html
+Example; the numbers are hypothetical
+@@ c7a58b8da0 html
+Subjective probability
+@@ 40deaea158 html
+Index move
+@@ e71611fe98 html
+Probability × move
+@@ 950ffbd31d html
+A. Rates keep rising, valuations pull back
+@@ 924e798c1e html
+B. Rates peak, earnings take over
+@@ 5cefaf4e22 html
+C. Jobs crack, phase two begins
+@@ 96556da852 html
+Weighted total
+@@ ec8a5792ab html
+The value of this table isn't in how accurate the −6% is; subjective probabilities are guesses to begin with. Its value is that it forces you to do two things. First, admit there are scenarios you don't favor, and give them a probability. Second, check that your portfolio survives every one of them. If any scenario would blow up your account, deal with it first, however low its probability.
+@@ e85826dd3f html
+Toolkit: morning brief, trigger lines and exercises
+@@ 9fb38d32e5 html
+This chapter turns the previous ten into something you can use every day. Checklist ticks are saved only in your own browser.
+@@ 149307e90f html
+Morning brief template
+@@ 4c0a67269f html
+Spend fifteen minutes before each open writing yourself a morning brief, in this order. Keep it up for a month and you'll find you read the market noticeably faster.
+@@ 758d90293c html
+Copy template
+@@ 4b4d060760 html
+Watchlist and trigger lines
+@@ 30c87f17f2 html
+Trigger lines are there to tell you “time to reassess,” not to place orders automatically. The values below are examples; adjust them to each indicator's level and normal range of movement when you start using them. Relative changes (how much in how many days) go stale less quickly than absolute levels.
+@@ fc86b34680 html
+Example trigger
+@@ 30a74d7030 html
+What to do when it triggers
+@@ dcd75f9a4e html
+10-year yield
+@@ 7018cf9d48 html
+Up more than 40 basis points within 20 trading days
+@@ f8705115d2 html
+Cut long-duration growth stocks, check hedges
+@@ e8d393b6f2 html
+10-year real yield
+@@ 4f82330294 html
+Breaks above its one-year high
+@@ a76a43bc32 html
+Valuation-compression risk rising; reduce position size
+@@ e28170b3c0 html
+Dollar index (DXY)
+@@ 348a46261a html
+Up more than 3% in a month
+@@ c7a786a20b html
+Check exposure to multinationals, commodities and emerging markets
+@@ a42e91e996 html
+USD/JPY
+@@ 193ff28f7d html
+Yen gains more than 3% in a week
+@@ 36ec3ae50a html
+Watch for a carry-trade unwind; reduce leverage
+@@ afd8d0c8e1 html
+Breaks above the prior high and holds for a week
+@@ b26f8364a5 html
+Reassess inflation and the regime; consider a hedge against a surprise
+@@ fd305151e9 html
+VIX term structure
+@@ ace2eb9cfc html
+Front month above later months (inverted)
+@@ b967879499 html
+Immediate fear: stop adding, protection first
+@@ 5ea85aee72 html
+Widens more than 100 basis points in a month
+@@ 887d48b0bb html
+Credit stress; the regime may be deteriorating
+@@ f5c1f0db2e html
+Initial jobless claims
+@@ e60197e423 html
+Four-week average rises steadily and breaks above the prior high
+@@ 17af8e8661 html
+Jobs weakening; check whether phase two has begun
+@@ 0df7f3fe79 html
+Equal-weight ÷ cap-weight
+@@ fda3ef6ed3 html
+Index at a new high while the ratio makes a new low
+@@ 5a5e364332 html
+Gains too concentrated; don't chase the index
+@@ cc33df74b1 html
+Four checklists
+@@ dd80934b10 html
+Before the open
+@@ 918a6befa3 html
+Note the overnight change in the seven numbers
+@@ a534298d0b html
+Find the most unusual combination and write down why
+@@ 26c12dcf83 html
+Check for important data or speeches today
+@@ 6360240230 html
+Write the one line: “What is the market trading today?”
+@@ 4783d8597d html
+Key levels marked as if-above / if-below
+@@ ee40c83a8c html
+Weekly regime check
+@@ c2e56a2029 html
+Is the direction of each of the four variables up to date?
+@@ 4de2dee7a4 html
+Are two or more variables changing at once?
+@@ 9d4a4e0a11 html
+Do breadth and credit confirm the index's direction?
+@@ 1769bb7350 html
+Next week's calendar and event playbooks are written
+@@ f83a3cf2bc html
+Last week's calls checked, right and wrong recorded
+@@ e02a128f92 html
+Before a macro trade
+@@ d0591db627 html
+Direction, magnitude, timing, confidence and invalidation are all written down
+@@ fe805c866b html
+The instrument matches the time it needs to pay off
+@@ baccf5bcf4 html
+Picked the cleanest or the weakest link
+@@ 34854d1293 html
+Risk factors combined with existing positions
+@@ bbb4ce3249 html
+The portfolio survives the scenario you fear most
+@@ ce0a652bed html
+Event day
+@@ 846728a644 html
+Playbooks for three outcomes written the day before
+@@ 5bb9746c62 html
+Event move priced by options calculated
+@@ 9e2b9c424b html
+Protection bought before the event
+@@ 3383716318 html
+No chasing in the first hour after the result
+@@ b69ea75021 html
+Record how the market's reaction differed from the playbook
+@@ 1caf584bc0 html
+Scenario exercises
+@@ 85ab723191 html
+Come up with your own answer first, then open the answer to compare. There's no single right answer; what matters is the order of the reasoning.
+@@ 0f4ddd6d39 html
+<span class="k">01</span><span>Nonfarm payrolls come in far below expectations. The 2-year yield drops sharply. Stocks open higher and turn lower in the afternoon, and high-yield spreads widen. What is the market trading?</span>
+@@ b83ce95374 html
+At the open the market was trading “rate cuts will come sooner and bigger,” so stocks rose first. The afternoon reversal and widening credit spreads show the focus shifted to “Will earnings be cut? Will the economy go into recession?” Bad news went from “good news for rate cuts” to “bad news is bad news.”
+@@ 67fae98e5a html
+In regime terms, this is a sign of moving toward phase two. Response: check that your protection is adequate, cut cyclical stocks and small caps, and watch initial claims over the next few weeks.
+@@ a0778babee html
+<span class="k">02</span><span>The 10-year yield rises 15 basis points. The same day the dollar falls, gold rises, and stocks and long-term Treasuries fall together.</span>
+@@ 778819bda5 html
+Rising rates with a falling dollar is an unusual combination. The most likely explanation is that foreign money is cutting US assets, or the market has started to doubt fiscal discipline or the credibility of inflation control, and the term premium is rising.
+@@ ff34a98cb9 html
+In this environment Treasuries aren't a hedge; gold is. Long-duration growth stocks get hurt most. Protect with options or cut overall position size rather than buying long bonds.
+@@ 773b9949a7 html
+<span class="k">03</span><span>Crude rises 12% in a week. Over the same week the S&amp;P 500 rises, copper jumps and cyclicals lead. Should you cut positions because oil is rising?</span>
+@@ 4fbc6eccc5 html
+Stocks and copper rising along with crude suggests a demand-driven rally: the economy is accelerating. That means the opposite of a supply shock. There's no need to cut positions, and both cyclicals and energy stocks are worth owning.
+@@ a7fb05d330 html
+What to watch is what comes next. If oil keeps rising and starts pushing up inflation expectations and long-term rates, the demand story can gradually turn into pressure on valuations.
+@@ 271add7863 html
+<span class="k">04</span><span>The S&amp;P 500 hits a new high, but over the past month the equal-weight S&amp;P has steadily lagged, small caps have fallen and credit spreads have widened slightly.</span>
+@@ 49add79e30 html
+Gains are increasingly concentrated in a few heavyweight stocks, market breadth is deteriorating, and the credit market isn't confirming. This is the classic “illusion of the index.”
+@@ 3f32232d1a html
+Don't chase the index. Check whether your own portfolio is overly concentrated in the same group of leaders. If you short, pick the relatively weakest sectors rather than shorting the index the leaders are carrying.
+@@ e327d4abbf html
+<span class="k">05</span><span>An index ETF breaks below its estimated Gamma flip with a week to go until monthly expiration, and the VIX term structure starts to flatten.</span>
+@@ c82639cbcb html
+Below the flip, market makers may turn to negative Gamma and have to sell into declines, which tends to amplify intraday swings. A flattening term structure shows that demand for near-term protection is rising.
+@@ d8c7b6e07f html
+Expect bigger swings in the short term, reduce leverage and don't rush to buy the dip. Once expiration passes, a large number of options roll off and hedges get redistributed; reassess then.
+@@ 8a5034c23d html
+<span class="k">06</span><span>Weekly options covering CPI week trade at 18% implied volatility, against a usual 13%. You expect the index to move only about 1.2% on CPI day. Should you buy or sell the event volatility?</span>
+@@ 0efba29889 html
+Event-day variance = 0.18² × 5 ÷ 252 − 0.13² × 4 ÷ 252 ≈ 0.000375; the square root is about 1.94%. The market is pricing a move of about 1.94% on CPI day, more than the 1.2% you expect.
+@@ 737b94a6d7 html
+If your judgment is reliable, the event volatility is expensive, and it makes sense to sell it with a defined-risk structure (such as an iron condor) rather than buy a straddle. Before you sell, you still need a written plan for “what if the result is far off.”
+@@ 9b965ded13 html
+Glossary
+@@ 5825024006 html
+The main terms used in this handbook and their standard English names, listed by the chapter where each first appears. When you read other sources, use a broker platform or search online, the standard term gets you much more precise results.

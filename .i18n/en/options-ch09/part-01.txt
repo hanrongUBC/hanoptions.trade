@@ -1,0 +1,200 @@
+@@ 22da22f06f html
+Chapter 9: Neutral and volatility strategies · US Options Course
+@@ d1c9826e78 html
+Neutral and <span class="g">volatility</span> strategies
+@@ a6918f4793 html
+Some trades don’t care whether the stock goes up or down, only how far it moves. This chapter lines up straddles, strangles, iron condors, butterflies and calendars on the same terms to compare their cost, breakevens and maximum risk, and gives you a set of rules for deciding whether to buy or sell volatility right now.
+@@ 4a798dc727 html
+In this chapter
+@@ d55f9e095b html
+<a href="#open"><span class="n">··</span><span>Opening: being right on direction doesn’t help</span></a>
+@@ acfcd19416 html
+<a href="#s1"><span class="n">9.1</span><span>What volatility strategies bet on</span></a>
+@@ f8fe417cd7 html
+<a href="#s2"><span class="n">9.2</span><span>Straddles and strangles</span></a>
+@@ 6ec07ae47d html
+<a href="#s3"><span class="n">9.3</span><span>Iron condors, iron butterflies and butterflies</span></a>
+@@ 6566f79860 html
+<a href="#s4"><span class="n">9.4</span><span>Calendar and diagonal spreads</span></a>
+@@ a58ce39626 html
+<a href="#s5"><span class="n">9.5</span><span>Keeping Delta neutral</span></a>
+@@ cc48b1a4cf html
+<a href="#s6"><span class="n">9.6</span><span>When to buy and when to sell volatility</span></a>
+@@ 6e2bcb679f html
+<a href="#s7"><span class="n">9.7</span><span>Gamma scalping revisited</span></a>
+@@ 12c019ed82 html
+<a href="#cases"><span class="n">Cases</span><span>Three cases</span></a>
+@@ dd7ded685d html
+<a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a>
+@@ 230a3e75c6 html
+<a href="#open">Opening: being right on direction doesn’t help</a>
+@@ e297ada4c5 html
+<a href="#s1">9.1 What volatility strategies bet on</a>
+@@ de089f37c5 html
+<a href="#s2">9.2 Straddles and strangles</a>
+@@ b9dfb849b2 html
+<a href="#s3">9.3 Iron condors, iron butterflies and butterflies</a>
+@@ 1422f4da4b html
+<a href="#s4">9.4 Calendar and diagonal spreads</a>
+@@ b7663620ed html
+<a href="#s5">9.5 Keeping Delta neutral</a>
+@@ 6ea3a98a94 html
+<a href="#s6">9.6 When to buy and when to sell volatility</a>
+@@ e0f06313a7 html
+<a href="#s7">9.7 Gamma scalping revisited</a>
+@@ f3a78e0502 html
+<a href="#cases">Three cases</a>
+@@ 7ec24afd50 html
+<a href="#tools">Checklist and self-test</a>
+@@ 80161dff8a html
+After this chapter you can
+@@ 36ff4affe4 html
+Price a straddle in your head with 0.8 × S × σ × √T and judge how big a move it needs to break even
+@@ 8c95ce9563 html
+Choose the short-leg Delta and wing width of an iron condor, write down its maximum profit and loss, and make adjustment decisions in a trend
+@@ 712986883d html
+Score “buy or sell volatility” with IV Rank, the term structure and the gap between realized and implied volatility
+@@ fc4f43bd05 html
+Prerequisites
+@@ 19016b2e3b html
+Chapter 4: the Gamma–Theta trade-off, Gamma scalping
+@@ fbec3bcb1c html
+Chapter 5: Vega; Chapter 6: IV Rank and the term structure
+@@ af7e9e0795 html
+Chapter 8: credit spreads, management rules and position sizing
+@@ fe31444484 html
+Conventions
+@@ 29904071fd html
+Black-Scholes, 4% rate, no dividends, 365-day year
+@@ ef144d2853 html
+Default underlying: a hypothetical stock at $100 with 30% IV
+@@ 8d6b217484 html
+Prices are per share; multiply by 100 for one contract. “Buy” and “sell” refer to the whole structure
+@@ db3dae8baf html
+<span class="sn">Opening</span>Being right on direction doesn’t help
+@@ 87853a650d html
+The stock is at $100 and IV is 30%. You think big news is coming next month, but you can’t tell whether it will be good or bad, so you buy a 30-day straddle at the 100 strike: one call plus one put, for $6.85 in total.
+@@ d0af7c94f8 html
+Whether this trade makes money has nothing to do with up or down. All that matters is how far the stock is from 100 at expiration:
+@@ 7fdd1c9a37 html
+Table 9-0 Long 30-day 100 straddle (cost $6.85), P&amp;L at expiry (per contract, $)
+@@ ae4224123c html
+Stock price at expiry
+@@ 686e58431c html
+P&amp;L per contract
+@@ 55d638b937 html
+If the stock rises to 103, you were right that it would go up, and you still lose $385. You only make money if the stock ends up outside the range of 93.15 to 106.85. So where does the ±6.85 hurdle come from? It is roughly the “average move” the market expects. At 30 days and 30% IV, a one-standard-deviation move is <span class="num">100 × 0.30 × √(30/365) = 8.60</span>, and the average absolute move is 0.8 times one standard deviation: <span class="num">0.8 × 8.60 = 6.88</span>.
+@@ a5b25f2891 html
+So buying a straddle is a bet against the market: “The stock will actually move more than the average move you have priced in.” Selling a straddle is the opposite bet. Every strategy in this chapter is a different package for this one bet.
+@@ 2613520629 html
+<span class="sn">9.1</span>What volatility strategies bet on
+@@ b5c176408f html
+Volatility strategies shrink the effect of direction to very little. The bet that remains is one of two kinds: whether realized or implied volatility turns out larger, or whether implied volatility itself rises or falls.
+@@ f1cb5a07b5 html
+<strong>Realized vs implied</strong>: if you hold to expiry, or delta-hedge while you hold, your P&amp;L is set by Gamma and Theta (Chapter 4, Section 4.6). The buyer needs realized volatility to be larger; the seller needs it to be smaller.
+@@ 0f0f937cbc html
+<strong>Changes in implied volatility</strong>: if you close before expiry, P&amp;L is driven mainly by Vega. If IV rises after you buy, you can make money even if the stock hasn’t moved; if IV falls after you sell, the same is true.
+@@ 63eee876f8 html
+The expected absolute value of a standard normal variable is √(2/π) ≈ 0.798. An ATM straddle is worth |<span class="v">S<sub>T</sub></span> − <span class="v">K</span>| at expiry, so its price is approximately the “average absolute move” (Chapter 3, Section 3.9). For an ATM straddle at 60% IV with 7 days left, the approximation gives 6.65 and Black-Scholes gives 6.63. This mental math is accurate for short-dated ATM options; interest rates and skew add small errors.
+@@ a155357819 html
+Table 9-1 The Greeks of six structures (per contract; 45 days, 30/60 days for the calendar, IV 30%, stock at 100)
+@@ 2b2f1e4d50 html
+Structure
+@@ ae78973f85 html
+Theta / day
+@@ db092ea55f html
+Vega / point
+@@ 9fecfe5585 html
+The bet
+@@ 505c899734 html
+Long 100 straddle
+@@ 0bc144f67d html
+A big move, or IV rises
+@@ 765f094a0f html
+Long 95/105 strangle
+@@ 47225033ed html
+An even bigger move
+@@ 0c36f687a5 html
+Short 86/91/112/117 iron condor
+@@ 85a70f7409 html
+Stays between 89.9 and 113.1
+@@ c12ef8d28d html
+Short 95/100/105 iron butterfly
+@@ 29377f0e37 html
+Stays near 100
+@@ 5bd217861c html
+Long 95/100/105 call butterfly
+@@ 24c62ee5f0 html
+Long 100 calendar
+@@ 812441c377 html
+Stays near 100, and back-month IV doesn’t fall
+@@ d7b9609e4e html
+When you read this table, look at the signs of Gamma and Theta first: they are always opposite. Positive-Gamma structures (long straddle, long strangle) pay Theta every day; negative-Gamma structures (iron condor, iron butterfly, butterfly, calendar) collect Theta every day. The calendar is the only structure that is “negative Gamma, positive Vega”: it fears a big move in the stock but welcomes a rise in IV, which gives it a special use around earnings (Section 9.4).
+@@ 5362db7df1 html
+Time to expiry decides whether you are betting on Gamma or Vega
+@@ ddca788c64 html
+Even for the same long ATM straddle, the time to expiry decides what you are mainly betting on. Per $1 of premium, every expiration has the same sensitivity to IV: an ATM straddle’s price is proportional to σ, so each 1-point rise in IV lifts the price by about <span class="num">1 ÷ 30 = 3.3%</span>. Gamma is another story. A 7-day straddle (3.31) carries 0.058 of Gamma per dollar of premium; a 180-day straddle (16.69) carries only 0.0022, a 26-fold difference. So a short-dated straddle is a Gamma bet, a bet that the stock moves a lot over the next few days. A long-dated straddle is a Vega bet: it barely responds to short-term realized volatility, and its P&amp;L depends mainly on changes in IV. The same goes for sellers: selling a short-dated structure sells Gamma, and selling a long-dated structure sells Vega.
+@@ 4e5ffb0125 html
+Straddle
+@@ 53d6c8e9e1 html
+Strangle
+@@ 3724c32d4f html
+Iron condor
+@@ c67c408e57 html
+Iron butterfly
+@@ da34775700 html
+Butterfly (calls)
+@@ 13ff49bbee html
+Calendar (calls)
+@@ c57567f89d html
+Buy
+@@ 09cd532284 html
+Sell
+@@ 3599aaedd8 html
+<span id="f1-w-l">Wing width</span> <input id="f1-w" type="range" min="2" max="15" value="5"> <output id="f1-w-o">$5</output>
+@@ c134f41786 html
+Days elapsed <input id="f1-t" type="range" min="0" max="44" value="10"> <output id="f1-t-o">10 days</output>
+@@ ff1e6d3d93 html
+IV change <input id="f1-iv" type="range" min="-15" max="15" value="0"> <output id="f1-iv-o">0 points</output>
+@@ c432d0ff5a html
+The default is a short 45-day iron condor (short strikes 91/112, about 0.16 Delta). Drag the wing width from 5 to 15: the premium you collect rises from $113 to $174, but the maximum loss jumps from $387 to $1,326. Switch to the iron butterfly and the profit zone narrows while the premium gets fatter. Switch to the calendar and the expiry curve turns into a “tent”; drag the IV change down and the whole tent sinks: a calendar fears a drop in back-month IV.
+@@ 1876f0dda3 html
+<span class="sn">9.2</span>Straddles and strangles
+@@ e4b5e42fc3 html
+A straddle buys a big move in either direction; a strangle trades a lower cost for breakevens that are farther away. Selling them means collecting that insurance premium and carrying the tails on both sides.
+@@ c1644e2f7f html
+<strong>Straddle</strong>: a call plus a put with the same strike and the same expiration, usually at the money.
+@@ e97d6dde9f html
+<strong>Strangle</strong>: an OTM put plus an OTM call, with two separate strikes.
+@@ 22399eb08a html
+Table 9-2 Three long structures at 30 days and 30% IV (cost per share; probability of profit and expectancy at different realized volatilities)
+@@ 7231127a89 html
+Cost
+@@ 8690eb7ed6 html
+Breakeven
+@@ d3abb9a60e html
+Move needed
+@@ 75f4ded0d1 html
+Probability of profit: realized 30% / 35% / 25%
+@@ b78007d2df html
+Expectancy per contract: realized 35% / 25%
+@@ 4f6cbcfebf html
+100 straddle
+@@ c97d2c8ff2 html
+95/105 strangle
+@@ a075f9286b html
+90/110 strangle
+@@ 5ea11c1c79 html
+A few patterns:
+@@ 9b960c388f html
+<strong>The cheaper it is, the worse your odds</strong>. The 90/110 strangle costs only $1.06, but the stock has to move more than 11% for it to make money, which the market prices at only about a 20% chance. Buyers are often drawn in by “cheap” and forget that it is cheap because it is hard to win.
+@@ 4083b6eafd html
+<strong>Expectancy depends only on realized volatility</strong>. When realized volatility equals IV, all three have an expectancy of 0; at 35% realized they are all positive, and at 25% they are all negative. The structure changes how often you win and how much you win, but not the bet itself.
+@@ 0f6fdfc42a html
+<strong>Gamma per dollar</strong>: the straddle buys about 0.013 of Gamma per dollar of premium, the 95/105 strangle about 0.026, and the 90/110 about 0.045. OTM structures have more leverage, but their Gamma only pays off when the stock gets near a strike.
+@@ 81771df93b html
+Selling straddles and strangles: no floor on either side
+@@ 6fffbc3401 html
+The seller collects the cost in the table as premium, and the risk flips over symmetrically: on the call side the loss has no upper limit, and on the put side it runs until the stock goes to zero. On a ±10% or ±20% jump the next day (assuming IV rises to 45%), a short 100 straddle comes out at −$569 / −$679 and −$1,321 / −$1,435, and a short 90/110 strangle at −$367 / −$496 and −$975 / −$1,138. The strangle loses somewhat less, but it also collects only one-sixth of the straddle’s premium. The position-sizing rules from Chapter 8 apply here too: size by the gap loss, not by margin.
+@@ a5950ab190 html
+The other way a long straddle pays: rising IV

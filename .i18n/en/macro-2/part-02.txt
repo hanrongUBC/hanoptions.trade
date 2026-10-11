@@ -1,0 +1,210 @@
+@@ 594864059c html
+Breadth and rotation: the illusion of the index
+@@ a136a123a3 html
+A rising index doesn't mean most stocks are rising. In a market dominated by a few giants, reading breadth is how you see what is really going on behind the index.
+@@ ca3600db17 html
+Cap weighting is a magnifying glass
+@@ 8f05038df5 html
+The S&amp;P 500 and the Nasdaq 100 are both market-cap weighted, and the ten largest companies can make up more than a third of the index. Each stock's contribution to the index equals its weight times its move:
+@@ fd88c0b844 html
+So when judging the index's direction, look at “weight times speed.” When two heavyweight groups pull in opposite directions, say chip stocks falling while cloud giants rise, whichever has the bigger weight and the faster move sets the index's direction. Once a heavyweight group's decline speeds up, the other few hundred stocks can't hold the index up, however well they do.
+@@ f7eb9617f9 html
+Top-10 weight <input id="cs-w" type="range" min="15" max="45" value="38"> <output id="cs-w-o">38%</output>
+@@ bbc54cdea8 html
+Top-10 move <input id="cs-a" type="range" min="-10" max="10" value="6"> <output id="cs-a-o">+6%</output>
+@@ e40ba6be7d html
+Other stocks' move <input id="cs-b" type="range" min="-10" max="10" value="-2"> <output id="cs-b-o">−2%</output>
+@@ 2087d02e2a html
+Assume the index holds 500 stocks, so in an equal-weight index the top ten make up only 2%. With the default settings, the cap-weighted index rises 1.04% while the equal-weight index falls 1.84%. The news will say “stocks rose,” while most of the stocks you own are falling.
+@@ 7679398d7f html
+A few ratios for confirmation
+@@ 789bf7fff5 html
+Divide one ETF's price by another's and plot the result as a line, and you get a relative strength ratio. A rising ratio means the first is outperforming the second. These are the most commonly used:
+@@ 3ffe046985 html
+Ratio
+@@ ff6420c977 html
+A rise means
+@@ 2250105c14 html
+Divergence to watch for
+@@ 2459a94909 html
+Equal-weight S&amp;P ÷ S&amp;P (RSP / SPY)
+@@ 5c6d6a3914 html
+The rally is broadening; most stocks are taking part
+@@ fd5cff7e4d html
+Index at a new high while the ratio hits a new low: the rally is getting narrower
+@@ 03dfe8f6f4 html
+Small caps ÷ Nasdaq 100 (IWM / QQQ)
+@@ 6f781624f1 html
+The rate backdrop and the domestic economy are improving
+@@ 33646bfd4c html
+Small caps rarely sit out a truly big rally for long
+@@ 0a52c4617c html
+Financials ÷ Nasdaq 100 (XLF / QQQ)
+@@ 66865acac5 html
+Credit and rate conditions are friendly
+@@ f1bbb029b5 html
+Financials often turn a step ahead of tech
+@@ c861b07a65 html
+Semiconductors ÷ Nasdaq 100 (SMH / QQQ)
+@@ 3c92192208 html
+Chips still lead tech
+@@ 965c8a19d7 html
+When chips weaken first, the index often follows
+@@ 6a63710c73 html
+Consumer discretionary ÷ consumer staples (XLY / XLP)
+@@ 0a7dc1917b html
+Consumers' risk appetite is rising
+@@ f4cf411c7e html
+Defensive sectors keep outperforming: the market is bracing for a slowdown
+@@ 3acc82df86 html
+High-yield bonds ÷ intermediate Treasuries (HYG / IEF)
+@@ 94a36104d7 html
+The credit market is willing to take risk
+@@ f86bb5c817 html
+Stocks up, credit down: bond investors are seeing trouble first
+@@ ff0f9f7b3b html
+Also, Korea's stock market is heavily weighted toward memory chips and semiconductors, and it often leads the turning points in global memory-chip stocks. When US memory-chip stocks are strong while Korea's market stays weak, that divergence usually doesn't last long.
+@@ d97aab2bdf html
+Rotation and a decline look alike, but they are different
+@@ b94989ecd0 html
+Feature
+@@ b125e64f3b html
+Rotation
+@@ 50878fa6ee html
+A real decline
+@@ b115e0cc66 html
+Index
+@@ 3a8fad732b html
+Sideways or small swings
+@@ 4377ce6fe6 html
+Keeps falling
+@@ 90160a0bd7 html
+Sectors
+@@ 087437d7e7 html
+Some plunge, some soar; wide dispersion
+@@ 8e55bba081 html
+Almost all fall
+@@ a15c50fb97 html
+Correlation between stocks
+@@ 970855daef html
+Low
+@@ 11978e32a2 html
+Rises fast, toward “everything falls together”
+@@ 22217a2b6a html
+Breadth
+@@ abeadd13aa html
+Equal-weight and small caps may even improve
+@@ afd63c55fa html
+Deteriorates across the board
+@@ a4f1cb5d7b html
+Credit spreads
+@@ 334258af17 html
+Stable
+@@ 75b1dc77c3 html
+What to do
+@@ a5e04497b9 html
+Switch positions without cutting total exposure
+@@ 736ffac2f2 html
+Cut positions, hedge, hold cash
+@@ f1a7d975e4 html
+The most common mistake during sector rotation is to take a selloff in crowded winners for a selloff in the whole market, dump everything, and miss the sectors money is flowing into. Conversely, the most common mistake in a decline is to take a broad selloff for rotation and think you can dodge it by switching sectors. Correlation and credit spreads are the best tools for telling them apart.
+@@ 8f705ecc7f html
+How to play a rotation
+@@ 7df37f5e73 html
+<strong>Buy pullbacks in former losers; sell bounces in former winners.</strong> Money moves from crowded winners into neglected sectors, and the process usually lasts several weeks.
+@@ cc7aa916e5 html
+<strong>Use shares or longer-dated instruments.</strong> Rotation takes time to play out, and time decay on short-dated options will eat your profits.
+@@ e296043ecf html
+<strong>Wait for confirmation before adding.</strong> One day of equal-weight outperformance means nothing. It counts as confirmed when the ratio rises steadily over several days to a week or two, while money keeps flowing into the sectors that were sold off.
+@@ 59b38ac026 html
+<strong>When shorting, pick the weakest, not the strongest.</strong> To express a bearish view, shorting the sector with the worst relative strength is far safer than shorting the strongest index. The strongest things have money buying them; shorting them means fighting both the trend and short covering.
+@@ 6a32d4ffe4 html
+The cost of a crowded trade
+@@ 841326934a html
+When everyone knows about a trade and everyone owns it, its biggest risk is often that <strong>there is no next buyer</strong>, even if the logic itself isn't wrong. Once the buying stops, a little bad news is enough to send the price down fast, because everyone wants out through the same door.
+@@ 67c4f847b0 html
+Clues that a trade is crowded: the media and social platforms discuss it over and over; people around you who don't trade start asking about it; demand for call options in the options market clearly exceeds demand for put options; related ETFs see large, steady inflows; and the stock stops rising on good news. Seeing these signs doesn't mean you must sell right away, but you should stop adding and think it through: when the buying stops, who will take the other side?
+@@ c7489dfa0d html
+Flows and options positioning
+@@ 83f565ab0e html
+Macro sets the direction over months, but the path over a few days is often set by mechanical flows. This money doesn't read the news; it buys and sells by rule, yet it is enough to turn a normal pullback into a sharp drop, or to pin the index near a certain price.
+@@ 5456ae6143 html
+Which way market makers hedge
+@@ 82be9a883d html
+After a market maker sells options, it usually hedges the Delta with stock or futures to stay neutral on direction. As prices move, Delta changes (the rate of change is Gamma), so market makers have to keep adjusting the hedge. Which way they adjust depends on whether, overall, they are long Gamma or short Gamma:
+@@ 380bd87d1a html
+Market makers long Gamma
+@@ 0ab70469a8 html
+Price rises, their long exposure grows, so they sell
+@@ 78a22e6f72 html
+Price falls, so they buy
+@@ 3b391a919e html
+Result: someone sells rallies and buys dips, so volatility is dampened
+@@ 44054dbdca html
+Market makers short Gamma
+@@ 3c3b4c69a1 html
+Price falls, their long exposure grows, so they sell
+@@ 17f43e795e html
+Price rises, so they buy
+@@ 89d1d6d2b8 html
+Result: someone chases declines by selling and chases rallies by buying, so volatility is amplified
+@@ 6fd51a3a62 html
+In a typical index options market, clients (institutions) buy lots of put options for protection and sell call options for extra income. Market makers stand on the other side: short the puts (negative Gamma) and long the calls (positive Gamma). When prices are high, the calls matter more, and market makers are net long Gamma; when prices fall into the zone where the puts are concentrated, they flip to net short Gamma. The price where it flips is what's commonly called the <strong>Gamma flip</strong>.
+@@ 4e7b98abc7 html
+Put demand <input id="gx-m" type="range" min="5" max="20" value="10"> <output id="gx-m-o">1.0×</output>
+@@ 075980239f html
+Days to expiry <input id="gx-d" type="range" min="3" max="30" value="10"> <output id="gx-d-o">10 days</output>
+@@ 072579b852 html
+A hypothetical index ETF trading at 780. Market makers are long the 790, 800 and 810 calls and short the 740 to 770 puts, with implied volatility (IV) set at 16% throughout. The vertical axis is the hedge amount market makers must adjust for each 1% move in price. Drag put demand to 2.0× and the flip moves up to around 790: at the same price, the market goes from “someone is propping it up” to “someone is chasing it down.” Shorten the days to expiry and the curve gets steeper, concentrating around the strike prices.
+@@ 92f4f1d103 html
+No one can see market makers' actual positions directly. The Gamma flip and Gamma exposure figures that data vendors publish are all estimated from open interest (OI) plus some assumptions (such as “clients buy puts and sell calls”). Treat them as a rough topographic map, not precise coordinates. After price breaks below an estimated flip, also watch how it behaves afterward: does volume expand, are bounces weak?
+@@ 167d880dfb html
+Effects around expiration
+@@ 8961c112f6 html
+Around <strong>monthly expiration (OpEx)</strong> (the third Friday of each month) and <strong>quarterly quad witching</strong> (the third Friday of March, June, September and December), large numbers of options expire at once, and market makers' hedges are released with them. Before expiration, price is often “pinned” to strikes with large open interest; after expiration, that constraint lifts and volatility often picks up.
+@@ 51ba531120 html
+<strong>Max pain</strong> is the expiration price at which option buyers as a whole lose the most. It exerts some pull on price in the last day or two before expiration, and means less the further away expiration is.
+@@ cbdba30411 html
+<strong>0DTE options</strong> (expiring the same day) have enormous Gamma and amplify intraday swings, especially near big strikes. They have a large effect on the intraday path and little effect on direction over weeks.
+@@ 8fa2dfcb5c html
+<strong>Pileups at a single strike</strong>: when a round-number strike has an unusually large number of calls, market makers need to buy to hedge as price approaches it, which can produce a burst of accelerating gains; once price moves past it, the buying disappears, and the strike may turn into resistance.
+@@ aa220ab70c html
+End-of-day rebalancing in leveraged ETFs
+@@ b128ac4cc4 html
+A leveraged ETF promises a fixed multiple of the underlying's daily move, so it must adjust its position before every close. Here is the derivation: a fund with leverage <span class="v">L</span> and net assets <span class="v">A</span> needs <span class="v">L·A</span> of exposure. If the underlying rises <span class="v">r</span> on the day, the exposure becomes <span class="v">L·A·(1+r)</span>, net assets become <span class="v">A·(1+L·r)</span>, and the exposure it needs is <span class="v">L·A·(1+L·r)</span>. Subtract one from the other:
+@@ 63d239af55 html
+Fund size (× $100M)<input id="lf-aum" type="number" value="100" step="10">
+@@ fa22c6fe63 html
+3×
+@@ fa1e1f6232 html
+2×
+@@ 6382c92ff4 html
+−1× (inverse)
+@@ 085858e09b html
+−2×
+@@ 160ac315b5 html
+−3×
+@@ b503c64b45 html
+Underlying's move today (%)<input id="lf-r" type="number" value="5" step="0.5">
+@@ 9dbcedb122 html
+With a $10 billion fund and the underlying up 5%: a 3× fund must buy $3 billion, 2× and −1× funds $1 billion each, and a −3× fund $6 billion. Inverse funds tend to be small, but their coefficient is the largest.
+@@ f5c9ff0956 html
+For stocks with large leveraged ETFs tracking them (some popular tech and semiconductor names), this money amplifies late-day moves on big up and down days: the stock jumps, leveraged funds buy before the close, the next day opens higher, and that drives more buying. It works the other way on the way down. Understand this and you understand why some stocks always swing more than their fundamental news can explain.
+@@ ff7bf738d0 html
+Other mechanical flows
+@@ 2c14503e50 html
+<strong>Volatility-targeting funds and trend-following (CTA) funds</strong>: the former automatically cut equity exposure when realized volatility rises; the latter cut positions when prices break below trend. Both sell into declines and slowly buy back during calm rallies.
+@@ 74d3e1af13 html
+<strong>Quarter-end and month-end rebalancing</strong>: pension funds and other funds with stock–bond allocations must sell stocks and buy bonds at the end of a quarter in which stocks rallied hard, and vice versa.
+@@ 8102f46850 html
+<strong>Buyback blackout periods</strong>: companies usually suspend share buybacks for several weeks before releasing earnings, so the market loses a steady buyer. After earnings, buybacks resume and the buying comes back.
+@@ 0c6d2bc546 html
+<strong>Index changes</strong>: additions, deletions and weight changes create concentrated trading on the effective date.
+@@ 54dbde354e html
+How to use this information
+@@ 92f95593f4 html
+Mechanical flows explain the <strong>path and timing</strong>, not the direction. Your macro view tells you roughly where things are heading; flows tell you on which days the move may be especially fast, and near which prices it may get pinned or suddenly accelerate.
+@@ 0124a6fb91 html
+Options data has one more use: seeing through a narrative. When a stock rallies day after day, the news will supply a fundamental reason. But if the rally happens to come with heavy buying of short-dated calls, forcing market makers to buy the stock to hedge, then a good part of the move is mechanical. The question to ask then is: once the call buying stops, who takes over?
+@@ 1449b65f06 html
+When giving the day's key levels, many traders start with levels from options positioning (the flip, big strikes, max pain at expiration), then use technical levels (gaps, moving averages, patterns) as more distant targets, and they always phrase it as a binary: “bullish above this level, bearish below it.” That is easier to act on than just saying “I'm bullish,” and makes it easier to admit you're wrong.

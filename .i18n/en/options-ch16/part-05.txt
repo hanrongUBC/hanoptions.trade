@@ -1,0 +1,200 @@
+@@ 056c7fb43e html
+Max profit per spread
+@@ 8690eb7ed6 html
+Breakeven
+@@ 8c3fff0ee7 html
+Spreads
+@@ a59f077925 html
+Max loss
+@@ f5dd3d406e html
+Long bonds fall
+@@ 99458b3889 html
+Buy 100P (16%), sell 90P (17%)
+@@ 5bf4e4d7ac html
+Growth stocks under pressure
+@@ 80ef376f9f html
+Buy 100P (26%), sell 90P (29%)
+@@ 6683c97ce8 html
+Energy benefits
+@@ 675a145897 html
+Buy 100C (32%), sell 115C (29%)
+@@ 57eec06783 html
+Total
+@@ f4b0fb831f html
+Theta −$4.22/day, Vega +$75/point
+@@ d078ac2718 html
+Table 16-11 P&amp;L at expiry in three scenarios ($)
+@@ 7e208708e1 html
+Scenario (hypothetical)
+@@ 8163558f16 html
+Long bonds
+@@ 42e90d72dd html
+Growth stocks
+@@ a848ffb6f4 html
+Energy
+@@ ff272df0b2 html
+A Inflation and rate hikes exceed expectations: −12% / −20% / +18%
+@@ 669efcf310 html
+B Roughly in line with market expectations: −3% / −4% / +4%
+@@ 09f4417326 html
+C Inflation falls quickly: +8% / +12% / −15%
+@@ 572a147310 html
+For comparison: buying 2 of the 100 puts on growth stocks outright ($5.27 each, $1,055 in total) makes $2,945 in scenario A, more than the spread's $2,074; in scenario B it loses $255, while the spread actually makes $274; in scenario C it loses $1,055. The 90 put you sold traded at 29% IV, which brings in $0.49/share more than pricing it at the 26% ATM level. That is the part of the skew you sold back.
+@@ a0bb84d5b7 html
+<strong>The three legs are not diversification</strong>: they all make money in scenario A and all lose in scenario C. They are three expressions of the same macro judgment, so count their risk as one trade (Chapter 13's “illusion of diversification”).
+@@ 68259e0519 html
+<strong>The spreads give up part of the gain in the extreme scenario in exchange for lower cost and less Vega</strong>: when the panic fades and IV falls, you get hurt less.
+@@ c5ed2b3b34 html
+<strong>You know the worst case before you trade</strong>: −$3,066. If the macro call is completely wrong, the account is still there, and you can make the next call.
+@@ 6ea8d4047b html
+When they trade macro, many traders first write out the “transmission chain” in their journal: macro event → change in costs, prices or demand → who benefits and who is hurt → the matching underlyings. For example, if you are betting on rate hikes, look for the small caps or long bonds most sensitive to rates; if you are betting on lower oil prices, look for airlines, where fuel is a large share of costs. Pick the structure only after the chain is written out, and finally ask one separate question: if the first link is wrong, will all these legs lose together? If they will, add up their risk and budget them as a single position.
+@@ 544c2624a9 html
+An edge that takes years to show
+@@ 6678a31fc8 html
+A student believes a stock's options are persistently underpriced: IV is 25%, and he estimates realized volatility at 27%. So every month he buys 10 ATM 30-day calls and Delta-hedges them. Assuming his judgment is exactly right, the theoretical edge per trade is <span class="num">2 × $114 = $228</span> (Table 16-1). How often should he hedge? How many trades does he need to confirm the edge exists?
+@@ 340b39d98f html
+Table 16-12 Realized volatility 27%, IV 25%, 500 simulated paths (10 contracts, $)
+@@ 9215455613 html
+Average P&amp;L
+@@ 4aa4898caf html
+Std. dev.
+@@ 8d0c6c128b html
+Probability of loss
+@@ bf43047559 html
+Slippage
+@@ cd6ab7f34d html
+Net edge
+@@ 9f51e4d1c4 html
+Trades needed
+@@ ec13a0b39f html
+“Trades needed” is computed as (2 × standard deviation ÷ net edge)², i.e. enough trades to put the average result two standard errors away from zero. Hedging every 5 days: <span class="num">(2 × 978 / 214)² ≈ 84</span> trades, which at one a month takes seven years. Once a day: <span class="num">(2 × 503 / 194)² ≈ 27</span> trades, more than two years. 8 times a day: <span class="num">(2 × 186 / 129)² ≈ 8</span> trades, but slippage eats 43% of the edge, and an individual can hardly hedge 8 times a day.
+@@ 77d7eb7d0f html
+Worse, most of what he sees in the first few months is noise. Hedging every 5 days, 43% of months lose money, and the probability of three losing months in a row is about <span class="num">0.43³ ≈ 8%</span>. Many people conclude at this point that “the strategy has stopped working,” when the sample is simply too small. The reverse is also true: three winning months in a row prove nothing either. And this assumes he knows for certain that realized volatility is 27%; in reality that number has its own error.
+@@ d482ef2aa4 html
+Before you evaluate any strategy, estimate the standard deviation of a single trade's result and work out how many trades you need to tell edge from luck. That is why Chapter 14 asks you to compute expectancy from your journal and to stay skeptical of any statistics based on fewer than 30 trades.
+@@ 1bec5a9554 html
+Same positive expectancy, different sizes, different fates
+@@ 8297f271f0 html
+Suppose you have a reliable spread strategy: a 45% win rate per trade, winning 1.5 times the risk when right (for example, a debit spread costing $4 with a $6 maximum profit, simplified to “either maximum profit or maximum loss”), and losing 1 times the risk when wrong. The expectancy per trade is <span class="num">0.45 × 1.5 − 0.55 × 1 = +0.125</span> times the risk, a pretty good strategy. Only one question is left: what percentage of the account do you risk on each trade?
+@@ 3f39481c03 html
+<span class="v">p</span> is the win rate, <span class="v">b</span> is the payoff ratio, and <span class="v">f</span> is the fraction of the account risked per trade. <span class="v">f</span>* is the fraction that makes long-run growth fastest (the Kelly fraction), here 0.45 − 0.55/1.5 = 8.3%. When <span class="v">f</span> exceeds about 16.8%, <span class="v">g</span> turns negative: the expectancy is positive, yet the median account shrinks.
+@@ 0564ae0fb6 html
+Table 16-13 Risk per trade and results after 100 trades (2,000 simulated paths; final values with starting capital = 1)
+@@ 96599c66b6 html
+Risk per trade
+@@ 44c7ce356e html
+Growth rate per trade g
+@@ a99b0240d5 html
+Median final value
+@@ 37ea40154a html
+Mean final value
+@@ ef6ff5b773 html
+Drawdown ≥ 50% at some point
+@@ 55ee4681ed html
+Final value below start
+@@ c70a107f2f html
+8.3% (Kelly)
+@@ 7c40aeebe8 html
+Risk per trade <input id="f5-f" type="range" min="1" max="30" step="1" value="2"> <output id="f5-f-o">2%</output>
+@@ c0dcfb355b html
+The 30 paths use exactly the same sequence of wins and losses; only the position size differs. At 2%, the paths bunch together and drift slowly upward. At 8% (near Kelly), the median is highest, but the paths are already far apart. Past 17%, the pink median line starts heading down, while the mean still looks great, because a very few lucky paths pull it up.
+@@ 6abc7a5d36 html
+Three ways to read it:
+@@ 346772124e html
+<strong>The mean lies</strong>: at 25% size, the mean final value is 21.7 times starting capital, yet the median is only 0.22. The mean is pulled up by a very few paths with long winning streaks; what you are most likely to experience is the median.
+@@ 89aab60622 html
+<strong>Even Kelly is too aggressive</strong>: betting 8.3%, the probability of being cut in half at some point in 100 trades is 73%. And Kelly requires you to know your win rate and payoff ratio exactly; if your estimates are optimistic, your actual size is already above Kelly. In practice people often use a quarter to a half of Kelly, then cap it with the rules from Chapter 13.
+@@ bfa63c0c61 html
+<strong>Small size is slow, but it survives</strong>: at 2% size, the median after 100 trades is +24%, and the probability of a drawdown of more than half is only 0.2%. Survive, and you get a second hundred trades.
+@@ 76fc557033 html
+<span class="sn">Tools</span>Checklist and self-test
+@@ b4640d623d html
+Checkmarks are saved only in your own browser.
+@@ 810552346c html
+<span class="num">16-1</span>Before you go further: clear three hurdles
+@@ 4628f5c191 html
+Your last 30 trades all have complete journal entries and attribution
+@@ 3bd7a17a8a html
+You have computed expectancy from your own data, and it is positive after costs
+@@ 783db3d4e7 html
+In 90 days, no trade broke the maximum-loss-per-trade rule
+@@ 41c46d18c2 html
+<span class="num">16-2</span>Before trading volatility
+@@ 594b04e251 html
+Write down your forecast of realized volatility and where it comes from
+@@ 82a423b16e html
+Compute the edge, Vega × vol difference, and compare it with the standard deviation of the hedging error
+@@ 97b326abf2 html
+Build slippage, hedging frequency and gap risk into the expectation
+@@ 580c71d836 html
+<span class="num">16-3</span>Taking apart a structured product
+@@ 7c659b5823 html
+Find the knock-in and knock-out levels and the observation frequency
+@@ 2d6c2d6feb html
+Draw the two payoff lines at maturity: knocked in and not knocked in
+@@ a3315dde72 html
+Estimate the fair coupon at current IV and compare it with the quote
+@@ 8365c4b50a html
+<span class="num">16-4</span>One page before every close
+@@ a84605ffd2 html
+Dashboard: IV and expected move updated for 5 underlyings
+@@ d319fa22b6 html
+Portfolio Delta, Theta and Vega are all within the rule card's limits
+@@ bab651a8bc html
+Tomorrow's event calendar checked; size cut ahead of time if needed
+@@ a6f5d33bbc html
+Self-test: five questions
+@@ a07b9d9657 html
+<span class="num">1</span><span>You buy 10 ATM 30-day calls (Vega $11.40 per point per contract), IV 25%, and hedge Delta every day. If realized volatility is 28%, what is the theoretical expectation? What if it is only 23%?</span>
+@@ 4d7813fc91 html
+28%: <span class="num">3 × $11.40 × 10 = +$342</span>. 23%: <span class="num">−2 × $11.40 × 10 = −$228</span>. An ATM option's price is roughly linear in volatility, so “Vega × vol difference” is very accurate.
+@@ 4ac7b6cf66 html
+<span class="num">2</span><span>Hedging once a day, the standard deviation of the error is about $455. If you hedge every 4 days instead, roughly what does it become?</span>
+@@ b0289bc40c html
+The number of hedges falls from 30 to 7.5, 1/4 as many, so by 1/√<span class="v">N</span> the error doubles, to about <span class="num">$910</span>. The approximation gives <span class="num">0.886 × 11.4 × 1,000 × 0.25 / √7.5 ≈ $922</span> (Vega per 1.00 of volatility is 11.4 per share; 10 contracts are 1,000 shares).
+@@ 84787456c4 html
+<span class="num">3</span><span>30-day IV is 45% (including one earnings report) and 60-day IV is 32%. What is the forward volatility from day 30 to day 60? How would you read it?</span>
+@@ 3af2ec05f2 html
+<span class="num">√((0.32² × 60 − 0.45² × 30)/30) = √((6.144 − 6.075)/30) ≈ 4.8%</span>. Implied volatility of under 5% for the month after earnings is almost certainly not normal for this stock: either the far month is too cheap, or the near month's event premium is too high. That is exactly the signal to consider a calendar spread, but check the quotes and the event date first.
+@@ 0687954675 html
+<span class="num">4</span><span>A snowball is quoted with a 15% annualized coupon. The fair coupon at current IV is 18.7%, and the coupon's present-value factor is 0.328. How much has the issuer kept for itself in the coupon?</span>
+@@ ff79964820 html
+<span class="num">(18.7% − 15%) × 0.328 ≈ 1.2%</span> of principal. And don't forget that even at the fair coupon, the investor has sold a knock-in put worth 4.19% of principal.
+@@ 25ec0d2dc8 html
+<span class="num">5</span><span>Each trade has a 45% win rate, winning 1.5 times the risk and losing 1 times the risk. What is the Kelly fraction? If you risk 25% on each trade for 100 trades, what is the median outcome?</span>
+@@ bbc3b5e767 html
+Kelly fraction: <span class="num">0.45 − 0.55 / 1.5 = 8.3%</span>. At 25%, the growth rate per trade is <span class="num">0.45 × ln 1.375 + 0.55 × ln 0.75 = −0.0149</span>, so the median after 100 trades is <span class="num">e<sup>−1.49</sup> ≈ 0.22</span>, a loss of about 78%. The expectancy is positive, but with oversized positions most accounts still shrink.
+@@ 4ac9c8e546 html
+Option examples in this chapter are computed with the Black-Scholes model (4% rate, no dividends, 365-day year). Simulation results come from the assumptions stated in the text and fixed-seed random paths. For teaching only; not investment advice.
+@@ a70e23cc3d text
+US Options 
+@@ 875f2902a9 text
+Course
+@@ 9f397f68b7 text
+US Options Course · Part 5 Mindset and next steps · Chapter 16
+@@ 442f975dc4 text
+Hedged P&amp;L per interval
+@@ 3af577d906 text
+implied
+@@ c048b66816 text
+How this relates to Chapter 6
+@@ 07416de707 text
+Std. dev. of hedging error
+@@ ac481be6c4 text
+The less often you hedge, the more widely the same trade's outcomes spread
+@@ 27225f0a69 text
+Figure 16-1 · 10 ATM 30-day calls, IV 25%, 500 fixed paths
+@@ d9c4522fe9 text
+P&amp;L distribution ($100 bins)
+@@ dff4e68469 text
+Mean
+@@ 1c425277d3 text
+Zero
+@@ cd813a6f46 text
+Average P&amp;L
+@@ 5c8aaa80d1 text
+Standard deviation
+@@ 7feb98bf44 text
+Share of losing paths
+@@ 169fc1fd40 text
+Rebalancing slippage ($0.02/share)

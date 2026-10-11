@@ -1,0 +1,220 @@
+@@ 70f2c0baaa html
+<strong>Risk-control error</strong>
+@@ 783d003bdd html
+Position so big you were forced to close at the worst point; instrument too short-dated
+@@ 8ac8af4e91 html
+Go back to Chapter 4 and redo your sizing
+@@ a828c5b7c2 html
+<strong>Normal variance</strong>
+@@ 25a7b1fb0b html
+Executed as planned; the odds went against you
+@@ cd0637e11a html
+Change nothing; it's a cost
+@@ 631f0f0e25 html
+Winning trades need to be classified too. Chasing an entry, no stop set, oversized: even if these trades made money, they belong in “Execution error” or “Risk-control error.” If they aren't corrected, sooner or later they will be paid back with a bigger loss.
+@@ a4966a8b46 html
+Review weekly, tally monthly
+@@ 33f003fc1b html
+<strong>Weekly</strong>: read through this week's journal; find the single biggest mistake; pick just one behavior to improve next week. Changing one thing at a time works better than changing five at once.
+@@ 338093495e html
+<strong>Monthly</strong>: tally your win rate, average win (R), average loss (R), expected value (EV), maximum drawdown and the number of trades that broke the rules.
+@@ da461eb0b7 html
+<strong>One especially useful number</strong>: add up the P&amp;L of all rule-breaking trades separately. Many people find that without those trades, the whole month would have been profitable.
+@@ 53bce73fe0 html
+Real progress rarely comes from finding better entries. It comes mostly from skipping the few trades you shouldn't have taken.
+@@ 2cb647bf0c html
+Temperament and life: the part outside trading
+@@ 76f652e75d html
+The market works like an amplifier: impulsiveness, procrastination, vanity and an inability to say no in your life all get amplified into numbers in your account. So the further you go in trading, the more of the work happens outside trading.
+@@ 0c2518e7f8 html
+Habits from your life follow you into the market
+@@ 56c77c5e61 html
+<strong>Grabbing at small gains</strong>: skipping protection to save a little on fees, not taking profit to squeeze out a bit more, and ending up trapped in positions that get harder and harder to exit.
+@@ e7383cb544 html
+<strong>No boundaries</strong>: people who can't say no to others in life also find it hard to say “no” to a losing position in the market; one “just wait a bit longer” from someone else and they waver.
+@@ 50d431d79f html
+<strong>The “close enough” mindset</strong>: on things that matter, “close enough” usually means giving up your standards. A stop-loss that has “more or less” been hit, a position size that is “more or less” right: these are all holes.
+@@ cc1d1d628d html
+How much money you need decides how patient you can be
+@@ ed5fcac239 html
+The higher your living costs and the more you depend on trading income, the more urgently you demand things from the market, and the more likely you are to force trades to make money. Conversely, with low living costs you ask little of the market and can wait for good opportunities. What financial freedom buys you is not so much money as choice: you can wait, you can sit out, and you don't have to prove yourself to anyone.
+@@ eb14e9c89b html
+Trading with living expenses, tuition or borrowed money loads the heaviest psychological pressure straight into every trade. The smaller your capital, the less you should trade and the more slowly you should build skill. First learn not to lose big; then think about making money fast.
+@@ 600cfef96c html
+The long view
+@@ e859879f39 html
+Trading is more like a professional skill that takes years of training than a chance to get rich overnight. A reasonable expectation: spend a few years surviving, building a method and accumulating a sample, then let a small, steady edge slowly compound. People who aim for “small, steady gains every week” usually end up going further than people who aim to “double it in one shot.”
+@@ 4cc975449e html
+Take full responsibility for results
+@@ 885c6200a6 html
+Blaming losses on the big players, the news, a teacher or luck costs you the chance to improve. Taking responsibility for every decision isn't blaming yourself; it is taking back control. Only you can decide how to make the next trade.
+@@ 0f02529683 html
+Don't stake your self-worth on your P&amp;L
+@@ 14c3ed35f4 html
+If a loss makes you feel like a failure and a win makes you feel brilliant, your emotions will be led around by your account. Focus on “did I follow my plan today?” rather than “how much did I make today?” The first is entirely in your control; the second isn't.
+@@ c0aa9c0140 html
+Toolkit: checklists, protocols and self-assessment
+@@ 12064758e9 html
+This chapter turns the previous nine into things you can use every day. Your checkmarks and self-assessment results are saved only in your own browser.
+@@ cc33df74b1 html
+Four checklists
+@@ def97792b7 html
+Before you trade
+@@ 387b58ba1b html
+I can state the thesis in a sentence or two
+@@ 7f4286a46c html
+I've written down the invalidation criteria and the stop-loss
+@@ e42b4b5fe9 html
+Position size comes from my risk percentage, not my confidence
+@@ 9c4ea129c0 html
+Not noticeably hungry, angry, lonely or tired
+@@ 2b36aa7a55 html
+This is a planned trade, not chasing or revenge
+@@ 744032f16d html
+While in the trade
+@@ 5624fee541 html
+Does the thesis still hold? Price swing or broken thesis?
+@@ f6bef1c838 html
+No second add to a losing position
+@@ a3369ee8c7 html
+Not checking the account every few minutes
+@@ d5654cfcce html
+Take profit when the rule says so
+@@ 5ff73958b1 html
+After you close
+@@ e7121041e8 html
+Wrote the journal entry and put it in one of the four drawers
+@@ ed82d2aece html
+Checked the winning trades for rule violations too
+@@ 2b6cd79f88 html
+After a big win or loss, no new positions today
+@@ 805c9c1646 html
+Loss-of-control protocol
+@@ 3f96c65b2f html
+Catch yourself revenge trading or euphoric: stop placing orders
+@@ 84118bdc31 html
+Cut current positions to a size you can sleep with
+@@ 0626149349 html
+Step away from the screen for at least 30 minutes and go for a walk
+@@ ca5f668a92 html
+Write down what just happened and how you felt
+@@ 391da59be7 html
+Decide the next day whether to resume trading
+@@ c814a88030 html
+Trading psychology self-assessment
+@@ f92b83b655 html
+Answer based on what actually happened over the past month: 1 means never, 5 means almost always. The higher the score, the more attention that item needs.
+@@ 9b965ded13 html
+Glossary
+@@ 5825024006 html
+The main terms in this handbook and their original English names, listed by the chapter where they first appear. When you read English-language material, use a broker's platform or search online, the original English term is far more precise.
+@@ 147b51b71b html
+Term
+@@ 79e91d826e html
+First appears
+@@ 72ac7fd41c html
+Introduction
+@@ b77af26848 html
+Fear
+@@ 35dd702383 html
+Euphoria
+@@ 081962e768 html
+Discipline
+@@ 6799aa42ed html
+Greed
+@@ 56a6b7e7f2 html
+Randomness
+@@ 89c9d927d5 html
+Expected value
+@@ a63458a350 html
+Chapter 1
+@@ 83ca92ce7a html
+Take profit
+@@ 6b95439248 html
+Resulting
+@@ a1488a8f46 html
+Narrative
+@@ 4b0f55bb92 html
+Chapter 2
+@@ ead914addb html
+Loss aversion
+@@ e494dcceed html
+Sunk cost
+@@ b59c8e011b html
+Cognitive bias
+@@ b5e70028f5 html
+Winning streak
+@@ 5c7b50a44c html
+Losing streak
+@@ e83b405f43 html
+Anchoring
+@@ 910d7dab46 html
+Revenge trading
+@@ 0a9182db90 html
+Chapter 3
+@@ d83aed376b html
+Overconfidence
+@@ 386e156830 html
+Kelly criterion
+@@ 3b11941a57 html
+Chapter 4
+@@ 8fe73d5b2c html
+Drawdown
+@@ 40f0b3a3b7 html
+Reward-to-risk ratio
+@@ 495d9f14ee html
+Invalidation criteria
+@@ 6648ec5f17 html
+Chapter 5
+@@ bf43047559 html
+Slippage
+@@ dc2e8dbe06 html
+Trading plan
+@@ 3013c461eb html
+Chapter 6
+@@ 7e2276ef4d html
+Gambler's fallacy
+@@ 71b123df7d html
+Risk per trade
+@@ 501d90ff47 html
+Copy trading
+@@ d0243abec0 html
+Chapter 7
+@@ b5784898f4 html
+Maximum drawdown
+@@ 35282211a5 html
+Compounding
+@@ c2c124dc82 html
+Chapter 10
+@@ 1e23bcf3be html
+Probabilistic thinking
+@@ dd66cd0596 html
+Further reading
+@@ d1914a06d2 html
+Daniel Kahneman, “Thinking, Fast and Slow”: where loss aversion and many cognitive biases come from.
+@@ 6e6467627e html
+Annie Duke, “Thinking in Bets”: making decisions under uncertainty, and separating decision quality from outcomes.
+@@ 6a17a4c1a4 html
+Mark Douglas, “Trading in the Zone”: seeing every trade through probabilistic thinking.
+@@ a817e17634 html
+Jocko Willink, “Extreme Ownership”: a mindset of taking full responsibility for results.
+@@ 3d769ca210 html
+“Reminiscences of a Stock Operator”: traders a hundred years ago made the same mistakes we make today.
+@@ 2e2ce2b286 html
+<small>Previous</small><span></span>
+@@ 5286a10ebc html
+<small>Next</small><span></span>
+@@ 2014e5012d html
+This handbook draws on common findings from behavioral finance and the practical experience of trading communities. Its examples are calculated with mathematical models, are for learning only and are not investment advice.
+@@ 1e13fbd1d0 text
+US Options Course
+@@ 6985e3fc6d text
+Trading Psychology
+@@ 549cca660d text
+Macro Trading Framework
+@@ f691f691fc text
+Policy Narrative Investing
+@@ f025c44d71 text
+Oversold Rebound List
+@@ d4b3891862 text
+The chance that a good system, with an expected +0.35R per trade, is still down after 10 trades. After 100 trades, that chance falls to 1%.

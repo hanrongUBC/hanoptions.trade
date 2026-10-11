@@ -1,0 +1,166 @@
+@@ b65e4250a7 html
+Narratives and information
+@@ a0349c9dab html
+Markets trade stories, but in the end cash flows pay the bill. People who use narratives use them to decide what to research; people used by narratives use them to decide when to go all in.
+@@ dee0be53c0 html
+The life cycle of a narrative
+@@ 1c521f1a8c html
+“Everyone knows”
+@@ 71d1705c4d html
+Emergence
+@@ 4a84f1df26 html
+Spreading
+@@ 4b623d3298 html
+Consensus
+@@ b5d01e8537 html
+Crowding, fatigue
+@@ 462fe6a0b3 html
+Disproven or faded
+@@ fd12a841bf html
+Research, small size
+@@ 4833f5d713 html
+Add on confirmation
+@@ a8393f5463 html
+Hold, stop adding
+@@ e3baf484e0 html
+Trim in stages
+@@ d47b5beeda html
+Wait for the next one
+@@ 627c35c27b html
+Prices usually rise fastest from “spreading” to “consensus,” but the best risk-reward ratio comes in “emergence” and early “spreading.” By the consensus stage, good news can hardly push the price higher, while bad news can send it sharply lower.
+@@ 7a4569e964 html
+Narratives decide what to research; valuation decides when to buy
+@@ d6a2e9a34d html
+A good narrative answers the question “where will the world be forced to spend money over the next few years?” For example, AI needs power, networks and data centers; reshoring needs engineering and construction (E&amp;C), industrial equipment and logistics; population aging needs medical devices and services; security and resource independence need defense, critical minerals and energy infrastructure.
+@@ e8323c5788 html
+To get from a narrative to specific stocks, you can work in four steps:
+@@ b754ea0633 html
+A narrative being right doesn't make a given company a good way to express it. Within a correct trend, plenty of companies will fail because of execution, competition or debt. Real diversification is about risk factors, not how many stocks you hold: five stocks that all rise on the same narrative are really one trade.
+@@ 1abbb388dc html
+Write down invalidation criteria, and make them facts
+@@ fe53b7ce9e html
+Before you buy into a narrative, write down “what facts would make me admit this call is wrong.” Note: facts, not prices.
+@@ 1e1f167aa2 html
+Bad invalidation criteria
+@@ d6be11492e html
+Admit I'm wrong if the stock falls 20%
+@@ 0eab9ae032 html
+Get out if it feels wrong
+@@ 6eb7ab745a html
+Good invalidation criteria
+@@ 4717dda1da html
+Major customers cut capital expenditure (capex) guidance two quarters in a row
+@@ 9ef50c5e2e html
+Policy subsidies are canceled or delayed
+@@ 61a844fd73 html
+Prices of the key product start falling steadily
+@@ 1058c9c42a html
+A price stop-loss controls the loss on a single trade; factual invalidation criteria judge the narrative itself. You need both, but don't confuse them. If the price falls and the facts haven't changed, it may be an opportunity; if the price hasn't fallen but the facts have changed, you have all the more reason to get out.
+@@ 46a477e99b html
+Does this news matter? Ask six questions
+@@ a286fc08b9 html
+Question
+@@ fb6f622034 html
+Why ask it
+@@ 18c5ef7626 html
+How is the market reacting?
+@@ a29bf6ecc1 html
+A reaction backed by real money carries more weight than a headline (Chapter 2)
+@@ 93b1ffe319 html
+Was it a surprise?
+@@ a814468688 html
+What's already known isn't news; only an expectation gap moves prices
+@@ 046850318d html
+Which of the four variables does it change?
+@@ a23df19aed html
+News that doesn't change rates, oil, earnings or jobs usually has a short-lived effect
+@@ 82a3e8df0b html
+Who benefits, and who is forced to spend?
+@@ 34d28004c9 html
+Follow the money to find what to trade
+@@ f04ad4d46b html
+How wide is the impact?
+@@ a6964d7dee html
+A single company, an industry, or the whole macro picture
+@@ 96066f2c86 html
+Is it backed by flows or options data?
+@@ e9a4630457 html
+Only narratives with money behind them show up in prices
+@@ 7d7a926843 html
+Insiders, big money and retail sentiment
+@@ 26faf1c3a4 html
+<strong>Insider buying says more than insider selling.</strong> Executives sell stock for many reasons: diversifying their wealth, paying taxes, buying a house, and many sales are prearranged trading plans. But when they buy on the open market with their own money, there is usually only one reason. Several executives buying at the same time is an even stronger signal.
+@@ 18b4b32e77 html
+<strong>Unusual options activity (UOA) is information, not an order.</strong> A sudden large trade at one strike price could be a bullish bet, a big institution hedging a stock position, or even someone closing a position. Judge it together with the change in open interest (OI) and the price the trade went through at, and treat it only as one clue.
+@@ daf15fb314 html
+<strong>Extreme retail sentiment is a contrarian indicator.</strong> When people around you who never trade start recommending stocks, or a stock becomes the topic everyone on social media is talking about, sentiment is close to a peak. It doesn't tell you the market will fall tomorrow, but it reminds you not to add at that point.
+@@ 3ccd376a93 html
+Trade the policy, not the slogan
+@@ 0f1836e3ce html
+Political news brings a lot of noise. What a macro trader cares about is where policy will send capital: an industrial subsidy, a tariff, a defense budget or an export restriction will reliably raise or lower certain industries' revenue over several years. As for who said what, or which side you agree with, the market doesn't care.
+@@ 315da79749 html
+Separating your personal beliefs from your trading judgment is the hardest part of this craft. A useful test: if the side you support loses power, would your positions keep you up at night? If so, you are betting on a belief, not on market logic you can verify.
+@@ a8995cc302 html
+Calendars, seasonality and event playbooks
+@@ eae2d2b73a html
+A macro trader's month is carved up by the calendar. The dates of important data releases and meetings are announced in advance, so you can write down what you will do under each outcome before the event happens.
+@@ eb99010ab3 html
+The fixed schedule each month
+@@ 82698770af html
+Event
+@@ dc84651473 html
+Typical timing
+@@ 224ae85805 html
+Why it matters
+@@ 1c3b3452de html
+Jobs report (nonfarm payrolls, unemployment rate)
+@@ 87329575b5 html
+Usually the first Friday of the month
+@@ d57a33467e html
+Jobs are the fourth variable in the regime call, and one of the Fed's goals
+@@ b61b4c6bef html
+Initial jobless claims
+@@ 8e023066be html
+Every Thursday
+@@ 8e8e31c19e html
+The most timely jobs data; watch the trend in the four-week average
+@@ 8d5e92973b html
+ISM manufacturing and services indexes
+@@ 20e59df938 html
+Start of the month
+@@ fd4c5619dd html
+Leading indicators; the prices components give early warning of inflation pressure
+@@ b00e5c1950 html
+CPI and PPI
+@@ 290d2a961b html
+Mid-month
+@@ 1e1311be2e html
+Inflation data; directly moves the pricing of hikes and cuts
+@@ c32427e09f html
+PCE price index
+@@ a21c5483a9 html
+Late in the month
+@@ be7bd4288e html
+The Fed's preferred inflation gauge
+@@ 77b5ad93e6 html
+FOMC meeting
+@@ ad1350ddda html
+8 times a year, with a statement and press conference afterward
+@@ 0dbd021b0c html
+The policy rate, the dot plot and guidance on the path ahead
+@@ 12459bb900 html
+Treasury auctions and the quarterly refunding announcement
+@@ bcfddba4eb html
+Auctions almost every week; refunding once a quarter
+@@ 07c46d7786 html
+Supply and demand at the long end (Chapter 3)
+@@ 4581d243eb html
+Monthly options expiration (OpEx) and quarterly quad witching
+@@ d6fd3a2f20 html
+Third Friday of each month; quad witching in March, June, September and December
+@@ 7e03ae8b96 html
+Hedges are released all at once (Chapter 7)
+@@ fcde8c15d4 html
+Earnings season
+@@ 3c9a9d74b3 html
+Busiest about two to six weeks after each quarter ends

@@ -1,0 +1,188 @@
+@@ b1767028a7 html
+<span class="sn">13.5</span>The illusion of diversification
+@@ 61516f7af3 html
+Short puts on ten stocks are mostly one bet: that the market won’t fall. You diversified tickers, not risk.
+@@ 597b59e587 html
+Every stock’s move can be split into two parts: the part that follows the market (β × the market’s move) and its own part. A short put has positive Delta, so ten of them add up to a long market position. The ten puts in the opening each have a Delta of −0.1575, so together they are like holding about 157.5 shares, or <span class="num">$15,750</span> of stock; if the stocks’ average β is 1.2, that is equivalent to <span class="num">$18,900</span> long SPY (beta weighting, Chapter 12).
+@@ 12ea1b600a html
+Normally, stocks go their own way and correlation is low: now and then one or two of the ten puts get run over, the rest expire worthless, and the portfolio is smooth. On a day of sharp selling, everyone is selling, correlations between stocks rush toward 1, and all ten get run over together. The simple one-factor model below shows this: each stock’s return = √ρ × common shock + √(1 − ρ) × own shock, with true volatility assumed at 35% (below the 40% IV, so sellers make money on average), 4,000 scenarios, and the same random numbers for every correlation.
+@@ af0b3a1897 html
+Correlation between stocks ρ <input id="f2-rho" type="range" min="0" max="0.95" value="0.3" step="0.05"> <output id="f2-rho-o">0.30</output>
+@@ af19555773 html
+The vertical axis is the probability that “the portfolio loses more than the amount on the horizontal axis,” on a log scale. At ρ = 0 the curve drops to zero around $4,000; drag ρ to 0.9 and the same curve stretches past $18,000. Average P&amp;L stays between $260 and $281, barely moving.
+@@ 8ed27503ac html
+Table 13-4 The same ten puts under three correlations (4,000 scenarios)
+@@ d78aea3319 html
+Correlation ρ
+@@ 9215455613 html
+Average P&amp;L
+@@ 6bb9682b9c html
+Probability of a loss
+@@ 68a2f46e72 html
+Worst 5%
+@@ 1f40a95392 html
+Worst 1%
+@@ 7f4ddaa5fd html
+Loss > $5,000
+@@ 1f943f687c html
+Three findings:
+@@ 45c1a07cff html
+<strong>The average return barely changes.</strong> Each stock’s own distribution is the same, so the expectancy is the same. A backtest that looks only at average return can’t see the danger of correlation.
+@@ 485977f580 html
+<strong>Higher correlation actually means fewer losing outcomes.</strong> At ρ = 0.9 only 14.7% of scenarios lose money, fewer than at ρ = 0. That is exactly why these accounts feel reassuring: there are more quiet months.
+@@ ecb457f442 html
+<strong>But when they lose, they lose together.</strong> The worst 1% widens from −$2,038 to −$9,706, nearly five times as much. Real markets have fatter tails than the normal distribution, and correlations rise in selloffs and fall back in rallies, so if anything this model is optimistic.
+@@ dce8801c42 html
+Fund the account for the ρ = 0.9 row: size with the “all underlyings −20% at once” stress test from Section 13.4
+@@ 4c1e85f57d html
+Diversify risk factors, not just tickers: add short calls or call spreads, different expirations, and a few long index puts
+@@ f9ba1e8766 html
+Track total market exposure with beta-weighted Delta (Chapter 12) and manage it as a single position
+@@ 81919ee9f3 html
+<span class="sn">13.6</span>The margin spiral
+@@ eedb5695a5 html
+When sellers exit at the worst moment, it is often because they ran out of margin first, not because their view changed. A drop and an IV spike do two things at once: they shrink your equity and raise the margin your broker requires.
+@@ 22c548d67f html
+① Price falls, IV rises
+@@ e270b61c49 html
+Any bad news can start it
+@@ cc2f6cba18 html
+② Short options rise in value
+@@ 39bb21af4d html
+Less equity, more margin required
+@@ 5031041ffb html
+③ Excess liquidity turns negative
+@@ bb4a69cfe6 html
+Margin call or forced liquidation
+@@ 964597cd0d html
+④ Forced buyback at the worst price
+@@ 9527682fe1 html
+Buying lifts IV; hedgers sell stock
+@@ 384d6edfd5 html
+The same shock
+@@ 4864a64459 html
+hits equity and margin at once
+@@ 39808ca075 html
+20% of stock price
+@@ 265df6ef8b html
+plus option value
+@@ 2839607e82 html
+Widest spreads,
+@@ 326469425e html
+highest IV
+@@ 5204a550dc html
+Each of the four steps feeds on itself: the more people are forced to buy back, the pricier options get, and the higher the margin requirement on the next account. Market makers who sell options usually hedge with the underlying, and their selling drives step ① again.
+@@ 875a1f6572 html
+Walking through the numbers
+@@ 5d91c5d7df html
+Under common Reg T rules, the margin on each naked short put is the option’s market value plus the greater of “20% of the stock price minus the out-of-the-money amount” and “10% of the strike,” times 100. Scale the opening account up to 3 contracts per stock (30 short 90 puts in all):
+@@ 7020a08a2a html
+Table 13-5 Margin and equity for 30 short 90 puts ($100,000 account)
+@@ 044bd66bf3 html
+State
+@@ 069111c5eb html
+Put price
+@@ 4cab28b359 html
+Margin per contract
+@@ 5772fc72b5 html
+Total margin
+@@ 18a35a99bd html
+Margin / equity
+@@ d40af03b12 html
+Room left
+@@ b50c1779ab html
+Open: stock 100, IV 40%
+@@ 2347fd8787 html
+Down 10%, IV 60% (2 days later)
+@@ 2781cf630c html
+Down 20%, IV 80% (4 days later)
+@@ 6ae2ddad7b html
+The stocks fall 20%, the account loses 36%, and the margin requirement grows to 2.6 times its starting level. By the third row, even if you are sure the stocks will come back, your broker will demand $23,625 more or close you out, and it closes you out at prices set by 80% IV.
+@@ 11cb62202a html
+If the same account follows the Section 13.3 rule “total stress loss ≤ 20%,” at $1,254 of stress loss per contract it can sell at most 15. Margin at the open is $16,497 (16.5% of equity); after the same shock it loses $18,158 and margin is $43,655, only 53.3% of equity, so the account gets through. <strong>The real job of sizing rules is to leave you choices on bad days.</strong> That is also where the rule card’s “margin used no more than 35% of equity” comes from.
+@@ 90cac42d1c html
+Two real spirals
+@@ eb881d70d0 html
+<strong>February 2018.</strong> The market had been unusually calm for more than a year, and shorting volatility had become “steady income” in many people’s eyes. On February 5, the VIX more than doubled in a single day, its largest one-day percentage gain on record, and the Dow posted what was then its largest one-day point drop ever. Exchange-traded products that were short VIX futures had to buy futures around the close to rebalance, and that buying itself pushed futures prices higher. One of these products lost most of its net asset value overnight and was then terminated early by its issuer. Accounts that were short index puts faced falling prices, soaring IV and higher margin all at once.
+@@ d7cb3c55b8 html
+<strong>March 2020.</strong> Under the shock of the pandemic, US stocks plunged within a few weeks; market-wide circuit breakers were triggered several times in March, and the VIX set a record closing high, above its peak in the 2008 financial crisis. Even the US Treasury market briefly ran into liquidity strains. Many brokers raised margin requirements, and option bid–ask spreads widened sharply. Many sellers turned out to be right in the end, as the market won back its losses over the following months, but they didn’t last until that day.
+@@ b0c34e9f48 html
+<span class="sn">13.7</span>Liquidity, early assignment and pin risk
+@@ f94ff7d9c6 html
+Stress tests use mid prices, but in reality you fill at the far side of the quote; models settle at expiry, but in reality American-style options can be exercised at any time. These three risks don’t show up in the Greeks, yet they often decide the final loss.
+@@ 50780c4d25 html
+Liquidity: spreads are widest on bad days
+@@ 31d2aa803a html
+The option value shown in your account is usually the mid price. On a normal day a $1.00 put might be quoted $0.95 × $1.05; in a selloff the same contract rises to $13.10 and the quote might become $12.40 × $13.80 (both quotes are hypothetical). Buying back 30 contracts at the ask instead of the mid costs extra: <span class="num">0.05 × 100 × 30 = $150</span> on a normal day, <span class="num">0.70 × 100 × 30 = $2,100</span> in a selloff.
+@@ 4f77456350 html
+Trade only contracts whose bid–ask spread is no more than 10% of the premium; on cheap, deep OTM options the spread is often half the premium
+@@ 7adf923a4a html
+Don’t use stop-market orders on options: in a fast market they fill at absurd prices. Use limit orders or alerts triggered by the underlying’s price instead
+@@ ac27dd0c23 html
+Multiply stress-test results by 1.1–1.2 to leave room for slippage
+@@ c3d54b01e5 html
+Early assignment: deep ITM short legs
+@@ 39ab50e6da html
+The holder of an American-style option can exercise at any time. When a put is deep in the money with little time value left, the holder does better exercising early and earning interest on the strike proceeds than holding on. In the model, for a 95 put with 14 days left and IV 38%, the European price drops below intrinsic value (negative time value) once the stock is below <span class="num">$84.05</span>; at $88 the time value is still $0.41, and at $85 only $0.06 is left.
+@@ ab0652e904 html
+With the 95/90 put spread from Chapter 12, if the stock falls to 85 the short leg is likely to be assigned early. You receive 1,000 shares worth <span class="num">$95,000</span>. In a Reg T account, stock usually carries 50% initial margin, or <span class="num">$47,500</span>, while the spread’s max loss is only <span class="num">(5 − 1.021) × 1,000 = $3,979</span>. Economically your risk is still capped by the 90 put, but many brokers don’t count that long put as protection when computing margin, so the account may get a margin call.
+@@ 73fb309eba html
+For short calls, the danger point is just before the ex-dividend date. If a call’s time value is less than the upcoming dividend, the holder will exercise the day before the ex-dividend date to collect the dividend. For a 100-strike call with 10 days left and IV 25%, the time value at stock prices of 102, 103, 104, 105 and 108 is $0.93, $0.67, $0.48, $0.35 and $0.16. With a $0.50 dividend, expect assignment once the stock is above 104.
+@@ 8e745e921f html
+Pin risk: closing right at the strike
+@@ fbfd3b3095 html
+On expiration day the stock closes at $100.10, and you are short 10 of the 100 calls. Whether you get exercised won’t be known until the weekend: holders can still decide after the close, based on after-hours prices. If you are assigned, you start Monday’s open short 1,000 shares; if Monday opens 3% higher, you lose <span class="num">1,000 × 100.10 × 3% = $3,003</span>. Spreads are no different: if at the close only the short leg is just in the money and the long leg expires worthless, you can be assigned with no protection. The rule is simple: <strong>before the close on expiration day, close every short leg within 1% of the current price</strong>.
+@@ 67118f4bd3 html
+One trader sold put credit spreads on a bond ETF, thinking “the most I can lose is a few dozen dollars.” Then the underlying fell, the short leg was assigned early, and the account suddenly held a large block of shares with a notional value more than a hundred times the spread’s max loss. The broker didn’t recognize the protective leg when computing margin, the account was called for more money, and he had to sell the shares and buy protective puts to clean up. After a few of these, the lesson traders like him draw is: before trading spreads, find out exactly how your broker computes margin, and once a short leg goes in the money, deal with it early instead of waiting for expiry.
+@@ e809a37771 html
+<span class="sn">13.8</span>Options position rule card
+@@ a46f48d2c4 html
+Write the rules before you lose money. The card below is one of this course’s deliverables: the numbers are suggested starting points. You can tighten them based on your own experience, but loosening them is not recommended. A check means you have written that rule into your own trading plan.
+@@ 8cb45b2529 html
+<span class="num">R1</span>Per-trade limits
+@@ 01148cff1c html
+Buyers: premium per trade ≤ 2% of account
+@@ 0247441a37 html
+Defined-risk sellers: max loss per trade ≤ 3%
+@@ 4f1ae5d53f html
+Undefined-risk sellers: stress loss per trade ≤ 5%
+@@ 5ad44bd26d html
+<span class="num">R2</span>Aggregate limits
+@@ 8d39b8460e html
+Buyers: ≤ 5 trades at once, total premium ≤ 10%
+@@ a9c1284dff html
+Total stress loss across all positions ≤ 20%
+@@ 309002ba92 html
+Short-put notional ≤ 1–1.5× the account
+@@ 88147813ab html
+Margin used ≤ 35% of equity
+@@ 3a12ef13d4 html
+<span class="num">R3</span>Concentration
+@@ 03351e97f5 html
+Single underlying ≤ 25% of total stress loss
+@@ f9eb949277 html
+Single sector ≤ 40%; long-option positions on one theme ≤ 6% combined
+@@ 0189ee597d html
+Beta-weighted Delta dollars within ±75% of the account
+@@ 6a22eacc2b html
+<span class="num">R4</span>Stress tests
+@@ c27e0d11ea html
+Once every Friday after the close, and again before adding to positions
+@@ 131477e0db html
+Three scenarios: −20%, IV doubles, both together; add +15% if you have short calls
+@@ 7ef2360e5b html
+When over a limit, cut the biggest contributor first, and finish within the week
+@@ f1d405858f html
+<span class="num">R5</span>Don’ts
+@@ fd4aab07cb html
+No naked short options ahead of earnings or binary events
+@@ 5c46c5edbc html
+No adding contracts to a losing short position; no rolling just to “collect a credit”
+@@ f4f88453f3 html
+No selling contracts whose bid–ask spread is more than 10% of the premium
+@@ 306c97e494 html
+No selling puts on stock you don’t want to own; no short legs within 1% of the price left open on expiration day
+@@ 0f9136f839 html
+Tighten the numbers in a few situations. If your account is under $25,000 and can hold only three to five positions, the concentration rules are nearly impossible to meet: trade only defined-risk structures and cut max loss per trade to 2%. In a portfolio margin account the broker allows more leverage, so lower the cap on margin used accordingly; the total stress-test cap stays the same. In your first three months as a beginner, halve every limit.
+@@ fe80cea691 html
+Use this card together with the adjustment rules in Chapter 12: before adjusting, ask “if I had no position, would I open this one?”; before opening, run through this card. Only once both checks are passed do you get to your view on direction.

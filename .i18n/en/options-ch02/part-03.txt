@@ -1,0 +1,240 @@
+@@ 2b1e0e2a3d html
+<span class="sn">2.7</span>Orders and liquidity
+@@ ab88ade1dd html
+Use only limit orders for options, and combo orders for multi-leg trades. Judge liquidity by three numbers: the spread as a share of the premium, open interest and volume.
+@@ 06954c511a html
+Order types
+@@ bd0a7aa0fc html
+<strong>Market orders</strong>: avoid them for options. When spreads are wide, or quotes are unstable in the first few minutes after the open, a market order can fill at an absurd price.
+@@ 1901915f56 html
+<strong>Limit orders</strong>: the standard approach is to start at the mid and, if you don't get filled, move a cent or a few cents toward the other side every 30 seconds to a minute. This is called “walking the order.”
+@@ 5b95e32820 html
+<strong>Combo orders</strong>: multi-leg trades such as spreads and straddles are submitted as a single order at a net price, and the exchange fills all the legs at once. Placing the legs separately (“legging in”) risks one leg filling while the price of the other runs away.
+@@ e149886737 html
+<strong>Stop orders</strong>: stop orders on options are usually triggered by the option's own price, so a momentary widening of the spread can trigger one by mistake and fill it at a terrible price. Many traders use alerts on the underlying stock's price instead and then place limit orders by hand.
+@@ 5c9a70c533 html
+The bid–ask spread is a real cost
+@@ fdcbaa5f1a html
+If you pay the ask to buy and take the bid to sell, a round trip costs the entire spread:
+@@ 7518ea4562 html
+The second expression says the same thing another way: how much extra the stock has to move for you to earn back the spread. The smaller the Delta, the bigger the move needed, which is why spreads on out-of-the-money options are especially expensive.
+@@ 848ed08bfe html
+Bid<input id="c-bid" type="number" step="0.01" value="2.28">
+@@ 3798878934 html
+Ask<input id="c-ask" type="number" step="0.01" value="2.35">
+@@ 1b96540b91 html
+Contracts<input id="c-n" type="number" step="1" value="10">
+@@ 800b208403 html
+Stock price<input id="c-s" type="number" step="0.01" value="102.35">
+@@ ba823c521a html
+Cross both ways
+@@ f2259c5e9e html
+Give up half each way
+@@ 3a08d32c5b html
+Mid both ways
+@@ f4afc41eb9 html
+The defaults are the 105 call from Table 2-5. Change the bid and ask to 0.41 and 0.52 (the 112.5 call) and Delta to 0.12, and the round-trip cost jumps to about 24% of the premium; the stock has to move an extra $0.92 to earn back the spread. The curve shows that the cheaper the option, the larger the share that the same spread width takes.
+@@ f2d00c99fe html
+Three measures of liquidity
+@@ 4114425bee html
+Table 2-7 Rules of thumb for the three liquidity measures
+@@ 34000dcf18 html
+Measure
+@@ 3f32c21bc9 html
+Rule of thumb
+@@ 6503acf5b6 html
+When it breaks down
+@@ 973393a4ba html
+Spread / mid
+@@ 633caf7e94 html
+Under 5% is good; 5–10%, work a limit order patiently; over 10%, be careful
+@@ 1ec725eb00 html
+When the premium is very low, the minimum tick makes the ratio high by default
+@@ 346fefbb14 html
+Open interest
+@@ 6731ecf2fc html
+Several hundred or more, ideally thousands
+@@ 746446e1fa html
+Updated only once a day; zero for newly listed contracts
+@@ d557f4149f html
+Today's volume
+@@ b92de28a06 html
+Your order is no more than a tenth of it
+@@ 6c5f2d9599 html
+Swings widely early in the session and on event days
+@@ ca3f2bbdb9 html
+These thresholds come from simple arithmetic: the real expected edge of an options trade is often only in the low teens as a percentage of the premium, or less. If the round-trip spread takes 10%, most of the edge is gone. So the thresholds aren't absolute. A trade you plan to hold to expiration, without closing it early, pays the spread only once; for trades you get in and out of often, multiply the spread's impact by the number of trades (Case 3).
+@@ 9b4adde045 html
+The minimum tick also affects the spread. Products in the “Penny Program” are quoted in $0.01 increments below $3 and in $0.05 increments above $3; SPY, QQQ and IWM are quoted in $0.01 at every price. Products outside the program use $0.05 and $0.10, respectively. For an option worth only 0.20, a spread of just one tick is already more than 5%.
+@@ fb76df19ee html
+A few common ways traders deal with liquidity: when the underlying itself isn't very active, choose monthly expirations rather than weeklies, because open interest concentrates in the monthlies; avoid the first few minutes after the open and the pre-market session, when spreads are widest; before placing a spread order, confirm that it is “one combo order with two legs” and hasn't been split into two separate orders; when exiting a position with a wide spread, don't dump it all at once, but work it down a contract at a time with limit orders. One more rule relates to assignment: if the short leg of a spread is assigned, don't sell the protective long leg on its own, or your maximum loss is no longer capped.
+@@ 395d6e62f8 html
+<span class="sn">2.8</span>Tax concepts
+@@ 8803c7d3be html
+How options are taxed depends on the underlying: broad-based index options get the Section 1256 60/40 treatment, while stock and ETF options are taxed as ordinary capital gains. The wash sale rule applies to options too.
+@@ 2d7da1ac1c html
+This section covers only general concepts that apply to US tax residents, to help you understand why traders care about these distinctions. The actual treatment depends on your status, income, state and that year's rules; if you are not a US tax resident, the rules may be entirely different. For an actual return, consult a tax professional.
+@@ a0eb649331 html
+Section 1256 contracts and 60/40
+@@ 36e19298ad html
+Broad-based index options such as SPX, XSP, NDX and RUT (as well as futures) are “Section 1256 contracts,” with two special rules:
+@@ 27c6cbbdb9 html
+<strong>60/40</strong>: however long you hold, gains and losses are taxed as 60% long-term and 40% short-term capital gains.
+@@ 064f80b763 html
+<strong>Year-end mark-to-market</strong>: positions still open on the last trading day of December are treated as sold at that day's market value, so unrealized gains and losses also count for that year.
+@@ 7a196376ba html
+Options on ETFs such as SPY and QQQ generally aren't Section 1256 contracts; gains and losses on positions held a year or less are taxed as short-term capital gains. For people who trade often and hold briefly, the difference can be large.
+@@ 9abef5f8d7 html
+Example (tax rates are assumptions): short-term capital gains are taxed at 32%, long-term at 15%. The blended 60/40 rate is <span class="num">0.6 × 15% + 0.4 × 32% = 21.8%</span>. On the same $10,000 of short-term profit, SPX options would owe about $2,180 and SPY options about $3,200, a difference of $1,020. In the top federal bracket, the two rates are <span class="num">26.8%</span> and 37% (not counting state taxes and other surtaxes).
+@@ 1b52ff955c html
+The wash sale rule
+@@ a76abe201f html
+If you sell a security at a loss and buy a “substantially identical” security within 30 days before or after the sale, the loss can't be deducted now; instead it is added to the cost basis of the new position and deferred. For options, this matters in two ways:
+@@ ec2700fb55 html
+Buying a call on the same stock within 30 days after selling the stock at a loss counts as acquiring an option to buy that stock and generally triggers a wash sale.
+@@ 9931009b4d html
+Options can also trigger it among themselves: you close a call at a loss, then within 30 days buy a call on the same underlying with similar terms. In some cases it isn't clearly defined which options count as “substantially identical.”
+@@ be1d24b9b0 html
+Example: on October 1 you sell 100 shares of XYZ at a $1,500 loss, and on October 15 you buy 1 XYZ call. That $1,500 loss generally can't be deducted now; it is added to the cost of the call instead. Also, for shares you receive through assignment, the premium goes into the cost basis: if you sold a 90 put for 0.40 and were assigned, the tax basis of the shares is 89.60.
+@@ ee02ff8a3a html
+<span class="sn">2.9</span>Choosing your index exposure
+@@ 3a27da6899 html
+SPY and QQQ suit small accounts and strategies that need stock delivery; SPX, XSP and NDX suit traders who don't want early assignment, want cash settlement or care about taxes.
+@@ abf21b8794 html
+The notional values in the table below use assumed levels: SPX 7,800, SPY 780, NDX 30,000, QQQ 740.
+@@ 9de86c14ac html
+Table 2-8 Five common broad-market options
+@@ f0d4378d0d html
+Product
+@@ e22af98625 html
+Notional per contract
+@@ 2ea89bc1ca html
+Settlement
+@@ 3cfc094c2e html
+Early assignment
+@@ 7cc63e0f5b html
+Taxes (US tax residents)
+@@ e78fd849bb html
+European
+@@ ec247a675c html
+Cash; monthly AM, SPXW PM
+@@ cf8d66dc8d html
+None
+@@ be499346e3 html
+Cash; PM
+@@ 3de291bc8a html
+American
+@@ a1eb21050f html
+100 shares of SPY
+@@ af5e80cb20 html
+Yes; watch ex-dividend dates
+@@ 63c5a78b3e html
+Usually ordinary capital gains
+@@ 798625b355 html
+Cash; monthly AM, weekly PM
+@@ 0e83a2414d html
+100 shares of QQQ
+@@ f7ddb9749f html
+The difference in size shows up directly in the price. At an IV of 16%, a 30-day at-the-money call costs about <span class="num">$1,557</span> per contract on SPY and about <span class="num">$15,566</span> on SPX. One SPX contract carries the same exposure as 10 SPY or 10 XSP contracts.
+@@ edd2c053b3 html
+How to choose
+@@ 19af241568 html
+<strong>A small account, or a strategy that needs the stock</strong> (covered calls, selling puts to take delivery of shares): use SPY or QQQ. SPY and QQQ options are among the most liquid of all options.
+@@ 3a46635341 html
+<strong>Trading spreads without early assignment</strong>: use SPX or XSP. With cash settlement, accidents like Cases 1 and 2, where “one leg turns into stock,” can't happen.
+@@ 3663c376ad html
+<strong>A US tax resident who trades short term a lot</strong>: the 60/40 treatment of SPX and XSP can save a meaningful amount of tax over a year.
+@@ 3ff46103ff html
+<strong>You want SPX rules but have a small account</strong>: XSP is one-tenth the size of SPX. The trade-off is that it doesn't trade as actively as SPX or SPY, its spread as a share of the premium is usually higher, and you need more patience with your orders.
+@@ a15d1c2606 html
+<strong>Nasdaq-100</strong>: one NDX contract has a notional value of about $3 million and is used mainly by institutions; individual traders mostly use QQQ.
+@@ 9136d41bd9 html
+Standard monthly SPX and NDX contracts stop trading on Thursday, and the settlement price is taken from Friday's opening prices. If you hold to expiration, you carry the gap between Thursday's close and Friday's open, and you can't close on Friday. If you don't want that risk, close before Thursday's close or use the PM-settled weeklies instead.
+@@ a9dd9e4635 html
+<span class="sn">Cases</span>Three cases
+@@ b4719dee14 html
+One leg of a spread assigned before the ex-dividend date
+@@ 98d8d1d997 html
+You hold 10 XYZ 100/110 call spreads (long the 100 call, short the 110 call). The stock has risen to 125, both legs are deep in the money, and the spread is close to its maximum value of $10. Tomorrow is the ex-dividend date, with a dividend of <span class="num">$1.50</span> per share. After that there are 20 days to expiration, and IV is 30%.
+@@ a46ccceef3 html
+First check both legs with the formula from Section 2.4. After the dividend the stock is about 123.50; the rate is 4% and there are 20 days left:
+@@ 7ec9338056 html
+Table 2-9 Each leg's remaining time value after the ex-dividend date
+@@ c464e502b3 html
+Leg
+@@ 77fca8c063 html
+Same-strike put
+@@ 20bbae2b36 html
+Interest on the strike
+@@ eb5d31d712 html
+Dividend
+@@ 857eb286fd html
+Short 110 call
+@@ 406ce5d243 html
+Holder will exercise
+@@ 0bb271a5ca html
+Long 100 call
+@@ f77b156ebc html
+You should exercise too
+@@ b7f167c791 html
+You didn't run this check and did nothing that night. The next morning you find that all 10 of the 110 calls have been assigned: your account is short 1,000 shares of XYZ at 110. Today is the ex-dividend date, and the short position owes <span class="num">1.50 × 1,000 = $1,500</span> in dividends.
+@@ eb636db2b7 html
+<strong>Your actual result</strong>: buy back the 1,000 shares at the 123.50 open and sell the 10 contracts of the 100 call (about 23.72 each). The total is <span class="num">110,000 − 1,500 − 123,500 + 23,722 = $8,722</span>.
+@@ 072516ffdc html
+<strong>If you had also exercised the 100 calls the night before</strong>: you would have bought 1,000 shares at 100, delivered them against the 110 assignment, and collected the maximum value of <span class="num">$10,000</span>, with no dividend involved.
+@@ c2cc19e89b html
+The difference is <span class="num">$1,278</span>, roughly the dividend minus the remaining time value of the 100 call: <span class="num">(1.50 − 0.22) × 1,000</span>.
+@@ d41bdd5e20 html
+There is one more hidden danger: between the assignment and the moment you deal with it, your account carries a $123,500 short stock position. A small account could get a margin call because of it, or even be liquidated at the open.
+@@ 2c973855a4 html
+When you hold spreads on individual stocks, put the ex-dividend dates on your calendar. The day before each one, check every in-the-money short leg for “dividend &gt; put price + interest.”
+@@ 20abe67f93 html
+There are three ways to handle it: close the whole spread before the close; exercise your long leg to offset the assignment; or roll the short leg to a strike with more time value. With European-style index options such as SPX, the problem never comes up.
+@@ 970b887f96 html
+Pin risk on a Friday afternoon
+@@ a0232da0d2 html
+You sold 10 100/95 put credit spreads (short the 100 put, long the 95 put) 30 days ago, with the stock at 103, and collected <span class="num">1.33</span>, or $1,330 in total. As designed, the maximum loss is <span class="num">(5 − 1.33) × 1,000 = $3,670</span>.
+@@ ebcff45b29 html
+On expiration Friday, the stock hovers around 100 all afternoon and finally closes at <span class="num">99.95</span>. The 100 put is 5 cents in the money and the 95 put is out of the money. You figure it's basically a wash and do nothing.
+@@ b0c4083dac html
+The 100 put is in the money by more than $0.01, so it will be exercised automatically unless the holders submit instructions. Suppose all 10 contracts are exercised: on Monday morning you have been assigned to buy 1,000 shares at $100, for $100,000.
+@@ 870d3c1d72 html
+The 95 put that protected you has expired worthless. What you hold now is 1,000 shares of unhedged long stock.
+@@ 94dae19b63 html
+Over the weekend the company announces bad news, and on Monday the stock opens at 94. The stock loses <span class="num">(94 − 100) × 1,000 = −$6,000</span>; add the $1,330 you collected and the total is <span class="num">−$4,670</span>, $1,000 more than the spread's “maximum loss.”
+@@ c5d19bbfad html
+On the other hand, if the stock bounces to 100.40 after hours on Friday, many holders will submit “do not exercise,” and you might not be assigned on a single contract. The problem is that on Friday night you can't know which it will be; maybe 6 of the 10 are assigned. That is pin risk: the close is too near the strike, and your position sits in an unknown state over the weekend.
+@@ 25eed394b3 html
+How much would it cost to avoid this? At 15:50 on Friday, 10 minutes before the close, with the stock at 99.95, the 100 put is theoretically worth about <span class="num">0.08</span>. Even buying it back at 0.10 would cost only $100 for 10 contracts.
+@@ 5613c891c0 html
+A spread's “maximum loss” holds only while both legs exist. If one leg is in the money and the other out of the money at expiration, it no longer applies.
+@@ 6b4dc46e89 html
+Rule: before the close on expiration day, buy back for a few cents any short leg within about 1% of its strike. Those few cents are the cheapest insurance there is.
+@@ ea63ce304c html
+Cash-settled index options settle the difference at the settlement price and leave no stock position behind, so pin risk is much smaller.
+@@ 0e79040ba2 html
+How much the spread eats in a year
+@@ 8ca0ba7c3c html
+Say your account is $20,000 and you make 8 trades a month, 5 contracts each, opening and closing each one once: 96 round trips a year. Compare two kinds of contracts (all filled by crossing the spread):
+@@ 28548bdfa6 html
+Table 2-10 A year of spread costs (5 contracts per trade, 96 round trips)
+@@ 8948eb97ab html
+Average spread
+@@ e691a7960f html
+Per round trip
+@@ 5cfcbde2fd html
+Full year
+@@ 9c7f1a92ee html
+Share of account
+@@ 3110931a60 html
+Illiquid stock options
+@@ 4a95b749da html
+Liquid ETF options
+@@ 15edb619a3 html
+The math: <span class="num">0.15 × 100 × 5 = $75</span>, <span class="num">75 × 96 = $7,200</span>. If you also assume a commission of $0.65 per contract each way, add another <span class="num">5 × 2 × 0.65 × 96 = $624</span> for the year.
+@@ bb6f28637b html
+The illiquid row means your trades have to earn 36% of your capital before costs just to break even. Even if you use limit orders at the mid and give up only half the spread on average, it is still 18%. Many accounts are slowly ground down by this invisible cost, and no amount of good judgment wins it back.
+@@ c50344fa18 html
+Once a month, tally your spread costs: the difference between your fill price and the mid at the time, times the number of contracts and 100.
+@@ 0e5b1e6cea html
+The more often you trade, the more you need liquid contracts. On illiquid underlyings, trade less often, or only take trades you plan to hold to expiration.

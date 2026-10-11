@@ -1,0 +1,204 @@
+@@ 6eb851a26c html
+MCD <span class="zh">McDonald's</span>
+@@ 4f4f8894cf html
+It was on the September 30 list of 17 oversold stocks, and he logged a buy of the shares at $231.89 on October 2. He has also said, “The pricier oil gets, the fewer people go out,” so McDonald's is a bet on oil coming down and on consumer stocks having been sold too hard.
+@@ 384b24b2c1 html
+The business in brief
+@@ 166c47c937 html
+McDonald's is one of the world's largest fast-food chains, with about 46,000 restaurants worldwide; of its roughly 14,000 US locations, 95% are run by franchisees. Most of its revenue comes from the rent and royalties franchisees pay, and the rest from food sales at company-operated restaurants. This rent-plus-royalty model has very high profit margins, but growth depends on traffic and same-store sales.
+@@ 10efa46e48 html
+Technicals
+@@ 6136ba2618 html
+The moving-average lines show their current values as of October 9, not their history.
+@@ 9147c7ef00 html
+The 52-week range is $229.20 to $341.75, and the price is 31.2% below the high. The average analyst price target is $292.21 (34 analysts, average rating Buy). Price targets reflect an optimistic scenario and often lag the stock price.
+@@ 219b333a47 html
+The close of $235.23 is 7.99% below the 50-day moving average of $255.65 and 18.25% below the 200-day moving average of $287.73. The 50-day is below the 200-day, a bearish alignment.
+@@ 407b67bdbc html
+RSI is 36.68: weak, but not yet in oversold territory below 30.
+@@ 938e5f2614 html
+Support: the 52-week low of $229.20 (intraday, October 5), only 2.63% below the current price; the lowest close of the last 30 trading days, $230.88 (October 7). $229 to $231 is the key support zone.
+@@ d593e4ecf6 html
+Resistance: the stock gapped down on its September 23 investor day, and the prior day's close of $250.35 is the first resistance; above that are the 50-day moving average at $255.65 and the highest close of the last 30 days, $265.00 (August 28).
+@@ 2d395b88fe html
+The 52-week high is $341.75, and the price is 31.17% below it; over the past 52 weeks the stock is down 20.10%.
+@@ 7406f8bbe8 html
+Fundamentals
+@@ a5d989a71d html
+Market cap
+@@ 9115834769 html
+$166.5 billion
+@@ 86814dd3b6 html
+P/E (TTM / forward)
+@@ 0e5269aef6 html
+Dividend yield / payout ratio
+@@ 13a6cf67dc html
+Revenue (TTM)
+@@ 63644c4f9a html
+$27.7 billion
+@@ dc5ab94555 html
+Revenue growth (TTM / latest quarter)
+@@ d89a8bce79 html
+Operating / net margin
+@@ f721e9b6d6 html
+Total debt / cash
+@@ 498a98bdc4 html
+$54.6 billion / $800 million
+@@ 2b232f7ca2 html
+Free cash flow (TTM)
+@@ c14d0a6173 html
+$7.8 billion
+@@ 35aa746a93 html
+Revenue over the trailing twelve months was $27.70 billion, up 6.3% year over year; gross margin was 57.38%, operating margin 45.72% and net margin 31.72%.
+@@ e06afda422 html
+Q2 2026 revenue was $7.099 billion, up 3.74% year over year; EPS was $3.32, up 5.73%. Global same-store sales grew only 1.3%, and US same-store sales just 0.8%: traffic is soft.
+@@ 9204f18c9e html
+Valuation: P/E (TTM) 19.11x, forward P/E 17.81x, PEG 2.64, EV/EBITDA 14.75x. Wells Fargo says the P/E is at roughly a 20-year low.
+@@ 24d171beb5 html
+The annualized dividend is $7.72, for a dividend yield of 3.28% and a payout ratio of 62.71%, and the dividend has been raised for 51 years in a row; trailing-twelve-month free cash flow was $7.76 billion.
+@@ e8fd14cd2d html
+Total debt is $54.60 billion against only $822 million in cash, and book shareholders' equity is negative, the result of years of borrowing to fund share buybacks. ROIC is 17.80%, and interest costs are sensitive to changes in rates.
+@@ c0a70b6a5a html
+The 34 analysts' average rating is Buy, with an average price target of $292.21, 24.22% above the current price; but since the start of October, Wells Fargo, Guggenheim, Bernstein and others have cut their targets.
+@@ 599a1e581c html
+News
+@@ 0a19552c42 html
+<span class="nd">2026-08-04</span><span>Reported Q2 results: revenue of $7.099 billion, up 4%, and EPS of $3.32, up 6%, but global same-store sales grew only 1.3% and US 0.8%, a sign of weak traffic growth. <a href="https://mcdonalds.mediaroom.com/2026-08-04-McDONALDS-REPORTS-SECOND-QUARTER-2026-RESULTS" target="_blank" rel="noopener">mcdonalds.mediaroom.com</a></span>
+@@ 5de55e1c47 html
+<span class="nd">2026-09-23</span><span>At its investor day the company unveiled the NEXT plan: $8.5 billion over the next ten years to remodel restaurants worldwide, with US franchisees putting in about $800,000 more per restaurant. The market worried about the cost, and the stock fell 4.81% that day, its biggest one-day drop since April 2025. <a href="https://www.bostonglobe.com/2026/09/23/business/mcdonalds-plans-multibillion-dollar-investment/" target="_blank" rel="noopener">bostonglobe.com</a></span>
+@@ 8f422fa9ad html
+<span class="nd">2026-10-05</span><span>Wells Fargo cut its price target from $300 to $270 (maintaining Overweight), and Guggenheim from $290 to $250 (Neutral), citing soft US same-store sales and the execution risk the NEXT plan adds. <a href="https://stocktwits.com/news-articles/markets/equity/mc-donald-s-stock-draws-fresh-target-cuts-wells-fargo-says-analyst-day-message-is-still-hard-to-digest/cZDpUq1RBjR" target="_blank" rel="noopener">stocktwits.com</a></span>
+@@ 175ff5565d html
+<span class="nd">2026-10-06</span><span>The AP reported that a consumer sued McDonald's in federal court in Illinois, claiming its AI pricing tool amounts to “algorithmic price-fixing,” and is seeking class-action status; McDonald's said the suit is full of falsehoods and that franchisees set menu prices. The lawsuit adds legal and reputational risk. <a href="https://abcnews.com/Technology/wireStory/mcdonalds-sued-ai-tool-recommends-prices-us-franchisees-137046042" target="_blank" rel="noopener">abcnews.com</a></span>
+@@ 6abe8f0c52 html
+<span class="nd">2026-10-08</span><span>Bloomberg reported on October 6 that US franchisees were caught off guard by the remodel cost of about $800,000 per restaurant and worry about taking on more debt while traffic is falling. How far franchisees go along will decide whether the NEXT plan moves forward. <a href="https://www.restaurantdive.com/news/mcdonalds-faces-pushback-next-initiatives/832430/" target="_blank" rel="noopener">restaurantdive.com</a></span>
+@@ 9a44c60392 html
+<span class="nd">2026-10-08</span><span>Bernstein cut its target from $295 to $250 (maintaining Market Perform), saying the margin improvement is achievable but the path to US sales growth is still unproven; the stock still rose 2.61% that day to $236.90. <a href="https://stocktwits.com/news-articles/markets/equity/mcd-stock-s-target-cut-to-250-by-bernstein-amid-sales-growth-concerns-next-uncertainty/cZDUlweRBNl" target="_blank" rel="noopener">stocktwits.com</a></span>
+@@ 3bed319d9c html
+Catalysts ahead
+@@ 8ce55dfbd1 html
+2026-11-04, before the open: Q3 earnings. The key questions are whether US same-store sales and traffic pick up, and what the NEXT plan's costs and subsidies look like in detail.
+@@ 1d71f11eea html
+2026-12-01: ex-dividend date; annualized dividend $7.72.
+@@ 2c9169c61c html
+Developments in the AI pricing antitrust suit; the plaintiff is seeking class-action certification.
+@@ 8ba5090e52 html
+How franchisees respond to the remodel cost of about $800,000 per restaurant, and whether the company publishes a more specific remodel timeline.
+@@ f305ad500d html
+Macro sensitivity
+@@ 39bf9daaec html
+Rates: McDonald's is a high-dividend, low-volatility stock (beta 0.45). Falling long-term rates make dividend stocks more attractive and lower the cost of refinancing its $54.6 billion of debt; rising rates do the opposite.
+@@ 3b1cc4377a html
+Consumer: US fast-food traffic is flat overall. Lower-income customers are price-sensitive, and inflation and rising oil prices squeeze their eating-out budgets. Bank earnings season, which starts in mid-October, will show credit card spending and is a useful reference.
+@@ d0261da365 html
+Dollar: Q2 revenue grew 4% in dollars but only 2% in constant currency, so a weaker dollar helped; if the dollar strengthens, overseas profits will translate into fewer dollars.
+@@ 45456e7011 html
+For and against
+@@ 3f0c487c5a html
+The case for a rebound
+@@ d596621131 html
+The forward P/E has fallen to 17.81x, which Wells Fargo calls roughly a 20-year low; the 3.28% dividend yield appeals to income investors.
+@@ c7a9339bf2 html
+The stock is near its 52-week low of $229.20, has stopped falling at $230 to $231 several times in the last 30 days, and its RSI of 36.68 is close to oversold.
+@@ 549ca7e33b html
+The NEXT plan aims to lift operating margin to the low-to-mid 50s (percent) by 2030, and Bernstein calls the margin improvement “highly achievable.”
+@@ 89ff5a83f5 html
+The case for further weakness
+@@ 7e48d07205 html
+US same-store sales grew just 0.8% in Q2; the traffic problem is not solved, and Bernstein says the path to sales growth is still unproven.
+@@ 2f12ace8fc html
+The NEXT plan needs franchisees to invest about $800,000 more per restaurant, and the company to put up $8.5 billion in support (about $5 billion of it before 2030); franchisee pushback could slow execution and tie up cash flow.
+@@ 508a722cb5 html
+The AI pricing antitrust suit and public criticism could hurt the brand's image and its pricing flexibility.
+@@ 975391dacd html
+Whether the 52-week low of $229.20 holds; a close below it means support has failed.
+@@ f40bd502cc html
+Whether US same-store sales in the November 4 Q3 report come in clearly above Q2's 0.8%.
+@@ 17dc70bc0e html
+Whether the stock can reclaim the $250.35 gap level and the 50-day moving average at $255.65.
+@@ c1726a74e6 html
+Sources: <a href="https://stockanalysis.com/stocks/mcd/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/mcd/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/mcd/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/mcd/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://mcdonalds.mediaroom.com/2026-08-04-McDONALDS-REPORTS-SECOND-QUARTER-2026-RESULTS" target="_blank" rel="noopener">mcdonalds.mediaroom.com</a> · <a href="https://www.bostonglobe.com/2026/09/23/business/mcdonalds-plans-multibillion-dollar-investment/" target="_blank" rel="noopener">bostonglobe.com</a> · <a href="https://stocktwits.com/news-articles/markets/equity/mc-donald-s-stock-draws-fresh-target-cuts-wells-fargo-says-analyst-day-message-is-still-hard-to-digest/cZDpUq1RBjR" target="_blank" rel="noopener">stocktwits.com</a> · <a href="https://abcnews.com/Technology/wireStory/mcdonalds-sued-ai-tool-recommends-prices-us-franchisees-137046042" target="_blank" rel="noopener">abcnews.com</a> · <a href="https://www.restaurantdive.com/news/mcdonalds-faces-pushback-next-initiatives/832430/" target="_blank" rel="noopener">restaurantdive.com</a> · <a href="https://stocktwits.com/news-articles/markets/equity/mcd-stock-s-target-cut-to-250-by-bernstein-amid-sales-growth-concerns-next-uncertainty/cZDUlweRBNl" target="_blank" rel="noopener">stocktwits.com</a>
+@@ a179a7faa8 html
+WEN <span class="zh">Wendy's</span>
+@@ a0ecd241cc html
+Not among the 17 on September 30. He bought it on October 5 together with a batch of stocks he planned to “hold a bit longer,” at a logged price of $6.05. It is a cheaper, more speculative fast-food stock.
+@@ 2f549f53ca html
+Wendy's is a US burger chain with about 7,180 restaurants worldwide at the end of Q2, the vast majority run by franchisees. Its revenue comes mainly from franchisee royalties and rent and from advertising fund revenue, plus a small amount of sales at company-operated restaurants.
+@@ 52fd5174a6 html
+The moving-average lines show their current values as of October 9, not their history. For this company, the moving averages and RSI come from the data site's October 7 or 8 snapshot, a day or two older than the closing price.
+@@ c8e7ba369d html
+The 52-week range is $5.94 to $10.12, and the price is 38.4% below the high. The average analyst price target is $7.57 (24 analysts, average rating Hold). Price targets reflect an optimistic scenario and often lag the stock price.
+@@ 8353254fff html
+The close of $6.23 is 17.70% below the 50-day moving average of $7.57 and 17.15% below the 200-day moving average of $7.52; both averages sit overhead (moving-average data as of October 7).
+@@ 56c5cd281d html
+RSI is 29.78 (as of October 7), in oversold territory below 30, which means the stock has fallen very fast in the short term.
+@@ 945cad78cb html
+Support: the 52-week low of $5.94 (intraday, October 5), 4.88% below the current price; the lowest close of the last 30 trading days, $6.10 (October 5).
+@@ 038b013d1a html
+Resistance: the highest close of the last 20 days, $7.63 (September 14), and the moving-average zone at $7.52 to $7.57. On August 27 the stock gapped down from $9.04 to $7.82; the highest close of the last 30 days is $8.30 (August 31).
+@@ bf1bc49c0f html
+The 52-week high is $10.12, and the price is 38.44% below it; over the past 52 weeks the stock is down 34.51%.
+@@ 008913e6f1 html
+$1.2 billion
+@@ 96f111bdd9 html
+$2.2 billion
+@@ 1722defa83 html
+$4.1 billion / $300 million
+@@ 1d35198e5c html
+$300 million
+@@ 937280fdf6 html
+Revenue over the trailing twelve months was $2.20 billion, down 1.0% year over year; gross margin was 33.11%, operating margin 13.55% and net margin 5.72%.
+@@ 43ebcab8e5 html
+In Q2 2026, US same-store sales fell 7.0% and global same-store sales 6.3%; adjusted EPS was $0.18, versus $0.29 a year earlier. Trailing-twelve-month EPS was $0.66, down 31.4% year over year.
+@@ bd5eb69d3b html
+The company cut its quarterly dividend from $0.14 to $0.07, or $0.28 annualized, a 4.49% dividend yield at the current price, and withdrew its 2026 guidance at the same time.
+@@ f21e18fbd3 html
+Heavy debt: total debt is $4.07 billion and cash $341 million, for net debt of about $3.73 billion, more than 3 times the $1.19 billion market cap. ROIC is only 5.40%, and trailing-twelve-month free cash flow was $264 million.
+@@ a8b8a53cb1 html
+A P/E of 9.47x and a price-to-sales ratio (P/S) of 0.53 look cheap, but the forward P/E of 12.97x is higher than the TTM figure, which means the market expects earnings to keep falling; analysts forecast an average annual EPS change of -12.84% over the next 3 years.
+@@ ddefea78ae html
+Short interest is 31.08% of the float, a heavy concentration of short sellers. The 24 analysts rate it Hold, with an average price target of $7.57.
+@@ 81d59a627e html
+<span class="nd">2026-08-07</span><span>Reported Q2: US same-store sales fell 7.0% and adjusted EPS was $0.18 (vs. $0.29 a year earlier). The company also cut the quarterly dividend to $0.07 and withdrew full-year guidance, a sign that the turnaround will take time and money. <a href="https://www.sec.gov/Archives/edgar/data/0000030697/000119312526339132/d130352dex991.htm" target="_blank" rel="noopener">sec.gov</a></span>
+@@ 7bdb51f48a html
+<span class="nd">2026-08-26</span><span>Reuters reported that Trian, which owns about 16%, has no current plans to make a take-private bid. Takeover rumors on August 12 had sent the stock up 14.7% in a single day; after the report, it fell 13.55% on August 27 as hopes of a takeover premium evaporated. <a href="https://kfgo.com/2026/08/26/exclusive-trian-has-no-plans-to-make-bid-for-wendys-right-now-sources-say/" target="_blank" rel="noopener">kfgo.com</a></span>
+@@ 2f08b47f02 html
+<span class="nd">2026-08-27</span><span>New CEO Bob Wright laid out a five-point turnaround plan (food quality and value, operations, restaurants, marketing, fewer discounts) and created a new chief marketing and customer growth officer role, filled by former McDonald's executive Tariq Hassan. Execution will decide whether the fundamentals stabilize. <a href="https://www.entrepreneur.com/buying-a-franchise/wendys-new-ceo-has-a-five-point-plan-to-get-back-in-the-burger-chain-fight" target="_blank" rel="noopener">entrepreneur.com</a></span>
+@@ d76047b74f html
+<span class="nd">2026-09-18</span><span>Major franchisee Meritage Hospitality (operator of 314 Wendy's restaurants) filed for bankruptcy protection after already closing 60 locations, a sign of strain among franchisees; more closures may follow. The stock fell 3.58% that day. <a href="https://www.nrn.com/restaurant-franchising/giant-wendy-s-franchisee-meritage-hospitality-group-files-for-bankruptcy" target="_blank" rel="noopener">nrn.com</a></span>
+@@ 29fca2bac9 html
+<span class="nd">2026-10-08</span><span>The company said it will report Q3 results before the open on November 5, with a call at 8:30 a.m. ET; this is the next chance for new management to give details of the turnaround. <a href="https://s1.q4cdn.com/202642389/files/doc_news/The-Wendys-Company-to-Report-Third-Quarter-2026-Results-on-November-5-2026.pdf" target="_blank" rel="noopener">s1.q4cdn.com</a></span>
+@@ 1ef07a491b html
+2026-11-05, before the open: Q3 earnings, with a call at 8:30 a.m. ET. Watch whether the same-store sales decline narrows, whether the turnaround plan comes with quantified targets, and whether full-year guidance is reinstated.
+@@ 4d576b045b html
+The list of closures in major franchisee Meritage's bankruptcy, and the effect on systemwide sales.
+@@ 95083ddb34 html
+Menu and marketing changes once new chief marketing officer Tariq Hassan takes over.
+@@ a7990939d6 html
+What Trian (holder of about 16%) does next; Reuters says it is keeping its options open.
+@@ 8c0005e295 html
+Consumer: Wendy's customers are price-sensitive, and changes in inflation, oil prices and employment hit traffic directly. Bank earnings season, which starts in mid-October, will show how lower- and middle-income consumers are spending.
+@@ 12a9beb456 html
+Costs: rising costs for beef and other ingredients squeeze franchisee profits; NRN's report notes that franchisees have been hit by higher beef costs.
+@@ add01c7b91 html
+Rates: with net debt of about $3.7 billion, falling long-term rates would help future refinancing, while rising rates would add to the interest burden.
+@@ 9c72e6921b html
+RSI is below 30, the stock is near its 52-week low of $5.94, and short interest is 31.08% of the float; any good news could set off short covering that amplifies the move.
+@@ c9d7b60f28 html
+The new CEO has a five-point turnaround plan and has brought in a marketing chief from McDonald's; if the Q3 same-store sales decline narrows, that would be the first sign of improving fundamentals.
+@@ 2e724ff596 html
+Trian still owns about 16%, and Reuters says it is keeping its options open, so take-private talk could come back.
+@@ 4effecd423 html
+Same-store sales have fallen for several quarters in a row, with the US down 7.0% in Q2; the turnaround plan is still being worked out, and full-year guidance has been withdrawn.
+@@ a95b21c343 html
+Major franchisee Meritage is in bankruptcy and still closing restaurants, which could weigh on systemwide sales and royalty income.
+@@ e004e1da8c html
+Debt is high, the dividend has already been cut, and there is little room for capital allocation; the forward P/E of 12.97x is above the TTM 9.47x, and earnings estimates are still being cut.
+@@ 2929fa2cca html
+Whether the 52-week low of $5.94 holds.
+@@ 148cceba0c html
+Whether US same-store sales in the November 5 Q3 report improve on Q2's -7.0%, and whether guidance is reinstated.
+@@ ae61f103c1 html
+Whether the stock can get back above the $7.52 to $7.57 moving-average zone.
+@@ be70d8f30b html
+Sources: <a href="https://stockanalysis.com/stocks/wen/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/wen/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/wen/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/wen/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0000030697/000119312526339132/d130352dex991.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://kfgo.com/2026/08/26/exclusive-trian-has-no-plans-to-make-bid-for-wendys-right-now-sources-say/" target="_blank" rel="noopener">kfgo.com</a> · <a href="https://www.entrepreneur.com/buying-a-franchise/wendys-new-ceo-has-a-five-point-plan-to-get-back-in-the-burger-chain-fight" target="_blank" rel="noopener">entrepreneur.com</a> · <a href="https://www.nrn.com/restaurant-franchising/giant-wendy-s-franchisee-meritage-hospitality-group-files-for-bankruptcy" target="_blank" rel="noopener">nrn.com</a> · <a href="https://s1.q4cdn.com/202642389/files/doc_news/The-Wendys-Company-to-Report-Third-Quarter-2026-Results-on-November-5-2026.pdf" target="_blank" rel="noopener">s1.q4cdn.com</a>

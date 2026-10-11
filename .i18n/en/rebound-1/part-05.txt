@@ -1,0 +1,164 @@
+@@ 848fbac6b5 html
+HSY <span class="zh">Hershey</span>
+@@ f03657ef1d html
+On the list; he logged a buy at $160.19 on October 5. His September 11 shopping list also had it down as “might add.” As with Mondelez, cocoa costs are the key.
+@@ a87ac05410 html
+Hershey is the largest chocolate and candy company in the US. Its main brands include Hershey&#x27;s, Reese&#x27;s and Kit Kat (licensed in the US), and in recent years it has bought salty snack brands such as SkinnyPop, Pirate&#x27;s Booty, LesserEvil and Dot&#x27;s. Revenue comes mainly from the North American confectionery business; international is a small share. Cocoa and sugar are the main raw materials, and swings in their cost have a big effect on profits.
+@@ 7aee71cafd html
+The 52-week range is $156.16 to $239.48, and the price is 32.0% below the high. The average analyst price target is $202.19 (23 analysts, average rating Buy). Price targets reflect an optimistic scenario and often lag the stock price.
+@@ fda5df96f4 html
+The close of $162.74 is 6.7% below the 50-day moving average of $174.39 and 14.5% below the 200-day moving average of $190.28; the 50-day is below the 200-day, so the medium-term trend is weak.
+@@ e3225bb70b html
+RSI is 38.86, in weak territory, but it has not yet fallen into the oversold zone below 30.
+@@ 61d302d82c html
+Support: the lowest close of the last 30 trading days, $157.61 (September 30), with the 52-week low of $156.16 just below. The two are very close, which makes $156 to $158 the key support zone.
+@@ 854a2749a9 html
+Resistance: first the September 14 close of $173.68 and the 50-day moving average at $174.39; above that, $179.05 from August 28 and the 200-day moving average at $190.28.
+@@ 11c6ed1986 html
+Over the past week the stock has recovered from $160.19 to $162.74, up about 1.6%, and it is now moving sideways between $157 and $163.
+@@ f82e94204c html
+$32.7 billion
+@@ 96fc7b2f0f html
+$12.2 billion
+@@ 819c204943 html
+$5.9 billion / $800 million
+@@ d12cc65ab7 html
+Revenue over the trailing twelve months was $12.16 billion, up 7.69% year over year; Q2 revenue was $2.787 billion, up 6.6%, with price increases adding about 12 percentage points and volume subtracting about 8.
+@@ 7e03b9812e html
+Q2 reported earnings per share (EPS) were $2.26, up about 631% from $0.31 a year earlier, mostly because of a very low base; adjusted EPS was $1.90, up 57%, which better reflects the real improvement.
+@@ 97dfaa0c31 html
+Gross margin is 38.38%, operating margin 18.02%, net margin 12.24% and return on invested capital (ROIC) 17.66%, strong profitability for a food company.
+@@ e3ff68df9f html
+On valuation, the P/E (TTM) is 22.24x, the forward P/E 17.55x and the PEG 0.91; the dividend yield is 3.57% and the payout ratio 79.37%, so a fairly high share of profits goes out as dividends.
+@@ 634c805cb5 html
+Total debt is $5.92 billion and cash $790 million; trailing-twelve-month free cash flow of $2.23 billion is enough to cover the dividend.
+@@ 97c4024186 html
+In July the company narrowed its guidance for 2026 adjusted EPS growth to 32.5% to 35% (about $8.36 to $8.52). The consensus rating of the 23 analysts is Buy, with an average price target of $202.19.
+@@ a999e4eb59 html
+<span class="nd">2026-07-30</span><span>Q2 revenue grew 6.6% and adjusted EPS 57%, and the company narrowed and raised its full-year guidance, showing that price increases and cost improvements are lifting profits; the roughly 8-point drop in volume is a worry. <a href="https://www.sec.gov/Archives/edgar/data/0000047111/000162828026050769/exhibit991_2026xq2.htm" target="_blank" rel="noopener">sec.gov</a></span>
+@@ 9b8688659f html
+<span class="nd">2026-08-20</span><span>Reuters reported that Hershey is adding salty snacks to its Halloween lineup, and that early-season sales of small-pack candy are up by double digits year over year; Halloween accounts for nearly a fifth of annual US candy retail sales and directly affects third-quarter results. <a href="https://www.esmmagazine.com/a-brands/hershey-targets-the-health-conscious-with-savoury-halloween-snacks-319686" target="_blank" rel="noopener">esmmagazine.com</a></span>
+@@ e943edbcc3 html
+<span class="nd">2026-09-03</span><span>The company named Dave Hulays, an internal finance executive with nearly 15 years at the company, as CFO, succeeding Steve Voskuil, who plans to retire. The smooth handover of the finance chief role reduces the uncertainty around management changes. <a href="https://www.foodnavigator.com/Article/2026/09/03/hershey-appoints-dave-hulays-cfo-as-it-accelerates-snacking-growth-strategy/" target="_blank" rel="noopener">foodnavigator.com</a></span>
+@@ e7eef02367 html
+<span class="nd">2026-10-01</span><span>The company named Amanda Almond, a former PepsiCo and Bacardi executive, as president of its international business, effective October 12, succeeding Rohit Grover, who had run international since 2019; a sign the company wants faster growth overseas. <a href="https://www.foodnavigator.com/Article/2026/10/01/hershey-appoints-amanda-almond-as-international-president-as-cpg-sets-industry-standard/" target="_blank" rel="noopener">foodnavigator.com</a></span>
+@@ e0cb77d3bb html
+2026-10-29, before the open: Q3 results. The focus is Halloween-season volumes, gross margin and full-year guidance.
+@@ c32a4c39ce html
+2026-10-31: Halloween; retail data after the holiday will show how strong seasonal sales were.
+@@ 49cefe7582 html
+The cocoa price trend, which will shape 2027 costs and pricing strategy.
+@@ de1e397995 html
+Hershey is a defensive consumer staple with a beta of just 0.09, so the stock moves little with the broader market; but it is sensitive to inflation and consumer budgets. In Q2, price added about 12 percentage points while volume fell about 8, a sign that consumers are buying less.
+@@ cd61bc5386 html
+Falling long-term rates usually favor high-dividend defensive stocks, making the 3.57% dividend yield more attractive relative to bonds; rising long-term rates would erode that appeal.
+@@ fb1d4ca501 html
+Cocoa is the biggest cost variable, and lower cocoa prices help gross margin; since revenue is mainly in North America, the dollar has a relatively limited effect.
+@@ 7bc4251255 html
+The stock is near its 52-week low of $156.16, about 32% below the 52-week high of $239.48; the forward P/E of 17.55x is below the TTM 22.24x, so the market still expects earnings to grow.
+@@ 58c939c1be html
+Full-year guidance calls for adjusted EPS growth of 32.5% to 35%; if the October 29 Q3 report confirms improving gross margin and keeps guidance intact, sentiment could recover.
+@@ 1f73bb53f1 html
+The average analyst price target of $202.19 is about 24% above the current price; the 3.57% dividend yield appeals to defensive money.
+@@ a0286d0737 html
+The volume decline caused by price increases could continue; if the Halloween season disappoints, revenue growth will slow.
+@@ 2af63ca25f html
+With a payout ratio of 79.37%, there is limited room for dividend growth if profits fall short of expectations.
+@@ f4e3625a91 html
+The stock trades below its 50-day and 200-day moving averages, short interest is 6.33% of the float, and the downtrend has not yet reversed.
+@@ 984f5b50bb html
+Whether the $156 to $158 support zone (the 52-week low of $156.16 and the September 30 close of $157.61) holds.
+@@ dfc9c820eb html
+Whether the stock can get back above the 50-day moving average at $174.39.
+@@ bb8f28dc2a html
+In the October 29 Q3 report: volume trends, gross margin and whether full-year guidance is maintained.
+@@ fa9960b86d html
+Sources: <a href="https://stockanalysis.com/stocks/hsy/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/hsy/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/hsy/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/hsy/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/hsy/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0000047111/000162828026050769/exhibit991_2026xq2.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://www.esmmagazine.com/a-brands/hershey-targets-the-health-conscious-with-savoury-halloween-snacks-319686" target="_blank" rel="noopener">esmmagazine.com</a> · <a href="https://www.foodnavigator.com/Article/2026/09/03/hershey-appoints-dave-hulays-cfo-as-it-accelerates-snacking-growth-strategy/" target="_blank" rel="noopener">foodnavigator.com</a> · <a href="https://www.foodnavigator.com/Article/2026/10/01/hershey-appoints-amanda-almond-as-international-president-as-cpg-sets-industry-standard/" target="_blank" rel="noopener">foodnavigator.com</a>
+@@ 3bc6dc378e html
+PRMB <span class="zh">Primo Brands (bottled water)</span>
+@@ 9a62d877a6 html
+Not among the 17. He bought it on October 5 at a logged price of $19.70. Bottled water is an everyday necessity, and the valuation is on the low side.
+@@ ca4df1ba7b html
+Primo Brands is a North American branded drinking-water company formed by the merger of Primo Water and BlueTriton at the end of 2024; its brands include Poland Spring, Saratoga and Mountain Valley. Revenue comes from bottled and sparkling water sold through supermarkets and other retail channels, large-jug water delivery to homes and offices, water dispensers, and in-store water exchange and self-service refill.
+@@ 0c8605d517 html
+The 52-week range is $14.36 to $26.21, and the price is 26.5% below the high. The average analyst price target is $30.27 (12 analysts, average rating Buy). Price targets reflect an optimistic scenario and often lag the stock price.
+@@ 5fc70eb20b html
+The close of $19.27 is 11.3% below the 50-day moving average of $21.73 and 9.2% below the 200-day moving average of $21.21. The 50-day is still slightly above the 200-day, but the price has broken below both lines, and they risk forming a death cross.
+@@ f349557297 html
+RSI is 36.86: weak, but not yet in oversold territory below 30.
+@@ eb541251b1 html
+Support: the lowest close of the last 30 trading days, $19.00 (October 7), is the nearest key level; below that is the 52-week low of $14.36, about 25% below the current price.
+@@ 272668baf3 html
+Resistance: first the September 16 close of $21.15, then the 200-day moving average at $21.21 and the 50-day moving average at $21.73, which make $21 to $22 a resistance zone; higher up is $23.00 from August 28.
+@@ 9dcfe51366 html
+Measured from the $25.32 close on its August 5 earnings day, the stock is down about 24% in total, and about 16% over the last 30 trading days.
+@@ 5acd114f1a html
+$7.0 billion
+@@ 7bd77efa62 html
+$6.7 billion
+@@ a6a817a72f html
+$5.7 billion / $400 million
+@@ a0ce99b995 html
+$400 million
+@@ f6981622fc html
+Revenue over the trailing twelve months was $6.74 billion, up 11.52% year over year, partly because the merger changed the basis of comparison; Q2 revenue was $1.796 billion, up 3.82% year over year, which is closer to the organic growth rate.
+@@ 4258f557e8 html
+Gross margin is 30.75% and operating margin 10.70%, but net margin is only 1.49% and EPS (TTM) is $0.27: interest and merger integration costs eat up most of the profit, which is why the P/E (TTM) is as high as 72.36x. The forward P/E of 13.63x better reflects normalized earnings.
+@@ fe56dc2c3b html
+Q2 adjusted EPS of $0.37 beat expectations; adjusted EBITDA was $385 million, a 21.4% margin. Full-year guidance for revenue growth was raised to 2% to 4%, and adjusted EBITDA guidance of $1.465 billion to $1.515 billion was left unchanged.
+@@ 7f5c05e409 html
+Debt is on the heavy side: total debt is $5.70 billion and cash $369 million, net leverage was 3.42x at the end of Q2, EV/EBITDA is 9.20x, and return on invested capital (ROIC) is only 5.26%.
+@@ ed007713f6 html
+The dividend yield is 2.49%, and the payout ratio based on accounting earnings is 172.74%, so the dividend relies mainly on cash flow: trailing-twelve-month free cash flow was $371.5 million, and full-year guidance for adjusted free cash flow is $790 million to $810 million.
+@@ 236843dd48 html
+Short interest is 11.25% of the float, a relatively high level; the consensus rating of the 12 analysts is Buy, with an average price target of $30.27.
+@@ 59d514ff19 html
+<span class="nd">2026-08-05</span><span>Q2 adjusted EPS of $0.37 beat expectations, and full-year guidance for revenue growth was raised from 1%–3% to 2%–4%; the stock closed at $25.32 that day, up from $23.29, a gain of about 8.7%. <a href="https://www.sec.gov/Archives/edgar/data/0002042694/000127956926000742/ex991.htm" target="_blank" rel="noopener">sec.gov</a></span>
+@@ d3537635e7 html
+<span class="nd">2026-08-06</span><span>Affiliates of the largest shareholder, One Rock Capital, sold 20 million shares in a placement at $24.47 a share (about $489 million), cutting their stake from about 26.9% to about 21.3%. The stock fell 5.6% that day to $23.91; the major shareholder's selling added supply pressure. <a href="https://www.ifre.com/equities/2467102/primo-brands-slides-after-us489m-block" target="_blank" rel="noopener">ifre.com</a></span>
+@@ 05633c0c4d html
+<span class="nd">2026-09-04</span><span>Zacks noted that the stock fell about 8.4% in the month after earnings and that analysts' earnings estimates were revised down across the board, showing the earnings beat did not bring sustained buying. <a href="https://www.zacks.com/stock/news/2985289/primo-brands-prmb-down-84-since-last-earnings-report-can-it-rebound" target="_blank" rel="noopener">zacks.com</a></span>
+@@ 87e0665158 html
+<span class="nd">2026-09-09</span><span>At the Barclays consumer conference, management said the supply chain problems have been resolved and the on-time, in-full delivery rate is above 90%, and that the exchange and refill business brings in more than $600 million a year and is growing faster than the company average; signs that service quality is recovering. <a href="https://quartr.com/events/primo-brands-corporation-prmb-barclays-19th-annual-global-consumer-conference_onW4IN2G" target="_blank" rel="noopener">quartr.com</a></span>
+@@ e777a69a83 html
+2026-11-05, before the open (around 6 a.m. ET): Q3 results, with a call at 8 a.m.
+@@ 28726bfd38 html
+Whether full-year guidance holds: revenue growth of 2% to 4%, adjusted EBITDA of $1.465 billion to $1.515 billion, and adjusted free cash flow of $790 million to $810 million.
+@@ 7831e5e604 html
+Whether major shareholder One Rock keeps selling (it currently owns about 21.3%).
+@@ 34ee48f701 html
+Bottled water is a consumer staple with steady demand; but delivering to homes and offices takes a large fleet, so higher oil prices push up delivery costs and squeeze margins.
+@@ 3535402569 html
+With net leverage of 3.42x, falling long-term rates would lower refinancing costs, while rising long-term rates would add to the interest burden.
+@@ 4c27c23679 html
+When inflation makes consumers more price-conscious, retail bottled water is easy to swap for store brands; the company raises prices by a low single-digit percentage each year and charges a flat delivery fee, but its room to raise prices is limited by what consumers can bear.
+@@ 8190aafa33 html
+Revenue has beaten expectations and guidance has been raised for two quarters in a row; at a forward P/E of 13.63x and EV/EBITDA of 9.20x, the valuation is not demanding.
+@@ ca01a87fef html
+Management says the service problems are fixed and the delivery rate is above 90%; if the November 5 Q3 report confirms better customer retention, sentiment could turn.
+@@ 22a8383ae0 html
+Short interest is 11.25% of the float; if results beat expectations, short covering could amplify a rebound. The average analyst price target is $30.27.
+@@ 0a7b6f0272 html
+The major shareholder still holds about 21.3% after selling; further sales would weigh on the stock.
+@@ a1edbbaeb7 html
+Total debt is $5.70 billion and net margin only 1.49%, so profits are very sensitive to interest and one-time charges.
+@@ 1eb584d867 html
+The stock is below both moving averages and down about 16% over the last 30 trading days; the trend is still down.
+@@ a1d3bea343 html
+Whether the October 7 closing low of $19.00 holds.
+@@ 20149facd9 html
+Whether the stock can get back above the $21.2 to $21.7 moving-average zone.
+@@ 99197b0bf9 html
+Whether revenue growth, adjusted EBITDA and free cash flow in the November 5 Q3 report are in line with full-year guidance.
+@@ 12e9e9dd6b html
+Sources: <a href="https://stockanalysis.com/stocks/prmb/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/prmb/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/prmb/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/prmb/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/prmb/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0002042694/000127956926000742/ex991.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://www.ifre.com/equities/2467102/primo-brands-slides-after-us489m-block" target="_blank" rel="noopener">ifre.com</a> · <a href="https://www.zacks.com/stock/news/2985289/primo-brands-prmb-down-84-since-last-earnings-report-can-it-rebound" target="_blank" rel="noopener">zacks.com</a> · <a href="https://quartr.com/events/primo-brands-corporation-prmb-barclays-19th-annual-global-consumer-conference_onW4IN2G" target="_blank" rel="noopener">quartr.com</a> · <a href="https://finviz.com/news/399539/primo-brands-announces-date-for-2026-third-quarter-earnings-release-and-conference-call" target="_blank" rel="noopener">finviz.com</a>
+@@ 1db22c5da0 html
+LOW <span class="zh">Lowe's</span>
+@@ 20602f75ed html
+On the list; he logged a buy at $180 on October 5. Home improvement shows up on two of his lists: “winners from falling rates” and “winners from falling oil.”
+@@ 9b636adb42 html
+Lowe's is the second-largest home improvement retailer in the US, with more than 1,750 stores selling building materials, tools, appliances, garden and renovation supplies. Its customers are do-it-yourself (DIY) consumers and professional contractors (Pro), with DIY making up more than 60% of sales. Over the past year the company completed its acquisitions of ADG and FBM (Foundation Building Materials), expanding its push into professional customers and new home construction.
+@@ 6b52ce134b html
+The 52-week range is $178.45 to $293.06, and the price is 36.5% below the high. The average analyst price target is $249.39 (35 analysts, average rating Buy). Price targets reflect an optimistic scenario and often lag the stock price.
+@@ fc292e808a html
+The close of $186.00 is 8.0% below the 50-day moving average of $202.19 and 19.2% below the 200-day moving average of $230.08; the 50-day is below the 200-day, so the moving averages are in bearish alignment.

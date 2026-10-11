@@ -1,0 +1,162 @@
+@@ 1655323d29 html
+Chapter 13 Risk management for options · US Options Course
+@@ 37a304f132 html
+<span class="g">Risk management</span> for options
+@@ 44a880c987 html
+Options accounts rarely die from one wrong call. Most die because their positions are too big, too alike, and forced out at the worst moment. This chapter gives you three rulers for measuring position size, a set of sizing rules each for buyers and for sellers, and a stress-test table you can run every week.
+@@ 4a798dc727 html
+In this chapter
+@@ 5ca74aeadb html
+<a href="#open"><span class="n">··</span><span>Opening: only $100 per contract</span></a>
+@@ b2b31bd704 html
+<a href="#s1"><span class="n">13.1</span><span>Three ways to measure a position</span></a>
+@@ b1b4cb9e64 html
+<a href="#s2"><span class="n">13.2</span><span>Rules for buyers</span></a>
+@@ 51616c504d html
+<a href="#s3"><span class="n">13.3</span><span>Rules for sellers</span></a>
+@@ aaf3c047ec html
+<a href="#s4"><span class="n">13.4</span><span>Stress tests: three scenarios, once a week</span></a>
+@@ f06d221d6c html
+<a href="#s5"><span class="n">13.5</span><span>The illusion of diversification</span></a>
+@@ f16b55e0d2 html
+<a href="#s6"><span class="n">13.6</span><span>The margin spiral</span></a>
+@@ 664e5015d2 html
+<a href="#s7"><span class="n">13.7</span><span>Liquidity, early assignment and pin risk</span></a>
+@@ c3ff50d231 html
+<a href="#s8"><span class="n">13.8</span><span>Options position rule card</span></a>
+@@ 136613e580 html
+<a href="#cases"><span class="n">Cases</span><span>Two cases</span></a>
+@@ dd7ded685d html
+<a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a>
+@@ fa38186fd8 html
+<a href="#open">Opening: only $100 per contract</a>
+@@ 10e7c474cc html
+<a href="#s1">13.1 Three ways to measure a position</a>
+@@ 64460826a0 html
+<a href="#s2">13.2 Rules for buyers</a>
+@@ 5a7592686d html
+<a href="#s3">13.3 Rules for sellers</a>
+@@ b7f847d5a6 html
+<a href="#s4">13.4 Stress tests: three scenarios, once a week</a>
+@@ e1692e16e0 html
+<a href="#s5">13.5 The illusion of diversification</a>
+@@ 20e65409fd html
+<a href="#s6">13.6 The margin spiral</a>
+@@ bce8670aa9 html
+<a href="#s7">13.7 Liquidity, early assignment and pin risk</a>
+@@ 18276914d8 html
+<a href="#s8">13.8 Options position rule card</a>
+@@ 9296165eff html
+<a href="#cases">Two cases</a>
+@@ 7ec24afd50 html
+<a href="#tools">Checklist and self-test</a>
+@@ 80161dff8a html
+After this chapter you can
+@@ 203afa1aaf html
+Work out notional exposure, max loss and stress loss for any options position
+@@ e98318535c html
+Decide how many contracts to trade by max loss or stress loss, not by premium
+@@ 6dbf1e7936 html
+Stress-test the whole account every week with three scenarios, and cut positions according to the rule card
+@@ fc4f43bd05 html
+Prerequisites
+@@ 8e146aa16a html
+Chapter 2: exercise, assignment and margin
+@@ b4456290ba html
+Chapter 8: strategies for sellers and stress-testing positions
+@@ 4c4843c80e html
+Chapter 12: portfolio Greeks and beta weighting
+@@ fe31444484 html
+Conventions
+@@ 3e8c1a48e9 html
+Black-Scholes, 4% rate, no dividends, 365-day year; options on futures use the Black form of the same formula
+@@ f58eba3f07 html
+One stock option contract = 100 shares; default account size $100,000
+@@ a280206ed6 html
+A “gap” is an instant move with days to expiry unchanged; margin is estimated with common Reg T rules
+@@ 50d44ad48f html
+<span class="sn">Opening</span>Only $100 per contract
+@@ 54cfc5f646 html
+Your account holds $100,000. You pick ten stocks, all trading around $100, and on each one you sell a 30-day put with a 90 strike (IV 40%). Each brings in <span class="num">$99.8</span>, <span class="num">$998</span> for all ten, less than 1% of the account. It looks as if you are risking only 1%.
+@@ f892f23b42 html
+Table 13-0 Five numbers for the same set of positions
+@@ d1e7344825 html
+Measure
+@@ 60d3fb4916 html
+Calculation
+@@ 235f2eec1f html
+Amount
+@@ 9c7f1a92ee html
+% of account
+@@ d876228ad3 html
+Premium received
+@@ b7954a30e3 html
+Notional exposure
+@@ 2724b11da8 html
+10 × 100 shares × $100
+@@ 692eafdac9 html
+Cash to secure the puts
+@@ 7df6984839 html
+Stress loss
+@@ aa4159a60c html
+All ten −20%, IV doubles
+@@ a59f077925 html
+Max loss
+@@ 7a2533f977 html
+All ten go to zero: (90 − 0.998) × 1,000
+@@ 79247be48a html
+The premium is the most you can make, and it says almost nothing about how much you can lose. The stress loss is <span class="num">12.6</span> times the premium; even with IV unchanged, a plain 20% drop in the stocks costs <span class="num">$9,517</span>. Ten stocks look diversified, but on the day the market falls, they mostly fall together.
+@@ 8d4b4d7225 html
+This chapter does three things: it measures position size the right way; it gives buyers and sellers each a set of sizing rules; and it uses stress tests to turn those rules into a weekly routine. At the end you will have your own position rule card.
+@@ b1bca29375 html
+<span class="sn">13.1</span>Three ways to measure a position
+@@ d95e5a3d5a html
+Measure an options position with three rulers: notional exposure, max loss and Greek risk. Premium is a fit measure only for buyers.
+@@ 9b3e49b48a html
+<strong>Notional exposure</strong>: shares covered by the contracts × stock price. It tells you how much stock you could have to take on or owe in the worst case, and it is the base for assignment and margin.
+@@ e83ee9a841 html
+<strong>Max loss</strong>: the worst outcome at expiry. Spreads and iron condors have a hard cap; a naked short put is capped at “strike − premium” (the stock goes to zero); a naked short call has no cap.
+@@ d44cc9e5af html
+<strong>Greek risk</strong>: Delta dollars (Δ × 100 × stock price) tell you how much stock the position is equivalent to; Vega tells you how much you make or lose for each point of IV. Put them through a realistic shock (a price gap plus an IV spike) and you get the stress loss.
+@@ 63eb58ef3c html
+Table 13-1 Three measures for five common positions (stock $100, 30 days, IV 40%, 1 contract or 1 spread each)
+@@ 0e1ae088fd html
+Position
+@@ 6e52cb2b8f html
+Premium
+@@ 4461cf31f6 html
+Delta dollars
+@@ db092ea55f html
+Vega / pt
+@@ 24192b2e23 html
+Long 100 call
+@@ 93f95da482 html
+Debit $473
+@@ 2a7479d158 html
+Short 90 put
+@@ 7af062e5ae html
+Credit $100
+@@ 69790e24f2 html
+Short 90/85 put spread
+@@ 43bea05f20 html
+Credit $65
+@@ 1b693178e9 html
+Short 90/110 strangle
+@@ ae890ed766 html
+Credit $243
+@@ 5ca4b5e09a html
+Unlimited
+@@ b9f7127ce3 html
+Short 85/90/110/115 iron condor
+@@ 07d0680382 html
+Credit $138
+@@ 3aad77b33e html
+The stress-loss column assumes “stock instantly −20%, IV doubles.” How to read the table:
+@@ d3f6f72b62 html
+<strong>Buyers</strong>: the premium is the max loss, so measuring by premium is right. Under the same shock the long call loses only $289, less than the premium: the doubling of IV wins part of it back.
+@@ a53e3742c4 html
+<strong>Sellers</strong>: the premium is the smallest number on the three rulers. The short 90 put collects $100; its stress loss is 12.6 times that, and its max loss 89 times.
+@@ ccdd7fc5a0 html
+<strong>Spreads</strong>: the $435 max loss is the position’s size. With 30 days left, one shock doesn’t reach the cap ($278), but the closer to expiry, the closer it gets.
+@@ 7f184485ae html
+<strong>Strangles</strong>: Delta dollars are only −$706, which looks neutral, but its Vega is the largest in the table (−$15.6), and a 20% move up loses $956 as well. A neutral position’s risk lives in Vega and in gaps.

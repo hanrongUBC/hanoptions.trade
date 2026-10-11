@@ -1,0 +1,180 @@
+@@ fecb339f32 html
+Source 4: mispricing
+@@ 2c17acc5c8 html
+When the price relationship between options breaks, there is relative mispricing. Section 1.3 showed that the call minus the put at the same strike and expiration should equal 0.33. Suppose you see the 100 call at a mid price of 3.80 and the put at 3.26: a difference of 0.54, or 0.21 too much. Sell the call, buy the put and buy 100 shares, and at expiry you sell the stock at 100 wherever it trades. After 0.33 of interest on the $99.46 tied up for 30 days, you lock in about <span class="num">0.21 × 100 = $21</span>.
+@@ 15b7f822cd html
+In reality, market makers' algorithms take almost all of these opportunities. Nearly every “mispricing” you see on screen has a sound explanation: an upcoming dividend, shares that are hard to borrow, the early-exercise value of American-style options, a stale quote, or a bid–ask spread so wide that trading three legs costs far more than $21. For individual traders, the more realistic use of this source is picking contracts that are relatively cheap: for the same view, for example, choosing the expiration or strike with relatively low implied volatility.
+@@ 036ff0bb36 html
+Source 5: the volatility risk premium
+@@ 197848305b html
+A large body of research finds that the implied volatility of index options is, on average, higher than the volatility realized afterward. The reason isn't hard to see: investors are willing to overpay for insurance, and sellers demand compensation for bearing crash risk. This persistent gap is called the <strong>volatility risk premium</strong>, and it is the main source of sellers' long-run returns.
+@@ 7932430917 html
+Some numbers give a feel for its shape. Suppose SPY is at $780 and you sell a 30-day at-the-money straddle at IV 18%, collecting <span class="num">32.12</span>. If realized volatility over the next 30 days is only 15%, the straddle's fair value is <span class="num">26.80</span>, an average gain of about <span class="num">$533</span> per straddle. But in a month with realized volatility of 40%, fair value becomes <span class="num">71.24</span>, an average loss of about <span class="num">$3,912</span>. One bad month takes 7.3 good months to make up. The premium is real, but it is payment for bearing tail risk; Chapter 6 discusses it in detail.
+@@ 5f4b45e895 html
+Table 1-5 The five sources of profit compared
+@@ 6d244859a5 html
+Source
+@@ b8c6d06250 html
+What you must get right
+@@ 11383e5759 html
+Typical trades
+@@ 2c5fd852cd html
+Main risk
+@@ 42c9af07b6 html
+Covered in
+@@ e0551de2ea html
+Direction
+@@ 79288b5a5d html
+Direction, size, timing
+@@ 25f7f47a85 html
+Long calls / puts, spreads
+@@ 02d9f9f278 html
+Move too small or too slow
+@@ d0243abec0 html
+Chapter 7
+@@ f87093cf4b html
+Volatility
+@@ dfee576504 html
+Future volatility above or below IV
+@@ 4ff91d8497 html
+Straddles, strangles, calendar spreads
+@@ b1b8669e3c html
+IV falls, market stays calm
+@@ f709147312 html
+Chapters 6, 9
+@@ 01df364030 html
+Passage of time
+@@ e7396e0d35 html
+Stock stays in a range
+@@ b24e818162 html
+Short options, credit spreads
+@@ 0315ecbc71 html
+Big moves, gaps
+@@ 3ddc25fefb html
+Chapters 5, 8
+@@ d56070693a html
+Mispricing
+@@ 8df90a64e0 html
+A price relationship that is truly broken
+@@ f5494c6fbb html
+Parity arbitrage, relative value
+@@ 00fc2a6e7b html
+Costs eat the profit; misreading the cause
+@@ 0a9182db90 html
+Chapter 3
+@@ d4e697b144 html
+Risk premium
+@@ 8169fecdb9 html
+IV stays above realized volatility over time
+@@ fb061b687b html
+Systematically selling volatility
+@@ ead40cf050 html
+Tail losses arrive all at once
+@@ 5330abd52f html
+Chapters 6, 13
+@@ 9845381d85 html
+In real trading, one position often bets on several sources at once. Buying a call before earnings bets on direction, but also on “IV won't fall too much,” and the second bet is often overlooked (Case 2). Selling a covered call earns mainly from the passage of time and the risk premium, while also carrying a mildly bullish direction. Before placing an order, list each source involved and write down what you lose if each one goes wrong. You will find that the main risk in many “directional trades” is actually volatility.
+@@ a730e3cca3 html
+For a stock that has just surged, a common approach is to sell out-of-the-money calls rather than buy puts. The reasoning maps directly onto this section's categories. A long put earns direction money: it needs the stock to fall, and soon, and even two weeks of sideways trading near the highs gets eaten by time decay. A short out-of-the-money call earns time and volatility money: it profits if the stock falls, goes sideways, or rises a little without passing the strike. The bet is that “the market overestimates how much further it can rise in this period,” not that “what has risen a lot must fall.” The cost is just as clear: a naked short call has unlimited loss in theory, so the strike, term, position size and stop-loss must all be set in advance.
+@@ 4f0c36c5d6 html
+<span class="sn">1.8</span>Win rate, payoff ratio and expectancy
+@@ c61b242859 html
+If options are fairly priced, the expected P&amp;L of all four positions is close to zero: buyers have a low win rate and a high payoff ratio, and sellers have a high win rate and a low payoff ratio.
+@@ 403ac48bea html
+“Fairly priced” has a precise meaning here: assume the stock price at expiry follows the Black-Scholes lognormal distribution, with volatility equal to the implied volatility in the option's price. Under that assumption you can calculate exactly each position's probability of profit and its average win and average loss.
+@@ 1d9613747e html
+Table 1-6 Stock $100, 30 days, IV 30%: win rate and payoff ratio for six positions (per share)
+@@ 00884e03b2 html
+Probability of profit at expiry
+@@ dd73f75f14 html
+Average win
+@@ c3a2d0c0d7 html
+Average loss
+@@ 36aa1e7b72 html
+Expected P&amp;L
+@@ b9b984918b html
+Long 100 call (3.59)
+@@ 94050a8afa html
+Long 100 put (3.26)
+@@ e010fe5e7d html
+Short 100 call (3.59)
+@@ ece92536fc html
+Short 100 put (3.26)
+@@ 61495e2b8b html
+Short 90 put (0.40)
+@@ 8d11f3a300 html
+Long 110 call (0.66)
+@@ 092818f144 html
+Selling the 90 put wins nearly 90% of the time, which sounds tempting. But its average loss of 3.53 is 8.8 times its average win of 0.40. <span class="num">0.898 × 0.40 − 0.102 × 3.53 ≈ 0</span>: win rate and payoff ratio cancel out exactly. Buying the 110 call is the reverse: it loses almost nine times out of ten, and when it wins, it makes more than 7 times its cost on average.
+@@ 3918705cc0 html
+The table makes one point: <strong>with fair pricing, there is no “sure thing” structure.</strong> Choosing to buy or to sell changes only the shape of the P&amp;L distribution, not the expectancy. For expectancy to turn positive, there must be something you see more accurately than the market: direction (Source 1), future volatility compared with IV (Sources 2 and 5), or a price relationship that really is broken (Source 4). The passage of time creates no expectancy by itself; it is just the way sellers collect compensation for risk.
+@@ e310092b25 html
+How big an edge can a view on direction give you? Suppose you are convinced the stock's expected annual return is 10%, 6 points above the 4% risk-free rate. The 30-day at-the-money call's probability of profit rises only from <span class="num">33.9%</span> to <span class="num">36.0%</span>, and its average value at expiry from <span class="num">3.60</span> to <span class="num">3.87</span>: about $27 more per contract, or about 7.5% of the premium. Even with an expected return as high as 20%, the probability of profit is only <span class="num">39.7%</span>. Over a one-month term, being “bullish for the long run” gives you very little edge; what really changes expectancy is your judgment about near-term events, the size of the move and volatility.
+@@ 6341f197e8 html
+Real stock returns have “fatter tails” than the lognormal: big rises and big drops happen more often than the model says. That hurts sellers, because the model understates the average loss. At the same time, the market's implied volatility tends to be higher than realized volatility (Source 5), which helps sellers. Which force is bigger depends on the underlying, the term and the period; there is no answer that holds for good.
+@@ a9dd9e4635 html
+<span class="sn">Cases</span>Three cases
+@@ 0e1fbdd62d html
+Same $10,000 account, same view, three approaches
+@@ 8c1388d2d6 html
+The stock is at $100 and you are bullish for the next 30 days. You have $10,000 in the account and three ways to play it:
+@@ 0b654c28e8 html
+<strong>Plan A</strong>: buy 100 shares, using all the cash.
+@@ 11f17c83ff html
+<strong>Plan B</strong>: buy 1 contract of the 90 call (10.70, $1,070 in total); the remaining $8,930 in cash earns 4%, about $29 of interest over 30 days.
+@@ 3fc12e2eae html
+<strong>Plan C</strong>: buy 6 contracts of the 105 call (1.66, $996 in total); the remaining $9,004 in cash earns about $30 of interest.
+@@ 2de5239926 html
+Table 1-7 Account P&amp;L for the three plans at expiry in 30 days ($, including interest on cash)
+@@ e8f8a1571f html
+A: 100 shares
+@@ 2d306c0e91 html
+B: 1 contract, 90 call
+@@ ab0ad91d66 html
+C: 6 contracts, 105 call
+@@ 45a2ee269d html
+Worked example: with the stock at 104, B's P&amp;L is <span class="num">(104 − 90 − 10.70) × 100 + 29 = +$359</span>; C's options all expire worthless, <span class="num">−996 + 30 = −$966</span>.
+@@ 4ff7c52d3c html
+Above 90, Plan B behaves almost exactly like the stock, earning $41 less in every scenario. That $41 buys “insurance”: if the stock falls to 85, B loses only $1,041 while A loses $1,500. Where the $41 comes from is clear, too: the 90 call's time value of 0.70, minus 0.29 of interest on the remaining cash, is 0.41, almost exactly the price of the 90 put, 0.40. A deep in-the-money call plus cash is equivalent to the stock plus an out-of-the-money put.
+@@ d2496ea18f html
+Plan C is a “lottery ticket”: at 104, A and B both make money while C loses everything it put into options. It needs the stock above 106.6 to break even; at 115 it makes $5,034, more than three times what A makes.
+@@ 245842824a html
+None of the three plans is right or wrong; they express three different views. A bets “it will rise,” B bets “it will rise, but I want a floor under the downside,” and C bets “it will rise a lot, and within 30 days.” Before you place the order, ask yourself which one is yours. If you can't say how far it will rise, C shouldn't be your choice.
+@@ 5e1dbe9e2f html
+Right on direction, still losing: time and volatility
+@@ aaa819e85b html
+Plan C's loss in Case 1 came from “not rising enough.” Two other ways to lose are just as common.
+@@ 91f01d9627 html
+<strong>The rise comes too late.</strong> The stock is at $100 and you buy the 30-day 105 call (1.66). The stock goes nowhere for 30 days and the option expires worthless; on day 44, the stock reaches 110. Your view was right in the end, but the option no longer exists. Had you bought the 60-day 105 call instead, at <span class="num">3.09</span>, it would still be worth 1.66 on day 30 (an unrealized loss of 46%), and on day 44, with the stock at 110 and 16 days left, it would be worth <span class="num">6.04</span>, a return of <span class="num">+95%</span>. The extra 30 days, bought for 1.43 more, decided how this trade ended.
+@@ 653913a552 html
+<strong>Volatility drops.</strong> Before earnings, the market expects a big move and the 105 call's IV is bid up to 60%, for a price of <span class="num">4.93</span>. The day after earnings, the stock rises 4% to $104 as you expected, but IV falls back to 30%. The option reprices to <span class="num">3.20</span>, a loss of <span class="num">35%</span>. For this trade not to lose money, the stock would have to be above <span class="num">107.12</span> the next day, a rise of at least 7.1%.
+@@ 9e0b99f1b4 html
+Table 1-8 Value of the 105 call the day after earnings (29 days left)
+@@ f5d86acdac html
+Scenario
+@@ 32cf37f9ae html
+Stock price
+@@ a0fd5f7563 html
+Option value
+@@ 55e552a865 html
+Change vs. entry price 4.93
+@@ 25bf864631 html
+IV stays at 60%
+@@ 0797ce9a0f html
+IV falls to 30%
+@@ 4ff5a736d3 html
+IV falls; stock price needed to break even
+@@ 839ebafd75 html
+A buyer has to be right about four things at once: direction, size, timing and volatility. Getting any one of them wrong can lose money. The answer is to match the structure to the view: if you're unsure about timing, buy more time; if IV is high before an event, consider a spread so that the volatility effects on the two legs partly cancel (Chapters 7 and 10).
+@@ d54e62c5a7 html
+The “steady income” of selling puts
+@@ 1085128b3b html
+The stock is at $100. Each month you sell one 30-day 90 put, collecting <span class="num">0.40</span> at IV 30%, or $40 a month. According to Table 1-6, the probability of a profit at expiry each month is 89.8%.
+@@ 4a3daeb63a html
+Suppose the stock stays above 90 for the first 11 months and you steadily collect <span class="num">11 × $40 = $440</span>. In month 12, the company cuts its full-year guidance in its earnings report and the stock gaps down to $75 overnight. You are assigned and must buy 100 shares at 90; this trade loses <span class="num">(90 − 75 − 0.40) × 100 = $1,460</span>. The total for the year is <span class="num">−$1,020</span>. One loss takes 36.5 months of premium to earn back.
+@@ c4863b1198 html
+More striking is how the model sees this: under the lognormal assumption at IV 30%, the probability of falling below 75 within a month is only <span class="num">0.04%</span>. In reality, single-day gaps of more than 20% in individual stocks, driven by earnings, lawsuits, regulation or industry shocks, are not rare. The model's “average loss of 3.53” understates the real tail.
+@@ 10c383f6ee html
+The seller's win rate is real, but it is bought with tail risk. To evaluate a short position, don't look at the win rate; ask “how much will the worst one lose, and can my account take it?”
+@@ 60bfc19678 html
+Before selling a put, make sure you are willing and able to buy 100 shares at the strike. If the answer is no, add a long put at a lower strike to turn it into a spread with limited loss (Chapter 8).

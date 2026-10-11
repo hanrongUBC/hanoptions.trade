@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chapter 6 Volatility · US Options Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  .vixcalc .ctl input[type="number"] { width: 7em; }
+  .chart.short { margin-bottom: 4px; }
+</style>
+<link rel="alternate" hreflang="zh-CN" href="https://hanoptions.trade/options/ch06.html"><link rel="alternate" hreflang="en" href="https://hanoptions.trade/en/options/ch06.html">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap">
+<style id="en-overrides">
+html[lang="en"] { --font-display: "Source Serif 4", "Noto Serif SC", Georgia, serif; --font-body: "Source Sans 3", "Noto Sans SC", system-ui, sans-serif; }
+html[lang="en"] body { line-height: 1.7; }
+html[lang="en"] body * { letter-spacing: normal !important; }
+html[lang="en"] p, html[lang="en"] li, html[lang="en"] td, html[lang="en"] figcaption { hyphens: auto; -webkit-hyphens: auto; }
+html[lang="en"] p { text-wrap: pretty; }
+html[lang="en"] .toc a { grid-template-columns: 48px 1fr; }
+</style>
+</head>
+<body data-ch="6">
+<div class="topbar"><div class="topbar-inner"><div class="topbar-brand"><a class="site-home" href="/en/">hanoptions.trade</a><a class="brand" href="index.html">US Options <span>Course</span></a></div><div class="topbar-tools"><select id="ck-jump" aria-label="Jump to chapter"></select><a class="lang-switch" href="/options/ch06.html" hreflang="zh-CN" lang="zh-CN" data-lang="zh"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>中文</a></div></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">06</div>
+    <div class="eyebrow">US Options Course · Part 2 The core variables · Chapter 6</div>
+    <h1><span class="g">Volatility</span></h1>
+    <p class="deck">Of the six inputs to option pricing, only volatility has to be “guessed,” and an IV number on its own says almost nothing about whether an option is cheap or expensive. This chapter reads it against four reference points: realized volatility, its own history, other terms and other strikes. It then uses VIX to apply the same reading to the whole market.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="In this chapter">
+    <p class="toc-title">In this chapter</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>Opening: one 32%, three conclusions</span></a></li>
+      <li><a href="#s1"><span class="n">6.1</span><span>How to calculate realized volatility</span></a></li>
+      <li><a href="#s2"><span class="n">6.2</span><span>Implied vs. realized: expectation and outcome</span></a></li>
+      <li><a href="#s3"><span class="n">6.3</span><span>The volatility risk premium</span></a></li>
+      <li><a href="#s4"><span class="n">6.4</span><span>IV Rank and IV Percentile</span></a></li>
+      <li><a href="#s5"><span class="n">6.5</span><span>Term structure</span></a></li>
+      <li><a href="#s6"><span class="n">6.6</span><span>Skew and the volatility surface</span></a></li>
+      <li><a href="#s7"><span class="n">6.7</span><span>VIX and its products</span></a></li>
+      <li><a href="#s8"><span class="n">6.8</span><span>Event volatility</span></a></li>
+      <li><a href="#cases"><span class="n">Cases</span><span>Three cases</span></a></li>
+      <li><a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>In this chapter</summary>
+      <ol>
+        <li><a href="#open">Opening: one 32%, three conclusions</a></li>
+        <li><a href="#s1">6.1 How to calculate realized volatility</a></li>
+        <li><a href="#s2">6.2 Implied vs. realized: expectation and outcome</a></li>
+        <li><a href="#s3">6.3 The volatility risk premium</a></li>
+        <li><a href="#s4">6.4 IV Rank and IV Percentile</a></li>
+        <li><a href="#s5">6.5 Term structure</a></li>
+        <li><a href="#s6">6.6 Skew and the volatility surface</a></li>
+        <li><a href="#s7">6.7 VIX and its products</a></li>
+        <li><a href="#s8">6.8 Event volatility</a></li>
+        <li><a href="#cases">Three cases</a></li>
+        <li><a href="#tools">Checklist and self-test</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>After this chapter you can</h4>
+        <ul>
+          <li>Calculate realized volatility from closing prices and convert it between days, weeks, months and years</li>
+          <li>Calculate IV Rank and IV Percentile, and explain when the two give opposite signals</li>
+          <li>Use VIX to work out the S&amp;P 500’s one-month, one-standard-deviation range, and explain why long VIX products lose value over time</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Prerequisites</h4>
+        <ul>
+          <li>Chapter 3: the six inputs and the intuition behind Black-Scholes</li>
+          <li>Chapter 4: the Gamma–Theta trade-off</li>
+          <li>Chapter 5: Vega and IV crush</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Conventions</h4>
+        <ul>
+          <li>Option examples use Black-Scholes with a 4% interest rate, no dividends and a 365-day year</li>
+          <li>Realized volatility is measured in trading days, 252 to a year</li>
+          <li>IVs, VIX futures quotes and price series in the text are hypothetical or simulated</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">Opening</span>One 32%, three conclusions</h2>
+      <p class="lead">Stock X trades at $100, and the implied volatility (IV) of its 30-day ATM options is 32%. The ATM straddle, buying the 100 call and the 100 put together, costs $7.31. Three students look at the same quote and reach three conclusions.</p>
+      <ul>
+        <li><strong>A</strong>: over the past 20 trading days, X’s realized volatility was only 22%. Priced at 22%, the same straddle is worth only <span class="num">$5.03</span>. The options are <span class="num">45%</span> too expensive, so sell.</li>
+        <li><strong>B</strong>: over the past year, X’s IV ranged between 25% and 60%. At 32% it sits only <span class="num">20%</span> of the way up that range, so the options are cheap. Buy.</li>
+        <li><strong>C</strong>: X reports earnings in 12 days. Without earnings, 30-day IV would be about 26%. The extra amounts to the market pricing a one-standard-deviation move of about <span class="num">±5.3%</span> on earnings day. The real question is: how big do you think this earnings move will be?</li>
+      </ul>
+      <div class="tbl">
+        <table>
+          <caption>Table 6-0 Three readings of the same quote</caption>
+          <thead><tr><th>Reading</th><th>Compared with</th><th>Conclusion</th><th>What it misses</th></tr></thead>
+          <tbody>
+            <tr><td>A: vs. realized</td><td>Realized vol of 22% over the past 20 days</td><td>Expensive, sell</td><td>Earnings haven’t happened yet</td></tr>
+            <tr><td>B: vs. history</td><td>One-year IV range 25%–60%</td><td>Cheap, buy</td><td>One spike may have stretched the range</td></tr>
+            <tr class="hl"><td>C: strip out the event</td><td>IV without the event about 26%</td><td>Depends on your view of earnings</td><td>Needs the stock’s actual moves on past earnings</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>All three calculations are correct, yet the conclusions contradict each other. That is because an IV number by itself doesn’t tell you cheap or expensive; it only means something once you place it on a set of axes. This chapter builds those axes in turn: against realized volatility (6.1–6.3), against its own history (6.4), against other terms (6.5, 6.8) and against other strikes (6.6). Finally, it uses VIX (6.7) to apply these readings to the whole market.</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">6.1</span>How to calculate realized volatility</h2>
+      <p>Realized volatility (also called actual or historical volatility, written RV) is the standard deviation of log returns, scaled up to a year by the square root of time.</p>
+      <div class="formula">
+        <div class="eq"><span class="v">r<sub>t</sub></span> <span class="up">=</span> ln<span class="up">(</span><span class="v">S<sub>t</sub></span> <span class="up">/</span> <span class="v">S</span><sub>t−1</sub><span class="up">), </span> σ<sub>annual</sub> <span class="up">=</span> σ<sub>daily</sub> <span class="up">×</span> √252</div>
+        <p class="where">σ<sub>daily</sub> is the sample standard deviation of daily log returns over a period (dividing by n − 1). 252 is the number of trading days in a year.</p>
+      </div>
+      <h3>Working it by hand</h3>
+      <p>Six consecutive closing prices: 100, 101.5, 100.8, 102.2, 101.0, 101.9. The five log returns are <span class="num">+1.489%</span>, <span class="num">−0.692%</span>, <span class="num">+1.379%</span>, <span class="num">−1.181%</span> and <span class="num">+0.887%</span>, averaging <span class="num">+0.376%</span>. The sample standard deviation is <span class="num">1.232%</span>; multiply by √252 ≈ <span class="num">15.87</span> to get an annualized realized volatility of <span class="num">19.56%</span>.</p>
+      <p>Many platforms and traders assume a mean of zero and use √(Σ<span class="v">r</span>²/<span class="v">n</span>) directly. For this data that gives a daily volatility of <span class="num">1.164%</span>, or <span class="num">18.49%</span> annualized. Over a short window the mean is mostly noise, so assuming zero is actually more stable; the two methods diverge noticeably only when there is a strong trend. When comparing RV from different sources, first check which method each one uses.</p>
+
+      <h3>Why multiply by the square root</h3>
+      <p>If daily returns are independent, the variance of the cumulative return over <span class="v">n</span> days is <span class="v">n</span> times the one-day variance, and the standard deviation is √<span class="v">n</span> times. So to annualize you multiply by √252, for a week by √5, and for a month (about 21 trading days) by √21. The assumption breaks down in two cases: when prices show a clear trend or mean reversion (returns are correlated from one day to the next), and when there are gaps (one day’s variance far exceeds the others’). When it breaks down, square-root scaling understates or overstates volatility over longer periods.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 6-1 Converting annualized volatility into a one-standard-deviation move for each period</caption>
+          <thead><tr><th>Annualized volatility</th><th>Per trading day (÷15.87)</th><th>Per week (÷7.21)</th><th>Per month (÷3.46)</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">10%</td><td class="mono">0.63%</td><td class="mono">1.39%</td><td class="mono">2.89%</td></tr>
+            <tr class="hl"><td class="mono">16%</td><td class="mono">1.01%</td><td class="mono">2.22%</td><td class="mono">4.62%</td></tr>
+            <tr><td class="mono">20%</td><td class="mono">1.26%</td><td class="mono">2.77%</td><td class="mono">5.77%</td></tr>
+            <tr><td class="mono">30%</td><td class="mono">1.89%</td><td class="mono">4.16%</td><td class="mono">8.66%</td></tr>
+            <tr><td class="mono">50%</td><td class="mono">3.15%</td><td class="mono">6.93%</td><td class="mono">14.43%</td></tr>
+            <tr><td class="mono">80%</td><td class="mono">5.04%</td><td class="mono">11.09%</td><td class="mono">23.09%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The “rule of 16” traders talk about comes from the second row: 16% annualized is about 1% a day. Conversely, a stock that typically moves about 2% a day has an annualized volatility of around 32%.</p>
+      <div class="note">
+        <span class="tag">Trading days vs. calendar days</span>
+        <p>IV in Black-Scholes counts time in calendar days (<span class="v">T</span> = days / 365), while RV is annualized over trading days (× √252). Both are “annualized” numbers and can be compared directly. You only need to tell them apart when converting to “per day”: per trading day, use ÷√252; per calendar day, ÷√365. There is almost no price movement over weekends, so daily volatility measured in trading days is closer to what you see on your screen. This is also where Chapter 4’s “divide by 16” and “divide by 19” come from.</p>
+      </div>
+
+      <h3>Window length: speed vs. noise</h3>
+      <p>RV computed over 10 days reacts quickly but has few data points and a lot of noise; RV over 60 days is stable but always a step behind. You can estimate how big the noise is: for normally distributed data, the error of the sample standard deviation is about σ / √(2<span class="v">n</span>).</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 6-2 One standard error of the estimate for different windows, when true volatility is 20%</caption>
+          <thead><tr><th>Window (trading days)</th><th>10</th><th>20</th><th>60</th><th>120</th><th>252</th></tr></thead>
+          <tbody>
+            <tr><td>Error factor 1/√(2n)</td><td class="mono">0.224</td><td class="mono">0.158</td><td class="mono">0.091</td><td class="mono">0.065</td><td class="mono">0.045</td></tr>
+            <tr><td>±1 standard error of the estimate</td><td class="mono">±4.5 points</td><td class="mono">±3.2 points</td><td class="mono">±1.8 points</td><td class="mono">±1.3 points</td><td class="mono">±0.9 points</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>In other words, for a stock whose true volatility is 20%, a 20-day RV of 17% or 23% is perfectly normal. Seeing IV 3 points above 20-day RV is not enough to say the options are expensive.</p>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">The shorter the window, the faster RV reacts, and the noisier it is</span><span class="fig-no">Figure 6-1 · Simulated prices, interactive</span></div>
+        <div class="controls">
+          <label class="ctl" for="f1-w">Window <input id="f1-w" type="range" min="5" max="60" value="20"> <output id="f1-w-o">20 days</output></label>
+        </div>
+        <svg class="chart short" id="f1-px" viewBox="0 0 680 190" role="img" aria-label="Simulated stock price path"></svg>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 280" role="img" aria-label="Rolling realized volatility vs. true volatility"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>Rolling RV (annualized)</span><span><i class="dash" style="border-color: var(--muted)"></i>True volatility set in the simulation</span><span><i style="border-color: var(--tint-gamma); border-top-width: 8px"></i>Shock period (days 121–150)</span></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small>RV on the last day</small></div>
+          <div><b id="f1-r2">—</b><small id="f1-r2s">Peak RV in the period</small></div>
+          <div><b id="f1-r3">—</b><small>Days after the shock starts until RV tops 30%</small></div>
+          <div><b id="f1-r4">—</b><small>Days after the shock ends until RV falls below 30%</small></div>
+        </div>
+        <figcaption>These prices are simulated with a fixed random seed: true volatility is 18% for the first 120 days, rises to 45% for 30 days along with a decline, then returns to 24%. Drag the window to 10 days: during the calm stretch RV jumps around between 9.0% and 26.5%, and it breaks above 30% just 8 days after the shock begins. Drag it to 60 days: the calm stretch is steady at 16.7% to 19.8%, but the shock takes 18 days to show up and another 45 days after it ends to fade, and RV peaks at only 37.1%.</figcaption>
+      </figure>
+      <p>In practice people often watch both a 20-day and a 60-day window: the 20-day tells you what has been happening lately, the 60-day what is normal. IV looks ahead over the next 30 calendar days, about 21 trading days, so 20-day RV is the most natural comparison. But remember: RV is the past and IV is the future. Comparing the past with the future carries error in itself.</p>
+      <p>Besides closing prices, there are estimators that use each day’s high and low (such as Parkinson and Garman-Klass), with smaller error for the same sample length. Their drawback is sensitivity to data quality: a single bad intraday print can distort the result. When you are starting out, the closing-price method is enough.</p>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">6.2</span>Implied vs. realized: expectation and outcome</h2>
+      <p>Implied volatility is the price you lock in when you buy; realized volatility is the outcome revealed while you hold. For a Delta-hedged option, P&amp;L depends almost entirely on the difference between the two.</p>
+      <p>Take the conclusion from Chapter 4 one step further. Buy an option and hedge its Delta every day, and one day’s P&amp;L is the Gamma gain minus Theta:</p>
+      <div class="formula">
+        <div class="eq">Daily P&amp;L <span class="up">≈</span> <span class="frac"><span>1</span><span>2</span></span> <span class="gm">Γ</span><span class="v">S</span><sup>2</sup> <span class="up">[ (</span>Δ<span class="v">S</span><span class="up">/</span><span class="v">S</span><span class="up">)</span><sup>2</sup> <span class="up">−</span> σ<sub>I</sub><sup>2</sup>Δ<span class="v">t</span> <span class="up">]</span></div>
+        <p class="where">The first term in the brackets is the square of the day’s actual price move; the second is the squared move “prepaid” in IV. If the stock moves more than IV expected, you make money that day; if it moves less, you lose.</p>
+      </div>
+      <p>Add up every day of the holding period, and the sum of (Δ<span class="v">S</span>/<span class="v">S</span>)² is σ<sub>R</sub>²<span class="v">T</span>. Then, using a Black-Scholes identity, Vega = Γ<span class="v">S</span>²σ<span class="v">T</span>, you can swap Gamma for Vega:</p>
+      <div class="formula">
+        <div class="eq">Total P&amp;L <span class="up">≈</span> Vega <span class="up">×</span> <span class="frac"><span>σ<sub>R</sub><sup>2</sup> <span class="up">−</span> σ<sub>I</sub><sup>2</sup></span><span>2σ<sub>I</sub></span></span> <span class="up">≈</span> Vega <span class="up">× (</span>σ<sub>R</sub> <span class="up">−</span> σ<sub>I</sub><span class="up">)</span></div>
+        <p class="where">σ<sub>R</sub> is realized volatility over the holding period and σ<sub>I</sub> is implied volatility at purchase; Vega is per 1 vol point, and the difference is in points. When the two are close, the first form is approximately equal to the second. In simulations of an ATM straddle, the second form is actually more accurate, because Gamma changes with price and time and averages out to something close to linear.</p>
+      </div>
+      <p>In one sentence: a hedged option position is a contract struck at IV and settled at RV, with each vol point worth one Vega.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 6-3 P&amp;L at expiration on 10 long 30-day ATM straddles (stock 100, IV 30%), hedged daily</caption>
+          <thead><tr><th>Realized vol over holding period</th><th>Formula estimate (per share)</th><th>Total, 10 contracts</th><th>Simulated mean (per share)</th><th>Simulated 5%–95% range</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">20%</td><td class="mono neg">−2.28</td><td class="mono neg">−$2,280</td><td class="mono neg">−2.29</td><td class="mono">−4.05 to −0.81</td></tr>
+            <tr><td class="mono">25%</td><td class="mono neg">−1.14</td><td class="mono neg">−$1,140</td><td></td><td></td></tr>
+            <tr class="hl"><td class="mono">30%</td><td class="mono">0.00</td><td class="mono">$0</td><td></td><td></td></tr>
+            <tr><td class="mono">35%</td><td class="mono pos">+1.14</td><td class="mono pos">+$1,140</td><td></td><td></td></tr>
+            <tr><td class="mono">40%</td><td class="mono pos">+2.28</td><td class="mono pos">+$2,280</td><td class="mono pos">+2.28</td><td class="mono">+0.11 to +5.64</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The straddle costs <span class="num">6.854</span>, with Vega of <span class="num">0.228</span> per point (both legs combined). The simulation used 20,000 price paths, hedging once a day at the close. The averages almost match the formula, but individual paths are widely spread: with the same 20% realized volatility, an unlucky path loses more than $4 per share and a lucky one only $0.8. The reason is that Gamma is concentrated near the money: if the big moves happen while the stock is far from the strike, you earn less from them.</p>
+      <div class="note gam">
+        <span class="tag">Where buyers and sellers fight it out</span>
+        <p>The buyer bets that “realized will move more than implied”; the seller bets the opposite. An unhedged buyer is also betting on direction, but the underlying contest over volatility goes on regardless: even if you get the direction right, if realized volatility over the period is far below the IV you paid, Theta will eat a big chunk of what you make.</p>
+      </div>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">6.3</span>The volatility risk premium</h2>
+      <p>Over the long run, the implied volatility of index options is higher than the realized volatility that follows. This gap is called the volatility risk premium (VRP). It is the seller’s source of income and the seller’s reward for bearing tail risk.</p>
+      <p>Take the S&amp;P 500: on long-run average, VIX runs a few percentage points above the realized volatility of the following 30 days. That is only an average: in the month a crisis breaks out, realized volatility can far exceed the implied volatility beforehand.</p>
+      <h3>Where the premium comes from</h3>
+      <ul>
+        <li><strong>Demand for insurance</strong>: pension funds, mutual funds and other institutions hold large amounts of stock and keep buying index puts to protect their portfolios. This demand isn’t very sensitive to price.</li>
+        <li><strong>Crash aversion</strong>: people will pay more than the expected loss to avoid a big loss, just as they do with home insurance.</li>
+        <li><strong>Sellers need capital</strong>: whoever sells options ties up margin and bears occasional huge losses. Without enough compensation, nobody would take that side.</li>
+      </ul>
+      <h3>Sellers are like insurance companies</h3>
+      <p>An insurer collects premiums above its average claims, so it makes money over the long run. But claims come in clusters: one hurricane can wipe out several years of profit. Selling options is the same. Here is a calculation with a hypothetical model: each month you sell a 30-day ATM straddle on an index at IV 18%, and each month’s realized volatility falls into one of four cases.</p>
+      <p>Method: if realized volatility over the holding period is σ<sub>R</sub>, the average of |<span class="v">S<sub>T</sub></span> − <span class="v">K</span>| at expiration is about the price of a straddle priced at σ<sub>R</sub>. So the seller’s average P&amp;L is about “the straddle priced at IV” minus “the straddle priced at RV.”</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 6-4 Selling a 30-day ATM straddle (index 100, IV 18%, premium collected 4.12): average P&amp;L in four kinds of month (hypothetical probabilities)</caption>
+          <thead><tr><th>Type of month</th><th>Assumed probability</th><th>Realized volatility</th><th>Straddle priced at RV</th><th>Seller P&amp;L per share</th><th>Contribution to expectancy</th></tr></thead>
+          <tbody>
+            <tr><td>Calm</td><td class="mono">70%</td><td class="mono">11%</td><td class="mono">2.53</td><td class="mono pos">+1.59</td><td class="mono pos">+1.12</td></tr>
+            <tr><td>Normal</td><td class="mono">20%</td><td class="mono">16%</td><td class="mono">3.66</td><td class="mono pos">+0.46</td><td class="mono pos">+0.09</td></tr>
+            <tr><td>Turbulent</td><td class="mono">7%</td><td class="mono">26%</td><td class="mono">5.94</td><td class="mono neg">−1.82</td><td class="mono neg">−0.13</td></tr>
+            <tr><td>Crisis</td><td class="mono">3%</td><td class="mono">55%</td><td class="mono">12.55</td><td class="mono neg">−8.43</td><td class="mono neg">−0.25</td></tr>
+            <tr class="hl"><td>Total</td><td class="mono">100%</td><td class="mono">Average 14.4%</td><td></td><td></td><td class="mono pos">+0.83</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Average realized volatility is <span class="num">14.4%</span>, 3.6 points below IV, and the seller makes <span class="num">0.83</span> a month on average, about a fifth of the premium. But a single crisis month loses <span class="num">8.43</span>, the profit of <span class="num">5.3</span> calm months. In reality, crisis-month losses are often bigger still, because of price gaps, hedges that can’t be placed in time and margin calls, none of which are in the table above.</p>
+      <div class="note warn">
+        <span class="tag">When it doesn’t hold</span>
+        <ul>
+          <li><strong>Single stocks</strong>: the VRP is smaller than for indexes and less stable. Single-stock options don’t have the heavy protection demand that index options do, and sometimes IV ends up below the RV that follows.</li>
+          <li><strong>Around events</strong>: IV before earnings is sometimes priced too low, and the actual move after the event exceeds the implied one (Section 6.8).</li>
+          <li><strong>In the middle of a crisis</strong>: IV is already high, but realized volatility can keep climbing. Selling “expensive” options then is like selling insurance as the hurricane makes landfall.</li>
+        </ul>
+      </div>
+      <p>For buyers, the VRP means “on average, you are paying up.” To win, buy when IV is low relative to its own history (Section 6.4), or when you have reason to believe realized volatility will clearly exceed implied. Chapter 7 turns this into concrete rules for buyers; Chapter 8 covers how sellers control position size to survive crisis months.</p>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">6.4</span>IV Rank and IV Percentile</h2>
+      <p>Whether IV is high or low in absolute terms means little; what matters is where it sits in its own history. IV Rank measures where the current value sits between the one-year high and low; IV Percentile measures how many days in the past year were lower than now.</p>
+      <p>“Normal” volatility varies widely between stocks. IV of 60% may be the calmest a biotech stock gets all year, while 25% may already be a rare high for a utility. Comparing 60% with 25% directly tells you nothing; you have to compare each stock with itself.</p>
+      <div class="formula">
+        <div class="eq">IV Rank <span class="up">=</span> <span class="frac"><span>Current IV <span class="up">−</span> 1-year low</span><span>1-year high <span class="up">−</span> 1-year low</span></span> <span class="up">× 100</span></div>
+        <div class="eq" style="margin-top: 10px">IV Percentile <span class="up">=</span> <span class="frac"><span>Days in the past year with IV below current</span><span>Total days</span></span> <span class="up">× 100</span></div>
+        <p class="where">“One year” usually means the past 252 trading days; IV usually means 30-day ATM IV or the platform’s own IV index. Definitions differ across platforms, so check before comparing.</p>
+      </div>
+      <h3>Why the same IV gives two very different numbers</h3>
+      <p>Rank uses only two points: the high and the low. A single extreme spike in the past year stretches the denominator, and Rank looks low for a long time afterward. Percentile uses every day’s data; a spike takes up only a few days, so its effect is small.</p>
+      <p>The chart below shows a simulated year of IV: mostly between 20% and 30%, it spikes to <span class="num">62.5%</span> on day 59 after a sharp sell-off and falls back a few weeks later. The one-year low is <span class="num">19.2%</span>. With current IV at 30%:</p>
+      <ul>
+        <li>IV Rank = (30 − 19.2) / (62.5 − 19.2) × 100 = <span class="num">24.9</span>, which looks low</li>
+        <li>IV Percentile: <span class="num">208</span> of 252 days were below 30%, giving <span class="num">82.5</span>, which is actually high</li>
+      </ul>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">One spike keeps IV Rank low for a long time; Percentile is unaffected</span><span class="fig-no">Figure 6-2 · One simulated year of IV, interactive</span></div>
+        <div class="controls">
+          <label class="ctl" for="f2-iv">Current IV <input id="f2-iv" type="range" min="15" max="65" step="0.5" value="30"> <output id="f2-iv-o">30.0%</output></label>
+        </div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 300" role="img" aria-label="One year of IV and the current IV"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>30-day IV over the past year</span><span><i style="border-color: var(--gamma)"></i>Current IV</span></div>
+        <div class="readout">
+          <div><b id="f2-r1">—</b><small>IV Rank</small></div>
+          <div><b id="f2-r2">—</b><small>IV Percentile</small></div>
+          <div><b id="f2-r3">—</b><small>1-year low / high</small></div>
+          <div><b id="f2-r4">—</b><small>Days with IV above current</small></div>
+        </div>
+        <figcaption>Drag to 30%: Rank is only 24.9 but Percentile is 82.5, so the two indicators give opposite signals. Drag to 40%: Rank is 48.0, which looks middling; Percentile is 96.8, with only 8 days in the year higher. Only at 24%, with Rank 11.1 and Percentile 26.2, do both land low together.</figcaption>
+      </figure>
+
+      <h3>How to use it</h3>
+      <div class="tbl">
+        <table>
+          <caption>Table 6-5 Reading IV Rank and IV Percentile together</caption>
+          <thead><tr><th>Situation</th><th>Meaning</th><th>Leaning</th></tr></thead>
+          <tbody>
+            <tr><td>Both high (&gt; 50)</td><td>IV is expensive relative to its own history</td><td>Favors sellers, with VRP on top</td></tr>
+            <tr><td>Both low (&lt; 20)</td><td>IV is cheap relative to its own history</td><td>A buyer’s friend (Chapter 7)</td></tr>
+            <tr class="hl"><td>Low Rank, high Percentile</td><td>There was a spike in the past year</td><td>Go by Percentile and the RV comparison</td></tr>
+            <tr><td>High Rank, middling Percentile</td><td>IV was flat all year, with the high and low close together</td><td>Rank is magnified; a few points move it a lot</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>These indicators are useful because IV tends to mean-revert: high IV usually falls back toward normal, and low IV drifts back up. But mean reversion is only a tendency. When the market shifts into a new regime (say, a bear market lasting months), high IV can go higher and stay there for a long time.</p>
+      <div class="note warn">
+        <span class="tag">Three things to check before using them</span>
+        <ul>
+          <li><strong>Earnings spikes</strong>: a stock’s IV jumps before every quarterly report, pulling up the one-year high. When comparing, it is best to use expirations that don’t include earnings, or to exclude the days around earnings.</li>
+          <li><strong>Lookback window</strong>: Rank computed over 252 days and over 120 days can differ by dozens of points. Once a spike rolls out of the window, the Rank for the same IV can suddenly jump (Case 2).</li>
+          <li><strong>Structural change</strong>: if the company is mired in takeover rumors, has just gone public or has completely changed its business, the past year’s IV is no longer a meaningful reference.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">6.5</span>Term structure</h2>
+      <p>Connect the ATM IVs of one underlying across different expirations and you get the term structure. In calm markets it slopes upward, which is called contango; in a panic the near end sits above the far end, which is called backwardation.</p>
+      <p>The shape comes from mean reversion. Volatility has a long-run normal level. When current volatility is below normal, the market expects it to drift back up; the longer the term, the more of that “recovery” it includes, so the curve slopes up. When current volatility is far above normal, the market expects it to calm down gradually, so the near end is high, the far end is low, and the curve is in backwardation.</p>
+      <h3>Forward volatility: reading “later” from the curve</h3>
+      <p>Variance adds over time. 30-day IV covers days 0 to 30 and 90-day IV covers days 0 to 90; take one from the other and you get the market’s price for days 30 to 90:</p>
+      <div class="formula">
+        <div class="eq">σ<sub>fwd</sub> <span class="up">=</span> √<span class="up">[ (</span>σ<sub>2</sub><sup>2</sup><span class="v">T</span><sub>2</sub> <span class="up">−</span> σ<sub>1</sub><sup>2</sup><span class="v">T</span><sub>1</sub><span class="up">) / (</span><span class="v">T</span><sub>2</sub> <span class="up">−</span> <span class="v">T</span><sub>1</sub><span class="up">) ]</span></div>
+        <p class="where">σ<sub>1</sub> and σ<sub>2</sub> are the IVs for expirations <span class="v">T</span><sub>1</sub> &lt; <span class="v">T</span><sub>2</sub>. The quantity in brackets must be positive; otherwise the two quotes contradict each other.</p>
+      </div>
+      <ul>
+        <li>Contango: 30-day 15%, 90-day 18%. Forward = √[(0.18² × 90 − 0.15² × 30) / 60] = <span class="num">19.3%</span>. The market thinks things will be more turbulent a month from now than they are today.</li>
+        <li>Backwardation: 30-day 35%, 90-day 28%. Forward = √[(0.28² × 90 − 0.35² × 30) / 60] = <span class="num">23.7%</span>. The market thinks things are dangerous right now but will be noticeably calmer in a month.</li>
+      </ul>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">Three shapes of the term structure</span><span class="fig-no">Figure 6-3 · Hypothetical ATM IV</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Term structure shape">
+            <button type="button" data-mode="calm" aria-pressed="true">Contango: calm</button>
+            <button type="button" data-mode="stress" aria-pressed="false">Backwardation: fear</button>
+            <button type="button" data-mode="earn" aria-pressed="false">Stock: earnings hump</button>
+          </div>
+        </div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 300" role="img" aria-label="ATM IV across expirations"></svg>
+        <div class="legend" id="f3-legend"></div>
+        <div class="readout">
+          <div><b id="f3-r1">—</b><small>30-day IV</small></div>
+          <div><b id="f3-r2">—</b><small>90-day IV</small></div>
+          <div><b id="f3-r3">—</b><small>30-day / 90-day</small></div>
+          <div><b id="f3-r4">—</b><small>Forward volatility, days 30–90</small></div>
+        </div>
+        <figcaption>In contango, the 30-day / 90-day ratio is 0.86, below 1. Switch to backwardation and the ratio rises to 1.22, with near-term IV more than 6 points above the far end. Switch to the earnings hump: earnings fall on day 10, so the 7-day option excludes earnings and its IV is only 30%; the 14-day option includes earnings and jumps to 46.7%; further out, the earnings day is spread ever more thinly. The computed forward volatility for days 30–90 is 29.9%, almost exactly the 30% base volatility without the event.</figcaption>
+      </figure>
+
+      <h3>How to read it and use it</h3>
+      <ul>
+        <li><strong>Indexes</strong>: the usual gauge is the ratio of VIX to VIX3M (the equivalent 3-month index). A ratio below 1 is normal; above 1 means near-term fear has overtaken the far end.</li>
+        <li><strong>Single stocks</strong>: look for humps first. When one expiration’s IV suddenly sits above the neighboring months, there is usually an earnings report or another known event in that window.</li>
+        <li><strong>The near end moves more</strong>: in a shock, 30-day IV might rise 10 points while 1-year IV rises only 3. So two positions with “the same Vega” but different expirations don’t actually carry the same IV risk.</li>
+        <li><strong>Strategy implications</strong>: in contango, a calendar spread that sells the front month and buys a back month earns the roll down the curve; in backwardation, front-month options are relatively expensive, so buyers are better off expressing views with back months. Chapter 9 goes into this.</li>
+      </ul>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">6.6</span>Skew and the volatility surface</h2>
+      <p>For the same expiration, IV differs across strikes. For stock indexes, OTM put IV is systematically higher than OTM call IV. This is called put skew.</p>
+      <p>Black-Scholes assumes one volatility for all strikes. If the market really priced options that way, plotting IV by strike would give a horizontal line. In practice, a stock index gives a line sloping down from left to right, most single stocks give a shallow smile, and story stocks sometimes curl up even higher on the right.</p>
+
+      <figure class="plate" id="fig4">
+        <div class="fig-head"><span class="fig-title">Skew makes OTM puts several times pricier than the “flat assumption”</span><span class="fig-no">Figure 6-4 · 30-day expiry, underlying 100, hypothetical curves</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Skew shape">
+            <button type="button" data-mode="index" aria-pressed="true">Stock index</button>
+            <button type="button" data-mode="stock" aria-pressed="false">Typical stock</button>
+            <button type="button" data-mode="meme" aria-pressed="false">Story stock</button>
+          </div>
+          <label class="ctl" for="f4-k">Strike <input id="f4-k" type="range" min="80" max="120" step="1" value="90"> <output id="f4-k-o">90</output></label>
+        </div>
+        <svg class="chart" id="f4-svg" viewBox="0 0 680 300" role="img" aria-label="Implied volatility across strikes"></svg>
+        <div class="legend"><span><i style="border-color: var(--gamma)"></i>IV by strike</span><span><i class="dash" style="border-color: var(--muted)"></i>Flat assumption: all at ATM IV</span></div>
+        <div class="readout">
+          <div><b id="f4-r1">—</b><small>IV at this strike</small></div>
+          <div><b id="f4-r2">—</b><small id="f4-r2s">Price on the curve</small></div>
+          <div><b id="f4-r3">—</b><small>Price at ATM IV</small></div>
+          <div><b id="f4-r5">—</b><small>Curve price ÷ flat price</small></div>
+          <div><b id="f4-r4">—</b><small>25 Delta risk reversal</small></div>
+        </div>
+        <figcaption>In index mode, drag the strike to 90: IV is 25.2%, 10 points above ATM, and this put is worth 0.197 on the curve but only 0.008 under the flat assumption, more than twenty times as much. Drag to 105: call IV is only 12.2%, and the price is less than half the flat-assumption value. Switch to story stock and the right side of the curve curls up, turning the risk reversal positive at +10.2 points: the market is more afraid of missing a surge.</figcaption>
+      </figure>
+
+      <h3>Why stock indexes have put skew</h3>
+      <ul>
+        <li><strong>Memory of the crash</strong>: after the stock market crash of October 1987, put skew in index options became persistent and pronounced. The left tail of real returns is much fatter than a normal distribution’s, and the market priced that straight in.</li>
+        <li><strong>Demand for protection</strong>: institutions keep buying OTM index puts to insure their portfolios, and the market makers who sell to them demand a higher price.</li>
+        <li><strong>Volatility rises in a sell-off</strong>: when stocks fall, corporate leverage rises and fear spreads, so volatility tends to rise at the same time. In a decline a put gains from both the direction and the rise in IV, so naturally it is worth more.</li>
+        <li><strong>Supply of calls</strong>: large covered-call programs sell OTM calls on indexes and single stocks year-round, pushing down IV on the call side.</li>
+      </ul>
+      <p>Single-stock skew is usually flatter than index skew, because a single stock can crash but can also surge on a takeover, new drug data or an earnings beat. For story stocks and stocks with a big retail following, demand for OTM calls is strong, so the curve curls up on the right, forming call skew.</p>
+
+      <h3>How to measure skew</h3>
+      <p>The most common measure is the <strong>25 Delta risk reversal</strong>: the IV of the 25 Delta call minus the IV of the 25 Delta put. The more negative it is, the steeper the put skew. The three hypothetical curves above come out at <span class="num">−4.1</span>, <span class="num">−1.7</span> and <span class="num">+10.2</span> points. Another intuitive measure is the IV difference between the 90% strike and the 110% strike. Like IV, skew only means something when compared with its own history.</p>
+
+      <h3>What skew means for trading</h3>
+      <ul>
+        <li><strong>OTM index puts are expensive to buy</strong>: for the 90 put in the chart above, most of the price you pay is skew premium.</li>
+        <li><strong>A spread lets you “sell back” skew</strong>: buy the 95 put (0.457) and sell the 90 put (0.197), and the short leg recovers <span class="num">43%</span> of the cost. If the curve were flat, the 90 put would be worth only 0.008 and recover just <span class="num">3.7%</span>. Put spreads are especially good value when skew is steep.</li>
+        <li><strong>Selling OTM puts collects skew premium</strong>: it pays off over the long run, at the cost of taking the first hit in a crash.</li>
+      </ul>
+
+      <h3>The volatility surface</h3>
+      <p>Put term structure (looking across expirations) and skew (looking across strikes) together and you get a volatility surface: one IV for every strike and every expiration.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 6-6 A hypothetical stock-index volatility surface (underlying 100, in %)</caption>
+          <thead><tr><th>Expiry \ strike</th><th>80</th><th>90</th><th>95</th><th>100</th><th>105</th><th>110</th><th>90 minus 110</th></tr></thead>
+          <tbody>
+            <tr><td>30 days</td><td class="mono">43.1</td><td class="mono">25.2</td><td class="mono">19.2</td><td class="mono">15.0</td><td class="mono">12.2</td><td class="mono">10.6</td><td class="mono">14.6</td></tr>
+            <tr><td>90 days</td><td class="mono">33.0</td><td class="mono">22.7</td><td class="mono">19.3</td><td class="mono">16.8</td><td class="mono">15.2</td><td class="mono">14.3</td><td class="mono">8.4</td></tr>
+            <tr><td>180 days</td><td class="mono">29.5</td><td class="mono">22.1</td><td class="mono">19.7</td><td class="mono">18.0</td><td class="mono">16.8</td><td class="mono">16.2</td><td class="mono">5.9</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>You can read this table in two directions. Down the ATM column, 15.0, 16.8, 18.0 is a term structure in contango. Across the rows, skew is steepest in the front month, where 90 and 110 differ by 14.6 points; at 180 days the gap is only 5.9 points. The reason is that over a short horizon it takes a crash to get the price down to 90, while over a long horizon the stock has many more paths to every price level, so the differences between strikes even out.</p>
+      <p>The surface moves as a whole. When an index falls, the entire surface usually shifts up, the near end most of all. If the index drops from 100 to 95, the old 95-strike IV (19.2%) becomes the IV near the new at-the-money level, and the IV of the ATM option you hold “slides” up the skew. That is why ATM IV almost always rises when an index falls.</p>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">6.7</span>VIX and its products</h2>
+      <p>VIX is the implied volatility over the next 30 days, calculated from the prices of a basket of S&amp;P 500 index options and expressed as an annualized percentage.</p>
+      <p>It is calculated differently from a single option’s IV. Cboe takes two sets of SPX options expiring on either side of 30 days, weights the prices of a large number of OTM calls and OTM puts by strike (inversely to the square of the strike) and sums them into a variance, interpolates to exactly 30 days, takes the square root and multiplies by 100. Because it uses many OTM puts, VIX includes skew and usually sits slightly above SPX ATM IV.</p>
+      <h3>VIX / √12: the one-month expected move</h3>
+      <p>To convert annualized volatility σ to <span class="v">T</span> years, multiply by √<span class="v">T</span>. 30 days is about 1/12 of a year, so:</p>
+      <div class="formula">
+        <div class="eq">1 standard deviation over one month <span class="up">≈</span> <span class="frac"><span>VIX</span><span>√12</span></span> <span class="up">=</span> <span class="frac"><span>VIX</span><span>3.46</span></span> <span class="up">(%)</span></div>
+        <p class="where">Calculated exactly in calendar days, it is √(30/365) = 0.2867, against √(1/12) = 0.2887, less than 1% apart, so 3.46 is fine for mental math. Likewise, per week ÷ √52 ≈ 7.21, and per trading day ÷ √252 ≈ 15.87.</p>
+      </div>
+      <p>Example: VIX is 16, and assume the S&amp;P 500 is at 7,800. One standard deviation over a month is 16 / 3.46 = <span class="num">4.62%</span>, about <span class="num">±360</span> points, so the range is roughly 7,440 to 8,160. If returns were normally distributed, the index would have about a 68% chance of ending the month inside this range, and about a 95% chance of ending within ±2 standard deviations (±9.2%). One standard deviation per day is 16 / 15.87 ≈ <span class="num">1.01%</span>, about 79 points.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 6-7 VIX and the S&amp;P 500’s expected move (index assumed at 7,800)</caption>
+          <thead><tr><th>VIX</th><th>One month (%)</th><th>One month (pts)</th><th>One week (%)</th><th>One trading day (%)</th><th>One trading day (pts)</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">12</td><td class="mono">3.46</td><td class="mono">±270</td><td class="mono">1.66</td><td class="mono">0.76</td><td class="mono">±59</td></tr>
+            <tr class="hl"><td class="mono">16</td><td class="mono">4.62</td><td class="mono">±360</td><td class="mono">2.22</td><td class="mono">1.01</td><td class="mono">±79</td></tr>
+            <tr><td class="mono">20</td><td class="mono">5.77</td><td class="mono">±450</td><td class="mono">2.77</td><td class="mono">1.26</td><td class="mono">±98</td></tr>
+            <tr><td class="mono">30</td><td class="mono">8.66</td><td class="mono">±675</td><td class="mono">4.16</td><td class="mono">1.89</td><td class="mono">±147</td></tr>
+            <tr><td class="mono">45</td><td class="mono">12.99</td><td class="mono">±1,013</td><td class="mono">6.24</td><td class="mono">2.83</td><td class="mono">±221</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note warn">
+        <span class="tag">When this range is off</span>
+        <ul>
+          <li><strong>It includes a risk premium</strong>: VIX is a risk-neutral number and on average runs above the realized volatility that follows (Section 6.3). In calm periods this range tends to be too wide.</li>
+          <li><strong>Fatter tails</strong>: real returns have more extreme months than a normal distribution predicts. Months beyond 2 standard deviations occur noticeably more often than 5% of the time.</li>
+          <li><strong>Asymmetry</strong>: VIX includes skew, so downside risk is priced more heavily. Drawing the range symmetrically on both sides is a simplification.</li>
+        </ul>
+      </div>
+
+      <figure class="plate calc vixcalc" id="calc">
+        <div class="fig-head"><span class="fig-title">VIX to expected-move calculator</span><span class="fig-no">Tool 6-A · editable</span></div>
+        <div class="controls">
+          <label class="ctl" for="c-vix">VIX <input id="c-vix" type="number" value="16" step="0.5" min="1"></label>
+          <label class="ctl" for="c-idx">S&amp;P 500 level <input id="c-idx" type="number" value="7800" step="10" min="1"></label>
+        </div>
+        <div class="readout">
+          <div><b id="c-r1">—</b><small>1 SD, one month</small></div>
+          <div><b id="c-r2">—</b><small>One-month ±1 SD range (about 68%)</small></div>
+          <div><b id="c-r3">—</b><small>One-month ±2 SD range (about 95%)</small></div>
+          <div><b id="c-r4">—</b><small>1 SD, one week</small></div>
+          <div><b id="c-r5">—</b><small>1 SD, one trading day</small></div>
+        </div>
+        <figcaption>The range is computed symmetrically as “level × (1 ± percentage move),” with probabilities approximated by a normal distribution. You can also enter any stock’s 30-day IV in the VIX field and its share price in the level field to get that stock’s one-month expected move.</figcaption>
+      </figure>
+
+      <h3>VIX futures: you can’t buy “spot VIX”</h3>
+      <p>VIX itself is a calculated index and can’t be bought or sold directly. What you can trade are VIX futures and options, plus ETFs / ETNs that track VIX futures (collectively, ETPs). At expiration, VIX futures settle to a special opening quotation that morning; before expiration, a future’s price reflects the market’s pricing of “what VIX will be on that day,” which can be far from spot.</p>
+      <p>In calm periods, VIX futures are usually in contango too: spot is lowest, and the further out the contract, the more expensive it is. The reason is again mean reversion, plus the willingness of insurance buyers to pay a bit extra.</p>
+      <h3>Roll decay: the trap in long VIX products</h3>
+      <p>To maintain a term of about 30 days, a long VIX ETP sells some front-month futures and buys second-month futures every day. In contango, that means constantly selling the cheap and buying the expensive. If the curve’s shape doesn’t change, each future’s price “slides” down toward the lower spot level as its expiration approaches.</p>
+      <p>Run the numbers with a hypothetical set of quotes: spot VIX 15, front-month future (expiring in 15 days) 16.0, second-month future (expiring in 45 days) 17.2. You buy the second month and hold it for 30 days, by which time it has become the front month with 15 days left. If spot and the curve’s shape stay the same, its price slides from 17.2 to 16.0, a drop of <span class="num">7.0%</span>, while VIX itself hasn’t moved at all. Repeat that for 12 months and the cumulative loss is 1 − (16.0 / 17.2)<sup>12</sup> = <span class="num">58%</span>.</p>
+      <p>In reality the curve doesn’t stay fixed, and these products soar when panic breaks out. But ETPs that hold long VIX futures have historically seen their NAV slide steadily lower over time, and many have needed reverse splits. They suit short-term trading or short-term hedging, not long-term holding.</p>
+      <h3>Inverse products: earn the roll most days, give it back in one</h3>
+      <p>Inverse ETPs that short VIX futures are the mirror image: they earn roll yield in calm periods. But they rebalance daily to a fixed multiple, so on a day VIX soars they are forced to buy back a large amount of futures. The size of the rebalance can be calculated:</p>
+      <div class="formula">
+        <div class="eq">Value of futures to buy <span class="up">=</span> <span class="v">L</span><span class="up">(</span><span class="v">L</span> <span class="up">− 1) ×</span> <span class="v">r</span> <span class="up">×</span> starting NAV</div>
+        <p class="where"><span class="v">L</span> is the target multiple (−1x for inverse, 2x for leveraged long, and so on), and <span class="v">r</span> is the futures’ gain that day. <span class="v">L</span>(<span class="v">L</span> − 1) equals 2 for both −1x and +2x, so both kinds of product have to buy when VIX rises, and their buying adds up and pushes futures prices higher still.</p>
+      </div>
+      <p>Example: a −1x product has a NAV of 100, and futures rise 50% in a day. It loses 50, leaving a NAV of 50, but its short exposure has grown to 150. To get back to −1x it can keep only 50 of short exposure, so it must buy back 100, which is exactly (−1) × (−2) × 50% × 100. If futures rise 100% in a day, a product like this goes to zero. A −0.5x product in the same situation needs to buy back 0.375 × 100 = 37.5, much less pressure.</p>
+      <div class="note field">
+        <span class="tag">Field notes</span>
+        <p>Some traders use VIX as a “price tag” for hedging: when VIX is low relative to its own history, they buy index put spreads ahead of time to insure known risk windows (CPI, FOMC, seasonally weak stretches); once VIX has already spiked, they stop chasing protection and consider selling put spreads instead. Another common practice is to watch VIX, the 10-year Treasury yield and oil prices together: only when all three fall back after a data release do they treat the risk as over; as long as any one of them is still surging, they are in no hurry to add to positions.</p>
+      </div>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">6.8</span>Event volatility</h2>
+      <p>Scheduled events such as earnings, FOMC meetings and CPI releases lift the IV of options that span them before the event, and IV is pushed back down once the event passes. This part of IV can be stripped out and converted into the price the market puts on the event.</p>
+      <h3>Stripping the event out of IV</h3>
+      <p>Again, variance adds up: for an option that spans an event, total variance = ordinary daily variance × number of days + the extra variance of the event day.</p>
+      <div class="formula">
+        <div class="eq">σ<sub>incl. event</sub><sup>2</sup><span class="v">T</span> <span class="up">=</span> σ<sub>base</sub><sup>2</sup><span class="v">T</span> <span class="up">+</span> <span class="v">m</span><sup>2</sup> <span class="up">⇒</span> <span class="v">m</span> <span class="up">=</span> √<span class="up">[ (</span>σ<sub>incl. event</sub><sup>2</sup> <span class="up">−</span> σ<sub>base</sub><sup>2</sup><span class="up">) ×</span> <span class="v">T</span> <span class="up">]</span></div>
+        <p class="where"><span class="v">m</span> is the one-standard-deviation move the market prices for the event day. σ<sub>base</sub> can be estimated from the IV of a neighboring expiration that doesn’t include the event.</p>
+      </div>
+      <p>Example: before earnings, weekly options expiring in 7 days are at IV 80%, and the base IV without earnings is about 35%. <span class="v">m</span> = √[(0.80² − 0.35²) × 7/365] = <span class="num">9.96%</span>. The market has priced a one-standard-deviation move of about ±10% for this report. Student C’s ±5.3% in the opening was calculated the same way: √[(0.32² − 0.26²) × 30/365].</p>
+      <h3>Straddle price ≈ average move</h3>
+      <p>An ATM straddle’s price has an easy-to-remember approximation:</p>
+      <div class="formula">
+        <div class="eq">ATM straddle <span class="up">≈</span> 0.8 <span class="up">×</span> σ√<span class="v">T</span> <span class="up">×</span> <span class="v">S</span></div>
+        <p class="where">The 0.8 comes from √(2/π) ≈ 0.798: under a normal distribution, the mean absolute move is about 0.8 times the standard deviation. So the straddle price corresponds to “how much it moves on average,” about 20% less than one standard deviation.</p>
+      </div>
+      <p>The 7-day straddle above, priced at 80%, costs <span class="num">8.83</span>; the approximation gives 0.8 × 0.80 × √(7/365) × 100 = <span class="num">8.86</span>. The market often calls “straddle price ÷ stock price” the expected move; here it is 8.8%.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 6-8 A 7-day ATM straddle bought before earnings (8.83), with IV back at 35% the day after: value for different moves</caption>
+          <thead><tr><th>Stock move after earnings</th><th>Straddle value</th><th>Buyer P&amp;L per share</th><th>Buyer return</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">0%</td><td class="mono">3.58</td><td class="mono neg">−5.25</td><td class="mono neg">−59%</td></tr>
+            <tr><td class="mono">±4%</td><td class="mono">4.83 / 5.00</td><td class="mono neg">−4.01 / −3.83</td><td class="mono neg">About −44%</td></tr>
+            <tr><td class="mono">±8%</td><td class="mono">8.04 / 8.22</td><td class="mono neg">−0.79 / −0.61</td><td class="mono neg">About −8%</td></tr>
+            <tr class="hl"><td class="mono">±10%</td><td class="mono">9.96 / 10.12</td><td class="mono pos">+1.13 / +1.29</td><td class="mono pos">About +14%</td></tr>
+            <tr><td class="mono">±16%</td><td class="mono">15.93 / 16.07</td><td class="mono pos">+7.10 / +7.24</td><td class="mono pos">About +81%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>In each cell, the figure before the slash is for a drop and the one after is for a rise. The buyer’s breakevens are a rise of <span class="num">8.65%</span> or a drop of <span class="num">8.83%</span>. If the stock doesn’t move, the buyer loses 59% overnight: the event variance priced in before earnings vanishes instantly, leaving only 6 days of base time value.</p>
+      <h3>How to judge whether an event is expensively priced</h3>
+      <ul>
+        <li>Compare the expected move with the company’s actual moves (in absolute terms) after its past 8–12 earnings reports. If the historical average is clearly smaller than the expected move, history has favored sellers; if it is clearly larger, history has favored buyers.</li>
+        <li>The sample is small: only 4 reports a year. If the business has changed or the market’s attention has shifted, discount the past numbers.</li>
+        <li>Look at the distribution, not just the average. One huge move in 8 can eat most of a seller’s average profit (Case 3).</li>
+      </ul>
+      <h3>Macro events</h3>
+      <p>The same method works for indexes. Suppose that before a CPI release, SPX options expiring in 2 days are at IV 18%, against about 13% normally. One standard deviation on the event day = √[(0.18² − 0.13²) × 2/365] = <span class="num">0.92%</span>. FOMC decision days can be broken down the same way. Macro-event humps are much smaller than earnings humps, but they affect every stock and recur throughout the year. The post-event IV compression is the IV crush from Chapter 5; Chapter 10 is devoted to trading events.</p>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">Cases</span>Three cases</h2>
+
+      <div class="case">
+        <div class="case-no">Case 1</div>
+        <h3>February 2018: the term structure inverts overnight</h3>
+        <p>2017 was an unusually calm year. VIX stayed near historic lows for long stretches and closed below 10 many times. The VIX futures curve stayed in steep contango, and inverse ETPs that shorted VIX futures rose steadily on roll yield, drawing in a lot of money.</p>
+        <p>Stocks began to pull back in late January 2018. On February 5, the S&amp;P 500 fell about 4% in a single day and VIX more than doubled, a record for the largest one-day percentage gain. The VIX futures curve flipped from contango to backwardation: front-month futures traded well above later months.</p>
+        <p>After the close that day, inverse VIX products rebalanced as their rules required and had to buy back large amounts of VIX futures. The market widely believed this buying pushed futures prices even higher. One of them, the ETN tracking the “daily −1x short-term VIX futures index” (ticker XIV), saw its indicative value fall by more than 90%, and the issuer then announced it would terminate the product early. Another inverse product, SVXY, later changed its target multiple from −1x to −0.5x.</p>
+        <p>Here is the mechanism through the formula from Section 6.7 (the numbers are illustrative):</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 6-9 An inverse product with a NAV of 100: what happens when futures rise in a single day</caption>
+            <thead><tr><th>Futures one-day gain</th><th>−1x product NAV</th><th>−1x futures to buy back</th><th>−0.5x product NAV</th><th>−0.5x futures to buy back</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">+20%</td><td class="mono">80</td><td class="mono">40</td><td class="mono">90</td><td class="mono">15</td></tr>
+              <tr><td class="mono">+50%</td><td class="mono">50</td><td class="mono">100</td><td class="mono">75</td><td class="mono">37.5</td></tr>
+              <tr class="hl"><td class="mono">+100%</td><td class="mono">0</td><td class="mono">200 (can no longer execute)</td><td class="mono">50</td><td class="mono">75</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The bigger the product, the more futures it has to buy before the close; the more it buys, the higher futures go; and the higher they go, the more it has to buy. This loop is invisible in calm years and erupts all at once on a shock day.</p>
+        <ul>
+          <li><strong>Takeaway 1</strong>: steady roll yield in contango is, at bottom, an insurance premium. The moment the term structure inverts is when the insurance pays out.</li>
+          <li><strong>Takeaway 2</strong>: leveraged or inverse products that rebalance daily can be wiped out in a day. If you hold them, size the position on the assumption that “it could go to zero.”</li>
+          <li><strong>Takeaway 3</strong>: VIX at extremely low levels is itself a risk signal. When IV Rank is very low, there is little return left in selling volatility, while the tail risk is not one bit smaller.</li>
+        </ul>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 2</div>
+        <h3>Two ways IV Rank misled</h3>
+        <p>Go back to the stock in Figure 6-2. Its 30-day IV is now 30%, and realized volatility over the past 20 trading days is 22% (hypothetical).</p>
+        <p><strong>The first time</strong>: a student sees IV Rank at only <span class="num">24.9</span>, decides options are cheap, and buys 10 contracts of the 30-day ATM straddle, planning to hedge daily and earn Gamma. He doesn’t look at Percentile (<span class="num">82.5</span>) and doesn’t compare against RV. By the formula in Section 6.2, if realized volatility next month is still 22%, the trade loses about Vega × (22 − 30) per share; calculated exactly from the difference between the two straddle prices, that is 6.854 − 5.030 = <span class="num">1.82</span>, so 10 contracts lose <span class="num">$1,824</span>, 27% of the premium.</p>
+        <p><strong>The second time</strong>: another student’s platform looks back only 150 trading days. The sell-off falls outside the window, so the high IV is only 33.9% and the low 19.4%. For the same 30% IV, he sees a Rank of <span class="num">73.1</span> and a Percentile of <span class="num">89.5</span>. Two students look at the same IV; one thinks it is cheap, the other expensive.</p>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Indicator</th><th>252-day lookback</th><th>150-day lookback</th></tr></thead>
+            <tbody>
+              <tr><td>Range low / high</td><td class="mono">19.2% / 62.5%</td><td class="mono">19.4% / 33.9%</td></tr>
+              <tr><td>IV Rank</td><td class="mono">24.9</td><td class="mono">73.1</td></tr>
+              <tr><td>IV Percentile</td><td class="mono">82.5</td><td class="mono">89.5</td></tr>
+              <tr class="hl"><td>IV / 20-day RV</td><td class="mono">1.36</td><td class="mono">1.36</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Takeaway: Percentile is more robust to both the window and spikes, and the IV/RV ratio isn’t affected by the lookback window at all. Of the three indicators, Rank is the easiest for a single extreme event to throw off. Before deciding anything on Rank, at least glance at the other two.</p>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 3</div>
+        <h3>Earnings: read the market’s expectation from option prices, then compare it with history</h3>
+        <p>Continue the example from Section 6.8: before earnings, the 7-day straddle is 8.83, an expected move of 8.8%; the event’s one-standard-deviation move, once stripped out, is about 10%. Suppose the company’s absolute moves after its past 8 reports were 4.1%, 6.3%, 12.5%, 3.2%, 7.8%, 5.0%, 9.4% and 2.7%, an average of <span class="num">6.4%</span>.</p>
+        <p>The average move is 2.4 points below the expected move, so sellers seem to have the edge. Work out the per-share P&amp;L of selling the straddle each time (closing the day after earnings, with IV back at 35%):</p>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Past moves</th><th class="mono">4.1%</th><th class="mono">6.3%</th><th class="mono">12.5%</th><th class="mono">3.2%</th><th class="mono">7.8%</th><th class="mono">5.0%</th><th class="mono">9.4%</th><th class="mono">2.7%</th></tr></thead>
+            <tbody>
+              <tr><td>Seller P&amp;L</td><td class="mono pos">+3.76</td><td class="mono pos">+2.11</td><td class="mono neg">−3.75</td><td class="mono pos">+4.30</td><td class="mono pos">+0.79</td><td class="mono pos">+3.14</td><td class="mono neg">−0.71</td><td class="mono pos">+4.55</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The seller wins 6 times out of 8, averaging <span class="num">+1.77</span> per report. But the 12.5% move loses 3.75, nearly wiping out two ordinary wins. If the next move is 20%, the seller loses more than $11 per share.</p>
+        <p>Takeaway: “expected move vs. historical moves” is a good starting point for judging how an event is priced, but 8 data points are few, so you must look at the worst few and size the position for the worst case. Buyers need to think it through: buying a straddle before earnings only makes sense when you have a specific reason to believe this move will be bigger than 8.8%.</p>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">Tools</span>Checklist and self-test</h2>
+      <p>Your checkmarks are saved only in your own browser.</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">6-1</span>Is IV expensive or cheap?</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">IV relative to 20-day and 60-day RV</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">Check both IV Rank and IV Percentile; if they disagree, look for a spike</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">Is there an earnings report or macro event before this expiration?</label></li>
+            <li><input type="checkbox" id="k4"><label for="k4">Confirm how your platform defines IV and the lookback window</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">6-2</span>Reading term structure and skew</h4>
+          <ul>
+            <li><input type="checkbox" id="k5"><label for="k5">30-day / 90-day IV ratio: above 1 means backwardation</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">Compute a forward volatility to see how the market prices “later”</label></li>
+            <li><input type="checkbox" id="k7"><label for="k7">Find humps: which expirations include events</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">Compare the 25 Delta risk reversal with its own history</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">6-3</span>Estimating ranges from VIX</h4>
+          <ul>
+            <li><input type="checkbox" id="k9"><label for="k9">One month: VIX ÷ 3.46; one day: VIX ÷ 16</label></li>
+            <li><input type="checkbox" id="k10"><label for="k10">Remember the range includes a risk premium and runs wide in calm markets</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">Prepare for fat tails: months beyond 2 standard deviations happen more than 5% of the time</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">6-4</span>Before you touch VIX products</h4>
+          <ul>
+            <li><input type="checkbox" id="k12"><label for="k12">It tracks futures, not spot VIX</label></li>
+            <li><input type="checkbox" id="k13"><label for="k13">Check the futures curve: in contango, long products lose value every month</label></li>
+            <li><input type="checkbox" id="k14"><label for="k14">Size inverse and leveraged products assuming “they could go to zero”</label></li>
+            <li><input type="checkbox" id="k15"><label for="k15">Set a holding period; don’t treat them as long-term assets</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Five self-test questions</h3>
+      <details class="q"><summary><span class="num">1</span><span>A stock’s daily returns over the past 20 days have a standard deviation of 1.5%. Roughly what is its annualized realized volatility?</span></summary>
+        <div class="ans"><p><span class="num">1.5% × √252 = 1.5% × 15.87 ≈ 23.8%</span>. Note that the estimation error for a 20-day window is about 23.8% × 0.158 ≈ ±3.8 points.</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>Over the past year, a stock’s IV ranged from a low of 20% to a high of 80%. It is now 35%, and IV was below 35% on 70% of the year’s trading days. What are its IV Rank and IV Percentile? Which should you trust?</span></summary>
+        <div class="ans"><p>IV Rank = (35 − 20) / (80 − 20) × 100 = <span class="num">25</span>; IV Percentile = <span class="num">70</span>. The disagreement suggests the 80% high was probably a brief spike. Percentile is the more reliable of the two; combine it with the IV/RV ratio to decide.</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>VIX is 25 and the S&amp;P 500 is at 7,000. What is the one-month, one-standard-deviation range?</span></summary>
+        <div class="ans"><p><span class="num">25 / 3.46 = 7.22%</span>, about <span class="num">±505</span> points, so the range is roughly 6,495 to 7,505. Under a normal approximation, there is about a 68% chance of ending up inside it.</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>A stock’s 30-day IV is 40% and its 60-day IV is 32%. What volatility is the market pricing for days 30–60? What does that tell you?</span></summary>
+        <div class="ans"><p>Forward = √[(0.32² × 60 − 0.40² × 30) / 30] = √[(6.144 − 4.8) / 30] = <span class="num">21.2%</span>. The term structure is in backwardation: the market sees the high volatility as concentrated in the first month, quite possibly because of an earnings report or another event in that window; after the event, volatility should return to just over 20%.</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>You buy a long VIX product whose futures start at 18.0. A month later, spot VIX and the shape of the curve are unchanged, and that future has become the front month, quoted at 16.5. How much did you lose, and why?</span></summary>
+        <div class="ans"><p><span class="num">16.5 / 18.0 − 1 = −8.3%</span>. This is roll decay: in contango, a future converges toward the lower spot level as its expiration approaches, so you lose money even when VIX doesn’t move.</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="Chapter navigation"></nav>
+
+    <footer class="end">
+      <p>Option examples in this chapter are computed with the Black-Scholes model (4% interest rate, no dividends, 365-day year). Price series, IV series and futures quotes are simulated or hypothetical, and historical events are described only in qualitative terms. For education only; not investment advice.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+  const pct1 = v => v.toFixed(1) + "%";
+
+  // ---------- fig 6-1: 滚动实际波动率 ----------
+  (function () {
+    const PX = [100.0,99.13,99.16,97.66,96.76,97.77,98.97,99.19,98.6,97.52,96.46,97.13,95.88,95.28,94.54,95.61,95.27,94.37,94.77,95.02,95.84,96.41,96.09,95.91,95.31,95.25,92.08,94.6,95.8,95.76,95.58,95.23,94.93,95.49,93.69,94.07,94.78,94.79,93.82,93.11,93.55,92.27,93.0,92.63,93.39,94.37,96.12,95.57,97.66,97.85,96.66,96.67,97.14,100.0,99.68,99.14,98.23,97.93,97.57,98.92,97.16,98.69,98.52,95.72,95.94,95.73,94.49,95.25,94.42,94.91,96.65,96.67,96.12,95.35,94.85,95.95,97.32,98.09,97.58,99.63,99.62,99.33,99.36,99.64,99.45,100.37,100.64,99.56,98.41,99.76,100.28,99.98,99.94,100.27,101.36,101.38,103.79,102.7,101.1,100.68,103.14,101.47,102.96,105.29,105.02,105.14,103.26,104.23,101.9,101.77,102.73,104.79,107.19,107.64,105.51,105.07,105.17,104.24,104.27,104.83,105.02,104.82,105.01,103.85,106.38,110.14,110.02,112.18,108.09,105.13,103.18,105.0,102.29,109.42,105.55,102.01,98.64,96.64,92.47,91.11,89.6,91.15,89.62,89.41,86.51,80.94,81.81,81.58,79.95,82.95,82.07,83.76,83.92,84.93,85.63,86.95,86.31,84.98,84.13,85.15,84.79,85.26,86.58,88.58,88.3,89.76,91.63,91.92,91.36,88.35,90.47,88.92,90.32,93.27,93.26,93.29,94.49,94.02,92.54,92.4,93.1,95.0,96.59,96.09,96.33,95.25,94.58,93.81,93.74,93.22,92.66,95.25,96.01,96.81,98.0,98.08,98.78,99.1,97.45,97.79,100.29,99.7,99.84,100.27,97.71,98.98,98.89,100.39,99.08,100.17,101.58,100.29,98.49,97.21,96.66,95.88,98.21,97.21,98.57,102.07,99.16,99.2,97.87,95.65,93.17,91.56,91.22,93.27,93.15,92.04,91.86,89.58,90.94,93.9,93.48,95.83,94.69,91.64,92.0,92.33,93.99,95.97,94.33,93.51,92.64,91.25,90.67,90.93,92.32,92.69,93.09,93.4,92.53,90.05,91.07,93.15,96.16,98.35,99.05,100.58,101.58];
+    const LR = PX.slice(1).map((p, i) => Math.log(p / PX[i]));
+    const ND = LR.length;
+    const wS = document.getElementById("f1-w");
+    const svgP = document.getElementById("f1-px"), svg = document.getElementById("f1-svg");
+    function rvAt(w, end) {
+      let m = 0; for (let i = end - w; i < end; i++) m += LR[i]; m /= w;
+      let v = 0; for (let i = end - w; i < end; i++) v += (LR[i] - m) * (LR[i] - m);
+      return Math.sqrt(v / (w - 1)) * Math.sqrt(252);
+    }
+    function draw() {
+      const w = +wS.value;
+      document.getElementById("f1-w-o").textContent = w + " days";
+      plot(svgP, {
+        x: [0, ND], y: [75, 115], xt: range(0, 250, 50), yt: [80, 90, 100, 110],
+        xf: v => "", ylabel: "Stock price", xlabel: "",
+        band: [120, 150, "var(--tint-gamma)"],
+        series: [{ pts: PX.map((p, i) => [i, p]), color: "var(--ink)", w: 1.6 }]
+      });
+      const pts = [];
+      for (let e = w; e <= ND; e++) pts.push([e, rvAt(w, e) * 100]);
+      const truth = [[0, 18], [120, 18], [120, 45], [150, 45], [150, 24], [ND, 24]];
+      plot(svg, {
+        x: [0, ND], y: [0, 80], xt: range(0, 250, 50), yt: [0, 20, 40, 60, 80],
+        xf: v => v, yf: v => v + "%", xlabel: "Trading day", ylabel: "Annualized volatility",
+        band: [120, 150, "var(--tint-gamma)"],
+        series: [{ pts: truth, color: "var(--muted)", w: 1.6, dash: "5 5" }, { pts, color: "var(--delta)", w: 2.2 }]
+      });
+      const last = pts[pts.length - 1][1];
+      let mx = pts[0]; pts.forEach(p => { if (p[1] > mx[1]) mx = p; });
+      const up = pts.find(p => p[0] > 120 && p[1] > 30);
+      const dn = pts.find(p => p[0] > 150 && p[1] < 30);
+      document.getElementById("f1-r1").textContent = pct1(last);
+      document.getElementById("f1-r2").textContent = pct1(mx[1]);
+      document.getElementById("f1-r2s").textContent = "Peak RV in the period (after " + mx[0] + " days)";
+      document.getElementById("f1-r3").textContent = up ? (up[0] - 120) + " days" : "Never";
+      document.getElementById("f1-r4").textContent = dn ? (dn[0] - 150) + " days" : "Not yet";
+    }
+    wS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 6-2: IV Rank 与 IV Percentile ----------
+  (function () {
+    const IV = [26.0,24.6,22.5,19.3,19.2,20.9,21.2,22.0,23.5,22.4,26.1,24.8,25.4,29.5,29.0,28.9,27.9,28.2,24.9,24.0,26.5,26.7,26.2,26.7,27.2,27.3,28.0,25.4,26.2,25.2,26.3,26.2,24.7,24.6,23.3,24.8,24.7,25.9,24.3,26.7,26.1,28.1,29.2,27.3,27.6,26.6,27.1,29.2,30.1,31.5,29.2,29.2,29.5,31.0,29.6,30.2,30.6,27.8,62.5,60.1,53.0,47.0,47.2,45.9,43.4,42.0,39.6,37.2,35.3,35.1,36.9,35.0,34.0,32.9,30.1,30.1,31.2,29.3,30.3,29.0,30.5,32.2,31.0,27.4,26.7,24.6,22.9,22.6,24.5,24.4,24.1,21.8,21.3,19.9,20.7,20.3,20.5,20.7,20.7,22.1,22.9,22.6,22.9,23.7,25.6,25.8,27.9,26.8,26.3,24.2,25.3,23.9,22.7,23.9,23.2,22.4,23.7,23.6,24.9,24.3,25.4,26.9,26.9,29.6,28.6,28.1,28.0,29.4,28.6,27.7,27.9,29.7,28.8,26.6,26.3,27.1,26.2,26.3,23.7,23.8,24.0,24.9,25.3,26.4,24.9,25.8,23.5,22.9,24.4,25.6,23.1,24.0,23.5,22.6,23.0,23.3,25.2,23.3,22.8,22.8,20.7,22.3,24.8,23.9,24.5,24.2,24.6,23.7,24.9,23.4,25.3,25.8,29.4,26.6,26.3,24.5,24.3,24.9,23.7,22.0,20.1,20.7,22.4,24.1,24.2,23.0,22.6,20.9,19.4,20.9,20.8,21.4,21.3,23.1,25.1,24.1,23.6,22.9,24.7,26.5,26.0,29.4,29.2,27.0,24.1,23.9,24.4,23.7,24.2,25.9,25.8,27.0,29.4,29.9,28.7,29.1,29.7,33.1,31.8,28.8,29.0,29.2,28.3,29.0,29.2,31.0,29.2,27.8,27.6,26.7,28.5,29.2,28.9,31.2,31.6,32.9,33.9,33.0,32.2,31.7,29.4,28.6,29.7,29.9,28.1,31.8,29.6,30.3,31.2,33.0,31.0,30.6];
+    const lo = Math.min(...IV), hi = Math.max(...IV);
+    const iLo = IV.indexOf(lo), iHi = IV.indexOf(hi);
+    const svg = document.getElementById("f2-svg"), s = document.getElementById("f2-iv");
+    function draw() {
+      const cur = +s.value;
+      document.getElementById("f2-iv-o").textContent = cur.toFixed(1) + "%";
+      const rank = (cur - lo) / (hi - lo) * 100;
+      const below = IV.filter(v => v < cur).length, above = IV.filter(v => v > cur).length;
+      const pctl = below / IV.length * 100;
+      plot(svg, {
+        x: [0, IV.length], y: [10, 70], xt: [0, 63, 126, 189, 252], yt: [10, 20, 30, 40, 50, 60, 70],
+        xf: v => v === 0 ? "1 yr ago" : v === 252 ? "Today" : "" + v + "d", yf: v => v + "%",
+        xlabel: "Past 252 trading days", ylabel: "30-day ATM IV",
+        hband: [lo, hi, "var(--tint-delta)"],
+        series: [{ pts: IV.map((v, i) => [i + 1, v]), color: "var(--delta)", w: 1.8 }, { pts: [[0, cur], [IV.length, cur]], color: "var(--gamma)", w: 2.2 }],
+        dots: [[iHi + 1, hi, "var(--delta)", 4], [iLo + 1, lo, "var(--delta)", 4]],
+        labels: [[iHi + 1, hi, "High " + hi.toFixed(1), 8, 4, "start", "var(--muted)"], [iLo + 1, lo, "Low " + lo.toFixed(1), 8, 16, "start", "var(--muted)"]]
+      });
+      document.getElementById("f2-r1").textContent = Math.max(0, Math.min(100, rank)).toFixed(1);
+      document.getElementById("f2-r2").textContent = pctl.toFixed(1);
+      document.getElementById("f2-r3").textContent = lo.toFixed(1) + "% / " + hi.toFixed(1) + "%";
+      document.getElementById("f2-r4").textContent = above + " days";
+    }
+    s.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 6-3: 期限结构 ----------
+  (function () {
+    const D = [7, 14, 30, 60, 90, 120, 180, 270, 365];
+    const M = {
+      calm: { iv: [11.5, 12.4, 13.6, 14.9, 15.8, 16.4, 17.3, 18.0, 18.5], y: [0, 50], name: "Stock index, calm period" },
+      stress: { iv: [44.0, 40.0, 35.0, 31.0, 28.8, 27.5, 26.0, 25.0, 24.5], y: [0, 50], name: "Stock index, panic" },
+      earn: { iv: [30.0, 46.7, 38.7, 34.6, 33.1, 32.4, 31.6, 31.1, 30.8], y: [0, 50], name: "Single stock, earnings on day 10", base: 30 }
+    };
+    const svg = document.getElementById("f3-svg");
+    const btns = document.querySelectorAll("#fig3 .seg button");
+    let mode = "calm";
+    const fwd = (s1, t1, s2, t2) => Math.sqrt((s2 * s2 * t2 - s1 * s1 * t1) / (t2 - t1));
+    function draw() {
+      const m = M[mode];
+      const pts = D.map((d, i) => [d, m.iv[i]]);
+      const series = [];
+      if (m.base) series.push({ pts: [[0, m.base], [370, m.base]], color: "var(--muted)", w: 1.6, dash: "5 5" });
+      series.push({ pts, color: "var(--delta)", w: 2.4 });
+      plot(svg, {
+        x: [0, 370], y: m.y, xt: [7, 30, 90, 180, 270, 365], yt: [0, 10, 20, 30, 40, 50],
+        xf: v => v + "d", yf: v => v + "%", xlabel: "Days to expiration", ylabel: "ATM IV",
+        series, dots: pts.map(p => [p[0], p[1], "var(--delta)", 3.8]),
+        labels: [[30, m.iv[2], m.iv[2].toFixed(1), 0, -10], [90, m.iv[4], m.iv[4].toFixed(1), 0, -10]]
+      });
+      document.getElementById("f3-legend").innerHTML = `<span><i style="border-color: var(--delta)"></i>${m.name}</span>` + (m.base ? `<span><i class="dash" style="border-color: var(--muted)"></i>Base IV excluding the event: 30%</span>` : "");
+      const s30 = m.iv[2] / 100, s90 = m.iv[4] / 100;
+      document.getElementById("f3-r1").textContent = pct1(m.iv[2]);
+      document.getElementById("f3-r2").textContent = pct1(m.iv[4]);
+      document.getElementById("f3-r3").textContent = (s30 / s90).toFixed(2);
+      document.getElementById("f3-r4").textContent = pct1(fwd(s30, 30, s90, 90) * 100);
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      mode = b.dataset.mode;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 6-4: 偏度 ----------
+  (function () {
+    const T = 30 / DAY;
+    const M = {
+      index: { p: [0.15, -0.70, 2.5], y: [0, 60], yt: [0, 10, 20, 30, 40, 50, 60] },
+      stock: { p: [0.32, -0.15, 1.2], y: [25, 50], yt: [25, 30, 35, 40, 45, 50] },
+      meme: { p: [0.70, 0.30, 0.8], y: [60, 85], yt: [60, 65, 70, 75, 80, 85] }
+    };
+    const svg = document.getElementById("f4-svg"), kS = document.getElementById("f4-k");
+    const btns = document.querySelectorAll("#fig4 .seg button");
+    let mode = "index";
+    const sig = (K) => { const [a, b, c] = M[mode].p; const k = Math.log(K / 100); return a + b * k + c * k * k; };
+    function kForDelta(target, kind) {
+      let lo = 50, hi = 200;
+      for (let i = 0; i < 80; i++) {
+        const K = (lo + hi) / 2, d = bs(100, K, T, sig(K), kind).delta;
+        if (kind === "c") { if (d > target) lo = K; else hi = K; }
+        else { if (d < target) hi = K; else lo = K; }
+      }
+      return (lo + hi) / 2;
+    }
+    function draw() {
+      const K = +kS.value, m = M[mode];
+      document.getElementById("f4-k-o").textContent = K;
+      const xs = range(75, 125, 0.5);
+      const atm = sig(100) * 100;
+      plot(svg, {
+        x: [75, 125], y: m.y, xt: range(75, 125, 5), yt: m.yt, yf: v => v + "%",
+        xlabel: "Strike (underlying 100)", ylabel: "Implied volatility", vline: K,
+        series: [{ pts: [[75, atm], [125, atm]], color: "var(--muted)", w: 1.6, dash: "5 5" }, { pts: xs.map(x => [x, sig(x) * 100]), color: "var(--gamma)", w: 2.6 }],
+        dots: [[K, sig(K) * 100, "var(--gamma)", 5]]
+      });
+      const kind = K < 100 ? "p" : "c";
+      const pS = bs(100, K, T, sig(K), kind).price, pF = bs(100, K, T, sig(100), kind).price;
+      const kc = kForDelta(0.25, "c"), kp = kForDelta(-0.25, "p");
+      const rr = (sig(kc) - sig(kp)) * 100;
+      document.getElementById("f4-r1").textContent = pct1(sig(K) * 100);
+      document.getElementById("f4-r2").textContent = pS.toFixed(3);
+      document.getElementById("f4-r2s").textContent = "Price on the curve (" + (kind === "p" ? "put" : "call") + ")";
+      document.getElementById("f4-r3").textContent = pF.toFixed(3);
+      document.getElementById("f4-r5").textContent = "× " + (pS / pF).toFixed(2);
+      document.getElementById("f4-r4").textContent = (rr > 0 ? "+" : "−") + Math.abs(rr).toFixed(1) + " points";
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      mode = b.dataset.mode;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    kS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- tool 6-A: VIX 换算 ----------
+  (function () {
+    const vI = document.getElementById("c-vix"), xI = document.getElementById("c-idx");
+    const n0 = v => Math.round(v).toLocaleString("en-US");
+    function calc() {
+      const v = Math.max(+vI.value || 0, 0), x = Math.max(+xI.value || 0, 0);
+      const m = v / Math.sqrt(12) / 100, w = v / Math.sqrt(52) / 100, d = v / Math.sqrt(252) / 100;
+      document.getElementById("c-r1").textContent = (m * 100).toFixed(2) + "% · ±" + n0(x * m);
+      document.getElementById("c-r2").textContent = n0(x * (1 - m)) + " – " + n0(x * (1 + m));
+      document.getElementById("c-r3").textContent = n0(x * (1 - 2 * m)) + " – " + n0(x * (1 + 2 * m));
+      document.getElementById("c-r4").textContent = (w * 100).toFixed(2) + "% · ±" + n0(x * w);
+      document.getElementById("c-r5").textContent = (d * 100).toFixed(2) + "% · ±" + n0(x * d);
+    }
+    vI.addEventListener("input", calc); xI.addEventListener("input", calc);
+    calc();
+  })();
+})();
+</script>
+<script id="lang-js">(function(){document.querySelectorAll(".lang-switch").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("hl-lang",a.getAttribute("data-lang"))}catch(e){}var h=a.getAttribute("href");if(location.hash&&h.indexOf("#")<0)a.setAttribute("href",h+location.hash);});});})();</script>
+</body>
+</html>

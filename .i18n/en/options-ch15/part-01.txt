@@ -1,0 +1,172 @@
+@@ 4f4f3d89f2 html
+Chapter 15 Psychology and how accounts die · US Options Course
+@@ 2b6d711be7 html
+Psychology and <span class="g">how accounts die</span>
+@@ 6e79cdb6a1 html
+Options accounts rarely die from a single bad judgment; most die from a predictable, recurring pattern of behavior. This chapter first takes apart the psychological traps of buyers and of sellers, then lays out the five most common paths to a dead account, each with its early warning signs and prevention rules.
+@@ 4a798dc727 html
+In this chapter
+@@ 8798b7872f html
+<a href="#open"><span class="n">··</span><span>Opening: a 92% win rate and a smaller account</span></a>
+@@ 0ab3df08a8 html
+<a href="#s1"><span class="n">15.1</span><span>Which biases options amplify</span></a>
+@@ 8008cfd51e html
+<a href="#s2"><span class="n">15.2</span><span>Buyer psychology</span></a>
+@@ 2648999f66 html
+<a href="#s3"><span class="n">15.3</span><span>Seller psychology</span></a>
+@@ 1d93d9ea93 html
+<a href="#s4"><span class="n">15.4</span><span>The Theta obsession</span></a>
+@@ 9ad7e82db4 html
+<a href="#s5"><span class="n">15.5</span><span>Options culture on social media</span></a>
+@@ d7cf75bf66 html
+<a href="#s6"><span class="n">15.6</span><span>Five paths to a dead account</span></a>
+@@ 327e3b45cd html
+<a href="#s7"><span class="n">15.7</span><span>Three tools</span></a>
+@@ 26a1c50f91 html
+<a href="#cases"><span class="n">Cases</span><span>Two ledgers</span></a>
+@@ dd7ded685d html
+<a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a>
+@@ f2c9ed424e html
+<a href="#open">Opening: a 92% win rate and a smaller account</a>
+@@ 4f6a16acc7 html
+<a href="#s1">15.1 Which biases options amplify</a>
+@@ 3db354ee54 html
+<a href="#s2">15.2 Buyer psychology</a>
+@@ f277c9ecbc html
+<a href="#s3">15.3 Seller psychology</a>
+@@ 07b2cc7a39 html
+<a href="#s4">15.4 The Theta obsession</a>
+@@ 6f501665e4 html
+<a href="#s5">15.5 Options culture on social media</a>
+@@ 2055f36a80 html
+<a href="#s6">15.6 Five paths to a dead account</a>
+@@ c5e9511fe3 html
+<a href="#s7">15.7 Three tools</a>
+@@ f2a5840261 html
+<a href="#cases">Two ledgers</a>
+@@ 7ec24afd50 html
+<a href="#tools">Checklist and self-test</a>
+@@ 80161dff8a html
+After this chapter you can
+@@ 665d26e893 html
+Work out the true expectancy of a 0DTE option and see the real odds of the “lottery ticket”
+@@ 7d750c1e83 html
+Explain the tail hidden in a seller’s “easy money” equity curve, and how position size decides how much damage it does
+@@ 4632034402 html
+Check your own account against the early warning signs of the five paths to a dead account
+@@ fc4f43bd05 html
+Prerequisites
+@@ a5082fd543 html
+Chapter 5: Theta; Chapters 8 and 10: strategies for sellers and 0DTE
+@@ d124ba54fe html
+Chapter 13: stress tests and the margin spiral
+@@ a86a423e33 html
+Chapter 14: the trading journal and expectancy
+@@ fe31444484 html
+Conventions
+@@ 9e58749185 html
+Examples use Black-Scholes, 4% rate, no dividends, 365-day year
+@@ 8d75ad5a62 html
+Simulations use a fixed random seed, so results are reproducible
+@@ 06fe27488e html
+Ledgers and accounts are fictional
+@@ cf37ee449b html
+<span class="sn">Opening</span>A 92% win rate and a smaller account
+@@ 0421787580 html
+A $100 stock with implied volatility of 30%. Every Monday you sell 10 puts with a 95 strike that expire in 7 days, collecting $0.20 on each, $203 a week.
+@@ 76b5d6bba9 html
+The option’s Delta is <span class="num">−0.10</span>, and backing it out from the option price, the probability of finishing in the money is <span class="num">10.9%</span>. The market’s quote is already telling you that, on average, about one week in nine will lose money.
+@@ ef39a2ddcb html
+For the first 11 weeks the stock never touches 95, every week’s options expire worthless, and you steadily collect <span class="num">$2,238</span>. In week 12 the company releases bad news over the weekend, and the stock opens Monday at 88, down 12%. That week’s loss is <span class="num">(95 − 88 − 0.20) × 1,000 = $6,797</span>.
+@@ 9ae847cd1a html
+Table 15-0 Selling ten 95 puts every week: 12 weeks of results ($)
+@@ 82018ee82e html
+Week
+@@ 24c05dd1b7 html
+Result
+@@ 25ebc80b3c html
+Week’s P&amp;L
+@@ 18f3cc9456 html
+Cumulative
+@@ eb19902381 html
+Expire worthless every week
+@@ 60bba147a8 html
++203 a week
+@@ 0518aae574 html
+Gap to 88
+@@ fdb0c00f2a html
+A win rate of 11/12, about 92%, and yet the account is $4,559 smaller. Week 12 alone lost three times the profit of the first 11 weeks. The first 11 weeks are the bigger problem: each one reinforced the same belief, “this is easy money,” and before week 12 arrived you had no reason at all to doubt it.
+@@ 74c0b5103a html
+This is what an options psychology problem typically looks like. The shape of the payoff distribution gives you the wrong feedback most of the time. This chapter skips general trading psychology and covers only the part specific to options: which biases options amplify, the paths along which they take an account to zero, and when you can see it coming.
+@@ 2a9dc7d30d html
+<span class="sn">15.1</span>Which biases options amplify
+@@ 90cd4a6e4e html
+Options shape payoffs into two extreme forms: for buyers, “frequent small losses, occasional big wins”; for sellers, “frequent small wins, occasional big losses.” Both shapes line up exactly with the tendencies people most easily get wrong.
+@@ c078d71500 html
+Table 15-1 Payoff distributions of four positions (per share, $; fairly priced, so all have an expectancy of about zero)
+@@ 78d030d5ca html
+Position
+@@ f36e49014c html
+Price
+@@ b19f319498 html
+Chance of profit
+@@ ea28571c31 html
+Avg. win
+@@ 5b22045627 html
+Avg. loss
+@@ c2a0d679a1 html
+Win ÷ loss
+@@ c257982783 html
+Worst 1%
+@@ 87c04a802d html
+Long 0DTE 603 call (underlying 600, 6 hours left, IV 16%)
+@@ 34d3151d36 html
+Long 30-day ATM call (underlying 100, IV 30%)
+@@ 13c90940b5 html
+Short 7-day 95 put (underlying 100, IV 30%)
+@@ 1736af9708 html
+Short 30-day 93.5 put (underlying 100, IV 30%)
+@@ 84c62c4938 html
+At fair Black-Scholes prices, all four positions have an expectancy of about zero. Their shapes could hardly be more different: the 0DTE buyer loses everything 90% of the time and makes 8 times the cost on average when winning; the seller of the 7-day put keeps the full premium 90% of the time, and in the worst 1% loses 20 times the premium in one go.
+@@ 882b8ac760 html
+Three amplified tendencies
+@@ cf36df3809 html
+<strong>Overweighting small probabilities.</strong> People tend to feel “small chance, big payoff” events as weightier than their true probability. An option at $0.15 that might become $1.50 is too vivid a picture: a 10% chance feels like 30%. That makes buyers willing to overpay for OTM and 0DTE options.
+@@ 6b3680babc html
+<strong>Drawing certainty from small samples.</strong> A seller with a 90% win rate often wins a dozen or more times in a row. People judge risk by recent experience, and after a dozen-plus trades without trouble they feel “nothing will go wrong.” But that 10% of losses rarely shows up in a sample of a dozen or so to begin with (Chapter 14: the probability of not seeing a 5% tail in 28 trades is 23.8%).
+@@ 28cd42f256 html
+<strong>Loss aversion and the disposition effect.</strong> People tend to take profits early and hang on to losers. Hanging on to a stock at worst means a slow decline; hanging on to an option also means facing expiration and Gamma: the longer a seller holds on, the bigger the Delta gets, and the longer a buyer holds on, the less time value is left.
+@@ d06d369eff html
+Four amplifiers unique to options
+@@ 577a79a374 html
+Table 15-2 The same tendency, different consequences in stocks and in options
+@@ 5608566db6 html
+Amplifier
+@@ 54c0df0c68 html
+In stocks
+@@ cc0dbd381f html
+In options
+@@ 0f684a178c html
+Leverage
+@@ e47399bbda html
+$10,000 buys $10,000 of stock
+@@ 6fd12b84c1 html
+$1,000 of premium can carry $100,000 of notional exposure
+@@ 3f160803e7 html
+Expiration
+@@ da0b334e58 html
+You can wait; the only cost is opportunity cost
+@@ 8b21c8c4c8 html
+Every contract has a deadline, creating a “now or never” urgency
+@@ 59cfbfb067 html
+Nonlinearity
+@@ 00e4ad177f html
+Losses grow linearly with price
+@@ 4f292089b9 html
+Sellers’ losses accelerate with price; buyers’ value drains faster and faster over time
+@@ 9d59c708a4 html
+Price swings
+@@ f26321f24a html
+A 2% move in a day counts as big
+@@ f3a4b99f96 html
+A 0DTE option dropping 60% in twenty minutes is ordinary, and emotions swing wildly with it

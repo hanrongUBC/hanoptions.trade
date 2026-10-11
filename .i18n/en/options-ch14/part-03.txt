@@ -1,0 +1,270 @@
+@@ 04f7bea85c html
+<span class="sn">14.5</span>Executing the entry
+@@ e7867ac337 html
+Execution won't turn a bad trade into a good one, but it can leak away a good trade's edge bit by bit. Spread orders, limit prices, timing and scaling in are four ways to plug the leaks.
+@@ cba3b38e73 html
+The example below uses a 30-day 100/105 call spread. With the stock at $100 and IV at 30%, the two legs have theoretical values of 3.59 and 1.66. Suppose the quotes are as follows:
+@@ 38d14810fc html
+Table 14-6 Quotes for the two legs and three fill prices (per share, $)
+@@ 5f364b9085 html
+Contract
+@@ d1ff079ffa html
+Bid
+@@ fc1612693c html
+Ask
+@@ ba5b1e851f html
+Mid
+@@ ab1d5930c8 html
+Spread as % of mid
+@@ 659ba7243d html
+100 call (buy)
+@@ c55fa1436e html
+105 call (sell)
+@@ 2269c3b970 html
+The spread
+@@ 5e4453051f html
+Natural 2.10
+@@ 7c4e57bba3 html
+Theoretical 1.93
+@@ a61c953481 html
+1. Use a combo order, not separate legs
+@@ 9e1bd41315 html
+Placing the two legs as separate orders is called “legging in.” Suppose you first buy the 100 call at 3.70, and before you can sell the 105 call the stock drops $0.50: the 105 call's mid falls from 1.66 to 1.51, and you can only sell at about 1.45. Your total cost becomes <span class="num">3.70 − 1.45 = 2.25</span>, 0.31 more than the combo order's mid, or $31 extra per spread. The stock could just as well move in your favor, but that amounts to placing an extra directional bet with no edge at entry. A combo order also guarantees that both legs fill together, never just one.
+@@ a77f86fcf3 html
+2. Start the limit at the mid
+@@ e6b5f0da41 html
+The natural price of 2.10 is the “fill right now” price; the mid of 1.94 is the average of the two sides. Start your order at the mid and give up $0.01–0.05 every minute or two; you will usually fill near the mid. The difference looks small: 0.16 per spread, $160 for 10 spreads. But this spread's maximum profit is only <span class="num">5 − 1.94 = 3.06</span>. Filling at the natural price both in and out gives up 0.32 on the round trip, or <span class="num">10.5%</span> of the maximum profit. Selling strategies make less per trade, so for them the percentage is even higher.
+@@ c21409f928 html
+The bid–ask spread as a percentage of the mid is a direct measure of liquidity. This course's threshold: no more than 10% near the money, and within 5% is better. On contracts above 15%, almost no strategy can cover the cost of execution.
+@@ a32232b652 html
+3. Avoid illiquid times of day
+@@ cc4a2c3020 html
+<strong>The first 15–30 minutes after the open</strong>: market makers are still adjusting quotes for overnight news, spreads are wide, and IV often runs high. Options bought in this window tend to be overpriced.
+@@ 20f2d4341b html
+<strong>The last few minutes before the close</strong>: quotes widen, especially on contracts close to expiration.
+@@ 42c10a6eb2 html
+<strong>Around data releases</strong>: just before and after CPI, FOMC statements and similar events, quotes can briefly disappear or widen sharply.
+@@ 17827cdbbc html
+<strong>Outside regular trading hours</strong>: single-stock options trade only during regular hours. Some index options have extended sessions, but liquidity there is clearly worse.
+@@ a0cc877df5 html
+4. Planned scaling in
+@@ d4aa72dfc0 html
+Splitting a position into 2–3 tranches that enter on time or price conditions reduces timing error. For example, you plan 3 spreads: 2 today, and 1 more if the underlying pulls back to a support level within 5 trading days without breaking the invalidation price. The scaling conditions must be written down before the first tranche. Deciding after a loss to “buy a little more to bring down the cost” is not scaling in; it is the averaging down to rescue a losing trade that Chapter 15 covers.
+@@ e7f4b0b906 html
+<span class="sn">14.6</span>Write management rules before you enter
+@@ f3dd9654be html
+Management rules must be written down before you enter. Once you hold the position, an open profit makes you want to lock it in early and an open loss makes you want to wait a little longer. The position has already changed your judgment.
+@@ 5bc1ef9761 html
+Write four rules for every trade: take-profit, stop-loss, time and adjustment. The table below gives starting points by structure; adjust the numbers based on your own journal statistics.
+@@ 6d6a193aa7 html
+Table 14-7 Starting points for management rules, by structure
+@@ 83ca92ce7a html
+Take-profit
+@@ 56c6bccbbb html
+Stop-loss
+@@ 140cafda1e html
+Adjustment
+@@ 842b19b72c html
+Target price reached, or option +50% to +100%
+@@ 34ab679db6 html
+Underlying breaks the invalidation price, or option −30% to −50%
+@@ 087c9e6d58 html
+21 days left; or a third of the time gone with no move
+@@ b9e6963f5d html
+No averaging down; roll out at most once
+@@ 30169cd143 html
+Underlying breaks the invalidation price, or spread −50%
+@@ a397d6a518 html
+21 days left
+@@ 93a4c7a76c html
+Move the short leg up at most once
+@@ ec8450612d html
+Credit spread
+@@ 9ea31661e3 html
+50% of the credit earned
+@@ 2171236cab html
+Loss reaches 2× the credit
+@@ c4ef2dcf4e html
+Roll once, only for a net credit
+@@ 20928701a6 html
+25–50% of the credit earned
+@@ 3e6475e51b html
+Loss of 1–2× the credit, or a short leg's Delta reaches 0.30
+@@ e9c9e95379 html
+Move the untested side in once
+@@ c3141020b7 html
+Act after the open on the first trading day after the event, win or lose; don't keep holding the original structure after the event
+@@ 3da98dc020 html
+No adjustments
+@@ 189db24249 html
+What these rules actually change
+@@ 17dbf4f13d html
+Let's test three common credit-spread rules with a simulation. Sell a 45-day 92.5/87.5 put spread: stock at $100, IV 30%, short-leg Delta −0.20, credit <span class="num">0.81</span>, maximum loss <span class="num">4.19</span>. Assume realized volatility of 25% (below implied, so the seller has an edge), reprice at IV 30% at each day's close, and simulate 20,000 paths.
+@@ d6d2206df2 html
+Table 14-8 One credit spread, four sets of management rules: simulated results (per spread, $)
+@@ e308bdf61b html
+Rule
+@@ a1091477ed html
+Win rate
+@@ 3d896144a5 html
+Avg win
+@@ fcb52e8e71 html
+Avg loss
+@@ f68fb0f949 html
+Expectancy per trade
+@@ 577e7cafd1 html
+Avg hold
+@@ f1e3eed524 html
+Expectancy per 30 days held
+@@ 11fb29d934 html
+Worst 5% avg
+@@ 6ad8d0109d html
+Hold to expiration
+@@ b3e12fd210 html
+45.0 days
+@@ 761755ec28 html
+50% take-profit only
+@@ 6d4e2974ae html
+20.7 days
+@@ 5292f479fd html
+50% take-profit + 2× stop
+@@ a6f813976d html
+17.4 days
+@@ 50a725e7a7 html
+Plus close at 21 days left
+@@ b4307adfc9 html
+15.1 days
+@@ 867dc04eb1 html
+<strong>A take-profit on its own lowers expectancy.</strong> It cuts the winners short and leaves the losers as they were; expectancy per 30 days held falls from 11.4 to 6.0.
+@@ 45bff3224e html
+<strong>Take-profit plus stop-loss: expectancy about the same, tail cut in half.</strong> Expectancy per 30 days is 11.2, almost the same as holding to expiration; the average loss in the worst 5% drops from −419 to −214, and the standard deviation of single-trade results drops from 149 to 89.
+@@ 8f1e6d55b8 html
+<strong>Rules mainly change the shape of the distribution.</strong> With a smaller tail, the same risk budget can carry more trades, and the account is less likely to be badly hurt by a run of bad luck.
+@@ 4578a396ea html
+This assumes you can always exit at the daily close. A gap jumps straight past the stop, and the real loss is larger than in the simulation. More important, the simulation assumes the seller has an edge (realized volatility of 25%, below the 30% implied). Without that edge, no management rule can turn expectancy positive; rules can only make the losses arrive more slowly.
+@@ e36a9a9aeb html
+A few common practices. First, write the stop-loss for an options trade as an underlying price, for example “exit if the underlying closes below a given support level.” IV swings so much around earnings that the option price itself gets distorted, and a stop on the option price can knock you out because of IV rather than direction. Second, the “30/30” rule: if 30% of the holding period has passed with no move, or the option has lost 30% of its value, close or roll. The first half is easy to follow; for the second half, first confirm that the original thesis no longer holds. Third, put lottery-ticket short-dated options only into a small slice of realized profits, and never touch principal for them.
+@@ 6ea70ad542 html
+<span class="sn">14.7</span>The options trading journal
+@@ 87fa175abb html
+An ordinary trading journal records buys, sells and profit and loss. An options journal also has to record the volatility, Greeks, expected move and events at entry. Otherwise, when you review, you can't tell whether you made money from direction, from volatility or from time.
+@@ 14d73be734 html
+Six fields an ordinary journal doesn't have
+@@ 8f2edc32d5 html
+<strong>IV, IV Rank, IV/HV</strong>: shows whether you bought when options were expensive or sold when they were cheap. After three months, grouping results by IV environment often reveals one environment in which you keep losing.
+@@ 08eb7cefe7 html
+<strong>Greeks snapshot</strong>: the whole position's Delta (shares), Gamma, Theta ($/day) and Vega ($/IV point). Record it at entry, at exit and after each event.
+@@ b8ed638e58 html
+<strong>Expected move</strong>: one standard deviation to expiration and to the event. Compare it with the actual move at exit, and you'll know whether you made money because “I was right” or because “the move was bigger than the market expected.”
+@@ 793268b43d html
+<strong>Event</strong>: type and date. Keep separate statistics for event trades.
+@@ f3fce041b7 html
+<strong>Reason for the structure</strong>: why this one, and why not the other two. A few months later, this column is often the most valuable.
+@@ d5f7b4d36b html
+<strong>R-multiple and attribution</strong>: P&amp;L ÷ planned maximum loss, so trades of different sizes can be compared. For attribution, pick exactly one of four categories: judgment error, execution error, risk-management error, or normal variance.
+@@ 758d90293c html
+Copy template
+@@ 2305cc8c28 html
+Copy it and paste it into a notes app or spreadsheet, one per trade. If the browser won't allow automatic copying, the template text is selected for you; just copy it by hand.
+@@ f68f2fcb77 html
+Be especially careful to log the trades that “made money but were done wrong”: you broke a rule, went over your size limit or chased an entry at a time you shouldn't have, and it happened to pay off. Losses force you to reflect; profits reward the wrong behavior. The more of these trades your journal holds, the more your profits depend on luck.
+@@ 14a963fac1 html
+The four attribution categories call for completely different responses. Judgment error: go back to step 1 and improve how you write views. Execution error: fix your order habits in step 6. Risk-management error: fix steps 5 and 7. Normal variance: change nothing. The most common mistake is to treat normal variance as a judgment error and keep switching strategies on a method that actually works.
+@@ efe786a475 html
+<span class="sn">14.8</span>Thinking in expectancy
+@@ 0634591515 html
+Whether a strategy is good depends on its expectancy over dozens of trades. That number can only come from your journal, not from your gut.
+@@ 8577d3208b html
+<span class="v">p</span> is the win rate. Set expectancy to zero and you get the breakeven win rate <span class="v">p</span>* = avg loss ÷ (avg win + avg loss).
+@@ c991ab33da html
+The breakeven win rate turns “is the win rate high enough?” into a question with a benchmark. A credit spread that makes $100 and loses $300 needs a win rate above <span class="num">75%</span> just to break even; an OTM buying strategy that makes $300 and loses $100 only needs <span class="num">25%</span>. Comparing these two strategies on win rate alone is meaningless.
+@@ 229771941e html
+Expectancy has error too
+@@ abec989d77 html
+The expectancy you compute from a journal is a sample estimate: the smaller the sample, the larger the error. Call the standard deviation of individual results σ. The standard error of the average of <span class="v">N</span> trades is σ ÷ √<span class="v">N</span>, and the 95% interval is roughly expectancy ± 1.96 standard errors. If you only know the win rate and the average win and loss, you can approximate with a two-point distribution: σ = (avg win + avg loss) × √(<span class="v">p</span>(1 − <span class="v">p</span>)).
+@@ ae28827278 html
+Example: win rate 80%, average win $120, average loss $300, 30 trades. Expectancy is <span class="num">0.8 × 120 − 0.2 × 300 = $36</span>, σ = <span class="num">420 × 0.4 = $168</span>, the standard error is <span class="num">168 ÷ √30 = $30.7</span>, and the 95% interval is <span class="num">[−$24, +$96]</span>, which includes zero. For the lower bound of the interval to turn positive you need about <span class="num">(1.96 × 168 ÷ 36)² ≈ 84</span> trades. The win rate itself has an interval of <span class="num">80% ± 14.3%</span>, or 65.7% to 94.3%, and the breakeven win rate of 71.4% falls inside it.
+@@ b4f3e6bf80 html
+Win rate % <input id="ev-p" type="number" min="1" max="99" step="1" value="80">
+@@ fd7bf83af1 html
+Avg win $ <input id="ev-w" type="number" min="1" step="10" value="120">
+@@ 61d0e79421 html
+Avg loss $ <input id="ev-l" type="number" min="1" step="10" value="300">
+@@ ba55e1d0dd html
+Trades <input id="ev-n" type="number" min="2" max="400" step="1" value="30">
+@@ 9c80118c9f html
+Change the win rate to 90% and the average loss to 1,000: the sign of expectancy stays the same, but the number of trades needed rises sharply. The more lopsided the wins and losses, the bigger the sample you need. The standard deviation here uses the two-point approximation; when a real strategy's losses have a long tail, you need even more trades.
+@@ 6cc0b2ff70 html
+Four easy statistical mistakes
+@@ 30939a6b1e html
+<strong>The tail hasn't shown up yet.</strong> If a strategy has a 5% chance per trade of hitting its maximum loss, the probability of not hitting it once in 28 trades is <span class="num">0.95<sup>28</sup> = 23.8%</span>. A loss you don't see in the sample still exists.
+@@ 3bb5cb90da html
+<strong>Mixing different structures in one set of statistics.</strong> Credit spreads and long single options have completely different payoff shapes, and an expectancy averaged across them tells you nothing. At least group by structure, and preferably by IV environment as well.
+@@ 94703f492e html
+<strong>Using dollars instead of R-multiples.</strong> As your size grows, dollar statistics get dominated by the last few big trades. Convert to R-multiples (P&amp;L ÷ planned maximum loss) and recompute.
+@@ 56efc8f764 html
+<strong>Ignoring holding time.</strong> An expectancy of $20 over 40 days versus $15 over 10 days: the second uses capital far more efficiently per day (see Table 14-8).
+@@ bf35b804b3 html
+<span class="sn">14.9</span>The weekly scan
+@@ 993cf0fa50 html
+Spend an hour each week running your underlyings through filters for liquidity, IV and the event calendar. This does more than watching the screen every day for opportunities to make sure you only trade where the matrix has an answer.
+@@ 36a74cd185 html
+<strong>Fixed candidate pool</strong>: 20–40 stocks and ETFs you know well, with liquid options. If an underlying isn't in the pool, you don't trade it this week.
+@@ b37e891cd2 html
+<strong>Liquidity filter</strong>: ATM bid–ask spread no more than 10% of the mid; open interest of at least 500–1,000 contracts at the main strikes.
+@@ 939f186481 html
+<strong>Event calendar</strong>: mark earnings, FOMC, CPI and ex-dividend dates over the next two to six weeks.
+@@ 1ee1c64c84 html
+<strong>IV metrics</strong>: IV Rank and IV/HV20. Besides IV Rank, look at IV percentile: the share of days in the past year with IV below today's. One extreme episode pushes the 52-week high up and keeps IV Rank low for a long time; the percentile is much less affected by it.
+@@ 4a7e339f7a html
+<strong>Sort into buckets</strong>: seller candidates, buyer candidates, event candidates, skip.
+@@ fd8580760a html
+<strong>Write the three sentences</strong>: write a view for each candidate; if you can't, move it to “skip.”
+@@ 3259b9de80 html
+Table 14-9 A weekly scan (hypothetical data; EEE is an index ETF)
+@@ 8bceaf30b0 html
+Underlying
+@@ f36e49014c html
+Price
+@@ bfa47c2e93 html
+IV (52-week range)
+@@ 76af2b8116 html
+ATM spread
+@@ 403cf33a64 html
+ATM open interest
+@@ a26547346b html
+Next event
+@@ 864d54ad10 html
+Bucket
+@@ 678051e79b html
+Earnings in 26 days
+@@ 25796e7faf html
+Seller candidate
+@@ 9bd3eeae64 html
+Earnings in 6 days
+@@ d26cef5fd8 html
+Event candidate
+@@ e672315923 html
+Skip: liquidity
+@@ 656bc6d2a1 html
+Earnings in 50 days
+@@ 010f9942f2 html
+Buyer candidate
+@@ dc9316e3b1 html
+FOMC in 9 days
+@@ 82720d0287 html
+Neutral, small size
+@@ 61f9c56715 html
+Earnings in 3 days
+@@ 6aa54b1d49 html
+Skip: no view
+@@ b5abcceedf html
+<strong>AAA</strong>: IV Rank 58.8 and IV/HV 1.33, so the options really are expensive. Earnings are 26 days out; choosing contracts that expire within 21 days avoids them, so use a selling structure.
+@@ 6aa4424b24 html
+<strong>BBB</strong>: IV Rank is only 15.2 ahead of earnings, which looks cheap. But the 52-week high of 70% probably came from a single event last year, which drags IV Rank down. First compare this report's expected move with the actual moves on the last few reports, then decide whether to buy or sell.
+@@ 803c105de5 html
+<strong>FFF</strong>: the IV Rank of 87 is propped up by earnings and will very likely collapse in 3 days. It suits an event calendar spread or a small event iron condor, not buying a single option.
+@@ 5d28f5f6cc html
+<strong>DDD</strong>: IV is low and earnings are far off. If you have a directional view, it suits buying options or a debit spread; with no view, leave it alone.
+@@ 77326d513a html
+The output of the scan is a short list of no more than three to five underlyings. For the rest of the week you do only two things: manage existing positions, and wait for names on the short list to meet their entry conditions.

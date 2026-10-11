@@ -1,0 +1,162 @@
+@@ 89650489c6 html
+SO <span class="zh">Southern Company</span>
+@@ 28e8692fc3 html
+The utility on the list. His list of stocks that “benefit from falling rates” includes “utilities,” and on September 30 he also said that with the odds of an October rate hike falling, utilities should bounce.
+@@ 0cf64b1bec html
+Southern Company is a large regulated utility group in the southeastern US. It owns three electric utilities (Georgia Power, Alabama Power and Mississippi Power), plus a gas business, Southern Company Gas, and a wholesale generation business, Southern Power. Its revenue comes mainly from selling electricity and gas at rates approved by state regulators. Profit grows by steadily expanding investment in the power grid and power plants (the rate base) and recovering it through rates.
+@@ 5c0b1df466 html
+The 52-week range is $81.69 to $100.84, and the price is 14.5% below the high. The average analyst price target is $98.66 (23 analysts, average rating Hold). Price targets reflect an optimistic scenario and often lag the stock price.
+@@ 8554eb4c7b html
+The close of $86.17 is 2.4% below the 50-day moving average of $88.25 and 6.5% below the 200-day moving average of $92.15. The 50-day is below the 200-day, so the medium-term trend is still weak.
+@@ 5b8c744efc html
+RSI is 51.75: neutral territory, neither oversold nor overbought. The stock rose 2.9% over the last 5 trading days, and the late-September selling pressure has eased.
+@@ 47474ccd49 html
+Support: the lowest close of the last 30 trading days, $82.35 (September 28); below that, the 52-week low of $81.69.
+@@ 4fb54e02c4 html
+Resistance: first the zone around the 50-day moving average at $88.25 and the highest close of the last 30 trading days, $88.99 (September 8); above that, the 200-day moving average at $92.15. The 52-week high of $100.84 is a long way off.
+@@ 09d7c28c0b html
+$99.1 billion
+@@ 6daaba2987 html
+$30.2 billion
+@@ 3608092d04 html
+$77.1 billion / $3.0 billion
+@@ ede18da1ab html
+-$3.3 billion
+@@ b3927ab101 html
+Revenue over the trailing twelve months was $30.18 billion, up 6.4% year over year. But Q2 2026 revenue was $6.98 billion, up only 0.06% and below the $7.23 billion analysts expected.
+@@ 2a02373b3d html
+Q2 earnings per share (EPS) were $1.03, up 30.4% year over year. Adjusted EPS on the company's definition was $1.13, versus $0.92 a year earlier, driven mainly by higher retail electricity sales, capitalized returns on construction in progress, and lower income taxes.
+@@ dba7066771 html
+Valuation: P/E (TTM) 20.7x, forward P/E 18.5x, PEG 2.25. Annual dividend $3.04, dividend yield 3.53%, payout ratio 73.2%.
+@@ f32f2d3031 html
+Profit margins: gross margin 48.3%, operating margin 27.0%, net margin 15.4%. ROIC is only 4.5%, which is normal for a capital-heavy, regulated industry.
+@@ 4f055cbb84 html
+Balance sheet: total debt of $77.09 billion and cash of $2.98 billion. Trailing-twelve-month free cash flow was -$3.27 billion: capital spending exceeds operating cash flow, so the company has to keep borrowing. The $2.375 billion of convertible bonds issued in August is one example.
+@@ 3046d3fee8 html
+Sources of growth: as of Q2 it had signed 17 GW of large-load customers, 6 GW more than in Q1. Data center electricity use rose 55% year over year in Q2, and the capital expenditure (capex) plan through 2030 is $81 billion.
+@@ abc6c65f4c html
+<span class="nd">2026-08-03</span><span>Southern Company priced $2.375 billion of convertible notes (coupons of 2.125% and 3.50%, conversion prices of about $104.56 and $118.50) to buy back older convertibles and repay short-term debt. It shows the company raising money for its huge investment program, and future conversions will dilute shareholders somewhat. <a href="https://www.streetinsider.com/Equity+Offerings/Southern+Company+prices+%242.375+billion+in+convertible+notes/26859889.html" target="_blank" rel="noopener">streetinsider.com</a></span>
+@@ bbeddd0510 html
+<span class="nd">2026-08-04</span><span>On the Q2 call the company disclosed 17 GW of signed large loads, with about 8 GW more in late-stage talks, data center usage up 55% year over year, and an $81 billion capex plan. This is the core reason the market gives Southern Company a growth premium. <a href="https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/" target="_blank" rel="noopener">utilitydive.com</a></span>
+@@ 545f372c0d html
+<span class="nd">2026-08-26</span><span>The Georgia Public Service Commission approved Georgia Power supplying OpenAI's 3.2 GW data center in Effingham County, with OpenAI paying for the supporting infrastructure. The company says its portfolio of large-load contracts will save about $950 million a year in system costs from 2029. The new load is locked in, and pressure on residential bills eases. <a href="https://www.walb.com/2026/08/27/georgia-powers-openai-contract-effingham-county-approved-expected-lower-residential-bills/" target="_blank" rel="noopener">walb.com</a></span>
+@@ 09aff32e1d html
+<span class="nd">2026-09-21</span><span>Georgia Power reached a deal under which Google will back uprates of about 96 MW at the Hatch and Vogtle nuclear plants. The company estimates about $900 million in benefits to customers over the life of the units; the deal still needs regulatory approval. It shows that big tech companies are willing to pay for clean power. <a href="https://powermag.com/google-georgia-power-have-deal-to-support-nuclear-power-plant-uprates" target="_blank" rel="noopener">powermag.com</a></span>
+@@ ce6c32775a html
+<span class="nd">2026-09-23</span><span>The stock fell to $83.73 intraday, a new 52-week low. Earlier, on September 18, Morgan Stanley had cut its target from $89 to $85 and kept its Underweight rating, reflecting rising rates and valuation pressure. <a href="https://www.marketbeat.com/instant-alerts/price-southern-nyse-so-hits-new-52-week-low-whats-next-2026-09-23/" target="_blank" rel="noopener">marketbeat.com</a></span>
+@@ 5231c6efd0 html
+<span class="nd">2026-10-08</span><span>Hurricane Isaias was expected to make landfall in the Florida Panhandle, southern Alabama and southern Mississippi, and Georgia Power sent repair crews in advance. Alabama Power's and Mississippi Power's service areas are in the storm's path; outages and repair costs are a short-term variable. <a href="https://www.renewableenergyworld.com/power-grid/outage-management/southeastern-us-utilities-are-preparing-for-hurricane-isaias-to-make-landfall/" target="_blank" rel="noopener">renewableenergyworld.com</a></span>
+@@ fc7bf04a8f html
+2026-11-05: Q3 earnings report. Watch adjusted EPS, signed large-load volume, and whether the capex plan is raised.
+@@ 95b0676df4 html
+The Google nuclear uprate deal and the Hatch uprate application await approval from the Georgia Public Service Commission (timing not set).
+@@ e350f2db0e html
+New-generation solicitations in Georgia and Alabama are expected to select projects by year-end.
+@@ a830944bd6 html
+How quickly power is restored after Hurricane Isaias, and how storm costs will be recovered.
+@@ 25e5820206 html
+Long-term rates are the biggest variable. The Fed raised rates by 25 basis points to 3.75%–4.00% on September 16. The 10-year Treasury yield rose to 5.04% on September 15 and was about 5.27% on October 7, so Southern Company's 3.53% dividend yield looks less attractive next to bonds. Falling yields help it; further increases hurt it.
+@@ 0ff981dbb4 html
+Power demand is a positive variable. Data center electricity use rose 55% year over year in Q2, and 17 GW of large loads have been signed, driving growth in both electricity sales and investment.
+@@ b081ca7101 html
+High rates also push up financing costs. With $77.09 billion of total debt and negative free cash flow, the higher rates go, the heavier the interest burden.
+@@ 4d558c8238 html
+Data center load is already locked in by contracts: the 3.2 GW OpenAI contract has been approved and the Google nuclear deal has been filed for approval, so revenue growth is fairly visible.
+@@ 2b159c1300 html
+The valuation has already come down: the forward P/E is 18.45x, and the average analyst target of $98.66 is about 14.5% above the current price.
+@@ b07e95fb22 html
+On October 2, 24/7 Wall St. pointed out that utilities were the most oversold they had been since 2023. If the 10-year Treasury yield falls, money could flow back into defensive sectors.
+@@ 60f859f3b9 html
+Rates could keep rising: the Fed's September dot plot shows one more hike possible this year, which would both push down valuations and raise financing costs.
+@@ 1487b8eb28 html
+Free cash flow is -$3.27 billion, and the $81 billion of capex depends on continued borrowing and convertible issuance, so shareholders could be diluted.
+@@ acfef576f6 html
+Q2 revenue was roughly flat year over year and below expectations, and the consensus rating of 23 analysts is only “Hold.” Hurricane repair costs could also weigh on profit in the short term.
+@@ b43a801948 html
+Whether adjusted EPS and signed large loads keep growing in the November 5 Q3 report (17 GW in Q2).
+@@ 2cf83a016c html
+Whether the stock can get back above the $88.25 to $88.99 zone (the 50-day moving average and the 30-day high). A break below $82.35 and $81.69 would mean the late-September lows have failed.
+@@ 6e273be37f html
+Whether the 10-year Treasury yield can get back below 5%.
+@@ e09b94015d html
+Sources: <a href="https://stockanalysis.com/stocks/so/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/so/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/so/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/so/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/so/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://southerncompany.mediaroom.com/2026-07-30-Southern-Company-reports-second-quarter-2026-earnings" target="_blank" rel="noopener">southerncompany.mediaroom.com</a> · <a href="https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/" target="_blank" rel="noopener">utilitydive.com</a> · <a href="https://www.streetinsider.com/Equity+Offerings/Southern+Company+prices+%242.375+billion+in+convertible+notes/26859889.html" target="_blank" rel="noopener">streetinsider.com</a> · <a href="https://www.walb.com/2026/08/27/georgia-powers-openai-contract-effingham-county-approved-expected-lower-residential-bills/" target="_blank" rel="noopener">walb.com</a> · <a href="https://powermag.com/google-georgia-power-have-deal-to-support-nuclear-power-plant-uprates" target="_blank" rel="noopener">powermag.com</a> · <a href="https://www.marketbeat.com/instant-alerts/price-southern-nyse-so-hits-new-52-week-low-whats-next-2026-09-23/" target="_blank" rel="noopener">marketbeat.com</a> · <a href="https://www.renewableenergyworld.com/power-grid/outage-management/southeastern-us-utilities-are-preparing-for-hurricane-isaias-to-make-landfall/" target="_blank" rel="noopener">renewableenergyworld.com</a> · <a href="https://www.kiplinger.com/investing/live/fed-meeting-updates-and-commentary-september-2026" target="_blank" rel="noopener">kiplinger.com</a> · <a href="https://247wallst.com/investing/etf/2026/10/02/utility-stocks-are-the-most-oversold-since-2023/" target="_blank" rel="noopener">247wallst.com</a> · <a href="https://investinglive.com/news/investinglive-americas-market-news-wrap-fed-officials-prepared-to-hike-again-this-year/" target="_blank" rel="noopener">investinglive.com</a>
+@@ f272ce00b8 html
+DUK <span class="zh">Duke Energy</span>
+@@ cbc4894752 html
+Not among the 17. He bought it on October 5 at a logged price of $114.13. Like Southern Company, it is a utility.
+@@ 5a91d2dbf2 html
+Duke Energy is one of the largest regulated electric utilities in the US. It supplies power in North Carolina, South Carolina, Florida, Indiana, Ohio and Kentucky, and runs gas businesses in some states. Its revenue comes mainly from selling electricity at rates approved by state regulators. Profit growth depends on whether investment in the power grid and power plants is approved in rate cases and built into the rates it charges.
+@@ 21799e6c67 html
+The 52-week range is $112.40 to $134.49, and the price is 13.3% below the high. The average analyst price target is $135.67 (22 analysts, average rating Buy). Price targets reflect an optimistic scenario and often lag the stock price.
+@@ 28594bbdc7 html
+The close of $116.65 is 2.4% below the 50-day moving average of $119.56 and 5.9% below the 200-day moving average of $123.99. The 50-day is below the 200-day, so the medium-term trend is weak.
+@@ 91c242c9a9 html
+RSI is 48.98: neutral territory. The stock rose 2.2% over the last 5 trading days, a small bounce from its late-September lows.
+@@ cd79556722 html
+Support: the lowest close of the last 30 trading days, $113.23 (September 24); below that, the 52-week low of $112.40.
+@@ b5b3275d80 html
+Resistance: first the 50-day moving average at $119.56 and the highest close of the last 30 trading days, $121.40 (September 3); above that, the 200-day moving average at $123.99. The 52-week high is $134.49.
+@@ 6ac3ebbfae html
+$91.0 billion
+@@ 0b660cd631 html
+$32.8 billion
+@@ 908f73968f html
+$92.2 billion / $700 million
+@@ 872eb652d9 html
+-$4.3 billion
+@@ d96fc2b93d html
+Revenue over the trailing twelve months was $32.80 billion, up 6.3% year over year. Q2 2026 revenue was $7.59 billion, up 1.1%, slightly below the $7.66 billion analysts expected.
+@@ edc1138d46 html
+Q2 earnings per share (EPS) were $1.38, up 10.6% year over year; adjusted EPS was $1.43, versus $1.25 a year earlier. Rate cases added $0.10 and electricity volume $0.08, while depreciation and amortization (-$0.09) and interest (-$0.04) were drags.
+@@ 626ad9c9be html
+The company reaffirmed 2026 adjusted EPS guidance of $6.55 to $6.80. Its long-term target is 5% to 7% annual growth through 2030, and it expects to be in the upper half of that range from 2028.
+@@ da70dcd325 html
+Valuation: P/E (TTM) 17.6x, forward P/E 17.3x, PEG 2.59. Annual dividend $4.34, dividend yield 3.72%, payout ratio 65.2%.
+@@ 1145ab61f1 html
+Balance sheet: total debt of $92.21 billion and only $673 million in cash. Trailing-twelve-month free cash flow was -$4.27 billion and ROIC 3.8%; the large grid build-out depends on continuous financing.
+@@ d9423e83c8 html
+Profit margins: gross margin 52.0%, operating margin 27.0%, net margin 16.0%.
+@@ c3720a8c9a html
+<span class="nd">2026-08-04</span><span>Duke Energy reported Q2 adjusted EPS of $1.43 (versus $1.25 a year earlier) and reaffirmed full-year guidance of $6.55 to $6.80. Steady results are the basic support for a defensive stock like this. <a href="https://www.sec.gov/Archives/edgar/data/0001326160/000132616026000037/er-20260630xearningsreleas.htm" target="_blank" rel="noopener">sec.gov</a></span>
+@@ 052446e3fb html
+<span class="nd">2026-09-03</span><span>Duke Energy Florida asked to lower rates from January 2027, cutting a typical residential monthly bill by $0.71, thanks to lower fuel costs and a tax arrangement that saves $50 million a year; a planned 2% base-rate increase was dropped as a result. That helps relations with regulators, but it also means slower near-term revenue growth in the state. <a href="https://www.wftv.com/news/local/duke-energy-florida-asks-regulators-lower-customer-rates-2027/P7WFYOO4MFDJBEGK2QGR6RP47U/" target="_blank" rel="noopener">wftv.com</a></span>
+@@ 1c03b0a83b html
+<span class="nd">2026-09-14</span><span>North Carolina Attorney General Jeff Jackson called for a separate rate class for data centers and declined to support the settlement in Duke Energy Carolinas' rate case (an average 9.5% increase for residential customers). Regulatory pressure on its rate cases is rising. <a href="https://www.wect.com/2026/09/14/nc-attorney-general-asks-state-make-data-centers-pay-fair-share-power-bills/" target="_blank" rel="noopener">wect.com</a></span>
+@@ 8d006e5d49 html
+<span class="nd">2026-10-07</span><span>Duke Energy reached a settlement with data center operators on a large-load tariff in North Carolina: new data centers must pay up front for dedicated facilities. The plan still needs approval from the North Carolina Utilities Commission. If approved, it lowers the political risk of ordinary customers paying for data centers. <a href="https://www.wunc.org/2026-10-07/duke-energy-comes-to-an-agreement-on-long-sought-large-load-tariff-for-data-centers-in-north-carolina" target="_blank" rel="noopener">wunc.org</a></span>
+@@ 8c841917cb html
+<span class="nd">2026-10-08</span><span>As Hurricane Isaias approached the US Gulf Coast, Duke Energy Florida activated its emergency crews and warned that restoration could be “long and difficult.” Storm repair costs and the length of outages are short-term variables. <a href="https://www.renewableenergyworld.com/power-grid/outage-management/southeastern-us-utilities-are-preparing-for-hurricane-isaias-to-make-landfall/" target="_blank" rel="noopener">renewableenergyworld.com</a></span>
+@@ 640db2f10e html
+2026-11-05, before the open: Q3 earnings report. Watch whether full-year guidance holds.
+@@ 66eaef9db2 html
+2026-11-13: ex-dividend date (annual dividend $4.34).
+@@ af0167b806 html
+The North Carolina Utilities Commission's ruling on the large-load tariff settlement (timing not set), and progress in the rate cases of the two Carolinas subsidiaries.
+@@ 1959fce4c5 html
+Approval of Duke Energy Florida's 2027 rate request, and recovery of Hurricane Isaias repair costs.
+@@ b357b64488 html
+Long-term rates matter most. The Fed raised rates to 3.75%–4.00% on September 16. The 10-year Treasury yield broke above 5% in mid-September and was about 5.27% on October 7, well above Duke's 3.72% dividend yield, so income investors would rather buy bonds. Falling yields help it.
+@@ 7768dacb81 html
+Power demand is a positive. Data center and manufacturing load is growing in the Carolinas, and on September 18 the company even asked Carolinas customers to save power during peak hours, a sign the system is stretched. That supports the need for long-term investment.
+@@ 04053578fd html
+Lower fuel prices can reduce customer bills (as in the Florida 2027 rate request). Fuel costs are generally passed through to customers via fuel clauses, so they have little effect on profit, but they do shape the regulatory and public-opinion climate.
+@@ a753b5e145 html
+Full-year guidance reaffirmed, and adjusted EPS growing year over year. The consensus of 22 analysts is “Buy,” and the average target of $135.67 is about 16.3% above the current price.
+@@ 491211be05 html
+If the large-load tariff settlement is approved, the path to recovering data center investment becomes clearer and regulatory resistance eases.
+@@ 5a7487580d html
+A forward P/E of 17.3x and a 3.72% dividend yield: if long-term rates fall, its defensive, income-paying profile will come back into favor.
+@@ 75c00c5817 html
+Rates stay high or keep rising: the Fed may hike again after September. Total debt is $92.21 billion, and interest was already a drag on Q2 EPS.
+@@ c68ca6d026 html
+Regulatory risk: the North Carolina attorney general opposes the rate case settlement and wants a separate rate class for data centers, so the final ruling could fall short of what the company expects.
+@@ 432553d2c7 html
+Free cash flow is -$4.27 billion, so it needs continuous financing. Repair costs from the hurricane and summer storms could hold down profit in the short term.
+@@ 4adbe4d136 html
+Whether the November 5 Q3 report reaffirms full-year guidance of $6.55 to $6.80 again.
+@@ c6364e22b7 html
+Whether the stock can reclaim $119.56 (the 50-day moving average) and $121.40 (the 30-day high). On the downside, watch the two support levels at $113.23 and $112.40.
+@@ 1e21753fc1 html
+The North Carolina Utilities Commission's ruling on the large-load tariff settlement, and whether the 10-year Treasury yield falls back below 5%.
+@@ 0f404f1f3d html
+Sources: <a href="https://stockanalysis.com/stocks/duk/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/duk/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/duk/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/duk/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/duk/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0001326160/000132616026000037/er-20260630xearningsreleas.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://www.marketbeat.com/instant-alerts/duke-energy-nyseduk-issues-fy-2026-earnings-guidance-2026-08-04/" target="_blank" rel="noopener">marketbeat.com</a> · <a href="https://www.wftv.com/news/local/duke-energy-florida-asks-regulators-lower-customer-rates-2027/P7WFYOO4MFDJBEGK2QGR6RP47U/" target="_blank" rel="noopener">wftv.com</a> · <a href="https://www.wect.com/2026/09/14/nc-attorney-general-asks-state-make-data-centers-pay-fair-share-power-bills/" target="_blank" rel="noopener">wect.com</a> · <a href="https://www.wunc.org/2026-10-07/duke-energy-comes-to-an-agreement-on-long-sought-large-load-tariff-for-data-centers-in-north-carolina" target="_blank" rel="noopener">wunc.org</a> · <a href="https://www.renewableenergyworld.com/power-grid/outage-management/southeastern-us-utilities-are-preparing-for-hurricane-isaias-to-make-landfall/" target="_blank" rel="noopener">renewableenergyworld.com</a> · <a href="https://www.kiplinger.com/investing/live/fed-meeting-updates-and-commentary-september-2026" target="_blank" rel="noopener">kiplinger.com</a> · <a href="https://247wallst.com/investing/etf/2026/10/02/utility-stocks-are-the-most-oversold-since-2023/" target="_blank" rel="noopener">247wallst.com</a> · <a href="https://investinglive.com/news/investinglive-americas-market-news-wrap-fed-officials-prepared-to-hike-again-this-year/" target="_blank" rel="noopener">investinglive.com</a>

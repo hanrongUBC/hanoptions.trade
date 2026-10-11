@@ -1,0 +1,172 @@
+@@ 0d118fb762 html
+Checklists, templates and exercises
+@@ e6c6601a05 html
+Turn the twenty chapters into a method you can use again. Your checklist ticks are saved only in your own browser.
+@@ cc33df74b1 html
+Four checklists
+@@ 7e17d7cb98 html
+Before researching an oversold stock
+@@ 72e3e7551c html
+Found the reason the stock fell
+@@ 3fb74b359a html
+Worked out whether it is a sector drag or a company-specific problem
+@@ 11b8446607 html
+Read the latest quarter's revenue, profit and guidance
+@@ cc5dfa707d html
+Know the date of the next earnings report
+@@ 0fdc69fe44 html
+Before deciding whether to get in
+@@ 5bfbc5ec5b html
+Checked whether the macro premises (rates, oil) are improving
+@@ 7ffc0381e7 html
+The price shows signs of a bottom and has stopped making new lows
+@@ e0fa507c8e html
+Wrote down a stop-loss price and the facts that would prove me wrong
+@@ 34f32cb295 html
+The position is small enough that getting stopped out won't affect my mood
+@@ 6be049ad3a html
+Around earnings
+@@ 73f089de9e html
+Know which number the market is most worried about
+@@ 6eb7ae6a09 html
+Thought through a post-earnings gap in both directions
+@@ 4965fcdf2b html
+Don't chase in the first hour after earnings
+@@ 4be8c72925 html
+Weekly follow-up
+@@ 073cdd1340 html
+Update the price, moving averages and RSI
+@@ 86cb783991 html
+Log new news and decide whether the logic has changed
+@@ 3cfc5b89ed html
+Go through “What to watch next” and see which items have happened
+@@ 947b5233d8 html
+Single-stock research card
+@@ bcaef611ef html
+Copy research card
+@@ 3483f62b36 html
+Exercises
+@@ ebdc877cda html
+<span class="k">01</span><span>MGM Resorts has an RSI of just 14, the lowest of all the companies. Is it the best rebound opportunity?</span>
+@@ e2903e4510 html
+An RSI of 14 means the selling has been extremely concentrated, but the cause is specific: the major shareholder withdrew its $48.30-per-share buyout offer, the takeover premium vanished in a single day, and Las Vegas visitor numbers and Macau gaming revenue are weakening too. This is a “company-specific problem,” and an oversold stock can stay oversold.
+@@ 71332ace27 html
+The safer approach is to wait for confirmation: the 52-week low holds, the stock reclaims the gap level, or an earnings report shows the Las Vegas business has not gotten worse.
+@@ 994a970454 html
+<span class="k">02</span><span>SLB is also on this “falling rates and oil prices” rebound list. Does that make sense?</span>
+@@ f56b3adaf3 html
+The directions conflict. Falling oil prices help airlines, cruise lines and trucking, but usually hurt oilfield services companies. SLB seems to have made the list because it fell a lot on its own and is not expensive, not because of the rotation logic.
+@@ 5aad7e9bcb html
+When you study a list, check whether each stock really fits the main theme, and evaluate the ones that don't on their own.
+@@ 36c4cb3bab html
+<span class="k">03</span><span>Comcast trades at a forward P/E below 6 with a dividend yield above 6%. Why is it still falling when it is this cheap?</span>
+@@ 92b299e7c3 html
+Cheap usually has a reason: broadband subscribers are leaving, earnings are falling, analysts are downgrading the stock, and the company is in the middle of a spin-off. The market is worried about future profits, not past ones.
+@@ b996132ab4 html
+To judge a stock like this, look at whether the payout ratio and free cash flow can support the dividend, and whether subscriber losses show signs of bottoming out.
+@@ 52758c309e html
+<span class="k">04</span><span>Bank of America reports earnings on October 14. Which numbers should you watch most?</span>
+@@ a133dee014 html
+Investment banking fees (management has already said they will be lower than last year); net interest income (NII) and net interest margin (NIM) (the effect of a flatter yield curve); and bad debts on credit cards and consumer loans (how healthy consumers are).
+@@ cab52482ec html
+It is also the opening shot of bank earnings season, and the market will use it to judge the state of the financial sector and of consumers.
+@@ 9b965ded13 html
+Glossary
+@@ 5825024006 html
+The main terms used in this book and their original English names, listed by the chapter where they first appear. When you read English sources, use a broker's platform or search online, the original English term is far more precise.
+@@ 147b51b71b html
+Term
+@@ 79e91d826e html
+First appears
+@@ 37c7c1b17b html
+52-week range
+@@ 72ac7fd41c html
+Introduction
+@@ 42865129f7 html
+Catalyst
+@@ d93f2d53cd html
+Profit margin
+@@ 3f160803e7 html
+Expiration date
+@@ 0fe2951094 html
+Moving average
+@@ 11d11dab32 html
+Support
+@@ ba3d4c2f01 html
+Options expiration
+@@ 56c6bccbbb html
+Stop-loss
+@@ 20ba16e510 html
+Equal weighting
+@@ a3f7478a73 html
+Federal Reserve
+@@ c317db02aa html
+Earnings report
+@@ c46c4c36ca html
+Oversold
+@@ f87400198b html
+Resistance
+@@ 7bda037ecb html
+200-day moving average
+@@ a63458a350 html
+Chapter 1
+@@ dcf7db7792 html
+50-day moving average
+@@ fd8e5271cb html
+Value trap
+@@ 96d2af49a4 html
+Net margin
+@@ 4efe85fcf5 html
+Net interest margin
+@@ ad639f9a75 html
+Price-to-book ratio
+@@ 1b12518dd3 html
+Price-to-earnings ratio
+@@ 130cbf054d html
+Guidance
+@@ cd07313666 html
+Catching a falling knife
+@@ ba3c8b7358 html
+Payout ratio
+@@ 9b30d447ca html
+Earnings estimates
+@@ 7351764b29 html
+Price target
+@@ 1b7a99421d html
+Bearish alignment
+@@ c9710819b7 html
+Operating margin
+@@ eb5d31d712 html
+Dividend
+@@ bf07a74171 html
+Free cash flow
+@@ cfed40a233 html
+Overbought
+@@ 743f279d6d html
+Gapping
+@@ 6baf96e61e html
+Franchisee
+@@ 0a9182db90 html
+Chapter 3
+@@ 56feee2fcc html
+Same-store sales
+@@ 8b0e64636c html
+Share buyback
+@@ f537ed998a html
+Gross margin
+@@ ca571d1655 html
+Royalty
+@@ bca800930c html
+Ex-dividend date
+@@ 62aff3fdc7 html
+Short interest
+@@ 3b11941a57 html
+Chapter 4
+@@ fc050d3472 html
+Price-to-sales ratio
+@@ 85d3473d06 html
+Taking a company private
+@@ 9d161c54d1 html
+Short covering
+@@ d90b680c1c html
+Tariffs

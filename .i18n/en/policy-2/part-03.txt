@@ -1,0 +1,196 @@
+@@ 142c4b080d html
+Healthcare and longevity
+@@ 2e470347bb html
+People are buying more time
+@@ 57cd1e2bb1 html
+Medical devices, life science tools
+@@ ae100c750c html
+Drug pricing policy, valuation
+@@ b39800d899 html
+Surgery volume growth slows; reimbursement rules tighten
+@@ 3f9347657d html
+Narrative card template
+@@ a2d3fe677e html
+Fill in a card for every theme you research. Take it out three months later and compare: which calls were right, and which evidence has changed.
+@@ 758d90293c html
+Copy template
+@@ cc33df74b1 html
+Four checklists
+@@ 07d45f12e7 html
+Before researching a theme
+@@ e24900ee4c html
+I can say where money is being forced to flow
+@@ d54b981ecc html
+I've checked what stage the policy has reached
+@@ c6564b2442 html
+I've run the change-of-government test
+@@ afff1c05c6 html
+I've found at least one counterargument
+@@ 8727463379 html
+Before buying
+@@ c324e7532a html
+I scored the narrative and the price separately
+@@ 0c54b3c683 html
+I picked an unavoidable link, not the hottest name
+@@ 10217e9f57 html
+I wrote fact-based invalidation criteria
+@@ 187dd078b5 html
+I checked sources of risk together with my existing holdings
+@@ 944081c4e7 html
+The position is small enough to survive any election result
+@@ fc84d9ab4b html
+Every quarter
+@@ 2c1fb33fc0 html
+Has the budget or legal status changed?
+@@ e611c74c7d html
+Do company earnings reports show related revenue?
+@@ 5a50a50bcf html
+Is crowding rising or falling?
+@@ 80ab393636 html
+Have any invalidation criteria been met?
+@@ 4e72ff01b2 html
+When policy news breaks
+@@ 64fa2f6b22 html
+Is it a slogan, an order, a law or a budget?
+@@ b31db90acc html
+Does the market's reaction match the weight of the news?
+@@ dc66f1436e html
+I've considered a “pause or exemption” scenario
+@@ c595fa437c html
+No chasing and no panic selling on day one
+@@ 1caf584bc0 html
+Scenario exercises
+@@ 97f5972c81 html
+Work out your own answer first, then open the item to compare.
+@@ 1e2fef777a html
+<span class="k">01</span><span>A politician says on social media that they want to put heavy tariffs on a category of imports. Shares of the related domestic producers rise 12% that day. Would you chase them?</span>
+@@ 6ba1e4be78 html
+First work out what stage of policy this is: it is only a statement, not yet an order or a law. Tariff policy often goes back and forth between announcement, pause and exemption, and the first day's gain prices in the most extreme version.
+@@ eff9650fd5 html
+A better approach: don't chase. Put it on your watchlist. If a formal order is issued and the implementation details are clear, then assess how much market share the domestic producers can win, and whether their valuations already fully reflect it.
+@@ 3242a266b5 html
+<span class="k">02</span><span>You're very bullish on clean energy, and your position is 30% of your total capital. The election is close, and polls show a tight race.</span>
+@@ a0ebb5e4be html
+The energy mix is a policy area with low bipartisan consensus that swings sharply with the party in power. A 30% position amounts to betting a large share of your capital on one election result.
+@@ 2a1ee08242 html
+Run the change-of-government test: if the other side were in power, which parts would still hold (such as grid upgrades and power demand from data centers), and which would be hurt (such as projects that depend on specific subsidies)? Cut the position to a level you can live with whichever side wins, and tilt your holdings toward the links that both parties support.
+@@ b8cb75d014 html
+<span class="k">03</span><span>A ceasefire is announced in a regional conflict. Energy stocks fall 5% that day, defense stocks fall 3% and airline stocks rise 8%. You hold a defense ETF. Should you sell?</span>
+@@ 0d7c06556c html
+Separate emergency spending from preparedness spending. If your reason for holding the defense theme is long-term preparedness spending (for example, countries pledging to raise their defense budgets), one ceasefire doesn't change that logic, and the first-day drop is more likely to be sentiment.
+@@ 63d4705136 html
+If your reason for buying was this particular conflict, then the ceasefire is your invalidation criterion, and you should handle it according to plan.
+@@ c80f502225 html
+<span class="k">04</span><span>A critical minerals company gets a government equity stake and a long-term price floor, and its stock triples in a month. Is it still worth buying?</span>
+@@ f8474af7b0 html
+The government floor really does lower its downside risk; it works like a put option. But after the stock has tripled, that protection has probably already been priced in, or even overvalued.
+@@ cdca01ef7e html
+Use the narrative scorecard: durability may be high, but crowding and valuation score low, which puts it in the “wait” quadrant. Put it on your watchlist, and consider it once the price comes back to a reasonable range or once the company delivers its new capacity.
+@@ d4421dfeac html
+<span class="k">05</span><span>You hold a growth stock you especially like. IV is 60%, and selling a call that expires in one month, 5% out of the money, would bring in about 5% in premium. Should you sell it?</span>
+@@ 0fa243b2bf html
+An implied volatility (IV) of 60% says the market sees this stock as very risky, and the chance of being assigned is also high (about 36%). If it really does rally hard, you give up all the gains above the strike.
+@@ b760c6d6b3 html
+This is a stock you especially like and don't want to sell, so it falls in the “only under certain conditions” group. If you would regret having it called away, don't sell the call.
+@@ 9b965ded13 html
+Glossary
+@@ 5825024006 html
+The main terms in this book and their standard English names, in order of the chapter where each first appears. When you read other material, use a broker's platform or search online, the standard term will get you much more precise results.
+@@ 147b51b71b html
+Term
+@@ 79e91d826e html
+First appears
+@@ 830c5b0158 html
+Thematic investing
+@@ 72ac7fd41c html
+Introduction
+@@ 615bcf290f html
+Population aging
+@@ a0835f26b9 html
+Supply chain
+@@ fe63b5afff html
+Critical minerals
+@@ 9e9e34fcc9 html
+Reshoring
+@@ a1488a8f46 html
+Narrative
+@@ e94a912fa8 html
+National security
+@@ d69bf5224e html
+Defense spending
+@@ c7eaae4b8e html
+Geopolitics
+@@ 019d1d2ed0 html
+Military preparedness
+@@ 51719b660a html
+Subsidy
+@@ ee43cac02b html
+Western Hemisphere
+@@ c317db02aa html
+Earnings report
+@@ 9cb7093c3d html
+Export controls
+@@ a63458a350 html
+Chapter 1
+@@ d8d8fc60cb html
+Appropriations bill
+@@ 0b15900455 html
+Tax credit
+@@ d5a9695ef6 html
+Capital expenditure
+@@ fd8e5271cb html
+Value trap
+@@ 4b0f55bb92 html
+Chapter 2
+@@ 9d84e9fb01 html
+Sanctions
+@@ 8b0e64636c html
+Buyback
+@@ 27918788c0 html
+Country index
+@@ a8fed268f0 html
+Market-cap weighting
+@@ 1b12518dd3 html
+P/E ratio
+@@ 4e549eb136 html
+Emerging markets
+@@ cd810311a4 html
+Liquidity
+@@ eb5d31d712 html
+Dividend
+@@ 89fc2b5783 html
+Capital controls
+@@ 1a188b4a54 html
+Friend-shoring
+@@ e0b73facb8 html
+Reshoring
+@@ a7fe401d8e html
+Foreign direct investment
+@@ 2d75ab9dc5 html
+Industrial real estate
+@@ 0935d8a196 html
+Engineering and construction
+@@ 72502c8768 html
+Drones
+@@ ca571d1655 html
+Royalties
+@@ 656753166f html
+Power grid
+@@ 6b880536ce html
+Vacancy rate
+@@ f5182c28e1 html
+Trade agreement
+@@ 14fa28991c html
+Resource nationalism
+@@ 97288dc242 html
+Nearshoring
+@@ d88959294c html
+Hedging
+@@ d78c5be08a html
+Loitering munitions
+@@ ac7499000e html
+Emergency spending
+@@ 0a825f7063 html
+Munitions
+@@ 48ecfafdd7 html
+Call option

@@ -1,0 +1,156 @@
+@@ a9dd9e4635 html
+<span class="sn">Cases</span>Three cases
+@@ e0e4603432 html
+Same strike at 7, 30, 90 and 365 days: a time position or a volatility position?
+@@ 68dd016a82 html
+With the stock at $100 and IV 30%, compare the Theta and Vega of the 100-strike call at different terms:
+@@ ec78ac48a6 html
+Table 5-12 ATM calls (per share)
+@@ 1ff43f168d html
+Theta as % of price / day
+@@ 32d66d95fd html
+IV rise needed to offset one day of Theta
+@@ 3a409d8fcd html
+One IV point = days of Theta
+@@ c45b2fca01 html
+2.24 points
+@@ a5d83b15d9 html
+0.55 points
+@@ 4397e0d0e9 html
+0.19 points
+@@ 752edafc43 html
+0.05 points
+@@ 6c7e4373f7 html
+From 7 days to 365 days, Theta shrinks to a sixth and Vega grows sevenfold. Their ratio, |Θ| / Vega, is proportional to 1/<span class="v">T</span>, so the gap grows quadratically:
+@@ e53a1afce9 html
+<strong>7 days</strong>: IV would have to rise 2.24 points every day just to offset Theta. Making money from IV is almost impossible. This is a pure “time + Gamma” position: either the stock makes a big move right away, or you lose the time value.
+@@ 1cc72926c4 html
+<strong>365 days</strong>: a single IV point is worth 18 days of Theta. IV falling from 30% to 25% is like about three months of time decay happening at once (the last row of Table 5-0 in the opening). This is a volatility position; direction and time are secondary.
+@@ c0cd80c6ba html
+Switch to the OTM 110 strike and the conclusion holds, only the ratios are more extreme: the 30-day 110 call loses 5.4% a day and its Vega is 10.3% of its price; at 365 days the figures are 0.21% and 4.1%.
+@@ 618f769f85 html
+Choosing a term is choosing what you are betting on. To bet on “a big move soon,” go short-dated; to bet on “volatility will rise,” go long-dated. When you use long-dated options to bet on direction, remember that a few points of IV decline can wipe out months of gains; when you use short-dated options to bet on rising IV, Theta almost always wins.
+@@ c0632171b6 html
+March 2020: buying puts after VIX hit a record
+@@ 4fc3400c72 html
+In mid-March 2020, US stocks fell sharply day after day and VIX closed at a record high. Many people only started buying puts for “protection” at that point. What followed: the S&amp;P 500 bottomed in late March and rallied hard in April, and implied volatility drifted lower over the following months. Most puts bought at the highs took a double hit, from direction and from volatility.
+@@ 43e2f78bec html
+An illustration with hypothetical numbers (index normalized to 100): buy a 30-day ATM put at IV 70% for <span class="num">$7.817</span>. For comparison, the same ATM put costs only <span class="num">$1.667</span> in a calm period with IV at 16%, so the same protection costs 4.7 times as much. Some scenarios ten days later (20 days left):
+@@ ba52faab0b html
+Table 5-13 A 30-day ATM put bought at IV 70%, ten days later (per share)
+@@ b115e0cc66 html
+Index
+@@ 79785763f2 html
+Put price
+@@ a5895f8456 html
+P&amp;L
+@@ f08681ac1a html
+Down another 5%, IV stays at 70%
+@@ 6c4cc46546 html
+Down another 5%, IV falls to 50%
+@@ 1eb534b681 html
+Flat, IV falls to 45%
+@@ 70b60a697e html
+Rebounds 8%, IV falls to 35%
+@@ 8900742d41 html
+Down another 10%, IV 60%
+@@ a24f75d88f html
+Down another 15%, IV rises to 75%
+@@ de704475ac html
+The second row says it best: the directional call was right and the index fell another 5%, but because IV dropped from 70% to 50%, the put still lost money. Work out the breakeven: if IV falls to 50% after ten days, the index must drop to <span class="num">94.25</span> (another 5.75%) just to break even; if IV holds at 70%, it only needs to fall to 97.18.
+@@ 48e9e250a8 html
+Why does IV usually fall back after a high? Volatility tends to mean-revert, and extreme values are hard to sustain for long (Chapter 6). At entry, this put’s Theta is <span class="num">−0.127</span> a day, five times that of the same option at IV 16% (−0.025); its Vega is 0.114, so each 1-point drop in IV costs another 0.11.
+@@ 23b0a6fca9 html
+Buy insurance when things are calm. Buying protection in a crisis means buying the most expensive volatility of the year, and it only pays if “the market keeps falling hard” and “the panic persists” both happen.
+@@ c039e36ccf html
+To express a bearish view when IV is high, use a put spread (sell a lower-strike put to offset part of the Vega), or simply reduce your stock position; at such times a single-leg put is the worst deal.
+@@ 55df1485cc html
+Before you trade, plug in “IV falls 20 points” and you’ll see how big a drop you need.
+@@ 66fce14234 html
+When rates are high, most of a LEAPS option’s time value is interest
+@@ 7643c3a87f html
+With the stock at $100 and IV 30%, buy a 2-year 70 call (deep ITM, often used in place of the stock). Use parity from Chapter 3 to break down its time value: <span class="v">C</span> = (<span class="v">S</span> − <span class="v">K</span>) + <span class="v">K</span>(1 − e<sup>−<span class="v">rT</span></sup>) + <span class="v">P</span>, that is, “intrinsic value + interest on the strike + the price of the put at the same strike.”
+@@ 86e3e21aca html
+Table 5-14 Price breakdown of the 2-year 70 call (per share)
+@@ 6553833c72 html
+Rate
+@@ 73559e9759 html
+Intrinsic value
+@@ 1642ff53ff html
+Time value
+@@ fd2a61d40e html
+of which: interest
+@@ c206100177 html
+of which: put insurance
+@@ 7677bc19d3 html
+At a 6% rate, 79% of the time value is interest. Buying this call is like controlling about 91 shares with $4,007 while “borrowing” the $7,000 strike for two years, with the interest prepaid in the premium.
+@@ 5b2ff0bf4d html
+Whether this interest counts as a loss depends on where the money you saved goes:
+@@ 87093fed0d html
+<strong>The cash saved goes into T-bills</strong>: buying the stock takes $10,000, the call only $4,007, and the remaining $5,993 earns 6%. Parity ensures the two come out even, so the interest isn’t wasted.
+@@ 016913b801 html
+<strong>The cash saved sits in your account earning nothing</strong>: over two years you pay <span class="num">70 × (1 − e<sup>−0.12</sup>) × 100 ≈ $792</span> for nothing ($538 at a 4% rate).
+@@ 3cbacd4e29 html
+<strong>The money saved buys more LEAPS</strong>: that is adding leverage, and your Delta exposure will far exceed your capital.
+@@ 3832219859 html
+When rates are high, a big chunk of a LEAPS call’s price is financing cost. When you use one in place of the stock, either put the cash you save to work earning the same interest or accept the cost; and know that falling rates while you hold it will reduce the option’s value (Rho is about $102 per contract per 1%).
+@@ 76fc557033 html
+<span class="sn">Tools</span>Checklist and self-test
+@@ b4640d623d html
+Your checkmarks are saved only in your own browser.
+@@ 459cd34232 html
+<span class="num">5-1</span>Before you buy: time
+@@ 995ed68c1c html
+Add up Theta over the holding period, scaling it up for acceleration near expiration
+@@ af3c03ff8a html
+ATM: avoid the last two or three weeks; OTM: avoid the stretch where the strike is “one standard deviation away”
+@@ 63fd0b071a html
+Check whether your platform’s Theta is per calendar day or per trading day
+@@ 78ed44aabd html
+<span class="num">5-2</span>Before you buy: volatility
+@@ e5a16a109b html
+Check where current IV sits in its own history (Chapter 6)
+@@ 54e5585bf8 html
+If there’s an event: compute the breakeven assuming “IV returns to its usual level afterward”
+@@ d0ba5643a6 html
+If Vega is too large, consider a spread so the two legs offset each other
+@@ 240e9f4ccb html
+<span class="num">5-3</span>While holding: a Greeks checkup
+@@ 8c914454ad html
+Convert Theta, Vega and Rho into dollars per day, per point and per 1%
+@@ ee126eeae0 html
+Compute Vega ÷ |Theta|: how many days of Theta one IV point is worth
+@@ 383bcc2dde html
+Holding LEAPS: include rate changes in your scenarios
+@@ d779c66ba5 html
+<span class="num">5-4</span>Sellers: before collecting Theta
+@@ 3c6872ba36 html
+How much negative Gamma comes with this Theta (Chapter 4)
+@@ 2e22c345c0 html
+Reprice directly for IV spikes of 10 and 20 points; don’t extrapolate with Vega
+@@ 71eccc3340 html
+For far-OTM options, look at Vega as a percentage of price, not just dollar Vega
+@@ a6f5d33bbc html
+Five self-test questions
+@@ 7f77d5b1c6 html
+<span class="num">1</span><span>A 30-day ATM call has Theta of −0.062. About how much does it lose over ten days (stock and IV unchanged)? Will the actual loss be more or less?</span>
+@@ 2fc09a2ae7 html
+The Theta estimate is <span class="num">0.062 × 10 ≈ 0.62</span>; the actual loss is <span class="num">3.591 − 2.909 = 0.68</span>, which is more. An ATM option’s Theta grows as expiration approaches, so extrapolating from today’s Theta underestimates the loss.
+@@ cfa30807a9 html
+<span class="num">2</span><span>A 30-day 110 call is priced at 0.655 with Vega of 0.0675. IV rises from 30% to 35%. Use Vega to estimate the new price and the percentage gain. What are the actual figures?</span>
+@@ 0c09e2d899 html
+Estimate: <span class="num">0.655 + 5 × 0.0675 = 0.993</span>, up 52%. Actual: <span class="num">1.022</span>, up 56%; the extra comes from Volga. Over the same move, the ATM call rises only 16%.
+@@ 016a34fa12 html
+<span class="num">3</span><span>Before earnings, a 7-day ATM straddle costs $8.83 (IV 80%), and IV is expected to return to 35% after earnings. How much does the stock need to move the next day for the straddle to break even? Roughly what standard deviation is the market pricing for earnings day?</span>
+@@ db73530f9d html
+Breakeven is about <span class="num">+8.65% / −8.83%</span>. Earnings-day standard deviation: <span class="num">√(0.80² × 7 − 0.35² × 6) / √365 ≈ 10.1%</span>, which corresponds to a mean absolute move of about 8.1%.
+@@ 3c3f126b12 html
+<span class="num">4</span><span>A 2-year ATM call has Rho of 0.906 and the ATM put Rho of −0.940. If rates rise from 4% to 6%, roughly how does each change?</span>
+@@ 0e3a72db35 html
+The call about <span class="num">+0.906 × 2 ≈ +1.81</span> (actual +1.84), the put about <span class="num">−0.940 × 2 ≈ −1.88</span> (actual −1.78). Rho itself changes with rates, so the linear estimate is a little off. Per contract, that is about +$184 and −$178.
+@@ c93139e6bd html
+<span class="num">5</span><span>A position has Delta +241 shares, Gamma −15.9, Theta +$18/day and Vega +$91/point. What two scenarios does it fear most?</span>
+@@ 55430064d5 html
+First, a sharp near-term drop: positive Delta produces a loss, and negative Gamma makes Delta grow as the stock falls, so the losses accelerate (a $10 drop loses about $2,945). Second, a fall in IV: each 1-point drop loses $91, and a 5-point drop about $432, more than three weeks of Theta.
+@@ 8043018f03 html
+Examples in this chapter are computed with the Black-Scholes model (4% interest rate, no dividends, 365-day year; Section 5.3 also uses a trading-day clock for comparison). The IVs in the earnings and 2020 scenarios are hypothetical. For education only; not investment advice.

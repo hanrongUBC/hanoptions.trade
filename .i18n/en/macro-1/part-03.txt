@@ -1,0 +1,210 @@
+@@ 9b44f2c8ab html
+Term premium rises: heavy Treasury supply, inflation or fiscal worries
+@@ 77b2de6cbb html
+Worst for valuations; stocks and bonds tend to fall together; banks' net interest margins benefit
+@@ 55dee2ebf6 html
+Bear flattening
+@@ 65c658e0d5 html
+Short end rises more than the long end
+@@ 101d8dc258 html
+A hiking cycle; the central bank is tightening
+@@ 41fb3e4c68 html
+Late in the cycle; small caps and highly indebted companies get hit first
+@@ 0b843d5136 html
+An inverted curve (2-year above 10-year) appeared before each of the past several US recessions, but it is not a timer: the inversion that began in 2022 lasted more than two years, and the economy did not fall into recession on schedule. What deserves more caution is often how the inversion <strong>ends</strong>: if the short end drops fast on rate-cut expectations and the curve steepens again, it often means the economy is genuinely weakening.
+@@ 99f85048be html
+The Fed's reaction function, and market pricing
+@@ 33d3b054f1 html
+The Federal Reserve (Fed) has two goals: stable prices and full employment. Each of its decisions can be read as weighing these two goals against each other. When inflation is well above target, it tolerates more weakness in jobs; when jobs are clearly deteriorating and inflation is near target, it turns to easing faster.
+@@ 43959335de html
+For traders, the key is not what the Fed did but how far it was from what the market expected. Fed funds futures and overnight index swaps (OIS) tell you how many hikes or cuts the market has priced (CME's FedWatch tool converts this into probabilities). If the market has priced a 90% chance of a hike before the meeting, the hike itself isn't news; not hiking would be.
+@@ b8c7db9774 html
+Also watch what officials say before the meeting. They often guide expectations deliberately to avoid springing a surprise at the meeting. This also means the speeches themselves get part of the data's impact priced in early.
+@@ 89ade64bf4 html
+The Fed credibility trade
+@@ 118c792ad4 html
+What happens when the market has almost fully priced a hike and the Fed chooses not to hike? The reaction usually comes in two phases:
+@@ 8ff18e5e8a html
+Asset
+@@ 284b86bc00 html
+Phase one (hours to a day or two)
+@@ 1f90094865 html
+Phase two (if the market starts to doubt the Fed)
+@@ 87778864f6 html
+2-year yield
+@@ 03df9611c0 html
+Stays low
+@@ e8900ff5f0 html
+10- and 30-year yields
+@@ dbf42a67bf html
+Fall along with it
+@@ 46c16412a5 html
+Turn higher; the curve bear-steepens
+@@ 08538343a8 html
+Dollar
+@@ 4b24e00d5e html
+Weakens
+@@ 6a4205bb33 html
+Keeps weakening
+@@ 8b0f4538d8 html
+Gold
+@@ 550d3734d0 html
+Up
+@@ 2e1ec4b976 html
+Keeps rising
+@@ e7cd9933a3 html
+Stocks
+@@ b63605b1fb html
+Long-end yields climb and the initial gains are sold
+@@ ee9e23b280 html
+Whether phase two happens depends on whether the market still believes the Fed can keep inflation under control. If inflation is clearly still high and the Fed won't tighten, long-bond investors demand more compensation for bearing future inflation risk. Then rate-cut expectations end up pushing long-term rates higher, and stocks get no benefit at all.
+@@ 13cded96a3 html
+The test is simple: in the days after the announcement, see whether the 10-year yield falls along with the 2-year (the market believes the Fed) or rises against it (the market is punishing it).
+@@ 71a0cc1c10 html
+Treasury supply, auctions and the term premium
+@@ f8528ed9f0 html
+Long-term rates depend not only on expectations for the central bank but also on supply and demand for Treasuries. The bigger the government's deficit, the more debt it must issue; if there aren't enough buyers, it has to attract them with higher yields. The extra yield investors demand for holding long-term bonds is called the term premium.
+@@ 83f1cfd63d html
+A few details worth watching:
+@@ 5f489d4344 html
+<strong>Auction results</strong>: a stop-out yield clearly above the pre-auction market level (known as a “tail”), a low bid-to-cover ratio and a falling share of foreign buyers all signal weak demand. Weak 20- and 30-year auctions in particular push the long end up.
+@@ 311970af4c html
+<strong>The quarterly refunding announcement</strong>: each quarter the US Treasury publishes its borrowing plans for the period ahead, including the mix of long bonds and short-term bills. In early November 2023 the Treasury slowed the growth of long-bond issuance; combined with Fed hints of a pause in hikes, long-end yields fell back from near 5%, and stocks then rallied sharply.
+@@ f057cb44a4 html
+<strong>Signs of a rising term premium</strong>: the long end rises more than the short end, the dollar doesn't necessarily follow, and stocks and bonds fall together.
+@@ a73d45de1f html
+Rates affect all assets through the discount rate; the higher a company's growth and the further away its earnings, the more sensitive it is.
+@@ c7d1ba0beb html
+Break rates down: the short end reflects the central bank; the long end reflects growth, inflation, and supply and demand. Split nominal yields into real yields and inflation expectations.
+@@ 1b849c0e3d html
+Compare central bank decisions with market pricing; the most important question is whether the market still believes the central bank.
+@@ 60eff62aae html
+The dollar, gold and energy
+@@ 61a13e0f0b html
+US interest rates set the price of money worldwide; the dollar, gold and crude oil carry that price around the world and back into the income statements of US companies.
+@@ be16ea0c49 html
+The dollar is the world's funding currency
+@@ b8bfbe030f html
+A large share of global trade settlement, cross-border lending and non-US corporate debt is denominated in dollars. When the dollar strengthens, these borrowers need more of their own currency to repay the same debt, and global funding conditions tighten. The effect on US stocks runs mainly through four channels:
+@@ 33a23d701d html
+<strong>Earnings translation</strong>: a sizable share of S&amp;P 500 companies' revenue comes from overseas, and the stronger the dollar, the less that revenue is worth once converted into dollars. Multinational tech and consumer brands often cite “currency headwinds” in their earnings reports.
+@@ 216f2a1c48 html
+<strong>Commodities</strong>: commodities priced in dollars get more expensive for buyers in other countries, so demand and prices come under pressure.
+@@ d1949d0a4e html
+<strong>Emerging markets</strong>: capital outflows, weaker local currencies and mounting pressure on dollar debt.
+@@ d43c5b8374 html
+<strong>Risk appetite</strong>: a sharp rise in the dollar often coincides with global risk-off.
+@@ fb605ff38d html
+A stronger dollar can mean opposite things, depending on why
+@@ 8e1d251911 html
+Traders often use a “dollar smile” curve to sum up how the dollar relates to the economic backdrop:
+@@ e33f1f0684 html
+Left side: global panic, money flees into the dollar, and US stocks usually fall at the same time. Middle: a synchronized global recovery, money flows overseas, and the dollar weakens. Right side: US growth is clearly stronger than elsewhere, money flows into US assets, and the dollar and US stocks can rise together. When you see the dollar strengthening, first ask which end of the smile it is on.
+@@ 3e35f00d95 html
+One case that isn't on the smile deserves its own note: <strong>US rates rising while the dollar falls</strong>. Normally higher rates make the dollar more attractive, so when the two move in opposite directions, it often means foreign investors are cutting US assets, possibly out of concern about fiscal sustainability, policy predictability or inflation control. During the tariff shock of April 2025, US stocks, Treasuries and the dollar all fell at the same time for a while.
+@@ 750dd6d1e4 html
+The yen and the carry trade
+@@ cad1fe10d5 html
+Japan kept interest rates extremely low for a long time, so many investors borrowed yen, converted it into dollars or other currencies, and bought higher-yielding assets. That is the carry trade. As long as the yen holds steady or weakens, the trade earns the rate differential every day.
+@@ e70e7eb256 html
+The risk is a sudden, sharp rise in the yen. The debt that yen borrowers must repay grows instantly, so they have to sell whatever assets they hold to unwind, even assets that have nothing to do with one another. In late July 2024 the Bank of Japan raised rates; soon after, weak US jobs data in early August sent the yen soaring, and carry trades were unwound en masse. On August 5 the Nikkei fell about 12% in a single day, the VIX briefly spiked above 60 intraday, and popular US tech stocks were sold heavily. The market recovered most of the losses within a few weeks, but those few days of volatility were enough to knock out highly leveraged positions.
+@@ 2212182bf1 html
+Treat a sharp rise in the yen over a short period as an alarm for risk assets worldwide, even if you don't own any Japanese assets.
+@@ 50657d9a70 html
+Gold: what is it hedging?
+@@ 8de6657478 html
+Gold pays no interest, so the cost of holding it is the real yield you give up. Traditionally, then, gold moves opposite to the 10-year real yield: when real yields rise, gold comes under pressure. Other things that move gold:
+@@ 114731665d html
+<strong>The dollar</strong>: gold is priced in dollars, so a weaker dollar usually helps gold.
+@@ 82d0c9d770 html
+<strong>Central bank gold buying</strong>: some countries' central banks keep adding gold to reduce their reliance on dollar assets. Since 2022 this buying has clearly weakened gold's traditional relationship with real yields.
+@@ 8f6270e99c html
+<strong>A credibility and geopolitical hedge</strong>: when the market worries about currency debasement, runaway deficits or escalating conflict, gold is one of the few assets that doesn't depend on any government's credit.
+@@ 5c7277c743 html
+Silver is a precious metal but also has industrial demand (electronics, solar), so it follows gold's narrative but gets amplified by the business cycle and swings more, making it less “clean” than gold.
+@@ 39809c3688 html
+A practical reading: if gold is rising while real yields are also rising, buyers are paying for something other than rates, usually credibility or geopolitical risk. A gold rally like that tends to last longer than one driven purely by rate-cut expectations, and is more worth treating as a risk signal.
+@@ 5b8f5b8965 html
+Crude oil: why it rises matters more than how much
+@@ e96d205b8d html
+A demand-driven rise
+@@ 8feee828a5 html
+Strong global economy; healthy consumer and industrial demand
+@@ f1b1d55358 html
+Crude, copper and stocks rise together
+@@ b7ea86b2d8 html
+Cyclical stocks, industrials and energy lead
+@@ 29ed186b39 html
+Mostly positive for stocks
+@@ 2be9409f37 html
+A supply-shock rise
+@@ e667ab1ee6 html
+Production cuts, sanctions, blocked shipping lanes
+@@ 0ad884b4b4 html
+Crude rises, stocks fall, and bonds may fall too
+@@ 612a70f520 html
+Airlines, transportation and consumer discretionary are hit hardest
+@@ dfbc00d1b8 html
+Works like a tax on consumers
+@@ d63dbfec78 html
+You can rough out the “oil tax”: a barrel of crude is 42 gallons, so every $10 rise in crude works out to about $0.24 per gallon of refined product. If the US consumes about 135 billion gallons of gasoline a year, an extra $0.24 per gallon means about $32 billion a year flowing from consumers' pockets to energy producers. The money doesn't vanish, but what gets spent at the gas station doesn't get spent at restaurants and malls.
+@@ 904c506e8a html
+How to tell: on the days oil rises, check whether the S&amp;P 500 rises with it or falls, and whether copper rises too. If stocks and copper both follow it up, it's probably demand; if stocks fall and copper doesn't rise, it's probably a supply shock.
+@@ b7eb785062 html
+Having oil doesn't mean having fuel
+@@ c0f8104658 html
+Crude has to go through a refinery to become gasoline, diesel and jet fuel. When refining capacity falls short, or inventories of one product (diesel, say) are tight, refined product prices can rise far more than crude. The price gap between crude and refined products is called the crack spread, and it determines refiners' profits.
+@@ bc6d23a8f8 html
+Diesel matters especially, because trucking, farm machinery and construction equipment all run on it. Tight diesel pushes up the price of almost everything through freight costs, so its effect on inflation is broader than gasoline's. On the policy side, if diesel prices get high enough to create political pressure, the government may consider restricting exports. That would push domestic prices down and overseas prices up, changing the fortunes of the companies involved overnight.
+@@ 1086a84988 html
+Round numbers and policy responses
+@@ 32d4d35937 html
+Crude often meets clear resistance or speeds up near round numbers. Not because the numbers are magic, but because they change behavior: the media starts covering it heavily, consumers start complaining, politicians start weighing in. When oil reaches a politically unacceptable level, the odds rise of policy responses such as releasing the Strategic Petroleum Reserve (SPR), pressuring producing countries or restricting exports. When you trade high oil prices, treat a policy response as a scenario that could arrive at any moment.
+@@ 5227ba04bc html
+Chapter quick reference
+@@ 3381fb6cd0 html
+Main drivers
+@@ 7bb21217e5 html
+What it means for US stocks
+@@ 954e7c8109 html
+Watch it alongside
+@@ 0dda18471a html
+US rates and growth relative to other countries; safe-haven demand
+@@ 660ff4dc61 html
+A sharp rise tightens global financial conditions; pressure on multinationals' earnings
+@@ b45d281325 html
+US stocks, Treasury yields, the yen
+@@ 0f68e0c237 html
+Yen
+@@ d017fb0459 html
+Japanese rates, carry-trade positioning
+@@ a0b3f37689 html
+A sharp rise can trigger global deleveraging
+@@ d9701ac5cb html
+Nikkei, VIX, popular tech stocks
+@@ bf38eca74c html
+Real yields, the dollar, central bank buying, credibility risk
+@@ a3607b902a html
+A risk signal when it rises along with real yields
+@@ 12a9848280 html
+10-year TIPS, the dollar
+@@ d62331d663 html
+Crude oil
+@@ aa8017577d html
+Demand, supply shocks, policy
+@@ d6afe69d6b html
+Demand-driven rises lean positive; supply shocks lean negative
+@@ 87822dea04 html
+Copper, the S&amp;P, breakeven inflation
+@@ fb9c0c6550 html
+Diesel
+@@ ebf65936bc html
+Refining capacity, inventories, export policy
+@@ 21d600828d html
+Pushes up freight costs and goods inflation
+@@ 2042336acf html
+Crack spreads, transportation stocks
+@@ 0aa3370679 html
+Market regimes: four variables, three phases
+@@ 22e36f2d68 html
+The same news can mean opposite things in different market regimes. So first decide which phase the market is in, then choose what to trade and with which tools. The regime call doesn't need to be precise; it just needs to keep you from being wrong about the big direction.

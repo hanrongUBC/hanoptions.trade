@@ -1,0 +1,200 @@
+@@ 9fbd2e65a0 html
+The three outcomes correspond to three kinds of options. Early knock-out and reaching maturity without a knock-in are both digital options: “meet the condition, get a fixed payment.” The loss after a knock-in is exactly the seller's payout on a down-and-in put with a strike of 100 and a barrier of 75. Put together, the investor = holds a short-term deposit + sells a knock-in put + gives up the index's upside (a rally only buys an early exit and a few months of coupon).
+@@ c271340fd3 html
+Where the coupon comes from, in numbers
+@@ 71337211b3 html
+Price these terms on 2,000 risk-neutral paths (4% rate, no dividends, IV 25%) and solve for the coupon that makes the note's present value exactly equal to the principal: the fair annualized coupon is <span class="num">18.7%</span>. That looks far higher than the premium on a one-year ATM put (<span class="num">7.9%</span> of principal). But in present-value terms, all the coupons the investor might receive are worth only <span class="num">6.14%</span> of principal:
+@@ 0dabd62b11 html
+<span class="num">4.19%</span> pays for the knock-in put they sold, <span class="num">68%</span> of the coupons' present value;
+@@ 76abb0ab81 html
+<span class="num">1.96%</span> is interest on the principal while it is tied up.
+@@ 752548b317 html
+There are three reasons the 18.7% annualized figure looks high: almost half the paths (<span class="num">48.9%</span>) knock out in month 3 and collect only 3 months of coupon; the average holding period is about <span class="num">0.50</span> years; and the <span class="num">16.1%</span> of paths that knock in and lose get no coupon at all. Only <span class="num">6.4%</span> of paths neither knock out nor knock in, and collect a full year.
+@@ cf27bca1d1 html
+Table 16-5 Fair pricing of the same terms (knock-in at 75%) at different IVs (2,000 paths, % of principal)
+@@ e9d91f703f html
+Fair annualized coupon
+@@ de774685dc html
+PV of the embedded short put
+@@ 56b2cfa1d7 html
+Probability of a knock-in loss
+@@ a51b58a156 html
+Average loss when there is a loss
+@@ 4c9214b946 html
+One-year ATM put premium
+@@ 0b5c9b49c7 html
+The coupon rises with IV, and so does the probability of a knock-in loss. A high coupon is the price of high risk. Issuers launch higher-coupon products when markets are volatile precisely because that is when the put being sold is worth more, and more likely to be triggered.
+@@ eca2006b32 html
+Implied volatility <input id="f2-iv" type="range" min="15" max="40" step="1" value="25"> <output id="f2-iv-o">25%</output>
+@@ b8ca3bcada html
+Knock-in level <input id="f2-ki" type="range" min="60" max="90" step="1" value="75"> <output id="f2-ki-o">75%</output>
+@@ 168d94dd72 html
+The shaded area lies below the knock-in level: if the index finishes there, the note must have knocked in. The middle stretch (from the knock-in level to 100) has two possible outcomes, depending on whether the path touched the knock-in level along the way. Drag IV to the right and the green line (the coupon) rises, along with the probability of a knock-in loss. Raise the knock-in level to 85% and the coupon goes up, because the put you sold is more likely to be triggered. Paths that knock out early aren't on the chart; they end once they collect their monthly coupons.
+@@ dd70874e79 html
+What the investor actually sold
+@@ 123e51451c html
+<strong>Volatility</strong>: with the coupon fixed at 18.7%, a rise in IV from 25% to 30% lowers the note's present value by about <span class="num">2.3%</span> of principal; a drop in IV to 20% raises it by <span class="num">2.7%</span>. This is a negative-Vega position.
+@@ 2e2b4c48b0 html
+<strong>The downside tail</strong>: losses appear only after a big drop, and the average loss is 27%, the same shape as selling an OTM put.
+@@ bb1a7b572b html
+<strong>The upside</strong>: a big rally in the index only gets you an early knock-out and a few months of coupon.
+@@ 8fa7a0cff4 html
+<strong>Liquidity</strong>: notes usually can't be sold at fair value whenever you like, so once one knocks in, it is hard to cut your loss.
+@@ 35e6a72002 html
+The issuer's profit is hidden in the coupon. If the same terms are quoted at 15%, that is 3.7 points below fair value. The coupon's present-value factor is 0.328 (every 1 point of annualized coupon is worth 0.328% of principal), so the investor is effectively giving up <span class="num">3.7 × 0.328 ≈ 1.2%</span> of principal.
+@@ 910ffd613d html
+When do I lose money? What is the most I can lose?
+@@ f437b2d5bd html
+What kind of option does this mean I have sold?
+@@ 9a5b1a84d6 html
+Priced at current IV, what is that option worth, and is the coupon I get a fair deal by comparison?
+@@ c2da7966ff html
+If you can't answer these three questions, don't buy.
+@@ 7a7da40102 html
+<span class="sn">16.7</span>Master table: strategies × three exposures
+@@ 7fae3b30ca html
+Any structure can be written as three signs: direction, time and volatility. Decide which signs you want first, then pick the structure.
+@@ 5670029653 html
+Chapter 14's “three-dimensional view” asks you to answer three questions before you trade: are you bullish or bearish, do you want time working for you or can you live with it working against you, and do you expect volatility to rise or fall? The table below puts the 24 structures from across the course under the same parameters (stock at 100, 30 days, IV 25%; the far months of the calendar and diagonal are in parentheses) and computes Delta, Theta and Vega for each one.
+@@ 0ed482a39e html
+Table 16-6 Three exposures per set of 1 contract (or 100 shares). Signs column: direction / time / volatility; a Delta of less than 10 shares in absolute value is shown as 0
+@@ 2b2f1e4d50 html
+Structure
+@@ a4460ebadd html
+Legs
+@@ b311ca65a3 html
+Delta (shares)
+@@ 572e7cc69c html
+Theta ($/day)
+@@ 64aa6d82e9 html
+Vega ($/point)
+@@ 58bba5e1ff html
+Signs
+@@ ec16d60e39 html
+Chapter
+@@ 212879677b html
+Long stock
+@@ 9df6d679ad html
+100 shares
+@@ e3413735a4 html
+Long call
+@@ 0d89eb8430 html
+Long put
+@@ eed549872b html
+Naked short call
+@@ 0fedb07280 html
+Cash-secured put
+@@ b10a4adbcd html
+Covered call
+@@ f00056c6ab html
+100 shares −105C
+@@ c6354432d6 html
+Protective put
+@@ 918e7e7bcc html
+100 shares +95P
+@@ 4bafd6f223 html
+Collar
+@@ 92bf7691a1 html
+100 shares +95P −105C
+@@ 60bd5d1d66 html
++ / small / small
+@@ 8d2178ce1f html
+Bull call spread
+@@ 7794c3bc9d html
+Bear put spread
+@@ fc03d6219f html
+Bull put spread
+@@ eb49a5e2c1 html
+Bear call spread
+@@ 2ec1b1464a html
+Long straddle
+@@ 5a75062c0f html
+Short straddle
+@@ 9584c08d2c html
+Long strangle
+@@ 52f7bea092 html
+Short strangle
+@@ 3724c32d4f html
+Iron condor
+@@ c67c408e57 html
+Iron butterfly
+@@ f763286983 html
+Long call butterfly
+@@ e6624b7ad8 html
+Calendar spread
+@@ 215da28382 html
+−100C +100C (60 days)
+@@ fb89f5e1af html
+Diagonal spread
+@@ 52f4623340 html
++90C (90 days) −105C
+@@ f95549d90d html
+1×2 ratio spread
+@@ e68911578b html
+Risk reversal
+@@ 7b91000d14 html
+LEAPS stock replacement
+@@ 463727fd78 html
++80C (365 days)
+@@ 3d44471f36 html
+Four patterns stand out in this table:
+@@ 445378091e html
+<strong>Theta and Vega almost always have opposite signs</strong>: structures that pay for time are buying volatility, and structures that collect time are selling it. This is another way of stating Chapter 4's Gamma–Theta trade-off.
+@@ 0f73546a3b html
+<strong>The exceptions are calendars and diagonals</strong> (highlighted in the table): selling the near month and buying the far month makes both Theta and Vega positive. They earn from the near month decaying faster than the far month, and they bet that far-month IV won't fall.
+@@ 61c1127de8 html
+<strong>A vertical spread's signs flip as the stock moves</strong>: a bull call spread has positive Vega with the stock at 100 (the long leg is at the money). Once the stock rises past the midpoint between the two strikes (about 102.5), the short leg is closer to the money, and Theta and Vega flip sign together. At 106, Theta becomes <span class="num">+1.32</span> and Vega becomes <span class="num">−3.72</span>. The master table is only a snapshot of “right now.”
+@@ f838211013 html
+<strong>When the signs match, look at the tail</strong>: the cash-secured put, the covered call and the bull put spread are all + / + / −. The difference is on the downside: the first two have almost no protection, while the third has a capped loss. The three signs pick the candidates; the maximum loss makes the final choice. The collar and the risk reversal have small Theta and Vega, and their signs depend on the actual skew.
+@@ 1d7f6dad1f html
+Structure <select id="f3-sel" aria-label="Choose a structure"></select>
+@@ b78628f497 html
+Days passed <input id="f3-t" type="range" min="0" max="29" step="1" value="0"> <output id="f3-t-o">0 days</output>
+@@ b9195f79ea html
+IV change <input id="f3-iv" type="range" min="-10" max="10" step="1" value="0"> <output id="f3-iv-o">0 points</output>
+@@ 17164ffe8f html
+Select “Calendar spread” and drag IV up: the blue line rises as a whole. Drag days passed to the right and it also improves near the money: that is Theta and Vega both being positive. Select “Bull call spread” and watch the slope of the curve between 100 and 105. Select “1×2 ratio spread” and see how the line on the right keeps falling past 110: that is the extra call you sold.
+@@ 66c684b22a html
+<span class="sn">16.8</span>Four tools and a 90-day plan
+@@ f0d49a0642 html
+The course leaves you with four things you can use every day: the calendar and dashboard tell you when, and whether it is expensive; the matrix tells you what to use; the rule card tells you how big; the journal tells you whether you did it right.
+@@ 42f70b1a87 html
+Table 16-7 The four tools: where they are, what they answer, how to use them
+@@ 0a2015dbe7 html
+Calendar &amp; IV dashboard
+@@ 2ed39f0850 html
+Chapters 6 and 10
+@@ 3186abd704 html
+Answers
+@@ 028bb77ecd html
+When is something happening? Is IV rich or cheap right now?
+@@ 728dfc6aef html
+When to use
+@@ e2779bf788 html
+Every day at the close, and every Sunday
+@@ d779199020 html
+Minimum
+@@ c9ab54af43 html
+ATM IV, IV Rank, 30-day expected move and next event date for 5 underlyings
+@@ 2489b65bdb html
+Strategy selection matrix
+@@ 8d39f5e87f html
+Chapter 14 (structures in Chapters 7–11)
+@@ 099e620bd3 html
+Which structure fits my view?
+@@ 837476eef7 html
+Before every order
+@@ 34534871e1 html
+Write the view as three signs, find 2–3 candidates in the matrix, choose by maximum loss
+@@ 5520168143 html
+Sizing rule card
+@@ 43bc4f7cc8 html
+Chapter 13
+@@ c3da19952e html
+How big should this trade be? When must I get out?
+@@ 1a68176bfc html
+Before every order and every addition to a position
+@@ a55f8ca11a html
+Maximum loss per trade, total risk cap, stress-test thresholds for short positions
+@@ 87e8bf1ab1 html
+Trading journal

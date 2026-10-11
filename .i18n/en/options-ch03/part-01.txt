@@ -1,0 +1,204 @@
+@@ 02eb86735e html
+Chapter 3: An intuition for option pricing · US Options Course
+@@ 1c52d16577 html
+An <span class="g">intuition</span> for option pricing
+@@ 4832899690 html
+The premium is set by six inputs. Five of them are printed on the quote; only volatility has to be supplied by the market. This chapter skips the rigorous derivations and explains what Black-Scholes is calculating, why put–call parity has to hold, and two rules you can work out in your head before you place an order.
+@@ 4a798dc727 html
+In this chapter
+@@ a8c498f163 html
+<a href="#open"><span class="n">··</span><span>Opening: all at the money, a sevenfold price gap</span></a>
+@@ e44f4aad53 html
+<a href="#s1"><span class="n">3.1</span><span>The six inputs and which way they push</span></a>
+@@ e2a227d0cb html
+<a href="#s2"><span class="n">3.2</span><span>What Black-Scholes calculates</span></a>
+@@ 69d2e2155f html
+<a href="#s3"><span class="n">3.3</span><span>The distribution of prices at expiration</span></a>
+@@ 3bc2490377 html
+<a href="#s4"><span class="n">3.4</span><span>Limits of the normal assumption</span></a>
+@@ 809297560a html
+<a href="#s5"><span class="n">3.5</span><span>Put–call parity</span></a>
+@@ 102693107f html
+<a href="#s6"><span class="n">3.6</span><span>Synthetic positions</span></a>
+@@ 975ca45399 html
+<a href="#s7"><span class="n">3.7</span><span>Reading probabilities</span></a>
+@@ 64d2a89b1d html
+<a href="#s8"><span class="n">3.8</span><span>Mental math 1: the expected move</span></a>
+@@ b0b1a983aa html
+<a href="#s9"><span class="n">3.9</span><span>Mental math 2: the straddle's 0.8</span></a>
+@@ 12c019ed82 html
+<a href="#cases"><span class="n">Cases</span><span>Three cases</span></a>
+@@ dd7ded685d html
+<a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a>
+@@ 417c00f67b html
+<a href="#open">Opening: all at the money, a sevenfold price gap</a>
+@@ a1521c516c html
+<a href="#s1">3.1 The six inputs and which way they push</a>
+@@ d1c83f2e17 html
+<a href="#s2">3.2 What Black-Scholes calculates</a>
+@@ 3d01a4fb2e html
+<a href="#s3">3.3 The distribution of prices at expiration</a>
+@@ 369dc424c0 html
+<a href="#s4">3.4 Limits of the normal assumption</a>
+@@ c28de46fe4 html
+<a href="#s5">3.5 Put–call parity</a>
+@@ 088bfeb81b html
+<a href="#s6">3.6 Synthetic positions</a>
+@@ 3e58ebb861 html
+<a href="#s7">3.7 Reading probabilities</a>
+@@ 33de6241f5 html
+<a href="#s8">3.8 Mental math 1: the expected move</a>
+@@ 10a0c7adc7 html
+<a href="#s9">3.9 Mental math 2: the straddle's 0.8</a>
+@@ f3a78e0502 html
+<a href="#cases">Three cases</a>
+@@ 7ec24afd50 html
+<a href="#tools">Checklist and self-test</a>
+@@ 80161dff8a html
+After this chapter you can
+@@ 6cd5a5c4be html
+Say whether each of the six inputs makes calls and puts more or less expensive, and explain why
+@@ 0d018ba39d html
+Use put–call parity to get a put price from a call price, and recognize synthetic positions
+@@ 40bf95ea6d html
+Estimate a one-standard-deviation expected move and the price of an at-the-money straddle without a calculator
+@@ fc4f43bd05 html
+Prerequisites
+@@ bf2e24c0a5 html
+Chapter 1: intrinsic value, time value and payoff diagrams at expiry
+@@ 7cc766f27a html
+Chapter 2: American and European style, exercise and assignment
+@@ fe31444484 html
+Conventions
+@@ 6614b3648e html
+Examples use Black-Scholes with a 4% rate and no dividends (Section 3.1 shows dividends separately)
+@@ 6c3d5d82a2 html
+Days are calendar days, with a 365-day year
+@@ cb0a70898e html
+One contract = 100 shares
+@@ 5eeef024b8 html
+<span class="sn">Opening</span>All at the money, a sevenfold price gap
+@@ 611d71ca0f html
+Three stocks all closed at $100 today. On each one's option chain you find a call with a 100 strike. The quotes are $1.88, $7.01 and $13.75.
+@@ ad764e77cf html
+Table 3-0 Three at-the-money calls (stock price = strike = 100)
+@@ 5f364b9085 html
+Contract
+@@ 8e53b7da1a html
+Days left
+@@ 4d5a54d374 html
+Implied volatility
+@@ 2a56399463 html
+Call price
+@@ 860a9d7486 html
+% of stock price
+@@ 4b052793e5 html
+A and B have exactly the same stock price, strike and expiration, yet B costs <span class="num">3.7</span> times as much. The difference is entirely in volatility: the market expects B to move four times as much as A over the next month. C has the highest dollar price, but it is buying a whole year of uncertainty; $13.75 on its own tells you nothing about whether it is expensive or cheap.
+@@ 8df3422315 html
+So an option's dollar price, by itself, doesn't tell you whether it is cheap or expensive. To judge that, you first need to know where the price comes from. This chapter answers three questions: which inputs determine the premium; how those inputs are combined into a price; and how to estimate a roughly reasonable price without opening a calculator.
+@@ 86b65a331d html
+<span class="sn">3.1</span>The six inputs and which way they push
+@@ 6d7d1dbb24 html
+Of the six inputs, the underlying price, the strike, the time to expiration, the interest rate and dividends can all be looked up directly; only volatility has to be backed out of market prices. Start with which way calls and puts move when each input increases.
+@@ f304471d14 html
+Table 3-1 Which way option prices move when an input increases
+@@ ae8a2faee1 html
+Input increases
+@@ 1ac69090ba html
+Call
+@@ 727fb827ee html
+Put
+@@ 67ddb6241e html
+Why
+@@ 61d715b4e7 html
+Underlying price <span class="v">S</span>
+@@ 562c564def html
+The call gets closer to the money, the put farther from it
+@@ ac95ca0832 html
+Strike <span class="v">K</span>
+@@ 09caf09a74 html
+You buy at a higher price, and you also sell at a higher price
+@@ aac3a69e8a html
+Time to expiration <span class="v">T</span>
+@@ 2e1f4c77a1 html
+↑ (usually)
+@@ 4ceb7737e9 html
+The more time, the farther the stock can go
+@@ 1ec367f6f3 html
+Volatility σ
+@@ 22c3184b99 html
+Asymmetric payoff: extra favorable moves help, while unfavorable moves are floored by the premium
+@@ da4289829f html
+Risk-free rate <span class="v">r</span>
+@@ 97b8791287 html
+The present value of the strike shrinks: paying later is better, getting paid later is worse
+@@ 89ae461339 html
+Dividends <span class="v">q</span>
+@@ 7970b39352 html
+The stock drops when it goes ex-dividend, and option holders don't get the dividend
+@@ ff17552a82 html
+The volatility row deserves a second thought. Once the stock falls below the strike, the most a call can lose is its premium, however far the stock falls; above the strike, it gains as much as the stock rises. So when volatility increases, the call holder just gets more chance of a “big rally,” while the cost of a “big drop” is already capped. The same goes for puts. That is why option prices always rise with volatility.
+@@ 106f6c1b3a html
+Checking with numbers
+@@ 6fd3bdaf41 html
+Below, the base case is “stock 100, strike 100, 30 days, IV 30%, rate 4%, no dividends,” and we change one input at a time.
+@@ 7cc5338cff html
+Table 3-2 Changing one input at a time (per share, $)
+@@ c64819d401 html
+Scenario
+@@ dc0aac1119 html
+Change
+@@ e16c07c7ae html
+Base case
+@@ 073d60ca96 html
+Stock 100 → 105
+@@ 4aa8458a3f html
+Strike 100 → 105
+@@ eb98753aa8 html
+Days 30 → 60
+@@ 5194f80046 html
+Rate 4% → 6%
+@@ d2e4b6cf8e html
+Dividend yield 0 → 2%
+@@ 3e8ed67a85 html
+Three observations:
+@@ 9aaeb5da3d html
+<strong>The stock price and the strike matter most.</strong> The change in the option's price for each $1 move in the stock is Delta (Chapter 4).
+@@ 48497e0797 html
+<strong>IV raised the call and the put by exactly the same 0.570.</strong> This is no coincidence. Put–call parity (Section 3.5) shows that the call minus the put depends only on the stock price, the strike, the interest rate and time, not on volatility. So when volatility changes, the two have to rise and fall together.
+@@ 55749f7d0c html
+<strong>Interest rates and dividends have little effect on a 30-day option</strong>, just a few cents. For long-dated options of a year or two (LEAPS) you can't ignore them; Chapter 5 works through the numbers.
+@@ 5d36ab5555 html
+A European put that is deep in the money can actually get cheaper with more time to expiration. With the stock at $100, a European put with a 150 strike is worth <span class="num">49.51</span> with 30 days left and only <span class="num">46.05</span> with 365 days, both below its intrinsic value of 50. The reason is that the best a put can do is pay you $150, and the later that money arrives, the lower its present value. An American put can be exercised at any time, so it is never worth less than 50, which is why US single-stock options don't have this anomaly. But it does explain why deep in-the-money American puts are often exercised early (Chapter 2): the time value of holding on no longer makes up for the interest on getting the cash early.
+@@ 32cf37f9ae html
+Stock price
+@@ 4a14863fad html
+Strike
+@@ 35f56e5ba4 html
+Days
+@@ 6553833c72 html
+Rate
+@@ eb5d31d712 html
+Dividend
+@@ 59ac2e9a46 html
+Reset to base case
+@@ 54e6d0f9e7 html
+Stock price <input id="f1-S" type="range" min="70" max="130" step="1" value="100"> <output id="f1-S-o">$100</output>
+@@ 61a7e8715f html
+Strike <input id="f1-K" type="range" min="70" max="130" step="1" value="100"> <output id="f1-K-o">$100</output>
+@@ 38ed2baf3b html
+Days left <input id="f1-T" type="range" min="1" max="365" step="1" value="30"> <output id="f1-T-o">30 days</output>
+@@ 7a9661f791 html
+Implied volatility <input id="f1-s" type="range" min="5" max="100" step="1" value="30"> <output id="f1-s-o">30%</output>
+@@ b02048d9fc html
+Risk-free rate <input id="f1-r" type="range" min="0" max="10" step="0.25" value="4"> <output id="f1-r-o">4.00%</output>
+@@ 7f30f5dbce html
+Dividend yield <input id="f1-q" type="range" min="0" max="8" step="0.25" value="0"> <output id="f1-q-o">0.00%</output>
+@@ d42f10f102 html
+Click “IV” first: the two lines rise together, and the gap between them stays the same everywhere. That gap is the two readouts on the right, which are always equal (Section 3.5). Then click “Stock price” and drag the days left down to 1–3: the curves bend into kinked lines close to the payoff diagram at expiry. Drag the stock price to 70 and then click “Days”: the put line falls as the days increase. That is the deep in-the-money European put exception described above.
+@@ 0227173100 html
+The one input you can't see: implied volatility
+@@ 334dea12e7 html
+The first five inputs are facts, but volatility is an estimate of the future that no one can observe directly. In practice you work backward: take the price the option trades at in the market, plug it into the formula and solve for the σ that makes the formula's price equal the market price. That is <strong>implied volatility (IV)</strong>.
+@@ f5a1a0d907 html
+For example, with the stock at $100, if a 30-day at-the-money call trades at $4.20, solving backward gives an IV of <span class="num">35.3%</span>. That price is higher than the base case (IV 30%, $3.591), and the extra is there because the market expects bigger moves. That's why traders often quote an option as “35 vol” rather than $4.20: IV puts options with different stock prices and expirations on the same yardstick. Chapter 6 covers how to judge whether IV is high or low.

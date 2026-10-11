@@ -1,0 +1,140 @@
+@@ 86346dd6c6 html
+<span class="sn">13.2</span>Rules for buyers
+@@ 8ffaaaadc7 html
+A buyer’s worst enemy is a losing streak. Keep each trade small enough that even the worst run of losses is a drawdown you can recover from.
+@@ 3dd4b867f3 html
+Size per trade: the Kelly ceiling
+@@ 7add83a3ab html
+Let the win rate be <span class="v">p</span>; a win makes <span class="v">b</span> times the premium on average, and a loss costs the whole premium. The bet size that compounds fastest over the long run is:
+@@ e9b06c5954 html
+Win rate 35%, average win 2×: f* = (0.70 − 0.65) ÷ 2 = 2.5%. Win rate 40%: 10%. Overestimate the win rate by just 3 points (it’s really 32%): f* = −2%, and the trade itself loses money.
+@@ 51ccbb1ed0 html
+The Kelly fraction is a ceiling, not a target. It assumes you know your win rate and payoff exactly, and a buyer’s win-rate estimate is often off by several percentage points. In practice you take half of it or less, which is why the common rule is <strong>premium per trade no more than 1%–2% of the account</strong>. If you set a −50% stop-loss on every trade, you could count the risk per trade as half the premium; but IV crush and gaps often make stops fail, so to be safe, count the full premium.
+@@ 58aadcc87e html
+How long losing streaks run
+@@ be9bfb9be5 html
+How long a losing streak will a buyer with a 35% win rate run into over 100 trades? It can be computed exactly:
+@@ fc27a9baa7 html
+Win rate <input id="f1-w" type="range" min="20" max="60" value="35" step="1"> <output id="f1-w-o">35%</output>
+@@ 3d95ae24b1 html
+1% per trade
+@@ a0e4370bd3 html
+Each bet is a fixed fraction of current equity. At a 35% win rate, the median longest losing streak is 9 trades and the 95th percentile is 14. At 2% per trade, a 14-trade losing streak is a 24.6% drawdown; at 5% per trade, the same streak is a 51.2% drawdown, and you need to double your money to get back to even. Drag the win rate to 50% and the 95th percentile is still 9 trades.
+@@ 73fc6275f8 html
+Table 13-2 Drawdown from a 14-trade losing streak (the 95th percentile at a 35% win rate) at different sizes per trade
+@@ 1802512b42 html
+Premium per trade, % of equity
+@@ d597ddf720 html
+Drawdown after 9 straight losses (median case)
+@@ b17bb84e99 html
+Drawdown after 14 straight losses
+@@ cd06e00577 html
+Gain needed to get back to even after 14 straight losses
+@@ 4102ff4245 html
+How many trades at once
+@@ 943a9fae95 html
+2% per trade only works if the trades are uncorrelated. Five calls on tech stocks get knocked down by the same macro headline on the same day; in effect they are one 10% bet. So buyers need two aggregate rules as well: <strong>no more than 5 trades open at once, and total premium no more than 10% of the account</strong>; positions on the same theme (same sector, same direction, same event) count together and are capped at 6% combined.
+@@ be18c02fa7 html
+The buyer’s rules look conservative because buyers win through “a few trades that make big money.” The small losses along the way only mean something if you survive until those trades show up.
+@@ 040e214f00 html
+<span class="sn">13.3</span>Rules for sellers
+@@ e31dab934f html
+Size a short-option position by “how much can this lose”: max loss for defined risk, the stress test for undefined risk, plus one cap on the total and one on concentration.
+@@ 52a1d689ab html
+Defined risk: size by max loss
+@@ 91ddc8cfbe html
+Spreads and iron condors have a known max loss, so use it directly to set the number of contracts: <strong>max loss per trade no more than 3% of the account</strong> (1%–2% when you are new to selling). The 90/85 put spread in Table 13-1 has a max loss of $435 per spread, so a $100,000 account can open <span class="num">3,000 ÷ 435 = 6.9</span>; round down to 6, for a max loss of $2,610.
+@@ 2934994946 html
+Add one aggregate rule: <strong>defined-risk positions in the same direction may lose no more than 20% in combined max loss</strong>. The reason is simple: when the market drops hard, all your bullish put spreads hit their caps together, and “each one’s max loss” is realized on the same day.
+@@ 182b75879b html
+Undefined risk: size by stress test
+@@ 3379c00eac html
+The max loss on naked puts and strangles is too large to be a useful guide, so use stress loss instead: <strong>stress loss per trade (−20%, IV doubles) no more than 5% of the account</strong>. The short 90 put has a stress loss of $1,254 per contract, so the most you can sell is <span class="num">5,000 ÷ 1,254 = 4.0</span>; 3 contracts is safer.
+@@ fe8b70b2b6 html
+Same account, same contract, three approaches, three completely different numbers:
+@@ e4fecebfa2 html
+By premium (“it’s only $100 each”): no limit
+@@ 95a3f33bc1 html
+By cash secured: <span class="num">100,000 ÷ 9,000 = 11</span> contracts
+@@ b6e6119615 html
+By 5% stress loss: 3 to 4 contracts
+@@ dce9452942 html
+Total exposure and concentration
+@@ 0841dcf63a html
+<strong>Total stress loss no more than 20% of the account.</strong> A 20% drawdown needs a 25% gain to recover; a 50% drawdown needs a double. 20% is a drawdown you can still trade through normally, without your judgment getting bent out of shape.
+@@ 9329ad72c7 html
+<strong>Total notional exposure on short puts (strike × 100 × contracts) no more than 1–1.5 times the account.</strong> That is how much stock you may be forced to take on in a market-wide decline.
+@@ 1fb929ea62 html
+<strong>No single underlying above 25% of total stress loss, no single sector above 40%.</strong> Concentration caps guard against single-stock gaps: one earnings report or one regulatory headline is enough.
+@@ 5c0de6b3be html
+Why −20%
+@@ ee075cc56b html
+For a broad index, −20% is roughly the worst single day in modern history: on October 19, 1987, the S&amp;P 500 fell about 20% in one day. Using it as a weekly stress scenario is conservative enough. For single stocks, a 20%–30% gap after earnings is not rare, so −20% is only a starting point; binary events such as biotech trial results or a failed merger should be tested at −50% or worse. For leveraged ETFs, multiply in the leverage: a 3× long ETF falls about 30% when the index falls 10%. The same goes for IV doubling: for an index that normally trades at 15% IV, doubling in a sharp selloff is no exaggeration; for a wild stock already at 80%, doubling is less realistic, and the price gap is what matters.
+@@ 7b80cdbfe4 html
+<span class="sn">13.4</span>Stress tests: three scenarios, once a week
+@@ dc8b97d48e html
+A stress test is only worth something if you run it on a fixed schedule. Same time every week, same scenarios; if a limit is breached, you cut, whatever you feel that day.
+@@ b0af08a9d0 html
+<strong>Export positions</strong>: after the close every Friday, list all option and stock positions.
+@@ f88035528a html
+<strong>Run three scenarios</strong>: A, all underlyings −20% at once; B, prices unchanged, IV doubles; C, both together. If you have short calls, add a +10% or +15% scenario.
+@@ 5234ea377b html
+<strong>Check the limits</strong>: stress loss per trade ≤ 5%, total ≤ 20%, single underlying ≤ 25%.
+@@ 6ad4f06b40 html
+<strong>Cut what’s over</strong>: cut the biggest contributor first. Don’t open a new opposing position to “offset” it; a new position has risks of its own.
+@@ 1d2006bc47 html
+<strong>Write it down</strong>: record the numbers and what you did in your trading journal (Chapter 14), and after a month check whether the rules need adjusting.
+@@ 7d74a63bcd html
+Table 13-3 Weekly stress test of a sample account ($100,000, all underlyings move together; totals computed from unrounded values)
+@@ e7257da3f0 html
+Underlying and position
+@@ ad5099492d html
+C Both
+@@ a644e36e4a html
+C % of acct
+@@ e882898d3b html
+A: 2 short 140 puts
+@@ ab5f5ab53e html
+B: 5 short 55 puts
+@@ f341b925e7 html
+SPY: 3 short 750/730 put spreads
+@@ 90045544e5 html
+C: 2 short 110 calls
+@@ b75e5c68e5 html
+D: 4 short 45 puts (45 days)
+@@ 57eec06783 html
+Total
+@@ 59e6668ceb html
+Line by line: every trade is within 5%, and the 15.8% total is within 20%. But the SPY spreads contribute <span class="num">31%</span> of total stress loss, above the 25% concentration cap. After closing 1 spread, SPY’s share drops to <span class="num">22.7%</span> and total stress loss becomes <span class="num">$14,232</span>. The other thing to watch is C: it is the only position that loses money on a rally, <span class="num">$1,393</span> at +15%, so this account also needs a weekly up-move scenario.
+@@ 3a0cc66988 html
+Three common mistakes
+@@ 10301dea4d html
+<strong>Extrapolating linearly from Delta.</strong> The ten 90 puts from the opening have a combined Delta of about +157.5 shares. A Delta estimate says −20% loses only <span class="num">157.5 × 20 = $3,150</span>; adding the Gamma term gives $7,350; full repricing gives <span class="num">$9,517</span>. The Delta estimate misses two-thirds of the loss. A seller’s stress test has to reprice the options; the approximations can only be trusted for small moves (Chapter 4).
+@@ 799f8cbe16 html
+<strong>Testing positions one at a time.</strong> Every trade being within 5% doesn’t mean the total is within 20%; positions that get run over on the same day have to be counted together.
+@@ 01516a27f6 html
+<strong>Forgetting IV and liquidity.</strong> Testing price without IV misses about a quarter of the loss: the same ten puts lose $9,517 at −20%, and $12,541 once IV doubles as well. And when you trade, you pay the bid–ask spread on top (Section 13.7).
+@@ 7884ed4a17 html
+Account equity
+@@ 9189645aa2 html
+Gap size <input id="s-gap" type="range" min="-40" max="20" value="-20" step="1"> <output id="s-gap-o">−20%</output>
+@@ b0e00eaa5f html
+IV multiple <input id="s-ivm" type="range" min="1" max="3" value="2" step="0.1"> <output id="s-ivm-o">× 2.0</output>
+@@ 8bceaf30b0 html
+Underlying
+@@ b7a96fb783 html
+Type
+@@ 772e245467 html
+Contracts
+@@ 22579cf291 html
+Price
+@@ 4a14863fad html
+Strike
+@@ 35f56e5ba4 html
+Days
+@@ b4586f5973 html
+Market value
+@@ 0e6685ac97 html
+Scenario P&amp;L
+@@ 8af1df552d html
+Every underlying gaps by the same amount, which assumes a correlation of 1, with days to expiry unchanged. Enter short contracts as negative numbers; give several legs on the same underlying the same name and they are combined for concentration. Drag the gap to +15% to see the risk in the short calls; drag the IV multiple to 3 to see how heavy Vega is.

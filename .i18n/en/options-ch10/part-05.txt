@@ -1,0 +1,164 @@
+@@ 36626bda58 text
+Front-month IV, today
+@@ eb8cf848b7 text
+Front-month IV, close before the report
+@@ 4cfc1c996f text
+Front-month IV drop after the report
+@@ 9f3aa2e435 text
+Back-month IV, close before the report
+@@ 961989539a text
+When the model breaks down
+@@ dd6231f2e0 text
+Straddle
+@@ 763758b308 text
+Expected absolute move
+@@ 55ae5f48ac text
+1σ move
+@@ 326e6f31b5 text
+The implied move is larger than 6 of the 8 historical moves
+@@ 1eae8a8acd text
+Figure 10-2 · Implied vs historical comparison, editable
+@@ bd7f33eed6 text
+Up quarters
+@@ e0ce3486e4 text
+Down quarters
+@@ 5c55fdebab text
+Implied average move
+@@ 1240a2ae23 text
+Implied 1σ
+@@ d4c9d00bfa text
+Implied ÷ historical mean (4.28%)
+@@ 6d14b57858 text
+Moves larger than implied
+@@ 022e34f2df text
+Short straddle, average P&amp;L over 8 reports (estimated at expiry)
+@@ a97c5177b7 text
+Event 1σ
+@@ aefc43c007 text
+Event-day IV
+@@ 78b08ed835 text
+Connect the two expirations with a straight line, and the intercept is the earnings jump
+@@ ff53b0c1f6 text
+Tool 10-A · Event IV isolation calculator
+@@ 571316a7aa text
+Cumulative variance including earnings
+@@ 169ee257b3 text
+Base volatility only
+@@ 9935d20333 text
+● Quotes for the two expirations
+@@ 3cbd530147 text
+Base volatility σ
+@@ 325ecd735a text
+Event 1σ move
+@@ 80e64c23c8 text
+What this method assumes
+@@ 577ac857d2 text
+One earnings report, five structures, five different bets
+@@ e7c5525868 text
+Figure 10-3 · P&amp;L per contract at the close on the first day after the report
+@@ ff67bc2463 text
+Selected structure
+@@ 9547ae62c9 text
+Other structures
+@@ a7fc1fba0d text
+±5.6% expected move
+@@ c7eb4958bd text
+Entry (per contract)
+@@ 5f0b6167a7 text
+If the stock doesn’t move
+@@ e90bbdd2b9 text
+±8.9% move, worse side
+@@ 612c7ba4a0 text
+Max loss within ±15%
+@@ a1aa21848e text
+In practice
+@@ c9827e28c1 text
+Conventions for this section
+@@ f8635068e7 text
+ATM 0DTE Gamma and Theta both explode before the close
+@@ 57e185377f text
+Figure 10-4 · SPY 780, IV 15%, trading time
+@@ 38bce5d1b0 text
+ATM 780
+@@ a75ab94d7e text
+OTM call
+@@ e874ffba67 text
+For comparison: ATM option with 21 trading days
+@@ f50b96480c text
+ATM Gamma, at the open
+@@ 19c3878120 text
+ATM Gamma, last 15 minutes
+@@ 11a3846947 text
+OTM Gamma, last 15 minutes
+@@ b325db4a18 text
+ATM Theta, last hour (per hour)
+@@ 17d4114539 text
+Set stops on the underlying’s price
+@@ 046dfb89e4 text
+Case 1
+@@ 411ced42ca text
+Case 2
+@@ 81acdd30ad text
+Case 3
+@@ 5205b402f9 attr
+Jump to chapter
+@@ ae78ea9525 attr
+In this chapter
+@@ 11d1fa9a6b attr
+Front-month and back-month implied volatility over time
+@@ 059eaf5620 attr
+Bar chart of historical earnings moves, with the implied move as a horizontal line
+@@ 9deaa35c33 attr
+Cumulative variance over time as a straight line, plus the event jump
+@@ bf349e4ea9 attr
+Choose a structure
+@@ 47f30b44cf attr
+P&L curves of each structure after earnings
+@@ a6009ece48 attr
+Choose a measure
+@@ 926c16a9c5 attr
+Gamma or Theta of 0DTE options by hours remaining
+@@ f0852d355e attr
+Chapter navigation
+@@ da1f3a3d5e js
+Days from today (earnings after the close on day 21)
+@@ 3e5b035f18 js
+Implied volatility (%)
+@@ f485df2f3e js
+ points
+@@ af62936654 js
+Last 8 earnings reports (absolute move)
+@@ 02c532dd3e js
+Size of move (%)
+@@ 8ba1426f2b js
+ / contract
+@@ fd37c91de2 js
+Jump √=
+@@ 77a053483b js
+Front
+@@ cf5ecfa1a0 js
+Back
+@@ 978015027f js
+Days to expiry
+@@ c5219b1830 js
+Cumulative variance (%²)
+@@ 01b2159880 js
+Back-month days must be greater than front-month days.
+@@ ee98f3ecdb js
+The computed base variance is not positive: the back month’s total variance is smaller than the front month’s, so the quotes are inconsistent.
+@@ 1525c079af js
+Front-month IV is no higher than base volatility: no event premium is visible.
+@@ 9e9983971b js
+Stock move after the report
+@@ 8d662cccbd js
+P&L per contract ($)
+@@ 4cd38f62c0 js
+Credit
+@@ 2f485dd0d4 js
+Debit
+@@ 01d59fd814 js
+Gamma (per $1)
+@@ 8f0af7a152 js
+Theta per hour (per share, $)
+@@ 44963e2751 js
+Hours to the close

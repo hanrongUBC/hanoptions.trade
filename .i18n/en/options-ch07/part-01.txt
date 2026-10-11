@@ -1,0 +1,238 @@
+@@ fd8d1b50d5 html
+Chapter 7: Strategies for buyers · US Options Course
+@@ ba370abf11 html
+Strategies for <span class="g">buyers</span>
+@@ 372deac707 html
+The most common way an options purchase ends: you get the direction right and still don't make money. This chapter breaks one bullish view into four choices—strike, expiration, timing and structure—and uses numbers to compare the cost, breakeven and win rate of each. It ends with the exit rules you should write down before you place the order.
+@@ 4a798dc727 html
+In this chapter
+@@ 63d5e396e4 html
+<a href="#open"><span class="n">··</span><span>Opening: right direction, money gone</span></a>
+@@ 36bb0deb54 html
+<a href="#s1"><span class="n">7.1</span><span>The buyer's three enemies</span></a>
+@@ 21df64935f html
+<a href="#s2"><span class="n">7.2</span><span>Strike: Delta 30, 50, 70</span></a>
+@@ f1298770b8 html
+<a href="#s3"><span class="n">7.3</span><span>Expiration: build in a buffer</span></a>
+@@ 9520fb311d html
+<a href="#s4"><span class="n">7.4</span><span>Timing: watch IV</span></a>
+@@ d1d5ab0624 html
+<a href="#s5"><span class="n">7.5</span><span>Debit spreads</span></a>
+@@ 64833ab548 html
+<a href="#s6"><span class="n">7.6</span><span>LEAPS: options as a stock substitute</span></a>
+@@ e2a772cd5d html
+<a href="#s7"><span class="n">7.7</span><span>When options beat stock</span></a>
+@@ 7bac5f6745 html
+<a href="#s8"><span class="n">7.8</span><span>Five common buyer mistakes</span></a>
+@@ bcc1202178 html
+<a href="#s9"><span class="n">7.9</span><span>Management rules</span></a>
+@@ 12c019ed82 html
+<a href="#cases"><span class="n">Cases</span><span>Three cases</span></a>
+@@ dd7ded685d html
+<a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a>
+@@ 51a2f0692d html
+<a href="#open">Opening: right direction, money gone</a>
+@@ 072fdf4959 html
+<a href="#s1">7.1 The buyer's three enemies</a>
+@@ 0b8eac3468 html
+<a href="#s2">7.2 Strike: Delta 30, 50, 70</a>
+@@ f0ff124131 html
+<a href="#s3">7.3 Expiration: build in a buffer</a>
+@@ 471970bb3d html
+<a href="#s4">7.4 Timing: watch IV</a>
+@@ e405dcca81 html
+<a href="#s5">7.5 Debit spreads</a>
+@@ 5ee73985e7 html
+<a href="#s6">7.6 LEAPS: options as a stock substitute</a>
+@@ b7f15b9847 html
+<a href="#s7">7.7 When options beat stock</a>
+@@ 83988e318e html
+<a href="#s8">7.8 Five common buyer mistakes</a>
+@@ 5d3d818895 html
+<a href="#s9">7.9 Management rules</a>
+@@ f3a78e0502 html
+<a href="#cases">Three cases</a>
+@@ 7ec24afd50 html
+<a href="#tools">Checklist and self-test</a>
+@@ 80161dff8a html
+After this chapter you can
+@@ dc490dbf16 html
+Pick a strike and expiration for a given view, and work out the cost, breakeven and approximate win rate
+@@ fbceee4a5a html
+Use a debit spread to cut Vega and Theta exposure to less than 20% of buying the option outright, and explain what that costs you
+@@ 7571e1327b html
+Write three rules before you trade: profit target, time stop and position-size cap
+@@ fc4f43bd05 html
+Prerequisites
+@@ 9e3b3e41be html
+Chapter 4: Delta, Gamma and the P&amp;L approximation
+@@ 15a163ab0f html
+Chapter 5: the shape of Theta, and Vega
+@@ 7d8a1208d4 html
+Chapter 6: IV Rank and event volatility
+@@ fe31444484 html
+Conventions
+@@ 29904071fd html
+Black-Scholes, 4% rate, no dividends, 365-day year
+@@ 6cc301d047 html
+Unless noted, the underlying is at $100 with IV at 30%, unchanged
+@@ f268113407 html
+Returns are measured on premium paid; one contract = 100 shares
+@@ cf49b86d1c html
+<span class="sn">Opening</span>Right direction, money gone
+@@ c5c94c59b9 html
+You think stock X (now $100, IV 30%) will rise to 105 within a month. To get “maximum leverage,” you buy 10 of the 30-day 105 calls at $1.66 each, $1,662 in total.
+@@ f4c8686bac html
+Two weeks later the stock is at 104. You open your account: the calls are worth only <span class="num">$1.88</span>, a gain of just 13%. While the stock rose, IV fell from 30% to 26%, and 14 days of time value drained away. On expiration day the stock closes at 104.5, up 4.5% from when you bought. You were completely right on direction, yet your 105 calls are worthless and the whole $1,662 is gone.
+@@ b00acf825d html
+Table 7-0 One view, four ways to express it; stock at 104.5 after 30 days
+@@ 855b1ef3d4 html
+Expression
+@@ 7231127a89 html
+Cost
+@@ 62d0b4ccfe html
+Value on day 30
+@@ a5895f8456 html
+P&amp;L
+@@ 50aca6cdc0 html
+10 × 30-day 105 calls
+@@ 66be649259 html
+10 × 30-day 100 calls
+@@ 55098e8250 html
+10 × 90-day 100 calls
+@@ 1e10a4d1b6 html
+100 shares of stock
+@@ 166e2e0617 html
+The third row is priced on day 30 with IV at 26% and 60 days left. It made less than the 30-day ATM calls, but it still has 60 days to run: if the view keeps playing out, the position is still alive. The first row has three problems: the strike is too far out of the money, the expiration is too close, and it ignored the chance that IV would fall. This chapter starts from those three problems. First come the buyer's three enemies (7.1), then how to choose the strike (7.2), expiration (7.3), timing (7.4) and structure (7.5, 7.6), and finally a list of mistakes and the management rules.
+@@ 7915230ebf html
+<span class="sn">7.1</span>The buyer's three enemies
+@@ 7386aa3cfc html
+Every day, a buyer fights three enemies: time, IV compression and being wrong on direction. To make money, the price move has to be big enough and fast enough to overpower the other two.
+@@ a02f5f999e html
+Take a 30-day ATM call (3.591) and break down its P&amp;L. Ten days later the stock is up 3% and IV has dropped from 30% to 26%; the option is now 4.398, a 22% gain. Reprice one factor at a time, in this order—price, then time, then IV:
+@@ ceb6a0b81c html
+Table 7-1 P&amp;L breakdown of a 30-day ATM call after 10 days (per share)
+@@ dc0aac1119 html
+Change
+@@ 71346f96f8 html
+Option price
+@@ 1b7c377591 html
+Contribution
+@@ b89d2da4fc html
+% of premium
+@@ c57567f89d html
+Buy
+@@ dce0642728 html
+Stock 100 → 103 (time, IV unchanged)
+@@ 5f687c7464 html
+10 days pass
+@@ 57eec06783 html
+Total
+@@ 634d560e1e html
+Direction contributed 50%, and the two enemies, time and IV, took back 55% of that. Change the order of the breakdown (time first) and the time term becomes −0.682. The numbers shift slightly; the conclusion doesn't.
+@@ a739d0ef28 html
+Enemy 1: time
+@@ 83cd790654 html
+An ATM option's daily Theta is about 0.062, or <span class="num">1.74%</span> of the premium. If the stock doesn't move, this option is down to 70% of its value after 15 days. Time decay isn't steady: it speeds up as expiration approaches (Table 7-14 in Section 7.9).
+@@ 065ea4682b html
+Enemy 2: IV compression
+@@ 30a60b55ce html
+Vega is about 0.114: every 1-point drop in IV takes 0.114 off the option. The most dangerous case is the IV crush after an event (Chapters 5 and 6). There is also an easily overlooked pattern: for stock indexes and many large-cap stocks, IV tends to fall when prices rise and rise when they fall. Call buyers often find IV dropping just as their view comes true.
+@@ 1287bf486d html
+Enemy 3: wrong direction, or “not right enough”
+@@ 7c87852df5 html
+A buyer has to be right not only on direction but on size. The breakeven at expiry is the strike plus the premium. For the 30-day ATM call it is 103.59: the stock has to rise <span class="num">3.59%</span> just to avoid a loss.
+@@ 3fb24cf2f4 html
+<span class="v">K</span> is the strike, <span class="v">C</span> is the premium, <span class="v">S</span> is the stock price when you buy.
+@@ bc6ae8f45d html
+Using Black-Scholes risk-neutral probabilities, this ATM call has a <span class="num">49.8%</span> chance of finishing in the money, and only a <span class="num">33.9%</span> chance of finishing above breakeven. A buyer's win rate is naturally below one half; the buyer relies on winning big when they do win. These probabilities are implied by market prices and ignore the stock's true expected return, but they are good enough as an approximation.
+@@ e07e324f88 html
+Which enemy is most dangerous depends on what you bought
+@@ c6809e06d6 html
+Table 7-2 The main enemy for each kind of contract
+@@ 7460b6931c html
+What you bought
+@@ 93169024a9 html
+Most dangerous enemy
+@@ a7c7cc21f1 html
+In numbers
+@@ a14e20f12d html
+ATM option expiring within two weeks
+@@ 29d5ebf63f html
+Time
+@@ 625683efb0 html
+Loses more than 3.7% of its premium per day (Table 7-12)
+@@ 0ea6cee79d html
+Option bought before earnings or FOMC
+@@ 2095714152 html
+IV compression
+@@ e9a64bdb1e html
+IV often drops tens of points after the event; with the stock unchanged you can lose more than half (Table 6-8 in Chapter 6)
+@@ f538f91251 html
+Deep OTM option
+@@ 45b765eaf2 html
+Move not big enough
+@@ 3d995ced9d html
+Needs a move of more than 1.5 standard deviations just to break even (Section 7.8)
+@@ 85245b9b22 html
+Long-dated ITM option
+@@ e0551de2ea html
+Direction
+@@ 190d488cf0 html
+Theta and Vega are both small relative to the premium; behaves much like the stock
+@@ d3faa5e40d html
+So the first step in controlling the three enemies is to identify which one this trade fears most, then weaken it with your choice of strike, term and structure. The next four sections cover those tools.
+@@ 9c3caa6a62 html
+<span class="sn">7.2</span>Strike: Delta 30, 50, 70
+@@ 974aab9b3e html
+The strike decides what you are betting on: an ITM option is mainly a bet on direction, an ATM option on direction plus size, and an OTM option on size plus speed.
+@@ 2cfd7da2c8 html
+Compare them on a concrete view: the stock is at $100 and you think it will rise 10% within three months. Take three 90-day calls with strikes where Delta is about 0.70, 0.50 and 0.30 (94, 102 and 110):
+@@ 81e16d6f1b html
+Table 7-3 90-day calls at three strikes (stock 100, IV 30%)
+@@ e9b9c5edba html
+Item
+@@ 3ea44ad9db html
+Premium (per contract)
+@@ 163f7eb0f8 html
+Leverage Δ × S / C
+@@ 52ded9c475 html
+7.2×
+@@ 9d8336c234 html
+9.2×
+@@ fb4bae8dc8 html
+11.3×
+@@ a797697bb2 html
+Breakeven at expiry
+@@ 337a35cbdf html
+Prob. ITM at expiry
+@@ 2bb0cabd34 html
+Prob. above breakeven at expiry
+@@ 9eddea7370 html
+Daily Theta / premium
+@@ c3d573b8dc html
+Vega / premium (per IV point)
+@@ f09c92bea7 html
+Stock at exactly 110 at expiry
+@@ 3d87e91d24 html
+Reaches 110 by day 30
+@@ 9c4a48a27c html
+Reaches 110 the day you buy
+@@ 1bae751aea html
+The leverage row uses elasticity: if the stock rises 1%, the option rises roughly Δ × <span class="v">S</span> / <span class="v">C</span> percent. The OTM option has the most leverage, but its daily time decay and IV risk (as a share of premium) are also three to four times those of the ITM option.
+@@ cb7ee7da14 html
+Look at it another way: with the same $1,000, how much exposure does each strike buy?
+@@ d59ee8c7a4 html
+Table 7-4 $1,000 in each (fractional contracts allowed, for comparison)
+@@ 4a14863fad html
+Strike
+@@ 772e245467 html
+Contracts
+@@ 19ec41b831 html
+Share equivalent
+@@ 411ad9b582 html
+Daily Theta ($)
+@@ 751c91e80a html
+Vega ($ / IV point)
+@@ a0fa1c6343 html
+For the same money, the OTM call gets 57% more directional exposure (113 shares vs. 72). The price is 3.3 times the daily time decay and 3.7 times the IV exposure of the ITM call. The extra directional exposure isn't enough to offset the other two. That is why “buy OTM when money is tight” is a common but costly habit.

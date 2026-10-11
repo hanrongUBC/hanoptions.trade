@@ -1,0 +1,160 @@
+@@ d6656aea57 js
+Oil supply shock
+@@ e374f54e42 js
+Crude and diesel rise; transport and production costs go up
+@@ b34b656aea js
+Inflation expectations rise, and cost lines in earnings estimates are revised up
+@@ 8cf389185f js
+The market pushes back rate cuts or even starts pricing hikes; short- and long-end yields rise
+@@ a94b94ac39 js
+Valuations compress: long-duration growth stocks, small caps and highly indebted companies are hit first; consumers are squeezed by the “oil tax”
+@@ 52e00ed917 js
+Oil staying high destroys demand: rates start falling while oil stays high, and the regime may slide into phase two
+@@ 65d166efd5 js
+Upstream oil and gas
+@@ cf729f3aff js
+Tankers and shipping
+@@ afb0b34439 js
+Cruise lines
+@@ 5a634ae128 js
+Downstream chemicals
+@@ ee6e207a69 js
+Policy may step in: reserve releases, export limits. If oil drops sharply as a result, the airlines and travel stocks that were sold hardest will rebound hardest, so you can use them as a hedge against that surprise for an energy position.
+@@ ffdc1a7329 js
+On the days oil rose, did the S&P rise with it (demand-driven) or fall (supply shock)? Did copper rise too?
+@@ 5f33381903 js
+Long-end rates jump
+@@ 341ae2c54c js
+Term premium rises: heavy Treasury supply, weak auction demand, or worries about deficits and inflation
+@@ c2ed316b45 js
+Mortgage rates and corporate borrowing costs rise with it
+@@ 4553208955 js
+The discount rate on stocks rises; companies whose value lies mostly in distant cash flows take the biggest valuation hit
+@@ 8d80d2592d js
+If the dollar falls instead of rising, foreign money is cutting US assets, and stocks and bonds may fall together
+@@ 989c8e444b js
+Insurers
+@@ 5f6c769ba7 js
+Unprofitable growth stocks
+@@ d81e137ecf js
+Homebuilders
+@@ c8cd7ac0c8 js
+A bear steepening helps bank margins, but if rising rates also stir worries about commercial real estate or private credit, banks may lead the decline instead.
+@@ af4b1d9270 js
+Is the rise coming from real yields (growth or tightening) or from breakeven inflation (inflation worries)? Is the 30-year leading?
+@@ e56c0f61b2 js
+Stronger dollar
+@@ e39b13a120 js
+The dollar is the world's funding currency; a stronger dollar means tighter global financial conditions
+@@ daa307be64 js
+Multinationals' overseas revenue shrinks when converted; dollar-priced commodities come under pressure
+@@ 4dbf1a9994 js
+Capital leaves emerging markets; pressure rises on countries and companies with dollar debt
+@@ 148ab38415 js
+If funding currencies like the yen swing hard at the same time, a carry-trade unwind may follow
+@@ 4ec6dad7c3 js
+Companies with mainly US revenue
+@@ fe84a2932e js
+Importers
+@@ 4721fe2f57 js
+Copper and other commodities
+@@ 07478810ee js
+Multinational tech and consumer brands
+@@ da31db5999 js
+Crypto assets
+@@ 7a8784660e js
+Why the dollar is strong decides the conclusion. Dollar strength from “US exceptionalism” can come with rising US stocks; dollar strength from “global risk-off” usually comes with falling US stocks (the dollar smile in Chapter 4).
+@@ cd592b30b4 js
+On the days the dollar strengthened, did US stocks rise or fall? Did Treasury yields rise or fall?
+@@ ac4b4bc6bd js
+Jobs weaken sharply
+@@ de62b0b354 js
+The market first prices “rate cuts sooner and bigger”: short-end yields drop sharply and the curve bull-steepens
+@@ 2e3a38a9e7 js
+The first reaction may be a stock rally: bad news is good news for rate cuts
+@@ 0572a9be99 js
+Then the market asks: will earnings be cut? Cyclicals, small caps and credit spreads start to price in recession risk
+@@ 0a579d737c js
+If unemployment keeps rising (for example, the three-month average is 0.5 percentage points above its low of the past year), we enter the “bad news is bad news” phase
+@@ 025ef22264 js
+The same data are good news when inflation worries dominate and bad news when growth worries dominate. First judge whether the market fears inflation or recession more right now.
+@@ 9023c6bae5 js
+After the release, do stocks and bonds rise together (trading rate cuts), or do stocks fall while bonds rise (trading recession)?
+@@ 8bc94e7ab5 js
+Central bank surprises dovish
+@@ 60c4e2ae0d js
+The market had almost fully priced a hike, but the central bank didn't hike
+@@ 9029f14c9d js
+First reaction: short-end yields fall, the dollar weakens, gold and stocks rise
+@@ 87c676166c js
+Then the market asks: inflation is still high, so why didn't they dare to hike?
+@@ aeb2a97fbf js
+If the market doubts the central bank's resolve on inflation: the 2-year falls, the 10- and 30-year rise instead (bear steepening), gold keeps rising and the dollar keeps weakening
+@@ a105040477 js
+Long-end rates rise and erase stocks' initial gains
+@@ baf603e16b js
+Long-duration growth (phase two)
+@@ d76545450b js
+The key isn't whether they hike; it's whether the market still believes the central bank can control inflation. The credibility trade in Chapter 3 describes exactly this two-stage reaction.
+@@ 75191b4176 js
+In the days after the announcement, does the 10-year yield fall with the 2-year (trust in the central bank) or rise against it (loss of trust)?
+@@ 5f46be1c5c tpl
+<div class="row" style="margin-top:10px"><b>Relative winners</b>{0}</div><div class="row"><b>Relative losers</b>{1}</div>
+@@ 9fe747c1f8 tpl
+<p style="margin-top:8px"><strong>Second order:</strong> {0}</p><p><strong>Check:</strong> {1}</p></div>
+@@ 8341ac8c83 js
+Change in discount rate (points, base 8%)
+@@ c3817271ce js
+Change in theoretical value
+@@ a289be39e9 js
+The earnings yield is about the same as nominal Treasuries, or even lower: on nominal return alone, Treasuries pay about what stocks do, with far less risk.
+@@ dabdbc11a8 js
+The earnings yield is above nominal Treasuries, so stocks still offer some extra compensation.
+@@ 21542b852d js
+ The cushion over real yields is also thin, so valuations have little buffer against a rate shock.
+@@ e14d4b1442 js
+ The cushion over real yields is moderate.
+@@ efd2e8f158 js
+ The cushion over real yields is thick, giving valuations some buffer against rising rates.
+@@ 862137b497 js
+ (The thresholds are only a rough guide.)
+@@ 3f18aa4dac js
+US economy vs. the world: weaker ← → stronger
+@@ e189a54922 js
+Dollar strength
+@@ 5b45fa99d3 js
+Global risk-off
+@@ 90bd953e14 js
+US stocks usually fall
+@@ e58821407c js
+Synchronized global recovery
+@@ a9f7526fe2 js
+Money flows abroad
+@@ 09dc60fd34 js
+US exceptionalism
+@@ 2f691ac2d9 js
+US stocks can rise too
+@@ df4446dff5 js
+Rates
+@@ 169277c868 js
+Oil
+@@ 5a106bc54d js
+Earnings
+@@ 2f928d047b js
+Jobs
+@@ 6063ffa6c5 js
+Falling
+@@ b85a5747a6 js
+Rising
+@@ 2a50d213f8 js
+Weak
+@@ 0aef573a6b js
+Average
+@@ 9720d7a70d js
+Good
+@@ 1a900d85e6 js
+Deteriorating
+@@ de5cdadcfa js
+Softening
+@@ 3e6a068d66 js
+Strong

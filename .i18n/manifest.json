@@ -1,0 +1,142 @@
+{
+ "options": {
+  "rel": "options/index.html",
+  "segments": 94,
+  "chars": 1418
+ },
+ "options-ch01": {
+  "rel": "options/ch01.html",
+  "segments": 389,
+  "chars": 8531
+ },
+ "options-ch02": {
+  "rel": "options/ch02.html",
+  "segments": 468,
+  "chars": 9518
+ },
+ "options-ch03": {
+  "rel": "options/ch03.html",
+  "segments": 463,
+  "chars": 8758
+ },
+ "options-ch04": {
+  "rel": "options/ch04.html",
+  "segments": 337,
+  "chars": 5163
+ },
+ "options-ch05": {
+  "rel": "options/ch05.html",
+  "segments": 455,
+  "chars": 8447
+ },
+ "options-ch06": {
+  "rel": "options/ch06.html",
+  "segments": 441,
+  "chars": 9162
+ },
+ "options-ch07": {
+  "rel": "options/ch07.html",
+  "segments": 465,
+  "chars": 8457
+ },
+ "options-ch08": {
+  "rel": "options/ch08.html",
+  "segments": 501,
+  "chars": 9577
+ },
+ "options-ch09": {
+  "rel": "options/ch09.html",
+  "segments": 394,
+  "chars": 8224
+ },
+ "options-ch10": {
+  "rel": "options/ch10.html",
+  "segments": 482,
+  "chars": 8760
+ },
+ "options-ch11": {
+  "rel": "options/ch11.html",
+  "segments": 446,
+  "chars": 8415
+ },
+ "options-ch12": {
+  "rel": "options/ch12.html",
+  "segments": 434,
+  "chars": 8085
+ },
+ "options-ch13": {
+  "rel": "options/ch13.html",
+  "segments": 364,
+  "chars": 7712
+ },
+ "options-ch14": {
+  "rel": "options/ch14.html",
+  "segments": 621,
+  "chars": 10946
+ },
+ "options-ch15": {
+  "rel": "options/ch15.html",
+  "segments": 435,
+  "chars": 8907
+ },
+ "options-ch16": {
+  "rel": "options/ch16.html",
+  "segments": 590,
+  "chars": 11483
+ },
+ "options-appendix": {
+  "rel": "options/appendix.html",
+  "segments": 480,
+  "chars": 6251
+ },
+ "options-assets-course-js": {
+  "rel": "options/assets/course.js",
+  "segments": 55,
+  "chars": 597
+ },
+ "psychology": {
+  "rel": "psychology/index.html",
+  "segments": 550,
+  "chars": 8761
+ },
+ "macro-1": {
+  "rel": "macro/index.html",
+  "segments": 325,
+  "chars": 7592
+ },
+ "macro-2": {
+  "rel": "macro/index.html",
+  "segments": 383,
+  "chars": 7500
+ },
+ "macro-3": {
+  "rel": "macro/index.html",
+  "segments": 628,
+  "chars": 7543
+ },
+ "policy-1": {
+  "rel": "policy/index.html",
+  "segments": 345,
+  "chars": 8029
+ },
+ "policy-2": {
+  "rel": "policy/index.html",
+  "segments": 557,
+  "chars": 8024
+ },
+ "rebound-1": {
+  "rel": "rebound/index.html",
+  "segments": 460,
+  "chars": 10683
+ },
+ "rebound-2": {
+  "rel": "rebound/index.html",
+  "segments": 310,
+  "chars": 10684
+ },
+ "rebound-3": {
+  "rel": "rebound/index.html",
+  "segments": 623,
+  "chars": 10682
+ }
+}

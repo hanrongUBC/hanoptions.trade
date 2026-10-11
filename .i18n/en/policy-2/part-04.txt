@@ -1,0 +1,168 @@
+@@ e7ceef678d html
+Marine insurance
+@@ d4e697b144 html
+Risk premium
+@@ ad311c1874 html
+Price floor
+@@ 67831e764f html
+Cyclical stocks
+@@ b8fbfeec06 html
+Real yields
+@@ 03e7176598 html
+Government equity stake
+@@ 48fb3270b0 html
+Put option
+@@ 49514397e1 html
+Rare earths
+@@ 3a3eca4a0c html
+Crack spread
+@@ 4b833e108e html
+Monetary order
+@@ 6e35e8cc43 html
+Power purchase agreement
+@@ a939550866 html
+Transformers
+@@ f70559f66e html
+Pricing power
+@@ 873b91af39 html
+Industrial automation
+@@ 88d2f88420 html
+Data centers
+@@ 703ee977e9 html
+Electronics manufacturing services
+@@ 0b0e6c2dbe html
+Pass-through
+@@ cdafada7bc html
+Demand elasticity
+@@ 691ca275c9 html
+Humanoid robots
+@@ 8815593c51 html
+Selling picks and shovels
+@@ 635b05b503 html
+Gas turbines
+@@ 5625dd35c2 html
+Fund flows
+@@ 45a89934f4 html
+Concentration
+@@ e33e053df4 html
+K-shaped
+@@ cb8d25a8bf html
+Second-order thinking
+@@ bcc4a94417 html
+Warehouse clubs
+@@ 97c15c0d4f html
+Weight-loss drugs
+@@ 0461c3ffe8 html
+Fertilizer
+@@ b3cabe7895 html
+Medical devices
+@@ cbb1272f59 html
+Discount retail
+@@ 6ae52adf2d html
+Payment networks
+@@ c4820a36d4 html
+Trading down
+@@ a849073664 html
+Life science tools
+@@ 84dd3e724d html
+Midterm elections
+@@ 31ac4811e8 html
+Chapter 9
+@@ c8a753c17e html
+Change-of-government test
+@@ 988e538890 html
+Policy put
+@@ c8b0669630 html
+Term premium
+@@ 56c6bccbbb html
+Stop-loss
+@@ 5b603ab3b1 html
+Fiscal deficit
+@@ 4d5a54d374 html
+Implied volatility
+@@ edff236558 html
+Expected move
+@@ b10a4adbcd html
+Covered call
+@@ c2c124dc82 html
+Chapter 10
+@@ 495d9f14ee html
+Invalidation criteria
+@@ fdab6ec265 html
+Small caps
+@@ 42e90d72dd html
+Growth stocks
+@@ 6e52cb2b8f html
+Premium
+@@ 4a14863fad html
+Strike
+@@ 17ced2bc93 html
+Being assigned
+@@ 7d7d98c805 html
+Chapter 11
+@@ 401f70458c html
+Ceasefire
+@@ d8ee59fa85 html
+Narrative scorecard
+@@ eaa5978fe9 html
+Central bank gold buying
+@@ cec8eaa149 html
+Order backlog
+@@ 35ab5ab23d html
+Further reading and sources
+@@ 336bfa6558 html
+Chris Miller, Chip War—how semiconductors became the core of great-power competition.
+@@ f8e02958ae html
+Daniel Yergin, The New Map—the new landscape of energy, geopolitics and conflict between nations.
+@@ a8bee49a5d html
+Ray Dalio, Principles for Dealing with the Changing World Order—the rise and fall of great powers and the long cycles of the monetary order.
+@@ 9a56c483d5 html
+Ed Conway, Material World—the six basic materials the modern economy depends on.
+@@ 84eb918be9 html
+Sources: the US Congress bill database (congress.gov), the federal spending database (USAspending.gov), tariff announcements from the Office of the US Trade Representative, and company earnings call transcripts.
+@@ 2e2ce2b286 html
+<small>Previous</small><span></span>
+@@ 5286a10ebc html
+<small>Next</small><span></span>
+@@ f9d35acd30 html
+This handbook is compiled from public policy information and common methods of thematic investing, and does not represent any political position. The companies and ETFs mentioned are examples only, and the calculations rest on the stated assumptions. It is for learning purposes and is not investment advice.
+@@ 1e13fbd1d0 text
+US Options Course
+@@ 6985e3fc6d text
+Trading Psychology
+@@ 549cca660d text
+Macro Trading Framework
+@@ f691f691fc text
+Policy Narrative Investing
+@@ f025c44d71 text
+Oversold Rebound List
+@@ e6a46dae70 text
+3 years
+@@ ffb20f7fe0 text
+The clean-energy tax credits passed in 2022 were seen as decade-scale industrial policy, yet they were sharply cut back in 2025. A narrative can run for ten years; a policy may last only one Congress.
+@@ c3ec1ad57c text
+Introduction
+@@ 38e3de4a15 text
+Slogan → official statement → law or order → appropriation → actual spending → company revenue
+@@ 4be5458710 text
+The further right you go, the higher the certainty, and usually the more fully the market has priced it in. Good thematic investors step in at the middle stages: the direction is already clear, but the money hasn't fully reached the income statement yet.
+@@ 78b3ceea2b text
+Before you read
+@@ 5b18922e99 text
+Chapter 1
+@@ 62402ec50b text
+Look for structural change
+@@ bee51248c2 text
+: a trend that will last several years and doesn't depend on any single headline. Ask yourself: over the next few years, where will the world be forced to spend money?
+@@ eb0acf1d6f text
+Find the unavoidable beneficiaries
+@@ 29bfff4b70 text
+: the companies everyone has to buy from, no matter who wins the competition—the proverbial sellers of “picks and shovels.”
+@@ 501861c21a text
+Avoid the most crowded vehicle
+@@ 7dd74ce4ab text
+: the stock everyone is buying has often already priced in years of good news.
+@@ f466e42065 text
+Wait for the price
+@@ 2c9f5a2d81 text
+: a good company is not the same as a good price. Wait for a pullback, for valuation to come back to a reasonable range, for volatility to fall, and then buy in stages.

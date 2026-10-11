@@ -1,0 +1,220 @@
+@@ f3a5075779 html
+Sharp near-term move; back-month IV falls
+@@ e6624b7ad8 html
+Calendar spread
+@@ c45f722a99 html
+Positive Gamma, negative Vega
+@@ 5a166fafd6 html
+Big near-term move, back-month IV falls
+@@ f2c3fe4470 html
+Sideways with IV rising
+@@ fd151eec9e html
+Reverse calendar
+@@ 8796dcd145 html
+For positions on the same underlying with the same expiration, Gamma and Theta almost always have opposite signs. That's what Chapter 4's Θ ≈ −½σ²<span class="v">S</span>²Γ says: positive Theta is the reward for negative Gamma. Only structures that span expirations (calendars, diagonals) can produce a combination like “positive Theta, positive Vega,” and the price is negative Gamma in the front month.
+@@ 9f50073e4e html
+The portfolio's “breakeven daily move”
+@@ e31b945109 html
+A negative-Gamma portfolio collects Theta every day and also takes losses from price moves every day. Set ½ × |Γ<sub>β,1%</sub>| × SPY × <span class="v">x</span>²/1% equal to Theta, and you get the move at which that day's Theta is wiped out:
+@@ d3167c470a html
+Opening portfolio: √(2 × 65.55 × 1% / (18.07 × 780)) = 0.96%, or a $7.52 move in SPY in one day. SPY's IV is 17%, which implies a daily standard deviation of about 17% ÷ 19.1 = 0.89%. The two are very close: what a seller earns is the small gap by which “realized volatility comes in below implied volatility.”
+@@ e5e4847de2 html
+Time slices
+@@ 5409945610 html
+IV slices
+@@ 72d9e16745 html
+Price and IV linked
+@@ 7943e161f4 html
+In “Time slices,” the curve rises in the middle as the days pass: that's positive Theta. The left side falls ever more steeply while the right side flattens out quickly: that's negative Gamma plus positive Delta. In “IV slices,” IV up 5 points loses $868 even with SPY unchanged. “Linked” assumes IV rises 1 point for each 1% SPY falls and drops 0.5 points for each 1% it rises, which is closer to how markets really behave. Load Case 2 into Tool 12-A to compare a portfolio that “looks neutral.”
+@@ cbce2b7821 html
+Start with size: the opening portfolio's beta-weighted Delta is +94.5 SPY shares, about <span class="num">$73,700</span>, as if 74% of the account were invested in the index. If the plan in your head was “sell a little premium with small positions,” this number is the first alarm: the directional exposure is already close to that of an ordinary long stock account, and it comes with negative Gamma.
+@@ bf69fca92e html
+How to read the opening portfolio: SPY −5% loses <span class="num">$5,371</span>, while +5% makes only <span class="num">$2,204</span>; 7 days with nothing else changing makes <span class="num">$505</span>; IV up 5 points loses <span class="num">$868</span>. In one sentence, it's betting that “the market doesn't fall, volatility doesn't rise, and time passes slowly.” All three trades are betting on the same thing.
+@@ eab8b7883e html
+One more detail: when SPY falls 10%, rising IV actually makes the loss slightly smaller (<span class="num">−$12,023</span> vs. <span class="num">−$12,307</span>). By then both legs of the SPY spread are in the money, and the spread's Vega has flipped from negative to positive. A portfolio's Vega changes with price, and the reading only holds near the current price.
+@@ 5e81027613 html
+<span class="sn">12.3</span>Fix Delta first, then look at Gamma and Vega
+@@ e195f79cda html
+Stock or SPY can only bring Delta to zero; Gamma and Vega can only be changed with options. A hedge at the portfolio level is often cheaper than adjusting trade by trade, but you need to be clear about what it changes and what it doesn't.
+@@ ce7f78ac8a html
+Take the opening portfolio and compare two hedges. One: short <span class="num">95</span> shares of SPY (about $74,100) to bring beta-weighted Delta to zero. Two: buy <span class="num">2</span> 30-day at-the-money SPY 780 puts (IV 17.5%, $14.34 each, $2,868 in total), then short 2 shares of SPY to flatten the remaining Delta (third row of the table). Theta is per day and Vega per IV point, both in dollars.
+@@ dc3da7df1f html
+Table 12-3 Two hedges for the opening portfolio (P&amp;L from instant repricing, dollars)
+@@ 044bd66bf3 html
+State
+@@ 32b41f52dc html
+Original portfolio
+@@ 80b0c711fe html
++ short 95 SPY shares
+@@ 5bf2462af0 html
++ two 780 puts
+@@ 2f65868093 html
+In the second row Delta is zero, but the portfolio loses on both sides: SPY up 5% loses $1,501, and down 5% loses $1,666. That's negative Gamma's true face. A Delta hedge just turns it from “lopsided” into “afraid of both directions.”
+@@ 0d02a88320 html
+The third row uses options to hold down Delta, Gamma and Vega at once, and the curve is nearly flat. The cost shows up in the Theta column: daily income falls from <span class="num">$65.6</span> to <span class="num">$22.0</span>, with two-thirds of it paid out for insurance. Whether the insurance is worth it is a separate question; at least it shows you that most of the original $65.6 was payment for bearing a market decline and a rise in IV.
+@@ afca9701e6 html
+The problem is the shape of the whole account (for example, everything riding on the market not falling), which trade-by-trade adjustments can't fix
+@@ 90402b8234 html
+You need to cut exposure temporarily, say before a weekend, an FOMC meeting or a big earnings season, and don't want to close trade by trade and pay the spread several times
+@@ 9c06304723 html
+Remember its blind spots: SPY can't hedge a single stock's own gaps, or a rise in one stock's IV on its own
+@@ 6baf6886c3 html
+<span class="sn">12.4</span>The three directions of rolling
+@@ 0af2ff953a html
+A roll is two trades: buy back the old position and sell a new one. The three directions differ in what you give up in exchange for time and room.
+@@ 745bc878ce html
+<strong>Rolling out</strong>: keep the strike and move to a later expiration. You sell more time and can usually collect a net credit; the price is that the risk lasts longer.
+@@ 213afa6f00 html
+<strong>Rolling down / up</strong>: keep the expiration and change the strike. Roll short puts down and short calls up, moving the strike away from the current price. Within the same expiration, a strike further away is cheaper, so this always costs money.
+@@ ec5cdf0812 html
+<strong>Rolling out and down</strong>: both at once. The extra time value pays for moving the strike down, often at close to zero cost.
+@@ 0d5dc375f7 html
+Example: 30 days ago, with the stock at $100, you sold <span class="num">5</span> 30-day 95 puts (IV 35%), collecting <span class="num">$1.80</span> per share, <span class="num">$900</span> in total. Now 18 days have passed, the stock has fallen to <span class="num">$92</span>, IV has risen to <span class="num">42%</span>, and the put, with 12 days left, is worth <span class="num">$4.50</span>. Buying back costs <span class="num">$2,252</span>, an unrealized loss of <span class="num">$1,352</span>. The table below assumes every strike has an IV of 42% (in practice, lower strikes tend to have higher IV).
+@@ eb3c5d60dd html
+Table 12-4 Three rolls: cost and outcome (5 contracts, P&amp;L counted from the original trade)
+@@ 7eb22767ba html
+Choice
+@@ 8f80b39194 html
+New position
+@@ 958516b4e9 html
+Net premium this roll
+@@ d8041b1dc9 html
+Cumulative premium/share
+@@ 8690eb7ed6 html
+Breakeven
+@@ 6905e106a0 html
+Best outcome
+@@ 0278ad3bab html
+New Delta (shares)
+@@ 596cf2d654 html
+Close and take the loss
+@@ 1694221b12 html
+Out
+@@ 37796ce078 html
+95 put, 40 days
+@@ 285438dd0f html
+Down
+@@ 983167c980 html
+90 put, 12 days
+@@ cf8d66dc8d html
+None
+@@ f4a476cce7 html
+Out and down
+@@ 4921ab7ee7 html
+90 put, 40 days
+@@ 1ac19045dc html
+To read this table, start with the “Best outcome” column:
+@@ 8fe3645e53 html
+<strong>Out</strong> collects $1,030 and looks like the biggest “win.” It keeps the 95 strike, so Delta is still +276 shares, the breakeven only moves from $93.20 to $91.14, and you carry the risk for 28 more days. Daily Theta income actually falls from $51.0 to $28.5, because a 40-day option decays more slowly.
+@@ 6216f5771a html
+<strong>Down</strong> costs $1,336, and Delta falls from +321 shares to +183 shares, with the same expiration. The cumulative premium is already negative, so this trade can't make its money back no matter what; even the best outcome is a $436 loss. It's essentially “closing part of the risk,” trading cash for distance.
+@@ d17c8a9c46 html
+<strong>Out and down</strong> costs almost nothing, moves the strike below the current price and pushes the breakeven down to $88.78. The price is again 28 more days of risk, and the best outcome is only $611: what you're playing for is very little room to win back what you've lost.
+@@ 553d5ec949 html
+Short calls: opposite direction, same logic
+@@ 7dab5add73 html
+When a covered call is breached, it looks like a loss, but it isn't necessarily one. You hold 300 shares (cost $100) and sold 3 30-day 105 calls (IV 28%) for <span class="num">$1.46</span>. Now the stock is at <span class="num">$109</span> with 10 days left, IV is 26%, and the call is worth <span class="num">$4.58</span>, with a Delta of 0.82. Three rolls: out to the 38-day 105 call, net credit <span class="num">$491</span>; up to the 10-day 110 call, net debit <span class="num">$933</span>; up and out to the 38-day 110 call, net debit <span class="num">$357</span>.
+@@ 966f11500f html
+First work out what happens if you don't roll: you're assigned at expiry and sell the stock at 105, making <span class="num">(105 − 100 + 1.46) × 300 = $1,938</span> on the whole trade. The “loss” is only the gain above 105 that you miss. Rolling up spends money to buy that gain back, which amounts to going long part of the stock again at $109. The test is the same as before: if you held only the stock, without this call, would you sell a 38-day 110 call today? If you actually want to keep riding the rally, don't sell; if you're happy to sell at 110, then rolling makes sense.
+@@ a962bd243c html
+Current stock price <input id="f2-s" type="range" min="86" max="98" value="92" step="0.5"> <output id="f2-s-o">$92</output>
+@@ ad1fb238d9 html
+Days to new expiry <input id="f2-d" type="range" min="26" max="68" value="40" step="1"> <output id="f2-d-o">40 days</output>
+@@ af475c5e28 html
+New strike <input id="f2-k" type="range" min="84" max="94" value="90" step="1"> <output id="f2-k-o">90</output>
+@@ be3f92ff18 html
+The horizontal axis is the stock price at the new position's expiry; the vertical axis is the whole trade's P&amp;L counted from the original trade (IV fixed at 42%). The roll-down curve settles at the original expiration; the other two settle at the new expiration you choose. Drag the current stock price to 88 and the net cost of rolling down jumps. Lengthen the days to the new expiry and rolling out collects more, but the loss on the left side of the chart barely changes: the extra money buys a longer period of risk, not a smaller tail.
+@@ 20d9cf6894 html
+<span class="sn">12.5</span>Without the old position, would you open this one?
+@@ 94140e8ab4 html
+Rolling doesn't repair a loss. The loss hit your account value the moment the price got there; buying back the old position just renames it from “unrealized” to “realized.” Only one question is left: is the new position worth opening on its own merits?
+@@ e60c81039c html
+Marked to market, your account value doesn't change at the moment you roll: you pay $2,252 to buy back the old put and take in $1,963 for selling the new one (out and down), so the account sheds a $2,252 liability and takes on a $1,963 liability at the same time. The so-called “net credit” or “net debit” is just the cash difference between the two trades. It doesn't change the $1,352 you've already lost.
+@@ f4d793ddf3 html
+How the model sees the three choices
+@@ cc63cbe059 html
+Use the Black-Scholes risk-neutral distribution (IV 42%) to work out the final outcome of each choice:
+@@ 60b37c5fa2 html
+Table 12-5 Outcome distribution of the four choices (5 contracts, counted from the original trade)
+@@ 36aa1e7b72 html
+Expected P&amp;L
+@@ bc53e17b00 html
+Chance the whole trade profits
+@@ 009483baf7 html
+Average when winning
+@@ 8e69fb565b html
+Average when losing
+@@ 96e601bc26 html
+The four choices have nearly the same expected value, each roughly equal to the $1,352 you've already lost (the small differences come from interest). When options trade at fair prices, switching contracts doesn't create expected return out of thin air. What a roll does is swap a certain loss for a distribution: a little better than even odds of getting back to even, about a 40% chance of losing more, and when it loses, an average loss of more than $4,000.
+@@ 9f4681b1da html
+Real markets have two factors the model doesn't. One is the volatility risk premium: on average IV runs a little above realized volatility, so sellers have a slight long-run edge. The other is trend: for a stock that has just broken support, next month's distribution may not be symmetric. The first makes rolling a little better; the second may make it worse. Neither changes the core conclusion: a roll opens a new trade, and it has to be judged by the standards for a new trade.
+@@ 58b182953b html
+Run it through the standards for a new trade
+@@ 324109f9b1 html
+Take the position after rolling out and down, and look at it as if you were seeing it for the first time today:
+@@ 1718e260fb html
+<strong>Direction</strong>: would I go long +199 shares today in this stock that just fell 8%?
+@@ 75ce97d5f6 html
+<strong>Strike and expiration</strong>: I normally open by selling puts at Delta 0.20–0.30; this one is 0.40. Would I sell it?
+@@ f47ca6260d html
+<strong>Size</strong>: the notional exposure of five 90 puts is $45,000, 45% of the account. Under my rules (Chapter 13), is that size acceptable?
+@@ 7b766920a1 html
+<strong>Reason</strong>: does the reason I opened it (say, “95 is support”) still hold? If 95 is the very level that just broke, the reason is gone.
+@@ 6ac5725d52 html
+If the answer to any of these is “no,” close, or keep only the part that passes the test.
+@@ 0b88770ba8 html
+“If I didn't have the old position, would I open this one?” A roll that passes this question is a new trade; one that doesn't is the same bet pushed back to next month and placed again.
+@@ 61ec7a48bc html
+<span class="sn">12.6</span>A credit spread is breached: four choices
+@@ 7185dfe805 html
+Once a spread is breached, every choice trades one risk for another. To compare them, use the same yardstick: P&amp;L from here. Money already lost isn't part of any of the choices.
+@@ afea18947c html
+The scenario: 35 days ago, with the stock at $100, you sold <span class="num">10</span> 95/90 put credit spreads (IV 30%, short-leg Delta −0.26) for <span class="num">$1.02</span>, <span class="num">$1,021</span> in total. Now there are 14 days left, the stock is at <span class="num">$93</span> and IV has risen to <span class="num">38%</span>. The spread is worth <span class="num">$2.38</span>, an unrealized loss of <span class="num">$1,363</span>. If you do nothing, the most you can lose from here is another <span class="num">(5 − 2.384) × 1,000 = $2,616</span>.
+@@ 664d5cdc43 html
+<strong>A Close and take the loss</strong>: pay $2,384 to buy it back, and you're done.
+@@ 3494773878 html
+<strong>B Roll out and down</strong>: buy back the 95/90 and sell the 90/85 expiring in 42 days for $1.64. Net cost $745.
+@@ 83480601e1 html
+<strong>C Add a leg to make an iron condor</strong>: keep the put spread and also sell 10 14-day 97/102 call spreads (short-leg Delta 0.31) for $0.91, $911 in total.
+@@ 69c32234eb html
+<strong>D Convert to a calendar</strong>: sell the 90 puts you hold (collecting $1,428) and buy 42-day 95 puts (paying $5,641). The position becomes “short 14-day 95 put + long 42-day 95 put.”
+@@ 245be26ff7 html
+Table 12-6 The four choices and “no change,” all compared on P&amp;L from here (10 contracts, dollars; IV stays at 38%; price columns are 14 days out)
+@@ bd02d82523 html
+Choice
+@@ 1d8d696408 html
+Cash flow
+@@ a59f077925 html
+Max loss
+@@ 19095683f9 html
+Stock 85
+@@ 7221418176 html
+No change
+@@ 5046a7f272 html
+A Close
+@@ 115745c786 html
+B Roll to 90/85
+@@ 248965ea65 html
+C Add call spread
+@@ 34df900cf6 html
+D Convert to 95 calendar
+@@ 6ab69ce5a7 html
+about −2,120
+@@ 664f195576 html
+B Roll
+@@ e910aae2bd html
+C Iron condor
+@@ 0430d443ce html
+D Calendar
+@@ f50065dc56 html
+The horizontal axis is the stock price 14 days from now; the vertical axis is P&amp;L from here. The roll and the calendar still have 28 days left after those 14 days and are repriced at IV 38%. Switch to “C Iron condor”: the loss on the left gets shallower, but a new loss zone appears on the right above 102. Where a rebound used to get you back $2,384, it now loses $1,704. Switch to “D Calendar”: it peaks in the middle, loses on both sides, and the curve depends on back-month IV.
+@@ bff356646c html
+How to read this table
+@@ 3dcd65b589 html
+<strong>B Roll</strong> lowers Delta (+281 → +149, with Theta going from $5.9 a day to $10.4) and moves the loss zone to lower prices, but the maximum loss from here rises from $2,616 to $3,361, and you carry the risk 28 days longer. If you want to roll “for a credit,” you have to roll out at the same strikes (net credit $77, short-leg Delta −0.53, nearly at the money) or widen the spread to 90/80 (net credit $180, with the maximum loss becoming $7,436).
+@@ b17cfa0c93 html
+<strong>C Iron condor</strong> cuts the maximum loss to $1,704, lowers Delta to +94 and raises Theta from $5.9 a day to $45.4. It requires you to be genuinely neutral right now: if the stock rebounds to 100, you make only $296, where you could have made $2,384.
+@@ e98296c17c html
+<strong>D Calendar</strong> has the smallest Delta (+64) and Theta of $38.8 a day, and does best with the stock sitting at 93–97. It spends $4,213 in cash on a back-month put and becomes a long back-month volatility position: if back-month IV falls back to 30% within 14 days, the profit with the stock unchanged drops from $1,023 to $210.
+@@ 0f38f2ec74 html
+<strong>A Close</strong> has a P&amp;L from here of exactly zero. Its value is in freeing up margin and attention, so you can choose again with a clean account.

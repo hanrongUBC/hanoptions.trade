@@ -1,0 +1,1914 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Macro Trading Framework · hanoptions.trade</title>
+<meta name="description" content="A 12-chapter study handbook: the cross-asset dashboard, rates and valuation, market regimes, breadth and flows, event playbooks, and turning a view into a trade.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700;900&display=swap">
+<style>
+/* Layout: a macro desk handbook. Chapter rail on the left, one chapter on stage at a time,
+   each chapter opens with a large serif number; figures and switchboards sit on plates. */
+:root {
+  --paper: #f2f4f6;
+  --plate: #ffffff;
+  --ink: #161f2a;
+  --muted: #5c6774;
+  --rule: #d5dbe2;
+  --grid: #e6eaef;
+  --accent: #1c5a8c;
+  --calm: #0f6a63;
+  --loss: #b13450;
+  --warn: #9c5c00;
+  --tint-accent: rgba(28, 90, 140, .08);
+  --tint-calm: rgba(15, 106, 99, .08);
+  --tint-loss: rgba(177, 52, 80, .08);
+  --tint-warn: rgba(156, 92, 0, .09);
+  --font-display: "Noto Serif SC", "Songti SC", "STSong", serif;
+  --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0e141b; --plate: #151d26; --ink: #e2e8ef; --muted: #94a1ae; --rule: #26313d; --grid: #1b2530;
+    --accent: #7fb3e8; --calm: #4cc2b5; --loss: #f07a93; --warn: #f0a943;
+    --tint-accent: rgba(127, 179, 232, .10); --tint-calm: rgba(76, 194, 181, .10);
+    --tint-loss: rgba(240, 122, 147, .10); --tint-warn: rgba(240, 169, 67, .10);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0e141b; --plate: #151d26; --ink: #e2e8ef; --muted: #94a1ae; --rule: #26313d; --grid: #1b2530;
+  --accent: #7fb3e8; --calm: #4cc2b5; --loss: #f07a93; --warn: #f0a943;
+  --tint-accent: rgba(127, 179, 232, .10); --tint-calm: rgba(76, 194, 181, .10);
+  --tint-loss: rgba(240, 122, 147, .10); --tint-warn: rgba(240, 169, 67, .10);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 16.5px; line-height: 1.85; -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* masthead */
+.mast { border-bottom: 1px solid var(--rule); }
+.mast-inner { max-width: 1180px; margin: 0 auto; padding-inline: 24px; padding-block: 34px 28px; display: flex; flex-wrap: wrap; gap: 6px 40px; align-items: end; justify-content: space-between; }
+.mast-title { min-width: 0; }
+.eyebrow { font-size: 13px; color: var(--muted); letter-spacing: .08em; margin: 0 0 6px; }
+.mast h1 { font-family: var(--font-display); font-weight: 900; font-size: clamp(36px, 6vw, 60px); line-height: 1.05; margin: 0; letter-spacing: .02em; }
+.deck { margin: 10px 0 0; color: var(--muted); max-width: 40em; font-size: 16.5px; }
+.mast-stat { font-size: 13.5px; color: var(--muted); line-height: 1.6; max-width: 22em; border-left: 1px solid var(--rule); padding-left: 18px; }
+.mast-stat b { display: block; font-family: var(--font-mono); font-size: 30px; font-weight: 500; color: var(--loss); line-height: 1.2; }
+
+/* shell */
+.shell { max-width: 1180px; margin: 0 auto; padding-inline: 24px; padding-block: 36px 80px; display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 56px; }
+.rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 20px); align-self: start; max-height: calc(100vh - 40px); overflow: auto; }
+.rail ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.rail button { width: 100%; text-align: left; font: inherit; font-size: 14.5px; line-height: 1.45; color: var(--muted); background: transparent; border: 0; border-radius: 6px; padding: 8px 10px; cursor: pointer; display: grid; grid-template-columns: 34px 1fr; gap: 4px; }
+.rail button .k { font-family: var(--font-mono); font-size: 12.5px; padding-top: 2px; }
+.rail button:hover { background: var(--grid); color: var(--ink); }
+.rail button[aria-current="true"] { background: var(--tint-accent); color: var(--accent); font-weight: 500; }
+.picker { display: none; }
+main { min-width: 0; max-width: 760px; }
+
+@media (max-width: 920px) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 0; padding-inline: 16px; padding-block: 0 64px; }
+  .rail { display: none; }
+  .picker { display: block; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); padding-block: 12px; border-bottom: 1px solid var(--rule); margin-bottom: 24px; }
+  .picker select { width: 100%; font: inherit; font-size: 15px; padding: 9px 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--plate); color: var(--ink); }
+  .mast-inner { padding-inline: 16px; padding-block: 26px 22px; }
+  .mast-stat { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 12px; }
+}
+
+/* chapter */
+.chapter-head { display: grid; grid-template-columns: auto 1fr; gap: 4px 22px; align-items: end; margin-bottom: 26px; padding-bottom: 20px; border-bottom: 1px solid var(--rule); }
+.chapter-head .no { font-family: var(--font-display); font-weight: 900; font-size: 84px; line-height: .85; color: var(--accent); grid-row: span 2; }
+.chapter-head .kicker { font-size: 13px; color: var(--muted); letter-spacing: .08em; }
+.chapter-head h2 { font-family: var(--font-display); font-size: clamp(26px, 3.6vw, 34px); line-height: 1.25; margin: 0; text-wrap: balance; }
+@media (max-width: 560px) { .chapter-head .no { font-size: 58px; } }
+h3 { font-family: var(--font-display); font-size: 21px; margin: 40px 0 10px; line-height: 1.35; text-wrap: balance; }
+h4 { font-size: 16px; margin: 22px 0 6px; }
+p { margin: 0 0 16px; max-width: 68ch; }
+ul, ol { padding-left: 1.3em; margin: 0 0 16px; max-width: 68ch; }
+li + li { margin-top: 5px; }
+.lead { font-size: 18.5px; line-height: 1.8; }
+.num { font-family: var(--font-mono); font-size: .93em; font-variant-numeric: tabular-nums; }
+.pull { font-family: var(--font-display); font-size: 22px; line-height: 1.6; margin: 28px 0; padding: 4px 0 4px 22px; border-left: 3px solid var(--accent); max-width: 34em; }
+
+.note { margin: 22px 0 24px; padding: 16px 20px 6px; border-radius: 6px; background: var(--tint-accent); }
+.note .tag { display: block; font-size: 12px; letter-spacing: .1em; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+.note p, .note ul, .note ol { font-size: 15.5px; }
+.note.warn { background: var(--tint-warn); } .note.warn .tag { color: var(--warn); }
+.note.loss { background: var(--tint-loss); } .note.loss .tag { color: var(--loss); }
+.note.calm { background: var(--tint-calm); } .note.calm .tag { color: var(--calm); }
+
+.tbl { overflow-x: auto; margin: 18px 0 26px; border: 1px solid var(--rule); border-radius: 6px; background: var(--plate); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; font-variant-numeric: tabular-nums; }
+caption { caption-side: top; text-align: left; padding: 12px 16px 4px; font-size: 13px; color: var(--muted); }
+th, td { padding: 9px 14px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+td.r, th.r { text-align: right; }
+td.mono { font-family: var(--font-mono); }
+thead th { font-size: 12.5px; color: var(--muted); font-weight: 500; letter-spacing: .04em; white-space: nowrap; }
+tbody tr:last-child td { border-bottom: 0; }
+.hl td { background: var(--tint-accent); }
+
+/* bias cards */
+.biases { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: 14px; margin: 18px 0 26px; }
+.bias { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px 12px; min-width: 0; }
+.bias h4 { margin: 0 0 8px; font-size: 16.5px; display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.bias h4 small { font-family: var(--font-mono); font-weight: 400; font-size: 11.5px; color: var(--muted); letter-spacing: .02em; }
+.bias dl { margin: 0; display: grid; grid-template-columns: 3.4em 1fr; gap: 4px 10px; font-size: 14.5px; line-height: 1.7; }
+.bias dt { color: var(--muted); font-size: 13px; padding-top: 1px; }
+.bias dd { margin: 0; }
+.bias dd.fix { color: var(--accent); }
+
+/* figures */
+figure.plate { margin: 26px 0 32px; background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 18px 18px 14px; }
+.fig-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 6px; }
+.fig-title { font-weight: 700; font-size: 15.5px; }
+.fig-no { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); }
+svg.chart { width: 100%; height: auto; display: block; }
+.scroll-x { overflow-x: auto; }
+svg.chart.wide { min-width: 620px; }
+figcaption { font-size: 13.5px; color: var(--muted); line-height: 1.7; margin-top: 8px; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 6px 0 4px; align-items: center; }
+.ctl { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--muted); }
+.ctl input[type="range"] { width: 150px; accent-color: var(--accent); }
+.ctl output { font-family: var(--font-mono); color: var(--ink); min-width: 4em; font-variant-numeric: tabular-nums; }
+.btn { font: inherit; font-size: 13.5px; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); cursor: pointer; }
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); margin-top: 4px; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 18px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.legend i.dash { border-top-style: dashed; }
+.readout { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 12px; }
+.readout div { border-top: 1px solid var(--rule); padding-top: 8px; min-width: 0; }
+.readout b { display: block; font-family: var(--font-mono); font-size: 19px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.readout small { font-size: 12.5px; color: var(--muted); }
+.ax { font-family: var(--font-mono); font-size: 11.5px; }
+
+/* calculator */
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 8px 0 4px; }
+.form-grid label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+.form-grid input { font: inherit; font-family: var(--font-mono); padding: 7px 10px; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); color: var(--ink); width: 100%; }
+
+/* template */
+pre.tpl { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 16px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.7; overflow-x: auto; white-space: pre; margin: 8px 0; }
+
+/* checklists */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; margin: 18px 0 12px; }
+.card { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; min-width: 0; }
+.card h4 { margin: 0 0 8px; }
+.card ul { list-style: none; padding: 0; margin: 0; font-size: 14.5px; line-height: 1.65; }
+.card li { display: grid; grid-template-columns: 22px 1fr; gap: 4px; align-items: start; }
+.card input[type="checkbox"] { margin-top: 5px; accent-color: var(--accent); }
+
+/* quiz */
+.quiz { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 6px 18px 18px; margin: 18px 0; }
+.qrow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 18px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.qrow:last-of-type { border-bottom: 0; }
+.qrow p { margin: 0; font-size: 15px; line-height: 1.6; }
+.scale { display: inline-flex; gap: 4px; }
+.scale label { position: relative; }
+.scale input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.scale span { display: grid; place-items: center; width: 34px; height: 30px; border: 1px solid var(--rule); border-radius: 5px; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.scale input:checked + span { background: var(--accent); color: var(--plate); border-color: var(--accent); }
+.scale input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 560px) { .qrow { grid-template-columns: minmax(0, 1fr); } }
+.scale-legend { font-size: 12.5px; color: var(--muted); margin: 10px 0 0; }
+.result { margin-top: 18px; display: grid; gap: 10px; }
+.bar-row { display: grid; grid-template-columns: 5.5em minmax(0, 1fr) 4.5em; gap: 12px; align-items: center; font-size: 14px; }
+.bar-track { height: 10px; background: var(--grid); border-radius: 5px; overflow: hidden; }
+.bar-fill { height: 100%; width: 0; background: var(--accent); border-radius: 5px; transition: width .3s; }
+.bar-fill.hi { background: var(--loss); }
+@media (prefers-reduced-motion: reduce) { .bar-fill { transition: none; } }
+.bar-row .val { font-family: var(--font-mono); text-align: right; color: var(--muted); }
+.advice { font-size: 14.5px; color: var(--ink); margin-top: 6px; }
+
+/* pager */
+.pager { display: flex; justify-content: space-between; gap: 16px; margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule); flex-wrap: wrap; }
+.pager button { font: inherit; background: transparent; border: 1px solid var(--rule); border-radius: 8px; padding: 10px 16px; cursor: pointer; color: var(--ink); text-align: left; max-width: 48%; min-width: 0; }
+.pager button small { display: block; font-size: 12px; color: var(--muted); }
+.pager button:hover { border-color: var(--accent); }
+.pager button.next { margin-left: auto; text-align: right; }
+@media (max-width: 560px) { .pager button { max-width: 100%; width: 100%; } .pager button.next { text-align: left; } }
+
+footer.end { margin-top: 48px; font-size: 13px; color: var(--muted); }
+footer.end p { max-width: none; }
+
+/* switchboard (interactive toggles) */
+.board { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 10px; margin: 6px 0 12px; }
+.sw { display: grid; gap: 6px; background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px; min-width: 0; }
+.sw > span { font-size: 13.5px; color: var(--ink); font-weight: 500; }
+.seg3 { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; width: max-content; max-width: 100%; }
+.seg3 button { font: inherit; font-size: 13px; background: var(--plate); color: var(--muted); border: 0; padding: 4px 11px; cursor: pointer; }
+.seg3 button + button { border-left: 1px solid var(--rule); }
+.seg3 button[aria-pressed="true"] { background: var(--accent); color: var(--plate); }
+.verdict { border-top: 1px solid var(--rule); padding-top: 12px; margin-top: 4px; }
+.verdict h4 { margin: 0 0 6px; font-family: var(--font-display); font-size: 19px; color: var(--accent); }
+.verdict p, .verdict ul { font-size: 14.5px; margin-bottom: 8px; }
+.pill { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 999px; background: var(--tint-accent); color: var(--accent); margin: 0 4px 4px 0; }
+.pill.up { background: var(--tint-calm); color: var(--calm); }
+.pill.down { background: var(--tint-loss); color: var(--loss); }
+.chain { display: grid; gap: 8px; margin: 8px 0 4px; }
+.chain .step { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; align-items: start; font-size: 14.5px; }
+.chain .step b { font-family: var(--font-mono); font-weight: 500; color: var(--accent); font-size: 13px; padding-top: 2px; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 12px; margin-top: 10px; }
+.two > div { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 14px; min-width: 0; }
+.two h5 { margin: 0 0 4px; font-size: 13.5px; }
+.two ul { font-size: 14px; margin: 0; padding-left: 1.1em; }
+
+/* macro-only additions */
+.formula { font-family: var(--font-mono); background: var(--plate); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 16px; margin: 14px 0 18px; font-size: 14.5px; line-height: 1.8; overflow-x: auto; max-width: 68ch; }
+.formula small { display: block; font-family: var(--font-body); color: var(--muted); font-size: 13px; }
+.v { font-family: var(--font-display); font-style: italic; }
+.qa { margin: 14px 0 24px; }
+.qa details { border-top: 1px solid var(--rule); padding: 12px 0; }
+.qa details:last-child { border-bottom: 1px solid var(--rule); }
+.qa summary { cursor: pointer; font-weight: 500; font-size: 15.5px; line-height: 1.65; list-style: none; display: grid; grid-template-columns: 2.4em minmax(0, 1fr); }
+.qa summary::-webkit-details-marker { display: none; }
+.qa summary .k { font-family: var(--font-mono); color: var(--accent); font-size: 13px; padding-top: 3px; }
+.qa details[open] summary { color: var(--accent); }
+.qa details > div { padding: 8px 0 0 2.4em; font-size: 15px; }
+.qa details > div p { margin-bottom: 8px; }
+.verdict .row { font-size: 13.5px; color: var(--muted); margin: 2px 0 4px; }
+.verdict .row b { font-weight: 500; color: var(--ink); margin-right: 6px; }
+.match { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); font-weight: 400; margin-left: 8px; }
+.copyrow { display: flex; gap: 12px; align-items: center; margin-top: 6px; }
+.copyrow small { color: var(--muted); font-size: 13px; }
+.form-grid select { font: inherit; font-family: var(--font-mono); padding: 7px 10px; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); color: var(--ink); width: 100%; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips button { font: inherit; font-size: 13.5px; line-height: 1.5; padding: 5px 12px; border: 1px solid var(--rule); border-radius: 999px; background: var(--paper); color: var(--muted); cursor: pointer; }
+.chips button:hover { border-color: var(--accent); color: var(--accent); }
+.chips button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--plate); }
+.out-h { font-family: var(--font-display); font-size: 18px; margin: 14px 0 4px; color: var(--accent); }
+#reg.board { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.ek { font-family: var(--font-body); font-size: .86em; color: var(--muted); font-weight: 400; }
+
+/* ---------- site bar (hanoptions.trade) ---------- */
+.sitebar { border-bottom: 1px solid var(--rule); background: var(--paper); font-size: 13.5px; line-height: 1.4; }
+.sitebar-inner { max-width: 1180px; margin: 0 auto; padding: 9px 24px; display: flex; gap: 18px; align-items: center; justify-content: space-between; }
+.sitebar-home { font-family: var(--font-mono); color: var(--muted); text-decoration: none; letter-spacing: .02em; white-space: nowrap; }
+.sitebar-home:hover { color: var(--ink); }
+.sitebar-links { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.sitebar-links::-webkit-scrollbar { display: none; }
+.sitebar-links a { color: var(--muted); text-decoration: none; padding: 3px 9px; border-radius: 4px; white-space: nowrap; }
+.sitebar-links a:hover { color: var(--ink); background: var(--grid); }
+.sitebar-links a[aria-current="page"] { color: var(--ink); background: var(--plate); box-shadow: inset 0 0 0 1px var(--rule); }
+@media (max-width: 900px) { .sitebar-inner { padding-inline: 16px; } }
+@media (max-width: 480px) { .sitebar-inner { gap: 10px; } .sitebar-links a { padding: 3px 7px; } }
+</style>
+<link rel="alternate" hreflang="zh-CN" href="https://hanoptions.trade/macro/"><link rel="alternate" hreflang="en" href="https://hanoptions.trade/en/macro/">
+<style id="lang-css">
+.lang-switch { flex: none; display: inline-flex; align-items: center; gap: 6px; padding: 3px 11px; border: 1px solid var(--rule); border-radius: 999px;
+  background: var(--plate); color: var(--ink); text-decoration: none; font-size: 13px; line-height: 1.5; white-space: nowrap; font-family: var(--font-body); letter-spacing: 0; }
+.lang-switch:hover { border-color: var(--ink); }
+.lang-switch svg { width: 13px; height: 13px; flex: none; }
+
+.sitebar-links { flex: 0 1 auto; min-width: 0; margin-left: auto; justify-content: flex-start; }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap">
+<style id="en-overrides">
+html[lang="en"] { --font-display: "Source Serif 4", "Noto Serif SC", Georgia, serif; --font-body: "Source Sans 3", "Noto Sans SC", system-ui, sans-serif; }
+html[lang="en"] body { line-height: 1.7; }
+html[lang="en"] body * { letter-spacing: normal !important; }
+html[lang="en"] p, html[lang="en"] li, html[lang="en"] td, html[lang="en"] figcaption { hyphens: auto; -webkit-hyphens: auto; }
+html[lang="en"] p { text-wrap: pretty; }
+html[lang="en"] .toc a { grid-template-columns: 48px 1fr; }
+</style>
+</head>
+<body>
+<nav class="sitebar" aria-label="Site navigation"><div class="sitebar-inner"><a class="sitebar-home" href="/en/">hanoptions.trade</a><div class="sitebar-links"><a href="/en/options/">US Options Course</a><a href="/en/psychology/">Trading Psychology</a><a href="/en/macro/" aria-current="page">Macro Trading Framework</a><a href="/en/policy/">Policy Narrative Investing</a><a href="/en/rebound/">Oversold Rebound List</a></div><a class="lang-switch" href="/macro/" hreflang="zh-CN" lang="zh-CN" data-lang="zh"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>中文</a></div></nav>
+<header class="mast">
+  <div class="mast-inner">
+    <div class="mast-title">
+      <p class="eyebrow">Study handbook · 12 chapters</p>
+      <h1>Macro Trading Framework</h1>
+      <p class="deck">Stock prices come down to earnings and interest rates, and earnings and rates are pushed around by oil, the dollar, jobs and policy. This handbook ties those forces into a map you can use every day: what to watch, how to reason it through, when to trust it, and how to bet.</p>
+    </div>
+    <div class="mast-stat"><b>−25%</b>If the discount rate rises just 1 percentage point, the theoretical value of a company with 5% long-term growth falls 25%. The higher the growth rate, the more sensitive it is to rates.</div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="rail" aria-label="Chapters">
+    <ol id="rail"></ol>
+  </nav>
+
+  <main>
+    <div class="picker"><label for="pick" class="eyebrow" style="display:block">Chapters</label><select id="pick"></select></div>
+
+    <!-- ===================== 00 ===================== -->
+    <article class="chapter" id="c0" data-title="Introduction: what macro trading is for">
+      <div class="chapter-head"><div class="no">00</div><div class="kicker">Introduction</div><h2>What macro trading is for</h2></div>
+      <p class="lead">Macro trading is not about forecasting next quarter's GDP. It asks two more practical questions: where money will be forced to go next, and whether the market has already seen it coming.</p>
+
+      <h3>The two legs of a stock price: earnings and the discount rate</h3>
+      <p>The price of any stock can be split into two parts:</p>
+      <div class="formula">Price = earnings per share × valuation multiple<small>The valuation multiple is set by interest rates (the discount rate) and by how much risk investors are willing to take (the risk premium).</small></div>
+      <p>Almost every piece of macro news ends up landing on these two legs. Rising oil raises companies' costs and squeezes earnings; it also pushes up inflation, makes it harder for the central bank to cut rates, and lifts the discount rate. A stronger dollar shrinks multinationals' overseas revenue once it is converted back, and tightens funding conditions around the world. Weakening jobs first make the market hope for rate cuts, then make it worry about earnings.</p>
+      <p>So macro analysis always comes down to three questions: How will this change earnings? How will it change rates? How will it change risk appetite?</p>
+
+      <h3>Six things a macro trader does every day</h3>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">Four steps of reasoning stand between seeing a change and placing a trade</span><span class="fig-no">Figure 0-1</span></div>
+        <div class="scroll-x">
+        <svg class="chart wide" viewBox="0 0 680 300" role="img" aria-label="The six-step macro trading loop and the chapters that cover each step">
+          <defs><marker id="m-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--muted)"></path></marker></defs>
+          <g style="font-family: var(--font-body)">
+            <rect x="20" y="40" width="180" height="70" rx="8" style="fill: var(--tint-accent); stroke: var(--accent)"></rect>
+            <text x="110" y="70" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">Observe: what moved</text>
+            <text x="110" y="93" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Chapter 1</text>
+            <rect x="250" y="40" width="180" height="70" rx="8" style="fill: var(--plate); stroke: var(--rule)"></rect>
+            <text x="340" y="70" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">Explain: why it moved</text>
+            <text x="340" y="93" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Chapters 2 and 8</text>
+            <rect x="480" y="40" width="180" height="70" rx="8" style="fill: var(--plate); stroke: var(--rule)"></rect>
+            <text x="570" y="70" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">Trace: where it goes</text>
+            <text x="570" y="93" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Chapters 2–5</text>
+            <rect x="480" y="190" width="180" height="70" rx="8" style="fill: var(--tint-calm); stroke: var(--calm)"></rect>
+            <text x="570" y="220" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">Verify: does price agree</text>
+            <text x="570" y="243" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Chapters 6 and 7</text>
+            <rect x="250" y="190" width="180" height="70" rx="8" style="fill: var(--plate); stroke: var(--rule)"></rect>
+            <text x="340" y="220" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">Express: how to bet</text>
+            <text x="340" y="243" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Chapters 9 and 10</text>
+            <rect x="20" y="190" width="180" height="70" rx="8" style="fill: var(--plate); stroke: var(--rule); stroke-dasharray: 4 4"></rect>
+            <text x="110" y="220" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">Review: what broke</text>
+            <text x="110" y="243" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Chapter 11</text>
+            <g style="stroke: var(--muted)" stroke-width="1.4" fill="none">
+              <path d="M200 75 H246" marker-end="url(#m-arrow)"></path>
+              <path d="M430 75 H476" marker-end="url(#m-arrow)"></path>
+              <path d="M570 110 V186" marker-end="url(#m-arrow)"></path>
+              <path d="M480 225 H434" marker-end="url(#m-arrow)"></path>
+              <path d="M250 225 H204" marker-end="url(#m-arrow)"></path>
+              <path d="M110 190 V114" marker-end="url(#m-arrow)"></path>
+            </g>
+            <text x="340" y="152" text-anchor="middle" style="fill: var(--loss); font-size: 12.5px">Beginners often skip “verify” and go straight from tracing to trading</text>
+          </g>
+        </svg>
+        </div>
+        <figcaption>The four steps in the middle are all reasoning; only “verify” needs the market to give you an answer. However neat your reasoning, if price doesn't agree, don't bet yet.</figcaption>
+      </figure>
+
+      <h3>Why stock and options traders need macro too</h3>
+      <p>In 2022, many large tech companies whose earnings were still growing saw their shares fall anywhere from 30% to more than half. The companies hadn't gotten worse; their valuation multiples had. Rates rose quickly from near zero, and the price the market was willing to pay for the same dollar of earnings dropped sharply. That year, stock-picking skill could hardly offset the across-the-board selloff that macro brought.</p>
+      <p>When macro dominates the market, the correlation between individual stocks rises noticeably: everything goes up together and down together. Then however deep your research on a company, it only decides how much less you lose than everyone else. For options traders it is even more direct: rates, the dollar and data days change implied volatility (IV) across the whole market, and with it the price of every option.</p>
+
+      <h3>Three common mistakes</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Mistake</th><th>What it looks like</th><th>A better approach</th></tr></thead>
+          <tbody>
+            <tr><td>Treating macro as prophecy</td><td>Betting on one specific outcome, such as “they will definitely hike next month”</td><td>Draw a map: list a few scenarios and how each would play out across assets, then watch which one the market moves toward</td></tr>
+            <tr><td>Reading only the headlines</td><td>Buying on good news, selling on bad news</td><td>Watch how the market reacts. Good news that doesn't lift prices, or bad news that doesn't sink them, is a signal in itself</td></tr>
+            <tr><td>Mistaking beliefs for facts</td><td>Ignoring the evidence in prices because you agree with a political position or a grand narrative</td><td>Beliefs can help you decide what to research; bets should follow evidence. The market doesn't care whom you support</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Using macro on different time scales</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Time scale</th><th>Dominant forces</th><th>Common tools</th></tr></thead>
+          <tbody>
+            <tr><td>Hours to days</td><td>Data releases, central bank speeches, options expiration (OpEx), mechanical flows</td><td>Key levels, short-dated options, spreads</td></tr>
+            <tr><td>Weeks</td><td>Trends in rates and the dollar, earnings season, seasonality, sector rotation</td><td>Shares, sector ETFs, longer-dated spreads</td></tr>
+            <tr><td>Months</td><td>The business cycle, the policy cycle, the market regime</td><td>Overall position size, hedge ratio, cash allocation</td></tr>
+            <tr><td>Years</td><td>Structural narratives: AI, energy and resources, reshoring, population aging</td><td>Long-term holding, dollar-cost averaging, long-dated options</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The same macro call can turn out completely differently if you use a tool built for the wrong time scale. Express a thesis that needs six months to play out with options that expire in three weeks, and you can lose the entire premium even if you are right about the direction. Chapter 10 deals with this problem in detail.</p>
+
+      <div class="note calm"><span class="tag">How to use this handbook</span>
+        <ul>
+          <li>Chapters 1–4 are the parts: the dashboard, transmission chains, rates, and the dollar, gold and energy.</li>
+          <li>Chapters 5–8 are the assembly: reading the regime, breadth and rotation, flows, and narratives.</li>
+          <li>Chapters 9–11 are the application: calendars and events, getting from view to trade, and templates and checklists you can use every day.</li>
+          <li>Chapters 1, 2, 3, 5, 6, 7, 9 and 10 all have charts or tools you can operate. Try adjusting them yourself.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ===================== 01 ===================== -->
+    <article class="chapter" id="c1" data-title="The cross-asset dashboard: seven numbers first" hidden>
+      <div class="chapter-head"><div class="no">01</div><div class="kicker">Chapter 1</div><h2>The cross-asset dashboard: seven numbers first</h2></div>
+      <p class="lead">The stock market is often the last to hear the news. Bonds, the dollar, crude oil and volatility often move first, and the way they combine says more about what the market is worried about than any single number.</p>
+
+      <h3>Seven numbers and what they mean</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Indicator</th><th>What it represents</th><th>What a rise usually means</th><th>Easy to misread</th></tr></thead>
+          <tbody>
+            <tr><td>2-year Treasury yield</td><td>The market's expectation for the policy rate over the next year or two</td><td>The market is pricing more hikes, or fewer cuts</td><td>The most sensitive to data and central bank speeches; can move a lot in a day</td></tr>
+            <tr><td>10-year Treasury yield</td><td>A blend of growth, inflation expectations and the term premium</td><td>The discount rate on stocks rises; long-duration assets come under pressure</td><td>Break it down: is the real yield rising, or inflation expectations?</td></tr>
+            <tr><td>10-year real yield (TIPS)</td><td>The true cost of money after inflation expectations</td><td>The opportunity cost of gold and growth stocks rises</td><td>Often explains valuation changes better than the nominal yield</td></tr>
+            <tr><td>Dollar index (DXY)</td><td>The dollar against a basket of major currencies</td><td>Global financial conditions tighten; commodities and emerging markets come under pressure</td><td>Why the dollar is rising matters more than how much it has risen (Chapter 4)</td></tr>
+            <tr><td>Crude oil (WTI, Brent)</td><td>A mixed signal of demand and supply</td><td>Inflation expectations rise; the burden on consumers grows</td><td>A demand-driven rise and a supply-shock rise mean opposite things for stocks</td></tr>
+            <tr><td>VIX and its term structure</td><td>The implied volatility (IV) of the S&amp;P 500 over the next 30 days</td><td>Demand for protection is rising</td><td>Only front months above back months (inversion) signal immediate fear</td></tr>
+            <tr><td>High-yield spread</td><td>What investors charge for default risk</td><td>Credit stress is building</td><td>Usually moves slowly, but once it widens clearly it is often more reliable than stocks</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>A few more worth keeping on a second screen: <strong>gold</strong> (a hedge against currency credibility and geopolitical risk), <strong>USD/JPY</strong> (a barometer of the carry trade) and <strong>copper</strong> (global industrial demand). There are also a few “leading clues”: Korea's stock market often leads global memory-chip stocks, financials often turn a step ahead of the Nasdaq 100, and small caps are the most sensitive to rates.</p>
+
+      <h3>Look at the speed of change before the level</h3>
+      <p>A 10-year yield at 4.8% doesn't say much by itself. Rising from 4.0% to 4.8% within one quarter hits stocks very differently from drifting up over a year. The market can digest slow change; it can't digest abrupt change.</p>
+      <p>A simple habit: for each number, record two changes, over one day and over 20 trading days. Then compare them with how much that indicator usually moves. The 10-year yield usually moves about 5 basis points a day; on a day it moves 15, it's worth stopping to ask why.</p>
+
+      <h3>Pay most attention when relationships break</h3>
+      <p>These assets have some “normal” relationships with one another. When those break, it usually means the market is trading something new:</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Unusual combination</th><th>Normally</th><th>What it may mean</th></tr></thead>
+          <tbody>
+            <tr><td>Stocks and bonds fall together</td><td>When stocks fall, money flows into Treasuries and bonds rise</td><td>The market is trading an inflation or rate shock; Treasuries no longer work as a hedge</td></tr>
+            <tr><td>Treasury yields rise but the dollar falls</td><td>The higher US rates are, the more attractive the dollar</td><td>Foreign money is cutting US assets, possibly over worries about fiscal or monetary credibility</td></tr>
+            <tr><td>Real yields rise and gold rises too</td><td>The higher real yields are, the higher the opportunity cost of holding gold</td><td>Buyers are paying for something else: central bank gold buying, risk-off demand, a hedge against credibility risk</td></tr>
+            <tr><td>Stocks rise and so does the VIX</td><td>When stocks rise, demand for protection falls</td><td>Heavy demand for call options to chase the rally; the move is getting crowded and fragile</td></tr>
+            <tr><td>The index hits new highs while credit spreads widen</td><td>When risk appetite is healthy, credit spreads narrow</td><td>Bond investors are seeing the risk before stock investors</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">Enter today's changes and see what they say together</span><span class="fig-no">Figure 1-1 · Interactive</span></div>
+        <div class="board" id="dash">
+          <div class="sw"><span>10-year yield</span><div class="seg3" data-k="y" role="group" aria-label="10-year yield"><button type="button" data-v="-1">Down</button><button type="button" data-v="0">Flat</button><button type="button" data-v="1">Up</button></div></div>
+          <div class="sw"><span>Dollar index</span><div class="seg3" data-k="d" role="group" aria-label="Dollar index"><button type="button" data-v="-1">Down</button><button type="button" data-v="0">Flat</button><button type="button" data-v="1">Up</button></div></div>
+          <div class="sw"><span>Crude oil</span><div class="seg3" data-k="o" role="group" aria-label="Crude oil"><button type="button" data-v="-1">Down</button><button type="button" data-v="0">Flat</button><button type="button" data-v="1">Up</button></div></div>
+          <div class="sw"><span>Gold</span><div class="seg3" data-k="g" role="group" aria-label="Gold"><button type="button" data-v="-1">Down</button><button type="button" data-v="0">Flat</button><button type="button" data-v="1">Up</button></div></div>
+          <div class="sw"><span>VIX</span><div class="seg3" data-k="v" role="group" aria-label="VIX"><button type="button" data-v="-1">Down</button><button type="button" data-v="0">Flat</button><button type="button" data-v="1">Up</button></div></div>
+          <div class="sw"><span>High-yield spread</span><div class="seg3" data-k="c" role="group" aria-label="High-yield spread"><button type="button" data-v="-1">Narrowing</button><button type="button" data-v="0">Flat</button><button type="button" data-v="1">Widening</button></div></div>
+        </div>
+        <div class="verdict" id="dash-out" aria-live="polite"></div>
+        <figcaption>The rules are ordered by severity: credit and volatility worsening together ranks highest, followed by unusual combinations of rates and the dollar. This is only a starting point for reading the market; a conclusion counts only after the market confirms it, as in Chapters 6 and 7.</figcaption>
+      </figure>
+
+      <h3>A pre-open reading routine</h3>
+      <ol>
+        <li>Note the overnight change in the seven numbers: the 2-year, the 10-year, the dollar, crude oil, gold, the VIX and credit spreads.</li>
+        <li>Find the one that moved the most, or the most unusually.</li>
+        <li>Ask why: was it data, a speech, an auction, a geopolitical event, or money moving with no news behind it?</li>
+        <li>Decide whether it was already priced in early (Chapter 2).</li>
+        <li>Write one sentence: “Today the market is trading ___.” If you can't write it, there is no clear dominant theme today, so trade less.</li>
+      </ol>
+      <div class="note"><span class="tag">In practice</span><p>Quite a few macro traders keep these numbers on one screen and write that sentence before the open, before looking at individual stocks. They find that the best trading days tend to be the ones when the sentence comes easily; the days they are most likely to lose money are the ones when they are still rewriting it on the third try.</p></div>
+    </article>
+
+    <!-- ===================== 02 ===================== -->
+    <article class="chapter" id="c2" data-title="Transmission chains and second-order thinking" hidden>
+      <div class="chapter-head"><div class="no">02</div><div class="kicker">Chapter 2</div><h2>Transmission chains and second-order thinking</h2></div>
+      <p class="lead">News rarely moves stock prices directly. What moves them is how the news travels along a chain to earnings, rates and flows, and how much the market had already figured out before you did.</p>
+
+      <h3>The main chain you'll use most</h3>
+      <p>Most macro events fit into the chain below. With practice, whenever you see a piece of news you'll quickly ask, “Which link of the chain is this at?”</p>
+      <div class="chain">
+        <div class="step"><b>1</b><div><strong>Geopolitical or supply event</strong>: blocked shipping lanes, sanctions, output cuts, extreme weather.</div></div>
+        <div class="step"><b>2</b><div><strong>Crude and diesel</strong>: prices rise; transport and production costs go up.</div></div>
+        <div class="step"><b>3</b><div><strong>Inflation expectations</strong>: breakeven inflation rises and price data start to reflect it.</div></div>
+        <div class="step"><b>4</b><div><strong>Rates</strong>: the market pushes back rate cuts or even prices in hikes; yields rise.</div></div>
+        <div class="step"><b>5</b><div><strong>The dollar and gold</strong>: the dollar usually strengthens; gold depends on whether real rates or safe-haven demand wins out.</div></div>
+        <div class="step"><b>6</b><div><strong>Sectors</strong>: energy benefits; long-duration growth stocks, small caps, airlines and consumer discretionary come under pressure.</div></div>
+      </div>
+
+      <h3>Every link can break</h3>
+      <p>A transmission chain doesn't run automatically; every link has conditions. Being able to see where the chain breaks is worth more than knowing it by heart.</p>
+      <ul>
+        <li><strong>Oil to inflation</strong>: a brief shock won't feed into core inflation. Only high oil prices that last several months seep in slowly, through freight, airfares and chemicals.</li>
+        <li><strong>Inflation to rates</strong>: the central bank may choose to “look through” a supply shock and not hike because of it. Then short-term rates stay put, while long-term rates may still rise on inflation worries.</li>
+        <li><strong>Rates to stocks</strong>: if rates are rising because the economy is strong and earnings are being revised up alongside, stocks can handle it; if earnings don't keep up, it is pure valuation compression.</li>
+        <li><strong>Policy response</strong>: when oil reaches a politically unacceptable level, the government may release reserves or restrict exports, and the chain can suddenly reverse.</li>
+      </ul>
+
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">Pick a shock and see where it travels along the chain</span><span class="fig-no">Figure 2-1 · Interactive</span></div>
+        <div class="controls"><div class="chips" id="chain-pick" role="group" aria-label="Choose a shock">
+          <button type="button" data-v="oil">Oil supply shock</button><button type="button" data-v="long">Long-end rates jump</button><button type="button" data-v="usd">Stronger dollar</button><button type="button" data-v="jobs">Jobs weaken sharply</button><button type="button" data-v="dove">Central bank surprises dovish</button>
+        </div></div>
+        <div id="chain-out" aria-live="polite"></div>
+        <figcaption>For each shock you get one set of areas that benefit and one set that come under pressure, plus a confirmation signal for checking whether the chain is following the script. In the real world several shocks often hit at once; look for the one that dominates.</figcaption>
+      </figure>
+
+      <h3>Second-order thinking: ask “and then what?”</h3>
+      <p>First-order thinking says: oil is rising, so buy energy stocks. The problem is that everyone has thought of this, and energy stocks soon get crowded. Second-order thinking goes on to ask: when oil gets painfully expensive, what will the government do? If policy suddenly pushes oil down, who rebounds hardest? The answer is airlines and travel, because they were sold the hardest beforehand.</p>
+      <p>That leads to a very practical combination: hold an energy position betting on higher oil, and use a small slice of capital to buy airline stocks, or call options on them, as a “surprise hedge.” If oil keeps rising, energy makes money; if oil drops on a policy surprise, the airline rebound offsets the energy loss. Chapter 10 works through this combination with numbers.</p>
+      <p>When you can't make sense of a situation, the question to ask is “who benefits?” Every policy, conflict or technological breakthrough lowers someone's costs and raises someone's revenue, and forces someone else to spend. Following the direction money is forced to flow is more reliable than guessing the outcome of the event itself.</p>
+
+      <h3>Same signal, opposite directions for different sectors</h3>
+      <p>If long-term yields fall because the market has started to worry about a slowdown, that's bearish for stocks overall. But for “bond-like” sectors such as utilities, REITs and consumer staples, lower rates directly cut their funding costs and make their dividends more attractive, so in the short run it is actually good news.</p>
+      <p>That's why macro traders often say: trade where the money is flowing, rather than betting on the index going up or down. The index is the sum of hundreds of forces pulling in opposite directions, and the divergence between sectors is often clearer than the index itself.</p>
+
+      <h3>Is it already priced in?</h3>
+      <p>The market has expectations for almost every known event, and you can see them: Fed funds futures tell you how many hikes the market has priced, option prices tell you how big a move the market expects from an event, and analysts' consensus estimates tell you the “passing grade” for an earnings report.</p>
+      <div class="formula">Price reaction ≈ (actual result − market expectation) × amplification from positioning<small>Whether the result is good or bad sets the direction; how crowded positioning is sets the size, and sometimes even flips the direction.</small></div>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Result vs. expectations</th><th>Positioning beforehand</th><th>Typical reaction</th></tr></thead>
+          <tbody>
+            <tr><td>Better than expected</td><td>Light positioning; everyone is waiting</td><td>Sharp rally that may last several days</td></tr>
+            <tr><td>Better than expected</td><td>Longs are already crowded</td><td>Sell the news: a spike, then a fade</td></tr>
+            <tr><td>Worse than expected</td><td>Shorts are already crowded; lots of protection bought</td><td>The bad news is out, so it rises (short covering, protection sold)</td></tr>
+            <tr><td>Worse than expected</td><td>Optimistic positioning</td><td>Falls, and the decline can easily accelerate</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>There is also an often-overlooked case: <strong>priced in early</strong>. If a central bank official gives a dovish speech the day before a data release, the market may already have traded the good news of “weak data” in advance. When the data does come in weak the next day, the market may fall instead, because it's “not as bad as feared.”</p>
+
+      <h3>Watch the reaction, not the headline</h3>
+      <p>Headlines are written for everyone; reactions are votes cast with real money. Two situations are especially worth recording:</p>
+      <ul>
+        <li><strong>Good news, no rally</strong>: a company announces a price increase, and the stock falls. Someone is using the good news to unload, or the market is worried about something else.</li>
+        <li><strong>Bad news, no drop</strong>: sanctions that look severe are announced, and oil barely moves. The market thinks they can't be enforced, or has already priced them in.</li>
+      </ul>
+      <p class="pull">The market's reaction is the true weight of a piece of news.</p>
+    </article>
+
+    <!-- ===================== 03 ===================== -->
+    <article class="chapter" id="c3" data-title="Rates, the Fed and valuation" hidden>
+      <div class="chapter-head"><div class="no">03</div><div class="kicker">Chapter 3</div><h2>Rates, the Fed and valuation</h2></div>
+      <p class="lead">Interest rates are the gravity acting on all asset prices. When they move a little, the further in the future a cash flow lies, the more it is affected. Understand this and you understand why the same rise in rates leaves some stocks almost untouched and cuts others in half.</p>
+
+      <h3>One formula for how rates crush valuations</h3>
+      <p>Think of a company as a stream of cash flows that lasts forever and grows <span class="v">g</span> per year, and discount it back to today at a discount rate <span class="v">r</span>: that is the classic Gordon growth model. If all earnings are paid out to shareholders, the price-to-earnings ratio (P/E) simplifies to:</p>
+      <div class="formula">P/E ≈ 1 ÷ (r − g)<small>r = risk-free rate + equity risk premium; g = long-term growth rate. The smaller the denominator, the more sensitive valuation is to changes in r.</small></div>
+      <p>Set the discount rate at 8%. A mature company with 2% long-term growth has a P/E of about 16.7; a high-growth company with 6% long-term growth has a P/E of about 50. Now raise the discount rate by 1 percentage point, to 9%:</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Long-term growth rate g</th><th class="r">P/E at r = 8%</th><th class="r">P/E at r = 9%</th><th class="r">Change in valuation</th></tr></thead>
+          <tbody>
+            <tr><td>2% (mature company)</td><td class="r mono">16.7</td><td class="r mono">14.3</td><td class="r mono">−14.3%</td></tr>
+            <tr><td>4%</td><td class="r mono">25.0</td><td class="r mono">20.0</td><td class="r mono">−20.0%</td></tr>
+            <tr><td>5%</td><td class="r mono">33.3</td><td class="r mono">25.0</td><td class="r mono">−25.0%</td></tr>
+            <tr><td>6% (high growth)</td><td class="r mono">50.0</td><td class="r mono">33.3</td><td class="r mono">−33.3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Earnings didn't change by a cent, yet the high-growth company's theoretical value fell by a third. That is what happened to many growth stocks in 2022.</p>
+
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">The higher the growth rate, the more sensitive valuation is to rates</span><span class="fig-no">Figure 3-1 · Adjustable</span></div>
+        <div class="controls">
+          <label class="ctl" for="gv-dr">Change in discount rate <input id="gv-dr" type="range" min="-10" max="20" value="10"> <output id="gv-dr-o">+1.0%</output></label>
+        </div>
+        <svg class="chart" id="f-gv" viewBox="0 0 680 300" role="img" aria-label="How valuation changes with the discount rate for companies with different growth rates"></svg>
+        <div class="legend"><span><i style="border-color: var(--calm)"></i>g = 2%</span><span><i style="border-color: var(--accent)"></i>g = 5%</span><span><i style="border-color: var(--loss)"></i>g = 6%</span></div>
+        <div class="readout">
+          <div><b id="gv-r1">—</b><small>Valuation change, g = 2%</small></div>
+          <div><b id="gv-r2">—</b><small>Valuation change, g = 5%</small></div>
+          <div><b id="gv-r3">—</b><small>Valuation change, g = 6%</small></div>
+        </div>
+        <figcaption>The base discount rate is 8%. Drag the slider to −1% and the high-growth company's valuation doubles; drag it to +2% and it halves. The curve bends: the gain when rates fall is bigger than the loss when they rise by the same amount, which is why growth stocks run so hard when rate cuts are expected.</figcaption>
+      </figure>
+
+      <h3>Growth stocks are long-duration assets</h3>
+      <p>Take the derivative of the formula above and you get a number that looks a lot like a bond's duration:</p>
+      <div class="formula">Valuation change ≈ −Δr ÷ (r − g)<small>1 ÷ (r − g) is the stock's “duration”: about 16.7 years at g = 2%, about 33 years at g = 5% and about 50 years at g = 6%.</small></div>
+      <p>Use this approximation for g = 5% and a 1-percentage-point rise in rates: −1% × 33 ≈ −33%, which overstates the exact −25% because the curve bends. But it captures the point: the higher the growth and the further away the earnings, the more a company looks like a 30- or 50-year bond. A company with no earnings, priced on a story ten years out, has an even longer duration.</p>
+      <p>It also explains a common pattern: on days when rates spike, small-cap growth stocks, unprofitable tech and biotech fall the most, while banks, energy and consumer staples fall the least, or even rise.</p>
+
+      <h3>The equity risk premium: how much more stocks pay you than bonds</h3>
+      <p>The inverse of the P/E is the earnings yield. A P/E of 20 means an earnings yield of 5%: for every $100 you invest, the company earns $5 a year for you. Comparing it with Treasury yields asks: how much extra compensation do you get for taking on stock risk?</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">Estimate what stocks pay you over Treasuries</span><span class="fig-no">Tool 3-A</span></div>
+        <div class="form-grid">
+          <label for="erp-pe">Forward P/E<input id="erp-pe" type="number" value="19" step="0.5"></label>
+          <label for="erp-y">10-year nominal yield (%)<input id="erp-y" type="number" value="5.3" step="0.05"></label>
+          <label for="erp-t">10-year real yield, TIPS (%)<input id="erp-t" type="number" value="2.65" step="0.05"></label>
+        </div>
+        <div class="readout">
+          <div><b id="erp-ey">—</b><small>Earnings yield</small></div>
+          <div><b id="erp-n">—</b><small>Premium over nominal Treasuries</small></div>
+          <div><b id="erp-r">—</b><small>Premium over real yields</small></div>
+        </div>
+        <p class="advice" id="erp-msg"></p>
+        <figcaption>The default numbers are an illustrative set of assumptions. Earnings grow with inflation, but a nominal Treasury's coupon doesn't, so “earnings yield minus real yield” is the more logical measure. Look at both; the trend matters more than the absolute value.</figcaption>
+      </figure>
+      <p>A very low risk premium doesn't mean stocks will fall tomorrow. It is a poor timing tool, and valuations can stay expensive for a long time. What it really tells you is <strong>how thick the cushion is</strong>: when the premium is thin, a single rate shock is enough to cause significant valuation compression, because stocks no longer have much spare appeal relative to bonds.</p>
+
+      <h3>Four ways the yield curve moves</h3>
+      <p>Watching the 10-year alone isn't enough; you need to see whether the short end or the long end moves more. Traders measure how steep the curve is by the spread between the 2-year and the 10-year, and sort its changes into four types:</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Move</th><th>What happened</th><th>Typical backdrop</th><th>What it means for stocks</th></tr></thead>
+          <tbody>
+            <tr><td>Bull steepening</td><td>Short end falls more than the long end</td><td>The market starts pricing rate cuts; common when the economy is clearly slowing and a recession is starting</td><td>Looks like good news, but is often the start of bad news</td></tr>
+            <tr><td>Bull flattening</td><td>Long end falls more than the short end</td><td>Growth and inflation expectations fall; money rushes into long bonds in a risk-off move</td><td>Defensive sectors and long-duration assets do relatively well</td></tr>
+            <tr><td>Bear steepening</td><td>Long end rises more than the short end</td><td>Term premium rises: heavy Treasury supply, inflation or fiscal worries</td><td>Worst for valuations; stocks and bonds tend to fall together; banks' net interest margins benefit</td></tr>
+            <tr><td>Bear flattening</td><td>Short end rises more than the long end</td><td>A hiking cycle; the central bank is tightening</td><td>Late in the cycle; small caps and highly indebted companies get hit first</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>An inverted curve (2-year above 10-year) appeared before each of the past several US recessions, but it is not a timer: the inversion that began in 2022 lasted more than two years, and the economy did not fall into recession on schedule. What deserves more caution is often how the inversion <strong>ends</strong>: if the short end drops fast on rate-cut expectations and the curve steepens again, it often means the economy is genuinely weakening.</p>
+
+      <h3>The Fed's reaction function, and market pricing</h3>
+      <p>The Federal Reserve (Fed) has two goals: stable prices and full employment. Each of its decisions can be read as weighing these two goals against each other. When inflation is well above target, it tolerates more weakness in jobs; when jobs are clearly deteriorating and inflation is near target, it turns to easing faster.</p>
+      <p>For traders, the key is not what the Fed did but how far it was from what the market expected. Fed funds futures and overnight index swaps (OIS) tell you how many hikes or cuts the market has priced (CME's FedWatch tool converts this into probabilities). If the market has priced a 90% chance of a hike before the meeting, the hike itself isn't news; not hiking would be.</p>
+      <p>Also watch what officials say before the meeting. They often guide expectations deliberately to avoid springing a surprise at the meeting. This also means the speeches themselves get part of the data's impact priced in early.</p>
+
+      <h3>The Fed credibility trade</h3>
+      <p>What happens when the market has almost fully priced a hike and the Fed chooses not to hike? The reaction usually comes in two phases:</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Asset</th><th>Phase one (hours to a day or two)</th><th>Phase two (if the market starts to doubt the Fed)</th></tr></thead>
+          <tbody>
+            <tr><td>2-year yield</td><td>Down</td><td>Stays low</td></tr>
+            <tr><td>10- and 30-year yields</td><td>Fall along with it</td><td>Turn higher; the curve bear-steepens</td></tr>
+            <tr><td>Dollar</td><td>Weakens</td><td>Keeps weakening</td></tr>
+            <tr><td>Gold</td><td>Up</td><td>Keeps rising</td></tr>
+            <tr><td>Stocks</td><td>Up</td><td>Long-end yields climb and the initial gains are sold</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Whether phase two happens depends on whether the market still believes the Fed can keep inflation under control. If inflation is clearly still high and the Fed won't tighten, long-bond investors demand more compensation for bearing future inflation risk. Then rate-cut expectations end up pushing long-term rates higher, and stocks get no benefit at all.</p>
+      <p>The test is simple: in the days after the announcement, see whether the 10-year yield falls along with the 2-year (the market believes the Fed) or rises against it (the market is punishing it).</p>
+
+      <h3>Treasury supply, auctions and the term premium</h3>
+      <p>Long-term rates depend not only on expectations for the central bank but also on supply and demand for Treasuries. The bigger the government's deficit, the more debt it must issue; if there aren't enough buyers, it has to attract them with higher yields. The extra yield investors demand for holding long-term bonds is called the term premium.</p>
+      <p>A few details worth watching:</p>
+      <ul>
+        <li><strong>Auction results</strong>: a stop-out yield clearly above the pre-auction market level (known as a “tail”), a low bid-to-cover ratio and a falling share of foreign buyers all signal weak demand. Weak 20- and 30-year auctions in particular push the long end up.</li>
+        <li><strong>The quarterly refunding announcement</strong>: each quarter the US Treasury publishes its borrowing plans for the period ahead, including the mix of long bonds and short-term bills. In early November 2023 the Treasury slowed the growth of long-bond issuance; combined with Fed hints of a pause in hikes, long-end yields fell back from near 5%, and stocks then rallied sharply.</li>
+        <li><strong>Signs of a rising term premium</strong>: the long end rises more than the short end, the dollar doesn't necessarily follow, and stocks and bonds fall together.</li>
+      </ul>
+      <div class="note"><span class="tag">Chapter summary</span><ul>
+        <li>Rates affect all assets through the discount rate; the higher a company's growth and the further away its earnings, the more sensitive it is.</li>
+        <li>Break rates down: the short end reflects the central bank; the long end reflects growth, inflation, and supply and demand. Split nominal yields into real yields and inflation expectations.</li>
+        <li>Compare central bank decisions with market pricing; the most important question is whether the market still believes the central bank.</li>
+      </ul></div>
+    </article>
+
+    <!-- ===================== 04 ===================== -->
+    <article class="chapter" id="c4" data-title="The dollar, gold and energy" hidden>
+      <div class="chapter-head"><div class="no">04</div><div class="kicker">Chapter 4</div><h2>The dollar, gold and energy</h2></div>
+      <p class="lead">US interest rates set the price of money worldwide; the dollar, gold and crude oil carry that price around the world and back into the income statements of US companies.</p>
+
+      <h3>The dollar is the world's funding currency</h3>
+      <p>A large share of global trade settlement, cross-border lending and non-US corporate debt is denominated in dollars. When the dollar strengthens, these borrowers need more of their own currency to repay the same debt, and global funding conditions tighten. The effect on US stocks runs mainly through four channels:</p>
+      <ul>
+        <li><strong>Earnings translation</strong>: a sizable share of S&amp;P 500 companies' revenue comes from overseas, and the stronger the dollar, the less that revenue is worth once converted into dollars. Multinational tech and consumer brands often cite “currency headwinds” in their earnings reports.</li>
+        <li><strong>Commodities</strong>: commodities priced in dollars get more expensive for buyers in other countries, so demand and prices come under pressure.</li>
+        <li><strong>Emerging markets</strong>: capital outflows, weaker local currencies and mounting pressure on dollar debt.</li>
+        <li><strong>Risk appetite</strong>: a sharp rise in the dollar often coincides with global risk-off.</li>
+      </ul>
+
+      <h3>A stronger dollar can mean opposite things, depending on why</h3>
+      <p>Traders often use a “dollar smile” curve to sum up how the dollar relates to the economic backdrop:</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">The dollar strengthens at both ends, but it means completely different things for US stocks</span><span class="fig-no">Figure 4-1 · Schematic</span></div>
+        <svg class="chart" id="f-smile" viewBox="0 0 680 290" role="img" aria-label="The dollar smile, schematic"></svg>
+        <figcaption>Left side: global panic, money flees into the dollar, and US stocks usually fall at the same time. Middle: a synchronized global recovery, money flows overseas, and the dollar weakens. Right side: US growth is clearly stronger than elsewhere, money flows into US assets, and the dollar and US stocks can rise together. When you see the dollar strengthening, first ask which end of the smile it is on.</figcaption>
+      </figure>
+      <p>One case that isn't on the smile deserves its own note: <strong>US rates rising while the dollar falls</strong>. Normally higher rates make the dollar more attractive, so when the two move in opposite directions, it often means foreign investors are cutting US assets, possibly out of concern about fiscal sustainability, policy predictability or inflation control. During the tariff shock of April 2025, US stocks, Treasuries and the dollar all fell at the same time for a while.</p>
+
+      <h3>The yen and the carry trade</h3>
+      <p>Japan kept interest rates extremely low for a long time, so many investors borrowed yen, converted it into dollars or other currencies, and bought higher-yielding assets. That is the carry trade. As long as the yen holds steady or weakens, the trade earns the rate differential every day.</p>
+      <p>The risk is a sudden, sharp rise in the yen. The debt that yen borrowers must repay grows instantly, so they have to sell whatever assets they hold to unwind, even assets that have nothing to do with one another. In late July 2024 the Bank of Japan raised rates; soon after, weak US jobs data in early August sent the yen soaring, and carry trades were unwound en masse. On August 5 the Nikkei fell about 12% in a single day, the VIX briefly spiked above 60 intraday, and popular US tech stocks were sold heavily. The market recovered most of the losses within a few weeks, but those few days of volatility were enough to knock out highly leveraged positions.</p>
+      <div class="note warn"><span class="tag">Rule</span><p>Treat a sharp rise in the yen over a short period as an alarm for risk assets worldwide, even if you don't own any Japanese assets.</p></div>
+
+      <h3>Gold: what is it hedging?</h3>
+      <p>Gold pays no interest, so the cost of holding it is the real yield you give up. Traditionally, then, gold moves opposite to the 10-year real yield: when real yields rise, gold comes under pressure. Other things that move gold:</p>
+      <ul>
+        <li><strong>The dollar</strong>: gold is priced in dollars, so a weaker dollar usually helps gold.</li>
+        <li><strong>Central bank gold buying</strong>: some countries' central banks keep adding gold to reduce their reliance on dollar assets. Since 2022 this buying has clearly weakened gold's traditional relationship with real yields.</li>
+        <li><strong>A credibility and geopolitical hedge</strong>: when the market worries about currency debasement, runaway deficits or escalating conflict, gold is one of the few assets that doesn't depend on any government's credit.</li>
+      </ul>
+      <p>Silver is a precious metal but also has industrial demand (electronics, solar), so it follows gold's narrative but gets amplified by the business cycle and swings more, making it less “clean” than gold.</p>
+      <p>A practical reading: if gold is rising while real yields are also rising, buyers are paying for something other than rates, usually credibility or geopolitical risk. A gold rally like that tends to last longer than one driven purely by rate-cut expectations, and is more worth treating as a risk signal.</p>
+
+      <h3>Crude oil: why it rises matters more than how much</h3>
+      <div class="two">
+        <div><h5>A demand-driven rise</h5><ul><li>Strong global economy; healthy consumer and industrial demand</li><li>Crude, copper and stocks rise together</li><li>Cyclical stocks, industrials and energy lead</li><li>Mostly positive for stocks</li></ul></div>
+        <div><h5>A supply-shock rise</h5><ul><li>Production cuts, sanctions, blocked shipping lanes</li><li>Crude rises, stocks fall, and bonds may fall too</li><li>Airlines, transportation and consumer discretionary are hit hardest</li><li>Works like a tax on consumers</li></ul></div>
+      </div>
+      <p>You can rough out the “oil tax”: a barrel of crude is 42 gallons, so every $10 rise in crude works out to about $0.24 per gallon of refined product. If the US consumes about 135 billion gallons of gasoline a year, an extra $0.24 per gallon means about $32 billion a year flowing from consumers' pockets to energy producers. The money doesn't vanish, but what gets spent at the gas station doesn't get spent at restaurants and malls.</p>
+      <p>How to tell: on the days oil rises, check whether the S&amp;P 500 rises with it or falls, and whether copper rises too. If stocks and copper both follow it up, it's probably demand; if stocks fall and copper doesn't rise, it's probably a supply shock.</p>
+
+      <h3>Having oil doesn't mean having fuel</h3>
+      <p>Crude has to go through a refinery to become gasoline, diesel and jet fuel. When refining capacity falls short, or inventories of one product (diesel, say) are tight, refined product prices can rise far more than crude. The price gap between crude and refined products is called the crack spread, and it determines refiners' profits.</p>
+      <p>Diesel matters especially, because trucking, farm machinery and construction equipment all run on it. Tight diesel pushes up the price of almost everything through freight costs, so its effect on inflation is broader than gasoline's. On the policy side, if diesel prices get high enough to create political pressure, the government may consider restricting exports. That would push domestic prices down and overseas prices up, changing the fortunes of the companies involved overnight.</p>
+
+      <h3>Round numbers and policy responses</h3>
+      <p>Crude often meets clear resistance or speeds up near round numbers. Not because the numbers are magic, but because they change behavior: the media starts covering it heavily, consumers start complaining, politicians start weighing in. When oil reaches a politically unacceptable level, the odds rise of policy responses such as releasing the Strategic Petroleum Reserve (SPR), pressuring producing countries or restricting exports. When you trade high oil prices, treat a policy response as a scenario that could arrive at any moment.</p>
+
+      <div class="tbl">
+        <table>
+          <caption>Chapter quick reference</caption>
+          <thead><tr><th>Asset</th><th>Main drivers</th><th>What it means for US stocks</th><th>Watch it alongside</th></tr></thead>
+          <tbody>
+            <tr><td>Dollar</td><td>US rates and growth relative to other countries; safe-haven demand</td><td>A sharp rise tightens global financial conditions; pressure on multinationals' earnings</td><td>US stocks, Treasury yields, the yen</td></tr>
+            <tr><td>Yen</td><td>Japanese rates, carry-trade positioning</td><td>A sharp rise can trigger global deleveraging</td><td>Nikkei, VIX, popular tech stocks</td></tr>
+            <tr><td>Gold</td><td>Real yields, the dollar, central bank buying, credibility risk</td><td>A risk signal when it rises along with real yields</td><td>10-year TIPS, the dollar</td></tr>
+            <tr><td>Crude oil</td><td>Demand, supply shocks, policy</td><td>Demand-driven rises lean positive; supply shocks lean negative</td><td>Copper, the S&amp;P, breakeven inflation</td></tr>
+            <tr><td>Diesel</td><td>Refining capacity, inventories, export policy</td><td>Pushes up freight costs and goods inflation</td><td>Crack spreads, transportation stocks</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- ===================== 05 ===================== -->
+    <article class="chapter" id="c5" data-title="Market regimes: four variables, three phases" hidden>
+      <div class="chapter-head"><div class="no">05</div><div class="kicker">Chapter 5</div><h2>Market regimes: four variables, three phases</h2></div>
+      <p class="lead">The same news can mean opposite things in different market regimes. So first decide which phase the market is in, then choose what to trade and with which tools. The regime call doesn't need to be precise; it just needs to keep you from being wrong about the big direction.</p>
+
+      <h3>Four variables instead of a point forecast</h3>
+      <p>Predicting “will the S&amp;P go up or down next month?” is almost impossible to do well. It's more workable to keep watching four variables, which correspond to the four sources of valuation and earnings:</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Variable</th><th>What to watch</th><th>What it affects</th></tr></thead>
+          <tbody>
+            <tr><td>Rates</td><td>The trend in the 10-year yield (week by week)</td><td>The discount rate, and with it the valuation multiple</td></tr>
+            <tr><td>Oil</td><td>The trend in crude and diesel</td><td>Inflation, corporate costs, the burden on consumers</td></tr>
+            <tr><td>Earnings</td><td>Whether analysts' earnings estimates are being revised up or down; company guidance during earnings season</td><td>Earnings per share</td></tr>
+            <tr><td>Jobs</td><td>The unemployment rate, weekly initial jobless claims, nonfarm payrolls (NFP)</td><td>Spending power and recession risk</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Six combinations, six playbooks</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Scenario</th><th>Rates</th><th>Oil</th><th>Earnings</th><th>Jobs</th><th>Typical approach</th></tr></thead>
+          <tbody>
+            <tr><td>Broad rally</td><td>Down</td><td>Down</td><td>Good</td><td>Strong</td><td>Go long the index and cyclical stocks; small caps join in too</td></tr>
+            <tr><td>Sector rotation</td><td>Down</td><td>Down</td><td>Mixed</td><td>Strong</td><td>The index goes sideways while sectors take turns; buy pullbacks in former losers, trim crowded winners</td></tr>
+            <tr><td>Good news lifts rates</td><td>Up</td><td>Down</td><td>Good</td><td>Strong</td><td>Cyclicals and banks lead; watch how fast rates are rising</td></tr>
+            <tr><td>Decline, phase one</td><td>Up</td><td>Up</td><td>Good</td><td>Strong</td><td>Valuation compression: cut long-duration growth stocks and buy protection while volatility is cheap</td></tr>
+            <tr><td>Decline, phase two</td><td>Down</td><td>Up</td><td>Good</td><td>Softening</td><td>Start systematic protection and raise cash; defensive sectors hold up relatively well</td></tr>
+            <tr><td>Decline, phase three</td><td>Down</td><td>Down</td><td>Poor</td><td>Deteriorating</td><td>Earnings cuts and recession; mostly cash and long-term Treasuries; wait for a policy catalyst</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>In the “sector rotation” row, earnings is the key item: earnings aren't great, but not bad enough to cause panic, so money doesn't leave stocks wholesale; it changes hands between sectors instead.</p>
+
+      <h3>The three phases of a decline</h3>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">Big declines tend to come in three steps, and each step kills something different</span><span class="fig-no">Figure 5-1</span></div>
+        <div class="scroll-x">
+        <svg class="chart wide" viewBox="0 0 680 290" role="img" aria-label="Direction of the four variables in the three phases of a decline">
+          <g style="font-family: var(--font-body)">
+            <g>
+              <rect x="20" y="16" width="200" height="258" rx="8" style="fill: var(--tint-warn); stroke: var(--warn)"></rect>
+              <text x="120" y="44" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">Phase one</text>
+              <text x="120" y="64" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Economy still strong</text>
+            </g>
+            <g>
+              <rect x="240" y="16" width="200" height="258" rx="8" style="fill: var(--tint-loss); stroke: var(--loss)"></rect>
+              <text x="340" y="44" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">Phase two</text>
+              <text x="340" y="64" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Growth starts to hurt</text>
+            </g>
+            <g>
+              <rect x="460" y="16" width="200" height="258" rx="8" style="fill: var(--plate); stroke: var(--loss); stroke-dasharray: 5 4"></rect>
+              <text x="560" y="44" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">Phase three</text>
+              <text x="560" y="64" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Recession</text>
+            </g>
+            <g style="font-size: 14px">
+              <text x="44" y="100" style="fill: var(--muted)">Rates</text><text x="196" y="100" text-anchor="end" style="fill: var(--loss); font-weight: 700">↑ Rising</text>
+              <text x="44" y="130" style="fill: var(--muted)">Oil</text><text x="196" y="130" text-anchor="end" style="fill: var(--loss); font-weight: 700">↑ Rising</text>
+              <text x="44" y="160" style="fill: var(--muted)">Earnings</text><text x="196" y="160" text-anchor="end" style="fill: var(--calm); font-weight: 700">Good</text>
+              <text x="44" y="190" style="fill: var(--muted)">Jobs</text><text x="196" y="190" text-anchor="end" style="fill: var(--calm); font-weight: 700">Strong</text>
+              <text x="264" y="100" style="fill: var(--muted)">Rates</text><text x="416" y="100" text-anchor="end" style="fill: var(--warn); font-weight: 700">↓ Turning down</text>
+              <text x="264" y="130" style="fill: var(--muted)">Oil</text><text x="416" y="130" text-anchor="end" style="fill: var(--loss); font-weight: 700">↑ Still high</text>
+              <text x="264" y="160" style="fill: var(--muted)">Earnings</text><text x="416" y="160" text-anchor="end" style="fill: var(--calm); font-weight: 700">Decent</text>
+              <text x="264" y="190" style="fill: var(--muted)">Jobs</text><text x="416" y="190" text-anchor="end" style="fill: var(--warn); font-weight: 700">Softening</text>
+              <text x="484" y="100" style="fill: var(--muted)">Rates</text><text x="636" y="100" text-anchor="end" style="fill: var(--warn); font-weight: 700">↓ Falling fast</text>
+              <text x="484" y="130" style="fill: var(--muted)">Oil</text><text x="636" y="130" text-anchor="end" style="fill: var(--warn); font-weight: 700">↓ Falling</text>
+              <text x="484" y="160" style="fill: var(--muted)">Earnings</text><text x="636" y="160" text-anchor="end" style="fill: var(--loss); font-weight: 700">Cut</text>
+              <text x="484" y="190" style="fill: var(--muted)">Jobs</text><text x="636" y="190" text-anchor="end" style="fill: var(--loss); font-weight: 700">Deteriorating</text>
+            </g>
+            <line x1="40" y1="212" x2="200" y2="212" style="stroke: var(--rule)"></line>
+            <line x1="260" y1="212" x2="420" y2="212" style="stroke: var(--rule)"></line>
+            <line x1="480" y1="212" x2="640" y2="212" style="stroke: var(--rule)"></line>
+            <text x="120" y="238" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 700">Valuation squeeze</text>
+            <text x="120" y="258" text-anchor="middle" style="fill: var(--muted); font-size: 12px">Growth, small caps fall first</text>
+            <text x="340" y="238" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 700">Growth scare</text>
+            <text x="340" y="258" text-anchor="middle" style="fill: var(--muted); font-size: 12px">Cyclicals, consumer next</text>
+            <text x="560" y="238" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 700">Earnings squeeze</text>
+            <text x="560" y="258" text-anchor="middle" style="fill: var(--muted); font-size: 12px">Broad selloff; wait for policy</text>
+          </g>
+        </svg>
+        </div>
+        <figcaption>Phase one is the easiest to miss: earnings and jobs both look good, and people think “how can it fall when the economy is this strong?”, yet rates and oil together are compressing valuations. Phase two is marked by rates starting to fall, and not because inflation is cooling.</figcaption>
+      </figure>
+      <p>The turn from phase one to phase two is the one most worth monitoring. A very practical rule: <strong>if yields start falling while oil is still high and jobs start to soften, start protecting</strong>, either by cutting position size or by buying a protective put spread.</p>
+
+      <h3>Falling rates: good news or bad?</h3>
+      <p>The same 30-basis-point drop in the 10-year yield could mean inflation is cooling (good) or that the market is worried about recession (bad). To tell them apart, look at how it combines with other assets:</p>
+      <div class="two">
+        <div><h5>The good kind: inflation cooling</h5><ul><li>Breakeven inflation falls; real yields hold steady</li><li>Cyclicals and small caps rise with it</li><li>Credit spreads stable or narrowing</li><li>Oil eases</li></ul></div>
+        <div><h5>The bad kind: growth worries</h5><ul><li>Real yields fall; the curve bull-steepens</li><li>Cyclicals and small caps lag; defensive sectors outperform</li><li>Credit spreads widen</li><li>Jobs data weakens; initial claims rise</li></ul></div>
+      </div>
+
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">Set the four variables and see which regime fits best</span><span class="fig-no">Figure 5-2 · Interactive</span></div>
+        <div class="board" id="reg">
+          <div class="sw"><span>Rates (10-year trend)</span><div class="seg3" data-k="r" role="group" aria-label="Rates"><button type="button" data-v="-1">Down</button><button type="button" data-v="1">Up</button></div></div>
+          <div class="sw"><span>Oil</span><div class="seg3" data-k="o" role="group" aria-label="Oil"><button type="button" data-v="-1">Down</button><button type="button" data-v="1">Up</button></div></div>
+          <div class="sw"><span>Earnings and estimates</span><div class="seg3" data-k="e" role="group" aria-label="Earnings"><button type="button" data-v="-1">Poor</button><button type="button" data-v="0">Mixed</button><button type="button" data-v="1">Good</button></div></div>
+          <div class="sw"><span>Jobs</span><div class="seg3" data-k="j" role="group" aria-label="Jobs"><button type="button" data-v="-1">Deteriorating</button><button type="button" data-v="0">Softening</button><button type="button" data-v="1">Strong</button></div></div>
+        </div>
+        <div class="verdict" id="reg-out" aria-live="polite"></div>
+        <figcaption>It's rare for all four to match an archetype exactly. At a 3/4 match, look at which way the one variable that doesn't fit is heading: that is usually the direction the regime will switch to next.</figcaption>
+      </figure>
+
+      <h3>A look back at past major pullbacks</h3>
+      <p>Let's test the framework against history. The table below lists only qualitative features and approximate declines (S&amp;P 500, peak to trough); you can check the exact figures in public databases such as FRED.</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Period</th><th>Main drivers</th><th class="r">Decline (approx.)</th><th>Did Treasuries hedge?</th><th>What confirmed the bottom</th></tr></thead>
+          <tbody>
+            <tr><td>Q4 2018</td><td>Rate hikes plus quantitative tightening (QT), trade friction</td><td class="r mono">−20%</td><td>In the second half, as yields fell</td><td>The Fed turned “patient”</td></tr>
+            <tr><td>Feb–Mar 2020</td><td>Pandemic shock, liquidity crunch</td><td class="r mono">−34%</td><td>Mostly yes; stocks and bonds briefly fell together in mid-March</td><td>Unlimited Fed easing and fiscal rescue</td></tr>
+            <tr><td>2022</td><td>High inflation and rapid rate hikes</td><td class="r mono">−25%</td><td>No; stocks and bonds fell together</td><td>No single policy pivot; signs of peak inflation, and valuation compression had run its course</td></tr>
+            <tr><td>Aug–Oct 2023</td><td>Long-end yields near 5%; rising term premium</td><td class="r mono">−10%</td><td>No</td><td>Treasury slowed long-bond issuance; the Fed hinted at a pause</td></tr>
+            <tr><td>Feb–Apr 2025</td><td>Tariff shock; growth and inflation worries at the same time</td><td class="r mono">−19%</td><td>Unreliable; the long end rose for a while</td><td>Tariff pause</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Two patterns stand out:</p>
+      <ul>
+        <li><strong>Treasuries hedge growth shocks, not rate or inflation shocks.</strong> In three of the five cases, the decline was caused by rates, inflation or policy, and Treasuries fell along with stocks. At times like that, the protection that really works is options, or simply a smaller position.</li>
+        <li><strong>Bottoms are usually confirmed by policy, not by valuations repairing themselves.</strong> In four of the five cases, the market bottomed around the time some policy changed. So in a decline, instead of asking “has it fallen enough?”, ask “what policy would make the decision-makers step in, and how far are we from that point?”</li>
+      </ul>
+
+      <h3>Discipline for regime calls</h3>
+      <ul>
+        <li>Update weekly, not daily. Daily noise will have you flipping back and forth between two regimes.</li>
+        <li>Consider switching regimes only when at least two variables change at the same time.</li>
+        <li>Write your call down, along with “what data would make me change it,” and check it afterward.</li>
+        <li>The regime decides your position size and playbook, not your exact entry timing. Leave timing to Chapters 6, 7 and 9.</li>
+      </ul>
+    </article>
+
+    <!-- ===================== 06 ===================== -->
+    <article class="chapter" id="c6" data-title="Breadth and rotation: the illusion of the index" hidden>
+      <div class="chapter-head"><div class="no">06</div><div class="kicker">Chapter 6</div><h2>Breadth and rotation: the illusion of the index</h2></div>
+      <p class="lead">A rising index doesn't mean most stocks are rising. In a market dominated by a few giants, reading breadth is how you see what is really going on behind the index.</p>
+
+      <h3>Cap weighting is a magnifying glass</h3>
+      <p>The S&amp;P 500 and the Nasdaq 100 are both market-cap weighted, and the ten largest companies can make up more than a third of the index. Each stock's contribution to the index equals its weight times its move:</p>
+      <div class="formula">Contribution to the index = weight × price change<small>A stock with a 7% weight that falls 5% drags the index down 0.35 percentage points; ten stocks with 0.5% weights that each rise 3% add only 0.15 percentage points in total.</small></div>
+      <p>So when judging the index's direction, look at “weight times speed.” When two heavyweight groups pull in opposite directions, say chip stocks falling while cloud giants rise, whichever has the bigger weight and the faster move sets the index's direction. Once a heavyweight group's decline speeds up, the other few hundred stocks can't hold the index up, however well they do.</p>
+
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">Ten giants rising can hide most stocks falling</span><span class="fig-no">Figure 6-1 · Adjustable</span></div>
+        <div class="controls">
+          <label class="ctl" for="cs-w">Top-10 weight <input id="cs-w" type="range" min="15" max="45" value="38"> <output id="cs-w-o">38%</output></label>
+          <label class="ctl" for="cs-a">Top-10 move <input id="cs-a" type="range" min="-10" max="10" value="6"> <output id="cs-a-o">+6%</output></label>
+          <label class="ctl" for="cs-b">Other stocks' move <input id="cs-b" type="range" min="-10" max="10" value="-2"> <output id="cs-b-o">−2%</output></label>
+        </div>
+        <svg class="chart" id="f-conc" viewBox="0 0 680 290" role="img" aria-label="Cap-weighted versus equal-weight index performance"></svg>
+        <div class="readout">
+          <div><b id="cs-r1">—</b><small>Cap-weighted index</small></div>
+          <div><b id="cs-r2">—</b><small>Equal-weight index (0.2% each)</small></div>
+          <div><b id="cs-r3">—</b><small>Gap between them</small></div>
+        </div>
+        <figcaption>Assume the index holds 500 stocks, so in an equal-weight index the top ten make up only 2%. With the default settings, the cap-weighted index rises 1.04% while the equal-weight index falls 1.84%. The news will say “stocks rose,” while most of the stocks you own are falling.</figcaption>
+      </figure>
+
+      <h3>A few ratios for confirmation</h3>
+      <p>Divide one ETF's price by another's and plot the result as a line, and you get a relative strength ratio. A rising ratio means the first is outperforming the second. These are the most commonly used:</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Ratio</th><th>A rise means</th><th>Divergence to watch for</th></tr></thead>
+          <tbody>
+            <tr><td>Equal-weight S&amp;P ÷ S&amp;P (RSP / SPY)</td><td>The rally is broadening; most stocks are taking part</td><td>Index at a new high while the ratio hits a new low: the rally is getting narrower</td></tr>
+            <tr><td>Small caps ÷ Nasdaq 100 (IWM / QQQ)</td><td>The rate backdrop and the domestic economy are improving</td><td>Small caps rarely sit out a truly big rally for long</td></tr>
+            <tr><td>Financials ÷ Nasdaq 100 (XLF / QQQ)</td><td>Credit and rate conditions are friendly</td><td>Financials often turn a step ahead of tech</td></tr>
+            <tr><td>Semiconductors ÷ Nasdaq 100 (SMH / QQQ)</td><td>Chips still lead tech</td><td>When chips weaken first, the index often follows</td></tr>
+            <tr><td>Consumer discretionary ÷ consumer staples (XLY / XLP)</td><td>Consumers' risk appetite is rising</td><td>Defensive sectors keep outperforming: the market is bracing for a slowdown</td></tr>
+            <tr><td>High-yield bonds ÷ intermediate Treasuries (HYG / IEF)</td><td>The credit market is willing to take risk</td><td>Stocks up, credit down: bond investors are seeing trouble first</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Also, Korea's stock market is heavily weighted toward memory chips and semiconductors, and it often leads the turning points in global memory-chip stocks. When US memory-chip stocks are strong while Korea's market stays weak, that divergence usually doesn't last long.</p>
+
+      <h3>Rotation and a decline look alike, but they are different</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Feature</th><th>Rotation</th><th>A real decline</th></tr></thead>
+          <tbody>
+            <tr><td>Index</td><td>Sideways or small swings</td><td>Keeps falling</td></tr>
+            <tr><td>Sectors</td><td>Some plunge, some soar; wide dispersion</td><td>Almost all fall</td></tr>
+            <tr><td>Correlation between stocks</td><td>Low</td><td>Rises fast, toward “everything falls together”</td></tr>
+            <tr><td>Breadth</td><td>Equal-weight and small caps may even improve</td><td>Deteriorates across the board</td></tr>
+            <tr><td>Credit spreads</td><td>Stable</td><td>Widening</td></tr>
+            <tr><td>What to do</td><td>Switch positions without cutting total exposure</td><td>Cut positions, hedge, hold cash</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The most common mistake during sector rotation is to take a selloff in crowded winners for a selloff in the whole market, dump everything, and miss the sectors money is flowing into. Conversely, the most common mistake in a decline is to take a broad selloff for rotation and think you can dodge it by switching sectors. Correlation and credit spreads are the best tools for telling them apart.</p>
+
+      <h3>How to play a rotation</h3>
+      <ul>
+        <li><strong>Buy pullbacks in former losers; sell bounces in former winners.</strong> Money moves from crowded winners into neglected sectors, and the process usually lasts several weeks.</li>
+        <li><strong>Use shares or longer-dated instruments.</strong> Rotation takes time to play out, and time decay on short-dated options will eat your profits.</li>
+        <li><strong>Wait for confirmation before adding.</strong> One day of equal-weight outperformance means nothing. It counts as confirmed when the ratio rises steadily over several days to a week or two, while money keeps flowing into the sectors that were sold off.</li>
+        <li><strong>When shorting, pick the weakest, not the strongest.</strong> To express a bearish view, shorting the sector with the worst relative strength is far safer than shorting the strongest index. The strongest things have money buying them; shorting them means fighting both the trend and short covering.</li>
+      </ul>
+
+      <h3>The cost of a crowded trade</h3>
+      <p>When everyone knows about a trade and everyone owns it, its biggest risk is often that <strong>there is no next buyer</strong>, even if the logic itself isn't wrong. Once the buying stops, a little bad news is enough to send the price down fast, because everyone wants out through the same door.</p>
+      <p>Clues that a trade is crowded: the media and social platforms discuss it over and over; people around you who don't trade start asking about it; demand for call options in the options market clearly exceeds demand for put options; related ETFs see large, steady inflows; and the stock stops rising on good news. Seeing these signs doesn't mean you must sell right away, but you should stop adding and think it through: when the buying stops, who will take the other side?</p>
+    </article>
+
+    <!-- ===================== 07 ===================== -->
+    <article class="chapter" id="c7" data-title="Flows and options positioning" hidden>
+      <div class="chapter-head"><div class="no">07</div><div class="kicker">Chapter 7</div><h2>Flows and options positioning</h2></div>
+      <p class="lead">Macro sets the direction over months, but the path over a few days is often set by mechanical flows. This money doesn't read the news; it buys and sells by rule, yet it is enough to turn a normal pullback into a sharp drop, or to pin the index near a certain price.</p>
+
+      <h3>Which way market makers hedge</h3>
+      <p>After a market maker sells options, it usually hedges the Delta with stock or futures to stay neutral on direction. As prices move, Delta changes (the rate of change is Gamma), so market makers have to keep adjusting the hedge. Which way they adjust depends on whether, overall, they are long Gamma or short Gamma:</p>
+      <div class="two">
+        <div><h5>Market makers long Gamma</h5><ul><li>Price rises, their long exposure grows, so they sell</li><li>Price falls, so they buy</li><li>Result: someone sells rallies and buys dips, so volatility is dampened</li></ul></div>
+        <div><h5>Market makers short Gamma</h5><ul><li>Price falls, their long exposure grows, so they sell</li><li>Price rises, so they buy</li><li>Result: someone chases declines by selling and chases rallies by buying, so volatility is amplified</li></ul></div>
+      </div>
+      <p>In a typical index options market, clients (institutions) buy lots of put options for protection and sell call options for extra income. Market makers stand on the other side: short the puts (negative Gamma) and long the calls (positive Gamma). When prices are high, the calls matter more, and market makers are net long Gamma; when prices fall into the zone where the puts are concentrated, they flip to net short Gamma. The price where it flips is what's commonly called the <strong>Gamma flip</strong>.</p>
+
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">Below the flip, declines feed on themselves</span><span class="fig-no">Figure 7-1 · Adjustable</span></div>
+        <div class="controls">
+          <label class="ctl" for="gx-m">Put demand <input id="gx-m" type="range" min="5" max="20" value="10"> <output id="gx-m-o">1.0×</output></label>
+          <label class="ctl" for="gx-d">Days to expiry <input id="gx-d" type="range" min="3" max="30" value="10"> <output id="gx-d-o">10 days</output></label>
+        </div>
+        <svg class="chart" id="f-gex" viewBox="0 0 680 300" role="img" aria-label="Market makers&#x27; net Gamma as the index price changes"></svg>
+        <div class="readout">
+          <div><b id="gx-r1">—</b><small>Gamma flip</small></div>
+          <div><b id="gx-r2">—</b><small>Net Gamma at the current 780 (per 1%)</small></div>
+          <div><b id="gx-r3">—</b><small>At 760, selling needed for each further 1% drop</small></div>
+        </div>
+        <figcaption>A hypothetical index ETF trading at 780. Market makers are long the 790, 800 and 810 calls and short the 740 to 770 puts, with implied volatility (IV) set at 16% throughout. The vertical axis is the hedge amount market makers must adjust for each 1% move in price. Drag put demand to 2.0× and the flip moves up to around 790: at the same price, the market goes from “someone is propping it up” to “someone is chasing it down.” Shorten the days to expiry and the curve gets steeper, concentrating around the strike prices.</figcaption>
+      </figure>
+      <div class="note warn"><span class="tag">These numbers are estimates</span><p>No one can see market makers' actual positions directly. The Gamma flip and Gamma exposure figures that data vendors publish are all estimated from open interest (OI) plus some assumptions (such as “clients buy puts and sell calls”). Treat them as a rough topographic map, not precise coordinates. After price breaks below an estimated flip, also watch how it behaves afterward: does volume expand, are bounces weak?</p></div>
+
+      <h3>Effects around expiration</h3>
+      <ul>
+        <li>Around <strong>monthly expiration (OpEx)</strong> (the third Friday of each month) and <strong>quarterly quad witching</strong> (the third Friday of March, June, September and December), large numbers of options expire at once, and market makers' hedges are released with them. Before expiration, price is often “pinned” to strikes with large open interest; after expiration, that constraint lifts and volatility often picks up.</li>
+        <li><strong>Max pain</strong> is the expiration price at which option buyers as a whole lose the most. It exerts some pull on price in the last day or two before expiration, and means less the further away expiration is.</li>
+        <li><strong>0DTE options</strong> (expiring the same day) have enormous Gamma and amplify intraday swings, especially near big strikes. They have a large effect on the intraday path and little effect on direction over weeks.</li>
+        <li><strong>Pileups at a single strike</strong>: when a round-number strike has an unusually large number of calls, market makers need to buy to hedge as price approaches it, which can produce a burst of accelerating gains; once price moves past it, the buying disappears, and the strike may turn into resistance.</li>
+      </ul>
+
+      <h3>End-of-day rebalancing in leveraged ETFs</h3>
+      <p>A leveraged ETF promises a fixed multiple of the underlying's daily move, so it must adjust its position before every close. Here is the derivation: a fund with leverage <span class="v">L</span> and net assets <span class="v">A</span> needs <span class="v">L·A</span> of exposure. If the underlying rises <span class="v">r</span> on the day, the exposure becomes <span class="v">L·A·(1+r)</span>, net assets become <span class="v">A·(1+L·r)</span>, and the exposure it needs is <span class="v">L·A·(1+L·r)</span>. Subtract one from the other:</p>
+      <div class="formula">Amount to buy = A × L × (L − 1) × r<small>The multiplier is 6 when L = 3, 2 when L = 2, 2 when L = −1 and 12 when L = −3. It is always positive: buy when the market rises, sell when it falls, inverse funds included.</small></div>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">Leveraged ETF rebalancing always goes with the day's direction</span><span class="fig-no">Tool 7-A</span></div>
+        <div class="form-grid">
+          <label for="lf-aum">Fund size (× $100M)<input id="lf-aum" type="number" value="100" step="10"></label>
+          <label for="lf-l">Leverage<select id="lf-l"><option value="3" selected>3×</option><option value="2">2×</option><option value="-1">−1× (inverse)</option><option value="-2">−2×</option><option value="-3">−3×</option></select></label>
+          <label for="lf-r">Underlying's move today (%)<input id="lf-r" type="number" value="5" step="0.5"></label>
+        </div>
+        <div class="readout">
+          <div><b id="lf-o1">—</b><small>Amount to trade before the close</small></div>
+          <div><b id="lf-o2">—</b><small>Direction</small></div>
+          <div><b id="lf-o3">—</b><small>As a share of fund size</small></div>
+        </div>
+        <figcaption>With a $10 billion fund and the underlying up 5%: a 3× fund must buy $3 billion, 2× and −1× funds $1 billion each, and a −3× fund $6 billion. Inverse funds tend to be small, but their coefficient is the largest.</figcaption>
+      </figure>
+      <p>For stocks with large leveraged ETFs tracking them (some popular tech and semiconductor names), this money amplifies late-day moves on big up and down days: the stock jumps, leveraged funds buy before the close, the next day opens higher, and that drives more buying. It works the other way on the way down. Understand this and you understand why some stocks always swing more than their fundamental news can explain.</p>
+
+      <h3>Other mechanical flows</h3>
+      <ul>
+        <li><strong>Volatility-targeting funds and trend-following (CTA) funds</strong>: the former automatically cut equity exposure when realized volatility rises; the latter cut positions when prices break below trend. Both sell into declines and slowly buy back during calm rallies.</li>
+        <li><strong>Quarter-end and month-end rebalancing</strong>: pension funds and other funds with stock–bond allocations must sell stocks and buy bonds at the end of a quarter in which stocks rallied hard, and vice versa.</li>
+        <li><strong>Buyback blackout periods</strong>: companies usually suspend share buybacks for several weeks before releasing earnings, so the market loses a steady buyer. After earnings, buybacks resume and the buying comes back.</li>
+        <li><strong>Index changes</strong>: additions, deletions and weight changes create concentrated trading on the effective date.</li>
+      </ul>
+
+      <h3>How to use this information</h3>
+      <p>Mechanical flows explain the <strong>path and timing</strong>, not the direction. Your macro view tells you roughly where things are heading; flows tell you on which days the move may be especially fast, and near which prices it may get pinned or suddenly accelerate.</p>
+      <p>Options data has one more use: seeing through a narrative. When a stock rallies day after day, the news will supply a fundamental reason. But if the rally happens to come with heavy buying of short-dated calls, forcing market makers to buy the stock to hedge, then a good part of the move is mechanical. The question to ask then is: once the call buying stops, who takes over?</p>
+      <div class="note"><span class="tag">In practice</span><p>When giving the day's key levels, many traders start with levels from options positioning (the flip, big strikes, max pain at expiration), then use technical levels (gaps, moving averages, patterns) as more distant targets, and they always phrase it as a binary: “bullish above this level, bearish below it.” That is easier to act on than just saying “I'm bullish,” and makes it easier to admit you're wrong.</p></div>
+    </article>
+
+    <!-- ===================== 08 ===================== -->
+    <article class="chapter" id="c8" data-title="Narratives and information" hidden>
+      <div class="chapter-head"><div class="no">08</div><div class="kicker">Chapter 8</div><h2>Narratives and information</h2></div>
+      <p class="lead">Markets trade stories, but in the end cash flows pay the bill. People who use narratives use them to decide what to research; people used by narratives use them to decide when to go all in.</p>
+
+      <h3>The life cycle of a narrative</h3>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">Each stage calls for something different; the most dangerous point is after consensus forms</span><span class="fig-no">Figure 8-1</span></div>
+        <div class="scroll-x">
+        <svg class="chart wide" viewBox="0 0 680 300" role="img" aria-label="The narrative life cycle and price path, schematic">
+          <g style="font-family: var(--font-body)">
+            <g style="stroke: var(--rule)" stroke-dasharray="3 4">
+              <line x1="146" y1="30" x2="146" y2="230"></line><line x1="272" y1="30" x2="272" y2="230"></line><line x1="398" y1="30" x2="398" y2="230"></line><line x1="524" y1="30" x2="524" y2="230"></line>
+            </g>
+            <line x1="20" y1="230" x2="660" y2="230" style="stroke: var(--muted)"></line>
+            <path d="M20 210 C 70 208, 110 205, 146 196 C 190 184, 230 160, 272 132 C 318 100, 360 62, 398 50 C 430 40, 470 44, 500 70 C 530 98, 560 150, 600 170 C 625 182, 645 180, 660 178" style="fill: none; stroke: var(--accent)" stroke-width="2.6"></path>
+            <circle cx="398" cy="50" r="4.5" style="fill: var(--loss)"></circle>
+            <text x="406" y="40" style="fill: var(--loss); font-size: 12px">“Everyone knows”</text>
+            <g style="font-size: 14px; font-weight: 700; fill: var(--ink)" text-anchor="middle">
+              <text x="83" y="254">Emergence</text><text x="209" y="254">Spreading</text><text x="335" y="254">Consensus</text><text x="461" y="254">Crowding, fatigue</text><text x="592" y="254">Disproven or faded</text>
+            </g>
+            <g style="font-size: 12px; fill: var(--muted)" text-anchor="middle">
+              <text x="83" y="274">Research, small size</text><text x="209" y="274">Add on confirmation</text><text x="335" y="274">Hold, stop adding</text><text x="461" y="274">Trim in stages</text><text x="592" y="274">Wait for the next one</text>
+            </g>
+          </g>
+        </svg>
+        </div>
+        <figcaption>Prices usually rise fastest from “spreading” to “consensus,” but the best risk-reward ratio comes in “emergence” and early “spreading.” By the consensus stage, good news can hardly push the price higher, while bad news can send it sharply lower.</figcaption>
+      </figure>
+
+      <h3>Narratives decide what to research; valuation decides when to buy</h3>
+      <p>A good narrative answers the question “where will the world be forced to spend money over the next few years?” For example, AI needs power, networks and data centers; reshoring needs engineering and construction (E&amp;C), industrial equipment and logistics; population aging needs medical devices and services; security and resource independence need defense, critical minerals and energy infrastructure.</p>
+      <p>To get from a narrative to specific stocks, you can work in four steps:</p>
+      <div class="chain">
+        <div class="step"><b>1</b><div><strong>Find the structural change</strong>: a trend that will last several years and doesn't depend on any single piece of news.</div></div>
+        <div class="step"><b>2</b><div><strong>Find the unavoidable beneficiaries</strong>: companies everyone has to buy from no matter who wins the competition, the “pick-and-shovel sellers.”</div></div>
+        <div class="step"><b>3</b><div><strong>Avoid the most crowded expression</strong>: the one everybody is buying has often already priced in years of good news.</div></div>
+        <div class="step"><b>4</b><div><strong>Wait for the price</strong>: a good company isn't the same as a good price. Wait for a pullback, for valuation to return to a reasonable range and for volatility to fall, then buy in stages.</div></div>
+      </div>
+      <p>A narrative being right doesn't make a given company a good way to express it. Within a correct trend, plenty of companies will fail because of execution, competition or debt. Real diversification is about risk factors, not how many stocks you hold: five stocks that all rise on the same narrative are really one trade.</p>
+
+      <h3>Write down invalidation criteria, and make them facts</h3>
+      <p>Before you buy into a narrative, write down “what facts would make me admit this call is wrong.” Note: facts, not prices.</p>
+      <div class="two">
+        <div><h5>Bad invalidation criteria</h5><ul><li>Admit I'm wrong if the stock falls 20%</li><li>Get out if it feels wrong</li></ul></div>
+        <div><h5>Good invalidation criteria</h5><ul><li>Major customers cut capital expenditure (capex) guidance two quarters in a row</li><li>Policy subsidies are canceled or delayed</li><li>Prices of the key product start falling steadily</li></ul></div>
+      </div>
+      <p>A price stop-loss controls the loss on a single trade; factual invalidation criteria judge the narrative itself. You need both, but don't confuse them. If the price falls and the facts haven't changed, it may be an opportunity; if the price hasn't fallen but the facts have changed, you have all the more reason to get out.</p>
+
+      <h3>Does this news matter? Ask six questions</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Question</th><th>Why ask it</th></tr></thead>
+          <tbody>
+            <tr><td>How is the market reacting?</td><td>A reaction backed by real money carries more weight than a headline (Chapter 2)</td></tr>
+            <tr><td>Was it a surprise?</td><td>What's already known isn't news; only an expectation gap moves prices</td></tr>
+            <tr><td>Which of the four variables does it change?</td><td>News that doesn't change rates, oil, earnings or jobs usually has a short-lived effect</td></tr>
+            <tr><td>Who benefits, and who is forced to spend?</td><td>Follow the money to find what to trade</td></tr>
+            <tr><td>How wide is the impact?</td><td>A single company, an industry, or the whole macro picture</td></tr>
+            <tr><td>Is it backed by flows or options data?</td><td>Only narratives with money behind them show up in prices</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Insiders, big money and retail sentiment</h3>
+      <ul>
+        <li><strong>Insider buying says more than insider selling.</strong> Executives sell stock for many reasons: diversifying their wealth, paying taxes, buying a house, and many sales are prearranged trading plans. But when they buy on the open market with their own money, there is usually only one reason. Several executives buying at the same time is an even stronger signal.</li>
+        <li><strong>Unusual options activity (UOA) is information, not an order.</strong> A sudden large trade at one strike price could be a bullish bet, a big institution hedging a stock position, or even someone closing a position. Judge it together with the change in open interest (OI) and the price the trade went through at, and treat it only as one clue.</li>
+        <li><strong>Extreme retail sentiment is a contrarian indicator.</strong> When people around you who never trade start recommending stocks, or a stock becomes the topic everyone on social media is talking about, sentiment is close to a peak. It doesn't tell you the market will fall tomorrow, but it reminds you not to add at that point.</li>
+      </ul>
+
+      <h3>Trade the policy, not the slogan</h3>
+      <p>Political news brings a lot of noise. What a macro trader cares about is where policy will send capital: an industrial subsidy, a tariff, a defense budget or an export restriction will reliably raise or lower certain industries' revenue over several years. As for who said what, or which side you agree with, the market doesn't care.</p>
+      <p>Separating your personal beliefs from your trading judgment is the hardest part of this craft. A useful test: if the side you support loses power, would your positions keep you up at night? If so, you are betting on a belief, not on market logic you can verify.</p>
+    </article>
+
+    <!-- ===================== 09 ===================== -->
+    <article class="chapter" id="c9" data-title="Calendars, seasonality and event playbooks" hidden>
+      <div class="chapter-head"><div class="no">09</div><div class="kicker">Chapter 9</div><h2>Calendars, seasonality and event playbooks</h2></div>
+      <p class="lead">A macro trader's month is carved up by the calendar. The dates of important data releases and meetings are announced in advance, so you can write down what you will do under each outcome before the event happens.</p>
+
+      <h3>The fixed schedule each month</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Event</th><th>Typical timing</th><th>Why it matters</th></tr></thead>
+          <tbody>
+            <tr><td>Jobs report (nonfarm payrolls, unemployment rate)</td><td>Usually the first Friday of the month</td><td>Jobs are the fourth variable in the regime call, and one of the Fed's goals</td></tr>
+            <tr><td>Initial jobless claims</td><td>Every Thursday</td><td>The most timely jobs data; watch the trend in the four-week average</td></tr>
+            <tr><td>ISM manufacturing and services indexes</td><td>Start of the month</td><td>Leading indicators; the prices components give early warning of inflation pressure</td></tr>
+            <tr><td>CPI and PPI</td><td>Mid-month</td><td>Inflation data; directly moves the pricing of hikes and cuts</td></tr>
+            <tr><td>PCE price index</td><td>Late in the month</td><td>The Fed's preferred inflation gauge</td></tr>
+            <tr><td>FOMC meeting</td><td>8 times a year, with a statement and press conference afterward</td><td>The policy rate, the dot plot and guidance on the path ahead</td></tr>
+            <tr><td>Treasury auctions and the quarterly refunding announcement</td><td>Auctions almost every week; refunding once a quarter</td><td>Supply and demand at the long end (Chapter 3)</td></tr>
+            <tr><td>Monthly options expiration (OpEx) and quarterly quad witching</td><td>Third Friday of each month; quad witching in March, June, September and December</td><td>Hedges are released all at once (Chapter 7)</td></tr>
+            <tr><td>Earnings season</td><td>Busiest about two to six weeks after each quarter ends</td><td>Earnings are the third variable in the regime call</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Event playbooks: write the branches in advance</h3>
+      <p>On the day of an event, prices jump within seconds, and emotion most easily takes over your judgment. So write the playbook the day before, with a calm head: for each outcome, how each asset class will move and what you will do. Take CPI as an example:</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Result</th><th>2-year</th><th>Dollar</th><th>Gold</th><th>Nasdaq 100</th><th>Small caps</th><th>My move</th></tr></thead>
+          <tbody>
+            <tr><td>Well above expectations</td><td>Up sharply</td><td>Strengthens</td><td>Down</td><td>Down</td><td>Down more</td><td>Execute the hedge; don't buy the dip, wait for the first hour to pass</td></tr>
+            <tr><td>In line</td><td>Little change</td><td>Little change</td><td>Little change</td><td>Volatility eases</td><td>Little change</td><td>Protection bought before the event loses some value as implied volatility (IV) falls; handle it according to plan</td></tr>
+            <tr><td>Well below expectations</td><td>Down sharply</td><td>Weakens</td><td>Up</td><td>Up</td><td>Up more</td><td>Add to preselected names as planned</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The most valuable column in a playbook is “what reaction would show the market is trading something else.” For example, if CPI comes in well below expectations and the 2-year drops sharply but stocks fall too, the market is more worried about growth than about inflation. A reaction that doesn't fit the playbook often matters more than the data itself.</p>
+
+      <h3>How much options are pricing in for an event</h3>
+      <p>Option prices contain the market's expected move for an event. Using the implied volatility of options that expire in a week (which includes the event day) and of an ordinary day, you can isolate the event day. Calculated in trading days (252 a year):</p>
+      <div class="formula">Event-day variance = σ<sub>event</sub>² × 5 ÷ 252 − σ<sub>normal</sub>² × 4 ÷ 252<small>Assume the week has 5 trading days, 4 of them normal. The expected move on the event day = the square root of the event-day variance.</small></div>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">The higher the weekly options' implied volatility, the bigger the move priced for the event day</span><span class="fig-no">Figure 9-1 · Adjustable</span></div>
+        <div class="controls">
+          <label class="ctl" for="ev-1">Weekly IV incl. event <input id="ev-1" type="range" min="10" max="30" value="16"> <output id="ev-1-o">16%</output></label>
+          <label class="ctl" for="ev-0">Normal IV <input id="ev-0" type="range" min="8" max="20" value="13"> <output id="ev-0-o">13%</output></label>
+        </div>
+        <svg class="chart" id="f-ev" viewBox="0 0 680 290" role="img" aria-label="Weekly implied volatility and the implied event-day move"></svg>
+        <div class="readout">
+          <div><b id="ev-r1">—</b><small>Expected move on the event day</small></div>
+          <div><b id="ev-r2">—</b><small>Expected move on a normal day</small></div>
+          <div><b id="ev-r3">—</b><small>For an index ETF at 780, roughly</small></div>
+        </div>
+        <figcaption>With the default settings, the market expects a move of about 1.55% on CPI day, nearly twice the 0.82% of an ordinary day. If you think this release won't bring much of a surprise, the event volatility is “expensive,” and selling it with a defined-risk structure makes more sense. If you think the surprise will be large, only then does buying a straddle have a chance of making money, because it needs a move bigger than 1.55%.</figcaption>
+      </figure>
+
+      <h3>Seasonality is a map, not a trigger</h3>
+      <p>In commonly cited statistics, September has historically been the S&amp;P 500's weakest month on average, and in US midterm election years the market often weakens from midyear into the fall, then does better from year-end into the following year. There are also month-end fund rebalancing, thin trading around long holidays, the buyback blackout period before earnings season, and so on.</p>
+      <p>The problem with these patterns is that the samples are small (midterms come once every four years, so several decades give you only a dozen or so), and every year's macro backdrop is completely different. So the right way to use seasonality is:</p>
+      <ul>
+        <li>Prepare in advance: before a seasonally weak stretch arrives, have cash, hedges and a shopping list ready, and write down what you'll buy on a 5%, 10% and 15% pullback.</li>
+        <li>Wait for confirmation: seasonality only tells you “maybe”; price breaking a key level, breadth deteriorating and credit spreads widening are the “confirmation.” Don't try to predict the pullback; let the market confirm it.</li>
+        <li>Stack it with other signals: seasonal weakness, rich valuations and rising rates showing up together deserve more attention than seasonality alone.</li>
+      </ul>
+      <p>Wall Street also has plenty of calendar sayings, such as selling before certain holidays and buying back afterward. It's enough to treat them as reminders worth noticing, not as trading signals.</p>
+
+      <h3>Discipline around events</h3>
+      <ul>
+        <li><strong>Hedge before the event; do little during it.</strong> Before a major event (a rate decision, key data, earnings from an important company), buy protection for existing positions, or cut size first. In the first hour after the result, prices often whipsaw, and that is when mistakes are easiest to make.</li>
+        <li><strong>In low-volume periods, beware of false breakouts.</strong> Around holidays and in thin summer weeks, small amounts of money can push prices around, and breakouts are less reliable.</li>
+        <li><strong>Be careful at the Monday open.</strong> News that piles up over the weekend hits all at once at Monday's open, and prices in the first half hour often don't reflect the day's direction.</li>
+        <li><strong>One day in line with expectations is not confirmation.</strong> An important turn needs at least the price action on the second and third days to confirm it.</li>
+      </ul>
+    </article>
+
+    <!-- ===================== 10 ===================== -->
+    <article class="chapter" id="c10" data-title="From view to trade" hidden>
+      <div class="chapter-head"><div class="no">10</div><div class="kicker">Chapter 10</div><h2>From view to trade</h2></div>
+      <p class="lead">To turn a macro view into money, you still have to answer four questions: what instrument, how big, how long to hold, and what to do if you're wrong. Many correct macro calls lose money on exactly these four questions.</p>
+
+      <h3>A view needs all five parts written down</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Part</th><th>Ask yourself</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>Direction</td><td>Up or down, and relative to what</td><td>Small caps outperform the Nasdaq 100</td></tr>
+            <tr><td>Magnitude</td><td>Roughly how much</td><td>The ratio rises 5% to 8%</td></tr>
+            <tr><td>Timeframe</td><td>How long until it plays out</td><td>4 to 8 weeks</td></tr>
+            <tr><td>Confidence</td><td>How sure, and based on what</td><td>Medium: rates are falling, but the jobs data hasn't confirmed it yet</td></tr>
+            <tr><td>Invalidation criteria</td><td>What facts would make you admit you're wrong</td><td>The 10-year yield breaks back above its prior high, or credit spreads widen</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>A view with only the first part written down is not a tradable view. The timeframe matters most, because it directly decides which instrument you should use.</p>
+
+      <h3>Choose the instrument by timeframe</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Time to play out</th><th>Suitable instruments</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>Events or levels within a few days</td><td>Short-dated options, spreads</td><td>High leverage with a known max loss; the window is short, so time decay is acceptable</td></tr>
+            <tr><td>Macro theses over weeks to months</td><td>Shares, sector ETFs, longer-dated spreads</td><td>Macro theses take time to play out, and shares don't mind waiting</td></tr>
+            <tr><td>Structural narratives of a year or more</td><td>Scaling into shares, long-dated options</td><td>Swings will be large; you need to be able to hold on</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Expressing a call that needs six months to play out with call options that expire in three weeks means betting on direction and timing at once, and time is almost certain to be against you. When a macro thesis needs time, buy the stock rather than short-dated options: what we need is time, not excitement.</p>
+
+      <h3>Pick the cleanest, weakest link</h3>
+      <ul>
+        <li><strong>When bullish, find the most direct beneficiary.</strong> A view on higher oil is expressed more directly through upstream producers than through integrated energy companies; a view on falling rates, more directly through small caps or REITs than through big tech.</li>
+        <li><strong>When bearish, find the weakest sector.</strong> If you are bearish on tech, rather than shorting the Nasdaq 100, which has the strongest trend, short the sub-sector with the worst relative strength and fading momentum. Go after the soft target, not the hard one.</li>
+        <li><strong>When you can't decide on direction, trade relative strength.</strong> Buying one and selling another hedges out the overall market's moves, so you bet only on the part of your view you are most sure of.</li>
+      </ul>
+
+      <h3>Hedging at the portfolio level</h3>
+      <p>Let's run the numbers on the “surprise hedge” from Chapter 2. Suppose you hold $10,000 of energy stocks with an elasticity of 0.6 to oil (oil up 10%, the stocks up 6%). You worry that policy will suddenly push oil down, so you buy call options on an airline ETF as protection.</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">Trade a small premium for most of the downside risk</span><span class="fig-no">Figure 10-1 · Adjustable</span></div>
+        <div class="controls">
+          <label class="ctl" for="hg-n">Airline calls <input id="hg-n" type="range" min="0" max="10" value="4"> <output id="hg-n-o">4 contracts</output></label>
+        </div>
+        <svg class="chart" id="f-hg" viewBox="0 0 680 300" role="img" aria-label="P&amp;L of an energy position plus airline calls"></svg>
+        <div class="legend"><span><i style="border-color: var(--muted)" class="dash"></i>Energy stocks only</span><span><i style="border-color: var(--accent)"></i>Energy stocks + airline calls</span></div>
+        <div class="readout">
+          <div><b id="hg-r1">—</b><small>Hedge cost (premium)</small></div>
+          <div><b id="hg-r2">—</b><small>If oil falls 20% (unhedged <span id="hg-r2s">—</span>)</small></div>
+          <div><b id="hg-r3">—</b><small>If oil rises 20% (unhedged <span id="hg-r3s">—</span>)</small></div>
+        </div>
+        <figcaption>Assumptions: the airline ETF trades at $25 with an elasticity of −0.9 to oil; you buy 60-day calls with a strike price of $27 and implied volatility (IV) of 45%, at about $1.11 each. The chart shows P&amp;L after 30 days, with implied volatility unchanged. Four contracts cost about $444: if oil falls 20%, the loss shrinks from $1,200 to about $405; if oil rises 20%, the gain shrinks from $1,200 to about $764. In a real shock implied volatility usually rises, so the hedge would work better than shown here.</figcaption>
+      </figure>
+      <p>The point of this example is the shape. Hedging with call options, you pay a fixed, limited premium in exchange for protection against a large move in oil in the wrong direction. If you hedged by short selling energy stocks instead, you would cut your gains and your losses in equal proportion, and the view itself would be gone.</p>
+      <p>The same approach works for any macro position. First ask, “Which scenario do I fear most?” Then find the asset that gains the most in that scenario and hold it in small size or through options. Don't judge one trade on its own; look at what the whole portfolio does in each scenario.</p>
+
+      <h3>Scale in, and add after confirmation</h3>
+      <p>Macro calls rarely get the timing right on the first try. A simple way to scale in:</p>
+      <ol>
+        <li>When the view forms, build one third of the planned position and make sure you can live with its swings.</li>
+        <li>Write a confirmation checklist in advance, for example “equal-weight outperforms for a full week,” “credit spreads are not widening,” “oil is stable.” Once the checklist is met, add another third.</li>
+        <li>Once the trend has emerged and makes its first healthy pullback, add the final third.</li>
+        <li>At any point, if an invalidation condition appears, exit everything. Without new evidence, never add to a losing macro position.</li>
+      </ol>
+
+      <h3>Size reflects uncertainty, not excitement</h3>
+      <ul>
+        <li><strong>The less certain you are, the smaller the position.</strong> The more excited you are, the more you should suspect you've fallen into a narrative.</li>
+        <li><strong>Count correlated positions together.</strong> Three tech stocks, a small-cap ETF and two call options may be six ways of writing the same bet. Count risk factors, not tickers.</li>
+        <li><strong>Manage total exposure and a daily loss limit.</strong> Beyond limits on each position, set a cap on how much the whole portfolio may lose in one day. When you hit it, stop.</li>
+        <li><strong>Cash is a position.</strong> Holding cash when there's no clear opportunity is an active decision. It leaves you able to buy when others are forced to sell.</li>
+      </ul>
+
+      <h3>A final check with scenarios and probabilities</h3>
+      <p>Before you place the trade, list the two or three scenarios that could play out over the next one to three months, and give each a subjective probability and an estimated market move. For example:</p>
+      <div class="tbl">
+        <table>
+          <caption>Example; the numbers are hypothetical</caption>
+          <thead><tr><th>Scenario</th><th class="r">Subjective probability</th><th class="r">Index move</th><th class="r">Probability × move</th></tr></thead>
+          <tbody>
+            <tr><td>A. Rates keep rising, valuations pull back</td><td class="r mono">40%</td><td class="r mono">−10%</td><td class="r mono">−4.00%</td></tr>
+            <tr><td>B. Rates peak, earnings take over</td><td class="r mono">35%</td><td class="r mono">+5%</td><td class="r mono">+1.75%</td></tr>
+            <tr><td>C. Jobs crack, phase two begins</td><td class="r mono">25%</td><td class="r mono">−15%</td><td class="r mono">−3.75%</td></tr>
+            <tr class="hl"><td>Weighted total</td><td class="r mono">100%</td><td></td><td class="r mono">−6.00%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The value of this table isn't in how accurate the −6% is; subjective probabilities are guesses to begin with. Its value is that it forces you to do two things. First, admit there are scenarios you don't favor, and give them a probability. Second, check that your portfolio survives every one of them. If any scenario would blow up your account, deal with it first, however low its probability.</p>
+    </article>
+
+    <!-- ===================== 11 ===================== -->
+    <article class="chapter" id="c11" data-title="Toolkit: morning brief, trigger lines and exercises" hidden>
+      <div class="chapter-head"><div class="no">11</div><div class="kicker">Chapter 11</div><h2>Toolkit: morning brief, trigger lines and exercises</h2></div>
+      <p class="lead">This chapter turns the previous ten into something you can use every day. Checklist ticks are saved only in your own browser.</p>
+
+      <h3>Morning brief template</h3>
+      <p>Spend fifteen minutes before each open writing yourself a morning brief, in this order. Keep it up for a month and you'll find you read the market noticeably faster.</p>
+      <pre class="tpl" id="tpl">Date:
+1. Overnight changes
+    2Y ___  10Y ___  Dollar ___  Crude ___  Gold ___  VIX ___  Credit spread ___
+    Biggest or most unusual move:
+2. Why
+    Event / data / speech / auction:
+    Already priced in?
+3. The bigger picture
+    Current regime (Chapter 5):      This week's calendar:      Seasonal position:
+4. Transmission chain
+    ___ → ___ → ___    Benefits:            Hurt:
+5. Check the tape
+    Equal-weight vs cap-weight:    Small caps:    Financials:    Semis:    Credit:
+6. Key levels (above: do what / below: do what)
+    Index:            Flip and large strikes:
+7. Today's plan
+    Structure:    Size:    Stop-loss:    Hedge:
+8. In one line: today the market is trading ___________
+9. Discipline: wait for confirmation, don't chase, keep size light, do little during events</pre>
+      <div class="copyrow"><button class="btn" type="button" id="tpl-copy">Copy template</button><small id="tpl-msg" aria-live="polite"></small></div>
+
+      <h3>Watchlist and trigger lines</h3>
+      <p>Trigger lines are there to tell you “time to reassess,” not to place orders automatically. The values below are examples; adjust them to each indicator's level and normal range of movement when you start using them. Relative changes (how much in how many days) go stale less quickly than absolute levels.</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Indicator</th><th>Example trigger</th><th>What to do when it triggers</th></tr></thead>
+          <tbody>
+            <tr><td>10-year yield</td><td>Up more than 40 basis points within 20 trading days</td><td>Cut long-duration growth stocks, check hedges</td></tr>
+            <tr><td>10-year real yield</td><td>Breaks above its one-year high</td><td>Valuation-compression risk rising; reduce position size</td></tr>
+            <tr><td>Dollar index (DXY)</td><td>Up more than 3% in a month</td><td>Check exposure to multinationals, commodities and emerging markets</td></tr>
+            <tr><td>USD/JPY</td><td>Yen gains more than 3% in a week</td><td>Watch for a carry-trade unwind; reduce leverage</td></tr>
+            <tr><td>Crude oil</td><td>Breaks above the prior high and holds for a week</td><td>Reassess inflation and the regime; consider a hedge against a surprise</td></tr>
+            <tr><td>VIX term structure</td><td>Front month above later months (inverted)</td><td>Immediate fear: stop adding, protection first</td></tr>
+            <tr><td>High-yield spread</td><td>Widens more than 100 basis points in a month</td><td>Credit stress; the regime may be deteriorating</td></tr>
+            <tr><td>Initial jobless claims</td><td>Four-week average rises steadily and breaks above the prior high</td><td>Jobs weakening; check whether phase two has begun</td></tr>
+            <tr><td>Equal-weight ÷ cap-weight</td><td>Index at a new high while the ratio makes a new low</td><td>Gains too concentrated; don't chase the index</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Four checklists</h3>
+      <div class="cards">
+        <div class="card"><h4>Before the open</h4><ul>
+          <li><input type="checkbox" id="m1"><label for="m1">Note the overnight change in the seven numbers</label></li>
+          <li><input type="checkbox" id="m2"><label for="m2">Find the most unusual combination and write down why</label></li>
+          <li><input type="checkbox" id="m3"><label for="m3">Check for important data or speeches today</label></li>
+          <li><input type="checkbox" id="m4"><label for="m4">Write the one line: “What is the market trading today?”</label></li>
+          <li><input type="checkbox" id="m5"><label for="m5">Key levels marked as if-above / if-below</label></li>
+        </ul></div>
+        <div class="card"><h4>Weekly regime check</h4><ul>
+          <li><input type="checkbox" id="m6"><label for="m6">Is the direction of each of the four variables up to date?</label></li>
+          <li><input type="checkbox" id="m7"><label for="m7">Are two or more variables changing at once?</label></li>
+          <li><input type="checkbox" id="m8"><label for="m8">Do breadth and credit confirm the index's direction?</label></li>
+          <li><input type="checkbox" id="m9"><label for="m9">Next week's calendar and event playbooks are written</label></li>
+          <li><input type="checkbox" id="m10"><label for="m10">Last week's calls checked, right and wrong recorded</label></li>
+        </ul></div>
+        <div class="card"><h4>Before a macro trade</h4><ul>
+          <li><input type="checkbox" id="m11"><label for="m11">Direction, magnitude, timing, confidence and invalidation are all written down</label></li>
+          <li><input type="checkbox" id="m12"><label for="m12">The instrument matches the time it needs to pay off</label></li>
+          <li><input type="checkbox" id="m13"><label for="m13">Picked the cleanest or the weakest link</label></li>
+          <li><input type="checkbox" id="m14"><label for="m14">Risk factors combined with existing positions</label></li>
+          <li><input type="checkbox" id="m15"><label for="m15">The portfolio survives the scenario you fear most</label></li>
+        </ul></div>
+        <div class="card"><h4>Event day</h4><ul>
+          <li><input type="checkbox" id="m16"><label for="m16">Playbooks for three outcomes written the day before</label></li>
+          <li><input type="checkbox" id="m17"><label for="m17">Event move priced by options calculated</label></li>
+          <li><input type="checkbox" id="m18"><label for="m18">Protection bought before the event</label></li>
+          <li><input type="checkbox" id="m19"><label for="m19">No chasing in the first hour after the result</label></li>
+          <li><input type="checkbox" id="m20"><label for="m20">Record how the market's reaction differed from the playbook</label></li>
+        </ul></div>
+      </div>
+
+      <h3>Scenario exercises</h3>
+      <p>Come up with your own answer first, then open the answer to compare. There's no single right answer; what matters is the order of the reasoning.</p>
+      <div class="qa">
+        <details><summary><span class="k">01</span><span>Nonfarm payrolls come in far below expectations. The 2-year yield drops sharply. Stocks open higher and turn lower in the afternoon, and high-yield spreads widen. What is the market trading?</span></summary><div>
+          <p>At the open the market was trading “rate cuts will come sooner and bigger,” so stocks rose first. The afternoon reversal and widening credit spreads show the focus shifted to “Will earnings be cut? Will the economy go into recession?” Bad news went from “good news for rate cuts” to “bad news is bad news.”</p>
+          <p>In regime terms, this is a sign of moving toward phase two. Response: check that your protection is adequate, cut cyclical stocks and small caps, and watch initial claims over the next few weeks.</p>
+        </div></details>
+        <details><summary><span class="k">02</span><span>The 10-year yield rises 15 basis points. The same day the dollar falls, gold rises, and stocks and long-term Treasuries fall together.</span></summary><div>
+          <p>Rising rates with a falling dollar is an unusual combination. The most likely explanation is that foreign money is cutting US assets, or the market has started to doubt fiscal discipline or the credibility of inflation control, and the term premium is rising.</p>
+          <p>In this environment Treasuries aren't a hedge; gold is. Long-duration growth stocks get hurt most. Protect with options or cut overall position size rather than buying long bonds.</p>
+        </div></details>
+        <details><summary><span class="k">03</span><span>Crude rises 12% in a week. Over the same week the S&amp;P 500 rises, copper jumps and cyclicals lead. Should you cut positions because oil is rising?</span></summary><div>
+          <p>Stocks and copper rising along with crude suggests a demand-driven rally: the economy is accelerating. That means the opposite of a supply shock. There's no need to cut positions, and both cyclicals and energy stocks are worth owning.</p>
+          <p>What to watch is what comes next. If oil keeps rising and starts pushing up inflation expectations and long-term rates, the demand story can gradually turn into pressure on valuations.</p>
+        </div></details>
+        <details><summary><span class="k">04</span><span>The S&amp;P 500 hits a new high, but over the past month the equal-weight S&amp;P has steadily lagged, small caps have fallen and credit spreads have widened slightly.</span></summary><div>
+          <p>Gains are increasingly concentrated in a few heavyweight stocks, market breadth is deteriorating, and the credit market isn't confirming. This is the classic “illusion of the index.”</p>
+          <p>Don't chase the index. Check whether your own portfolio is overly concentrated in the same group of leaders. If you short, pick the relatively weakest sectors rather than shorting the index the leaders are carrying.</p>
+        </div></details>
+        <details><summary><span class="k">05</span><span>An index ETF breaks below its estimated Gamma flip with a week to go until monthly expiration, and the VIX term structure starts to flatten.</span></summary><div>
+          <p>Below the flip, market makers may turn to negative Gamma and have to sell into declines, which tends to amplify intraday swings. A flattening term structure shows that demand for near-term protection is rising.</p>
+          <p>Expect bigger swings in the short term, reduce leverage and don't rush to buy the dip. Once expiration passes, a large number of options roll off and hedges get redistributed; reassess then.</p>
+        </div></details>
+        <details><summary><span class="k">06</span><span>Weekly options covering CPI week trade at 18% implied volatility, against a usual 13%. You expect the index to move only about 1.2% on CPI day. Should you buy or sell the event volatility?</span></summary><div>
+          <p>Event-day variance = 0.18² × 5 ÷ 252 − 0.13² × 4 ÷ 252 ≈ 0.000375; the square root is about 1.94%. The market is pricing a move of about 1.94% on CPI day, more than the 1.2% you expect.</p>
+          <p>If your judgment is reliable, the event volatility is expensive, and it makes sense to sell it with a defined-risk structure (such as an iron condor) rather than buy a straddle. Before you sell, you still need a written plan for “what if the result is far off.”</p>
+        </div></details>
+      </div>
+
+      <!--EN-GLOSSARY-START--><h3>Key terms</h3>
+      <p>The main terms in this handbook, in the order they first appear.</p>
+      <div class="tbl"><table><thead><tr><th>Term</th><th>First appears</th></tr></thead><tbody>
+        <tr><td>Population aging</td><td>Introduction</td></tr>
+        <tr><td>Dashboard</td><td>Introduction</td></tr>
+        <tr><td>Transmission chain</td><td>Introduction</td></tr>
+        <tr><td>Valuation multiple</td><td>Introduction</td></tr>
+        <tr><td>Regime</td><td>Introduction</td></tr>
+        <tr><td>Reshoring</td><td>Introduction</td></tr>
+        <tr><td>Narrative</td><td>Introduction</td></tr>
+        <tr><td>Seasonality</td><td>Introduction</td></tr>
+        <tr><td>Dollar-cost averaging (DCA)</td><td>Introduction</td></tr>
+        <tr><td>Hedge ratio</td><td>Introduction</td></tr>
+        <tr><td>Market regime</td><td>Introduction</td></tr>
+        <tr><td>Market breadth</td><td>Introduction</td></tr>
+        <tr><td>Discount rate</td><td>Introduction</td></tr>
+        <tr><td>Options expiration (OpEx)</td><td>Introduction</td></tr>
+        <tr><td>Mechanical flows</td><td>Introduction</td></tr>
+        <tr><td>Premium</td><td>Introduction</td></tr>
+        <tr><td>Correlation</td><td>Introduction</td></tr>
+        <tr><td>Earnings report</td><td>Introduction</td></tr>
+        <tr><td>Fund flows</td><td>Introduction</td></tr>
+        <tr><td>Sector rotation</td><td>Introduction</td></tr>
+        <tr><td>Implied volatility (IV)</td><td>Introduction</td></tr>
+        <tr><td>Risk appetite</td><td>Introduction</td></tr>
+        <tr><td>Dominant theme</td><td>Chapter 1</td></tr>
+        <tr><td>Duration</td><td>Chapter 1</td></tr>
+        <tr><td>Supply shock</td><td>Chapter 1</td></tr>
+        <tr><td>Credit spread</td><td>Chapter 1</td></tr>
+        <tr><td>Central bank gold buying</td><td>Chapter 1</td></tr>
+        <tr><td>Real yield</td><td>Chapter 1</td></tr>
+        <tr><td>Hedge</td><td>Chapter 1</td></tr>
+        <tr><td>Small caps</td><td>Chapter 1</td></tr>
+        <tr><td>Growth stocks</td><td>Chapter 1</td></tr>
+        <tr><td>Priced in early</td><td>Chapter 1</td></tr>
+        <tr><td>Policy rate</td><td>Chapter 1</td></tr>
+        <tr><td>Emerging markets</td><td>Chapter 1</td></tr>
+        <tr><td>Term premium</td><td>Chapter 1</td></tr>
+        <tr><td>Term structure</td><td>Chapter 1</td></tr>
+        <tr><td>Call option</td><td>Chapter 1</td></tr>
+        <tr><td>Inflation expectations</td><td>Chapter 1</td></tr>
+        <tr><td>Risk-off</td><td>Chapter 1</td></tr>
+        <tr><td>Financial conditions</td><td>Chapter 1</td></tr>
+        <tr><td>High-yield spread</td><td>Chapter 1</td></tr>
+        <tr><td>Second-order thinking</td><td>Chapter 2</td></tr>
+        <tr><td>Sell the news</td><td>Chapter 2</td></tr>
+        <tr><td>Sanctions</td><td>Chapter 2</td></tr>
+        <tr><td>Core inflation</td><td>Chapter 2</td></tr>
+        <tr><td>Fed funds futures</td><td>Chapter 2</td></tr>
+        <tr><td>Dividend</td><td>Chapter 2</td></tr>
+        <tr><td>Quarterly refunding</td><td>Chapter 3</td></tr>
+        <tr><td>Price-to-earnings ratio (P/E)</td><td>Chapter 3</td></tr>
+        <tr><td>Gordon growth model</td><td>Chapter 3</td></tr>
+        <tr><td>Bear flattening</td><td>Chapter 3</td></tr>
+        <tr><td>Bear steepening</td><td>Chapter 3</td></tr>
+        <tr><td>Bull flattening</td><td>Chapter 3</td></tr>
+        <tr><td>Bull steepening</td><td>Chapter 3</td></tr>
+        <tr><td>Theoretical value</td><td>Chapter 3</td></tr>
+        <tr><td>Earnings yield</td><td>Chapter 3</td></tr>
+        <tr><td>Federal Reserve (Fed)</td><td>Chapter 3</td></tr>
+        <tr><td>Recession</td><td>Chapter 3</td></tr>
+        <tr><td>Bid-to-cover ratio</td><td>Chapter 3</td></tr>
+        <tr><td>Defensive sectors</td><td>Chapter 3</td></tr>
+        <tr><td>Overnight index swap (OIS)</td><td>Chapter 3</td></tr>
+        <tr><td>Risk premium</td><td>Chapter 3</td></tr>
+        <tr><td>Cyclical stocks</td><td>Chapter 4</td></tr>
+        <tr><td>Carry trade</td><td>Chapter 4</td></tr>
+        <tr><td>Strategic Petroleum Reserve (SPR)</td><td>Chapter 4</td></tr>
+        <tr><td>Leverage</td><td>Chapter 4</td></tr>
+        <tr><td>Refining</td><td>Chapter 4</td></tr>
+        <tr><td>Breakeven inflation</td><td>Chapter 4</td></tr>
+        <tr><td>Dollar smile</td><td>Chapter 4</td></tr>
+        <tr><td>Crack spread</td><td>Chapter 4</td></tr>
+        <tr><td>Unemployment rate</td><td>Chapter 5</td></tr>
+        <tr><td>Liquidity crunch</td><td>Chapter 5</td></tr>
+        <tr><td>Earnings estimates</td><td>Chapter 5</td></tr>
+        <tr><td>Put spread</td><td>Chapter 5</td></tr>
+        <tr><td>Quantitative tightening (QT)</td><td>Chapter 5</td></tr>
+        <tr><td>Nonfarm payrolls (NFP)</td><td>Chapter 5</td></tr>
+        <tr><td>Initial jobless claims</td><td>Chapter 5</td></tr>
+        <tr><td>Market-cap weighted</td><td>Chapter 6</td></tr>
+        <tr><td>Time decay</td><td>Chapter 6</td></tr>
+        <tr><td>Relative strength</td><td>Chapter 6</td></tr>
+        <tr><td>Put option</td><td>Chapter 6</td></tr>
+        <tr><td>Short covering</td><td>Chapter 6</td></tr>
+        <tr><td>Equal-weight</td><td>Chapter 6</td></tr>
+        <tr><td>High-yield bonds</td><td>Chapter 6</td></tr>
+        <tr><td>Market maker</td><td>Chapter 7</td></tr>
+        <tr><td>Rebalancing</td><td>Chapter 7</td></tr>
+        <tr><td>Quad witching</td><td>Chapter 7</td></tr>
+        <tr><td>Share buyback</td><td>Chapter 7</td></tr>
+        <tr><td>Buyback blackout period</td><td>Chapter 7</td></tr>
+        <tr><td>Realized volatility</td><td>Chapter 7</td></tr>
+        <tr><td>Exposure</td><td>Chapter 7</td></tr>
+        <tr><td>Max pain</td><td>Chapter 7</td></tr>
+        <tr><td>Monthly expiration (OpEx)</td><td>Chapter 7</td></tr>
+        <tr><td>Options positioning</td><td>Chapter 7</td></tr>
+        <tr><td>Open interest (OI)</td><td>Chapter 7</td></tr>
+        <tr><td>Leveraged ETF</td><td>Chapter 7</td></tr>
+        <tr><td>Volatility-targeting fund</td><td>Chapter 7</td></tr>
+        <tr><td>Strike price</td><td>Chapter 7</td></tr>
+        <tr><td>Trend following (CTA)</td><td>Chapter 7</td></tr>
+        <tr><td>Trading plan</td><td>Chapter 8</td></tr>
+        <tr><td>Critical minerals</td><td>Chapter 8</td></tr>
+        <tr><td>Insiders</td><td>Chapter 8</td></tr>
+        <tr><td>Medical devices</td><td>Chapter 8</td></tr>
+        <tr><td>Invalidation criteria</td><td>Chapter 8</td></tr>
+        <tr><td>Engineering and construction (E&C)</td><td>Chapter 8</td></tr>
+        <tr><td>Unusual options activity (UOA)</td><td>Chapter 8</td></tr>
+        <tr><td>Data center</td><td>Chapter 8</td></tr>
+        <tr><td>Open interest (OI)</td><td>Chapter 8</td></tr>
+        <tr><td>Stop-loss</td><td>Chapter 8</td></tr>
+        <tr><td>Capital expenditure (capex)</td><td>Chapter 8</td></tr>
+        <tr><td>Expectation gap</td><td>Chapter 8</td></tr>
+        <tr><td>Risk-reward ratio</td><td>Chapter 8</td></tr>
+        <tr><td>Risk factor</td><td>Chapter 8</td></tr>
+        <tr><td>Midterm elections</td><td>Chapter 9</td></tr>
+        <tr><td>Dot plot</td><td>Chapter 9</td></tr>
+        <tr><td>Treasury auction</td><td>Chapter 9</td></tr>
+        <tr><td>FOMC meeting</td><td>Chapter 9</td></tr>
+        <tr><td>Straddle</td><td>Chapter 9</td></tr>
+        <tr><td>Scaling in</td><td>Chapter 10</td></tr>
+        <tr><td>Short selling</td><td>Chapter 10</td></tr>
+        <tr><td>Max loss</td><td>Chapter 10</td></tr>
+        <tr><td>Cash is a position</td><td>Chapter 10</td></tr>
+        <tr><td>Reflexivity</td><td>Chapter 11</td></tr>
+        <tr><td>Variance</td><td>Chapter 11</td></tr>
+        <tr><td>US Dollar Index (DXY)</td><td>Chapter 11</td></tr>
+        <tr><td>Iron condor</td><td>Chapter 11</td></tr>
+      </tbody></table></div>
+<!--EN-GLOSSARY-END-->
+      <h3>Further reading and data sources</h3>
+      <ul>
+        <li>Howard Marks, Mastering the Market Cycle: how to tell where you are in the cycle.</li>
+        <li>Ray Dalio, Big Debt Crises: how interest rates, debt and policy interact.</li>
+        <li>Edward Chancellor, The Price of Time: a history of interest rates, and how long stretches of low rates change asset prices.</li>
+        <li>George Soros, The Alchemy of Finance: reflexivity, or how a narrative changes the reality it describes.</li>
+        <li>Data: the St. Louis Fed's FRED database (rates, spreads, employment), CME FedWatch (rate hike and cut probabilities), and the US Treasury's auction results and quarterly refunding announcements.</li>
+      </ul>
+    </article>
+
+    <nav class="pager" aria-label="Chapter navigation">
+      <button type="button" class="prev" id="pg-prev"><small>Previous</small><span></span></button>
+      <button type="button" class="next" id="pg-next"><small>Next</small><span></span></button>
+    </nav>
+
+    <footer class="end"><p>This handbook draws on common frameworks in macro finance and on traders' practical experience. Examples are calculated from the stated assumptions, and historical figures are approximate. It is for learning only and is not investment advice.</p></footer>
+  </main>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+  const $ = id => document.getElementById(id);
+
+  // ---------- chapters ----------
+  const chapters = [...document.querySelectorAll("article.chapter")];
+  const rail = $("rail"), pick = $("pick");
+  const prevB = $("pg-prev"), nextB = $("pg-next");
+  chapters.forEach((c, i) => {
+    const t = c.dataset.title;
+    const li = document.createElement("li");
+    li.innerHTML = `<button type="button" data-i="${i}"><span class="k">${String(i).padStart(2, "0")}</span><span>${t}</span></button>`;
+    rail.appendChild(li);
+    const o = document.createElement("option"); o.value = i; o.textContent = String(i).padStart(2, "0") + " " + t; pick.appendChild(o);
+  });
+  const redraws = {};
+  let current = 0;
+  function show(i, scroll) {
+    i = Math.max(0, Math.min(chapters.length - 1, i));
+    current = i;
+    chapters.forEach((c, j) => { c.hidden = j !== i; });
+    rail.querySelectorAll("button").forEach(b => b.setAttribute("aria-current", +b.dataset.i === i ? "true" : "false"));
+    pick.value = i;
+    prevB.hidden = i === 0; nextB.hidden = i === chapters.length - 1;
+    if (i > 0) prevB.querySelector("span").textContent = chapters[i - 1].dataset.title;
+    if (i < chapters.length - 1) nextB.querySelector("span").textContent = chapters[i + 1].dataset.title;
+    if (redraws[i]) redraws[i].forEach(f => f());
+    store.set("mm-ch", String(i));
+    if (location.hash !== "#c" + i) history.replaceState(null, "", "#c" + i);
+    if (scroll) window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }
+  rail.addEventListener("click", e => { const b = e.target.closest("button"); if (b) show(+b.dataset.i, true); });
+  pick.addEventListener("change", () => show(+pick.value, true));
+  prevB.addEventListener("click", () => show(current - 1, true));
+  nextB.addEventListener("click", () => show(current + 1, true));
+  window.addEventListener("hashchange", () => { const m = location.hash.match(/^#c(\d+)$/); if (m) show(+m[1], false); });
+
+  // ---------- chart helper ----------
+  const NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+  function plot(svg, cfg) {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    if (!svg.dataset.h) svg.dataset.h = svg.viewBox.baseVal.height;
+    const cw = svg.getBoundingClientRect().width || 680;
+    const narrow = cw > 0 && cw < 560;
+    const W = narrow ? 440 : 680, H = +svg.dataset.h;
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    const m = { l: cfg.ml !== undefined ? cfg.ml : (narrow ? 54 : 62), r: narrow ? 12 : 18, t: 16, b: 42 };
+    const [x0, x1] = cfg.x, [y0, y1] = cfg.y;
+    const X = v => m.l + (v - x0) / (x1 - x0) * (W - m.l - m.r);
+    const Y = v => m.t + (1 - (v - y0) / (y1 - y0)) * (H - m.t - m.b);
+    const g = el("g", { class: "ax" }, svg);
+    (cfg.bands || []).forEach(bd => el("rect", { x: X(bd[0]), y: m.t, width: Math.max(0, X(bd[1]) - X(bd[0])), height: H - m.t - m.b, style: "fill: " + bd[2] }, g));
+    (cfg.yt || []).forEach(v => {
+      el("line", { x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v), style: "stroke: var(--grid)", "stroke-width": 1 }, g);
+      el("text", { x: m.l - 8, y: Y(v) + 4, "text-anchor": "end", style: "fill: var(--muted)" }, g).textContent = cfg.yf ? cfg.yf(v) : v;
+    });
+    (cfg.xt || []).forEach(v => {
+      if (!cfg.noxgrid) el("line", { x1: X(v), x2: X(v), y1: m.t, y2: H - m.b, style: "stroke: var(--grid)", "stroke-width": 1 }, g);
+      el("text", { x: X(v), y: H - m.b + 18, "text-anchor": "middle", style: "fill: var(--muted)" + (cfg.xsans ? "; font-family: var(--font-body); font-size: 12.5px" : "") }, g).textContent = cfg.xf ? cfg.xf(v) : v;
+    });
+    if (cfg.zero !== undefined) el("line", { x1: m.l, x2: W - m.r, y1: Y(cfg.zero), y2: Y(cfg.zero), style: "stroke: var(--muted)", "stroke-width": 1 }, g);
+    if (cfg.frame) el("line", { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, style: "stroke: var(--muted)", "stroke-width": 1 }, g);
+    el("text", { x: (m.l + W - m.r) / 2, y: H - 6, "text-anchor": "middle", style: "fill: var(--muted); font-family: var(--font-body); font-size: 12.5px" }, g).textContent = cfg.xlabel || "";
+    const cy = (m.t + H - m.b) / 2;
+    el("text", { x: 11, y: cy, "text-anchor": "middle", transform: `rotate(-90 11 ${cy})`, style: "fill: var(--muted); font-family: var(--font-body); font-size: 12.5px" }, g).textContent = cfg.ylabel || "";
+    const id = "cl" + Math.random().toString(36).slice(2, 8);
+    const cp = el("clipPath", { id }, svg); el("rect", { x: m.l, y: m.t - 2, width: W - m.l - m.r, height: H - m.t - m.b + 4 }, cp);
+    const sg = el("g", { "clip-path": `url(#${id})` }, svg);
+    (cfg.vlines || []).forEach(vl => el("line", { x1: X(vl[0]), x2: X(vl[0]), y1: m.t, y2: H - m.b, style: `stroke: ${vl[1]}; stroke-dasharray: ${vl[2] || "4 4"}`, "stroke-width": 1.2 }, sg));
+    (cfg.bars || []).forEach(b => {
+      const bw = (X(b.w) - X(0));
+      const base = b.base !== undefined ? b.base : y0;
+      const ya = Y(b.y), yb = Y(base);
+      el("rect", { x: X(b.x) - bw / 2, y: Math.min(ya, yb), width: bw, height: Math.max(1, Math.abs(yb - ya)), rx: 2, style: `fill: ${b.color}` }, sg);
+    });
+    (cfg.series || []).forEach(s => {
+      const d = s.pts.map((p, i) => (i ? "L" : "M") + X(p[0]).toFixed(1) + " " + Y(p[1]).toFixed(1)).join("");
+      el("path", { d, style: `fill: none; stroke: ${s.color}; stroke-width: ${s.w || 2.2}; ${s.dash ? "stroke-dasharray:" + s.dash + ";" : ""} opacity: ${s.op || 1}`, "stroke-linejoin": "round" }, sg);
+    });
+    (cfg.dots || []).forEach(dt => el("circle", { cx: X(dt[0]), cy: Y(dt[1]), r: dt[3] || 4, style: `fill: ${dt[2]}` }, sg));
+    (cfg.labels || []).forEach(lb => {
+      el("text", { x: X(lb[0]) + (lb[3] || 0), y: Y(lb[1]) + (lb[4] === undefined ? -8 : lb[4]), "text-anchor": lb[5] || "middle", style: `fill: ${lb[6] || "var(--ink)"}; font-family: ${lb[7] ? "var(--font-body)" : "var(--font-mono)"}; font-size: ${lb[7] ? "12.5px" : "11.5px"}` }, sg).textContent = lb[2];
+    });
+    return { X, Y, narrow };
+  }
+  const range = (a, b, st) => { const o = []; for (let v = a; v <= b + 1e-9; v += st) o.push(+v.toFixed(6)); return o; };
+  const reg = (ch, f) => { (redraws[ch] = redraws[ch] || []).push(f); };
+  let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => (redraws[current] || []).forEach(f => f()), 150); });
+  const sgn = (v, d) => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(d);
+  const money = v => (v < 0 ? "−$" : "+$") + Math.abs(Math.round(v)).toLocaleString("en-US");
+  const niceStep = span => { const raw = span / 5, p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p; return (f < 1.5 ? 1 : f < 3.5 ? 2 : f < 7.5 ? 5 : 10) * p; };
+  const ticks = (a, b) => { const st = niceStep(b - a); const o = []; for (let v = Math.ceil(a / st) * st; v <= b + 1e-9; v += st) o.push(+v.toFixed(6)); return o; };
+
+  // normal & Black-Scholes
+  const npdf = x => Math.exp(-x * x / 2) / Math.sqrt(2 * Math.PI);
+  function ncdf(x) { const t = 1 / (1 + 0.2316419 * Math.abs(x)); const d = npdf(x); const p = d * t * (0.319381530 + t * (-0.356563782 + t * (1.781477937 + t * (-1.821255978 + t * 1.330274429)))); return x > 0 ? 1 - p : p; }
+  function bsCall(S, K, T, s, r) { r = r === undefined ? 0.04 : r; const d1 = (Math.log(S / K) + (r + s * s / 2) * T) / (s * Math.sqrt(T)), d2 = d1 - s * Math.sqrt(T); return S * ncdf(d1) - K * Math.exp(-r * T) * ncdf(d2); }
+  function bsGamma(S, K, T, s, r) { r = r === undefined ? 0.04 : r; const d1 = (Math.log(S / K) + (r + s * s / 2) * T) / (s * Math.sqrt(T)); return npdf(d1) / (S * s * Math.sqrt(T)); }
+
+  // generic toggle groups
+  function group(box, onChange) {
+    const btns = [...box.querySelectorAll("button")];
+    const set = v => { btns.forEach(b => b.setAttribute("aria-pressed", b.dataset.v === String(v) ? "true" : "false")); };
+    box.addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; set(b.dataset.v); onChange(b.dataset.v); });
+    return set;
+  }
+  const pills = (arr, cls) => arr.map(t => `<span class="pill ${cls}">${t}</span>`).join("");
+
+  // ---------- 1-1 dashboard ----------
+  (function () {
+    const st = { y: 1, d: 1, o: 1, g: 0, v: 1, c: 0 };
+    const out = $("dash-out");
+    function verdict() {
+      const { y, d, o, g, v, c } = st;
+      const fc = y + d + 0.5 * o + v + 1.5 * c;
+      const fcl = fc >= 2 ? "Clearly tightening" : fc >= 0.75 ? "Leaning tight" : fc > -0.75 ? "Neutral" : fc > -2 ? "Leaning loose" : "Clearly easing";
+      let r;
+      if (c === 1 && v === 1) r = { t: "Credit stress: risk is spreading", p: "Credit spreads and volatility worsening together is the most serious combination of the seven numbers. Bond investors are charging for default risk, and the stock market's problem may be shifting from valuation to earnings and funding." + (y === -1 ? " Rates are falling at the same time, so this time long-term Treasuries will probably work as a hedge." : y === 1 ? " Rates are still rising, so stocks and bonds may fall together; cash is safer than Treasuries." : ""), up: ["Cash", "T-bills"].concat(y === -1 ? ["Long Treasuries"] : []).concat(["Gold", "Consumer staples"]), dn: ["High-yield bonds", "Small caps", "Highly indebted companies", "Financials", "Consumer discretionary"], n: "Watch whether credit spreads keep widening and whether the VIX term structure inverts. The regime may be entering phase two or three (Chapter 5)." };
+      else if (y === 1 && d === -1) r = { t: "Credibility or term-premium worries: money is leaving US assets", p: "Rates rising while the dollar falls means foreign money is cutting Treasuries and dollar assets. Stocks and Treasuries may fall together." + (g === 1 ? " Gold rising confirms the worry." : ""), up: ["Gold", "Non-US assets", "Real assets", "Short-duration assets"], dn: ["Long Treasuries", "Long-duration growth stocks", "REITs", "Small caps"], n: "Watch the next long-bond auction, and whether the 30-year keeps leading the curve higher." };
+      else if (y === 1 && o === 1) r = { t: "Inflationary pressure: rates and oil squeeze valuations together", p: "Oil pushes up inflation expectations, and rates follow. This is the typical combination in phase one of a decline: economic data may still look good while valuations are being compressed." + (d === 1 ? " The stronger dollar further tightens global financial conditions." : ""), up: ["Energy", "Oil services", "Banks (if the curve steepens)", "Value stocks", "Cash"], dn: ["Long-duration growth stocks", "Small caps", "Airlines", "Consumer discretionary", "Long Treasuries"], n: "Break down the 10-year: are real yields or inflation expectations driving it? Then check whether jobs are starting to weaken; that's the phase-two signal." };
+      else if (y === -1 && v === 1 && (d === 1 || g === 1)) r = { t: "Risk-off: growth worries", p: "Rates are falling and volatility is rising: money is fleeing to safe assets. In this kind of environment, Treasuries usually work as a hedge.", up: ["Long Treasuries", "Gold", "Utilities", "Consumer staples", "Healthcare"], dn: ["Cyclicals", "Small caps", "Financials", "Industrials"], n: "Watch whether the yield curve bull-steepens and credit spreads widen with it. If credit starts to deteriorate too, that's the prelude to more serious stress." };
+      else if (y === -1 && v <= 0 && d <= 0) r = { t: "Easing and risk appetite", p: "Rates, the dollar and volatility are all falling and financial conditions are easing, so gains spread more easily to small caps and cyclicals." + (o === 1 ? " But oil is rising; watch whether it trims expectations of rate cuts." : ""), up: ["Small caps", "Growth stocks", "Cyclicals", "Emerging markets"].concat(g === 1 ? ["Gold"] : []), dn: ["The dollar", "Defensives (relative)"], n: "Watch whether the equal-weight index and small caps confirm. A healthy rally needs breadth to follow (Chapter 6)." };
+      else if (y === 1 && v <= 0 && o <= 0) r = { t: "Good news pushes rates up", p: "Rates are rising, but with volatility calm and oil flat, the likely driver is strong economic data. Cyclicals can handle it; growth stock valuations come under pressure.", up: ["Banks", "Industrials", "Cyclicals", "Value stocks"], dn: ["Long-duration growth stocks", "REITs", "Utilities"], n: "Watch the pace: a rise of more than 40 basis points in 20 trading days turns “good news” into valuation pressure." };
+      else if (v === 1 && g === 1) r = { t: "Safe-haven demand from geopolitics or a sudden event", p: "Volatility and gold are rising together and rates have no clear direction, which is common during geopolitical conflict or a sudden event.", up: ["Gold", "Defense"].concat(o === 1 ? ["Energy"] : []).concat(["Cash"]), dn: ["Airlines", "Travel", "Richly valued stocks"], n: "Event-driven shocks usually come fast and go fast. See whether credit spreads follow; if they don't, the shock is probably short-lived." };
+      else if (v === 1) r = { t: "Volatility is rising, but there's no single macro explanation", p: "Demand for protection is rising, but rates, the dollar and commodities aren't telling the same story. It may be a stock- or sector-level event, or it may be flows (Chapter 7).", up: ["Cash", "Protective options"], dn: ["Highly leveraged positions", "Crowded winners"], n: "Check options expiration dates, the Gamma flip and leveraged ETF rebalancing to judge whether this is mechanical volatility or the start of a macro move." };
+      else if (y === 0 && d === 0 && o === 0 && g === 0 && v <= 0 && c <= 0) r = { t: "A quiet day", p: "None of the seven numbers moved much. Calm isn't a signal in itself, but it's a good time for prep work: update your regime view, write event playbooks, make a shopping list.", up: [], dn: [], n: "Check this week's calendar and find the next event that could break the calm." };
+      else r = { t: "Mixed signals", p: "These numbers don't point the same way; the market hasn't found its dominant theme yet. Days like this are best for doing less.", up: [], dn: [], n: "Wait until one variable moves clearly, or an unusual combination appears, before you act." };
+      out.innerHTML = `<h4>${r.t}</h4><div class="row"><b>Financial conditions</b>${fcl} (tightening score ${sgn(fc, 1)})</div><p>${r.p}</p>` +
+        (r.up.length ? `<div class="row"><b>Relative winners</b>${pills(r.up, "up")}</div>` : "") +
+        (r.dn.length ? `<div class="row"><b>Relative losers</b>${pills(r.dn, "down")}</div>` : "") +
+        `<div class="row"><b>What to check next</b>${r.n}</div>`;
+    }
+    document.querySelectorAll("#dash .seg3").forEach(box => {
+      const k = box.dataset.k;
+      const set = group(box, v => { st[k] = +v; verdict(); });
+      set(st[k]);
+    });
+    verdict();
+  })();
+
+  // ---------- 2-1 chain explorer ----------
+  (function () {
+    const D = {
+      oil: { t: "Oil supply shock", s: ["Crude and diesel rise; transport and production costs go up", "Inflation expectations rise, and cost lines in earnings estimates are revised up", "The market pushes back rate cuts or even starts pricing hikes; short- and long-end yields rise", "Valuations compress: long-duration growth stocks, small caps and highly indebted companies are hit first; consumers are squeezed by the “oil tax”", "Oil staying high destroys demand: rates start falling while oil stays high, and the regime may slide into phase two"], up: ["Upstream oil and gas", "Oil services", "Tankers and shipping", "Defense"], dn: ["Airlines", "Cruise lines", "Downstream chemicals", "Consumer discretionary", "Small caps"], x: "Policy may step in: reserve releases, export limits. If oil drops sharply as a result, the airlines and travel stocks that were sold hardest will rebound hardest, so you can use them as a hedge against that surprise for an energy position.", v: "On the days oil rose, did the S&P rise with it (demand-driven) or fall (supply shock)? Did copper rise too?" },
+      long: { t: "Long-end rates jump", s: ["Term premium rises: heavy Treasury supply, weak auction demand, or worries about deficits and inflation", "Mortgage rates and corporate borrowing costs rise with it", "The discount rate on stocks rises; companies whose value lies mostly in distant cash flows take the biggest valuation hit", "If the dollar falls instead of rising, foreign money is cutting US assets, and stocks and bonds may fall together"], up: ["Banks (if the curve steepens)", "Insurers", "Value stocks", "Short-duration assets", "Cash"], dn: ["Unprofitable growth stocks", "REITs", "Utilities", "Homebuilders", "Small caps"], x: "A bear steepening helps bank margins, but if rising rates also stir worries about commercial real estate or private credit, banks may lead the decline instead.", v: "Is the rise coming from real yields (growth or tightening) or from breakeven inflation (inflation worries)? Is the 30-year leading?" },
+      usd: { t: "Stronger dollar", s: ["The dollar is the world's funding currency; a stronger dollar means tighter global financial conditions", "Multinationals' overseas revenue shrinks when converted; dollar-priced commodities come under pressure", "Capital leaves emerging markets; pressure rises on countries and companies with dollar debt", "If funding currencies like the yen swing hard at the same time, a carry-trade unwind may follow"], up: ["Companies with mainly US revenue", "Importers", "Cash"], dn: ["Gold", "Copper and other commodities", "Emerging markets", "Multinational tech and consumer brands", "Crypto assets"], x: "Why the dollar is strong decides the conclusion. Dollar strength from “US exceptionalism” can come with rising US stocks; dollar strength from “global risk-off” usually comes with falling US stocks (the dollar smile in Chapter 4).", v: "On the days the dollar strengthened, did US stocks rise or fall? Did Treasury yields rise or fall?" },
+      jobs: { t: "Jobs weaken sharply", s: ["The market first prices “rate cuts sooner and bigger”: short-end yields drop sharply and the curve bull-steepens", "The first reaction may be a stock rally: bad news is good news for rate cuts", "Then the market asks: will earnings be cut? Cyclicals, small caps and credit spreads start to price in recession risk", "If unemployment keeps rising (for example, the three-month average is 0.5 percentage points above its low of the past year), we enter the “bad news is bad news” phase"], up: ["Long Treasuries", "Gold", "Utilities", "Consumer staples", "Healthcare"], dn: ["Banks", "Consumer discretionary", "Industrials", "Small caps", "High-yield bonds"], x: "The same data are good news when inflation worries dominate and bad news when growth worries dominate. First judge whether the market fears inflation or recession more right now.", v: "After the release, do stocks and bonds rise together (trading rate cuts), or do stocks fall while bonds rise (trading recession)?" },
+      dove: { t: "Central bank surprises dovish", s: ["The market had almost fully priced a hike, but the central bank didn't hike", "First reaction: short-end yields fall, the dollar weakens, gold and stocks rise", "Then the market asks: inflation is still high, so why didn't they dare to hike?", "If the market doubts the central bank's resolve on inflation: the 2-year falls, the 10- and 30-year rise instead (bear steepening), gold keeps rising and the dollar keeps weakening", "Long-end rates rise and erase stocks' initial gains"], up: ["Gold", "Real assets", "Short-duration assets", "Non-US assets"], dn: ["Long Treasuries", "The dollar", "Long-duration growth (phase two)"], x: "The key isn't whether they hike; it's whether the market still believes the central bank can control inflation. The credibility trade in Chapter 3 describes exactly this two-stage reaction.", v: "In the days after the announcement, does the 10-year yield fall with the 2-year (trust in the central bank) or rise against it (loss of trust)?" }
+    };
+    const out = $("chain-out");
+    function render(k) {
+      const r = D[k];
+      out.innerHTML = `<div class="verdict"><h4>${r.t}</h4><div class="chain">${r.s.map((t, i) => `<div class="step"><b>${i + 1}</b><div>${t}</div></div>`).join("")}</div>` +
+        `<div class="row" style="margin-top:10px"><b>Relative winners</b>${pills(r.up, "up")}</div><div class="row"><b>Relative losers</b>${pills(r.dn, "down")}</div>` +
+        `<p style="margin-top:8px"><strong>Second order:</strong> ${r.x}</p><p><strong>Check:</strong> ${r.v}</p></div>`;
+    }
+    const set = group($("chain-pick"), render);
+    set("oil"); render("oil");
+  })();
+
+  // ---------- 3-1 valuation sensitivity ----------
+  (function () {
+    const svg = $("f-gv"), sl = $("gv-dr");
+    const G = [[0.02, "var(--calm)"], [0.05, "var(--accent)"], [0.06, "var(--loss)"]];
+    const chg = (g, dr) => ((0.08 - g) / (0.08 + dr - g) - 1) * 100;
+    function draw() {
+      const dr = +sl.value / 1000;
+      $("gv-dr-o").textContent = (dr >= 0 ? "+" : "−") + Math.abs(dr * 100).toFixed(1) + "%";
+      const xs = range(-1, 2, 0.02);
+      plot(svg, {
+        x: [-1, 2], y: [-60, 100], xt: [-1, -0.5, 0, 0.5, 1, 1.5, 2], yt: [-50, -25, 0, 25, 50, 75, 100],
+        xf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%", yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%",
+        xlabel: "Change in discount rate (points, base 8%)", ylabel: "Change in theoretical value", zero: 0, vlines: [[dr * 100, "var(--muted)"]],
+        series: G.map(([g, c]) => ({ pts: xs.map(x => [x, Math.min(140, chg(g, x / 100))]), color: c, w: 2.4 })),
+        dots: G.map(([g, c]) => [dr * 100, Math.min(140, chg(g, dr)), c, 4.5])
+      });
+      ["gv-r1", "gv-r2", "gv-r3"].forEach((id, i) => { $(id).textContent = sgn(chg(G[i][0], dr), 1) + "%"; });
+    }
+    sl.addEventListener("input", draw);
+    reg(3, draw);
+  })();
+
+  // ---------- 3-A ERP ----------
+  (function () {
+    const ids = ["erp-pe", "erp-y", "erp-t"];
+    function calc() {
+      const [pe, y, t] = ids.map(i => parseFloat($(i).value));
+      if (!(pe > 0) || isNaN(y) || isNaN(t)) { ["erp-ey", "erp-n", "erp-r"].forEach(i => $(i).textContent = "—"); $("erp-msg").textContent = ""; return; }
+      const ey = 100 / pe, n = ey - y, r = ey - t;
+      $("erp-ey").textContent = ey.toFixed(2) + "%";
+      $("erp-n").textContent = sgn(n, 2) + "%";
+      $("erp-r").textContent = sgn(r, 2) + "%";
+      let msg = n < 0.5 ? "The earnings yield is about the same as nominal Treasuries, or even lower: on nominal return alone, Treasuries pay about what stocks do, with far less risk." : "The earnings yield is above nominal Treasuries, so stocks still offer some extra compensation.";
+      msg += r < 2.5 ? " The cushion over real yields is also thin, so valuations have little buffer against a rate shock." : r < 4 ? " The cushion over real yields is moderate." : " The cushion over real yields is thick, giving valuations some buffer against rising rates.";
+      $("erp-msg").textContent = msg + " (The thresholds are only a rough guide.)";
+    }
+    ids.forEach(i => $(i).addEventListener("input", calc));
+    calc();
+  })();
+
+  // ---------- 4-1 dollar smile ----------
+  (function () {
+    const svg = $("f-smile");
+    function draw() {
+      const f = x => 0.22 + 0.62 * x * x;
+      const r = plot(svg, {
+        x: [-1.08, 1.08], y: [0, 1.05], xt: [], yt: [], frame: true, ml: 30,
+        xlabel: "US economy vs. the world: weaker ← → stronger", ylabel: "Dollar strength",
+        series: [{ pts: range(-1, 1, 0.02).map(x => [x, f(x)]), color: "var(--accent)", w: 2.8 }],
+        dots: [[-0.82, f(-0.82), "var(--loss)", 5.5], [0, f(0), "var(--calm)", 5.5], [0.82, f(0.82), "var(--accent)", 5.5]]
+      });
+      const nl = r.narrow;
+      const lab = [
+        [-0.82, f(-0.82), "Global risk-off", "US stocks usually fall", "start", 14],
+        [0, f(0), "Synchronized global recovery", "Money flows abroad", "middle", 0],
+        [0.82, f(0.82), "US exceptionalism", "US stocks can rise too", "end", -14]
+      ];
+      const g = svg.lastChild;
+      lab.forEach(([x, y, a, b, anc, dx]) => {
+        const yy = x === 0 ? r.Y(y) - 42 : r.Y(y) - 30;
+        el("text", { x: r.X(x) + dx, y: yy, "text-anchor": anc, style: "fill: var(--ink); font-family: var(--font-body); font-size: " + (nl ? 12.5 : 14) + "px; font-weight: 700" }, g).textContent = a;
+        el("text", { x: r.X(x) + dx, y: yy + 18, "text-anchor": anc, style: "fill: var(--muted); font-family: var(--font-body); font-size: 12px" }, g).textContent = b;
+      });
+    }
+    reg(4, draw);
+  })();
+
+  // ---------- 5-2 regime classifier ----------
+  (function () {
+    const st = { r: 1, o: 1, e: 1, j: 1 };
+    const names = { r: "Rates", o: "Oil", e: "Earnings", j: "Jobs" };
+    const lab = { r: { "-1": "Falling", "1": "Rising" }, o: { "-1": "Falling", "1": "Rising" }, e: { "-1": "Weak", "0": "Average", "1": "Good" }, j: { "-1": "Deteriorating", "0": "Softening", "1": "Strong" } };
+    const P = [
+      { k: [-1, -1, 1, 1], t: "Broad rally", d: "Discount rates falling, costs falling, earnings and jobs both good: nearly every asset has a tailwind.", a: ["Go long the index and cyclicals; small caps will join in", "The risk is overoptimism and crowding: manage with a trailing stop rather than trying to call the top", "Use this phase to lower your cost basis and build up profits, leaving room for the next phase"] },
+      { k: [-1, -1, 0, 1], t: "Rotation", d: "Rates and oil are easing and jobs are still good, but earnings aren't impressive. Money doesn't leave stocks wholesale; it changes hands between sectors.", a: ["Buy pullbacks in earlier losers; trim rallies in crowded winners", "Use shares or longer-dated instruments; rotation takes time to pay off", "Equal-weight and small caps steadily outperforming confirms the rotation"] },
+      { k: [1, -1, 1, 1], t: "Good news pushes rates up", d: "Rising rates reflect strong growth, earnings can keep up, and oil isn't making trouble.", a: ["Cyclicals, banks and industrials lead; growth valuations are under pressure but can be offset by earnings", "Watch how fast rates rise; too fast and it slides into phase one", "Underweight long-duration assets"] },
+      { k: [1, 1, 1, 1], t: "Phase one of a decline: valuation compression", d: "Rates and oil rise together while earnings and jobs are still good. People think an economy this strong can't fall, but valuations are being compressed.", a: ["Cut long-duration growth stocks and small caps", "Hold energy and real assets", "Buy protection while volatility is cheap; remember Treasuries are not a hedge in this phase"] },
+      { k: [-1, 1, 1, 0], t: "Phase two of a decline: growth starts to suffer", d: "Rates start falling, but not because inflation is cooling; oil is still high and jobs are weakening.", a: ["Start systematic protection: shrink positions, buy protective put spreads", "Raise cash; defensives are relatively strong", "Watch initial claims and credit spreads to judge whether it's sliding into phase three"] },
+      { k: [-1, -1, -1, -1], t: "Phase three of a decline: recession", d: "Earnings are cut, unemployment jumps, and both rates and oil are falling.", a: ["Mostly cash and long-term Treasuries; stay flat or go short", "Wait for a policy catalyst to confirm the bottom; don't buy just because valuations “look cheap”", "Have your shopping list ready; buy in stages after policy turns"] },
+      { k: [1, 1, -1, 0], t: "Stagflation pressure", d: "Rates and oil are rising while earnings and jobs weaken: the hardest environment.", a: ["Stocks and bonds may both fall; cash and short-duration assets are safest", "Energy and real assets hold up relatively well", "Keep overall size low and wait for one variable to improve first"] }
+    ];
+    const keys = ["r", "o", "e", "j"];
+    const out = $("reg-out");
+    function classify() {
+      const s = keys.map(k => st[k]);
+      let best = null;
+      P.forEach((p, i) => {
+        const dist = s.reduce((a, v, j) => a + Math.abs(v - p.k[j]) / (j < 2 ? 2 : 1), 0);
+        const match = s.filter((v, j) => v === p.k[j]).length;
+        if (!best || dist < best.dist - 1e-9) best = { p, dist, match };
+      });
+      const p = best.p;
+      const diff = keys.filter((k, j) => st[k] !== p.k[j]).map((k, j) => `${names[k]}: the archetype has “${lab[k][String(p.k[keys.indexOf(k)])]}”, you chose “${lab[k][String(st[k])]}”`);
+      out.innerHTML = `<h4>${p.t}<span class="match">Matches ${best.match}/4</span></h4><p>${p.d}</p><ul>${p.a.map(t => `<li>${t}</li>`).join("")}</ul>` +
+        (diff.length ? `<div class="row"><b>Differences from the archetype</b>${diff.join("; ")}.</div>` : `<div class="row"><b>Differences from the archetype</b>None; an exact match.</div>`);
+    }
+    document.querySelectorAll("#reg .seg3").forEach(box => {
+      const k = box.dataset.k;
+      const set = group(box, v => { st[k] = +v; classify(); });
+      set(st[k]);
+    });
+    classify();
+  })();
+
+  // ---------- 6-1 concentration ----------
+  (function () {
+    const svg = $("f-conc");
+    const w = $("cs-w"), a = $("cs-a"), b = $("cs-b");
+    function draw() {
+      const W = +w.value / 100, A = +a.value, B = +b.value;
+      $("cs-w-o").textContent = w.value + "%";
+      $("cs-a-o").textContent = sgn(A, 0) + "%";
+      $("cs-b-o").textContent = sgn(B, 0) + "%";
+      const cap = W * A + (1 - W) * B, eq = 0.02 * A + 0.98 * B;
+      const vals = [A, B, cap, eq];
+      const mx = Math.max(2, ...vals.map(Math.abs)) * 1.3;
+      const yt = ticks(-mx, mx);
+      plot(svg, {
+        x: [0.4, 4.6], y: [-mx, mx], xt: [1, 2, 3, 4], yt, noxgrid: true, xsans: true,
+        xf: v => ["", "Top 10", "Other 490", "Cap-weighted", "Equal-weight"][v], yf: v => sgn(v, Math.abs(v) < 1 && v !== 0 ? 1 : 0) + "%",
+        xlabel: "", ylabel: "Day's change", zero: 0,
+        bars: vals.map((v, i) => ({ x: i + 1, y: v, base: 0, w: 0.5, color: i < 2 ? (v >= 0 ? "var(--tint-calm)" : "var(--tint-loss)") : (v >= 0 ? "var(--calm)" : "var(--loss)") })),
+        labels: vals.map((v, i) => [i + 1, v, sgn(v, 2) + "%", 0, v >= 0 ? -8 : 18, "middle", "var(--ink)"])
+      });
+      $("cs-r1").textContent = sgn(cap, 2) + "%";
+      $("cs-r2").textContent = sgn(eq, 2) + "%";
+      $("cs-r3").textContent = Math.abs(cap - eq).toFixed(2) + " pts";
+    }
+    [w, a, b].forEach(s => s.addEventListener("input", draw));
+    reg(6, draw);
+  })();
+
+  // ---------- 7-1 dealer gamma ----------
+  (function () {
+    const svg = $("f-gex"), mS = $("gx-m"), dS = $("gx-d");
+    const calls = [[790, 40000], [800, 50000], [810, 30000]];
+    const puts = [[740, 30000], [750, 50000], [760, 60000], [770, 40000]];
+    const net = (S, m, days) => {
+      const T = days / 365; let t = 0;
+      calls.forEach(([K, oi]) => { t += oi * 100 * bsGamma(S, K, T, 0.16) * S * S * 0.01; });
+      puts.forEach(([K, oi]) => { t -= m * oi * 100 * bsGamma(S, K, T, 0.16) * S * S * 0.01; });
+      return t / 1e8; // 亿美元
+    };
+    function draw() {
+      const m = +mS.value / 10, days = +dS.value;
+      $("gx-m-o").textContent = m.toFixed(1) + "×";
+      $("gx-d-o").textContent = days + " days";
+      const xs = range(730, 830, 0.5);
+      const ys = xs.map(x => net(x, m, days));
+      let flip = null;
+      for (let i = 1; i < xs.length; i++) { if ((ys[i - 1] < 0) !== (ys[i] < 0)) { const t = ys[i - 1] / (ys[i - 1] - ys[i]); flip = xs[i - 1] + t * (xs[i] - xs[i - 1]); break; } }
+      const lo = Math.min(...ys), hi = Math.max(...ys);
+      const pad = (hi - lo) * 0.12;
+      const y0 = Math.min(-1, lo - pad), y1 = Math.max(1, hi + pad);
+      const at = net(780, m, days), at760 = net(760, m, days);
+      const r = plot(svg, {
+        x: [730, 830], y: [y0, y1], xt: range(730, 830, 20), yt: ticks(y0, y1), yf: v => sgn(v, 0), zero: 0,
+        xlabel: "Index ETF price", ylabel: "Dealer net Gamma ($100M per 1%)",
+        bands: flip ? [[730, flip, "var(--tint-loss)"], [flip, 830, "var(--tint-calm)"]] : [],
+        vlines: [[780, "var(--muted)"]],
+        series: [{ pts: xs.map((x, i) => [x, ys[i]]), color: "var(--accent)", w: 2.6 }],
+        dots: [[780, at, "var(--ink)", 4.5]].concat(flip ? [[flip, 0, "var(--loss)", 5]] : []),
+        labels: [[780, y1, "Price 780", 6, 14, "start", "var(--muted)"]].concat(flip ? [[flip, 0, "Flip " + flip.toFixed(0), -10, -10, "end", "var(--loss)"]] : [])
+      });
+      $("gx-r1").textContent = flip ? flip.toFixed(1) : "—";
+      $("gx-r2").textContent = sgn(at, 1) + " × $100M" + (at < 0 ? " (negative)" : " (positive)");
+      $("gx-r3").textContent = at760 < 0 ? Math.abs(at760).toFixed(1) + " × $100M" : "No selling needed";
+    }
+    mS.addEventListener("input", draw); dS.addEventListener("input", draw);
+    reg(7, draw);
+  })();
+
+  // ---------- 7-A leveraged ETF ----------
+  (function () {
+    const ids = ["lf-aum", "lf-l", "lf-r"];
+    function calc() {
+      const A = parseFloat($("lf-aum").value), L = parseFloat($("lf-l").value), r = parseFloat($("lf-r").value);
+      if (isNaN(A) || isNaN(L) || isNaN(r)) { ["lf-o1", "lf-o2", "lf-o3"].forEach(i => $(i).textContent = "—"); return; }
+      const f = A * L * (L - 1) * r / 100;
+      $("lf-o1").textContent = Math.abs(f).toFixed(1) + " × $100M";
+      $("lf-o2").textContent = f > 0 ? "Buy before the close" : f < 0 ? "Sell before the close" : "No adjustment needed";
+      $("lf-o3").textContent = Math.abs(L * (L - 1) * r).toFixed(1) + "%";
+    }
+    ids.forEach(i => { $(i).addEventListener("input", calc); $(i).addEventListener("change", calc); });
+    calc();
+  })();
+
+  // ---------- 9-1 event move ----------
+  (function () {
+    const svg = $("f-ev"), s1 = $("ev-1"), s0 = $("ev-0");
+    const mv = (a, b) => { const v = a * a * 5 / 252 - b * b * 4 / 252; return v > 0 ? Math.sqrt(v) * 100 : 0; };
+    function draw() {
+      const a = +s1.value / 100, b = +s0.value / 100;
+      $("ev-1-o").textContent = s1.value + "%"; $("ev-0-o").textContent = s0.value + "%";
+      const xs = range(10, 30, 0.25);
+      const normal = b / Math.sqrt(252) * 100;
+      const e = mv(a, b);
+      plot(svg, {
+        x: [10, 30], y: [0, 4.5], xt: range(10, 30, 5), yt: [0, 1, 2, 3, 4], xf: v => v + "%", yf: v => v + "%",
+        xlabel: "Weekly IV including the event", ylabel: "Expected move on event day",
+        series: [{ pts: xs.map(x => [x, mv(x / 100, b)]), color: "var(--accent)", w: 2.6 }, { pts: [[10, normal], [30, normal]], color: "var(--muted)", w: 1.4, dash: "5 4" }],
+        dots: [[a * 100, e, "var(--loss)", 5]],
+        labels: [[a * 100, e, e.toFixed(2) + "%", 0, -12, "middle", "var(--loss)"], [29.6, normal, "Normal day " + normal.toFixed(2) + "%", 0, -7, "end", "var(--muted)"]]
+      });
+      $("ev-r1").textContent = e > 0 ? e.toFixed(2) + "%" : "Near 0";
+      $("ev-r2").textContent = normal.toFixed(2) + "%";
+      $("ev-r3").textContent = "±$" + (780 * e / 100).toFixed(2);
+    }
+    s1.addEventListener("input", draw); s0.addEventListener("input", draw);
+    reg(9, draw);
+  })();
+
+  // ---------- 10-1 convex hedge ----------
+  (function () {
+    const svg = $("f-hg"), nS = $("hg-n");
+    const prem = bsCall(25, 27, 60 / 365, 0.45);
+    const pnl = (x, n) => { const e = 10000 * 0.6 * x; const A = 25 * (1 - 0.9 * x); const c = bsCall(A, 27, 30 / 365, 0.45); return [e, e + n * 100 * (c - prem)]; };
+    function draw() {
+      const n = +nS.value;
+      $("hg-n-o").textContent = n + " contracts";
+      const xs = range(-30, 30, 0.5);
+      const pts = xs.map(x => pnl(x / 100, n));
+      const all = pts.flat();
+      const lo = Math.min(...all), hi = Math.max(...all);
+      const y0 = Math.min(-500, lo * 1.12), y1 = Math.max(500, hi * 1.12);
+      plot(svg, {
+        x: [-30, 30], y: [y0, y1], xt: range(-30, 30, 10), yt: ticks(y0, y1), xf: v => sgn(v, 0) + "%", yf: v => (v < 0 ? "−" : "") + "$" + Math.abs(v).toLocaleString("en-US"),
+        xlabel: "Oil price change in 30 days", ylabel: "Portfolio P&L", zero: 0,
+        series: [{ pts: xs.map((x, i) => [x, pts[i][0]]), color: "var(--muted)", w: 1.8, dash: "6 4" }, { pts: xs.map((x, i) => [x, pts[i][1]]), color: "var(--accent)", w: 2.6 }],
+        dots: [[-20, pnl(-0.2, n)[1], "var(--accent)", 4.5], [20, pnl(0.2, n)[1], "var(--accent)", 4.5]]
+      });
+      $("hg-r1").textContent = "$" + Math.round(n * 100 * prem).toLocaleString("en-US");
+      const d = pnl(-0.2, n), u = pnl(0.2, n);
+      $("hg-r2").textContent = money(d[1]); $("hg-r2s").textContent = money(d[0]);
+      $("hg-r3").textContent = money(u[1]); $("hg-r3s").textContent = money(u[0]);
+    }
+    nS.addEventListener("input", draw);
+    reg(10, draw);
+  })();
+
+  // ---------- template copy ----------
+  $("tpl-copy").addEventListener("click", () => {
+    const txt = $("tpl").textContent, msg = $("tpl-msg");
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents($("tpl")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); msg.textContent = "Selected. Press ⌘C or Ctrl+C to copy"; };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(() => { msg.textContent = "Copied"; }, fallback); else fallback();
+  });
+
+  // ---------- checklists ----------
+  document.querySelectorAll(".card input[type=checkbox]").forEach(cb => {
+    cb.checked = store.get("mm-" + cb.id) === "1";
+    cb.addEventListener("change", () => store.set("mm-" + cb.id, cb.checked ? "1" : "0"));
+  });
+
+  // ---------- boot ----------
+  const hm = location.hash.match(/^#c(\d+)$/);
+  const saved = store.get("mm-ch");
+  show(hm ? +hm[1] : (saved !== null ? +saved : 0), false);
+})();
+</script>
+<script id="lang-js">(function(){document.querySelectorAll(".lang-switch").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("hl-lang",a.getAttribute("data-lang"))}catch(e){}var h=a.getAttribute("href");if(location.hash&&h.indexOf("#")<0)a.setAttribute("href",h+location.hash);});});})();</script>
+</body>
+</html>

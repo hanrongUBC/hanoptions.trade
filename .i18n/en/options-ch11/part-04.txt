@@ -1,0 +1,232 @@
+@@ 6f1631be4c html
+B spent <span class="num">$12,947</span> in total and got nothing back, and by the time he bought protection, the biggest drop was already over. Rolling at-the-money puts monthly at IV 40% costs <span class="num">52.8%</span> a year. The same 30-day at-the-money put costs <span class="num">3.06</span> times as much at IV 40% as at IV 14%.
+@@ d571facac6 html
+<strong>Buy protection when IV is low.</strong> That's why the tail-hedge budget (Section 11.6) exists: buy on a schedule while things are calm, not on emotion in a panic.
+@@ bfa205c5c5 html
+<strong>Protection bought after a panic often protects against a risk that has already passed.</strong> After a big drop the market can keep falling or bounce, and you're paying the highest price.
+@@ 37399b100a html
+<strong>If you really do need protection while IV is high,</strong> use a put spread or a collar, selling equally expensive options to offset part of the cost; or admit the position is too big and trim it.
+@@ 853ad0381a html
+Right direction, wrong underlying: basis risk in hedging
+@@ 47609d7cdc html
+Your $200,000 portfolio is mostly tech stocks, with a beta of 1.25 to SPY. Two hedges (91 days, strikes at 90% of the current price; all market data below are hypothetical):
+@@ 6384211b33 html
+3 SPY 702 puts (SPY 780, IV 24%): cost <span class="num">$2,365</span>
+@@ 9f06de513f html
+3 QQQ 630 puts (QQQ 700, ATM IV 22%, IV 28% at this strike): cost <span class="num">$3,183</span>, because the tech index is more volatile
+@@ abe3ebc73f html
+Table 11-11 Two decline scenarios: portfolio P&amp;L at expiry (dollars, including premium)
+@@ c2a04e012e html
+With SPY puts
+@@ f8f4ea0ee9 html
+With QQQ puts
+@@ 7586702be3 html
+Tech selloff
+@@ 05e5f65684 html
+Broad decline
+@@ 185a8738c3 html
+In the first scenario, money rotates out of tech into other sectors. SPY falls only 8%, the 702 puts pay nothing, and the portfolio is down 25%: you bought insurance and the accident happened, but the policy didn't cover this kind of accident. The QQQ puts paid $16,800. In the second scenario both pay, and QQQ still pays somewhat more.
+@@ 9edbbdffca html
+<strong>The hedge should match what you actually own.</strong> Mostly tech, use QQQ; mostly small caps, use IWM. Paying a bit more is usually worth it.
+@@ dde516f260 html
+<strong>Beta is an average relationship, not a guarantee.</strong> The portfolio fell 25% while QQQ fell only 18%. The extra 7% came from the individual stocks themselves, and no index option can hedge that.
+@@ 7d6c3b0689 html
+<strong>With concentrated holdings, reduce the concentration first.</strong> If one or two stocks make up most of the portfolio, index protection alone leaves a big gap.
+@@ 76fc557033 html
+<span class="sn">Tools</span>Checklist and self-test
+@@ b4640d623d html
+Checkbox states are saved only in your own browser.
+@@ 12c18f1ce7 html
+<span class="num">11-1</span>Before buying protection
+@@ 495cc6b7c8 html
+Write down the decline you fear most: how big, how fast
+@@ 34faac6c7f html
+Work out the annualized cost; the year's total stays within budget (1%–2% of the portfolio)
+@@ 98c4041a83 html
+Check IV Rank: buy puts when it's low; use spreads or collars when it's high
+@@ 091c1f4d00 html
+<span class="num">11-2</span>Choosing the structure
+@@ 7067be3abc html
+Fear a pullback: put spread. Fear a crash: puts or a collar
+@@ 1a9ba1cb8d html
+For a zero-cost collar, first work out how much upside you give up
+@@ b4a775e724 html
+For single-stock collars, check the ex-dividend date and early-assignment risk
+@@ 3aa3240d05 html
+<span class="num">11-3</span>While holding
+@@ a5296e355b html
+When value reaches 3–5 times cost or Delta goes past −0.6, sell half first
+@@ b1a63135b0 html
+Roll the rest to a lower strike or a longer expiration
+@@ 471d88fb15 html
+Put the cash from monetizing into the rebalancing plan
+@@ 8509e77e69 html
+<span class="num">11-4</span>Taxes and the portfolio
+@@ 4bdd7935ec html
+Don't set the floor and cap too tight, to avoid a constructive sale
+@@ 8062bc3319 html
+Check the adjusted portfolio with beta-weighted Delta
+@@ 4c78f8f98a html
+Readjust when effective beta drifts more than ±0.15 from target
+@@ a6f5d33bbc html
+Five self-test questions
+@@ 686f8c7894 html
+<span class="num">1</span><span>A 91-day 90 put costs 1.01%. What is that annualized? The 30-day 80 put annualizes to only 1.0%. Why can't you say it's cheaper?</span>
+@@ cd9e644edc html
+<span class="num">1.01% × 365 ÷ 91 = 4.05%</span>. The 30-day 80 put pays only on “a 20% drop within a month,” a far rarer risk than “a 10% drop within three months.” Annualized costs are only comparable when they protect against the same risk.
+@@ 53a486f41e html
+<span class="num">2</span><span>For the same 91-day 90 put, the zero-cost call strike is 107.9 with skew and 113.9 without. Why does skew lower the cap?</span>
+@@ fcb249f42c html
+Skew makes OTM puts more expensive (IV 24% vs. 18%) and OTM calls cheaper (IV 16.4% at 107.9). You have more premium to pay, and each call you sell is worth less, so you have to pull the strike closer to the current price and sell more of the upside.
+@@ 1b5defeddf html
+<span class="num">3</span><span>A $200,000 portfolio is protected with a 95 / 80 put spread (cost 1.42%). How much does the portfolio lose if the market falls 30%?</span>
+@@ 4780955f1d html
+The stock loses $60,000; the spread pays at most 15%, or $30,000; subtract the $2,831 cost. Total: <span class="num">−60,000 + 30,000 − 2,831 = −$32,831</span>.
+@@ e45a86e069 html
+<span class="num">4</span><span>The stock is at $150 and a one-year 110 call is worth $46.56. Which two parts make up its time value, and how much is each?</span>
+@@ 67d5235373 html
+Time value is <span class="num">46.56 − 40 = 6.56</span>. Put–call parity splits it into an interest component of <span class="num">110 × (1 − e<sup>−0.04</sup>) = 4.31</span> and one 110 put worth <span class="num">2.25</span>.
+@@ d6f765423d html
+<span class="num">5</span><span>A $200,000 portfolio, beta 1.25, SPY 780. To bring beta down to 0.75, how many shares of short SPY Delta do you need? Using SPY puts with a Delta of −0.40, how many contracts do you buy?</span>
+@@ f643e8ee2a html
+<span class="num">200,000 × (1.25 − 0.75) ÷ 780 = 128.2</span> shares. Each put provides −40 shares, so you need <span class="num">128.2 ÷ 40 ≈ 3.2</span> contracts. Watch the units: it's 128 shares, not 128 contracts.
+@@ f8273c1839 html
+This chapter's examples are calculated with the Black-Scholes model and the assumptions stated in the text (4% rate, no dividends, 365-day year; the skew and market paths are hypothetical). They are for teaching only and are not investment or tax advice.
+@@ a70e23cc3d text
+US Options
+@@ 875f2902a9 text
+ Course
+@@ 1cddfd7ae5 text
+US Options Course · Part 3 Strategies · Chapter 11
+@@ ecc368871b text
+OTM%
+@@ 8ff2f9ad34 text
+91 / days
+@@ d4285a3eef text
+The closer and shorter the protection, the more you pay each year
+@@ f551a0825f text
+Figure 11-1 · Annualized cost, log scale on the vertical axis
+@@ 35b7222831 text
+30 days
+@@ 0a6c8fd0d9 text
+91 days
+@@ b47de8612c text
+182 days
+@@ db63dabc10 text
+365 days
+@@ d1f8dc5878 text
+30-day ATM, annualized
+@@ 6227a816b7 text
+91-day 90 put, annualized
+@@ 6a8489e1ec text
+365-day 90 put, annualized
+@@ 079e9318d4 text
+365-day 80 put, annualized
+@@ 796f3a3d33 text
+The closer and shorter the protection, the lower the zero-cost cap
+@@ 8e9105e527 text
+Tool 11-A · Zero-cost collar solver
+@@ 272ef07daa text
+Stock only
+@@ 0fcddf8826 text
+Stock + put
+@@ 981ccba768 text
+Zero-cost collar
+@@ a1134844a3 text
+Put cost (% of portfolio)
+@@ afae4be06e text
+Zero-cost call strike
+@@ 6718661e7d text
+Strike without skew
+@@ bbc5463cc6 text
+Call IV
+@@ 899c978525 text
+Three collar pitfalls
+@@ c1152bcd21 text
+No protection is best in every kind of decline
+@@ 84d3b5357f text
+Figure 11-2 · Protection comparison, $200,000 portfolio, after 91 days
+@@ 5833674519 text
+No hedge
+@@ 48968f26fb text
+Protective put 90
+@@ f0ca30246f text
+Zero-cost collar 90 / 107.9
+@@ e55901a9cb text
+Put spread 95 / 80
+@@ 7ea7cb0e2f text
+Protective put
+@@ ba58580134 text
+Put spread
+@@ a6e1a3c46b text
+Without a crash, insurance is pure cost; with one, it cuts a chunk off the maximum drawdown
+@@ 01bc72f4a4 text
+Figure 11-3 · Tail-hedge budget and long-run drag, hypothetical paths
+@@ d379049ee1 text
+One-year puts bought each year on budget
+@@ 90fb5b43aa text
+Strike bought in normal years
+@@ 138abeb5cb text
+Value after 20 years: hedged / unhedged
+@@ 9e07884ef8 text
+Annualized return: hedged / unhedged
+@@ 6d6b456cd3 text
+Max drawdown: hedged / unhedged
+@@ b2390d15d7 text
+When to buy
+@@ fa8faa8c3d text
+Limits of the simulation
+@@ 41d47a6e47 text
+Watch out for
+@@ a1aa21848e text
+Field notes
+@@ 046dfb89e4 text
+Case 1
+@@ 411ced42ca text
+Case 2
+@@ 81acdd30ad text
+Case 3
+@@ 5205b402f9 attr
+Jump to chapter
+@@ ae78ea9525 attr
+In this chapter
+@@ 95c47602db attr
+Annualized cost of protective puts by moneyness and expiry
+@@ 57e5030f73 attr
+Expiry
+@@ 2ed2def5da attr
+Payoff at expiry: collar vs. stock only
+@@ c96ed88ef6 attr
+Portfolio P&L of the four protection approaches as the market moves
+@@ 13012fd8cc attr
+Choose a path
+@@ 4121177913 attr
+Twenty-year value of hedged and unhedged portfolios
+@@ f0852d355e attr
+Chapter navigation
+@@ 172fb9377e js
+Put OTM distance
+@@ fa34d30c01 js
+Annualized cost (% of portfolio)
+@@ a4781a4c1a js
+Stock move at expiry
+@@ 19a0e97bdd js
+Portfolio return (incl. premium)
+@@ 291803ef6c js
+Cap 
+@@ 994c712f27 js
+Floor −
+@@ dee249af0a js
+Market move after 91 days
+@@ cd0f801ebf js
+Portfolio P&L ($)
+@@ c8fbc5f454 js
+Year
+@@ f85489665e js
+Value (start = 100)
+@@ 7d9d4d63aa js
+None
+@@ 82815f4686 js
+Strike in normal years (OTM 
+@@ c586bad867 js
+Budget is 0, no protection bought

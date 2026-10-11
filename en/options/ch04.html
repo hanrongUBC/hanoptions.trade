@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chapter 4: Delta and gamma · US Options Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<link rel="alternate" hreflang="zh-CN" href="https://hanoptions.trade/options/ch04.html"><link rel="alternate" hreflang="en" href="https://hanoptions.trade/en/options/ch04.html">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap">
+<style id="en-overrides">
+html[lang="en"] { --font-display: "Source Serif 4", "Noto Serif SC", Georgia, serif; --font-body: "Source Sans 3", "Noto Sans SC", system-ui, sans-serif; }
+html[lang="en"] body { line-height: 1.7; }
+html[lang="en"] body * { letter-spacing: normal !important; }
+html[lang="en"] p, html[lang="en"] li, html[lang="en"] td, html[lang="en"] figcaption { hyphens: auto; -webkit-hyphens: auto; }
+html[lang="en"] p { text-wrap: pretty; }
+html[lang="en"] .toc a { grid-template-columns: 48px 1fr; }
+</style>
+</head>
+<body data-ch="4">
+<div class="topbar"><div class="topbar-inner"><div class="topbar-brand"><a class="site-home" href="/en/">hanoptions.trade</a><a class="brand" href="index.html">US Options <span>Course</span></a></div><div class="topbar-tools"><select id="ck-jump" aria-label="Jump to chapter"></select><a class="lang-switch" href="/options/ch04.html" hreflang="zh-CN" lang="zh-CN" data-lang="zh"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>中文</a></div></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">04</div>
+    <div class="eyebrow">US Options Course · Part 2 The core variables · Chapter 4</div>
+    <h1>Delta and <span class="g">gamma</span></h1>
+    <p class="deck">Delta tells you how much direction you are betting right now; Gamma tells you how fast that bet will grow or shrink on its own. Read these two numbers and, before you place an order, you can work out “how much I make if it rises, how much I lose if it falls, and what happens if I do nothing.”</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="In this chapter">
+    <p class="toc-title">In this chapter</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>Opening: the position grew on its own</span></a></li>
+      <li><a href="#s1"><span class="n">4.1</span><span>Three ways to read delta</span></a></li>
+      <li><a href="#s2"><span class="n">4.2</span><span>How delta changes</span></a></li>
+      <li><a href="#s3"><span class="n">4.3</span><span>Portfolio delta and beta weighting</span></a></li>
+      <li><a href="#s4"><span class="n">4.4</span><span>Gamma: the speed of delta</span></a></li>
+      <li><a href="#s5"><span class="n">4.5</span><span>The delta–gamma P&amp;L approximation</span></a></li>
+      <li><a href="#s6"><span class="n">4.6</span><span>The gamma–theta trade-off</span></a></li>
+      <li><a href="#s7"><span class="n">4.7</span><span>A gamma scalping walkthrough</span></a></li>
+      <li><a href="#s8"><span class="n">4.8</span><span>Market-maker gamma and the market</span></a></li>
+      <li><a href="#cases"><span class="n">Cases</span><span>Three cases</span></a></li>
+      <li><a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>In this chapter</summary>
+      <ol>
+        <li><a href="#open">Opening: the position grew on its own</a></li>
+        <li><a href="#s1">4.1 Three ways to read delta</a></li>
+        <li><a href="#s2">4.2 How delta changes</a></li>
+        <li><a href="#s3">4.3 Portfolio delta and beta weighting</a></li>
+        <li><a href="#s4">4.4 Gamma: the speed of delta</a></li>
+        <li><a href="#s5">4.5 The delta–gamma P&amp;L approximation</a></li>
+        <li><a href="#s6">4.6 The gamma–theta trade-off</a></li>
+        <li><a href="#s7">4.7 A gamma scalping walkthrough</a></li>
+        <li><a href="#s8">4.8 Market-maker gamma and the market</a></li>
+        <li><a href="#cases">Three cases</a></li>
+        <li><a href="#tools">Checklist and self-test</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>After this chapter you can</h4>
+        <ul>
+          <li>Convert any options position into “how many shares it equals”</li>
+          <li>Estimate your P&amp;L for ±3% and ±5% moves before placing an order</li>
+          <li>Work out how far the stock must “move” each day for a long option to break even</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Prerequisites</h4>
+        <ul>
+          <li>Chapter 1: the four basic positions and payoff diagrams at expiry</li>
+          <li>Chapter 3: the six inputs to premium</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Conventions</h4>
+        <ul>
+          <li>Examples use Black-Scholes, a 4% rate, no dividends</li>
+          <li>Days are calendar days; a year is 365 days</li>
+          <li>One contract = 100 shares</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">Opening</span>The position grew on its own</h2>
+      <p class="lead">You buy 10 at-the-money calls: stock at $100, strike 100, 5 days to expiry, implied volatility 30%. Over the next few days you don't add a single contract, and the stock rises only 2%.</p>
+      <p>On the day you buy, each option's Delta is <span class="num">0.513</span>, so 10 contracts are equivalent to holding <span class="num">513</span> shares. By the last day, with the stock at $102 and 1 day to expiry, Delta has become <span class="num">0.899</span>, equivalent to <span class="num">899</span> shares. You did nothing, yet your directional exposure grew by 75%.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 4-0 Share equivalent of 10 contracts of the 100 call over the last five days before expiry</caption>
+          <thead><tr><th>Time</th><th>Stock price</th><th>Days left</th><th>Delta per contract</th><th>Equivalent shares</th><th>Option price</th></tr></thead>
+          <tbody>
+            <tr><td>Day 1</td><td class="mono">100.0</td><td class="mono">5</td><td class="mono">0.513</td><td class="mono">513</td><td class="mono">1.43</td></tr>
+            <tr><td>Day 2</td><td class="mono">100.8</td><td class="mono">4</td><td class="mono">0.612</td><td class="mono">612</td><td class="mono">1.72</td></tr>
+            <tr><td>Day 3</td><td class="mono">101.2</td><td class="mono">3</td><td class="mono">0.679</td><td class="mono">679</td><td class="mono">1.82</td></tr>
+            <tr><td>Day 4</td><td class="mono">101.6</td><td class="mono">2</td><td class="mono">0.769</td><td class="mono">769</td><td class="mono">1.93</td></tr>
+            <tr class="hl"><td>Day 5</td><td class="mono">102.0</td><td class="mono">1</td><td class="mono">0.899</td><td class="mono">899</td><td class="mono">2.09</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>This is Gamma at work: it makes Delta change automatically with price and time. Stock has no such property; 100 shares are always 100 shares. Option risk can “grow on its own,” and this chapter teaches you to see it coming.</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">4.1</span>Three ways to read delta</h2>
+      <p>The same Delta number can be used in three ways. All three are valid, but each has its limits.</p>
+
+      <h3>Reading 1: price sensitivity</h3>
+      <p>When the underlying rises $1, the option's price changes by about Delta dollars. For a call with a Delta of <span class="num">0.53</span>, a move in the stock from 100 to 101 takes the option from about <span class="num">3.59</span> to <span class="num">4.12</span>. Call Deltas lie between 0 and 1; put Deltas lie between −1 and 0.</p>
+
+      <h3>Reading 2: hedge ratio and “share equivalent”</h3>
+      <p>Delta × 100 is the number of shares one contract is equivalent to. This is the most practical reading, because it lets you add up stock and different options directly.</p>
+      <div class="formula">
+        <div class="eq">Position Delta <span class="up">=</span> Σ <span class="up">(</span>Delta per contract <span class="up">× 100 ×</span> contracts <span class="up">× direction)</span></div>
+        <p class="where">Direction: +1 for long, −1 for short. Each share of stock always has a Delta of 1.</p>
+      </div>
+      <ul>
+        <li>Buy 2 calls with Delta 0.40: <span class="num">+0.40 × 100 × 2 = +80</span> shares</li>
+        <li>Sell 3 puts with Delta −0.30: <span class="num">−0.30 × 100 × 3 × (−1) = +90</span> shares</li>
+        <li>Total <span class="num">+170</span>: directionally the same as holding 170 shares. Selling a put is bullish, just like buying a call</li>
+      </ul>
+
+      <h3>Reading 3: probability of expiring in the money (approximate)</h3>
+      <p>Delta is often used as the “probability of expiring in the money.” That is only an approximation: in Black-Scholes, Delta is <span class="v">N</span>(<span class="v">d</span><sub>1</sub>), while the risk-neutral probability of finishing in the money is <span class="v">N</span>(<span class="v">d</span><sub>2</sub>), and the former is always slightly larger. Also, this is the probability implied by market prices, not the real-world probability.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 4-1 Delta vs. probability, stock $100, 30 days, IV 30%</caption>
+          <thead><tr><th>Call strike</th><th>Delta N(d₁)</th><th>Probability ITM at expiry N(d₂)</th><th>Probability of touching the strike before expiry ≈ 2 × N(d₂)</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">105</td><td class="mono">0.313</td><td class="mono">0.284</td><td class="mono">≈ 0.57</td></tr>
+            <tr><td class="mono">110</td><td class="mono">0.152</td><td class="mono">0.133</td><td class="mono">≈ 0.27</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <span class="tag">Key point</span>
+        <p>“The probability of touching is about twice the probability of finishing in the money” matters especially to sellers. A call with a Delta of 0.15 has only a little over a 10% chance of expiring in the money, but nearly a 30% chance that the stock touches 110 during those 30 days. A seller's stop-loss usually gets hit on the touch, not at expiry.</p>
+      </div>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">4.2</span>How delta changes</h2>
+      <p>Three things push Delta around: price, time and volatility. The effect of price on Delta is Gamma (Section 4.4); the effects of time and volatility have their own names, Charm and Vanna. Get a feel for them first with the chart below.</p>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">Delta's S-curve against the stock price</span><span class="fig-no">Figure 4-1 · Strike 100, interactive</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Option type">
+            <button type="button" data-kind="c" aria-pressed="true">Call</button>
+            <button type="button" data-kind="p" aria-pressed="false">Put</button>
+          </div>
+          <label class="ctl" for="f1-dte">Days left <input id="f1-dte" type="range" min="1" max="120" value="30"> <output id="f1-dte-o">30 days</output></label>
+          <label class="ctl" for="f1-iv">Implied volatility <input id="f1-iv" type="range" min="10" max="80" value="30"> <output id="f1-iv-o">30%</output></label>
+        </div>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 320" role="img" aria-label="Delta as a function of the stock price"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>Current settings</span><span><i class="dash" style="border-color: var(--muted)"></i>Reference: 30 days, IV 30%</span></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small>Stock at 95</small></div>
+          <div><b id="f1-r2">—</b><small>Stock at 100</small></div>
+          <div><b id="f1-r3">—</b><small>Stock at 105</small></div>
+        </div>
+        <figcaption>Drag the days left down to 1–3 and the curve becomes an almost vertical step: near the money, a tiny price change makes Delta jump from 0.2 to 0.8. Raise implied volatility and the curve flattens: out-of-the-money Deltas are pushed up and in-the-money Deltas are pulled down.</figcaption>
+      </figure>
+
+      <h3>Price: the closer to the money, the faster delta changes</h3>
+      <div class="tbl">
+        <table>
+          <caption>Table 4-2 Call Delta by strike, stock $100, IV 30%</caption>
+          <thead><tr><th>Strike</th><th>85</th><th>90</th><th>95</th><th>100</th><th>105</th><th>110</th><th>115</th></tr></thead>
+          <tbody>
+            <tr><td>30-day call</td><td class="mono">0.98</td><td class="mono">0.90</td><td class="mono">0.75</td><td class="mono">0.53</td><td class="mono">0.31</td><td class="mono">0.15</td><td class="mono">0.06</td></tr>
+            <tr><td>5-day call</td><td class="mono">1.00</td><td class="mono">1.00</td><td class="mono">0.93</td><td class="mono">0.51</td><td class="mono">0.09</td><td class="mono">0.00</td><td class="mono">0.00</td></tr>
+            <tr><td>30-day put</td><td class="mono">−0.02</td><td class="mono">−0.10</td><td class="mono">−0.25</td><td class="mono">−0.47</td><td class="mono">−0.69</td><td class="mono">−0.85</td><td class="mono">−0.94</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Put Delta equals call Delta minus 1 (same strike, same expiration). So the at-the-money call is about 0.53 and the at-the-money put about −0.47, not an even split: d₁ contains a drift term from the interest rate and volatility, which puts the at-the-money call's Delta slightly above 0.5.</p>
+
+      <h3>Time: charm pushes delta toward 0 or 1</h3>
+      <p>Even if nothing else changes, Delta changes as a day passes. This rate of change is called <strong>Charm</strong>. Out-of-the-money Deltas drift toward 0 each day, and in-the-money Deltas drift toward 1. Going from 30 days to 29, the 110 call's Delta drops from <span class="num">0.152</span> to <span class="num">0.148</span>; with 10 days left it is only <span class="num">0.031</span>. The 90 call, meanwhile, rises from <span class="num">0.904</span> to <span class="num">0.985</span> at 10 days.</p>
+      <div class="note warn">
+        <span class="tag">Watch out</span>
+        <p>Before the Friday close, market makers adjust their hedges on large numbers of options about to expire. Out-of-the-money Deltas collapse to zero and the stock held against them is unwound; that flow comes from Charm. A lot of “unexplained moves on expiration-day afternoons” are related to this.</p>
+      </div>
+
+      <h3>Volatility: vanna changes delta</h3>
+      <p>The change in Delta for each 1-point change in implied volatility is called <strong>Vanna</strong>. The 110 call (30 days) has a Delta of <span class="num">0.152</span> at IV 30%; if IV rises to 31%, it becomes <span class="num">0.161</span>; at 40%, <span class="num">0.228</span>; if IV falls to 20%, only <span class="num">0.057</span>.</p>
+      <p>This means that when IV collapses after earnings, both the price and the Delta of your out-of-the-money options shrink at the same time: even if you're right on direction, you capture less of the move.</p>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">4.3</span>Portfolio delta and beta weighting</h2>
+      <p>When you hold several stocks and options, the Delta of each position on its own can't answer “how much am I betting on the market overall?” The solution is to convert every position into “how many shares of SPY it equals.”</p>
+      <div class="formula">
+        <div class="eq">SPY-equivalent shares <span class="up">=</span> Position Delta <span class="up">×</span> <span class="frac"><span>Stock price</span><span>SPY price</span></span> <span class="up">×</span> β</div>
+        <p class="where">Position Delta is expressed in shares; β is the stock's Beta to the S&amp;P 500. The price ratio converts “shares” into “dollars” and then back into SPY shares.</p>
+      </div>
+      <p>Example: SPY is at $780. 200 shares of Stock A at $150 with β 1.3 equal <span class="num">200 × 150 / 780 × 1.3 = 50</span> shares of SPY. The calculator below comes filled in with three positions; you can replace them with your own.</p>
+
+      <figure class="plate calc" id="calc">
+        <div class="fig-head"><span class="fig-title">Beta-weighted delta calculator</span><span class="fig-no">Tool 4-A · Editable</span></div>
+        <div class="spy"><label for="c-spy">SPY price</label><input id="c-spy" type="number" value="780" step="1"><span>Delta of the SPY put used to hedge</span><input id="c-hd" type="number" value="-0.40" step="0.05" aria-label="Delta of the hedging option"></div>
+        <div class="tbl" style="margin: 0;">
+          <table id="c-tbl">
+            <thead><tr><th>Position</th><th>Type</th><th>Quantity</th><th>Delta per unit</th><th>Underlying price</th><th>β</th><th>SPY-equivalent shares</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="readout">
+          <div><b id="c-total">—</b><small>Portfolio total: SPY-equivalent shares</small></div>
+          <div><b id="c-usd">—</b><small>Equivalent SPY market value</small></div>
+          <div><b id="c-hedge">—</b><small>SPY puts to buy for a full hedge</small></div>
+        </div>
+        <figcaption>When the type is “Option,” enter the number of contracts as the quantity (negative for short) and the per-contract Delta as Delta per unit; when it is “Stock,” enter the number of shares, and Delta per unit is fixed at 1.</figcaption>
+      </figure>
+      <div class="note warn">
+        <span class="tag">Mind the units</span>
+        <p>The portfolio above totals about 300 shares of SPY. To hedge it, you short about 300 <strong>shares</strong> of SPY, or buy about 7–8 <strong>contracts</strong> of an SPY put with Delta −0.40 (−40 shares each). Mistake “300” for a number of contracts and your hedge is off by a factor of 100.</p>
+      </div>
+      <p>Beta weighting often exposes “hidden concentration”: three tech stocks that look unrelated plus a QQQ call may, once converted, all be the same directional market exposure. Positions in tech, high-Beta stocks, small caps and calls are often one and the same directional risk; you can't count tickers and conclude you are diversified.</p>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">4.4</span>Gamma: the speed of delta</h2>
+      <p>Gamma is the change in Delta for each $1 rise in the underlying. If Delta is your speed, Gamma is the gas pedal.</p>
+      <ul>
+        <li><strong>Sign</strong>: long options (calls or puts) have positive Gamma; short options have negative Gamma; stock has zero Gamma.</li>
+        <li><strong>Positive Gamma</strong>: Delta grows as the stock rises (you get longer as it goes up) and shrinks as it falls (you get less long as it goes down). The P&amp;L curve bends upward.</li>
+        <li><strong>Negative Gamma</strong>: the exact opposite. You get shorter as the stock rises and longer as it falls, and the P&amp;L curve bends downward.</li>
+      </ul>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">Gamma peaks at the money and spikes near expiry</span><span class="fig-no">Figure 4-2 · Strike 100, IV 30%</span></div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 320" role="img" aria-label="Gamma curves for different days to expiry"></svg>
+        <div class="legend" id="f2-legend"></div>
+        <figcaption>The same at-the-money option has a Gamma of about 0.033 with 60 days left and about 0.18 with 2 days left, more than five times larger. The out-of-the-money 110, by contrast, has almost no Gamma near expiry: it is too far away to move Delta much anymore.</figcaption>
+      </figure>
+
+      <div class="tbl">
+        <table>
+          <caption>Table 4-3 Gamma and Theta of an at-the-money option (stock and strike both 100, IV 30%)</caption>
+          <thead><tr><th>Days left</th><th>Gamma</th><th>Delta gain per contract after a $1 rise (shares)</th><th>Daily Theta (per share, $)</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">365</td><td class="mono">0.0128</td><td class="mono">1.3</td><td class="mono">−0.021</td></tr>
+            <tr><td class="mono">90</td><td class="mono">0.0265</td><td class="mono">2.7</td><td class="mono">−0.038</td></tr>
+            <tr><td class="mono">30</td><td class="mono">0.0462</td><td class="mono">4.6</td><td class="mono">−0.062</td></tr>
+            <tr><td class="mono">7</td><td class="mono">0.0960</td><td class="mono">9.6</td><td class="mono">−0.124</td></tr>
+            <tr><td class="mono">2</td><td class="mono">0.1796</td><td class="mono">18.0</td><td class="mono">−0.227</td></tr>
+            <tr class="hl"><td class="mono">1</td><td class="mono">0.2540</td><td class="mono">25.4</td><td class="mono">−0.319</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Notice that Gamma and Theta grow together. This is no coincidence; as Section 4.6 explains, Theta is the price of Gamma.</p>
+
+      <h3>Comparing across underlyings: use “dollar gamma”</h3>
+      <p>Gamma's unit is “change in Delta per $1.” A $1 move is 10% for a $10 stock but only 0.1% for an $800 stock, so you can't compare Gamma directly across underlyings at different prices. In practice people use <strong>1% dollar Gamma</strong>: how many dollars' worth of stock your Delta changes by when the stock moves 1%.</p>
+      <div class="formula">
+        <div class="eq">1% dollar Gamma <span class="up">=</span> Γ <span class="up">× 100 ×</span> contracts <span class="up">×</span> <span class="v">S</span> <span class="up">× (1% ×</span> <span class="v">S</span><span class="up">)</span></div>
+        <p class="where">This is the quantity Section 4.8 uses to estimate market makers' Gamma exposure.</p>
+      </div>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">4.5</span>The delta–gamma P&amp;L approximation</h2>
+      <p>The single most useful formula before you place an order: use the current Delta and Gamma to estimate the P&amp;L after a stock move of Δ<span class="v">S</span>.</p>
+      <div class="formula">
+        <div class="eq">P&amp;L <span class="up">≈</span> <span class="d">Δ</span> <span class="up">·</span> Δ<span class="v">S</span> <span class="up">+</span> <span class="frac"><span>1</span><span>2</span></span> <span class="gm">Γ</span> <span class="up">·</span> (Δ<span class="v">S</span>)<sup>2</sup> <span class="up">+</span> <span class="v">Vega</span> <span class="up">·</span> Δσ <span class="up">+</span> <span class="th">Θ</span> <span class="up">·</span> Δ<span class="v">t</span></div>
+        <p class="where">The first two terms are the familiar Delta–Gamma approximation. The last two are the effects of volatility and time; they are often ignored, but around earnings they are usually the main event (see Case 2).</p>
+      </div>
+      <p>Take a 30-day at-the-money call: Delta <span class="num">0.532</span>, Gamma <span class="num">0.0462</span>, price <span class="num">3.591</span>. If the stock rises $5, the approximation gives <span class="num">0.532 × 5 + ½ × 0.0462 × 25 = 3.24</span>; repricing with Black-Scholes gives <span class="num">3.207</span>. If it falls $5, the approximation gives <span class="num">−2.084</span> and the actual result is <span class="num">−2.082</span>. For the same $5, the gain on the way up beats the loss on the way down: that is the asymmetry of positive Gamma.</p>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">The approximation is nearly perfect for small moves and drifts off for large ones</span><span class="fig-no">Figure 4-3 · 30-day ATM call, P&amp;L per share</span></div>
+        <div class="controls">
+          <label class="ctl" for="f3-iv">IV change <input id="f3-iv" type="range" min="-25" max="25" value="0"> <output id="f3-iv-o">0 points</output></label>
+          <label class="ctl" for="f3-t">Days passed <input id="f3-t" type="range" min="0" max="20" value="0"> <output id="f3-t-o">0 days</output></label>
+        </div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 320" role="img" aria-label="Actual vs. approximate P&amp;L"></svg>
+        <div class="legend"><span><i style="border-color: var(--ink)"></i>Actual P&amp;L (repriced)</span><span><i class="dash" style="border-color: var(--delta)"></i>Delta only</span><span><i style="border-color: var(--gamma)"></i>Delta + Gamma</span></div>
+        <figcaption>With both sliders at 0, the pink and black lines nearly coincide within ±5. Drag IV down 20 points and the whole black line sinks while the approximation doesn't budge: this is where “right on direction but still losing money” comes from after earnings. Drag the days passed to the right and you can watch Theta eat the premium day by day.</figcaption>
+      </figure>
+
+      <div class="tbl">
+        <table>
+          <caption>Table 4-4 Approximation vs. full repricing (per share, IV and time unchanged)</caption>
+          <thead><tr><th>Stock move</th><th>Actual P&amp;L</th><th>Delta only</th><th>Delta + Gamma</th><th>Error</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">−10</td><td class="mono">−3.122</td><td class="mono">−5.324</td><td class="mono">−3.012</td><td class="mono">+0.110</td></tr>
+            <tr><td class="mono">−5</td><td class="mono">−2.082</td><td class="mono">−2.662</td><td class="mono">−2.084</td><td class="mono">−0.002</td></tr>
+            <tr><td class="mono">−3</td><td class="mono">−1.387</td><td class="mono">−1.597</td><td class="mono">−1.389</td><td class="mono">−0.002</td></tr>
+            <tr><td class="mono">+3</td><td class="mono">+1.799</td><td class="mono">+1.597</td><td class="mono">+1.805</td><td class="mono">+0.006</td></tr>
+            <tr><td class="mono">+5</td><td class="mono">+3.207</td><td class="mono">+2.662</td><td class="mono">+3.240</td><td class="mono">+0.033</td></tr>
+            <tr><td class="mono">+10</td><td class="mono">+7.300</td><td class="mono">+5.324</td><td class="mono">+7.635</td><td class="mono">+0.335</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <span class="tag">When to trust it</span>
+        <ul>
+          <li>Move within 1 daily standard deviation (about <span class="v">S</span> × IV ÷ 19): the error is negligible</li>
+          <li>Move beyond 2–3 standard deviations, or less than a week to expiry: Gamma itself is changing fast, and the error grows quickly</li>
+          <li>An event ahead (earnings, FOMC): you must add the Vega term, and it is better to reprice outright</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">4.6</span>The gamma–theta trade-off</h2>
+      <p>Buying options gets you positive Gamma at the cost of paying Theta every day; selling options collects Theta at the cost of carrying negative Gamma. The two aren't independent: the Black-Scholes equation ties them together.</p>
+      <div class="formula">
+        <div class="eq"><span class="th">Θ</span> <span class="up">+</span> <span class="frac"><span>1</span><span>2</span></span> σ<sup>2</sup><span class="v">S</span><sup>2</sup><span class="gm">Γ</span> <span class="up">+</span> <span class="v">rS</span><span class="d">Δ</span> <span class="up">−</span> <span class="v">rV</span> <span class="up">= 0</span></div>
+        <p class="where">Drop the interest-rate terms and you get Θ ≈ −½ σ² S² Γ: the size of Theta is proportional to Gamma. The bigger an option's Gamma, the bigger its daily time decay.</p>
+      </div>
+      <h3>How far the stock must move each day to break even</h3>
+      <p>If you buy an option and hedge its Delta to zero with stock, a day's P&amp;L has only two terms left: ½Γ(Δ<span class="v">S</span>)² from Gamma, minus Theta. Set them equal and you get the daily move needed to break even:</p>
+      <div class="formula">
+        <div class="eq">|Δ<span class="v">S</span>|<sub>breakeven</sub> <span class="up">=</span> √<span class="up">(</span>2|<span class="th">Θ</span>| / <span class="gm">Γ</span><span class="up">)</span> <span class="up">≈</span> <span class="frac"><span><span class="v">S</span> <span class="up">×</span> σ</span><span>√365</span></span> <span class="up">≈</span> <span class="frac"><span><span class="v">S</span> <span class="up">×</span> σ</span><span>19</span></span></div>
+        <p class="where">Counting calendar days, you divide by √365 ≈ 19. Traders often say “divide by 16”; that counts trading days (√252 ≈ 15.9, rounded to 16): the weekend's two days of time decay are folded into Friday, so each trading day requires a bigger move.</p>
+      </div>
+      <p>30-day at-the-money call: Theta <span class="num">−0.0624</span>, Gamma <span class="num">0.0462</span>, breakeven move <span class="num">√(2 × 0.0624 / 0.0462) = $1.64</span>. The shortcut gives <span class="num">100 × 0.30 / 19.1 = $1.57</span>; the small gap comes from the interest-rate term. Under the trading-day convention it is <span class="num">100 × 0.30 / 16 ≈ $1.88</span>.</p>
+
+      <figure class="plate" id="fig4">
+        <div class="fig-head"><span class="fig-title">Hedged daily P&amp;L is a parabola</span><span class="fig-no">Figure 4-4 · ATM call + stock hedge, per share</span></div>
+        <div class="controls">
+          <label class="ctl" for="f4-dte">Days left <input id="f4-dte" type="range" min="2" max="90" value="30"> <output id="f4-dte-o">30 days</output></label>
+          <label class="ctl" for="f4-iv">Implied volatility <input id="f4-iv" type="range" min="10" max="80" value="30"> <output id="f4-iv-o">30%</output></label>
+        </div>
+        <svg class="chart" id="f4-svg" viewBox="0 0 680 320" role="img" aria-label="Parabola of hedged daily P&amp;L against the stock move"></svg>
+        <div class="readout">
+          <div><b id="f4-r1">—</b><small>Daily move to break even</small></div>
+          <div><b id="f4-r2">—</b><small>Shortcut S·σ/√365</small></div>
+          <div><b id="f4-r3">—</b><small>Daily loss if the stock stays put</small></div>
+        </div>
+        <figcaption>Between the parabola's two crossings of the horizontal axis (the shaded area) is the loss zone: the stock didn't move enough for Gamma's gains to cover Theta. Reduce the days left and the parabola gets narrower and deeper: more Gamma, but more expensive Theta.</figcaption>
+      </figure>
+      <div class="note gam">
+        <span class="tag">Bottom line</span>
+        <p>Buying options is essentially a bet that “realized volatility will exceed implied volatility”; selling options is the opposite bet. Direction is only part of the trade.</p>
+      </div>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">4.7</span>A gamma scalping walkthrough</h2>
+      <p>Gamma scalping turns the conclusion of Section 4.6 into a procedure: buy options to get positive Gamma, then every time the stock moves, use stock to bring Delta back to zero. Positive Gamma makes the process “sell high, buy low” automatically: when the stock rises, Delta grows and you sell stock; when it falls, Delta shrinks and you buy it back.</p>
+      <p>Here is a concrete position over five days: buy 10 at-the-money 30-day straddles (10 calls + 10 puts, strike 100, IV 30%), hedge to zero at each close, and assume slippage of $0.02 per share. The starting position has Gamma of about 92.5 shares per dollar and Theta of about −$114 a day.</p>
+
+      <figure class="plate" id="fig5">
+        <div class="fig-head"><span class="fig-title">One position, two scenarios</span><span class="fig-no">Figure 4-5 · 10 straddles, hedged at each close</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Choose a scenario">
+            <button type="button" data-path="A" aria-pressed="true">Scenario A: big swings back and forth</button>
+            <button type="button" data-path="B" aria-pressed="false">Scenario B: barely moves</button>
+          </div>
+        </div>
+        <svg class="chart" id="f5-svg" viewBox="0 0 680 260" role="img" aria-label="Price path and hedge trades"></svg>
+        <div class="legend"><span><i style="border-color: var(--ink)"></i>Close</span><span style="color: var(--gamma)">▼ Sell stock</span><span style="color: var(--theta)">▲ Buy stock</span></div>
+        <div class="tbl" style="margin-bottom: 8px;">
+          <table id="f5-tbl">
+            <thead><tr><th>Day</th><th>Close</th><th>Move</th><th>Option P&amp;L</th><th>Hedge P&amp;L</th><th>Rebalance (shares)</th><th>Day total</th><th>Cumulative</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="readout">
+          <div><b id="f5-r1">—</b><small>Cumulative P&amp;L after five hedged days</small></div>
+          <div><b id="f5-r2">—</b><small>Same period, straddle unhedged</small></div>
+          <div><b id="f5-r3">—</b><small>Realized volatility of this path</small></div>
+        </div>
+        <figcaption>In Scenario A the stock closes day 5 at 101.9, nearly back where it started; holding the straddle unhedged would lose $304. Hedged, you sell high and buy low every day and make $797 over five days. In Scenario B the moves are too small: Gamma earns only a dozen or so dollars a day while Theta takes $114, and you lose $542 over five days. The dividing line between the two outcomes is whether realized volatility exceeds the 30% implied volatility you bought at.</figcaption>
+      </figure>
+      <h3>Extra costs in the real world</h3>
+      <ul>
+        <li><strong>Hedging frequency</strong>: the more often you hedge, the closer you get to the theoretical value, but the higher your commissions and slippage. In practice, traders often hedge when Delta drifts past a threshold (say, beyond ±50 shares) rather than on a fixed schedule.</li>
+        <li><strong>Gaps</strong>: an overnight gap leaves you no time to rebalance. Positive Gamma benefits from gaps; negative Gamma is most dangerous in them.</li>
+        <li><strong>IV changes</strong>: the walkthrough assumes IV stays constant. If IV falls after you buy, the straddle loses extra value, and the scalping profit may be swallowed by the Vega loss.</li>
+      </ul>
+      <div class="note warn">
+        <span class="tag">For individual traders</span>
+        <p>This is routine work for market makers, but for individuals it is costly and demanding. The more realistic use is to read it the other way around: when you sell options to collect Theta, you are on the other side of this table, profiting from “Scenario B” and fearing “Scenario A.”</p>
+      </div>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">4.8</span>Market-maker gamma and the market</h2>
+      <p>Market makers usually hedge the Delta of the options they sell, and the Gamma they hold determines whether those hedges push prices along or hold them back.</p>
+
+      <figure class="plate" id="fig6">
+        <div class="fig-head"><span class="fig-title">Market makers' gamma sign sets the direction of their hedging</span><span class="fig-no">Figure 4-6 · Schematic</span></div>
+        <div class="scroll-x"><svg class="chart wide" viewBox="0 0 680 300" role="img" aria-label="Positive gamma dampens moves; negative gamma amplifies them">
+          <g class="ax" font-size="12">
+            <text x="170" y="26" text-anchor="middle" style="fill: var(--theta); font-family: var(--font-body); font-weight: 700; font-size: 15px">Market makers net long Gamma (positive)</text>
+            <text x="510" y="26" text-anchor="middle" style="fill: var(--gamma); font-family: var(--font-body); font-weight: 700; font-size: 15px">Market makers net short Gamma (negative)</text>
+          </g>
+          <line x1="340" y1="12" x2="340" y2="288" style="stroke: var(--rule)" stroke-width="1"></line>
+          <defs>
+            <marker id="arr-t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--theta)"></path></marker>
+            <marker id="arr-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--gamma)"></path></marker>
+            <marker id="arr-i" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--muted)"></path></marker>
+          </defs>
+          <!-- left: dampening -->
+          <g style="font-family: var(--font-body); font-size: 13.5px">
+            <rect x="40" y="52" width="260" height="44" rx="6" style="fill: var(--tint-theta); stroke: var(--theta)"></rect>
+            <text x="170" y="79" text-anchor="middle" style="fill: var(--ink)">Stock rises → market-maker Delta rises</text>
+            <path d="M170 96 V122" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#arr-i)"></path>
+            <rect x="40" y="124" width="260" height="44" rx="6" style="fill: none; stroke: var(--rule)"></rect>
+            <text x="170" y="151" text-anchor="middle" style="fill: var(--ink)">Back to neutral: sell stock</text>
+            <path d="M170 168 V194" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#arr-i)"></path>
+            <rect x="40" y="196" width="260" height="44" rx="6" style="fill: none; stroke: var(--rule)"></rect>
+            <text x="170" y="223" text-anchor="middle" style="fill: var(--ink)">Selling offsets the rise; price “pins”</text>
+            <path d="M60 272 C 110 252, 140 290, 180 270 S 250 260, 290 270" style="fill: none; stroke: var(--theta)" stroke-width="2.2"></path>
+            <text x="170" y="294" text-anchor="middle" style="fill: var(--muted); font-size: 12px">Narrower swings, mean reversion</text>
+          </g>
+          <!-- right: amplifying -->
+          <g style="font-family: var(--font-body); font-size: 13.5px">
+            <rect x="380" y="52" width="260" height="44" rx="6" style="fill: var(--tint-gamma); stroke: var(--gamma)"></rect>
+            <text x="510" y="79" text-anchor="middle" style="fill: var(--ink)">Stock falls → market-maker Delta rises</text>
+            <path d="M510 96 V122" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#arr-i)"></path>
+            <rect x="380" y="124" width="260" height="44" rx="6" style="fill: none; stroke: var(--rule)"></rect>
+            <text x="510" y="151" text-anchor="middle" style="fill: var(--ink)">Back to neutral: sell more stock</text>
+            <path d="M510 168 V194" style="stroke: var(--muted)" stroke-width="1.4" marker-end="url(#arr-i)"></path>
+            <rect x="380" y="196" width="260" height="44" rx="6" style="fill: none; stroke: var(--rule)"></rect>
+            <text x="510" y="223" text-anchor="middle" style="fill: var(--ink)">Selling chases the drop and deepens it</text>
+            <path d="M400 252 L 450 256 L 490 264 L 540 262 L 580 272 L 630 280" style="fill: none; stroke: var(--gamma)" stroke-width="2.2"></path>
+            <text x="510" y="294" text-anchor="middle" style="fill: var(--muted); font-size: 12px">Chasing moves, trends accelerate</text>
+          </g>
+        </svg></div>
+        <figcaption>In a positive-Gamma environment, market makers' hedging goes “against the trend,” so the market tends to trade sideways and get pinned near strikes with large open positions. In a negative-Gamma environment, hedging goes “with the trend,” and moves in both directions get amplified. The price level that divides the two environments is what people call the Gamma Flip.</figcaption>
+      </figure>
+
+      <h3>How to estimate market makers' gamma exposure</h3>
+      <p>No one can see market makers' positions directly. All the GEX (Gamma exposure) data out there is estimated, and the most common method has three steps:</p>
+      <ol>
+        <li>For each strike, multiply open interest (OI) by the Gamma of the options at that strike, then convert to 1% dollar Gamma as in Section 4.4.</li>
+        <li>Assume market makers are net long calls and net short puts (customers mostly sell covered calls and buy protective puts). Calls then contribute a positive sign and puts a negative one.</li>
+        <li>Sum across all strikes to get net GEX; repeat the calculation at different hypothetical stock prices, and the level where the net value flips from positive to negative is the Gamma Flip.</li>
+      </ol>
+      <div class="tbl">
+        <table>
+          <caption>Table 4-5 Two hypothetical strikes (SPY $780, 7 days to expiry, IV 16%)</caption>
+          <thead><tr><th>Contract</th><th>Open interest</th><th>Gamma per contract</th><th>1% dollar Gamma</th><th>Sign for market makers</th></tr></thead>
+          <tbody>
+            <tr><td>780 call</td><td class="mono">60,000</td><td class="mono">0.0231</td><td class="mono">$842M</td><td class="mono pos">+</td></tr>
+            <tr><td>770 put</td><td class="mono">80,000</td><td class="mono">0.0190</td><td class="mono">$922M</td><td class="mono neg">−</td></tr>
+            <tr class="hl"><td>Net</td><td></td><td></td><td class="mono">−$80M</td><td>Slightly negative Gamma</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>How to read it: if market makers really held these positions, every 1% drop in SPY would force them to sell about $80 million more stock to stay neutral. The numbers are hypothetical, to illustrate the method.</p>
+      <div class="note warn">
+        <span class="tag">Limits of the estimate</span>
+        <ul>
+          <li>“Market makers long calls, short puts” is only an average assumption; at individual strikes it may be the exact opposite</li>
+          <li>OI updates only once a day, so it misses same-day 0DTE flow</li>
+          <li>Vanna and Charm drive hedging too; looking at Gamma alone misses the flows caused by IV and time</li>
+        </ul>
+      </div>
+      <div class="note field">
+        <span class="tag">From the field</span>
+        <p>Many traders' pre-market notes use this framework. Before one triple-witching day, for example, a note judged that a break below SPY 760 favored buying puts while holding above 760 favored buying calls, on the grounds that positive Gamma dominated above 760. Another attributed a sharp MU rally to market-maker hedging driven by a large volume of calls expiring the next day, not to improving fundamentals. Another warned that for chip stocks on a winning streak, you should wait until after options expiration to draw conclusions: if they pull back after expiry, the rally was pushed up mainly by hedging flows. Barchart's Gamma page is a commonly used free place to check.</p>
+      </div>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">Cases</span>Three cases</h2>
+
+      <div class="case">
+        <div class="case-no">Case 1</div>
+        <h3>The same ±3% is a completely different position in the final days</h3>
+        <p>An at-the-money 100 call, IV 30%. Compare its Delta at stock prices of 97, 100 and 103 with different numbers of days left:</p>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Days left</th><th>Stock 97</th><th>Stock 100</th><th>Stock 103</th><th>Delta gap, 97 to 103</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">30</td><td class="mono">0.392</td><td class="mono">0.532</td><td class="mono">0.665</td><td class="mono">0.27</td></tr>
+              <tr><td class="mono">10</td><td class="mono">0.286</td><td class="mono">0.519</td><td class="mono">0.740</td><td class="mono">0.45</td></tr>
+              <tr><td class="mono">5</td><td class="mono">0.202</td><td class="mono">0.513</td><td class="mono">0.809</td><td class="mono">0.61</td></tr>
+              <tr><td class="mono">3</td><td class="mono">0.137</td><td class="mono">0.510</td><td class="mono">0.867</td><td class="mono">0.73</td></tr>
+              <tr class="hl"><td class="mono">1</td><td class="mono">0.027</td><td class="mono">0.506</td><td class="mono">0.971</td><td class="mono">0.94</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>With 30 days left, as the stock wobbles between 97 and 103, Delta moves only between 0.39 and 0.67, and the position behaves like a steady stock. With 1 day left, the same wobble makes Delta jump back and forth between 0.03 and 0.97: one moment you have almost no position, the next you are effectively fully long.</p>
+        <ul>
+          <li><strong>For buyers</strong>: an at-the-money option in its last few days is a lottery ticket. Your chance lies in a jump, but Theta rises in step with Gamma (Table 4-3).</li>
+          <li><strong>For sellers</strong>: the last few days collect the most premium, but one big up day can take you from “almost no risk” to “fully short.” This is why so many sellers' accounts get into trouble in expiration week.</li>
+        </ul>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 2</div>
+        <h3>A delta–gamma stress test before earnings that missed the biggest term</h3>
+        <p>Before earnings you buy 20 contracts of the 30-day at-the-money 100 call. IV has been bid up to 60% ahead of the report; the position has Delta of <span class="num">+1,084</span> shares, Gamma of <span class="num">46.1</span>, and Vega of about <span class="num">$227</span> per IV point. The day after earnings, IV falls back to 35%.</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 4-6 P&amp;L on 20 calls the day after earnings ($)</caption>
+            <thead><tr><th>Stock move</th><th>Delta–Gamma approximation</th><th>Repriced, IV unchanged</th><th>Repriced, IV down to 35%</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">−8</td><td class="mono neg">−7,194</td><td class="mono neg">−7,360</td><td class="mono neg">−11,798</td></tr>
+              <tr><td class="mono">−5</td><td class="mono neg">−4,842</td><td class="mono neg">−5,053</td><td class="mono neg">−10,147</td></tr>
+              <tr><td class="mono">0</td><td class="mono">0</td><td class="mono neg">−240</td><td class="mono neg">−5,839</td></tr>
+              <tr class="hl"><td class="mono">+5</td><td class="mono pos">+5,995</td><td class="mono pos">+5,739</td><td class="mono pos">+445</td></tr>
+              <tr><td class="mono">+8</td><td class="mono pos">+10,146</td><td class="mono pos">+9,835</td><td class="mono pos">+5,025</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The first two columns are close, so the Delta–Gamma estimate of the price effect is fine. The whole gap is in the third column: IV drops 25 points, times $227 per point, is a Vega loss of about $5,700. The stock rose 5% as expected, and you made only $445.</p>
+        <div class="note">
+          <span class="tag">Key point</span>
+          <p>Before an event, run at least two sets of stress tests: price × IV unchanged, and price × IV falling back to its normal pre-event level. If even “right on direction” doesn't make money in the second set, you picked the wrong structure; consider a spread (the two legs' Vega partly cancels) or a calendar spread.</p>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 3</div>
+        <h3>When options “push” a stock</h3>
+        <p>GameStop in January 2021 is the most famous example of negative-Gamma amplification. Retail traders bought short-dated out-of-the-money calls in huge numbers, and the market makers who sold them had to buy stock to hedge. The rising stock made those out-of-the-money Deltas grow quickly (Gamma), while soaring IV pushed Delta up further (Vanna). Market makers had to buy more and more stock, the buying drove the price higher, and the loop fed on itself.</p>
+        <p>You don't need an extreme case like this to use the logic. Day to day, the small-scale version is more common: a large pile of calls builds up at a strike near expiry, market makers buy stock to hedge, and the stock gets pushed toward that strike. A rally like this comes from an “options effect,” not from better fundamentals. The test is the same: after expiration, when the hedging demand disappears, see whether the price falls back.</p>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">Tools</span>Checklist and self-test</h2>
+      <p>Your checkmarks are saved only in your own browser.</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">4-1</span>Before the order: convert your directional exposure</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">For each leg, Delta × 100 × contracts × direction; add them up in shares</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">With several underlyings, use β to convert to SPY-equivalent shares</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">When hedging, confirm the unit: shares or contracts</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">4-2</span>Before the order: stress test</h4>
+          <ul>
+            <li><input type="checkbox" id="k4"><label for="k4">P&amp;L at ±1 daily standard deviation (S × IV ÷ 19)</label></li>
+            <li><input type="checkbox" id="k5"><label for="k5">At ±3 standard deviations, reprice fully instead of approximating</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">Event ahead: add a scenario with IV falling</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">4-3</span>While holding: gamma checkup</h4>
+          <ul>
+            <li><input type="checkbox" id="k7"><label for="k7">For at-the-money positions less than a week from expiry, recalculate Delta every day</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">Short positions: what is Delta if the stock touches the strike?</label></li>
+            <li><input type="checkbox" id="k9"><label for="k9">Don't be spooked by Charm-driven moves on expiration-day afternoons</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">4-4</span>Buy or sell: the gamma–theta balance</h4>
+          <ul>
+            <li><input type="checkbox" id="k10"><label for="k10">Work out the breakeven move S × IV ÷ 19 (calendar days)</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">Compare it with the recent average daily realized move</label></li>
+            <li><input type="checkbox" id="k12"><label for="k12">Buy only if realized moves are clearly bigger; consider selling only if they are clearly smaller</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Self-test: five questions</h3>
+      <details class="q"><summary><span class="num">1</span><span>You buy 5 calls with Delta 0.40 and sell 2 puts with Delta −0.30. How many shares is the position equivalent to?</span></summary>
+        <div class="ans"><p><span class="num">5 × 40 + 2 × 30 = 260</span> shares. The short put's Delta is −0.30 × (−1) = +0.30, so it is bullish too.</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>For at-the-money options at the same strike, which has more Gamma: 2 days left or 60 days left? Roughly how many times more?</span></summary>
+        <div class="ans"><p>The one with 2 days left. At IV 30% it is about 0.180 vs. 0.033, more than five times larger. At-the-money Gamma is roughly inversely proportional to the square root of the time left.</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>The stock is at $200 with IV 40%. You buy an at-the-money option and hedge its Delta. Roughly how much does the stock need to move each day for you to break even?</span></summary>
+        <div class="ans"><p>Calendar days: <span class="num">200 × 0.40 / 19.1 ≈ $4.2</span>; trading-day convention: <span class="num">200 × 0.40 / 16 = $5.0</span>.</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>The stock hasn't moved, but IV rises from 30% to 40%. What happens to the Delta of your 110 call (30 days)? What is this called?</span></summary>
+        <div class="ans"><p>It rises from 0.152 to 0.228. This is Vanna: a change in volatility causing a change in Delta. Out-of-the-money options' Deltas grow as IV rises.</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>After earnings the stock rises 5% as you expected. Your Delta–Gamma estimate said you should make $6,000, but you made only a few hundred. What is the most likely reason?</span></summary>
+        <div class="ans"><p>IV crush. The approximation has no Vega term, and the loss from IV falling sharply after earnings ate most of the directional gain (Case 2).</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="Chapter navigation"></nav>
+
+    <footer class="end">
+      <p>All examples in this chapter are calculated with the Black-Scholes model (4% rate, no dividends, 365-day year). For teaching only; not investment advice.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+
+  // ---------- fig 4-1 ----------
+  (function () {
+    const svg = document.getElementById("f1-svg");
+    const dte = document.getElementById("f1-dte"), iv = document.getElementById("f1-iv");
+    const segBtns = document.querySelectorAll("#fig1 .seg button");
+    let kind = "c";
+    function draw() {
+      const d = +dte.value, s = +iv.value / 100;
+      document.getElementById("f1-dte-o").textContent = d + " days";
+      document.getElementById("f1-iv-o").textContent = iv.value + "%";
+      const xs = range(70, 130, 0.25);
+      const cur = xs.map(S => [S, bs(S, 100, d / DAY, s, kind).delta]);
+      const ref = xs.map(S => [S, bs(S, 100, 30 / DAY, 0.30, kind).delta]);
+      const y = kind === "c" ? [0, 1] : [-1, 0];
+      plot(svg, {
+        x: [70, 130], y, xt: range(70, 130, 10), yt: kind === "c" ? [0, 0.25, 0.5, 0.75, 1] : [-1, -0.75, -0.5, -0.25, 0],
+        yf: v => v.toFixed(2).replace("-", "−"), xlabel: "Stock price ($)", ylabel: "Delta", vline: 100,
+        series: [{ pts: ref, color: "var(--muted)", w: 1.6, dash: "5 5" }, { pts: cur, color: "var(--delta)", w: 2.6 }]
+      });
+      ["f1-r1", "f1-r2", "f1-r3"].forEach((id, i) => {
+        document.getElementById(id).textContent = fmt(bs([95, 100, 105][i], 100, d / DAY, s, kind).delta, 3);
+      });
+    }
+    segBtns.forEach(b => b.addEventListener("click", () => {
+      kind = b.dataset.kind;
+      segBtns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    dte.addEventListener("input", draw); iv.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 4-2 ----------
+  (function () {
+    const svg = document.getElementById("f2-svg");
+    const days = [60, 30, 7, 2], ops = [0.35, 0.55, 0.78, 1];
+    const xs = range(80, 120, 0.2);
+    const series = days.map((d, i) => ({ pts: xs.map(S => [S, bs(S, 100, d / DAY, 0.30, "c").gamma]), color: "var(--gamma)", w: 2.3, op: ops[i] }));
+    const draw = () => plot(svg, {
+      x: [80, 120], y: [0, 0.2], xt: range(80, 120, 10), yt: [0, 0.05, 0.10, 0.15, 0.20], yf: v => v.toFixed(2),
+      xlabel: "Stock price ($)", ylabel: "Gamma", vline: 100, series
+    });
+    CK.figure(draw);
+    document.getElementById("f2-legend").innerHTML = days.map((d, i) => `<span><i style="border-color: var(--gamma); opacity: ${ops[i]}"></i>${d} days left</span>`).join("");
+  })();
+
+  // ---------- fig 4-3 ----------
+  (function () {
+    const svg = document.getElementById("f3-svg");
+    const ivS = document.getElementById("f3-iv"), tS = document.getElementById("f3-t");
+    const base = bs(100, 100, 30 / DAY, 0.30, "c");
+    function draw() {
+      const div = +ivS.value / 100, dt = +tS.value;
+      document.getElementById("f3-iv-o").textContent = (div > 0 ? "+" : div < 0 ? "−" : "") + Math.abs(+ivS.value) + " points";
+      document.getElementById("f3-t-o").textContent = dt + " days";
+      const xs = range(-15, 15, 0.25);
+      const actual = xs.map(m => [m, bs(100 + m, 100, (30 - dt) / DAY, 0.30 + div, "c").price - base.price]);
+      const dOnly = xs.map(m => [m, base.delta * m]);
+      const dg = xs.map(m => [m, base.delta * m + 0.5 * base.gamma * m * m]);
+      plot(svg, {
+        x: [-15, 15], y: [-8, 14], xt: range(-15, 15, 5), yt: [-8, -4, 0, 4, 8, 12],
+        xf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v), yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v),
+        xlabel: "Stock move ($)", ylabel: "P&L per share ($)", zero: 0, vline: 0,
+        series: [{ pts: dOnly, color: "var(--delta)", w: 2, dash: "6 5" }, { pts: dg, color: "var(--gamma)", w: 2.4 }, { pts: actual, color: "var(--ink)", w: 2.2 }]
+      });
+    }
+    ivS.addEventListener("input", draw); tS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 4-4 ----------
+  (function () {
+    const svg = document.getElementById("f4-svg");
+    const dS = document.getElementById("f4-dte"), ivS = document.getElementById("f4-iv");
+    function draw() {
+      const d = +dS.value, s = +ivS.value / 100;
+      document.getElementById("f4-dte-o").textContent = d + " days";
+      document.getElementById("f4-iv-o").textContent = ivS.value + "%";
+      const g = bs(100, 100, d / DAY, s, "c");
+      const be = Math.sqrt(2 * Math.abs(g.theta) / g.gamma);
+      const xs = range(-6, 6, 0.05);
+      const pts = xs.map(x => [x, 0.5 * g.gamma * x * x + g.theta]);
+      const ymin = Math.min(-0.2, g.theta * 1.4);
+      const ymax = Math.max(0.6, 0.5 * g.gamma * 36 * 0.6);
+      const step = ymax - ymin > 1.6 ? 0.5 : 0.2;
+      const yt = []; for (let v = Math.ceil(ymin / step) * step; v <= ymax + 1e-9; v += step) yt.push(+v.toFixed(2));
+      plot(svg, {
+        x: [-6, 6], y: [ymin, ymax], xt: range(-6, 6, 2), yt,
+        xf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v), yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(step < 0.5 ? 1 : 1),
+        xlabel: "Day's stock move ($)", ylabel: "Hedged daily P&L (per share)", zero: 0,
+        band: [-be, be, "var(--tint-gamma)"],
+        series: [{ pts, color: "var(--theta)", w: 2.6 }],
+        dots: [[-be, 0, "var(--gamma)"], [be, 0, "var(--gamma)"]]
+      });
+      document.getElementById("f4-r1").textContent = "±$" + be.toFixed(2);
+      document.getElementById("f4-r2").textContent = "±$" + (100 * s / Math.sqrt(365)).toFixed(2);
+      document.getElementById("f4-r3").textContent = "−$" + Math.abs(g.theta).toFixed(3);
+    }
+    dS.addEventListener("input", draw); ivS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 4-5 ----------
+  (function () {
+    const data = {
+      A: { path: [100, 102.4, 99.9, 102.3, 99.6, 101.9], rows: [
+        [1, 102.40, 2.40, 303, -156, -216, 143, 143], [2, 99.90, -2.50, -540, 702, 228, 157, 300],
+        [3, 102.30, 2.40, 280, -127, -225, 149, 449], [4, 99.60, -2.70, -531, 751, 258, 214, 663],
+        [5, 101.90, 2.30, 185, -46, -226, 134, 797]], total: 797, naked: -304, rv: "46.6%" },
+      B: { path: [100, 100.5, 100.0, 100.6, 100.1, 100.5], rows: [
+        [1, 100.50, 0.50, -71, -32, -45, -105, -105], [2, 100.00, -0.50, -160, 55, 47, -106, -211],
+        [3, 100.60, 0.60, -65, -38, -57, -104, -315], [4, 100.10, -0.50, -169, 60, 50, -110, -425],
+        [5, 100.50, 0.40, -88, -28, -40, -117, -542]], total: -542, naked: -554, rv: "9.6%" }
+    };
+    const svg = document.getElementById("f5-svg");
+    const tbody = document.querySelector("#f5-tbl tbody");
+    const btns = document.querySelectorAll("#fig5 .seg button");
+    const signed = (v, d) => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(d || 0);
+    function draw(key) {
+      const D = data[key];
+      const pts = D.path.map((p, i) => [i, p]);
+      const r = plot(svg, {
+        x: [-0.3, 5.3], y: [98.5, 103.5], xt: [0, 1, 2, 3, 4, 5], yt: [99, 100, 101, 102, 103],
+        xf: v => v === 0 ? "Entry" : "Day " + v + "", xlabel: "", ylabel: "Stock price",
+        series: [{ pts, color: "var(--ink)", w: 2.2 }],
+        dots: pts.map(p => [p[0], p[1], "var(--ink)", 3.5])
+      });
+      D.rows.forEach(row => {
+        const x = r.X(row[0]), y = r.Y(row[1]);
+        const sell = row[5] < 0;
+        const t = el("text", { x, y: sell ? y - 12 : y + 22, "text-anchor": "middle", style: `fill: ${sell ? "var(--gamma)" : "var(--theta)"}; font-size: 12px; font-family: var(--font-mono)` }, r.g);
+        t.textContent = (sell ? "▼ Sell " : "▲ Buy ") + Math.abs(row[5]);
+      });
+      tbody.innerHTML = D.rows.map(rw => `<tr><td class="mono">${rw[0]}</td><td class="mono">${rw[1].toFixed(2)}</td><td class="mono">${signed(rw[2], 2)}</td><td class="mono ${rw[3] >= 0 ? "pos" : "neg"}">${signed(rw[3])}</td><td class="mono ${rw[4] >= 0 ? "pos" : "neg"}">${signed(rw[4])}</td><td class="mono">${signed(rw[5])}</td><td class="mono ${rw[6] >= 0 ? "pos" : "neg"}">${signed(rw[6])}</td><td class="mono ${rw[7] >= 0 ? "pos" : "neg"}">${signed(rw[7])}</td></tr>`).join("");
+      document.getElementById("f5-r1").textContent = money(D.total);
+      document.getElementById("f5-r2").textContent = money(D.naked);
+      document.getElementById("f5-r3").textContent = D.rv + " (bought at IV 30%)";
+    }
+    let cur = "A";
+    btns.forEach(b => b.addEventListener("click", () => {
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      cur = b.dataset.path; draw(cur);
+    }));
+    CK.figure(() => draw(cur));
+  })();
+
+  // ---------- calculator ----------
+  (function () {
+    const rows = [
+      { name: "Stock A", type: "s", qty: 200, delta: 1, px: 150, beta: 1.3 },
+      { name: "Stock B", type: "s", qty: 100, delta: 1, px: 60, beta: 0.7 },
+      { name: "Call C", type: "o", qty: 5, delta: 0.6, px: 400, beta: 1.6 }
+    ];
+    const tbody = document.querySelector("#c-tbl tbody");
+    const spy = document.getElementById("c-spy"), hd = document.getElementById("c-hd");
+    tbody.innerHTML = rows.map((r, i) => `<tr>
+      <td><input class="name" id="c-n${i}" value="${r.name}" aria-label="Position name"></td>
+      <td><select id="c-t${i}" aria-label="Type"><option value="s"${r.type === "s" ? " selected" : ""}>Stock</option><option value="o"${r.type === "o" ? " selected" : ""}>Option</option></select></td>
+      <td><input id="c-q${i}" type="number" value="${r.qty}" aria-label="Quantity"></td>
+      <td><input id="c-d${i}" type="number" step="0.05" value="${r.delta}" aria-label="Delta per unit"></td>
+      <td><input id="c-p${i}" type="number" value="${r.px}" aria-label="Underlying price"></td>
+      <td><input id="c-b${i}" type="number" step="0.1" value="${r.beta}" aria-label="Beta"></td>
+      <td class="mono" id="c-o${i}">—</td></tr>`).join("");
+    function calc() {
+      const S = +spy.value || 1; let total = 0;
+      rows.forEach((_, i) => {
+        const t = document.getElementById("c-t" + i).value;
+        const dIn = document.getElementById("c-d" + i);
+        if (t === "s") { dIn.value = 1; dIn.disabled = true; } else dIn.disabled = false;
+        const q = +document.getElementById("c-q" + i).value || 0;
+        const dl = +dIn.value || 0, p = +document.getElementById("c-p" + i).value || 0, b = +document.getElementById("c-b" + i).value || 0;
+        const shares = t === "o" ? q * 100 * dl : q * dl;
+        const eq = shares * p / S * b;
+        total += eq;
+        document.getElementById("c-o" + i).textContent = eq.toFixed(1);
+      });
+      document.getElementById("c-total").textContent = total.toFixed(1) + " shares";
+      document.getElementById("c-usd").textContent = "$" + Math.round(total * S).toLocaleString("en-US");
+      const h = Math.abs(+hd.value || 0.4) * 100;
+      document.getElementById("c-hedge").textContent = (total / h).toFixed(1) + " contracts";
+    }
+    document.getElementById("calc").addEventListener("input", calc);
+    document.getElementById("calc").addEventListener("change", calc);
+    calc();
+  })();
+
+})();
+</script>
+<script id="lang-js">(function(){document.querySelectorAll(".lang-switch").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("hl-lang",a.getAttribute("data-lang"))}catch(e){}var h=a.getAttribute("href");if(location.hash&&h.indexOf("#")<0)a.setAttribute("href",h+location.hash);});});})();</script>
+</body>
+</html>

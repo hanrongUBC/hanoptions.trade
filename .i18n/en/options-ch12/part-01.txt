@@ -1,0 +1,220 @@
+@@ e5ddceec90 html
+Chapter 12 Portfolio Greeks and adjustments · US Options Course
+@@ e057dbe76e html
+Portfolio Greeks and <span class="g">adjustments</span>
+@@ 79fd7827f4 html
+Look at each position on its own and you only know what that position will do. Add them all up and you learn what the whole account is betting on. This chapter first teaches you to aggregate and read a portfolio's Greeks, then how to use the numbers, when a position goes wrong, to decide whether to roll, restructure or close.
+@@ 4a798dc727 html
+In this chapter
+@@ 6ae8cef1dc html
+<a href="#open"><span class="n">··</span><span>Opening: three “small” trades</span></a>
+@@ 4d5ac14260 html
+<a href="#s1"><span class="n">12.1</span><span>Adding every position into one table</span></a>
+@@ ca6c0dd36f html
+<a href="#s2"><span class="n">12.2</span><span>The portfolio's shape: what you're betting on</span></a>
+@@ f9b3f94ea3 html
+<a href="#s3"><span class="n">12.3</span><span>Fix Delta first, then look at Gamma and Vega</span></a>
+@@ 89714ab758 html
+<a href="#s4"><span class="n">12.4</span><span>The three directions of rolling</span></a>
+@@ ac96080935 html
+<a href="#s5"><span class="n">12.5</span><span>Without the old position, would you open this one?</span></a>
+@@ 2d984df9ec html
+<a href="#s6"><span class="n">12.6</span><span>A credit spread is breached: four choices</span></a>
+@@ 7a7ceeafe3 html
+<a href="#s7"><span class="n">12.7</span><span>When to just close</span></a>
+@@ 9b84d8d5ce html
+<a href="#s8"><span class="n">12.8</span><span>Timing and execution of adjustments</span></a>
+@@ 136613e580 html
+<a href="#cases"><span class="n">Cases</span><span>Two cases</span></a>
+@@ dd7ded685d html
+<a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a>
+@@ 3cfe4ef3bb html
+<a href="#open">Opening: three “small” trades</a>
+@@ f752c3be2a html
+<a href="#s1">12.1 Adding every position into one table</a>
+@@ b98b2f9ca4 html
+<a href="#s2">12.2 The portfolio's shape: what you're betting on</a>
+@@ 4cf6a4add9 html
+<a href="#s3">12.3 Fix Delta first, then look at Gamma and Vega</a>
+@@ 79bf3a79af html
+<a href="#s4">12.4 The three directions of rolling</a>
+@@ 092e005276 html
+<a href="#s5">12.5 Without the old position, would you open this one?</a>
+@@ 95b7a169a8 html
+<a href="#s6">12.6 A credit spread is breached: four choices</a>
+@@ 5d4558d15d html
+<a href="#s7">12.7 When to just close</a>
+@@ dda3a9902d html
+<a href="#s8">12.8 Timing and execution of adjustments</a>
+@@ 9296165eff html
+<a href="#cases">Two cases</a>
+@@ 7ec24afd50 html
+<a href="#tools">Checklist and self-test</a>
+@@ 80161dff8a html
+After this chapter you can
+@@ 9586c16510 html
+Aggregate positions across different underlyings and expirations into one beta-weighted Greeks table, and say in one sentence what the portfolio is betting on
+@@ 1320201a77 html
+Work out the added premium, breakeven and best outcome for the three rolls: out, down, and out and down
+@@ d725771e49 html
+When a credit spread is breached, compare rolling, adding a leg, converting to a calendar and closing, using “P&amp;L from here”
+@@ fc4f43bd05 html
+Prerequisites
+@@ 673c1a57b0 html
+Chapter 4: share equivalents and beta-weighted Delta
+@@ 3d6741f268 html
+Chapter 5: the units of Theta and Vega
+@@ cdf5528f58 html
+Chapters 8 and 9: credit spreads, iron condors and calendar spreads
+@@ fe31444484 html
+Conventions
+@@ 29904071fd html
+Black-Scholes, 4% rate, no dividends, 365-day year
+@@ 75ece986a0 html
+One contract = 100 shares; SPY price taken as $780
+@@ d5924c6d06 html
+Theta per calendar day, Vega per 1 vol point; fills at the model mid price, excluding commissions and slippage
+@@ 6f42d80104 html
+<span class="sn">Opening</span>Three “small” trades
+@@ 8bf2386397 html
+At Friday's close your account (<span class="num">$100,000</span>) holds three short-option positions: an SPY put credit spread, a short put on stock A and a short put on stock D. On the broker's page their Deltas are +60, +95 and +63 shares, and none of the lines looks big.
+@@ f27bde9cfc html
+Table 12-0 The three positions and Monday's result (SPY −3%, each stock falls by its own β, all IVs up 4 points)
+@@ 4f363a31dd html
+Position (all 30 days to expiry)
+@@ 772e245467 html
+Contracts
+@@ 96af7f25b2 html
+Own Delta (shares)
+@@ c52eba10d9 html
+Daily Theta
+@@ 839ef73cca html
+Monday P&amp;L
+@@ 62eaf68621 html
+SPY 760/740 put credit spread
+@@ 73349293e5 html
+Short A 140 put (stock 150, β 1.3)
+@@ 0c1ba5982a html
+Short D 82 put (stock 90, β 1.5)
+@@ 57eec06783 html
+Total
+@@ 7d534f322a html
+Different units; can't be added directly
+@@ c0fec987bf html
+Together the three collect <span class="num">$65.6</span> of Theta a day. On Monday SPY opens 3% lower, stocks A and D fall <span class="num">3.9%</span> and <span class="num">4.5%</span> according to their β, and IV rises about 4 points across the board. The three lose <span class="num">$3,376</span> together, equal to <span class="num">51</span> days of Theta. Each one on its own is “within expectations”; the trouble is that they all point the same way and they all hit at once.
+@@ 379c375ee0 html
+You never added those three lines together. With the beta weighting from Chapter 4, the three add up to <span class="num">94.5</span> shares of SPY, about <span class="num">$73,700</span> of long market exposure. And Gamma and Vega are both negative, so the further the market falls and the more IV rises, the faster you lose.
+@@ 0088ee4061 html
+At Monday's close you open the position that lost the most, and the broker's “Roll” button says “Net credit available.” This chapter answers two questions: first, what is your portfolio actually betting on; second, when is an adjustment a repair, and when is it just placing the same bet again with a different date?
+@@ b5844a8a28 html
+<span class="sn">12.1</span>Adding every position into one table
+@@ 773ce06e27 html
+A portfolio's Greeks can be added directly, as long as you first convert them to the same unit. Chapter 4 already turned Delta into “SPY share equivalents”; this section converts the other three.
+@@ 33c2f384ba html
+Table 12-1 How to aggregate the four Greeks (q is the number of contracts, positive for long, negative for short)
+@@ ea008f0f56 html
+Greek
+@@ 0e00c09e27 html
+Single leg
+@@ 4cbfdf1c78 html
+Adding across underlyings
+@@ 626f1e40d0 html
+Unit after aggregating
+@@ b8937d3eff html
+SPY shares
+@@ 3cebedec4b html
+Shares added to the row above per 1% rise in SPY
+@@ f17221645a html
+Add directly
+@@ 3008e34a17 html
+$ / day
+@@ 7dfcd9694a html
+Add directly (with a hidden assumption; see below)
+@@ 76ecac567b html
+$ / vol point
+@@ d432f27af8 html
+Why Gamma is multiplied by β squared
+@@ a29508abe0 html
+When SPY rises 1%, by the definition of β the stock rises β × 1%, that is, Δ<span class="v">S</span> = β · <span class="v">S</span> · 1%. The stock position's Delta therefore grows by Γ × 100 × q × Δ<span class="v">S</span> shares. Those “stock shares” then have to be converted into SPY shares as in Chapter 4, which multiplies once more by <span class="v">S</span> / SPY × β. Both steps carry a β, so you get:
+@@ 6d30485421 html
+How to read it: for each 1% rise in SPY, how many SPY shares the portfolio's beta-weighted Delta gains. A negative number means you get shorter as the market rises and longer as it falls.
+@@ 178ce234a1 html
+With these two aggregates you can estimate the whole portfolio's P&amp;L, as in Chapter 4. Let SPY's percentage move be <span class="v">x</span>:
+@@ 2596a67d46 html
+Opening portfolio: Δ<sub>β</sub> = +94.5 shares, Γ<sub>β,1%</sub> = −18.1 shares. At SPY −3%, the approximation gives −2,212 − 634 = −$2,846; full repricing (IV unchanged) gives −$2,850.
+@@ de468eacb1 html
+Load the opening portfolio
+@@ 531c441d8b html
+Load Case 2's 5-leg portfolio
+@@ 0cce89e309 html
+SPY price
+@@ 0e1ae088fd html
+Position
+@@ b7a96fb783 html
+Type
+@@ 22579cf291 html
+Underlying
+@@ 4a14863fad html
+Strike
+@@ 35f56e5ba4 html
+Days
+@@ ba7ce2f6a0 html
+The four columns on the right are each leg's beta-weighted Delta (SPY shares), beta-weighted Gamma (per 1%), Theta ($/day) and Vega ($/point). Contracts: enter a positive number for long and a negative number for short. When the type is “Stock,” enter the number of shares; strike, days and IV are ignored. For rows you're not using, enter 0 contracts. The table is wide; on a phone you can swipe sideways.
+@@ 9ab7409947 html
+What you assume when you add up Theta and Vega
+@@ edaed6a4b5 html
+Theta added up is “how much more you'll collect by tomorrow if everything else stays the same.” That “everything else stays the same” is the key: it's only a reference value, and the market changes every day.
+@@ 159f4fe5f4 html
+Adding Vega directly assumes every underlying's IV moves by the same number of points at the same time. In reality that rarely holds: when the market falls, single-stock IVs tend to rise by more points than SPY's IV, because they start out higher. In the opening portfolio, the two SPY legs' Vega totals <span class="num">−$111.0</span> and the A and D positions total <span class="num">−$75.2</span>, for a simple sum of <span class="num">−$186.3</span>. If you assume single-stock IVs move 1.5 times as many points as SPY's, then per 1-point move in SPY, the portfolio's Vega is really <span class="num">−111.0 + 1.5 × (−75.2) = −$223.9</span>, 20% bigger than the headline number.
+@@ 380e0a7230 html
+The aggregate table answers “what happens when the whole account moves with the market.” It can't see two things: a single stock's own gaps (Case 2), and IVs that move out of step with each other. So after aggregating, you still need to stress-test each underlying on its own (Chapter 13).
+@@ f058fc6288 html
+<span class="sn">12.2</span>The portfolio's shape: what you're betting on
+@@ 618efd27b4 html
+Put the signs of Gamma, Theta and Vega together and you have the world you're betting on. Read the signs first, then decide whether to change anything.
+@@ b0ed602647 html
+Table 12-2 Portfolio shapes and the bets behind them
+@@ 57d7c623da html
+Shape
+@@ 99a2f3fbd5 html
+You're betting on
+@@ 82a627d4e4 html
+What hurts
+@@ ac201579e7 html
+Typical structures
+@@ f77cf65941 html
+Negative Gamma, positive Theta
+@@ 4c7afdf8fc html
+Price doesn't move much
+@@ 0467ff9000 html
+Big moves, especially gaps
+@@ 14140037f9 html
+Short puts, short strangles, iron condors
+@@ 418f53c70a html
+Positive Gamma, negative Theta
+@@ 3fb780097f html
+Big price moves, either direction
+@@ 7e2926f0f8 html
+Going sideways
+@@ 3f45b20d70 html
+Long options, long straddles
+@@ 65e4c834f4 html
+Negative Vega
+@@ 95ecc7d675 html
+IV falls or doesn't rise
+@@ e74775a638 html
+IV rises (often along with a drop)
+@@ 6374bbcd42 html
+Most selling structures
+@@ 361cbee8b4 html
+Positive Vega
+@@ 3d2db48573 html
+IV rises
+@@ 8654df061c html
+IV falls (e.g., after earnings)
+@@ 6254b16a27 html
+Most buying structures
+@@ eaafe744d5 html
+Negative Gamma, positive Vega
+@@ 871c3166d7 html
+Front month calm, back-month IV holds up

@@ -1,0 +1,110 @@
+@@ 2d2f26381e html
+“Market makers long calls, short puts” is only an average assumption; at individual strikes it may be the exact opposite
+@@ 7c364423f5 html
+OI updates only once a day, so it misses same-day 0DTE flow
+@@ 26f13be1ef html
+Vanna and Charm drive hedging too; looking at Gamma alone misses the flows caused by IV and time
+@@ 2048fa54a2 html
+Many traders' pre-market notes use this framework. Before one triple-witching day, for example, a note judged that a break below SPY 760 favored buying puts while holding above 760 favored buying calls, on the grounds that positive Gamma dominated above 760. Another attributed a sharp MU rally to market-maker hedging driven by a large volume of calls expiring the next day, not to improving fundamentals. Another warned that for chip stocks on a winning streak, you should wait until after options expiration to draw conclusions: if they pull back after expiry, the rally was pushed up mainly by hedging flows. Barchart's Gamma page is a commonly used free place to check.
+@@ a9dd9e4635 html
+<span class="sn">Cases</span>Three cases
+@@ 55cabf7fbf html
+The same ±3% is a completely different position in the final days
+@@ 5627045eac html
+An at-the-money 100 call, IV 30%. Compare its Delta at stock prices of 97, 100 and 103 with different numbers of days left:
+@@ 4a6bc42215 html
+Stock 97
+@@ f6c113bff2 html
+Stock 100
+@@ e1243b3f37 html
+Stock 103
+@@ 2d52b45f70 html
+Delta gap, 97 to 103
+@@ f9a63a57d5 html
+With 30 days left, as the stock wobbles between 97 and 103, Delta moves only between 0.39 and 0.67, and the position behaves like a steady stock. With 1 day left, the same wobble makes Delta jump back and forth between 0.03 and 0.97: one moment you have almost no position, the next you are effectively fully long.
+@@ e0752a8e6b html
+<strong>For buyers</strong>: an at-the-money option in its last few days is a lottery ticket. Your chance lies in a jump, but Theta rises in step with Gamma (Table 4-3).
+@@ a83bb1a0f8 html
+<strong>For sellers</strong>: the last few days collect the most premium, but one big up day can take you from “almost no risk” to “fully short.” This is why so many sellers' accounts get into trouble in expiration week.
+@@ e0818d2bbd html
+A delta–gamma stress test before earnings that missed the biggest term
+@@ 5cdd89bd3b html
+Before earnings you buy 20 contracts of the 30-day at-the-money 100 call. IV has been bid up to 60% ahead of the report; the position has Delta of <span class="num">+1,084</span> shares, Gamma of <span class="num">46.1</span>, and Vega of about <span class="num">$227</span> per IV point. The day after earnings, IV falls back to 35%.
+@@ 44c25854cd html
+Table 4-6 P&amp;L on 20 calls the day after earnings ($)
+@@ c486a2d6e4 html
+Delta–Gamma approximation
+@@ da44563be4 html
+Repriced, IV unchanged
+@@ 3e16d7ab22 html
+Repriced, IV down to 35%
+@@ 75249fe848 html
+The first two columns are close, so the Delta–Gamma estimate of the price effect is fine. The whole gap is in the third column: IV drops 25 points, times $227 per point, is a Vega loss of about $5,700. The stock rose 5% as expected, and you made only $445.
+@@ 262e6111bd html
+Before an event, run at least two sets of stress tests: price × IV unchanged, and price × IV falling back to its normal pre-event level. If even “right on direction” doesn't make money in the second set, you picked the wrong structure; consider a spread (the two legs' Vega partly cancels) or a calendar spread.
+@@ 0362e10bef html
+When options “push” a stock
+@@ 35f61dbf2a html
+GameStop in January 2021 is the most famous example of negative-Gamma amplification. Retail traders bought short-dated out-of-the-money calls in huge numbers, and the market makers who sold them had to buy stock to hedge. The rising stock made those out-of-the-money Deltas grow quickly (Gamma), while soaring IV pushed Delta up further (Vanna). Market makers had to buy more and more stock, the buying drove the price higher, and the loop fed on itself.
+@@ bca33be17d html
+You don't need an extreme case like this to use the logic. Day to day, the small-scale version is more common: a large pile of calls builds up at a strike near expiry, market makers buy stock to hedge, and the stock gets pushed toward that strike. A rally like this comes from an “options effect,” not from better fundamentals. The test is the same: after expiration, when the hedging demand disappears, see whether the price falls back.
+@@ 76fc557033 html
+<span class="sn">Tools</span>Checklist and self-test
+@@ b4640d623d html
+Your checkmarks are saved only in your own browser.
+@@ 3a2b593c21 html
+<span class="num">4-1</span>Before the order: convert your directional exposure
+@@ c99a7bb4b9 html
+For each leg, Delta × 100 × contracts × direction; add them up in shares
+@@ 254abbe199 html
+With several underlyings, use β to convert to SPY-equivalent shares
+@@ 955bf92836 html
+When hedging, confirm the unit: shares or contracts
+@@ 22cf64dbc5 html
+<span class="num">4-2</span>Before the order: stress test
+@@ d272bfc3a1 html
+P&amp;L at ±1 daily standard deviation (S × IV ÷ 19)
+@@ e11c13826b html
+At ±3 standard deviations, reprice fully instead of approximating
+@@ 0f263c8747 html
+Event ahead: add a scenario with IV falling
+@@ 084a8e5d65 html
+<span class="num">4-3</span>While holding: gamma checkup
+@@ 7a1b800195 html
+For at-the-money positions less than a week from expiry, recalculate Delta every day
+@@ 96e7317bed html
+Short positions: what is Delta if the stock touches the strike?
+@@ f7f9af69e5 html
+Don't be spooked by Charm-driven moves on expiration-day afternoons
+@@ 62ad92b389 html
+<span class="num">4-4</span>Buy or sell: the gamma–theta balance
+@@ 79d010775f html
+Work out the breakeven move S × IV ÷ 19 (calendar days)
+@@ fb32d66d53 html
+Compare it with the recent average daily realized move
+@@ f2ed213129 html
+Buy only if realized moves are clearly bigger; consider selling only if they are clearly smaller
+@@ a6f5d33bbc html
+Self-test: five questions
+@@ 55b72a8011 html
+<span class="num">1</span><span>You buy 5 calls with Delta 0.40 and sell 2 puts with Delta −0.30. How many shares is the position equivalent to?</span>
+@@ 1fae5d3dab html
+<span class="num">5 × 40 + 2 × 30 = 260</span> shares. The short put's Delta is −0.30 × (−1) = +0.30, so it is bullish too.
+@@ 71a4725a95 html
+<span class="num">2</span><span>For at-the-money options at the same strike, which has more Gamma: 2 days left or 60 days left? Roughly how many times more?</span>
+@@ 4603b1386f html
+The one with 2 days left. At IV 30% it is about 0.180 vs. 0.033, more than five times larger. At-the-money Gamma is roughly inversely proportional to the square root of the time left.
+@@ e9a6f31031 html
+<span class="num">3</span><span>The stock is at $200 with IV 40%. You buy an at-the-money option and hedge its Delta. Roughly how much does the stock need to move each day for you to break even?</span>
+@@ d4994d948c html
+Calendar days: <span class="num">200 × 0.40 / 19.1 ≈ $4.2</span>; trading-day convention: <span class="num">200 × 0.40 / 16 = $5.0</span>.
+@@ f446ef993b html
+<span class="num">4</span><span>The stock hasn't moved, but IV rises from 30% to 40%. What happens to the Delta of your 110 call (30 days)? What is this called?</span>
+@@ b3491615c3 html
+It rises from 0.152 to 0.228. This is Vanna: a change in volatility causing a change in Delta. Out-of-the-money options' Deltas grow as IV rises.
+@@ b70d9a0cb6 html
+<span class="num">5</span><span>After earnings the stock rises 5% as you expected. Your Delta–Gamma estimate said you should make $6,000, but you made only a few hundred. What is the most likely reason?</span>
+@@ 4078de286a html
+IV crush. The approximation has no Vega term, and the loss from IV falling sharply after earnings ate most of the directional gain (Case 2).
+@@ 4e4e0f78d7 html
+All examples in this chapter are calculated with the Black-Scholes model (4% rate, no dividends, 365-day year). For teaching only; not investment advice.

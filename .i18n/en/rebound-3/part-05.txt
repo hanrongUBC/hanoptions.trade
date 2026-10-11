@@ -1,0 +1,200 @@
+@@ 6648ec5f17 html
+Chapter 5
+@@ c960498cc8 html
+Seasonality
+@@ d0243abec0 html
+Chapter 7
+@@ 12ab6fb9dc html
+Earnings per share
+@@ a0835f26b9 html
+Supply chain
+@@ 3f60aec59f html
+Chapter 8
+@@ 0f684a178c html
+Leverage
+@@ 04234f1edf html
+Death cross
+@@ 72502c8768 html
+Drone
+@@ 31ac4811e8 html
+Chapter 9
+@@ 17f3abf0cc html
+Spin-off
+@@ c2c124dc82 html
+Chapter 10
+@@ ff4487edb1 html
+Net interest income
+@@ 7d7d98c805 html
+Chapter 11
+@@ 8c1de794be html
+Stress test
+@@ 7be9a7aa2a html
+Investment banking fees
+@@ a2a7f00dad html
+Yield curve
+@@ 24088f3a79 html
+Dot plot
+@@ 2127a59291 html
+Fed rate-setting meeting
+@@ 88d2f88420 html
+Data center
+@@ ab5d34100e html
+Chapter 12
+@@ 5625dd35c2 html
+Fund flows
+@@ d5a9695ef6 html
+Capital spending
+@@ 43bc4f7cc8 html
+Chapter 13
+@@ ceef03794a html
+Enterprise value
+@@ f489b893dd html
+Chapter 14
+@@ d69bf5224e html
+Defense spending
+@@ ca119c244e html
+Chapter 15
+@@ 019d1d2ed0 html
+Preparing for war
+@@ d4e697b144 html
+Risk premium
+@@ 0a825f7063 html
+Munitions
+@@ fe602fe9ed html
+Chapter 16
+@@ 656753166f html
+Power grid
+@@ 80a6b678fc html
+Chapter 19
+@@ 0b0e6c2dbe html
+Pass-through
+@@ 4ab5239396 html
+Chapter 20
+@@ 9d84e9fb01 html
+Sanctions
+@@ 61d1120b73 html
+Chapter 21
+@@ f8ba3804d9 html
+Exposure
+@@ a0b50a392e html
+Valuation multiple
+@@ c89519a815 html
+Chapter 22
+@@ b3cabe7895 html
+Medical devices
+@@ bca5cc409b html
+Gap
+@@ 2d863667ad html
+Chapter 23
+@@ d865293b62 html
+Where to find the data
+@@ 766e7cca5c html
+Price, valuation, moving averages, RSI: each company's Statistics page on stockanalysis.com.
+@@ a714c9542c html
+Earnings reports and announcements: the company's investor relations website and the SEC's EDGAR database.
+@@ ae4165d153 html
+News: Reuters, CNBC, WSJ, Bloomberg, Barron's, MarketWatch.
+@@ 6ddcdbadb9 html
+Macro: Fed meeting statements and minutes, US Treasury yield data, and oil price data from the Energy Information Administration (EIA).
+@@ 2e2ce2b286 html
+<small>Previous</small><span></span>
+@@ 5286a10ebc html
+<small>Next</small><span></span>
+@@ 5e87d1ba99 html
+Data as of the October 9, 2026 close, from stockanalysis.com and the news sources listed in each chapter. The trader's quotes and entry prices come from the group chat and have not been verified. This handbook is for learning and is not investment advice.
+@@ 1e13fbd1d0 text
+US Options Course
+@@ 6985e3fc6d text
+Trading Psychology
+@@ 549cca660d text
+Macro Trading Framework
+@@ f691f691fc text
+Policy Narrative Investing
+@@ f025c44d71 text
+Oversold Rebound List
+@@ 77bbb565fc text
+The average move of the 17 stocks from the list's release through October 9; 12 of them rose. Over the same period the 10-year Treasury yield climbed to about 5.27%, so the macro premise for a rebound is not in place yet.
+@@ c3ec1ad57c text
+Introduction
+@@ 938ce87a96 text
+Before you use this
+@@ 5b18922e99 text
+Chapter 1
+@@ 09550b9e05 text
+Reading a chart: where McDonald's stands
+@@ e1021590e7 text
+Figure 1-1
+@@ b5b287fac6 text
+Chapter 2
+@@ 542828783d text
+Horizontal axis: distance from the 200-day moving average; the vertical axis is switchable
+@@ 2ff84551d0 text
+Figure 2-1 · Switchable
+@@ 4d1bbe8458 text
+Change from the September 30 close to the October 9 close
+@@ 069085a6c7 text
+Figure 2-2
+@@ 7ee30a209f text
+Consumer discretionary · Restaurants
+@@ 762a8f4529 text
+9/30 list
+@@ 42f5c18e77 text
+Bought 10/2 at 231.89
+@@ ff52de8551 text
+Why he's watching it
+@@ 11c856c3d6 text
+October 9 close
+@@ d8c6092985 text
+Since 9/30
+@@ 39611283e1 text
+vs. his entry price
+@@ 4abd435967 text
+Forward P/E
+@@ 1b9ae5f211 text
+Dividend yield
+@@ 9c98fa0f80 text
+RSI (14-day)
+@@ a9a2095ac9 text
+11/4 AM
+@@ ea92803fba text
+Next earnings
+@@ 8a0dcd7003 text
+Closing prices over roughly the last 50 trading days, with key price levels
+@@ 8e16fe6f6b text
+MCD · Figure 1
+@@ c4eb4202bc text
+Closing price
+@@ 2986711622 text
+50-day moving average (current value)
+@@ 25c10362ac text
+200-day moving average (current value)
+@@ 2ddff9f670 text
+His entry price
+@@ a771801706 text
+Where the current price sits in the 52-week range
+@@ 784d70c64b text
+MCD · Figure 2
+@@ 97ea9b8148 text
+What to watch next
+@@ ad99b4c7c9 text
+Bought 10/5 at 6.05
+@@ f169712176 text
+Not among the 17
+@@ d0b614a25f text
+11/5 AM
+@@ 63ff0e9af7 text
+WEN · Figure 1
+@@ 21061761f4 text
+WEN · Figure 2
+@@ ff1234a89f text
+Consumer staples · Beverages and snacks
+@@ 3df7a1b8bd text
+TBA
+@@ cc0eb23ccc text
+PEP · Figure 1
+@@ 6c0103cc09 text
+PEP · Figure 2
+@@ 07ccd36546 text
+Consumer staples · Snacks and confectionery
+@@ b65bf12325 text
+10/27 PM

@@ -1,0 +1,220 @@
+@@ e2b91c5c7c html
+With the stock at 93, the 95 put still has $1.81 of time value, so early assignment is unlikely. If the stock keeps falling to 85, the same put has only $0.06 of time value left, and exercising early starts to make sense for the holder. You would then receive 1,000 shares worth $95,000, and the margin they tie up would far exceed the spread's own maximum loss (Chapter 13 covers this in detail). So when a spread is deep in the money, whichever choice you make, deal with the short leg first.
+@@ b1a387fb96 html
+The order of choosing: first ask yourself what you now think of the stock, then find the row that matches that view. B fits “still bullish, I just need more room and time,” provided the new spread passes the test in Section 12.5. C fits “now neutral, and I think it'll struggle to get above 97.” D fits “I think it'll grind around 95, and back-month IV won't fall.” If you hold none of these views, choose A.
+@@ 7a8f2256c5 html
+<span class="sn">12.7</span>When to just close
+@@ 250b02ed54 html
+In three situations, don't adjust, just close: the thesis breaks, the loss hits your line, or the adjustment would make the maximum loss bigger. Closing doesn't need a reason; holding does.
+@@ b9fea6af85 html
+1. The thesis breaks
+@@ 4881d7369e html
+When you open a trade, write down a one-sentence reason, such as “Earnings are out, 95 is support, and it won't break within 30 days.” If the stock breaks 95 and the company cuts guidance, that sentence is false. Any adjustment at that point just keeps you inside a story you no longer believe. The rule is simple: once the reason is proven wrong, close; if a new reason comes along later, open a new trade.
+@@ 9680381c55 html
+2. The loss hits your line
+@@ e3acedbadc html
+Two common lines: a loss of 2 times the premium collected (the spread's value rises to 3 times the premium), or a loss of half the maximum loss. The spread in Section 12.6 collected $1.02, so a 2× stop corresponds to a spread value of $3.06, which with 14 days to expiry and IV at 38% triggers at a stock price of about <span class="num">$90.6</span>. Half the maximum loss corresponds to a value of $3.01, almost the same spot.
+@@ e29b95534e html
+Where does “2 times the premium” come from? It ties the loss to the income, so that the win rate is enough to cover the losses. Let the fraction of the premium you keep when you win be <span class="v">g</span>, and the loss when you lose be <span class="v">L</span> times the premium. The breakeven win rate is:
+@@ 42fe09133f html
+A 50% profit target (g = 0.5) with a 2× stop (L = 2): w* = 2 ÷ 2.5 = 80%. Keeping the full premium (g = 1) with a 2× stop: w* = 67%.
+@@ 0fbb3aaa2a html
+So this rule only suits structures whose win rate is high to begin with, such as a short-leg Delta of around 0.15–0.20, and only if you really do take profits at 50%. If you're selling 0.30-Delta spreads, the win rate probably won't reach 80%, and this stop line is too loose.
+@@ b4c7257ae9 html
+Also remember that a stop line is a target, not a guarantee. If the stock gaps overnight from 93 to 88 and IV rises to 42%, the spread jumps straight to $3.68, a loss of $2,663, 2.6 times the premium. You never get the chance to exit at 2×.
+@@ 5da97badfa html
+3. The adjustment would make the maximum loss bigger
+@@ f35f59a743 html
+Choice B in Section 12.6 raises the maximum loss from here from $2,616 to $3,361; widening the spread to 90/80 raises it to $7,436; adding contracts to “average down” is worse still. The rule: any adjustment that makes the maximum loss bigger has to be approved again by the standards for a new trade, and if it doesn't pass, close.
+@@ fd371289d2 html
+The same thesis has already been rolled twice: before a third roll, close half first
+@@ 81acd6cce9 html
+The position is big enough that you keep checking quotes after hours: that by itself is evidence the size is too big
+@@ c06dd096de html
+<span class="sn">12.8</span>Timing and execution of adjustments
+@@ 73b57bbdda html
+Many adjustments succeed or fail on timing and execution costs, and have little to do with your directional call.
+@@ 4778964b4b html
+Why people say “manage at 21 days”
+@@ 81761f5792 html
+This rule of thumb comes from a pattern that shows up again and again in sellers' backtests: the closer you get to expiration, the less premium is left to earn, while the loss from an ordinary shock changes little. In numbers: stock at $100, IV 30%, you sold a 95 put (Delta −0.28) 45 days ago for $1.92. Suppose the stock never moves:
+@@ d0705eddc5 html
+Table 12-7 The same short put over time: “remaining profit vs. shock loss”
+@@ 8e53b7da1a html
+Days left
+@@ a3c484ab12 html
+Premium left
+@@ 7011ac2da3 html
+Earned
+@@ ee4773fedf html
+Gamma if it falls to 95
+@@ 2386fd2cd4 html
+Loss at −5% and IV +5
+@@ cacafdf0d1 html
+Loss ÷ remaining
+@@ 2e2081c1e7 html
+1.3×
+@@ 18047540e0 html
+1.8×
+@@ e9c5aa1f75 html
+2.3×
+@@ 979344800c html
+3.4×
+@@ a7e283470b html
+7.9×
+@@ 63e332ddb9 html
+39×
+@@ aeae9915ea html
+At 21 days, with the stock unchanged, you've already earned half; the remaining $0.93 is exposed to $2.14 of ordinary shock risk. After that the ratio deteriorates fast, and once the stock falls near the strike, Gamma is two to four times what it was when you opened. That's where “manage at 21 days” comes from: before the ratio turns bad, close or move into a new cycle.
+@@ 989fc121e4 html
+When it doesn't apply: if you opened with only 30 days left, 21 days is too early, and the common rule is “take 50% or reach 21 days, whichever comes first”; if you sold far-OTM options below 0.10 Delta, there's little premium left anyway; and with a very narrow defined-risk spread, the Gamma risk is already capped by the protective leg.
+@@ 1a45dde0a6 html
+Placing the order: fill it in one go, and count the cost
+@@ 8c1e1ef853 html
+<strong>Use a combo order</strong>: roll with a single multi-leg order (rolling a spread into a spread is 4 legs), rather than closing first and opening afterward. If you place the orders separately, you're exposed for the few seconds in between, and if the stock moves you may pay more.
+@@ aae54e657c html
+<strong>Start at the mid</strong>: place the order at the mid price first, then move $0.01–0.02 toward the natural price each time. Don't pay the natural price right away.
+@@ 95bf0d643e html
+<strong>Count the cost</strong>: rolling 10 four-leg spreads with each leg filled $0.05 from the mid costs 4 × 0.05 × 100 × 10 = $200. The net credit for “rolling out at the same strikes” in Section 12.6 is only $77, so the cost is more than the income.
+@@ 380437543e html
+<strong>Avoid the traps</strong>: don't roll into an earnings date; when selling calls, check the ex-dividend date; Gamma is highest in the last few days of expiration week, so adjust earlier if you can.
+@@ edb8a7cf06 html
+Traders who run debit spreads roll too, in the opposite direction: they extend proactively before the final week before expiration, to avoid the accelerating time decay of the last few days. A common approach is to put the new position in a contract near the money with a later expiration, deliberately avoiding strikes far from the current price, because those are cheap but turn a directional view into a lottery ticket. Another common move: after a long put has made money, sell a lower-strike put to turn the position into a debit spread, locking in part of the profit while keeping the direction. Both moves can be checked with the question from Section 12.5: is the adjusted position one you'd be willing to open fresh today?
+@@ 9b8686e409 html
+<span class="sn">Cases</span>Two cases
+@@ 6612091d5a html
+A seller's account that “rolled bigger and bigger”: six net credits, 40% of equity gone
+@@ f0266db991 html
+Account: <span class="num">$100,000</span>. In month 0, with the stock at $100 and IV 30%, the trader sells 5 30-day 95 puts for $1.33 per share. He sets himself a rule that looks safe: <strong>if the put is in the money at expiration, buy it back, then roll “one month out, $5 down,” always for a net credit; if the new premium isn't enough to cover the buyback, add contracts.</strong>
+@@ a6ca623764 html
+Over the next six months the stock keeps falling (a hypothetical path), and IV rises with it. At each monthly expiration he follows the rule:
+@@ 058a8f66f6 html
+Table 12-8 Month-by-month positions (settled at each monthly expiration; buyback = contracts × intrinsic value × 100; premium is per share; equity = cash − open options' liability at market value)
+@@ b1f2bc1a7d html
+Month
+@@ 32cf37f9ae html
+Stock
+@@ e40932192a html
+Buyback
+@@ 6e52cb2b8f html
+Premium
+@@ 618307a5c4 html
+Cumulative net credit
+@@ b7954a30e3 html
+Notional exposure
+@@ 19ec41b831 html
+Share equivalent
+@@ 1bfb7f7a76 html
+Equity
+@@ 533846ab4d html
+5 at 95
+@@ 8eec1fe6a1 html
+7 at 90
+@@ 412a6cc61a html
+11 at 85
+@@ 27a6e1f7b8 html
+17 at 80
+@@ 7cf233cb09 html
+26 at 75
+@@ 02c98d6df2 html
+39 at 70
+@@ 0980df1e27 html
+60 at 65
+@@ 3f1640400f html
+Here is the calculation for month 6: the 39 70 puts expire with the stock at 59, an intrinsic value of $11 per share, so buying them back costs <span class="num">39 × 11 × 100 = $42,900</span>. The new 65 put (30 days, IV 52%) is $7.27 per share, so to collect $42,900 you have to sell at least <span class="num">42,900 ÷ 727 = 59.0</span>, rounded up to 60 contracts, collecting $43,623. This time's “net credit” is $723.
+@@ 79a2267f87 html
+Stress loss (−20%, IV × 1.5)
+@@ 30a2f6289b html
+Switch to “Stress loss”: by month 6 the bar is already above the equity line. If the stock gaps another 20% and IV rises by another half, the loss of $64,510 exceeds the $59,321 left in the account. The dashed teal line is the equity if you had taken the $1,333 loss in month 1 and done nothing afterward: it stays at $98,667 for all six months.
+@@ ef41c2683b html
+This account's problems are visible in every row:
+@@ f75a79401d html
+<strong>“Net credit” is cash flow, not profit.</strong> Every one of the six rolls took in cash, +$2,943 in total, while equity fell by $40,679 over the same period. The loss was hidden in an ever-growing options liability.
+@@ 8691b13f19 html
+<strong>Size grew with the losses.</strong> Contracts went from 5 → 60, share equivalents from +125 → +4,259, and notional exposure from 0.47 times equity to 6.6 times. That's doubling down: every loss makes the next bet bigger.
+@@ 06c2d64583 html
+<strong>Not one of the rolls passes the test in Section 12.5.</strong> In month 4 the new position is 26 contracts, $195,000 of notional exposure, long 1,723 shares in a stock that has fallen 30% in four months. Nobody would open that as a new trade.
+@@ 43f3077ce3 html
+Taking the loss in month 1 would have cost $1,333, leaving the account at $98,667. Six months later, that figure has become $40,679, plus a position that could wipe out the account at any moment.
+@@ b883108625 html
+A 5-leg portfolio that “looks neutral”
+@@ a12bc24b8d html
+Another trader's account has 5 legs: a covered call, a short strangle, and an SPY put as insurance. He feels he's “got longs and shorts, buys and sells; it's already hedged.” Enter them into Tool 12-A (the “Load Case 2” button):
+@@ 7a255ee867 html
+Table 12-9 Summary of the 5-leg portfolio (SPY $780; Theta in $/day, Vega in $/IV point)
+@@ c464e502b3 html
+Leg
+@@ 70f046f9ad html
+Description
+@@ e633f80811 html
+Long 300 shares of E ($50, β 1.1)
+@@ c91c9f75f9 html
+Short 3 E 55 calls (30 days, IV 30%)
+@@ 569c492d36 html
+Short 2 F 180 puts (F $200, β 1.4, 30 days, IV 42%)
+@@ 03d89062d4 html
+Short 2 F 220 calls (same as above)
+@@ d7add4eb66 html
+Long 1 SPY 740 put (45 days, IV 19%)
+@@ 98392e97b6 html
+First read: Delta near zero, Gamma small, Vega almost zero, collecting $37 a day. The P&amp;L for a 5% SPY move either way is only <span class="num">−$439</span> and <span class="num">+$186</span>. It looks like a quiet income portfolio.
+@@ 3e931dbaf0 html
+The second read has to look at what the summary table can't see:
+@@ a3f130cecf html
+<strong>A single stock's own gaps.</strong> Beta weighting only measures the part that “moves with the market.” If F alone rises 15% (on earnings, say), the portfolio loses <span class="num">$2,331</span>; even if F's IV drops from 42% to 30% after earnings, it still loses <span class="num">$1,746</span>. If F alone falls 15% and its IV rises to 55%, it loses <span class="num">$2,299</span>. If E alone falls 10%, it loses <span class="num">$1,406</span>. None of these numbers shows up in the summary table.
+@@ a98027a36e html
+<strong>Zero Vega is two opposite bets.</strong> The three single-stock legs total −$74.6 and the SPY put +$73.1. They happen to cancel, but they're driven by different things: if single-stock IVs rise 5 points across the board while index IV falls 3 points (say, in earnings season, when stocks move on their own news while the index stays calm), the portfolio loses <span class="num">$594</span>, equal to 16 days of Theta.
+@@ 80fdd198c6 html
+<strong>That SPY put only protects against “a market crash”; it does nothing for these two stocks.</strong> It keeps the portfolio slightly profitable if the market falls 10%, but it's no help at all with F's earnings.
+@@ 319424019c html
+Conclusion: what this portfolio is really betting on is that “F and E each stay calm, and single-stock IV doesn't rise more than index IV.” That near-zero aggregate Delta can't be the basis for a risk budget; set the budget by stress-testing each underlying on its own (Chapter 13).
+@@ 76fc557033 html
+<span class="sn">Tools</span>Checklist and self-test
+@@ b4640d623d html
+Checkbox states are saved only in your own browser.
+@@ f7474a63de html
+<span class="num">12-1</span>Weekly portfolio checkup
+@@ fd733bd395 html
+Convert every position into beta-weighted Delta and Gamma, plus dollar Theta and Vega
+@@ 73c1388afc html
+Write down in one sentence what the portfolio is betting on
+@@ 47fdfdb67d html
+Work out the breakeven daily move and compare it with recent realized moves
+@@ fcac564dfc html
+Test a ±15% gap on each underlying separately
+@@ bb90e69061 html
+<span class="num">12-2</span>Before rolling
+@@ e9e67a68f8 html
+Split it into two trades: buy back the old position, open the new one
+@@ 0473eaa198 html
+Ask: without the old position, would I open this one? (direction, Delta, size, reason)
+@@ 5e4015b1f8 html
+Is the new maximum loss bigger than doing nothing?
+@@ b1ef7e4924 html
+Place it as a combo order, and count the spread cost on every leg
+@@ ecfecb0f61 html
+<span class="num">12-3</span>When a spread is breached
+@@ 5f015dfaef html
+List the five choices: no change, close, roll, add a leg, convert to a calendar
+@@ f47a62c7b2 html
+Compare them all on P&amp;L “from here,” ignoring money already lost
+@@ 9cc3382c51 html
+Write down your current view first, then pick the row that matches it
+@@ cf01c15d16 html
+<span class="num">12-4</span>Signals to just close
+@@ 93c49c3353 html
+The reason for the trade is proven wrong
+@@ f2dbe118af html
+The loss hits your line (2× premium or half the max loss)
+@@ 8b72c53883 html
+The adjustment would make the maximum loss bigger
+@@ 91a71babc6 html
+The same thesis has already been rolled twice
+@@ a6f5d33bbc html
+Five self-test questions
+@@ 77f594867f html
+<span class="num">1</span><span>You sold 4 puts on stock A with a Delta of −0.236 per contract; A is at $150 with β 1.3, and SPY is at $780. How many SPY shares is this position equivalent to?</span>
+@@ 201344b661 html
+Position Delta = −0.236 × 100 × (−4) = +94.4 shares of A. In SPY: <span class="num">94.4 × 150 / 780 × 1.3 = 23.6</span> shares.
+@@ a7475d107b html
+<span class="num">2</span><span>The portfolio's beta-weighted Gamma is −18 shares (per 1%), Theta is +$66 a day, and SPY is at $780. How far does SPY have to move in a day for that day's Theta to be wiped out?</span>

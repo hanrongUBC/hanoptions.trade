@@ -1,0 +1,222 @@
+@@ 7dec63d84b html
+<span class="sn">3.8</span>Mental math 1: the expected move
+@@ 787e3dd45f html
+One-standard-deviation expected move ≈ stock price × IV × √(days/365). IV is a full-year standard deviation; scale it by the square root of time to the period you care about.
+@@ 65b56b711e html
+σ is the annualized implied volatility. There is about a 68% chance that the stock price at expiration lands within ±1 expected move.
+@@ 8e3c5a686a html
+Why the square root? Daily returns are roughly independent, and the variances of independent variables add: the variance over 30 days is 30 times the variance over 1 day, so the standard deviation is √30 times as large. An IV of 30% corresponds to a daily standard deviation of <span class="num">30% ÷ √365 = 1.57%</span>, and over 30 days it is <span class="num">1.57% × √30 = 8.6%</span>.
+@@ 11c149c855 html
+Table 3-7 Multipliers for common terms
+@@ ab32578019 html
+Term
+@@ 9eaabde504 html
+√(days/365)
+@@ b6721264bc html
+Shortcut
+@@ 66de089f57 html
+1 day
+@@ 1e6a1095f7 html
+IV ÷ 19 (÷ 16 under the trading-day convention; see Chapter 4)
+@@ 83c154c714 html
+1 week
+@@ 343909b5b4 html
+30 days
+@@ 175f892274 html
+90 days
+@@ 5afb4642e8 html
+1 year
+@@ 573d43ab86 html
+IV itself
+@@ b22620ac24 html
+Example: stock at $200, IV 40%, two weeks (14 days): <span class="num">200 × 0.40 × √(14/365) = 200 × 0.40 × 0.196 = $15.7</span>. The market sees roughly a 68% chance that the stock will be between 184 and 216 in two weeks.
+@@ 9b48275613 html
+How accurate is the mental math?
+@@ 0ddc798be8 html
+Mental math gives a symmetric ±, while the lognormal range is wider on the upside and narrower on the downside, and the whole range also shifts down by −σ²/2. How far apart the two are depends on the size of σ√<span class="v">T</span>:
+@@ 8169293c21 html
+Table 3-8 Mental math vs. the lognormal 68% range (stock at $100)
+@@ 840566dd88 html
+Mental math ±
+@@ a2f42eaf9d html
+Exact upper bound
+@@ 9c1d4bfdf6 html
+Exact lower bound
+@@ 35cfa405f9 html
+When σ√<span class="v">T</span> is within 0.2 (for example, up to three months at IV 30%, or up to one month at IV 60%), the mental-math value falls roughly between the exact upper and lower bounds, with an error of about $1. Above 0.3, be careful: in the last row, the upper bound is actually below the mental-math value, because the whole range has been pulled down by −σ²/2.
+@@ 586b31663f html
+One-standard-deviation move
+@@ 59fe0403bb html
+ATM straddle price
+@@ b0825d7657 html
+Implied volatility <input id="f5-iv" type="range" min="10" max="100" value="30"> <output id="f5-iv-o">30%</output>
+@@ bb06391670 html
+Read at <input id="f5-d" type="range" min="1" max="365" value="30"> <output id="f5-d-o">30 days</output>
+@@ b6f4c38984 html
+In the “One-standard-deviation move” view, drag IV above 60% and you'll see the exact upper bound drop below the mental-math line near one year. Switch to the “ATM straddle price” view, and the two lines nearly coincide at any IV: even at IV 100% and one year, the error is only about 6%. This is the 0.8 rule of Section 3.9.
+@@ 71c48842a1 html
+Before events such as earnings or FDA decisions, IV includes the big move expected on the event day. Spreading it evenly across every day to work out “how much will it move tomorrow” is wrong: before the event, each day moves less than IV suggests, and on the event day it moves much more. Case 3 and Chapter 10 show how to split it out.
+@@ 4f511b8a1c html
+<span class="sn">3.9</span>Mental math 2: the straddle's 0.8
+@@ ed2a1d506e html
+The price of an at-the-money straddle (buying one call and one put at the same strike) ≈ 0.8 × the one-standard-deviation expected move. The 0.8 comes from the mean absolute value of the normal distribution: √(2/π) ≈ 0.798.
+@@ 7138078907 html
+Derivation 1: the average absolute move
+@@ 50ab7a94ae html
+At expiration, an at-the-money straddle pays |<span class="v">S<sub>T</sub></span> − <span class="v">K</span>|, the absolute value of the stock's move. If the move is roughly normally distributed with standard deviation <span class="v">M</span> = <span class="v">S</span>σ√<span class="v">T</span>, the average of its absolute value is:
+@@ 6acd401e91 html
+So <span class="v">E</span>|Δ<span class="v">S</span>| ≈ 0.798 × <span class="v">M</span>. The straddle's price is the average absolute move (discounted), about 80% of one standard deviation.
+@@ 0dca320ad8 html
+Derivation 2: starting from Black-Scholes
+@@ 40bf9ad637 html
+At the money, <span class="v">S</span> = <span class="v">K</span>. Ignoring interest, <span class="v">d</span><sub>1</sub> = σ√<span class="v">T</span>/2 and <span class="v">d</span><sub>2</sub> = −σ√<span class="v">T</span>/2, and the call price becomes
+@@ 7295a9f9ca html
+The term in brackets is the area under the standard normal density over a band of width σ√T around 0, roughly the width × the peak height of 0.399. The put works the same way, so straddle = call + put ≈ 0.8 × <span class="v">S</span>σ√<span class="v">T</span>.
+@@ caaefbd06c html
+Along the way you get an even handier rule: <strong>ATM call ≈ 0.4 × stock price × IV × √(days/365)</strong>. Base case: <span class="num">0.4 × 100 × 0.30 × 0.287 = 3.44</span>, versus 3.591 from Black-Scholes. The 0.15 gap comes from interest: parity tells us the call is 0.328 more expensive than the put, and the call gets half of that. Add that half back and you get <span class="num">3.60</span>. The rule also works for backing out IV as in Section 3.1: <span class="num">(4.20 − 0.16) ÷ (0.4 × 100 × 0.287) ≈ 35.2%</span>, against an exact value of 35.3%.
+@@ 83f613b311 html
+Checking the error with numbers
+@@ 2c9eb15993 html
+Table 3-9 ATM straddle: Black-Scholes vs. the 0.8 rule (stock at $100)
+@@ 57afd20e88 html
+BS straddle price
+@@ ee9a0c2c02 html
+0.8 × mental-math move
+@@ bfca8a7f0f html
+Rule error
+@@ a8ecfca671 html
+Straddle ÷ mental-math move
+@@ 7de95f5618 html
+The rule always overestimates slightly, and the error grows with σ√<span class="v">T</span>. The reason is that derivation 2 approximates the area under the curve as “width × peak,” while the normal density curves downward on both sides of the peak. A more precise expansion is <span class="v">N</span>(<span class="v">x</span>/2) − <span class="v">N</span>(−<span class="v">x</span>/2) ≈ 0.399<span class="v">x</span>(1 − <span class="v">x</span>²/24), with <span class="v">x</span> = σ√<span class="v">T</span>. At <span class="v">x</span> = 0.3 the correction is under 0.4%; at <span class="v">x</span> = 1 it is about 4%. For the terms and IVs you'll use day to day (σ√<span class="v">T</span> &lt; 0.3), the error is under 1%, so you can rely on the mental math.
+@@ 367b6ec762 html
+Two ways to use it in reverse
+@@ 810009c774 html
+<strong>Reading the expected move from the straddle</strong>: one standard deviation ≈ straddle ÷ 0.8 = 1.25 × straddle.
+@@ fc487b4692 html
+<strong>Backing out IV from the straddle</strong>: IV ≈ straddle ÷ (0.8 × stock price × √(days/365)).
+@@ 554a15c0bf html
+Some platforms label the at-the-money straddle price directly as the “expected move.” That number corresponds to the average absolute move, about 80% of one standard deviation. Both usages are common, so before you compare against historical data, make sure both sides use the same measure: the straddle price corresponds to “the average absolute size of the move,” and straddle ÷ 0.8 corresponds to “one standard deviation.”
+@@ a9dd9e4635 html
+<span class="sn">Cases</span>Three cases
+@@ a2c74b55d8 html
+Using put–call parity to prove “covered call = short put”
+@@ 0d9167895d html
+Stock at $100, 30 days, IV 30%. Two people make two trades that look different:
+@@ 225dbc04a0 html
+<strong>Trader A (covered call)</strong>: buys 100 shares and sells one 105 call, collecting $1.662 per share in premium. Net outlay at the start: <span class="num">100 − 1.662 = $98.338</span> per share.
+@@ 367f857e9e html
+<strong>Trader B (cash-secured put)</strong>: sells one 105 put, collecting $6.317 per share in premium, and at the same time puts <span class="num">105 × e<sup>−0.04×30/365</sup> = $104.655</span> per share into short-term Treasury bills, which grow to exactly 105 at expiration. Net outlay at the start: <span class="num">104.655 − 6.317 = $98.338</span> per share.
+@@ 19b59ded8d html
+The two put up exactly the same money at the start, which is precisely the rearranged parity <span class="v">S</span> − <span class="v">C</span> = <span class="v">K</span>e<sup>−<span class="v">rT</span></sup> − <span class="v">P</span>. Now look at expiration, point by point:
+@@ cc34b90bf9 html
+Table 3-10 Values and P&amp;L at expiration, point by point (per contract, $)
+@@ 77ccbcadda html
+A: stock
+@@ fcb7fb5690 html
+A: short call
+@@ 2d0e64707c html
+A total
+@@ 9c74a92439 html
+B: T-bills
+@@ ae79e270a1 html
+B: short put
+@@ f26285ddf5 html
+B total
+@@ d615c31c00 html
+P&amp;L (same for both)
+@@ 7d17497e4f html
+P&amp;L = total at expiration − the starting $9,833.8. Both have a breakeven of $98.34 and a maximum gain of $666 (with the stock at 105 or above), and on the way down both lose $100 for every $1 the stock falls. In practice, only four things can make them differ:
+@@ b37394d9e0 html
+<strong>Interest on cash</strong>: if B's cash sits in the account earning no interest, B makes <span class="num">105 × (1 − e<sup>−rT</sup>) = $0.345</span> per share less than A, or $34.5 per contract. The amount by which the call is “more expensive” than the put is exactly this interest.
+@@ df91a367bd html
+<strong>Dividends</strong>: A collects dividends and B doesn't. But with dividends, calls are cheaper and puts more expensive, and parity already accounts for that.
+@@ c16a2a9cc0 html
+<strong>Early assignment</strong>: with American options, A's call may be exercised early before an ex-dividend date, and B's put may be assigned early when it is deep in the money, so the two may be taken out of their positions at different times.
+@@ b7c2eee546 html
+<strong>Costs and taxes</strong>: A makes two trades (the stock and the option), while B makes only one; the two may also be taxed differently.
+@@ 5e349eb254 html
+“Covered calls are conservative, selling puts is aggressive” is an illusion. A cash-secured put and a covered call carry exactly the same risk. The real danger is using margin to scale up the number of contracts beyond what your cash can secure. That is a leverage problem and has nothing to do with which form you choose.
+@@ e7a61e175c html
+March 2020: the weeks the normal assumption failed
+@@ 8145eb6aa2 html
+From late February 2020, COVID-19 spread around the world and US stocks fell fast. In mid-March, the S&amp;P 500 repeatedly triggered market-wide circuit breakers with intraday drops of 7%; the one-day drop on March 16 was the largest since 1987; and the VIX set a record closing high.
+@@ 27425e5ac3 html
+Measuring these days with a normal distribution leads to absurd conclusions. Suppose the index's daily standard deviation before the crisis was about 1% (about 16% annualized):
+@@ c41f2748e0 html
+Table 3-11 Frequencies under a normal distribution, using the pre-crisis daily standard deviation of 1%
+@@ bc545b284b html
+One-day drop
+@@ 52b5de0f75 html
+Equivalent to
+@@ b352b707df html
+Daily probability under normal
+@@ 7eaf39f311 html
+Average interval
+@@ 05aed91d3e html
+About 14,000 years
+@@ ee5ef29d02 html
+About 3.1 billion years
+@@ c04fb731a0 html
+About 5 × 10²⁰ years
+@@ 9badf57637 html
+The universe is about 14 billion years old, yet days of all these kinds showed up within a few weeks. The problem lies in two places. First, the tails of returns are fatter than normal to begin with (Section 3.4). Second, the standard deviation itself isn't constant. Daily volatility in a crisis is several times what it is in calm times, and measuring a crisis with the σ of a calm period is a mistake in itself.
+@@ 6562a09ae6 html
+Now consider what this means for option sellers (the numbers below are a hypothetical scenario). The index is at 100 and IV is 16%. You sell a 30-day 95 put for <span class="num">$0.256</span> per share, or $25.6 per contract. Black-Scholes says the probability of it finishing in the money is only <span class="num">12.2%</span>. The next day the index falls 7% and IV jumps to 60%: the put is now worth <span class="num">$7.21</span>, a loss of <span class="num">$695</span> per contract, <span class="num">28</span> times the premium you collected. If IV had stayed at 16%, it would be worth only $2.67. In other words, $4.54 of the $6.95 loss came from the jump in IV, more than 60% of it.
+@@ f79ded5ab4 html
+Black-Scholes probabilities are calm-market probabilities. Using them to size short option positions badly underestimates tail risk.
+@@ 791d0aa538 html
+Risk assessment for sellers should use scenarios: how much do you lose if the market “falls 7% and IV multiplies several times”? Delta and the probability of finishing in the money are only a reference.
+@@ 8253d08870 html
+The market uses volatility skew to mark up far out-of-the-money puts precisely because participants remember days like these. Before you decide that “out-of-the-money puts are overpriced, free premium for the taking,” run the scenario above.
+@@ b179bea326 html
+A 30-second calculation before earnings
+@@ f7f7c646da html
+The stock is at $250, and earnings come out this week. The at-the-money straddle expiring in 7 days is quoted at $15 (hypothetical). Without opening any pricing software, what can you read from it?
+@@ acbc476d29 html
+<strong>Average absolute move</strong>: <span class="num">15 ÷ 250 = 6%</span>. The market expects the stock to end up, on average, about 6% away from the current price at expiration.
+@@ 5b95152b18 html
+<strong>One standard deviation</strong>: <span class="num">15 ÷ 0.8 = $18.75</span>, or 7.5%. There is about a 68% chance that the price at expiration is between 231 and 269.
+@@ 2d94bebb3f html
+<strong>Implied volatility</strong>: <span class="num">7.5% ÷ √(7/365) = 7.5% ÷ 0.139 ≈ 54%</span>. Backing it out precisely with Black-Scholes gives <span class="num">54.3%</span>; the mental math is off by 0.1 points.
+@@ d365b2fdf3 html
+<strong>Split out earnings day</strong>: suppose the stock's normal IV is 35%. The other 6 days contribute a standard deviation of <span class="num">35% × √(6/365) = 4.49%</span>. Variances add, so the standard deviation of earnings day alone is <span class="num">√(7.52%² − 4.49%²) ≈ 6.0%</span>, which corresponds to an average absolute move of about <span class="num">0.8 × 6.0% ≈ 4.8%</span>.
+@@ eebbb899b4 html
+<strong>Compare with history</strong>: compare against the stock's <strong>average absolute move</strong> on the first day after its past several earnings reports, not the largest move and not the standard deviation. If the historical average is only around 3%, the options are priced rich this time; if it is 7%, they are cheap.
+@@ e3360ea432 html
+The straddle price, one standard deviation and implied volatility can be converted into one another: straddle ÷ 0.8 gives one standard deviation, and dividing that by √(days/365) and by the stock price gives IV. The most common mistake before an event is mixing measures: comparing the straddle price with a historical standard deviation, or spreading an IV that includes the event evenly across every day.
+@@ 76fc557033 html
+<span class="sn">Tools</span>Checklist and self-test
+@@ b4640d623d html
+Your checkmarks are saved only in your own browser.
+@@ c7aad9c272 html
+<span class="num">3-1</span>Reading a quote: the six inputs
+@@ 35a290d80f html
+Confirm the stock price, strike and expiration; count days left in calendar days
+@@ 05e529c373 html
+Note the IV, and judge cheap or expensive by IV rather than by dollar price
+@@ cd8037927c html
+For dividend payers, check whether an ex-dividend date falls before expiration
+@@ bc2c358e48 html
+<span class="num">3-2</span>Parity check
+@@ 24fb7bd8b2 html
+Call − put ≈ stock − PV of strike (minus PV of dividends)
+@@ fdcc976402 html
+If it's far off, check these first: dividends, how hard the stock is to borrow, stale quotes
+@@ af42bb9c62 html
+Cash-secured puts: is the cash earning interest?
+@@ 0cc60992e0 html
+<span class="num">3-3</span>Reading probabilities
+@@ 02a98a9deb html
+Delta ≈ probability ITM: slightly high for calls, slightly low for puts
+@@ e0676e1890 html
+Probability of touching ≈ 2 × probability ITM; as a seller, plan for the “touch”
+@@ 1dffe01cbf html
+For tail risk, don't trust model probabilities; use scenario tests instead
+@@ 4dcb97e876 html
+<span class="num">3-4</span>Mental math
+@@ e72b09f994 html
+One standard deviation ≈ stock price × IV × √(days/365)
+@@ 4f8e888406 html
+ATM straddle ≈ 0.8 ×, ATM call ≈ 0.4 × one standard deviation
+@@ 41ad3124fd html
+When there's an event, split out the event day's variance separately

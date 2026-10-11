@@ -1,0 +1,174 @@
+@@ a42f449651 text
+Score a narrative and see which quadrant it lands in
+@@ a28a3602a0 text
+Figure 1-1 · Interactive
+@@ 5919cec183 text
+Policy stage
+@@ 86dc3ad3fc text
+Political support
+@@ 0cfab0de07 text
+Demand duration
+@@ 24af87cb0a text
+Unavoidable beneficiary?
+@@ 564147fac4 text
+Crowding
+@@ c307819af3 text
+Valuation
+@@ b5b287fac6 text
+Chapter 2
+@@ a1aa21848e text
+From the field
+@@ ec198ee68d text
+Chapter 3
+@@ 6e950a2384 text
+The typical order in which capital enters a region
+@@ d3bb1a79a9 text
+Figure 3-1
+@@ 54e07b1acf text
+Chapter 4
+@@ cec281695f text
+Each stage of a conflict brings a different set of winners and losers
+@@ 27b05a4ab2 text
+Figure 4-1 · Interactive
+@@ 30b44a7821 text
+Chapter 5
+@@ 5e89b520bf text
+A price floor turns a cyclical stock into a business with a safety net
+@@ 941de5185b text
+Figure 5-1 · Drag to adjust
+@@ 0713fefb71 text
+No floor
+@@ 0966431430 text
+With floor
+@@ 91bacda29e text
+Profit per kg, no floor
+@@ 4ebec23d81 text
+Profit per kg, with floor
+@@ d431670d0d text
+The floor works like a put worth about
+@@ 45d7d3b76c text
+Chapter 6
+@@ 4cc42ad6c4 text
+How much cost a company can pass on decides whether a tariff is a “nuisance” or a “profit killer”
+@@ 56f9d13a90 text
+Figure 6-1 · Drag to adjust
+@@ aa16c8c510 text
+Current demand elasticity
+@@ 69237164d4 text
+Demand unaffected (elasticity 0)
+@@ 9a530a295f text
+Added cost (% of revenue)
+@@ a2c45f14a1 text
+Price increase / volume change
+@@ 7183edc5dd text
+Change in gross profit
+@@ dea78eaefc text
+New gross margin
+@@ 69e54f3695 text
+A practical test
+@@ aeccd92690 text
+Chapter 7
+@@ 6b28176cc5 text
+The lower the layer, the closer it is to “bought no matter who wins”
+@@ 79775ce58f text
+Figure 7-1
+@@ 6abb27b583 text
+Chapter 8
+@@ 30f805314b text
+Chapter 9
+@@ 08a6812432 text
+The policy put is not insurance
+@@ ccc22c7da9 text
+Chapter 10
+@@ e465c9c800 text
+Can't miss it → buy the stock
+@@ ebb1e099d6 text
+Happy to own it, but fine to miss it → sell a put
+@@ 2eef8bc88e text
+The higher the IV, the more tempting the premium, and the more likely the shares get called away
+@@ f9274e4d9a text
+Figure 10-1 · Drag to adjust
+@@ ed4d8235e6 text
+Simple annualized premium (monthly × 12)
+@@ 5e79e88cb5 text
+Probability of assignment at expiry
+@@ 1d044ae82a text
+Monthly premium
+@@ 064057ba98 text
+Simple annualized (× 12)
+@@ 83454d3a14 text
+Probability of assignment
+@@ cd055c5823 text
+Chapter 11
+@@ 90ad96efa1 text
+Theme:
+One-line narrative: over the next few years, the world will be forced to spend money on ___________
+Policy stage: statement / executive order / legislation / budget / actual spending
+Political support: one party / some cross-party / bipartisan consensus
+Change-of-government test: would it still hold if the other side were in power? ___
+Unavoidable beneficiaries:
+My vehicle: ETF / lower-risk stock / higher-risk stock (Small. Lazy. Late.)
+Valuation and crowding:
+Entry plan: waiting for what price / what event / what data
+Position limit:
+Invalidation criteria (facts, not prices):
+  1.
+  2.
+Strongest counterargument:
+Next review date:
+@@ 18df1cfaf9 attr
+A 12-chapter study handbook: break the grand narratives in the news into investment themes you can test, bet on, and admit you got wrong.
+@@ 9ce7d3c4f4 attr
+Site navigation
+@@ b4126ef441 attr
+Chapters
+@@ 44e8c0f1eb attr
+Introduction: trade the policy, not the slogan
+@@ d8f6c66f53 attr
+Scoring narratives: from slogan to cash flow
+@@ b18a1c0c89 attr
+Policy stage
+@@ 32bff79f18 attr
+Political support
+@@ 6d6bd684d9 attr
+Demand duration
+@@ 2f8fc856fe attr
+Unavoidable beneficiary?
+@@ 5876d9d33a attr
+Crowding
+@@ d9c7c58621 attr
+Valuation
+@@ f323102f5f attr
+First decide what to avoid: countries and markets
+@@ 4599e2add9 attr
+The Western Hemisphere and supply-chain realignment
+@@ ba648f1954 attr
+Three stages: security, resources, manufacturing
+@@ 3b3e02deee attr
+Defense: wars end, preparing for them doesn't
+@@ 96ee005653 attr
+Choose a conflict stage
+@@ c98596ce20 attr
+Resource independence: energy, critical minerals and gold
+@@ c5a7656e87 attr
+Profit per kg with and without a price floor
+@@ 58fd002a1a attr
+Reshoring and tariffs
+@@ e96bfe9178 attr
+Pass-through rate and change in gross profit
+@@ 6bc8ac49f1 attr
+AI, power and robotics
+@@ 2b2dbf9370 attr
+Layers of the AI supply chain
+@@ 7662643b4b attr
+Household themes: uneven inflation, agriculture and healthcare
+@@ 812f2b6810 attr
+Elections and policy cycles
+@@ 475e7bab62 attr
+Execution: ETFs, two stock baskets and options
+@@ c150677508 attr
+Implied volatility and covered-call premium
+@@ 06a1ae102a attr
+Toolkit: theme map, narrative cards and exercises
+@@ f0852d355e attr
+Chapter navigation

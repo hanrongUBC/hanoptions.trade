@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chapter 13 Risk management for options · US Options Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  #s-tbl { font-size: 13px; }
+  #s-tbl th, #s-tbl td { padding: 6px 3px; }
+  #s-tbl th:first-child, #s-tbl td:first-child { padding-left: 10px; }
+  #s-tbl th:last-child, #s-tbl td:last-child { padding-right: 10px; }
+  .calc table input { width: 3.3em; padding: 3px 4px; font-size: 13px; -moz-appearance: textfield; appearance: textfield; }
+  .calc table input::-webkit-inner-spin-button, .calc table input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+  .calc table input.name { width: 4.2em; }
+  .calc table select { font-size: 13px; padding: 3px 2px; }
+  .tbl.txt th, .tbl.txt td { text-align: left; }
+  .tbl.compact table { font-size: 13.5px; }
+  .tbl.compact th, .tbl.compact td { padding: 8px 7px; }
+  .tbl.compact th:first-child, .tbl.compact td:first-child { padding-left: 14px; }
+  .tbl.compact th:last-child, .tbl.compact td:last-child { padding-right: 14px; }
+  .tbl .l { text-align: left; }
+  .rulecard .card { border-top: 3px solid var(--theta); }
+</style>
+<link rel="alternate" hreflang="zh-CN" href="https://hanoptions.trade/options/ch13.html"><link rel="alternate" hreflang="en" href="https://hanoptions.trade/en/options/ch13.html">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap">
+<style id="en-overrides">
+html[lang="en"] { --font-display: "Source Serif 4", "Noto Serif SC", Georgia, serif; --font-body: "Source Sans 3", "Noto Sans SC", system-ui, sans-serif; }
+html[lang="en"] body { line-height: 1.7; }
+html[lang="en"] body * { letter-spacing: normal !important; }
+html[lang="en"] p, html[lang="en"] li, html[lang="en"] td, html[lang="en"] figcaption { hyphens: auto; -webkit-hyphens: auto; }
+html[lang="en"] p { text-wrap: pretty; }
+html[lang="en"] .toc a { grid-template-columns: 48px 1fr; }
+</style>
+</head>
+<body data-ch="13">
+<div class="topbar"><div class="topbar-inner"><div class="topbar-brand"><a class="site-home" href="/en/">hanoptions.trade</a><a class="brand" href="index.html">US Options <span>Course</span></a></div><div class="topbar-tools"><select id="ck-jump" aria-label="Jump to chapter"></select><a class="lang-switch" href="/options/ch13.html" hreflang="zh-CN" lang="zh-CN" data-lang="zh"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>中文</a></div></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">13</div>
+    <div class="eyebrow">US Options Course · Part 4 Portfolio and risk management · Chapter 13</div>
+    <h1><span class="g">Risk management</span> for options</h1>
+    <p class="deck">Options accounts rarely die from one wrong call. Most die because their positions are too big, too alike, and forced out at the worst moment. This chapter gives you three rulers for measuring position size, a set of sizing rules each for buyers and for sellers, and a stress-test table you can run every week.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="In this chapter">
+    <p class="toc-title">In this chapter</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>Opening: only $100 per contract</span></a></li>
+      <li><a href="#s1"><span class="n">13.1</span><span>Three ways to measure a position</span></a></li>
+      <li><a href="#s2"><span class="n">13.2</span><span>Rules for buyers</span></a></li>
+      <li><a href="#s3"><span class="n">13.3</span><span>Rules for sellers</span></a></li>
+      <li><a href="#s4"><span class="n">13.4</span><span>Stress tests: three scenarios, once a week</span></a></li>
+      <li><a href="#s5"><span class="n">13.5</span><span>The illusion of diversification</span></a></li>
+      <li><a href="#s6"><span class="n">13.6</span><span>The margin spiral</span></a></li>
+      <li><a href="#s7"><span class="n">13.7</span><span>Liquidity, early assignment and pin risk</span></a></li>
+      <li><a href="#s8"><span class="n">13.8</span><span>Options position rule card</span></a></li>
+      <li><a href="#cases"><span class="n">Cases</span><span>Two cases</span></a></li>
+      <li><a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>In this chapter</summary>
+      <ol>
+        <li><a href="#open">Opening: only $100 per contract</a></li>
+        <li><a href="#s1">13.1 Three ways to measure a position</a></li>
+        <li><a href="#s2">13.2 Rules for buyers</a></li>
+        <li><a href="#s3">13.3 Rules for sellers</a></li>
+        <li><a href="#s4">13.4 Stress tests: three scenarios, once a week</a></li>
+        <li><a href="#s5">13.5 The illusion of diversification</a></li>
+        <li><a href="#s6">13.6 The margin spiral</a></li>
+        <li><a href="#s7">13.7 Liquidity, early assignment and pin risk</a></li>
+        <li><a href="#s8">13.8 Options position rule card</a></li>
+        <li><a href="#cases">Two cases</a></li>
+        <li><a href="#tools">Checklist and self-test</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>After this chapter you can</h4>
+        <ul>
+          <li>Work out notional exposure, max loss and stress loss for any options position</li>
+          <li>Decide how many contracts to trade by max loss or stress loss, not by premium</li>
+          <li>Stress-test the whole account every week with three scenarios, and cut positions according to the rule card</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Prerequisites</h4>
+        <ul>
+          <li>Chapter 2: exercise, assignment and margin</li>
+          <li>Chapter 8: strategies for sellers and stress-testing positions</li>
+          <li>Chapter 12: portfolio Greeks and beta weighting</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Conventions</h4>
+        <ul>
+          <li>Black-Scholes, 4% rate, no dividends, 365-day year; options on futures use the Black form of the same formula</li>
+          <li>One stock option contract = 100 shares; default account size $100,000</li>
+          <li>A “gap” is an instant move with days to expiry unchanged; margin is estimated with common Reg T rules</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">Opening</span>Only $100 per contract</h2>
+      <p class="lead">Your account holds $100,000. You pick ten stocks, all trading around $100, and on each one you sell a 30-day put with a 90 strike (IV 40%). Each brings in <span class="num">$99.8</span>, <span class="num">$998</span> for all ten, less than 1% of the account. It looks as if you are risking only 1%.</p>
+      <div class="tbl txt">
+        <table>
+          <caption>Table 13-0 Five numbers for the same set of positions</caption>
+          <thead><tr><th>Measure</th><th>Calculation</th><th>Amount</th><th>% of account</th></tr></thead>
+          <tbody>
+            <tr><td>Premium received</td><td>10 × $99.8</td><td class="mono">$998</td><td class="mono">1.0%</td></tr>
+            <tr><td>Notional exposure</td><td>10 × 100 shares × $100</td><td class="mono">$100,000</td><td class="mono">100%</td></tr>
+            <tr><td>Cash to secure the puts</td><td>10 × 100 × $90</td><td class="mono">$90,000</td><td class="mono">90%</td></tr>
+            <tr class="hl"><td>Stress loss</td><td>All ten −20%, IV doubles</td><td class="mono neg">−$12,541</td><td class="mono">12.5%</td></tr>
+            <tr><td>Max loss</td><td>All ten go to zero: (90 − 0.998) × 1,000</td><td class="mono neg">−$89,002</td><td class="mono">89.0%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The premium is the most you can make, and it says almost nothing about how much you can lose. The stress loss is <span class="num">12.6</span> times the premium; even with IV unchanged, a plain 20% drop in the stocks costs <span class="num">$9,517</span>. Ten stocks look diversified, but on the day the market falls, they mostly fall together.</p>
+      <p>This chapter does three things: it measures position size the right way; it gives buyers and sellers each a set of sizing rules; and it uses stress tests to turn those rules into a weekly routine. At the end you will have your own position rule card.</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">13.1</span>Three ways to measure a position</h2>
+      <p>Measure an options position with three rulers: notional exposure, max loss and Greek risk. Premium is a fit measure only for buyers.</p>
+      <ul>
+        <li><strong>Notional exposure</strong>: shares covered by the contracts × stock price. It tells you how much stock you could have to take on or owe in the worst case, and it is the base for assignment and margin.</li>
+        <li><strong>Max loss</strong>: the worst outcome at expiry. Spreads and iron condors have a hard cap; a naked short put is capped at “strike − premium” (the stock goes to zero); a naked short call has no cap.</li>
+        <li><strong>Greek risk</strong>: Delta dollars (Δ × 100 × stock price) tell you how much stock the position is equivalent to; Vega tells you how much you make or lose for each point of IV. Put them through a realistic shock (a price gap plus an IV spike) and you get the stress loss.</li>
+      </ul>
+      <div class="tbl compact">
+        <table>
+          <caption>Table 13-1 Three measures for five common positions (stock $100, 30 days, IV 40%, 1 contract or 1 spread each)</caption>
+          <thead><tr><th>Position</th><th>Premium</th><th>Notional exposure</th><th>Max loss</th><th>Delta dollars</th><th>Vega / pt</th><th>Stress loss</th></tr></thead>
+          <tbody>
+            <tr><td>Long 100 call</td><td class="mono">Debit $473</td><td class="mono">$10,000</td><td class="mono">$473</td><td class="mono">+$5,343</td><td class="mono">+$11.4</td><td class="mono neg">−$289</td></tr>
+            <tr><td>Short 90 put</td><td class="mono">Credit $100</td><td class="mono">$10,000</td><td class="mono">$8,900</td><td class="mono">+$1,575</td><td class="mono">−$6.9</td><td class="mono neg">−$1,254</td></tr>
+            <tr><td>Short 90/85 put spread</td><td class="mono">Credit $65</td><td class="mono">$10,000</td><td class="mono">$435</td><td class="mono">+$911</td><td class="mono">−$3.2</td><td class="mono neg">−$278</td></tr>
+            <tr><td>Short 90/110 strangle</td><td class="mono">Credit $243</td><td class="mono">$20,000</td><td>Unlimited</td><td class="mono">−$706</td><td class="mono">−$15.6</td><td class="mono neg">−$1,194</td></tr>
+            <tr><td>Short 85/90/110/115 iron condor</td><td class="mono">Credit $138</td><td class="mono">$20,000</td><td class="mono">$362</td><td class="mono">−$83</td><td class="mono">−$5.9</td><td class="mono neg">−$233</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The stress-loss column assumes “stock instantly −20%, IV doubles.” How to read the table:</p>
+      <ul>
+        <li><strong>Buyers</strong>: the premium is the max loss, so measuring by premium is right. Under the same shock the long call loses only $289, less than the premium: the doubling of IV wins part of it back.</li>
+        <li><strong>Sellers</strong>: the premium is the smallest number on the three rulers. The short 90 put collects $100; its stress loss is 12.6 times that, and its max loss 89 times.</li>
+        <li><strong>Spreads</strong>: the $435 max loss is the position’s size. With 30 days left, one shock doesn’t reach the cap ($278), but the closer to expiry, the closer it gets.</li>
+        <li><strong>Strangles</strong>: Delta dollars are only −$706, which looks neutral, but its Vega is the largest in the table (−$15.6), and a 20% move up loses $956 as well. A neutral position’s risk lives in Vega and in gaps.</li>
+      </ul>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">13.2</span>Rules for buyers</h2>
+      <p>A buyer’s worst enemy is a losing streak. Keep each trade small enough that even the worst run of losses is a drawdown you can recover from.</p>
+
+      <h3>Size per trade: the Kelly ceiling</h3>
+      <p>Let the win rate be <span class="v">p</span>; a win makes <span class="v">b</span> times the premium on average, and a loss costs the whole premium. The bet size that compounds fastest over the long run is:</p>
+      <div class="formula">
+        <div class="eq"><span class="v">f</span>* <span class="up">=</span> <span class="frac"><span><span class="v">b</span> · <span class="v">p</span> <span class="up">−</span> (1 <span class="up">−</span> <span class="v">p</span>)</span><span><span class="v">b</span></span></span></div>
+        <p class="where">Win rate 35%, average win 2×: f* = (0.70 − 0.65) ÷ 2 = 2.5%. Win rate 40%: 10%. Overestimate the win rate by just 3 points (it’s really 32%): f* = −2%, and the trade itself loses money.</p>
+      </div>
+      <p>The Kelly fraction is a ceiling, not a target. It assumes you know your win rate and payoff exactly, and a buyer’s win-rate estimate is often off by several percentage points. In practice you take half of it or less, which is why the common rule is <strong>premium per trade no more than 1%–2% of the account</strong>. If you set a −50% stop-loss on every trade, you could count the risk per trade as half the premium; but IV crush and gaps often make stops fail, so to be safe, count the full premium.</p>
+
+      <h3>How long losing streaks run</h3>
+      <p>How long a losing streak will a buyer with a 35% win rate run into over 100 trades? It can be computed exactly:</p>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">A buyer with a 35% win rate will most likely hit 9 losses in a row within 100 trades</span><span class="fig-no">Figure 13-1 · Distribution of the longest losing streak in 100 trades</span></div>
+        <div class="controls">
+          <label class="ctl" for="f1-w">Win rate <input id="f1-w" type="range" min="20" max="60" value="35" step="1"> <output id="f1-w-o">35%</output></label>
+          <div class="seg" role="group" aria-label="Premium per trade as % of account">
+            <button type="button" data-f="0.01" aria-pressed="false">1% per trade</button>
+            <button type="button" data-f="0.02" aria-pressed="true">2%</button>
+            <button type="button" data-f="0.05" aria-pressed="false">5%</button>
+            <button type="button" data-f="0.10" aria-pressed="false">10%</button>
+          </div>
+        </div>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 280" role="img" aria-label="Probability distribution of the longest losing streak"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta); border-top-width: 8px"></i>Probability</span><span><i style="border-color: var(--gamma); border-top-width: 8px"></i>Worst 5%</span></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small>Median longest losing streak</small></div>
+          <div><b id="f1-r2">—</b><small>Not exceeded 95% of the time</small></div>
+          <div><b id="f1-r3">—</b><small>Drawdown from that streak</small></div>
+          <div><b id="f1-r4">—</b><small>Chance of at least one 10-loss streak</small></div>
+        </div>
+        <figcaption>Each bet is a fixed fraction of current equity. At a 35% win rate, the median longest losing streak is 9 trades and the 95th percentile is 14. At 2% per trade, a 14-trade losing streak is a 24.6% drawdown; at 5% per trade, the same streak is a 51.2% drawdown, and you need to double your money to get back to even. Drag the win rate to 50% and the 95th percentile is still 9 trades.</figcaption>
+      </figure>
+      <div class="tbl compact">
+        <table>
+          <caption>Table 13-2 Drawdown from a 14-trade losing streak (the 95th percentile at a 35% win rate) at different sizes per trade</caption>
+          <thead><tr><th>Premium per trade, % of equity</th><th>1%</th><th>2%</th><th>5%</th><th>10%</th></tr></thead>
+          <tbody>
+            <tr><td>Drawdown after 9 straight losses (median case)</td><td class="mono">8.6%</td><td class="mono">16.6%</td><td class="mono">37.0%</td><td class="mono">61.3%</td></tr>
+            <tr class="hl"><td>Drawdown after 14 straight losses</td><td class="mono">13.1%</td><td class="mono">24.6%</td><td class="mono">51.2%</td><td class="mono neg">77.1%</td></tr>
+            <tr><td>Gain needed to get back to even after 14 straight losses</td><td class="mono">15.1%</td><td class="mono">32.7%</td><td class="mono">105.1%</td><td class="mono neg">337.1%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>How many trades at once</h3>
+      <p>2% per trade only works if the trades are uncorrelated. Five calls on tech stocks get knocked down by the same macro headline on the same day; in effect they are one 10% bet. So buyers need two aggregate rules as well: <strong>no more than 5 trades open at once, and total premium no more than 10% of the account</strong>; positions on the same theme (same sector, same direction, same event) count together and are capped at 6% combined.</p>
+      <div class="note">
+        <span class="tag">Key point</span>
+        <p>The buyer’s rules look conservative because buyers win through “a few trades that make big money.” The small losses along the way only mean something if you survive until those trades show up.</p>
+      </div>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">13.3</span>Rules for sellers</h2>
+      <p>Size a short-option position by “how much can this lose”: max loss for defined risk, the stress test for undefined risk, plus one cap on the total and one on concentration.</p>
+
+      <h3>Defined risk: size by max loss</h3>
+      <p>Spreads and iron condors have a known max loss, so use it directly to set the number of contracts: <strong>max loss per trade no more than 3% of the account</strong> (1%–2% when you are new to selling). The 90/85 put spread in Table 13-1 has a max loss of $435 per spread, so a $100,000 account can open <span class="num">3,000 ÷ 435 = 6.9</span>; round down to 6, for a max loss of $2,610.</p>
+      <p>Add one aggregate rule: <strong>defined-risk positions in the same direction may lose no more than 20% in combined max loss</strong>. The reason is simple: when the market drops hard, all your bullish put spreads hit their caps together, and “each one’s max loss” is realized on the same day.</p>
+
+      <h3>Undefined risk: size by stress test</h3>
+      <p>The max loss on naked puts and strangles is too large to be a useful guide, so use stress loss instead: <strong>stress loss per trade (−20%, IV doubles) no more than 5% of the account</strong>. The short 90 put has a stress loss of $1,254 per contract, so the most you can sell is <span class="num">5,000 ÷ 1,254 = 4.0</span>; 3 contracts is safer.</p>
+      <p>Same account, same contract, three approaches, three completely different numbers:</p>
+      <ul>
+        <li>By premium (“it’s only $100 each”): no limit</li>
+        <li>By cash secured: <span class="num">100,000 ÷ 9,000 = 11</span> contracts</li>
+        <li>By 5% stress loss: 3 to 4 contracts</li>
+      </ul>
+
+      <h3>Total exposure and concentration</h3>
+      <ul>
+        <li><strong>Total stress loss no more than 20% of the account.</strong> A 20% drawdown needs a 25% gain to recover; a 50% drawdown needs a double. 20% is a drawdown you can still trade through normally, without your judgment getting bent out of shape.</li>
+        <li><strong>Total notional exposure on short puts (strike × 100 × contracts) no more than 1–1.5 times the account.</strong> That is how much stock you may be forced to take on in a market-wide decline.</li>
+        <li><strong>No single underlying above 25% of total stress loss, no single sector above 40%.</strong> Concentration caps guard against single-stock gaps: one earnings report or one regulatory headline is enough.</li>
+      </ul>
+
+      <h3>Why −20%</h3>
+      <p>For a broad index, −20% is roughly the worst single day in modern history: on October 19, 1987, the S&amp;P 500 fell about 20% in one day. Using it as a weekly stress scenario is conservative enough. For single stocks, a 20%–30% gap after earnings is not rare, so −20% is only a starting point; binary events such as biotech trial results or a failed merger should be tested at −50% or worse. For leveraged ETFs, multiply in the leverage: a 3× long ETF falls about 30% when the index falls 10%. The same goes for IV doubling: for an index that normally trades at 15% IV, doubling in a sharp selloff is no exaggeration; for a wild stock already at 80%, doubling is less realistic, and the price gap is what matters.</p>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">13.4</span>Stress tests: three scenarios, once a week</h2>
+      <p>A stress test is only worth something if you run it on a fixed schedule. Same time every week, same scenarios; if a limit is breached, you cut, whatever you feel that day.</p>
+      <ol>
+        <li><strong>Export positions</strong>: after the close every Friday, list all option and stock positions.</li>
+        <li><strong>Run three scenarios</strong>: A, all underlyings −20% at once; B, prices unchanged, IV doubles; C, both together. If you have short calls, add a +10% or +15% scenario.</li>
+        <li><strong>Check the limits</strong>: stress loss per trade ≤ 5%, total ≤ 20%, single underlying ≤ 25%.</li>
+        <li><strong>Cut what’s over</strong>: cut the biggest contributor first. Don’t open a new opposing position to “offset” it; a new position has risks of its own.</li>
+        <li><strong>Write it down</strong>: record the numbers and what you did in your trading journal (Chapter 14), and after a month check whether the rules need adjusting.</li>
+      </ol>
+      <div class="tbl compact">
+        <table>
+          <caption>Table 13-3 Weekly stress test of a sample account ($100,000, all underlyings move together; totals computed from unrounded values)</caption>
+          <thead><tr><th>Underlying and position</th><th>Premium</th><th>A −20%</th><th>B IV×2</th><th>C Both</th><th>C % of acct</th><th>+10%</th></tr></thead>
+          <tbody>
+            <tr><td>A: 2 short 140 puts</td><td class="mono">400</td><td class="mono neg">−3,583</td><td class="mono neg">−1,016</td><td class="mono neg">−4,185</td><td class="mono">4.2%</td><td class="mono pos">+341</td></tr>
+            <tr><td>B: 5 short 55 puts</td><td class="mono">404</td><td class="mono neg">−3,185</td><td class="mono neg">−1,121</td><td class="mono neg">−4,029</td><td class="mono">4.0%</td><td class="mono pos">+327</td></tr>
+            <tr><td>SPY: 3 short 750/730 put spreads</td><td class="mono">591</td><td class="mono neg">−5,382</td><td class="mono neg">−383</td><td class="mono neg">−4,850</td><td class="mono">4.9%</td><td class="mono pos">+587</td></tr>
+            <tr><td>C: 2 short 110 calls</td><td class="mono">377</td><td class="mono pos">+371</td><td class="mono neg">−946</td><td class="mono pos">+119</td><td class="mono">—</td><td class="mono neg">−789</td></tr>
+            <tr><td>D: 4 short 45 puts (45 days)</td><td class="mono">534</td><td class="mono neg">−1,844</td><td class="mono neg">−1,191</td><td class="mono neg">−2,904</td><td class="mono">2.9%</td><td class="mono pos">+327</td></tr>
+            <tr class="hl"><td>Total</td><td class="mono">2,306</td><td class="mono neg">−13,623</td><td class="mono neg">−4,656</td><td class="mono neg">−15,848</td><td class="mono">15.8%</td><td class="mono pos">+793</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Line by line: every trade is within 5%, and the 15.8% total is within 20%. But the SPY spreads contribute <span class="num">31%</span> of total stress loss, above the 25% concentration cap. After closing 1 spread, SPY’s share drops to <span class="num">22.7%</span> and total stress loss becomes <span class="num">$14,232</span>. The other thing to watch is C: it is the only position that loses money on a rally, <span class="num">$1,393</span> at +15%, so this account also needs a weekly up-move scenario.</p>
+
+      <h3>Three common mistakes</h3>
+      <ul>
+        <li><strong>Extrapolating linearly from Delta.</strong> The ten 90 puts from the opening have a combined Delta of about +157.5 shares. A Delta estimate says −20% loses only <span class="num">157.5 × 20 = $3,150</span>; adding the Gamma term gives $7,350; full repricing gives <span class="num">$9,517</span>. The Delta estimate misses two-thirds of the loss. A seller’s stress test has to reprice the options; the approximations can only be trusted for small moves (Chapter 4).</li>
+        <li><strong>Testing positions one at a time.</strong> Every trade being within 5% doesn’t mean the total is within 20%; positions that get run over on the same day have to be counted together.</li>
+        <li><strong>Forgetting IV and liquidity.</strong> Testing price without IV misses about a quarter of the loss: the same ten puts lose $9,517 at −20%, and $12,541 once IV doubles as well. And when you trade, you pay the bid–ask spread on top (Section 13.7).</li>
+      </ul>
+
+      <figure class="plate calc" id="calc">
+        <div class="fig-head"><span class="fig-title">Stress tester</span><span class="fig-no">Tool 13-A · Editable; defaults to the Table 13-3 account</span></div>
+        <div class="spy"><label for="s-acct">Account equity</label><input id="s-acct" type="number" value="100000" step="1000"></div>
+        <div class="controls">
+          <label class="ctl" for="s-gap">Gap size <input id="s-gap" type="range" min="-40" max="20" value="-20" step="1"> <output id="s-gap-o">−20%</output></label>
+          <label class="ctl" for="s-ivm">IV multiple <input id="s-ivm" type="range" min="1" max="3" value="2" step="0.1"> <output id="s-ivm-o">× 2.0</output></label>
+        </div>
+        <div class="tbl" style="margin: 6px 0 0;">
+          <table id="s-tbl">
+            <thead><tr><th>Underlying</th><th>Type</th><th>Contracts</th><th>Price</th><th>Strike</th><th>Days</th><th>IV %</th><th>Market value</th><th>Scenario P&amp;L</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <svg class="chart" id="s-svg" viewBox="0 0 680 280" role="img" aria-label="Portfolio P&amp;L versus gap size"></svg>
+        <div class="legend"><span><i class="dash" style="border-color: var(--muted)"></i>IV unchanged</span><span><i style="border-color: var(--gamma)"></i>IV × selected multiple</span><span><i class="dash" style="border-color: var(--warn)"></i>−20% account limit</span></div>
+        <div class="readout">
+          <div><b id="s-r1">—</b><small>Portfolio P&amp;L in scenario</small></div>
+          <div><b id="s-r2">—</b><small>% of account</small></div>
+          <div><b id="s-r3">—</b><small>Largest single-underlying loss (share)</small></div>
+          <div><b id="s-r4">—</b><small>Total premium received</small></div>
+        </div>
+        <figcaption>Every underlying gaps by the same amount, which assumes a correlation of 1, with days to expiry unchanged. Enter short contracts as negative numbers; give several legs on the same underlying the same name and they are combined for concentration. Drag the gap to +15% to see the risk in the short calls; drag the IV multiple to 3 to see how heavy Vega is.</figcaption>
+      </figure>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">13.5</span>The illusion of diversification</h2>
+      <p>Short puts on ten stocks are mostly one bet: that the market won’t fall. You diversified tickers, not risk.</p>
+      <p>Every stock’s move can be split into two parts: the part that follows the market (β × the market’s move) and its own part. A short put has positive Delta, so ten of them add up to a long market position. The ten puts in the opening each have a Delta of −0.1575, so together they are like holding about 157.5 shares, or <span class="num">$15,750</span> of stock; if the stocks’ average β is 1.2, that is equivalent to <span class="num">$18,900</span> long SPY (beta weighting, Chapter 12).</p>
+      <p>Normally, stocks go their own way and correlation is low: now and then one or two of the ten puts get run over, the rest expire worthless, and the portfolio is smooth. On a day of sharp selling, everyone is selling, correlations between stocks rush toward 1, and all ten get run over together. The simple one-factor model below shows this: each stock’s return = √ρ × common shock + √(1 − ρ) × own shock, with true volatility assumed at 35% (below the 40% IV, so sellers make money on average), 4,000 scenarios, and the same random numbers for every correlation.</p>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">Correlation barely changes the average return, but makes the tail several times larger</span><span class="fig-no">Figure 13-2 · P&amp;L at expiry of 10 short 90 puts (1 per stock)</span></div>
+        <div class="controls">
+          <label class="ctl" for="f2-rho">Correlation between stocks ρ <input id="f2-rho" type="range" min="0" max="0.95" value="0.3" step="0.05"> <output id="f2-rho-o">0.30</output></label>
+        </div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 300" role="img" aria-label="Probability that the portfolio loss exceeds a given amount"></svg>
+        <div class="legend"><span><i style="border-color: var(--gamma)"></i>Current correlation</span><span><i class="dash" style="border-color: var(--muted)"></i>Reference: ρ = 0</span></div>
+        <div class="readout">
+          <div><b id="f2-r1">—</b><small>Average P&amp;L</small></div>
+          <div><b id="f2-r2">—</b><small>Worst 5% of scenarios</small></div>
+          <div><b id="f2-r3">—</b><small>Worst 1% of scenarios</small></div>
+          <div><b id="f2-r4">—</b><small>Probability of losing more than $5,000</small></div>
+        </div>
+        <figcaption>The vertical axis is the probability that “the portfolio loses more than the amount on the horizontal axis,” on a log scale. At ρ = 0 the curve drops to zero around $4,000; drag ρ to 0.9 and the same curve stretches past $18,000. Average P&amp;L stays between $260 and $281, barely moving.</figcaption>
+      </figure>
+      <div class="tbl compact">
+        <table>
+          <caption>Table 13-4 The same ten puts under three correlations (4,000 scenarios)</caption>
+          <thead><tr><th>Correlation ρ</th><th>Average P&amp;L</th><th>Probability of a loss</th><th>Worst 5%</th><th>Worst 1%</th><th>Loss > $5,000</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">0</td><td class="mono pos">+$281</td><td class="mono">29.0%</td><td class="mono neg">−$1,056</td><td class="mono neg">−$2,038</td><td class="mono">0%</td></tr>
+            <tr><td class="mono">0.3</td><td class="mono pos">+$277</td><td class="mono">25.1%</td><td class="mono neg">−$1,955</td><td class="mono neg">−$3,986</td><td class="mono">0.4%</td></tr>
+            <tr class="hl"><td class="mono">0.9</td><td class="mono pos">+$261</td><td class="mono">14.7%</td><td class="mono neg">−$4,114</td><td class="mono neg">−$9,706</td><td class="mono">4.3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Three findings:</p>
+      <ul>
+        <li><strong>The average return barely changes.</strong> Each stock’s own distribution is the same, so the expectancy is the same. A backtest that looks only at average return can’t see the danger of correlation.</li>
+        <li><strong>Higher correlation actually means fewer losing outcomes.</strong> At ρ = 0.9 only 14.7% of scenarios lose money, fewer than at ρ = 0. That is exactly why these accounts feel reassuring: there are more quiet months.</li>
+        <li><strong>But when they lose, they lose together.</strong> The worst 1% widens from −$2,038 to −$9,706, nearly five times as much. Real markets have fatter tails than the normal distribution, and correlations rise in selloffs and fall back in rallies, so if anything this model is optimistic.</li>
+      </ul>
+      <div class="note warn">
+        <span class="tag">What to do</span>
+        <ul>
+          <li>Fund the account for the ρ = 0.9 row: size with the “all underlyings −20% at once” stress test from Section 13.4</li>
+          <li>Diversify risk factors, not just tickers: add short calls or call spreads, different expirations, and a few long index puts</li>
+          <li>Track total market exposure with beta-weighted Delta (Chapter 12) and manage it as a single position</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">13.6</span>The margin spiral</h2>
+      <p>When sellers exit at the worst moment, it is often because they ran out of margin first, not because their view changed. A drop and an IV spike do two things at once: they shrink your equity and raise the margin your broker requires.</p>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">The margin spiral: each turn makes the next one steeper</span><span class="fig-no">Figure 13-3 · Schematic</span></div>
+        <div class="scroll-x"><svg class="chart wide" viewBox="0 0 680 320" role="img" aria-label="The loop in which falling prices and rising IV raise margin, force positions closed, and push IV higher still">
+          <defs>
+            <marker id="arr-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--muted)"></path></marker>
+          </defs>
+          <g style="font-family: var(--font-body); font-size: 13.5px">
+            <rect x="20" y="20" width="270" height="80" rx="6" style="fill: var(--tint-gamma); stroke: var(--gamma)"></rect>
+            <text x="155" y="50" text-anchor="middle" style="fill: var(--gamma); font-weight: 700">① Price falls, IV rises</text>
+            <text x="155" y="76" text-anchor="middle" style="fill: var(--ink)">Any bad news can start it</text>
+            <rect x="390" y="20" width="270" height="80" rx="6" style="fill: var(--tint-warn); stroke: var(--warn)"></rect>
+            <text x="525" y="50" text-anchor="middle" style="fill: var(--warn); font-weight: 700">② Short options rise in value</text>
+            <text x="525" y="76" text-anchor="middle" style="fill: var(--ink)">Less equity, more margin required</text>
+            <rect x="390" y="220" width="270" height="80" rx="6" style="fill: var(--tint-warn); stroke: var(--warn)"></rect>
+            <text x="525" y="250" text-anchor="middle" style="fill: var(--warn); font-weight: 700">③ Excess liquidity turns negative</text>
+            <text x="525" y="276" text-anchor="middle" style="fill: var(--ink)">Margin call or forced liquidation</text>
+            <rect x="20" y="220" width="270" height="80" rx="6" style="fill: var(--tint-gamma); stroke: var(--gamma)"></rect>
+            <text x="155" y="250" text-anchor="middle" style="fill: var(--gamma); font-weight: 700">④ Forced buyback at the worst price</text>
+            <text x="155" y="276" text-anchor="middle" style="fill: var(--ink)">Buying lifts IV; hedgers sell stock</text>
+            <path d="M292 60 H386" style="stroke: var(--muted); fill: none" stroke-width="1.6" marker-end="url(#arr-m)"></path>
+            <path d="M525 102 V216" style="stroke: var(--muted); fill: none" stroke-width="1.6" marker-end="url(#arr-m)"></path>
+            <path d="M388 260 H294" style="stroke: var(--muted); fill: none" stroke-width="1.6" marker-end="url(#arr-m)"></path>
+            <path d="M155 218 V104" style="stroke: var(--muted); fill: none" stroke-width="1.6" marker-end="url(#arr-m)"></path>
+            <text x="340" y="152" text-anchor="middle" style="fill: var(--muted); font-size: 13px">The same shock</text>
+            <text x="340" y="174" text-anchor="middle" style="fill: var(--muted); font-size: 13px">hits equity and margin at once</text>
+            <text x="545" y="164" text-anchor="start" style="fill: var(--muted); font-size: 12px">20% of stock price</text>
+            <text x="545" y="182" text-anchor="start" style="fill: var(--muted); font-size: 12px">plus option value</text>
+            <text x="135" y="164" text-anchor="end" style="fill: var(--muted); font-size: 12px">Widest spreads,</text>
+            <text x="135" y="182" text-anchor="end" style="fill: var(--muted); font-size: 12px">highest IV</text>
+          </g>
+        </svg></div>
+        <figcaption>Each of the four steps feeds on itself: the more people are forced to buy back, the pricier options get, and the higher the margin requirement on the next account. Market makers who sell options usually hedge with the underlying, and their selling drives step ① again.</figcaption>
+      </figure>
+
+      <h3>Walking through the numbers</h3>
+      <p>Under common Reg T rules, the margin on each naked short put is the option’s market value plus the greater of “20% of the stock price minus the out-of-the-money amount” and “10% of the strike,” times 100. Scale the opening account up to 3 contracts per stock (30 short 90 puts in all):</p>
+      <div class="tbl compact">
+        <table>
+          <caption>Table 13-5 Margin and equity for 30 short 90 puts ($100,000 account)</caption>
+          <thead><tr><th>State</th><th>Put price</th><th>Margin per contract</th><th>Total margin</th><th>Account equity</th><th>Margin / equity</th><th>Room left</th></tr></thead>
+          <tbody>
+            <tr><td>Open: stock 100, IV 40%</td><td class="mono">$1.00</td><td class="mono">$1,100</td><td class="mono">$32,994</td><td class="mono">$100,000</td><td class="mono">33.0%</td><td class="mono pos">$67,006</td></tr>
+            <tr><td>Down 10%, IV 60% (2 days later)</td><td class="mono">$5.81</td><td class="mono">$2,381</td><td class="mono">$71,442</td><td class="mono">$85,553</td><td class="mono">83.5%</td><td class="mono">$14,111</td></tr>
+            <tr class="hl"><td>Down 20%, IV 80% (4 days later)</td><td class="mono">$13.10</td><td class="mono">$2,910</td><td class="mono">$87,310</td><td class="mono">$63,685</td><td class="mono neg">137.1%</td><td class="mono neg">−$23,625</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The stocks fall 20%, the account loses 36%, and the margin requirement grows to 2.6 times its starting level. By the third row, even if you are sure the stocks will come back, your broker will demand $23,625 more or close you out, and it closes you out at prices set by 80% IV.</p>
+      <p>If the same account follows the Section 13.3 rule “total stress loss ≤ 20%,” at $1,254 of stress loss per contract it can sell at most 15. Margin at the open is $16,497 (16.5% of equity); after the same shock it loses $18,158 and margin is $43,655, only 53.3% of equity, so the account gets through. <strong>The real job of sizing rules is to leave you choices on bad days.</strong> That is also where the rule card’s “margin used no more than 35% of equity” comes from.</p>
+
+      <h3>Two real spirals</h3>
+      <p><strong>February 2018.</strong> The market had been unusually calm for more than a year, and shorting volatility had become “steady income” in many people’s eyes. On February 5, the VIX more than doubled in a single day, its largest one-day percentage gain on record, and the Dow posted what was then its largest one-day point drop ever. Exchange-traded products that were short VIX futures had to buy futures around the close to rebalance, and that buying itself pushed futures prices higher. One of these products lost most of its net asset value overnight and was then terminated early by its issuer. Accounts that were short index puts faced falling prices, soaring IV and higher margin all at once.</p>
+      <p><strong>March 2020.</strong> Under the shock of the pandemic, US stocks plunged within a few weeks; market-wide circuit breakers were triggered several times in March, and the VIX set a record closing high, above its peak in the 2008 financial crisis. Even the US Treasury market briefly ran into liquidity strains. Many brokers raised margin requirements, and option bid–ask spreads widened sharply. Many sellers turned out to be right in the end, as the market won back its losses over the following months, but they didn’t last until that day.</p>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">13.7</span>Liquidity, early assignment and pin risk</h2>
+      <p>Stress tests use mid prices, but in reality you fill at the far side of the quote; models settle at expiry, but in reality American-style options can be exercised at any time. These three risks don’t show up in the Greeks, yet they often decide the final loss.</p>
+
+      <h3>Liquidity: spreads are widest on bad days</h3>
+      <p>The option value shown in your account is usually the mid price. On a normal day a $1.00 put might be quoted $0.95 × $1.05; in a selloff the same contract rises to $13.10 and the quote might become $12.40 × $13.80 (both quotes are hypothetical). Buying back 30 contracts at the ask instead of the mid costs extra: <span class="num">0.05 × 100 × 30 = $150</span> on a normal day, <span class="num">0.70 × 100 × 30 = $2,100</span> in a selloff.</p>
+      <ul>
+        <li>Trade only contracts whose bid–ask spread is no more than 10% of the premium; on cheap, deep OTM options the spread is often half the premium</li>
+        <li>Don’t use stop-market orders on options: in a fast market they fill at absurd prices. Use limit orders or alerts triggered by the underlying’s price instead</li>
+        <li>Multiply stress-test results by 1.1–1.2 to leave room for slippage</li>
+      </ul>
+
+      <h3>Early assignment: deep ITM short legs</h3>
+      <p>The holder of an American-style option can exercise at any time. When a put is deep in the money with little time value left, the holder does better exercising early and earning interest on the strike proceeds than holding on. In the model, for a 95 put with 14 days left and IV 38%, the European price drops below intrinsic value (negative time value) once the stock is below <span class="num">$84.05</span>; at $88 the time value is still $0.41, and at $85 only $0.06 is left.</p>
+      <p>With the 95/90 put spread from Chapter 12, if the stock falls to 85 the short leg is likely to be assigned early. You receive 1,000 shares worth <span class="num">$95,000</span>. In a Reg T account, stock usually carries 50% initial margin, or <span class="num">$47,500</span>, while the spread’s max loss is only <span class="num">(5 − 1.021) × 1,000 = $3,979</span>. Economically your risk is still capped by the 90 put, but many brokers don’t count that long put as protection when computing margin, so the account may get a margin call.</p>
+      <p>For short calls, the danger point is just before the ex-dividend date. If a call’s time value is less than the upcoming dividend, the holder will exercise the day before the ex-dividend date to collect the dividend. For a 100-strike call with 10 days left and IV 25%, the time value at stock prices of 102, 103, 104, 105 and 108 is $0.93, $0.67, $0.48, $0.35 and $0.16. With a $0.50 dividend, expect assignment once the stock is above 104.</p>
+
+      <h3>Pin risk: closing right at the strike</h3>
+      <p>On expiration day the stock closes at $100.10, and you are short 10 of the 100 calls. Whether you get exercised won’t be known until the weekend: holders can still decide after the close, based on after-hours prices. If you are assigned, you start Monday’s open short 1,000 shares; if Monday opens 3% higher, you lose <span class="num">1,000 × 100.10 × 3% = $3,003</span>. Spreads are no different: if at the close only the short leg is just in the money and the long leg expires worthless, you can be assigned with no protection. The rule is simple: <strong>before the close on expiration day, close every short leg within 1% of the current price</strong>.</p>
+
+      <div class="note field">
+        <span class="tag">Field notes</span>
+        <p>One trader sold put credit spreads on a bond ETF, thinking “the most I can lose is a few dozen dollars.” Then the underlying fell, the short leg was assigned early, and the account suddenly held a large block of shares with a notional value more than a hundred times the spread’s max loss. The broker didn’t recognize the protective leg when computing margin, the account was called for more money, and he had to sell the shares and buy protective puts to clean up. After a few of these, the lesson traders like him draw is: before trading spreads, find out exactly how your broker computes margin, and once a short leg goes in the money, deal with it early instead of waiting for expiry.</p>
+      </div>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">13.8</span>Options position rule card</h2>
+      <p>Write the rules before you lose money. The card below is one of this course’s deliverables: the numbers are suggested starting points. You can tighten them based on your own experience, but loosening them is not recommended. A check means you have written that rule into your own trading plan.</p>
+      <div class="cards rulecard">
+        <div class="card">
+          <h4><span class="num">R1</span>Per-trade limits</h4>
+          <ul>
+            <li><input type="checkbox" id="r1"><label for="r1">Buyers: premium per trade ≤ 2% of account</label></li>
+            <li><input type="checkbox" id="r2"><label for="r2">Defined-risk sellers: max loss per trade ≤ 3%</label></li>
+            <li><input type="checkbox" id="r3"><label for="r3">Undefined-risk sellers: stress loss per trade ≤ 5%</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">R2</span>Aggregate limits</h4>
+          <ul>
+            <li><input type="checkbox" id="r4"><label for="r4">Buyers: ≤ 5 trades at once, total premium ≤ 10%</label></li>
+            <li><input type="checkbox" id="r5"><label for="r5">Total stress loss across all positions ≤ 20%</label></li>
+            <li><input type="checkbox" id="r6"><label for="r6">Short-put notional ≤ 1–1.5× the account</label></li>
+            <li><input type="checkbox" id="r7"><label for="r7">Margin used ≤ 35% of equity</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">R3</span>Concentration</h4>
+          <ul>
+            <li><input type="checkbox" id="r8"><label for="r8">Single underlying ≤ 25% of total stress loss</label></li>
+            <li><input type="checkbox" id="r9"><label for="r9">Single sector ≤ 40%; long-option positions on one theme ≤ 6% combined</label></li>
+            <li><input type="checkbox" id="r10"><label for="r10">Beta-weighted Delta dollars within ±75% of the account</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">R4</span>Stress tests</h4>
+          <ul>
+            <li><input type="checkbox" id="r11"><label for="r11">Once every Friday after the close, and again before adding to positions</label></li>
+            <li><input type="checkbox" id="r12"><label for="r12">Three scenarios: −20%, IV doubles, both together; add +15% if you have short calls</label></li>
+            <li><input type="checkbox" id="r13"><label for="r13">When over a limit, cut the biggest contributor first, and finish within the week</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">R5</span>Don’ts</h4>
+          <ul>
+            <li><input type="checkbox" id="r14"><label for="r14">No naked short options ahead of earnings or binary events</label></li>
+            <li><input type="checkbox" id="r15"><label for="r15">No adding contracts to a losing short position; no rolling just to “collect a credit”</label></li>
+            <li><input type="checkbox" id="r16"><label for="r16">No selling contracts whose bid–ask spread is more than 10% of the premium</label></li>
+            <li><input type="checkbox" id="r17"><label for="r17">No selling puts on stock you don’t want to own; no short legs within 1% of the price left open on expiration day</label></li>
+          </ul>
+        </div>
+      </div>
+      <p>Tighten the numbers in a few situations. If your account is under $25,000 and can hold only three to five positions, the concentration rules are nearly impossible to meet: trade only defined-risk structures and cut max loss per trade to 2%. In a portfolio margin account the broker allows more leverage, so lower the cap on margin used accordingly; the total stress-test cap stays the same. In your first three months as a beginner, halve every limit.</p>
+      <p>Use this card together with the adjustment rules in Chapter 12: before adjusting, ask “if I had no position, would I open this one?”; before opening, run through this card. Only once both checks are passed do you get to your view on direction.</p>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">Cases</span>Two cases</h2>
+
+      <div class="case">
+        <div class="case-no">Case 1</div>
+        <h3>February 2018: a retail account short volatility</h3>
+        <p>The facts first. In the run-up to early 2018, the market went through a long stretch of low volatility, and many retail traders treated “short volatility” as a source of steady income. The usual tools were exchange-traded products that were short VIX futures, and short index puts. On February 5, the VIX more than doubled in a single day; these products lost most of their net asset value in the rebalancing after the close, and one of them was later terminated early by its issuer.</p>
+        <p>Below, hypothetical numbers replay a typical account ($100,000) to show how it lost 40% in a day or two:</p>
+        <ul>
+          <li>$40,000 in a product that delivers “−1× daily” the return of a short-term VIX futures index</li>
+          <li>Short 30 index ETF puts with 30 days to expiry: ETF at $100, 95 strike, IV only 12%, $0.08 collected on each, <span class="num">$241</span> in total</li>
+        </ul>
+        <div class="tbl compact">
+          <table>
+            <caption>Table 13-6 Before and after the shock (assumed: ETF −6%, IV up to 30%, short-term VIX futures index +80% in one day)</caption>
+            <thead><tr><th>Item</th><th>Before</th><th>After</th><th>Change</th></tr></thead>
+            <tbody>
+              <tr><td>Inverse VIX product</td><td class="mono">$40,000</td><td class="mono">$8,000</td><td class="mono neg">−$32,000</td></tr>
+              <tr><td>30 short 95 puts (per share)</td><td class="mono">$0.08</td><td class="mono">$3.44</td><td class="mono neg">−$10,090</td></tr>
+              <tr class="hl"><td>Account equity</td><td class="mono">$100,000</td><td class="mono">$57,910</td><td class="mono neg">−42.1%</td></tr>
+              <tr><td>Margin requirement on the puts</td><td class="mono">$45,241</td><td class="mono">$66,731</td><td class="mono neg">+47.5%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The math: a −1× product moves each day by the negative of the index’s move, so when the index rises 80% it falls 80%, and $40,000 becomes $8,000. If the index rose 100% in a day, it would in theory go to zero; in reality, the index rose even more that day than this example assumes. The puts: with the ETF at 94, IV 30% and 27 days left, each is worth $3.444, a loss of <span class="num">(3.444 − 0.080) × 100 × 30 = $10,090</span>, 42 times the income. Margin, using the formula from Section 13.6, rises from $45,241 to $66,731, more than the account’s equity.</p>
+        <p>By this chapter’s rule card, the account had broken three rules before the shock even hit:</p>
+        <ul>
+          <li><strong>Stress loss</strong>: the inverse product is built to go to zero if “the index doubles,” so its stress loss is the entire $40,000 (40%). That one position alone exceeds the 20% total cap.</li>
+          <li><strong>Concentration</strong>: both kinds of position bet on the same thing (the market staying calm), so they are really one position.</li>
+          <li><strong>Margin</strong>: before the shock, margin on the puts was already 45% of equity, above the 35% cap.</li>
+        </ul>
+        <p>Lesson: selling options at 12% IV collects the least premium while leaving IV the most room to double. Low IV is not low risk; it often means risk is priced at its cheapest.</p>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 2</div>
+        <h3>November 2018: an advisory firm selling natural gas options</h3>
+        <p>The facts first. A US investment advisory firm specialized in selling options on commodity futures for its clients, mainly selling deep OTM options to collect premium. The appeal of this kind of strategy is its high win rate: most deep OTM options expire worthless. In mid-November 2018, natural gas futures surged within a very short time, while the firm’s client accounts held large numbers of short natural gas calls. After the futures clearing firm forcibly liquidated the positions, many clients not only lost their entire accounts but also owed the clearing firm money. The firm then shut down, and its head apologized publicly.</p>
+        <p>Below, hypothetical numbers replay one account ($500,000). A natural gas futures contract covers 10,000 MMBtu, so each $0.01 move in price changes one contract’s value by $100. With futures at $3.30, the account sells 60 calls with 75 days to expiry and a $4.50 strike (36% above the current price, IV 45%). Using the Black model, each is worth $0.0217, or <span class="num">$217</span>; 60 contracts bring in <span class="num">$13,032</span>, 2.6% of the account, with a Delta of only 0.077.</p>
+        <div class="tbl compact">
+          <table>
+            <caption>Table 13-7 Unrealized losses as futures surge (hypothetical price and IV path)</caption>
+            <thead><tr><th>Scenario</th><th>Futures price</th><th>IV</th><th>Value per call</th><th>Unrealized loss, 60 contracts</th><th>% of account</th><th>Delta per contract</th></tr></thead>
+            <tbody>
+              <tr><td>Open</td><td class="mono">$3.30</td><td class="mono">45%</td><td class="mono">$217</td><td>—</td><td>—</td><td class="mono">0.077</td></tr>
+              <tr><td>+15% (7 days later)</td><td class="mono">$3.80</td><td class="mono">60%</td><td class="mono">$1,636</td><td class="mono neg">−$85,135</td><td class="mono">17.0%</td><td class="mono">0.298</td></tr>
+              <tr><td>+27% (11 days later)</td><td class="mono">$4.20</td><td class="mono">80%</td><td class="mono">$4,377</td><td class="mono neg">−$249,566</td><td class="mono">49.9%</td><td class="mono">0.481</td></tr>
+              <tr><td>+39% (14 days later)</td><td class="mono">$4.60</td><td class="mono">90%</td><td class="mono">$7,105</td><td class="mono neg">−$413,275</td><td class="mono">82.7%</td><td class="mono">0.592</td></tr>
+              <tr class="hl"><td>+48% (15 days later)</td><td class="mono">$4.90</td><td class="mono">100%</td><td class="mono">$9,650</td><td class="mono neg">−$565,985</td><td class="mono neg">113.2%</td><td class="mono">0.656</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Take the last row: futures at $4.90, IV 100%, 60 days left, each call is worth $0.9650, or $9,650; 60 contracts come to $579,018. Subtract the $13,032 collected and the unrealized loss is $565,985, $65,985 more than the entire account. That excess is what the client owes the clearing firm.</p>
+        <ul>
+          <li><strong>Deep OTM does not mean safe.</strong> At the open, Delta was 0.077, which looks like “it’ll almost never get there”; after futures rose 48%, Delta was 0.656. In the surge, the seller’s Gamma turned the position into a large short.</li>
+          <li><strong>For commodity calls, the tail is on the upside.</strong> Weather, inventories and supply disruptions can all make prices jump higher, and short covering speeds up the rise. The equity seller’s habit of thinking “only drops are dangerous” is exactly backward here.</li>
+          <li><strong>Options on futures can lose more than the whole account.</strong> The multiplier is large, margin is computed from scenarios (SPAN), and requirements climb steeply when price and IV rise together. The clearing firm liquidates at the worst moment.</li>
+          <li><strong>Three rules broken at once.</strong> Per trade: stress loss far above 5%. Aggregate: one commodity was the entire book. Concentration: every client account was in the same commodity, in the same direction.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">Tools</span>Checklist and self-test</h2>
+      <p>Your checkmarks are saved only in your own browser.</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">13-1</span>Weekly risk review</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">List notional exposure, max loss and stress loss for every position</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">Run the three scenarios: −20%, IV doubles, both together</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">Check against the rule card and flag everything over a limit</label></li>
+            <li><input type="checkbox" id="k4"><label for="k4">Write down the fix and carry it out within the week</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">13-2</span>Before opening a new position</h4>
+          <ul>
+            <li><input type="checkbox" id="k5"><label for="k5">Size by max loss or stress loss, not by premium</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">Check whether it is the same bet as positions you already hold</label></li>
+            <li><input type="checkbox" id="k7"><label for="k7">Bid–ask spread no more than 10% of the premium</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">Check the earnings and ex-dividend dates, and confirm how your broker computes margin on this trade</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">13-3</span>Expiration week</h4>
+          <ul>
+            <li><input type="checkbox" id="k9"><label for="k9">Deep ITM short legs: is the time value close to zero?</label></li>
+            <li><input type="checkbox" id="k10"><label for="k10">Short calls: before the ex-dividend date, is the time value less than the dividend?</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">Before the close, close short legs within 1% of the current price</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Self-test: five questions</h3>
+      <details class="q"><summary><span class="num">1</span><span>The stock is at $100, and you sell one 30-day 90 put at $1.00 (IV 40%). What are its notional exposure, max loss and stress loss (−20%, IV doubles)?</span></summary>
+        <div class="ans"><p>Notional exposure 100 × $100 = $10,000 (cash-securing it takes $9,000); max loss (90 − 1.00) × 100 = $8,900; stress loss about $1,254, 12.5 times the premium.</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>You estimate your win rate when buying options at 35%, with wins averaging 2 times the premium. What is the Kelly fraction? What if your true win rate is 32%?</span></summary>
+        <div class="ans"><p><span class="num">(2 × 0.35 − 0.65) / 2 = 2.5%</span>; at a 32% win rate, <span class="num">(0.64 − 0.68) / 2 = −2%</span>: the expectancy is negative, so you shouldn’t bet at all. A 3-point error in win rate flips the conclusion, which is why the size you actually use should be far below the Kelly ceiling.</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>Your account is $80,000, and one put spread has a max loss of $435. Under “max loss per trade ≤ 3%,” how many spreads can you open at most?</span></summary>
+        <div class="ans"><p>3% is $2,400; <span class="num">2,400 ÷ 435 = 5.5</span>, so 5 spreads, for a max loss of $2,175.</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>You sell one put on each of ten stocks. If the correlation between the stocks rises from 0.3 to 0.9, how do the average P&amp;L and the worst-1% outcome change?</span></summary>
+        <div class="ans"><p>In the Figure 13-2 simulation, average P&amp;L goes from +$277 to +$261, almost unchanged; the worst 1% widens from −$3,986 to −$9,706, about 2.4 times as much. Correlation moves the tail; the average is barely affected.</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>Your 95/90 put spread has 14 days left, the stock has fallen to $85, and the 95 put has only $0.06 of time value left. What will happen, and what should you do?</span></summary>
+        <div class="ans"><p>The short leg is likely to be assigned early: 10 spreads would deliver 1,000 shares worth $95,000, with Reg T initial margin of about $47,500, far more than the spread’s max loss. Deal with the short leg proactively: close the whole spread, or at least the short leg, and confirm first how your broker computes margin.</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="Chapter navigation"></nav>
+
+    <footer class="end">
+      <p>The examples in this chapter are computed with the Black-Scholes model (its Black form for options on futures), 4% rate, no dividends, 365-day year; simulations, quotes, price paths and margin are assumptions as noted in the text. Historical events are described only in qualitative terms. This content is for education and is not investment advice.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+  const sgn = v => (v > 0 ? "+" : v < 0 ? "−" : "");
+  const kfmt = v => sgn(v) + "$" + (Math.abs(v) >= 1000 ? (Math.abs(v) / 1000).toFixed(Math.abs(v) % 1000 === 0 ? 0 : 1) + "k" : Math.round(Math.abs(v)));
+  const pct = (v, d) => (v < 0 ? "−" : "") + Math.abs(v * 100).toFixed(d === undefined ? 1 : d) + "%";
+  function nice(lo, hi, n) {
+    if (hi - lo < 1e-9) { lo -= 1; hi += 1; }
+    const raw = (hi - lo) / (n || 5), mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    const st = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => s >= raw - 1e-12);
+    const a = Math.floor(lo / st) * st, b = Math.ceil(hi / st) * st, t = [];
+    for (let v = a; v <= b + st * 1e-6; v += st) t.push(+v.toFixed(6));
+    return { lo: a, hi: b, t };
+  }
+
+  // ---------- fig 13-1: 最长连亏分布 ----------
+  (function () {
+    const svg = document.getElementById("f1-svg");
+    const w = document.getElementById("f1-w");
+    const btns = document.querySelectorAll("#fig1 .seg button");
+    const N = 100;
+    let f = 0.02;
+    // P(最长连亏 < k)
+    function pLess(k, q) {
+      if (k <= 0) return 0;
+      let st = new Float64Array(k); st[0] = 1;
+      for (let t = 0; t < N; t++) {
+        const nw = new Float64Array(k);
+        for (let j = 0; j < k; j++) { const pr = st[j]; if (!pr) continue; nw[0] += pr * (1 - q); if (j + 1 < k) nw[j + 1] += pr * q; }
+        st = nw;
+      }
+      let s = 0; for (let j = 0; j < k; j++) s += st[j]; return s;
+    }
+    function draw() {
+      const p = +w.value / 100, q = 1 - p;
+      document.getElementById("f1-w-o").textContent = w.value + "%";
+      const K = 60, cdf = [];
+      for (let k = 0; k <= K; k++) cdf.push(pLess(k + 1, q));
+      const pm = cdf.map((c, k) => k ? c - cdf[k - 1] : c);
+      const med = cdf.findIndex(c => c >= 0.5), p95 = cdf.findIndex(c => c >= 0.95), p99 = cdf.findIndex(c => c >= 0.99);
+      const xmax = Math.max(20, p99 + 2);
+      let ymax = 0; for (let k = 1; k <= xmax; k++) ymax = Math.max(ymax, pm[k] * 100);
+      const nt = nice(0, ymax, 4);
+      const step = xmax > 30 ? 10 : 5;
+      plot(svg, {
+        x: [0.3, xmax + 0.7], y: [0, nt.hi], xt: range(step, xmax, step), yt: nt.t,
+        yf: v => v + "%", xlabel: "Longest losing streak in 100 trades (trades)", ylabel: "Probability",
+        bars: range(1, xmax, 1).map(k => ({ x: k, y: pm[k] * 100, w: 0.72, color: k >= p95 ? "var(--gamma)" : "var(--delta)" })),
+        vline: med
+      });
+      document.getElementById("f1-r1").textContent = med + " trades";
+      document.getElementById("f1-r2").textContent = p95 + " trades";
+      document.getElementById("f1-r3").textContent = "−" + (100 * (1 - Math.pow(1 - f, p95))).toFixed(1) + "%";
+      document.getElementById("f1-r4").textContent = (100 * (1 - cdf[9])).toFixed(1) + "%";
+    }
+    w.addEventListener("input", draw);
+    btns.forEach(b => b.addEventListener("click", () => {
+      f = +b.dataset.f;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    CK.figure(draw);
+  })();
+
+  // ---------- tool 13-A: 压力测试器 ----------
+  (function () {
+    const ROWS = [
+      ["A", "p", -2, 150, 140, 30, 35],
+      ["B", "p", -5, 60, 55, 30, 40],
+      ["SPY", "p", -3, 780, 750, 30, 17],
+      ["SPY", "p", 3, 780, 730, 30, 19],
+      ["C", "c", -2, 100, 110, 30, 45],
+      ["D", "p", -4, 50, 45, 45, 50]
+    ];
+    const IDS = ["n", "t", "q", "s", "k", "d", "v"];
+    const tbody = document.querySelector("#s-tbl tbody");
+    tbody.innerHTML = ROWS.map((r, i) => `<tr>
+      <td><input class="name" id="s-n${i}" value="${r[0]}" aria-label="Underlying"></td>
+      <td><select id="s-t${i}" aria-label="Type"><option value="p"${r[1] === "p" ? " selected" : ""}>Put</option><option value="c"${r[1] === "c" ? " selected" : ""}>Call</option></select></td>
+      <td><input id="s-q${i}" type="number" step="1" value="${r[2]}" aria-label="Contracts"></td>
+      <td><input id="s-s${i}" type="number" step="1" value="${r[3]}" aria-label="Underlying price"></td>
+      <td><input id="s-k${i}" type="number" step="1" value="${r[4]}" aria-label="Strike"></td>
+      <td><input id="s-d${i}" type="number" step="1" min="0" value="${r[5]}" aria-label="Days to expiry"></td>
+      <td><input id="s-v${i}" type="number" step="1" min="1" value="${r[6]}" aria-label="Implied volatility"></td>
+      <td class="mono" id="s-m${i}">—</td><td class="mono" id="s-p${i}">—</td></tr>`).join("");
+    const $ = (id, i) => document.getElementById("s-" + id + i);
+    const gapS = document.getElementById("s-gap"), ivS = document.getElementById("s-ivm"), acctIn = document.getElementById("s-acct");
+    const svg = document.getElementById("s-svg");
+    function legs() {
+      return ROWS.map((_, i) => ({ n: ($("n", i).value || "?").trim(), t: $("t", i).value, q: +$("q", i).value || 0, S: +$("s", i).value || 0, K: +$("k", i).value || 0, d: Math.max(+$("d", i).value || 0, 0), iv: (+$("v", i).value || 0) / 100 }));
+    }
+    const legVal = (l, gap, m) => (!l.q || l.S <= 0 || l.K <= 0) ? 0 : bs(Math.max(l.S * (1 + gap), 0.01), l.K, l.d / DAY, Math.max(l.iv * m, 0.01), l.t).price * 100 * l.q;
+    function draw() {
+      const L = legs(), gap = +gapS.value / 100, m = +ivS.value, acct = +acctIn.value || 100000;
+      document.getElementById("s-gap-o").textContent = sgn(+gapS.value) + Math.abs(+gapS.value) + "%";
+      document.getElementById("s-ivm-o").textContent = "× " + m.toFixed(1);
+      let tot = 0, prem = 0; const grp = {};
+      L.forEach((l, i) => {
+        const v0 = legVal(l, 0, 1), v1 = legVal(l, gap, m), d = v1 - v0;
+        tot += d; prem -= v0; grp[l.n] = (grp[l.n] || 0) + d;
+        $("m", i).textContent = l.q ? CK.usd(v0) : "—";
+        const c = $("p", i); c.textContent = l.q ? money(d) : "—"; c.className = "mono " + (d < 0 ? "neg" : d > 0 ? "pos" : "");
+      });
+      const pnl = (g, mm) => L.reduce((s, l) => s + legVal(l, g, mm) - legVal(l, 0, 1), 0);
+      const xs = range(-40, 20, 1);
+      const s1 = xs.map(x => [x, pnl(x / 100, 1)]), s2 = xs.map(x => [x, pnl(x / 100, m)]);
+      let lo = -0.2 * acct, hi = 0;
+      s1.concat(s2).forEach(p => { lo = Math.min(lo, p[1]); hi = Math.max(hi, p[1]); });
+      const nt = nice(lo, hi, 5);
+      plot(svg, {
+        x: [-40, 20], y: [nt.lo, nt.hi], xt: range(-40, 20, 10), yt: nt.t,
+        xf: v => sgn(v) + Math.abs(v) + "%", yf: kfmt, xlabel: "Gap in all underlyings", ylabel: "Portfolio P&L ($)", zero: 0, vline: +gapS.value,
+        series: [
+          { pts: [[-40, -0.2 * acct], [20, -0.2 * acct]], color: "var(--warn)", w: 1.6, dash: "6 5" },
+          { pts: s1, color: "var(--muted)", w: 2, dash: "6 5" },
+          { pts: s2, color: "var(--gamma)", w: 2.6 }
+        ],
+        dots: [[+gapS.value, tot, "var(--gamma)", 5]]
+      });
+      let worstN = "—", worstV = 0;
+      for (const k in grp) if (grp[k] < worstV) { worstV = grp[k]; worstN = k; }
+      document.getElementById("s-r1").textContent = money(tot);
+      document.getElementById("s-r2").textContent = pct(tot / acct);
+      document.getElementById("s-r3").textContent = worstV < 0 ? worstN + " " + money(worstV) + (tot < 0 ? "(" + Math.round(worstV / tot * 100) + "%)" : "") : "No loss";
+      document.getElementById("s-r4").textContent = CK.usd(prem);
+    }
+    document.getElementById("calc").addEventListener("input", draw);
+    document.getElementById("calc").addEventListener("change", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 13-2: 分散的幻觉 ----------
+  (function () {
+    const svg = document.getElementById("f2-svg");
+    const rhoS = document.getElementById("f2-rho");
+    const NS = 4000, NK = 10, S0 = 100, K = 90, D = 30, IV = 0.40, RV = 0.35;
+    const rand = CK.rng(20180205);
+    const Zm = [], Zi = [];
+    for (let s = 0; s < NS; s++) { Zm.push(CK.gauss(rand)); const row = []; for (let i = 0; i < NK; i++) row.push(CK.gauss(rand)); Zi.push(row); }
+    const prem = bs(S0, K, D / DAY, IV, "p").price;
+    function simulate(rho) {
+      const T = D / 365, sd = RV * Math.sqrt(T), a = Math.sqrt(rho), b = Math.sqrt(1 - rho);
+      const out = new Float64Array(NS);
+      for (let s = 0; s < NS; s++) {
+        let pnl = 0;
+        for (let i = 0; i < NK; i++) {
+          const z = a * Zm[s] + b * Zi[s][i];
+          const ST = S0 * Math.exp(-0.5 * sd * sd + sd * z);
+          pnl += (prem - Math.max(K - ST, 0)) * 100;
+        }
+        out[s] = pnl;
+      }
+      return Array.from(out).sort((x, y) => x - y);
+    }
+    const exceed = (a, x) => { let c = 0; for (let i = 0; i < a.length && a[i] < -x; i++) c++; return c / a.length; };
+    const ref = simulate(0);
+    const xs = range(0, 20000, 250);
+    const refPts = xs.map(x => [x, exceed(ref, x)]);
+    function draw() {
+      const rho = +rhoS.value;
+      document.getElementById("f2-rho-o").textContent = rho.toFixed(2);
+      const a = simulate(rho);
+      plot(svg, {
+        x: [0, 20000], y: [0.0002, 1], ylog: true, xt: range(0, 20000, 5000), yt: [0.001, 0.01, 0.1, 1],
+        xf: v => "$" + (v / 1000) + "k", yf: v => (v * 100 >= 1 ? (v * 100).toFixed(0) : (v * 100).toFixed(1)) + "%",
+        xlabel: "Portfolio loss exceeds ($)", ylabel: "Probability (log scale)",
+        series: [{ pts: refPts, color: "var(--muted)", w: 2, dash: "6 5" }, { pts: xs.map(x => [x, exceed(a, x)]), color: "var(--gamma)", w: 2.6 }]
+      });
+      const mean = a.reduce((s, v) => s + v, 0) / a.length;
+      document.getElementById("f2-r1").textContent = money(mean);
+      document.getElementById("f2-r2").textContent = money(a[Math.floor(0.05 * NS)]);
+      document.getElementById("f2-r3").textContent = money(a[Math.floor(0.01 * NS)]);
+      document.getElementById("f2-r4").textContent = (100 * exceed(a, 5000)).toFixed(1) + "%";
+    }
+    rhoS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+})();
+</script>
+<script id="lang-js">(function(){document.querySelectorAll(".lang-switch").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("hl-lang",a.getAttribute("data-lang"))}catch(e){}var h=a.getAttribute("href");if(location.hash&&h.indexOf("#")<0)a.setAttribute("href",h+location.hash);});});})();</script>
+</body>
+</html>

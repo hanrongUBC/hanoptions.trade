@@ -1,0 +1,208 @@
+@@ 50fa251280 html
+Profits are still growing: second-quarter EPS rose 34.11% year over year, and management put 2026 net interest income growth at the top of its 6% to 8% range. If the October 14 report confirms that, worries about shrinking margins could ease.
+@@ c69f1d28d1 html
+RSI at 31.84 is close to oversold, and the price is sitting near the 200-day moving average at $55.28. Ongoing buybacks (the share count fell 3.72% over the past year) also provide buying.
+@@ 2988a5a942 html
+Investment banking and trading are slowing: management expects third-quarter investment banking fees of $1.6 billion to $1.8 billion, below $2 billion a year earlier, and roughly flat trading revenue. The second quarter's strong growth will be hard to repeat.
+@@ 40c6f87bed html
+Rate path: if the Fed keeps hiking while the curve stays flat, net interest margin gets squeezed. AI money assistants make it easier for savers to move cash to higher-rate accounts, so low-cost deposits could leave.
+@@ b52fa300b5 html
+Sector sentiment: the KBW Bank Index is already down 10.2% from its August high, and if peers disappoint during earnings season, the sector could keep selling off.
+@@ 602d27452c html
+October 14 earnings: whether investment banking fees beat the $1.6 billion low end, whether net interest income growth stays at the top of guidance, and whether provisions rise sharply.
+@@ b42b39494d html
+Price: whether it can get back above the 200-day moving average at $55.28. If it closes below the 30-day low of $53.52, the next reference is the 52-week low of $46.12.
+@@ 451a795991 html
+The spread: whether the 2-year/10-year Treasury spread widens or keeps narrowing, and what the Fed signals at its October meeting.
+@@ cb98a2646f html
+Sources: <a href="https://stockanalysis.com/stocks/bac/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/bac/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/bac/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/bac/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/bac/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.theasianbanker.com/press-releases/bank-of-america-reports-27-rise-in-second-quarter-net-income-to-9-1-billion" target="_blank" rel="noopener">theasianbanker.com</a> · <a href="https://www.webull.com/news/15579059888587776" target="_blank" rel="noopener">webull.com</a> · <a href="https://www.sharecafe.com.au/2026/09/15/bank-of-america-flags-investment-banking-fee-dip/" target="_blank" rel="noopener">sharecafe.com.au</a> · <a href="https://kuwaittimes.com/article/49973/business/fed-raises-rates-to-tackle-too-high-inflation-irking-trump/" target="_blank" rel="noopener">kuwaittimes.com</a> · <a href="https://www.mufgresearch.com/rates/september-2026-fomc-recap/" target="_blank" rel="noopener">mufgresearch.com</a> · <a href="https://www.kitco.com/news/off-the-wire/2026-09-22/financial-stocks-fall-ai-and-flattening-yield-curve-focus" target="_blank" rel="noopener">kitco.com</a> · <a href="https://axios.com/2026/09/28/bank-stocks-treasury-curve" target="_blank" rel="noopener">axios.com</a> · <a href="https://kfgo.com/?p=1358418" target="_blank" rel="noopener">kfgo.com</a> · <a href="https://www.kitco.com/news/off-the-wire/2026-09-30/fed-finalizes-bank-stress-test-overhaul" target="_blank" rel="noopener">kitco.com</a> · <a href="https://investinglive.com/news/investinglive-americas-market-news-wrap-fed-officials-prepared-to-hike-again-this-year/" target="_blank" rel="noopener">investinglive.com</a> · <a href="https://www.swissinfo.ch/eng/us-stocks-fall-as-yields-climb-on-rate-hike-bets%3a-markets-wrap/91983315" target="_blank" rel="noopener">swissinfo.ch</a> · <a href="https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/09/bank-of-america-to-report-third-quarter-2026-financial-results-a.html" target="_blank" rel="noopener">newsroom.bankofamerica.com</a>
+@@ 595f879d94 html
+BX <span class="zh">Blackstone</span>
+@@ d89d91b1a4 html
+On the list as an alternative asset manager; his “benefits from falling rates” list includes “private equity.” Back in August he had also played the private-credit crisis from the short side.
+@@ 3c1c3199a6 html
+Blackstone is the world's largest alternative asset manager, running private equity, real estate, private credit and multi-asset funds, with about $1.346 trillion in assets under management at the end of the second quarter. Revenue comes in two main forms: management fees charged on assets under management, which are fairly stable, and performance fees earned when funds sell assets at a profit, which swing widely and depend on the exit environment.
+@@ 255ead4407 html
+52-week range: $101.73 to $166.39; the current price is 31.3% below the high. The average analyst price target is $141.64 (24 analysts, average rating Buy). Price targets reflect an optimistic scenario and often lag the stock price.
+@@ d51c611e0b html
+The close of $114.29 is 12.52% below the 50-day moving average ($130.64) and 10.28% below the 200-day moving average ($127.39). With the price under both averages, the trend is weak.
+@@ 0c0abf74c8 html
+RSI is 35.81, weak but not yet in oversold territory below 30. The stock has slid steadily since closing at $149.32 on August 13 and is down about 23.5% since then.
+@@ e1bb3ce1b9 html
+Support: the lowest close of the past 30 trading days, $111.65 (October 5). Since September 30 the stock has moved sideways between $111.65 and $114.29. Below that is the 52-week low of $101.73.
+@@ 3380fe4ddb html
+Resistance: first the September 25 close of $118.42, then the 200-day moving average at $127.39 and the 50-day moving average at $130.64. The 30-day high close is $143.24 (August 31) and the 52-week high is $166.39.
+@@ 4b3066b8c9 html
+$142.2 billion
+@@ 068c8ae3db html
+$15.5 billion
+@@ ac9f41a820 html
+$15.3 / $2.7 billion
+@@ 2d300302bb html
+$5.5 billion
+@@ 102f076e11 html
+Trailing-twelve-month revenue was $15.48 billion, up 14.64% year over year, and earnings per share (EPS) were $4.47, up 20.78%. Operating margin is 48.48% and net margin 22.73%.
+@@ 4dbae39231 html
+Second-quarter revenue was $4.887 billion, up 28.57% year over year, and EPS was $1.54, up 57.32%. Distributable earnings were $2 billion ($1.52 per share), up 26%, and fee-related earnings were $1.8 billion, up 22%.
+@@ 709371a42c html
+It keeps getting bigger: assets under management reached $1.346 trillion at the end of the second quarter, up 11% year over year. Inflows were $68.3 billion in the quarter and $262.5 billion over the past twelve months. Perpetual capital is $555.6 billion, about 41% of the total.
+@@ bdad61b7a6 html
+Valuation: P/E 25.59, forward P/E 18.12, PEG 1.28 and price-to-sales (P/S) 9.18. The stock is down 29.65% over the past 52 weeks.
+@@ ffd34e44a2 html
+Dividend: $4.74 per share over the past twelve months, a 4.15% dividend yield. Measured against accounting profit the payout ratio is 117.08%, because Blackstone pays dividends out of distributable earnings, which are measured differently from accounting EPS. The dividend moves with performance fees; the second-quarter dividend was $1.29 per share.
+@@ b1975bb0d1 html
+Balance sheet: total debt is $15.3 billion and cash $2.66 billion. Trailing-twelve-month free cash flow (FCF) was $5.49 billion; ROIC is 17.03% and ROE 31.37%.
+@@ 57d11ee422 html
+<span class="nd">2026-09-03</span><span>Its flagship private credit fund BCRED ($77.2 billion) received third-quarter redemption requests for about 10% of its shares ($4.3 billion). It again paid out only up to its 5% cap, for net outflows of about 3%, a sign that wealthy individual investors are still wary of private credit. <a href="https://www.bnnbloomberg.ca/business/company-news/2026/09/03/blackstone-private-credit-fund-maintains-5-cap-as-redemption-requests-remain-high" target="_blank" rel="noopener">bnnbloomberg.ca</a></span>
+@@ 9d2527c7a8 html
+<span class="nd">2026-09-10</span><span>Blackstone agreed to buy Flow Control Holdings, a maker of liquid-cooling components for data centers, from Audax. The deal is expected to close in the fourth quarter and adds to its push into AI infrastructure as a growth line. <a href="https://www.blackstone.com/news/press/blackstone-to-acquire-flow-control-holdings-a-leader-in-highly-engineered-data-center-liquid-cooling-components/" target="_blank" rel="noopener">blackstone.com</a></span>
+@@ 85b57f6e65 html
+<span class="nd">2026-09-22</span><span>Blackstone issued an intra-quarter update: from July 1 to September 22 it had realized more than $350 million in performance fees and investment income, about 90% of it performance fees. The next day the stock fell 3.82% in a broad selloff in financials. <a href="https://www.blackstone.com/news/press/blackstone-announces-intra-quarter-realization-update-relating-to-the-third-quarter-3/" target="_blank" rel="noopener">blackstone.com</a></span>
+@@ a71622b039 html
+<span class="nd">2026-09-26</span><span>Joe Baratta, head of private equity, will leave by year-end, and the company says it will not name a successor. The heads of real estate and of the growth fund had already left, and the latest flagship private equity fund raised $21 billion, short of its $30 billion target. <a href="https://theedgemalaysia.com/node/819447" target="_blank" rel="noopener">theedgemalaysia.com</a></span>
+@@ db65455b9e html
+<span class="nd">2026-10-07</span><span>Blackstone's data center company AirTrunk announced another $1 billion investment to deploy liquid cooling at its campus in Inzai, Japan, funded by green loans from several banks. The data center assets are still expanding. <a href="https://www.thestar.com.my/tech/tech-news/2026/10/07/blackstone-backed-airtrunk-to-invest-1-billion-in-japan-data-centre-campus" target="_blank" rel="noopener">thestar.com.my</a></span>
+@@ 245ea7773c html
+2026-10-22: third-quarter results before the open, conference call at 9:00 a.m. ET. Watch distributable earnings, quarterly inflows and BCRED redemptions.
+@@ a8ee6864dd html
+BCRED's redemption requests next quarter: they ran at about 10% in both the second and third quarters, with payouts capped at 5%.
+@@ 7995a00cca html
+The Flow Control Holdings deal is expected to close in the fourth quarter; private equity head Baratta leaves by year-end.
+@@ 33ed71518d html
+Long-term rates: the 10-year Treasury yield was about 5.27% on October 7, and the 30-year briefly hit a 24-year high of 5.73%. High long rates push down valuations of real estate and private equity assets and make assets harder to sell, which reduces performance fees.
+@@ 43bb3a3b91 html
+Fed hikes: the Fed raised rates to 3.75% to 4.00% in September, and most officials expect one more hike before year-end. Private credit loans are mostly floating-rate, so interest income rises, but so does the strain on borrowers, especially software companies hit by AI.
+@@ e09d531157 html
+Investor sentiment: wealthy individuals are pulling money out of non-traded private credit funds, and BCRED received third-quarter redemption requests of about 10%. The individual investor channel has been a major source of Blackstone's fundraising growth in recent years.
+@@ 07c343a442 html
+The fundamentals are still growing: second-quarter distributable earnings rose 26%, fee-related earnings rose 22%, and assets under management hit a record $1.346 trillion.
+@@ e05b83e7aa html
+Valuation and dividend: forward P/E 18.12 and a 4.15% dividend yield. The average price target from 24 analysts is $141.64, with a consensus Buy rating.
+@@ 2385711a99 html
+AI infrastructure: the purchase of liquid-cooling parts maker Flow Control and AirTrunk's additional $1 billion in Japan. Data center assets are an important source of growth for Blackstone.
+@@ e2a4a9a4e2 html
+Private credit redemptions: BCRED has had redemption requests of about 10% for two quarters in a row, with payouts capped at 5%. If redemptions grow, fundraising and management-fee growth will slow.
+@@ 6984b180c3 html
+Exit environment: high rates and delayed AI-related IPOs will slow asset sales, and performance fees and dividends could come in below expectations.
+@@ c4e333df04 html
+Leadership changes: the head of private equity leaves at year-end with no successor, and the latest flagship private equity fund raised $21 billion, short of its $30 billion target.
+@@ 05893e9049 html
+October 22 earnings: distributable earnings and the dividend per share, how quarterly inflows compare with the second quarter's $68.3 billion, and whether BCRED is still in net outflows.
+@@ ac6cc34fcc html
+Price: whether the 30-day low of $111.65 holds. On the upside, first $118.42, then the 200-day moving average at $127.39.
+@@ dd2b01973b html
+Rates: whether the 10-year Treasury yield can come down from around 5.27%. A decline usually helps valuations of real estate and private assets.
+@@ 57d0bceb3d html
+Sources: <a href="https://stockanalysis.com/stocks/bx/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/bx/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/bx/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/bx/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/bx/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://pulse2.com/blackstones-aum-reach-record-1-35-trillion-in-second-quarter-2026/amp/" target="_blank" rel="noopener">pulse2.com</a> · <a href="https://www.bnnbloomberg.ca/business/company-news/2026/09/03/blackstone-private-credit-fund-maintains-5-cap-as-redemption-requests-remain-high" target="_blank" rel="noopener">bnnbloomberg.ca</a> · <a href="https://www.blackstone.com/news/press/blackstone-to-acquire-flow-control-holdings-a-leader-in-highly-engineered-data-center-liquid-cooling-components/" target="_blank" rel="noopener">blackstone.com</a> · <a href="https://www.blackstone.com/news/press/blackstone-announces-intra-quarter-realization-update-relating-to-the-third-quarter-3/" target="_blank" rel="noopener">blackstone.com</a> · <a href="https://www.blackstone.com/?p=48748" target="_blank" rel="noopener">blackstone.com</a> · <a href="https://theedgemalaysia.com/node/819447" target="_blank" rel="noopener">theedgemalaysia.com</a> · <a href="https://www.thestar.com.my/tech/tech-news/2026/10/07/blackstone-backed-airtrunk-to-invest-1-billion-in-japan-data-centre-campus" target="_blank" rel="noopener">thestar.com.my</a> · <a href="https://www.kitco.com/news/off-the-wire/2026-09-22/financial-stocks-fall-ai-and-flattening-yield-curve-focus" target="_blank" rel="noopener">kitco.com</a> · <a href="https://kuwaittimes.com/article/49973/business/fed-raises-rates-to-tackle-too-high-inflation-irking-trump/" target="_blank" rel="noopener">kuwaittimes.com</a> · <a href="https://investinglive.com/news/investinglive-americas-market-news-wrap-fed-officials-prepared-to-hike-again-this-year/" target="_blank" rel="noopener">investinglive.com</a>
+@@ 18740aee51 html
+VIK <span class="zh">Viking Holdings</span>
+@@ 4e7282d6f5 html
+On the list as a cruise stock; his “benefits from falling oil prices” list includes “cruises.”
+@@ 4c16c91f6e html
+Viking Holdings is an upscale cruise company best known for European river cruises (on the Rhine, the Danube and other rivers). It also runs ocean and expedition cruises. Its customers are mainly older, higher-income travelers from North America. Most revenue comes from fares: guests usually book more than a year ahead, fares include many services, and onboard spending is a small share.
+@@ 0baff8dcf2 html
+52-week range: $56.37 to $110.09; the current price is 25.9% below the high. The average analyst price target is $109.55 (23 analysts, average rating Strong Buy). Price targets reflect an optimistic scenario and often lag the stock price.
+@@ 3df6ee4ab5 html
+The October 9 close of $81.62 is 9.42% below the 50-day moving average ($90.11) and 3.03% below the 200-day moving average ($84.17). (The moving averages and RSI are as of the October 8 close.)
+@@ b17cf05681 html
+RSI is 42.86, neutral to weak, neither oversold nor overbought. Since October 2 the stock has traded in a narrow range between $80.56 and $81.64.
+@@ 583705e972 html
+Support: the lowest close of the past 30 trading days, $78.20 (October 1). The 52-week low of $56.37 is far below.
+@@ 483cda1355 html
+Resistance: first the 200-day moving average at $84.17, then the September 21 close of $86.05 and the 30-day high close of $88.50 (August 28), then the 50-day moving average at $90.11. The 52-week high is $110.09.
+@@ b4e7345241 html
+The August 5 close of $108.26 was the recent high; the stock is down about 24.6% since then.
+@@ dd354f85dd html
+$36.4 billion
+@@ 7742d2cdff html
+No dividend
+@@ b4748b7988 html
+$6.2 / $4.0 billion
+@@ e271eb8582 html
+Trailing-twelve-month revenue was $6.97 billion, up 20.02% year over year. Net income was $1.35 billion and earnings per share (EPS) $3.01, up 65.40%. Gross margin is 44.28%, operating margin 23.27% and net margin 19.33%.
+@@ 44c2043c58 html
+Second-quarter revenue was $2.19 billion, up 16.49% year over year, and EPS was $1.31, up 32.32%. Occupancy was 94.4%, and net yield per passenger cruise day rose 6.2%. The first quarter is the off season, with a loss of $54.38 million that quarter; the business is clearly seasonal.
+@@ df3f3b5f18 html
+Bookings are strong: as of August 9, 96% of 2026 capacity was sold, with $6.386 billion in bookings, up 13% year over year. For 2027, 53% was sold, with bookings of $4.711 billion, up 21%. Capacity grows 7% in 2026 and 15% in 2027.
+@@ eb79e93298 html
+The valuation is rich: P/E 27.14, forward P/E 22.55, EV/EBITDA 20.25 and price-to-sales (P/S) 5.23. Because profits are growing fast, the PEG is only 0.85.
+@@ 56d2073460 html
+Balance sheet: total debt is $6.19 billion and cash $4.00 billion, with net leverage of 1.2x at the end of the second quarter. Shipbuilding is expensive: trailing-twelve-month capital expenditure (capex) was $1.48 billion and free cash flow (FCF) $1.15 billion. ROIC is 47.65%.
+@@ 8b3b660989 html
+No dividend. In September it announced a share buyback of up to $1 billion, about 2.7% of its current market value of $36.45 billion.
+@@ c9cadfcb1d html
+<span class="nd">2026-08-19</span><span>Second-quarter revenue was $2.19 billion, up 16.5%, EPS was $1.31 and 2027 bookings were up 21%, showing that demand from high-end customers remains solid. <a href="https://cruiseindustrynews.com/cruise-news/2026/08/viking-reports-second-quarter-2026-financial-results/" target="_blank" rel="noopener">cruiseindustrynews.com</a></span>
+@@ 00d06b7fb5 html
+<span class="nd">2026-08-19</span><span>On the call, management said low water in Europe affected more than half of river sailing days from mid-July to mid-August. About 10% to 12% of affected guests canceled, the company issued compensation vouchers, and the stock fell 7.65% that day. <a href="https://www.seatrade-cruise.com/river-cruising/half-of-viking-s-q3-river-cruises-impacted-by-low-water-so-far" target="_blank" rel="noopener">seatrade-cruise.com</a></span>
+@@ 1859175ad1 html
+<span class="nd">2026-09-09</span><span>Reports said MSC Cruises may order up to 10 river ships for delivery in 2028 to 2030. Investors worried about more competition over the long run, and the stock fell 3.42% that day. <a href="https://goldesel.de/aktien/news/viking-holdings-aktie-fallt-msc-konnte-mit-bis-zu-zehn-flussschiffen-starten" target="_blank" rel="noopener">goldesel.de</a></span>
+@@ da08375841 html
+<span class="nd">2026-09-10</span><span>The board authorized a share buyback of up to $1 billion. The company said it reflects confidence in the long-term outlook, and buybacks can support the stock when it falls. <a href="https://www.financialcontent.com/article/bizwire-2026-9-10-viking-announces-1-billion-share-repurchase-program" target="_blank" rel="noopener">financialcontent.com</a></span>
+@@ 5c54378df1 html
+<span class="nd">2026-09-11</span><span>Tensions in the Middle East drove oil up to near $100 a barrel. Carnival and Norwegian Cruise Line hit 52-week lows and Viking fell with the group; fuel costs weigh on every cruise stock. <a href="https://www.travelextra.ie/cruise-operator-stocks-hit-52-week-lows-amid-oil-price-surge/" target="_blank" rel="noopener">travelextra.ie</a></span>
+@@ 85051ce996 html
+<span class="nd">2026-09-28</span><span>Stifel cut its price target from $120 to $115, and Truist cut its target from $102 to $98 on September 24. Both kept Buy ratings: analysts are trimming expectations without changing their view. <a href="https://stockanalysis.com/stocks/vik/forecast/" target="_blank" rel="noopener">stockanalysis.com</a></span>
+@@ 8df788b134 html
+Around 2026-11-18: third-quarter earnings (the date shown on data websites; the company has not formally announced it). Watch the effect of low water on third-quarter costs and vouchers, and progress on 2027 bookings.
+@@ 46609ce3c5 html
+Autumn rain in Europe and water levels on the Rhine and Danube: higher water would mean fewer itinerary changes and less compensation.
+@@ c2e754e7be html
+Progress on the $1 billion buyback, and new ship deliveries; the river ship Viking Rota was delivered on October 7.
+@@ e23295091d html
+Oil: fuel is one of a cruise line's main costs. On September 9 Brent topped $101 a barrel and cruise stocks fell across the board; by October 7 WTI was back to about $88.48, and lower oil helps costs.
+@@ e3b9f2e217 html
+Consumer spending and the wealth effect: Viking's customers are older and wealthier, so they are more sensitive to stock and asset prices than to general inflation. A sharp market pullback could hurt bookings for high-end travel.
+@@ d167ab1ae1 html
+The dollar and rates: most customers come from North America, so a stronger dollar makes European trips cheaper for American travelers. Fed hikes and a 10-year Treasury yield of about 5.27% raise the cost of financing new ships.
+@@ 8492ecaad3 html
+Strong demand data: 96% of 2026 is sold, and 2027 bookings are up 21% with pricing per passenger cruise day up 10%, so low water has not noticeably hurt bookings.
+@@ 295ccd5b52 html
+The company authorized a $1 billion buyback. The consensus of 23 analysts is Strong Buy, with an average price target of $109.55.
+@@ 4e2836f5ae html
+Since the start of October the stock has steadied just above $80 without breaking the 30-day low of $78.20, and selling pressure has eased.
+@@ 6744dfc795 html
+Low water: more than half of river sailing days from mid-July to mid-August were affected, about 10% to 12% of affected guests canceled, and the cost of compensation vouchers will carry into 2027 and 2028.
+@@ 03b4a8abc8 html
+Competition: reports say MSC may order up to 10 river ships for delivery in 2028 to 2030, which would add river cruise capacity over the long run.
+@@ af65d91f1c html
+Valuation and oil: a P/E of 27.14 is higher than at the other big cruise lines, so the multiple has a lot of room to shrink if growth slows. If oil goes back to $100, costs will rise.
+@@ e5785cfb8d html
+Third-quarter earnings (expected around November 18): the costs and cancellation rate caused by low water, and how far the share of 2027 already sold has risen from 53% in August.
+@@ 8b861dc07a html
+Price: whether it can reclaim the 200-day moving average at $84.17. A close below $78.20 would mean the October stabilization has failed.
+@@ 20a86f2014 html
+Rhine and Danube water levels, and oil: whether WTI stays below $90 a barrel.
+@@ f6c64bee80 html
+Sources: <a href="https://stockanalysis.com/stocks/vik/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/vik/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/vik/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/vik/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/vik/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/vik/forecast/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://cruiseindustrynews.com/cruise-news/2026/08/viking-reports-second-quarter-2026-financial-results/" target="_blank" rel="noopener">cruiseindustrynews.com</a> · <a href="https://www.seatrade-cruise.com/river-cruising/half-of-viking-s-q3-river-cruises-impacted-by-low-water-so-far" target="_blank" rel="noopener">seatrade-cruise.com</a> · <a href="https://goldesel.de/aktien/news/viking-holdings-aktie-fallt-msc-konnte-mit-bis-zu-zehn-flussschiffen-starten" target="_blank" rel="noopener">goldesel.de</a> · <a href="https://cruiseindustrynews.com/cruise-news/2026/09/viking-announces-1-billion-share-repurchase-program/" target="_blank" rel="noopener">cruiseindustrynews.com</a> · <a href="https://www.financialcontent.com/article/bizwire-2026-9-10-viking-announces-1-billion-share-repurchase-program" target="_blank" rel="noopener">financialcontent.com</a> · <a href="https://www.travelextra.ie/cruise-operator-stocks-hit-52-week-lows-amid-oil-price-surge/" target="_blank" rel="noopener">travelextra.ie</a> · <a href="https://www.webull.ca/news-detail/15503101853115392" target="_blank" rel="noopener">webull.ca</a> · <a href="https://www.vikingcruises.com/press/press-releases/2026-10-07-viking-takes-delivery-of-newest-river-ship-in-europe.html" target="_blank" rel="noopener">vikingcruises.com</a> · <a href="https://www.swissinfo.ch/eng/asian-chip-shares-advance,-crude-oil-nears-$100:-markets-wrap/92025871" target="_blank" rel="noopener">swissinfo.ch</a> · <a href="https://investinglive.com/news/investinglive-americas-market-news-wrap-fed-officials-prepared-to-hike-again-this-year/" target="_blank" rel="noopener">investinglive.com</a>
+@@ c9697517e6 html
+MGM <span class="zh">MGM Resorts</span>
+@@ 3a6cecb2ed html
+On the list; on October 2 he recorded a buy at $30.50, and it was also on his September 29 watchlist for selling puts. Worth comparing: on September 23 his reason for shorting SPHR was exactly that “Vegas is in a real slump.”
+@@ 8ba5c96586 html
+MGM Resorts is a large casino resort operator. It runs several resorts on the Las Vegas Strip (such as Bellagio and MGM Grand), regional casinos across the US and MGM China in Macau, and it runs the online betting business BetMGM in a joint venture with Entain. Its integrated resort in Osaka, Japan, is scheduled to open in 2030. Revenue comes from gaming, rooms, food and beverage, and entertainment; in the second quarter the Las Vegas Strip provided about half of revenue.
+@@ 4bec259251 html
+52-week range: $29.19 to $51.59; the current price is 43.3% below the high. The average analyst price target is $48.12 (23 analysts, average rating Buy). Price targets reflect an optimistic scenario and often lag the stock price.
+@@ 074bd6e2a8 html
+The close of $29.27 is 26.31% below the 50-day moving average ($39.72) and 26.12% below the 200-day moving average ($39.62), a very wide gap. (The moving averages and RSI are as of the October 8 close.)
+@@ dc2a165274 html
+RSI is only 14.26, far below 30: extremely oversold. Oversold conditions can last for a while, so you need to see signs that the price has stopped falling.
+@@ f8bd561638 html
+Support: the stock is right at its 52-week low of $29.19, and the October 9 close of $29.27 is also the lowest close of the past 30 trading days. Below $29.19 there is no lower price reference from the past year.
+@@ 9ace9aca0b html
+Resistance: the gap between the $33.69 close on September 24, after the gap down, and the $37.85 close on September 23, before it, is major resistance. Above that are the two moving averages at $39.62 to $39.72 and the 30-day high close of $42.28 (August 28).
+@@ 6180dac65f html
+The stock is down about 30.8% from $42.28 on August 28 and about 43.3% from its 52-week high of $51.59.
+@@ f934bdf0df html
+$7.4 billion
+@@ ed7ff62a52 html
+$17.8 billion
+@@ 02c70a1607 html
+$30.2 / $2.8 billion
+@@ 7a965169fe html
+$1.5 billion
+@@ 10514c2b54 html
+Trailing-twelve-month revenue was $17.76 billion, up 3.19% year over year. Net income was only $424 million, for a net margin of 2.40% and an operating margin of 6.49%. Earnings per share (EPS) were $1.60, down 13.16%.
+@@ 3df7542c0a html
+Second-quarter revenue was $4.45 billion, up 1.05% year over year. Diluted EPS was $1.11 versus only $0.18 a year earlier, so the 519.40% increase mostly reflects a low base. Adjusted EPS was $0.59, down from $0.79, and adjusted EBITDA was $610 million, down from $648 million.
+@@ aa3ce541c0 html
+By segment: Las Vegas Strip revenue was $2.17 billion, up 3%, with EBITDAR of $735 million, up 3%. MGM China EBITDAR was $257 million, down 15%. US regional casino EBITDAR fell 9%.

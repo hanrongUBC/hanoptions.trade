@@ -1,0 +1,200 @@
+@@ 39c9f4a467 html
+Chapter 16 Where to go next, and a summary · US Options Course
+@@ f939b12774 html
+Where to go next, and a <span class="g">summary</span>
+@@ dec66821d0 html
+The first fifteen chapters taught you to read an option, pick the right structure and keep an account under control. This chapter first looks at six things professionals do and works out what each one requires. Then it pulls the whole course together into one master table, four tools and a 90-day practice plan.
+@@ 4a798dc727 html
+In this chapter
+@@ 492d2882d4 html
+<a href="#open"><span class="n">··</span><span>Opening: you can have an edge and still lose</span></a>
+@@ 3314b0703f html
+<a href="#s1"><span class="n">16.1</span><span>Volatility arbitrage</span></a>
+@@ f7ec0fbeee html
+<a href="#s2"><span class="n">16.2</span><span>Discrete hedging: frequency and error</span></a>
+@@ a0bc1e95cc html
+<a href="#s3"><span class="n">16.3</span><span>Relative value on the volatility surface</span></a>
+@@ 756909ce37 html
+<a href="#s4"><span class="n">16.4</span><span>The market maker's view</span></a>
+@@ 5833cf96f2 html
+<a href="#s5"><span class="n">16.5</span><span>Cross-asset options</span></a>
+@@ 246934b39b html
+<a href="#s6"><span class="n">16.6</span><span>Short-option exposure in structured products</span></a>
+@@ 13f7ef5ba0 html
+<a href="#s7"><span class="n">16.7</span><span>Master table: strategies × three exposures</span></a>
+@@ 2f4fc07f80 html
+<a href="#s8"><span class="n">16.8</span><span>Four tools and a 90-day plan</span></a>
+@@ e96ace5af7 html
+<a href="#s9"><span class="n">16.9</span><span>Course summary: first, learn not to lose big</span></a>
+@@ 12c019ed82 html
+<a href="#cases"><span class="n">Cases</span><span>Three cases</span></a>
+@@ dd7ded685d html
+<a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a>
+@@ e2f3e65f74 html
+<a href="#open">Opening: you can have an edge and still lose</a>
+@@ 60a7c50c1c html
+<a href="#s1">16.1 Volatility arbitrage</a>
+@@ a6dda2a6ff html
+<a href="#s2">16.2 Discrete hedging: frequency and error</a>
+@@ 10871e3f55 html
+<a href="#s3">16.3 Relative value on the volatility surface</a>
+@@ 4afb1e2d33 html
+<a href="#s4">16.4 The market maker's view</a>
+@@ e7bf179673 html
+<a href="#s5">16.5 Cross-asset options</a>
+@@ 8d89111a8c html
+<a href="#s6">16.6 Short-option exposure in structured products</a>
+@@ 213811f73b html
+<a href="#s7">16.7 Master table: strategies × three exposures</a>
+@@ 2a5ce0f97e html
+<a href="#s8">16.8 Four tools and a 90-day plan</a>
+@@ f8a4ba4c8c html
+<a href="#s9">16.9 Course summary: first, learn not to lose big</a>
+@@ f3a78e0502 html
+<a href="#cases">Three cases</a>
+@@ 7ec24afd50 html
+<a href="#tools">Checklist and self-test</a>
+@@ 80161dff8a html
+After this chapter you can
+@@ 1ec0618e00 html
+Use ½ΓS²(σ²realized − σ²implied) to estimate the expected value and the error band of a Delta-hedged trade
+@@ eeec5b51ca html
+Take apart a snowball (autocallable) product and work out what the put the investor sold is worth
+@@ 38fa0ba841 html
+Write the three signs (Delta, Theta, Vega) for any structure, and work through the 90-day plan week by week
+@@ fc4f43bd05 html
+Prerequisites
+@@ 22da5f1190 html
+Chapter 4: Gamma scalping and the Gamma–Theta trade-off
+@@ b204a8cae3 html
+Chapter 6: the volatility risk premium, term structure and skew
+@@ abe165c29a html
+Chapters 13–14: position-sizing rules, the nine-step process and the trading journal
+@@ fe31444484 html
+Conventions
+@@ 3a1077bcd0 html
+Options are priced with Black-Scholes: 4% rate, no dividends, 365-day year
+@@ 940e864f89 html
+Simulations use fixed-seed random numbers, so the results are the same every time you open the page
+@@ 819c671cf7 html
+The snowball is simulated in trading days (252 a year); 1 contract = 100 shares
+@@ b7fecfb8be html
+<span class="sn">Opening</span>You can have an edge and still lose
+@@ 1778cf080e html
+Suppose you know for certain that a $100 stock will realize 30% volatility over the next 30 days, while 30-day ATM options carry an implied volatility of only 25%. You buy 10 ATM calls ($3.02 per share), hedge Delta back to zero with stock at every close, and hold to expiration.
+@@ 5047bf8c3a html
+As Chapter 4 showed, once you hedge, only two terms are left in the P&amp;L: Gamma and Theta. Which one is bigger depends on whether realized or implied volatility is higher. This option's Vega is <span class="num">0.114</span> per share, so 5 vol points are worth <span class="num">0.114 × 5 × 1,000 = $570</span>. That is your theoretical edge.
+@@ 23c36c38b0 html
+Table 16-0 Delta-hedging 10 ATM 30-day calls: IV 25%, realized volatility 30%, hedged once a day (500 simulated paths)
+@@ 34000dcf18 html
+Measure
+@@ e1027d5621 html
+Value
+@@ aedb31ffb0 html
+Theoretical expectation (value repriced at 30% minus the purchase price at 25%)
+@@ 4ac6e5ceac html
+Simulated average P&amp;L
+@@ 9e6ac49133 html
+Standard deviation of P&amp;L per trade
+@@ 42bdfc1b27 html
+Share of paths that end in a loss
+@@ 3a55883e77 html
+Worst 5% of paths
+@@ 08e9264633 html
+The expectation is positive, and the simulated average is almost exactly the theoretical value. But on any single trade, the spread of outcomes is as large as the expectation itself, and roughly one trade in eight loses money. And all of this assumes you “know realized volatility for certain.” In reality you can only estimate it, and the error is often more than 5 points.
+@@ f1f39bb99d html
+Most of the advanced directions in this chapter look like this: a small edge on each trade and a lot of noise, so they only pay off with heavy repetition, cheap execution and strict position sizing. Sections 16.1–16.6 look at what each of these directions requires. Sections 16.7–16.9 pull the whole course together into one master table, four tools and a 90-day plan, and end with the most important sentence in the course.
+@@ 27d3c16a3b html
+<span class="sn">16.1</span>Volatility arbitrage: trading the gap between two volatilities
+@@ a8041e8f9b html
+Volatility arbitrage earns the difference between implied volatility and the volatility that is then realized. Direction is just noise to be hedged away.
+@@ 5aef880105 html
+<span class="v">r</span> is the underlying's actual return over the interval. When <span class="v">r</span>² is greater than σ²Δ<span class="v">t</span>, the interval makes money; when it is smaller, the interval loses, and that loss is Theta. Summed over the whole holding period, the expectation is roughly Vega × (σ<sub>realized</sub> − σ<sub>implied</sub>).
+@@ 194e71280f html
+This formula extends Chapter 4's “breakeven move” to the whole holding period. Every day you are asking the same question: once you square today's move in the stock, is it bigger than the share that implied volatility allowed for?
+@@ 8a8af0b594 html
+Table 16-1 Theoretical P&amp;L of Delta-hedging 10 ATM 30-day calls (IV 25%) at different realized volatilities
+@@ 60e6660430 html
+Realized volatility
+@@ 485b15e20b html
+Repricing (buyer)
+@@ 42422b8718 html
+Vega × vol difference
+@@ 3b83ce6c60 html
+Seller (the reverse)
+@@ cbfca864b0 html
+The two rows are identical because an ATM option's price is almost linear in volatility, so “Vega × vol difference” is very accurate near the money. OTM options are different: their Vega itself changes with volatility (Vomma), so when volatility jumps, the approximation understates the P&amp;L.
+@@ 29a147530f html
+The money depends on where the move happens
+@@ dd13f56e81 html
+The formula contains ΓS², so a move of a given size is only worth money where Gamma is large. With 15 days left, 10 contracts of the 100 call earn <span class="num">$157</span> on the Gamma part from a single 2% daily move with the stock at 100; the same 2% move with the stock at 115 earns only <span class="num">$3.4</span>, because Gamma there is just <span class="num">0.0013</span>, versus <span class="num">0.0786</span> at the money. The two paths work out to the same realized volatility, yet the money differs by more than 40 times.
+@@ 6a1c448862 html
+This is called path dependence. What you buy is not “volatility over the whole period” but “volatility near the strike, close to expiration.” If the stock moves far from the strike early on, the big moves that come later have nothing to do with you.
+@@ efa0397e5f html
+Two hedging conventions
+@@ 70dcda651a html
+<strong>Delta at implied volatility</strong> (the most common): the daily mark-to-market P&amp;L is smooth, but the total P&amp;L depends on the path. The $157 vs. $3.4 difference above comes from this convention.
+@@ f743132e04 html
+<strong>Delta at your forecast of realized volatility</strong>: if the forecast is right, the total P&amp;L is in theory locked in as the difference between the option's value at the two volatilities. The price is large mark-to-market swings along the way, and if the forecast is wrong, nothing is locked in.
+@@ 0093562195 html
+Both conventions have the same expectation; they differ in where the risk lands. For an individual trader, a third thing matters more: where your “forecast of realized volatility” comes from. Common sources are recent realized volatility, the event calendar (Chapter 10) and comparisons with similar underlyings, and all three have errors. When the edge is only 2 points and the forecast error is 4 points, you don't actually know the sign of the trade.
+@@ 56fd5629b3 html
+The volatility risk premium says that, on average, implied volatility on index options is higher than the volatility realized afterward. Sellers collect this premium systematically, at the cost of occasionally giving a lot back at once in gaps and sharp sell-offs. A volatility arbitrageur doesn't sit permanently on one side: they bet only when the two clearly diverge, and use Delta hedging to take direction out.
+@@ 1066948697 html
+<span class="sn">16.2</span>Discrete hedging: frequency and error
+@@ 0d5ffd568f html
+The less often you hedge, the wider the P&amp;L distribution. The standard deviation of the error is roughly inversely proportional to the square root of the number of hedges: hedge four times as often and the error halves.
+@@ 5fbf502074 html
+Continuous hedging exists only in textbooks. In the real world you rebalance only every so often, and every move in the stock between two rebalances goes unhedged, leaving an error. The error averages zero, but it can turn an otherwise steady trade into something close to a coin flip.
+@@ 9c60a655d1 html
+Vega is measured per “1.00 change in volatility,” i.e. the per-point Vega × 100; σ is volatility; <span class="v">N</span> is the number of hedges over the holding period; 0.89 = √(π/4). It applies near the money, when realized volatility is close to implied, with no gaps and hedging at fixed intervals.
+@@ 4fc13f1572 html
+Where the approximation comes from: the error in each interval is ½ΓS²(<span class="v">r</span>² − σ²Δ<span class="v">t</span>), and the random part of <span class="v">r</span>² has a standard deviation of about √2 σ²Δ<span class="v">t</span>. Adding up <span class="v">N</span> independent errors makes the variance grow with <span class="v">N</span>, while the interval length Δ<span class="v">t</span> = <span class="v">T</span>/<span class="v">N</span> shrinks each interval's variance by 1/<span class="v">N</span>². Together, the standard deviation falls as 1/√<span class="v">N</span>. The constant √(π/4) comes from averaging Γ² over the possible stock prices and the remaining time. The further you are from these conditions, the worse the approximation: with only 6 hedges, it gives $1,031, while the simulation gives $904.
+@@ 84cdedbe39 html
+Hedging frequency <input id="f1-freq" type="range" min="0" max="5" step="1" value="2"> <output id="f1-freq-o">Once a day</output>
+@@ 40441e409e html
+Realized volatility <input id="f1-rv" type="range" min="15" max="40" step="1" value="25"> <output id="f1-rv-o">25%</output>
+@@ e212882bca html
+With realized volatility held at 25% (equal to IV), the average stays near zero and only the width changes: drag from “Every 5 days” to “8 times a day” and the standard deviation shrinks from about $900 to about $150, while slippage rises from $14 to $96. Drag realized volatility to 30% and the whole distribution shifts right by about $570. Now raising the frequency narrows it to around $300, and after that it stops shrinking much. What remains is the path dependence described in Section 16.1.
+@@ faf6414d6a html
+Table 16-2 Hedging frequency vs. error and cost when realized volatility = implied volatility = 25% (10 contracts, $)
+@@ edff264010 html
+Hedging frequency
+@@ 9f6e196235 html
+Hedges N
+@@ f6f03f1ed4 html
+Simulated std. dev.
+@@ 50b8d8a63d html
+Approximation
+@@ f0fc8ed55b html
+Rebalancing slippage
+@@ a5240206e0 html
+Every 5 days
+@@ 80cf2cf668 html
+Every 2 days
+@@ 628cff2d00 html
+Once a day
+@@ dfa9114a9d html
+Twice a day
+@@ 1e8baa98b3 html
+4 times a day
+@@ 696cacb910 html
+8 times a day
+@@ 69b9df747c html
+Those two columns are the trade-off. The error falls as 1/√<span class="v">N</span>, while slippage rises roughly as √<span class="v">N</span>: the number of shares per rebalance shrinks as 1/√<span class="v">N</span>, and the number of rebalances grows as <span class="v">N</span>. Going from once a day to 8 times a day cuts the error from $455 to $150 but raises slippage from $33 to $96, almost three times as much. The model splits each day into equal intervals and doesn't distinguish trading hours from overnight. In real markets you can't rebalance overnight, so hedging several times a day helps less than this suggests.
+@@ b7839c527e html
+Three hedging rules used in practice
+@@ 4570e168f6 html
+<strong>Fixed time</strong>: once a day, at the close. Simple, but it leaves a full day of exposure between hedges.
+@@ e724a0f146 html
+<strong>Delta threshold</strong>: rebalance only when Delta drifts beyond a set amount (such as ±50 shares, or ±10% of portfolio Delta). Rebalancing happens when the stock has actually moved, so the error is smaller for the same cost.
+@@ c9c882e5f0 html
+<strong>Price grid</strong>: rebalance each time the stock moves a fixed amount (such as half a daily standard deviation). It works about as well as the threshold rule and is easier to set up in advance with conditional orders.
+@@ 558e198159 html
+No rule can handle a gap. If the stock gaps 5% overnight, you have no chance to rebalance in between: positive Gamma makes extra money in a gap, negative Gamma loses extra, and no hedging frequency changes that.
+@@ 1d6667dd6e html
+When you hedge a small position, the smallest adjustment is 1 share, and the rounding is itself an error.
+@@ e56e7b658c html
+Slippage and commissions on every rebalance belong in your expectation. Table 16-2 assumes only $0.02 per share.
+@@ 6148d3f552 html
+When the edge is only 1–2 vol points, Case 2 shows that it can take years to confirm the edge exists.

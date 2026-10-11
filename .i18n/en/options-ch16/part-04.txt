@@ -1,0 +1,200 @@
+@@ e51bc176e4 html
+Chapters 14 and 15
+@@ d03b255f3d html
+Did I do it right? What kind of mistake was it?
+@@ 2e4bd7ad62 html
+Every open and close, and the weekly review
+@@ 9cc223c5dd html
+Entry reason, the three signs, planned exit, actual result, attribution
+@@ 1ac6299700 html
+When? Rich or cheap?
+@@ f489b893dd html
+Chapter 14
+@@ 22d17124bb html
+Which structure?
+@@ 894d565a55 html
+How big? When to exit?
+@@ c5ddebc244 html
+Orders and management
+@@ 94ec7dd9bf html
+Chapters 2 and 12
+@@ 3623e6818a html
+Limits, combo orders, rolls
+@@ 110c838fd2 html
+Right? What went wrong?
+@@ 3a4ca7c6b4 html
+Expectancy statistics
+@@ 4cfddb0015 html
+Every 30 trades
+@@ 32728a52bb html
+Win rate × payoff ratio − costs
+@@ 1b057042d3 html
+Revise the matrix
+@@ 1b0df206a1 html
+Revise the rules
+@@ 91634d92ea html
+Solid: the sequence of each trade&nbsp;&nbsp;&nbsp;&nbsp;Dashed: feedback after review
+@@ 5b16557098 html
+The three steps in the top row happen before you place the order; the three in the bottom row happen after. The two dashed lines matter most: the journal tells you which kinds of structures in the matrix actually make money in your hands, and the expectancy statistics tell you whether the rule card's position sizes should grow or shrink. Without feedback, the four tools are just four tables.
+@@ 7c092fbe3a html
+The order of the four tools is the skeleton of Chapter 14's nine-step process. Their value comes from repetition: use the same template a hundred times and you will see your real win rate, average P&amp;L and most common mistakes. In the journal, be especially careful to flag trades that “made money but were done wrong.” Losing money forces you to reflect, but making money rewards the wrong behavior. Appendix D has four templates you can copy directly.
+@@ e66481f1f0 html
+The 90-day practice plan
+@@ 464336e3ea html
+The plan has three stages of four weeks each. Each stage ends with a pass standard; if you don't meet it, repeat the stage instead of moving on. Checkmarks are saved only in your own browser.
+@@ dbc1448bc9 html
+Completed <b id="plan-done">0</b> / 12 weeks
+@@ 72f7eec238 html
+<span class="num">1–4</span>Watch only, no orders
+@@ e80637c372 html
+Week 1: Build the IV dashboard. Pick 5 underlyings (such as SPY, QQQ and 3 stocks you follow), and at every close record ATM IV, IV Rank and the 30-day expected move S × IV × √(30/365)
+@@ 8c55081bdf html
+Week 2: Read option chains. Every day, record the bid–ask spread as a share of price, the volume and the open interest for ATM contracts, and mark the illiquid expirations and strikes you won't touch
+@@ 1d2243e02c html
+Week 3: Build the event calendar. List earnings, FOMC meetings and CPI releases for the next 8 weeks; for each earnings report, compute the expected move and look up the actual moves over its past 8 reports
+@@ ccb52057e8 html
+Week 4: Paper trade. For each event, write your view as three signs and pick a structure from the matrix; record it, but don't place the order. At the end of the week, compare with what IV and the price actually did
+@@ fbca135554 html
+Pass standard: complete records for 20 consecutive trading days; you can work out the expected move of any underlying within a minute.
+@@ a67dea890b html
+<span class="num">5–8</span>Minimum size, defined risk only
+@@ df2cd7fb0d html
+Week 5: Write your sizing rule card. During practice, the maximum loss per trade is no more than 1% of the account, no more than 3 positions are open at once, and you trade only structures whose maximum loss is known in advance
+@@ 28865b3620 html
+Week 6: Your first real trade: 1 debit or credit spread. Before you place it, write down a stress test at ±1 and ±2 standard deviations, and your exit conditions
+@@ 1daf5f24ab html
+Week 7: Two more trades: one that sells volatility (a credit spread or iron condor) and one that buys volatility or is a directional debit spread. Use limit orders for everything, and record the difference between your fill and the mid
+@@ fc69261989 html
+Week 8: Review the previous four weeks. Put each trade into one of four groups, “wrong call, execution error, risk-control error, normal variance,” and work out slippage as a share of premium
+@@ f0cefdad9f html
+Pass standard: no trade breaks the rule card; every trade has a complete journal entry.
+@@ e9ba0e8375 html
+<span class="num">9–12</span>Run the full process and review
+@@ 09b8fcafa5 html
+Week 9: Take one event trade through the full nine-step process: calendar → dashboard → matrix → rule card → order → journal
+@@ 1bcf83f4f9 html
+Week 10: Position management. At least once, close or roll a position by your rules instead of waiting for expiration, and write down your reasoning at the time
+@@ c46eb40574 html
+Week 11: Portfolio checkup. Add up Delta, Theta and Vega across all positions (Chapter 12) and run a stress test of “underlying −10%, IV +10 points”
+@@ f099e92503 html
+Week 12: The 90-day review. Number of trades, win rate, average payoff ratio, expectancy, maximum drawdown, number of rule violations; decide whether the next 90 days will scale up, stay the same or go back to watching only
+@@ e855a53886 html
+Pass standard: you can state your expectancy from your own data, and the one mistake you make most often.
+@@ 641781db34 html
+Why no orders in the first four weeks? Because those weeks are for building a sense of what is “normal”: the range a stock's IV usually sits in, how much it rises before earnings, how wide the spreads are. Without that reference, you can't tell whether any given day's quotes are expensive or cheap. Why only defined risk in the second stage? Because that stage is for practicing execution and record-keeping, and the worst case has to be small enough that it doesn't stop you from continuing to practice.
+@@ 2d41c7acdd html
+<span class="sn">16.9</span>Course summary: first, learn not to lose big
+@@ a1e46984fe html
+Options are tools for shaping risk: they let you decide in advance how much you make or lose in each scenario. Using them as tools for leverage is where almost every “way to die” in this course begins.
+@@ 24c7853e40 html
+One view, three ways to express it. Your account is $20,000, and you think a $100 stock will rise 10% within 90 days; its IV is 30%. The 90-day ATM call costs $6.41 per share, and the 100/110 call spread costs $3.68 per spread.
+@@ a6d8ec3949 html
+Table 16-8 One view, “up 10% in 90 days”: P&amp;L at expiry ($; share of the account in parentheses)
+@@ ae4224123c html
+Stock price at expiry
+@@ 1e46bf8bbb html
+200 shares of stock
+@@ adeb5b2429 html
+All in: 31 ATM calls
+@@ c4dacb492b html
+One 100/110 spread (2% risk)
+@@ 67d30406d0 html
+The all-in calls go almost to zero in three of the six scenarios: if the stock doesn't rise, you lose everything. At market prices, the risk-neutral probability that the stock ends above the calls' breakeven of 106.41 is only about <span class="num">34%</span>. The spread version looks like it makes too little, but its worst case is 1.8%: you can make a judgment of the same quality fifty times, while the all-in version can end everything at once. The third way is what options are really for: first decide the worst outcome you can bear, then use a structure to shape the payoff into what you want.
+@@ 6748e2624e html
+The math of losses is asymmetric: lose 10% and you need <span class="num">11.1%</span> to get back to even; lose 30% and you need <span class="num">42.9%</span>; lose 50% and you need <span class="num">100%</span>; lose 80% and you need <span class="num">400%</span>. Chapter 13's rule card and Chapter 15's list of how accounts die say the same thing: control the worst case first, then talk about returns. Case 3 uses a hundred trades to show that even when every trade has a positive expectation, oversized positions make most accounts shrink over time.
+@@ 18eff180f1 html
+Sixteen chapters, one sentence each
+@@ 306c3f398b html
+Table 16-9 Back through every chapter, taking away just one sentence
+@@ 485074c2e4 html
+Chapter
+@@ 51c571e2bb html
+The one sentence to take away
+@@ 5e0aef63f0 html
+1 What an option is, and where the money comes from
+@@ 39d305a822 html
+Option profits come from several sources. Before you trade, be clear about which one you are earning.
+@@ a16ab95c41 html
+2 US options in practice
+@@ 42519b1cdb html
+Sellers of American-style options can be assigned early; on illiquid contracts, the cost of getting in and out can be bigger than your edge.
+@@ 0f91049764 html
+3 An intuition for option pricing
+@@ 5f37981e99 html
+Premium is set by six inputs, and put–call parity ties calls, puts and the stock together.
+@@ e81004d19c html
+4 Delta and gamma
+@@ d9b2605300 html
+Delta is a share equivalent, and Gamma makes it grow and shrink on its own; the price of Gamma is Theta.
+@@ 17537963a3 html
+5 Theta and vega
+@@ bc33423005 html
+Time decay speeds up near expiration, and IV crush can make a buyer who got the direction right lose money.
+@@ 1220ec786a html
+6 Volatility
+@@ 19e1085424 html
+To judge rich or cheap, compare implied with realized and the present with the past; skew and term structure have prices too.
+@@ 8a3c0b0e4a html
+7 Strategies for buyers
+@@ acc022585e html
+Buyers have to beat several enemies at once; strike, expiration and debit spreads are the tools for weakening them.
+@@ 35fa4c69d1 html
+8 Strategies for sellers
+@@ abe1acab75 html
+Selling options is selling insurance: gains are small and steady, losses rare and large, so stress-test before every trade.
+@@ dc8f9b0683 html
+9 Neutral and volatility strategies
+@@ 34580ab018 html
+Straddles, iron condors, butterflies and calendars are all bets on realized volatility; they differ in whether you buy or sell it, and for how long.
+@@ bf77bdae82 html
+10 Trading events
+@@ 459b3fb7ed html
+The IV cycle around an event is predictable; what you compare is the expected move against the historical moves.
+@@ 44b702d436 html
+11 Hedging and portfolio protection
+@@ f8d7710761 html
+Protection costs money. Use spreads, collars and a tail-hedge budget to keep that cost at a level you can afford over the long run.
+@@ fae5f71de6 html
+12 Portfolio Greeks and adjustments
+@@ 0faa2ee333 html
+What you manage is the shape of the portfolio. Rolling doesn't make a loss disappear, and sometimes closing the position is better.
+@@ 6e88b75473 html
+13 Risk management for options
+@@ 4383630d89 html
+Position size is set by maximum loss, not by confidence; positions that look diversified can be the same bet.
+@@ 4b3af4808b html
+14 Systems and process
+@@ df82443153 html
+The nine-step process and the trading journal turn one trade after another into a sample you can measure.
+@@ 9db5ca3b73 html
+15 Psychology and how accounts die
+@@ bc775ef9ec html
+A dying account usually shows early warning signs. When you see them, cut your size; don't add.
+@@ 9aa8a1517d html
+16 Where to go next, and a summary
+@@ a557b57c91 html
+Options are tools for shaping risk; traders who survive for the long run first learn not to lose big.
+@@ a9dd9e4635 html
+<span class="sn">Cases</span>Three cases
+@@ d0fbc77eda html
+Re-expressing an “inflation + rate hikes” macro view with options
+@@ 3809b17839 html
+<strong>Historical background (qualitative facts only)</strong>: In 2022, US inflation rose to its highest level in decades, and the Fed began a rapid, large series of rate hikes. Stocks and long-term Treasuries fell together in the same year, and the traditional “stock–bond hedge” failed. Growth stocks and long-duration assets fell further, energy was one of the few sectors that rose, and the dollar strengthened markedly. That year's decline was mostly a slow grind; implied volatility was elevated, but there was no extreme spike like the one in March 2020.
+@@ c6080be5d5 html
+Suppose that at the start of such a year you form a view: inflation will be stickier than the market expects, and rate hikes will come faster and bigger than the market has priced in. <strong>All prices, IVs and scenarios below are hypothetical</strong>, used to show how to turn a macro view into an options position whose worst case is under control. The account is $100,000.
+@@ bd0929fea0 html
+<strong>Break it into transmission chains</strong>: rates rise → long-bond prices fall; discount rates rise → richly valued growth stocks come under pressure; inflation is driven by energy → energy stocks benefit. One macro view becomes three tradable sub-views.
+@@ 34354f39e2 html
+<strong>Set the time frame</strong>: macro views play out slowly, so use 120-day expirations, not 30-day ones. As Chapter 7 said, a buyer who is right on direction but wrong on timing still loses.
+@@ acd52446f8 html
+<strong>Choose the structure</strong>: in a panic, IV is already elevated and skew is steep, so buying puts outright is expensive and carries a lot of Vega. Use spreads to sell the expensive OTM leg back (Section 16.3).
+@@ e97d2414c8 html
+<strong>Set the budget</strong>: a maximum loss of about $1,000 per leg, or about 3% of the account in total.
+@@ 856423c332 html
+Table 16-10 The three legs (all three underlyings assumed at $100, 120 days to expiration)
+@@ 37aa3c8a3c html
+Sub-view
+@@ 1301f036a3 html
+Structure and assumed IV
+@@ 87e80466ca html
+Cost per spread

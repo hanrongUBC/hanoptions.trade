@@ -1,0 +1,166 @@
+@@ 33d05a9ed1 html
+Whether the $322–327 zone (the October 7–8 lows) holds; if it breaks, watch the 52-week low of $306.77.
+@@ 45240f56dd html
+Whether the stock can reclaim the 200-day moving average at $354.99, the key level for ending the decline and turning stronger.
+@@ 7a659ffb9f html
+Gulfstream deliveries and 2026 EPS guidance ($16.80–16.90) in the October 30 earnings report.
+@@ 98dafc3539 html
+Sources: <a href="https://stockanalysis.com/stocks/gd/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/gd/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/gd/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/gd/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/gd/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.govconwire.com/articles/general-dynamics-q2-2026-earnings-results" target="_blank" rel="noopener">govconwire.com</a> · <a href="https://www.tikr.com/blog/general-dynamics-reported-q2-earnings-management-raised-the-eps-guide-to-16-90" target="_blank" rel="noopener">tikr.com</a> · <a href="https://kfgo.com/2026/10/07/general-dynamics-taps-insider-danny-deep-as-next-ceo/" target="_blank" rel="noopener">kfgo.com</a> · <a href="https://investorrelations.gd.com/news/press-release-details/2026/Deep-Elected-CEO-of-General-Dynamics-Novakovic-to-Executive-Chairman/default.aspx" target="_blank" rel="noopener">investorrelations.gd.com</a> · <a href="https://investorrelations.gd.com/news/press-release-details/2026/General-Dynamics-to-Webcast-2026-Third-Quarter-Financial-Results-Conference-Call/default.aspx" target="_blank" rel="noopener">investorrelations.gd.com</a> · <a href="https://256today.com/general-dynamics-joins-7-year-push-to-triple-pac-3-quadruple-thaad-production/" target="_blank" rel="noopener">256today.com</a> · <a href="https://investorrelations.gd.com/news/press-release-details/2026/GDIT-Awarded-1-3-Billion-Enterprise-Network-Operations-and-Cybersecurity-Support-Contract-for-the-Army-National-Guard/default.aspx" target="_blank" rel="noopener">investorrelations.gd.com</a> · <a href="https://247wallst.com/investing/2026/09/22/defense-stocks-fall-while-oil-slides-on-hormuz-reopening-report-lockheed-martin-and-rtx-drop-3-boeing-dips/" target="_blank" rel="noopener">247wallst.com</a>
+@@ b17442e7bb html
+WM <span class="zh">Waste Management</span>
+@@ f20e12364f html
+A defensive company on the list: its waste-collection revenue is steady and barely affected by the economic cycle.
+@@ 2d89d52192 html
+WM is North America's largest solid-waste company. Its business covers trash collection, transfer stations, landfills, recycling, and renewable natural gas made from landfill gas. Most of its revenue comes from long-term collection contracts with residential, commercial and industrial customers, and the Stericycle acquisition added a medical-waste business (WM Healthcare Solutions).
+@@ 4b0b9254d9 html
+The 52-week range is $194.11 to $248.13, and the price is 15.8% below the high. The average analyst price target is $255.56 (28 analysts, average rating Buy). Price targets reflect an optimistic scenario and often lag the stock price.
+@@ 7bcd734c51 html
+The close of $208.83 is 3.8% below the 50-day moving average of $217.10 and 7.0% below the 200-day moving average of $224.59. The 50-day is below the 200-day, so the medium-term trend is down.
+@@ 226436ddd7 html
+RSI is 44.5: neutral territory, not oversold.
+@@ e60726ddfa html
+Support: the lowest close of the last 30 days, $201.90 (October 1), and the intraday low of $200.58 (October 2); below that, the 52-week low of $194.11.
+@@ ef03dcce3e html
+Resistance: the 50-day moving average near $217, the highest close of the last 30 days at $221.72 (September 3), and the 200-day moving average near $225; the 52-week high is $248.13.
+@@ 69bf9018da html
+Since October 1 the stock has bounced from $201.90 to $208–210, roughly level with its 20-day average close of $208.87.
+@@ f38cb4b079 html
+$83.5 billion
+@@ 2130ec7335 html
+$25.7 billion
+@@ a031e13ced html
+$23.4 billion / $600 million
+@@ a0d6a5c8ed html
+$3.6 billion
+@@ ed4157dd69 html
+Revenue over the trailing twelve months was $25.67 billion, up 7.2% year over year. Q2 revenue was $6.68 billion, up 4.0%: core price rose 5.7%, while collection and disposal volume fell 1.8%.
+@@ 51d05d85c0 html
+Profit margins are stable: gross margin 40.6%, operating margin 18.9%, net margin 11.1%. The Q2 adjusted operating EBITDA margin was 30.9%, up from 30.5% a year earlier.
+@@ dee541058e html
+Q2 GAAP EPS was $1.95, up 8.3% year over year, and adjusted EPS was $2.02; trailing-twelve-month EPS was $7.07, up 4.9%.
+@@ 0d186c1d33 html
+2026 guidance: revenue was cut to $26.275–26.475 billion, while adjusted operating EBITDA of $8.15–8.25 billion and free cash flow of $3.75–3.85 billion were left unchanged.
+@@ 96255a521c html
+The valuation is on the high side: P/E (TTM) 29.5x, forward 24.6x, PEG 2.49, EV/EBITDA 13.7x. Dividend yield 1.81%, payout ratio 53.5%.
+@@ 4c601f564e html
+Debt is heavy: total debt of $23.36 billion against $557 million in cash. Trailing-twelve-month free cash flow was $3.57 billion and ROIC 11.6%. In the first half the company spent $1 billion on share buybacks and $764 million on dividends.
+@@ 3e606f57e0 html
+<span class="nd">2026-07-28</span><span>Q2 adjusted EPS of $2.02 slightly beat estimates, but weak volume led the company to cut full-year revenue guidance by about 0.6%. The stock fell about 2–3% after hours and has slid steadily from $239 since. <a href="https://www.sec.gov/Archives/edgar/data/0000823768/000110465926087575/tm2621414d1_ex99-1.htm" target="_blank" rel="noopener">sec.gov</a></span>
+@@ bd28cacfcd html
+<span class="nd">2026-08-24</span><span>The board declared a quarterly dividend of $0.945 per share. The payout stays steady, which is one thing defensive holders value. <a href="https://www.businesswire.com/news/home/20260824253655/en/WM-Announces-Cash-Dividend" target="_blank" rel="noopener">businesswire.com</a></span>
+@@ d22ae3818c html
+<span class="nd">2026-08-25</span><span>CEO Jim Fish announced his retirement, and President John Morris will take over as CEO on January 4, 2027. It is an internal succession, but the new CEO's approach to capital allocation is worth watching. <a href="https://www.businesswire.com/news/home/20260825879514/en/Jim-Fish-to-Retire-from-WM-John-Morris-Named-as-Next-CEO" target="_blank" rel="noopener">businesswire.com</a></span>
+@@ 93ac17fc6b html
+<span class="nd">2026-09-24</span><span>The company will report Q3 results after the close on October 27 and hold its call at 10 a.m. ET on October 28. That is when you find out whether volume has stabilized. <a href="https://www.businesswire.com/news/home/20260924859097/en/WM-Sets-Date-for-Third-Quarter-2026-Earnings-Conference-Call" target="_blank" rel="noopener">businesswire.com</a></span>
+@@ 6709e3ca40 html
+2026-10-27, after the close: Q3 earnings (call on October 28). Watch whether volume has stabilized and whether full-year revenue guidance is cut again.
+@@ ef6cad5a9b html
+2027-01-04: John Morris takes over as CEO.
+@@ 904dcc7d8f html
+How margins in the medical-waste business develop after the integration; in Q2 that business's adjusted EBITDA margin was 19.0%.
+@@ 85fa3aec64 html
+Rates: with $23.36 billion of debt and a 1.81% dividend yield, WM is a somewhat bond-like defensive stock. Falling long-term rates usually help its valuation; rising rates do the opposite.
+@@ 45f8dc486a html
+Economic cycle: special waste tied to industry and construction, and commercial collection volume, are sensitive to the economy. Q2 volume fell 1.8% (0.4% excluding last year's wildfire cleanup).
+@@ 6574e602f8 html
+Oil and inflation: diesel is the fleet's main cost, but the company has a fuel surcharge mechanism, and higher energy surcharges in Q2 partly offset the drop in volume. Price increases in an inflationary environment (core price +5.7%) are the main growth driver.
+@@ 03cf85c415 html
+Strong pricing power: core price rose 5.7%, margins are expanding, and neither the EBITDA nor the free cash flow guidance was cut.
+@@ bc5e5efefd html
+The stock is down about 16% from its 52-week high of $248.13, steadied above $200 in early October, and has an RSI of 44.5.
+@@ d0be8869ba html
+The medical-waste integration is paying off: that business's adjusted EBITDA margin rose from 17.0% to 19.0% in Q2.
+@@ 87c3789729 html
+Volume stays weak. If revenue guidance is cut again with Q3 results, the valuation could stay under pressure, and a forward P/E of 24.6x is not cheap.
+@@ 4d97b0fb93 html
+High debt and little cash ($557 million): rising long-term rates would raise financing costs and push down valuations for defensive stocks.
+@@ 27c6b5acd0 html
+Strategy and capital allocation could change during the CEO transition.
+@@ f1b881d2a2 html
+Whether the $200 line (the October 2 intraday low of $200.58) holds; if it breaks, look to the 52-week low of $194.11.
+@@ c9b1ea748e html
+Whether the stock can get back above the 50-day moving average at $217.10; above that is the 200-day moving average at $224.59.
+@@ 6db0cd9c8c html
+The volume trend and full-year revenue guidance ($26.275–26.475 billion) in the October 27 report.
+@@ 0b4d13e935 html
+Sources: <a href="https://stockanalysis.com/stocks/wm/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/wm/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/wm/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/wm/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/wm/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0000823768/000110465926087575/tm2621414d1_ex99-1.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://ts2.tech/en/shares-of-waste-management-nysewm-drop-as-company-reduces-revenue-outlook-challenging-its-margin-focused-plan/" target="_blank" rel="noopener">ts2.tech</a> · <a href="https://www.businesswire.com/news/home/20260824253655/en/WM-Announces-Cash-Dividend" target="_blank" rel="noopener">businesswire.com</a> · <a href="https://www.businesswire.com/news/home/20260825879514/en/Jim-Fish-to-Retire-from-WM-John-Morris-Named-as-Next-CEO" target="_blank" rel="noopener">businesswire.com</a> · <a href="https://mediaroom.wm.com/2026-08-26-Jim-Fish-to-Retire-from-WM-John-Morris-Named-as-Next-CEO" target="_blank" rel="noopener">mediaroom.wm.com</a> · <a href="https://www.businesswire.com/news/home/20260924859097/en/WM-Sets-Date-for-Third-Quarter-2026-Earnings-Conference-Call" target="_blank" rel="noopener">businesswire.com</a> · <a href="https://www.wastedive.com/news/waste-recycling-earnings-results-q2-2026/826621/" target="_blank" rel="noopener">wastedive.com</a>
+@@ 614c36a79c html
+JBHT <span class="zh">J.B. Hunt Transport Services</span>
+@@ 31d3427f9d html
+The transport stock on the list. His list of stocks that “benefit from falling oil prices” includes “trucking”: diesel is one of the company's largest costs.
+@@ abe3eabef5 html
+J.B. Hunt is one of the largest intermodal companies in the US: it moves containers by truck over short distances and by rail over long ones. It also runs dedicated contract carriage (Dedicated), freight brokerage (ICS), full truckload, and final-mile delivery. Intermodal is the largest segment, with Q2 revenue of $1.75 billion, about half of the total.
+@@ 794e91abd8 html
+The 52-week range is $136.46 to $299.76, and the price is 23.5% below the high. The average analyst price target is $283.13 (24 analysts, average rating Buy). Price targets reflect an optimistic scenario and often lag the stock price.
+@@ 25cabd01fa html
+The close of $229.26 is 10.3% below the 50-day moving average of $255.59 and 6.1% below the 200-day moving average of $244.18. The 50-day is still above the 200-day, but the price has fallen well below both.
+@@ b2ad472b63 html
+RSI is 40.2: weak, but not oversold.
+@@ 2d7a23360e html
+Support: the lowest close of the last 30 days, $222.64 (October 7), and the intraday low of $222.11; since September 30 the stock has repeatedly stopped falling at $222–224 intraday. The 52-week low of $136.46 is far below the current price.
+@@ 394dc75527 html
+Resistance: the October 2 rebound high of $234.63, then the 200-day moving average near $244, and the gap left on September 16 ($250–271), with the 50-day moving average near $256 inside it.
+@@ 95a6d57b39 html
+The 52-week high is $299.76, and the price is 23.5% below it; over the past 52 weeks the stock is still up 56.4%. Its beta of 1.31 means it swings more than the market.
+@@ b1f66437ce html
+$21.5 billion
+@@ 7b3fb6688d html
+$12.7 billion
+@@ d65ebc0658 html
+$1.4 billion / $0
+@@ 26ac1acca7 html
+$1.1 billion
+@@ 7baac33f47 html
+Revenue over the trailing twelve months was $12.70 billion, up 5.3% year over year. Q2 revenue was $3.49 billion, up 19.4%, with intermodal volume up about 10%.
+@@ 42d4070d40 html
+Q2 EPS was $1.91, up 45.8% year over year and above the $1.73 estimate; trailing-twelve-month EPS was $7.05, up 27.9%.
+@@ 176a5c744a html
+Profit margins are thin, as in most of transportation: gross margin 18.5%, operating margin 7.5%, net margin 5.3%; ROIC 14.2%.
+@@ 9e2dfb84a6 html
+On September 16 the company warned that Q3 EPS could come in 5–10% below Q2, citing diesel above $6.30 a gallon, lagging fuel surcharges (about $10 million) and extra costs for recruiting drivers (about $25 million).
+@@ f65f81468f html
+Valuation: P/E (TTM) 32.5x, forward 28.2x, PEG 1.33, EV/EBITDA 13.7x. Dividend yield 0.79%, payout ratio 25.5%.
+@@ 824421a83b html
+Balance sheet: total debt of $1.40 billion and just $4.16 million in cash; trailing-twelve-month free cash flow was $1.10 billion.
+@@ 3ea218c1b4 html
+<span class="nd">2026-07-15</span><span>Q2 EPS of $1.91 and revenue of $3.49 billion both beat estimates, driven mainly by intermodal. The stock rose as much as 7.6% after hours and broke through its 52-week high, setting up the summer peak. <a href="https://talkbusiness.net/?p=299136" target="_blank" rel="noopener">talkbusiness.net</a></span>
+@@ 7b1ae9112d html
+<span class="nd">2026-09-16</span><span>The company warned that Q3 EPS would fall 5–10% from Q2, with diesel prices up more than 70% year over year. The stock dropped 13.3% that day, the turning point for its recent trend. <a href="https://www.xtb.com/en/market-analysis/jb-hunt-shares-down-13-us-transportation-stocks-have-problems" target="_blank" rel="noopener">xtb.com</a></span>
+@@ 3525e2589e html
+<span class="nd">2026-09-17</span><span>Citizens upgraded the stock to Outperform with a $300 target, citing the lower valuation, while acknowledging that fuel and hiring costs will weigh on 2026 EPS in the short term. <a href="https://tradersunion.com/news/financial-news/show/3368757-jb-hunt-upgrade-after-pullback/" target="_blank" rel="noopener">tradersunion.com</a></span>
+@@ 1d0320fd44 html
+<span class="nd">2026-10-01</span><span>The company set October 15, after the close, as the date for its Q3 results. The market will see how large the profit shortfall actually is. <a href="https://finviz.com/news/398058/jb-hunt-transport-services-inc-announces-third-quarter-2026-earnings-release-date-and-conference-call-information" target="_blank" rel="noopener">finviz.com</a></span>
+@@ 6a6a3415d9 html
+<span class="nd">2026-10-07</span><span>Truist ($295 to $235), Citi (309 to 254), BMO, JPMorgan, TD Cowen and others cut their price targets ahead of the earnings report, arguing that the rebound in freight rates comes mainly from shrinking capacity and that demand has not broadly improved. <a href="https://stocktwits.com/news-articles/markets/equity/j-b-hunt-stock-analysts-trim-price-targets-ahead-of-q3-earnings-as-freight-recovery-remains-supply-driven/cZDvgGURBmp" target="_blank" rel="noopener">stocktwits.com</a></span>
+@@ 6e8440043a html
+2026-10-15, after the close: Q3 earnings. The consensus compiled by Fiscal AI is adjusted EPS of about $1.80 on revenue of about $3.58 billion.
+@@ 2ee581b411 html
+The path of diesel prices, and whether fuel surcharges can catch up with costs.
+@@ 1f8b5c013e html
+Intermodal and contract rate negotiations; JPMorgan expects contract rates to keep rising into 2027.
+@@ 23f65e649e html
+Oil and diesel: oil prices have stayed high since the Iran conflict. In mid-September diesel topped $6.30 a gallon, up more than 70% year over year, and lagging fuel surcharges eat directly into profit.
+@@ 6fa1337d1b html
+Freight cycle: shrinking capacity has pushed up spot rates, but demand has not broadly recovered. Higher truck rates usually push more shippers toward rail intermodal, which helps J.B. Hunt.
+@@ 5560f06a44 html
+Rates and consumers: intermodal carries a large share of imported consumer goods, so consumer spending and import volumes drive freight volume. Rising long-term rates raise financing costs and push down valuations.
+@@ 0662b7867c html
+There are bright spots on the demand side: Q2 intermodal volume grew about 10%, and shrinking truck capacity supports the shift from highway to rail.
+@@ 81f0437910 html
+The cost pressure is mostly short term: Citizens and others expect fuel surcharges and price increases to offset costs over time, and if diesel comes down, the pressure on profits eases.
+@@ 41f9a5517e html
+The stock has fallen from $273.05 on September 15 to around $229 and has repeatedly held at $222–224; market expectations have already come down a lot.
+@@ 2d737b12e2 html
+After the profit warning, the October 15 report or the Q4 outlook could disappoint again.
+@@ 93a3ce1cb5 html
+The valuation is not low: at a forward P/E of 28.2x, the multiple can easily shrink further as earnings estimates are cut.
+@@ 6009aed698 html
+Another rise in diesel, or slower consumer spending and imports, would squeeze volume and margins at the same time; analysts cut their price targets across the board ahead of earnings.
+@@ f983c096a5 html
+Whether the $222 line holds (the October 7 closing low of $222.64, intraday $222.11).
+@@ c353a7518f html
+Whether the stock can break above $234.63 and then get back above the 200-day moving average at $244.18.
+@@ 0447f10f1e html
+Q3 EPS against the $1.80 estimate in the October 15 report, and what management says about fuel surcharges and Q4.
+@@ cc3cb5c6b7 html
+Sources: <a href="https://stockanalysis.com/stocks/jbht/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/jbht/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/jbht/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/jbht/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/jbht/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://talkbusiness.net/?p=299136" target="_blank" rel="noopener">talkbusiness.net</a> · <a href="https://www.ajot.com/news/jb-hunt-reports-second-quarter-2026-results" target="_blank" rel="noopener">ajot.com</a> · <a href="https://www.xtb.com/en/market-analysis/jb-hunt-shares-down-13-us-transportation-stocks-have-problems" target="_blank" rel="noopener">xtb.com</a> · <a href="https://tradersunion.com/news/financial-news/show/3368757-jb-hunt-upgrade-after-pullback/" target="_blank" rel="noopener">tradersunion.com</a> · <a href="https://finviz.com/news/398058/jb-hunt-transport-services-inc-announces-third-quarter-2026-earnings-release-date-and-conference-call-information" target="_blank" rel="noopener">finviz.com</a> · <a href="https://stocktwits.com/news-articles/markets/equity/j-b-hunt-stock-analysts-trim-price-targets-ahead-of-q3-earnings-as-freight-recovery-remains-supply-driven/cZDvgGURBmp" target="_blank" rel="noopener">stocktwits.com</a>

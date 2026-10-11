@@ -1,0 +1,254 @@
+@@ b888dcce53 html
+Chapter 2: US options in practice · US Options Course
+@@ 0681d76700 html
+US options <span class="g">in practice</span>
+@@ 579e68579a html
+Between the order and expiration, an option passes through a broker, an exchange and a clearinghouse. This chapter lays out the rules of the game: when you can be assigned, what your account lets you do, how much of each trade the spread eats, and what special tax treatment applies.
+@@ 4a798dc727 html
+In this chapter
+@@ c49883a4dd html
+<a href="#open"><span class="n">··</span><span>Opening: two weeks to go, assigned tonight</span></a>
+@@ 667bf8a775 html
+<a href="#s1"><span class="n">2.1</span><span>American and European style</span></a>
+@@ 09aebbfb22 html
+<a href="#s2"><span class="n">2.2</span><span>Expiration cycles</span></a>
+@@ f075b5ce77 html
+<a href="#s3"><span class="n">2.3</span><span>Exercise and assignment</span></a>
+@@ 3c51c287c4 html
+<a href="#s4"><span class="n">2.4</span><span>Two reasons for early assignment</span></a>
+@@ 7fa0cadd1c html
+<a href="#s5"><span class="n">2.5</span><span>Reading an option chain</span></a>
+@@ 17994a746b html
+<a href="#s6"><span class="n">2.6</span><span>Accounts, approval levels and margin</span></a>
+@@ cb6f61ee05 html
+<a href="#s7"><span class="n">2.7</span><span>Orders and liquidity</span></a>
+@@ c665fef799 html
+<a href="#s8"><span class="n">2.8</span><span>Tax concepts</span></a>
+@@ ba7d6b0260 html
+<a href="#s9"><span class="n">2.9</span><span>Choosing your index exposure</span></a>
+@@ 12c019ed82 html
+<a href="#cases"><span class="n">Cases</span><span>Three cases</span></a>
+@@ dd7ded685d html
+<a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a>
+@@ 46e70d684b html
+<a href="#open">Opening: two weeks to go, assigned tonight</a>
+@@ 6149ee5800 html
+<a href="#s1">2.1 American and European style</a>
+@@ b8f3b760b7 html
+<a href="#s2">2.2 Expiration cycles</a>
+@@ fc13092bb8 html
+<a href="#s3">2.3 Exercise and assignment</a>
+@@ 6785d53276 html
+<a href="#s4">2.4 Two reasons for early assignment</a>
+@@ 25d94accc0 html
+<a href="#s5">2.5 Reading an option chain</a>
+@@ dc01c07375 html
+<a href="#s6">2.6 Accounts, approval levels and margin</a>
+@@ a0a74e504d html
+<a href="#s7">2.7 Orders and liquidity</a>
+@@ 5c33726b38 html
+<a href="#s8">2.8 Tax concepts</a>
+@@ 738caa0b74 html
+<a href="#s9">2.9 Choosing your index exposure</a>
+@@ f3a78e0502 html
+<a href="#cases">Three cases</a>
+@@ 7ec24afd50 html
+<a href="#tools">Checklist and self-test</a>
+@@ 80161dff8a html
+After this chapter you can
+@@ d7947be5bd html
+Tell whether an in-the-money call will be assigned early before an ex-dividend date, and work out what is at stake
+@@ b1b5cdad7c html
+Read every column of an option chain, judge liquidity with three measures and work out the round-trip cost
+@@ 6b613aeafe html
+Choose among SPX, SPY and XSP by contract size, settlement and taxes
+@@ fc4f43bd05 html
+Prerequisites
+@@ 3764b1cdd8 html
+Chapter 1: the six terms of a contract and the four basic positions
+@@ 8179597051 html
+Chapter 1: how intrinsic value, time value and interest relate
+@@ fe31444484 html
+Conventions
+@@ 796752be5b html
+Rules follow common practice for US-listed options; for details, your exchange and broker have the final word
+@@ 604df6d1ea html
+Examples use Black-Scholes with a 4% rate and a 365-day year
+@@ 7523bf1e4a html
+Taxes are covered as concepts only; this is not tax advice
+@@ 691e0cdfd3 html
+<span class="sn">Opening</span>Two weeks to go, assigned tonight
+@@ bdc33196a1 html
+You hold 500 shares of XYZ at $110. For a little extra income, you sold 5 calls with a 100 strike that expire in two weeks. On Thursday evening your broker sends a notice: all 5 have been assigned, and your 500 shares have been sold at $100.
+@@ d177e3ee86 html
+The options still have two weeks to go, so why would anyone exercise now? Because tomorrow is the ex-dividend date, and the dividend is <span class="num">$1.20</span> per share. If the holder keeps the option, the call will have only <span class="num">0.235</span> of time value left once the stock goes ex-dividend; by exercising tonight and taking the shares, the holder collects the 1.20 dividend tomorrow. That is <span class="num">0.965</span> more per share, or <span class="num">$483</span> across 5 contracts.
+@@ cce4aca0ae html
+That $483 comes out of your pocket. The $600 in dividends you would have collected is gone, and all you get in return is your $50,000 for the shares two weeks early, plus no longer having to wait for the remaining time value to decay to zero. None of this should be a surprise: if you know the rules, you can work it out before Thursday's close and buy the calls back or roll them to a higher strike in advance.
+@@ 2295f7f705 html
+This chapter is about rules like these. They don't decide whether your view on direction is right, but they often decide how much money you end up with.
+@@ ce2bf017bb html
+<span class="sn">2.1</span>American and European style
+@@ 648bc32af2 html
+Stock and ETF options are American-style and physically settled: they can be exercised on any trading day and turn into shares. Index options such as SPX are European-style and cash-settled: they settle only at expiration, in cash, for the difference.
+@@ 3c59a68498 html
+Table 2-1 The rules for the two kinds of options, side by side
+@@ f73f27b195 html
+Feature
+@@ dec1ebe682 html
+Stock and ETF options (AAPL, SPY, QQQ)
+@@ 93e53dc7a7 html
+Index options (SPX, XSP, NDX)
+@@ 17581dcff7 html
+Exercise style
+@@ a037cf580c html
+American: can be exercised on any trading day before expiration
+@@ f4629ae95e html
+European: settles only at expiration
+@@ f19c41f713 html
+What is delivered
+@@ 416e4680c4 html
+100 shares of the stock or ETF
+@@ 2da1c4b646 html
+Cash = intrinsic value × 100
+@@ d54b8f8fad html
+Early assignment of the seller
+@@ 3b0666113a html
+Possible
+@@ 7f0aa4271a html
+Not possible
+@@ e1c678d1cb html
+Position after expiration
+@@ 94881ebf6b html
+May become long or short stock
+@@ 12a9f7d6dc html
+Cash only
+@@ db3a320aa9 html
+Settlement price
+@@ 0b27017a02 html
+Closing price on expiration day
+@@ c08bebd8ba html
+PM-settled: the close on expiration day; AM-settled: a special opening settlement price on expiration day
+@@ 779ffb958c html
+“American” and “European” are just names; they have nothing to do with where the options trade. An American option carries one extra right, so it is never worth less than an otherwise identical European option. The difference is called the early-exercise value. For calls on stocks that pay no dividend, this value is zero and early exercise never pays; for calls on dividend-paying stocks and for deep in-the-money puts, it can be substantial (Section 2.4).
+@@ fcb00b35ea html
+Physical settlement: the option turns into stock
+@@ dd8960859d html
+You hold 1 SPY 780 call, and SPY closes at 785 at expiration. The option is exercised automatically and you buy 100 shares of SPY for $78,000. If your account holds only a few thousand dollars, you are immediately short of margin. It works the other way too: if a put you sold is exercised, you must buy 100 shares at the strike; if a call you sold is exercised and you don't own the shares, you become short 100 shares.
+@@ ba1148f3b6 html
+Cash settlement: only the difference changes hands
+@@ ef67309913 html
+You hold 1 SPX 7,800 call, and the settlement price at expiration is 7,850. Your account simply receives <span class="num">(7,850 − 7,800) × 100 = $5,000</span> in cash. No shares move in or out, and there is no weekend risk after expiration. What you do need to watch is when the settlement price is set. Standard monthly SPX contracts are AM-settled: the last trading day is Thursday, and the settlement price is calculated from the opening prices of the component stocks on Friday. You have no way to trade around a gap between Thursday's close and Friday's open. SPX weekly and daily contracts (symbol SPXW) are PM-settled and use the closing price on expiration day.
+@@ 0cdfa93a80 html
+<span class="sn">2.2</span>Expiration cycles
+@@ f6da81c0a7 html
+Expirations come in three layers: monthly, weekly and daily. An option that is in the money by $0.01 at the close on expiration day is exercised automatically.
+@@ 6d8072d3f3 html
+<strong>Monthly</strong>: the third Friday of each month. If the exchange is closed that day (for example, on Good Friday), expiration moves up to Thursday. Monthly contracts are listed the longest, and for less liquid stocks, open interest tends to concentrate in the monthlies.
+@@ cef93c2f2c html
+<strong>Weekly</strong>: most popular stocks and ETFs have contracts expiring every Friday, usually listed a few weeks ahead.
+@@ 0fc1576511 html
+<strong>Daily</strong>: a handful of products, such as SPX, XSP, SPY and QQQ, have contracts expiring every day from Monday to Friday. Contracts that expire the same day are often called 0DTE (Chapter 10).
+@@ b538085993 html
+<strong>Long-term</strong>: contracts with more than a year to expiration are called LEAPS, and they usually expire in January.
+@@ d0facc9b01 html
+What happens after 4 p.m. on expiration day
+@@ 4b5204a8d8 html
+Stock options stop trading at 16:00 Eastern time on expiration day (some index and ETF options close at a different time; check the exchange rules). But the end of trading is not the end of the story: the stock keeps trading after hours, and option holders can still change their minds.
+@@ 557a3a0052 html
+16:00 close
+@@ 1708f74d02 html
+That evening
+@@ c68dfa2667 html
+Before next open
+@@ 1b80c81de8 html
+Long option (holder)
+@@ 06e761e6e3 html
+Option stops trading
+@@ 6a2f90deaa html
+Close sets ITM/OTM
+@@ 5621ee4893 html
+Stock still trades
+@@ 640e7d8533 html
+Can opt out of exercise
+@@ 74b406281c html
+≥ $0.01 ITM, no opt-out
+@@ 1cde194db9 html
+Auto-exercised
+@@ e5f2f1c49f html
+Call: buy at strike
+@@ 4bb9b0fe4c html
+Put: sell at strike
+@@ 17f32ed962 html
+Short option (seller)
+@@ 75b836b955 html
+Can no longer close
+@@ d50c77b5b4 html
+Exposure locked in
+@@ 0385a19eb3 html
+Can't see what the
+@@ 219fb69a24 html
+holder will decide
+@@ 9ec91b1aaf html
+OCC assigns at random
+@@ abccc8fb47 html
+Broker picks accounts
+@@ 9b6ab52ac1 html
+Assignment notice
+@@ fa15db4a04 html
+Position becomes stock
+@@ b02d2537de html
+With the close near the strike, the seller learns only at the last step whether it was assigned;
+@@ 968fdbb007 html
+after-hours trading and a weekend lie in between. That uncertainty is “pin risk” (Case 2).
+@@ 36390465d5 html
+17:30 is the usual deadline for the clearinghouse to accept exercise decisions, and brokers' internal cutoffs are often earlier. Holders can submit “do not exercise” on an in-the-money option and can also choose to exercise an out-of-the-money one, so being out of the money at the close does not guarantee that an option expires worthless. Index options settle in cash, so the fourth step is just a cash credit.
+@@ a864dfb5c3 html
+The auto-exercise threshold is one cent
+@@ 1bd6e29ac3 html
+The clearinghouse applies “exercise by exception” to expiring contracts: any option that is in the money by $0.01 or more at the closing price is exercised automatically unless the holder submits contrary instructions. For individual traders, this threshold is a trap.
+@@ c0f055c5a1 html
+Example: you hold 5 of the 100 calls and mean to sell them before expiration, but forget. Friday's close is 100.03, so the options are 3 cents in the money and are exercised automatically. On Monday your account has 500 more shares and you have to pay <span class="num">$50,015</span>, while the intrinsic value of this exercise is only <span class="num">0.03 × 500 = $15</span> in total. For $15, you carried $50,000 of stock over a weekend, and if your account doesn't have the funds, you also face a margin call or a forced sale.
+@@ 0624a0559b html
+For in-the-money longs, if you don't want the shares, sell before the close or give your broker a “do not exercise” instruction.
+@@ eccb6fda5d html
+For shorts where the close may land near the strike, spend a little to buy them back before the close (Case 2).
+@@ 6f6fd93655 html
+Don't assume “out of the money at the close means worthless”: if news comes out after hours, holders can exercise out-of-the-money options.
+@@ 81a7b06206 html
+<span class="sn">2.3</span>Exercise and assignment
+@@ 344a5935a2 html
+Exercise is the buyer's decision; assignment is the result that lands on a seller at random. The seller can't choose it and can't know it in advance.
+@@ 1e6a465a05 html
+The holder submits an exercise instruction through a broker (or is exercised automatically at expiration).
+@@ 859c5311d4 html
+Instructions go to the Options Clearing Corporation (OCC). It is the central counterparty for all US-listed options: on every trade, the buyer and the seller each actually settle with the OCC.
+@@ 5ca67f6d1c html
+The OCC allocates assignments <strong>at random</strong> among the clearing members that hold short positions in that contract.
+@@ 978c83744b html
+The clearing member (your broker or its clearing firm) then allocates them to specific customer accounts, either at random or first in, first out, and must disclose its method to customers.
+@@ bf0fe131da html
+The seller is usually notified before the next trading day's open, and the short option in the account becomes a purchase or sale of stock.
+@@ 24ab233d04 html
+Table 2-2 Where the stock goes after exercise and assignment
+@@ 5f364b9085 html
+Contract
+@@ c76fa722cb html
+Long exercises
+@@ eccad3734c html
+Short is assigned
+@@ 1ac69090ba html
+Call
+@@ 74fe9cd639 html
+Buy 100 shares at the strike
+@@ 1bf280973c html
+Sell 100 shares at the strike; if you don't own them, you become short
+@@ 727fb827ee html
+Put
+@@ 8b834c63a5 html
+Why early exercise usually doesn't pay
+@@ 1962b86c0e html
+Exercising early captures only the intrinsic value; the time value is thrown away. With the stock at $100, a 30-day 95 call is worth 6.65. Exercising gets you 5.00; selling the option gets you 6.65. That is a difference of <span class="num">1.65</span>, or $165 per contract. So for a holder who wants out, selling the option is almost always better than exercising.
+@@ a0282d5867 html
+For calls on stocks that pay no dividend, this holds strictly. As Chapter 1 showed, the time value of an in-the-money call always includes at least the “interest on the strike,” which is always greater than zero. Exercising early means paying the strike early and giving up that interest for nothing. Only two situations can overturn this conclusion; the next section covers them.
+@@ dea3df31c2 html
+Illiquid options are an exception. If the bid is far below theoretical value (say, a call with 5.00 of intrinsic value is bid at only 4.80), selling it costs you. In that case you can consider exercising and selling the stock at the same time, provided you've worked out the costs on both sides.

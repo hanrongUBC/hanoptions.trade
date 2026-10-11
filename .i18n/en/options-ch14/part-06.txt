@@ -1,0 +1,154 @@
+@@ 3fc0a40345 js
+Buy a call (ATM)
+@@ eb5bc91434 js
+Options are cheap, and positive Vega means a rebound in IV also works for you; the maximum loss is the premium.
+@@ ea78359f56 js
+No clear catalyst, just a “feeling it will go up.” Theta still takes its cut every day.
+@@ 165f447670 js
+Buy calls early, scale out before the event
+@@ 5a002fc753 js
+IV usually rises as an event approaches, so buying early captures both the direction and the IV lift; sell part of the position before the event to lock in that gain.
+@@ 72e4a06638 js
+If you want to hold through the event, switch to a debit spread; otherwise the IV crush after the event will cancel out the directional gain.
+@@ c0863b2ae3 js
+Call debit spread
+@@ e2ecb3b9be js
+Buy ATM, sell at the target: the two legs' Vega mostly cancels, so P&L comes mainly from direction.
+@@ 9911140688 js
+When the target is far beyond 1× the expected move, the short leg is too far out and the spread degenerates into a single call.
+@@ fab43a4208 js
+Call debit spread, held through the event
+@@ 3d8b23ef8a js
+The short leg sits near the event's expected move; after the event both legs lose IV together, and the losses offset.
+@@ 8e8ea1ff27 js
+If you expect a rise far bigger than the expected move, the spread caps exactly the part of the gain you want most.
+@@ fc1537684a js
+Sell a put spread
+@@ ebe90e107b js
+With IV high you sell expensive options, and negative Vega turns a fall in IV into a source of profit; it makes money if the stock doesn't fall, goes sideways or rises a little. If you're willing to own the shares, a cash-secured put also works.
+@@ 0d8c69d264 js
+IV is high because the fundamentals are deteriorating: options are expensive for a reason.
+@@ 17270695f4 js
+Sell a put spread, short strike outside the expected move
+@@ 81534e0f42 js
+Expiring right after the event, it collects premium pumped up by the event; with the short leg outside the expected move, it makes money unless the stock falls sharply.
+@@ f3941a05c3 js
+Size must be small: a gap will jump past the stop, so size on the maximum loss. Or wait and trade after the event.
+@@ 0d480875f4 js
+Buy a put (ATM)
+@@ c71feee66e js
+Options are cheap, and IV tends to rise when stocks fall, so direction and Vega both help you.
+@@ 6ed3aa7f38 js
+Being bearish goes against the long-term uptrend: keep the target realistic, and don't buy far out-of-the-money puts just because they're cheap.
+@@ 1686de3613 js
+Buy puts early, scale out before the event
+@@ 94e06f4488 js
+The IV rise before an event helps long options, and downside risk itself pushes IV up.
+@@ 96222a98ea js
+Holding through the event still runs into IV crush; to hold through it, switch to a put debit spread.
+@@ d1c9d0a96d js
+Put debit spread
+@@ 1cd7911045 js
+Buy ATM, sell at the target: lower cost and lower Vega, with P&L coming mainly from direction.
+@@ c130df744f js
+In a sharp sell-off IV spikes and a single put makes more; the spread's capped gain will look conservative.
+@@ d756de9023 js
+Put debit spread, held through the event
+@@ 83198df207 js
+The short leg sits near the event's expected move, offsetting the IV crush after the event.
+@@ d9d79074ff js
+You expect a drop far beyond the expected move: the spread caps the gain.
+@@ a5026c02ba js
+Sell a call spread
+@@ e40e41388d js
+Bets that “it won't rally much more”: it makes money if the stock falls, goes sideways or rises a little, and high IV makes the premium richer.
+@@ d71c86b8c5 js
+Strong momentum stocks: “it has gone up too much” is not a reason to be short.
+@@ 15576ec6fe js
+Sell a call spread, short strike outside the expected move
+@@ 533861d497 js
+Collects premium pumped up by the event, with the short leg outside the expected move.
+@@ a0e3ab9d41 js
+A jump after good news can go far beyond the expected move, so you must use a spread, not naked short calls.
+@@ a5d88d46ca js
+Calendar spread (or no trade)
+@@ 7694273db9 js
+Sell the faster-decaying front month and buy the back month: net Vega is positive, so a rebound in IV helps you.
+@@ cf794cb4f8 js
+With IV low, sellers collect too little and there is no good neutral structure; not trading is often the best choice.
+@@ 2bebf7ff65 js
+Buy a straddle before the event, close it before the event
+@@ c4d09e3900 js
+Buy a straddle at low IV, betting that IV rises as the event approaches; close before the event so you don't carry the event's outcome.
+@@ 1533d4acd6 js
+If IV doesn't rise before the event, Theta keeps draining the position; don't hold through the event.
+@@ fbdb42589f js
+Iron condor (short strikes about 1× the expected move)
+@@ 1cc5315494 js
+Collects Theta inside the expected range; the wings on both sides cap the maximum loss.
+@@ ab6d67b39b js
+With IV only mid-range, premium is thin, so be more conservative with the width and the stop.
+@@ 072f62d9dc js
+Event calendar spread
+@@ ee02a29b7f js
+Sell the front month, whose IV is inflated by the event, and buy the back month; after the event the front month's IV collapses while the back month is barely affected.
+@@ d003497081 js
+If the stock jumps far from the strike after the event, both legs of the calendar lose their time value, and it loses money too.
+@@ 4de79ed277 js
+Iron condor (a defined-risk short strangle)
+@@ 67e5a0f67d js
+Sell options on both sides at high IV: negative Vega and positive Theta both work for you.
+@@ 9f17ec8e49 js
+Don't use a naked short strangle instead: high IV means the market expects big moves, so the maximum loss must be capped.
+@@ 19892e3224 js
+Event iron condor, small size
+@@ 06d9775b85 js
+Expiring right after the event with the short legs outside the expected move, it profits from the IV crush.
+@@ d47d2e9bd2 js
+First compare this event's expected move with the actual moves on past events; underlyings that have often moved more than the expected move are not a fit.
+@@ 366177acc2 js
+call
+@@ 9431327709 js
+put
+@@ 41e87de47e js
+Stock price at expiry (front-month expiry for calendars)
+@@ 8d662cccbd js
+P&L per position ($)
+@@ c0beba40c8 js
+Debit $
+@@ f20cd60d06 js
+Credit $
+@@ 5f07ca4546 js
+Unlimited
+@@ e1da493de9 js
+Buy 
+@@ 2332b3d4ce js
+Sell 
+@@ c4badfbe97 js
+ days)
+@@ 37f8971426 tpl
+<h4>{0}</h4><p class="legs">{1}; example IV {2}%</p><p><b>Why:</b> {3}</p><p class="not"><b>When it doesn't fit:</b> {4}</p>
+@@ 8ee911905e js
+Day the catalyst arrives (closed that day)
+@@ 5172608290 js
+Return
+@@ bb7c4b5fbe js
+Loses on any day
+@@ 45f24f7dfa js
+Day 
+@@ c87f6311bf js
+<empty>
+@@ b175462556 js
+All the text is selected. Press Ctrl+C (long-press on a phone) to copy.
+@@ 8f1cf91a45 js
+Copied to clipboard.
+@@ ab7ef7af8d js
+Trades
+@@ ca63744da1 js
+Expectancy per trade ($)
+@@ 9d80c2cd9b js
+About 
+@@ d24a041501 js
+ trades
+@@ 482de3ac65 js
+Expectancy not positive

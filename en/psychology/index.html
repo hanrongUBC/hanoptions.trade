@@ -1,0 +1,1148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trading Psychology · hanoptions.trade</title>
+<meta name="description" content="An 11-chapter study handbook: probabilistic thinking, cognitive biases, position-sizing math, losing-streak odds and review. The distance between knowing and doing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700;900&display=swap">
+<style>
+/* Layout: a study handbook. Fixed chapter rail on the left, one chapter on stage at a time,
+   each chapter opens with a large serif number and closes with prev/next. Figures sit on plates. */
+:root {
+  --paper: #f2f4f3;
+  --plate: #ffffff;
+  --ink: #17211f;
+  --muted: #5e6b68;
+  --rule: #d5dcda;
+  --grid: #e6ebe9;
+  --accent: #0f6a63;
+  --calm: #3b4fa3;
+  --loss: #b13450;
+  --warn: #9c5c00;
+  --tint-accent: rgba(15, 106, 99, .08);
+  --tint-calm: rgba(59, 79, 163, .08);
+  --tint-loss: rgba(177, 52, 80, .08);
+  --tint-warn: rgba(156, 92, 0, .09);
+  --font-display: "Noto Serif SC", "Songti SC", "STSong", serif;
+  --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f1514; --plate: #161e1d; --ink: #e2e9e7; --muted: #94a3a0; --rule: #273331; --grid: #1c2725;
+    --accent: #4cc2b5; --calm: #93a5ff; --loss: #f07a93; --warn: #f0a943;
+    --tint-accent: rgba(76, 194, 181, .10); --tint-calm: rgba(147, 165, 255, .10);
+    --tint-loss: rgba(240, 122, 147, .10); --tint-warn: rgba(240, 169, 67, .10);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f1514; --plate: #161e1d; --ink: #e2e9e7; --muted: #94a3a0; --rule: #273331; --grid: #1c2725;
+  --accent: #4cc2b5; --calm: #93a5ff; --loss: #f07a93; --warn: #f0a943;
+  --tint-accent: rgba(76, 194, 181, .10); --tint-calm: rgba(147, 165, 255, .10);
+  --tint-loss: rgba(240, 122, 147, .10); --tint-warn: rgba(240, 169, 67, .10);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 16.5px; line-height: 1.85; -webkit-font-smoothing: antialiased; }
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* masthead */
+.mast { border-bottom: 1px solid var(--rule); }
+.mast-inner { max-width: 1180px; margin: 0 auto; padding-inline: 24px; padding-block: 34px 28px; display: flex; flex-wrap: wrap; gap: 6px 40px; align-items: end; justify-content: space-between; }
+.mast-title { min-width: 0; }
+.eyebrow { font-size: 13px; color: var(--muted); letter-spacing: .08em; margin: 0 0 6px; }
+.mast h1 { font-family: var(--font-display); font-weight: 900; font-size: clamp(36px, 6vw, 60px); line-height: 1.05; margin: 0; letter-spacing: .02em; }
+.deck { margin: 10px 0 0; color: var(--muted); max-width: 40em; font-size: 16.5px; }
+.mast-stat { font-size: 13.5px; color: var(--muted); line-height: 1.6; max-width: 22em; border-left: 1px solid var(--rule); padding-left: 18px; }
+.mast-stat b { display: block; font-family: var(--font-mono); font-size: 30px; font-weight: 500; color: var(--loss); line-height: 1.2; }
+
+/* shell */
+.shell { max-width: 1180px; margin: 0 auto; padding-inline: 24px; padding-block: 36px 80px; display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 56px; }
+.rail { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 20px); align-self: start; max-height: calc(100vh - 40px); overflow: auto; }
+.rail ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.rail button { width: 100%; text-align: left; font: inherit; font-size: 14.5px; line-height: 1.45; color: var(--muted); background: transparent; border: 0; border-radius: 6px; padding: 8px 10px; cursor: pointer; display: grid; grid-template-columns: 34px 1fr; gap: 4px; }
+.rail button .k { font-family: var(--font-mono); font-size: 12.5px; padding-top: 2px; }
+.rail button:hover { background: var(--grid); color: var(--ink); }
+.rail button[aria-current="true"] { background: var(--tint-accent); color: var(--accent); font-weight: 500; }
+.picker { display: none; }
+main { min-width: 0; max-width: 760px; }
+
+@media (max-width: 920px) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 0; padding-inline: 16px; padding-block: 0 64px; }
+  .rail { display: none; }
+  .picker { display: block; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); padding-block: 12px; border-bottom: 1px solid var(--rule); margin-bottom: 24px; }
+  .picker select { width: 100%; font: inherit; font-size: 15px; padding: 9px 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--plate); color: var(--ink); }
+  .mast-inner { padding-inline: 16px; padding-block: 26px 22px; }
+  .mast-stat { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 12px; }
+}
+
+/* chapter */
+.chapter-head { display: grid; grid-template-columns: auto 1fr; gap: 4px 22px; align-items: end; margin-bottom: 26px; padding-bottom: 20px; border-bottom: 1px solid var(--rule); }
+.chapter-head .no { font-family: var(--font-display); font-weight: 900; font-size: 84px; line-height: .85; color: var(--accent); grid-row: span 2; }
+.chapter-head .kicker { font-size: 13px; color: var(--muted); letter-spacing: .08em; }
+.chapter-head h2 { font-family: var(--font-display); font-size: clamp(26px, 3.6vw, 34px); line-height: 1.25; margin: 0; text-wrap: balance; }
+@media (max-width: 560px) { .chapter-head .no { font-size: 58px; } }
+h3 { font-family: var(--font-display); font-size: 21px; margin: 40px 0 10px; line-height: 1.35; text-wrap: balance; }
+h4 { font-size: 16px; margin: 22px 0 6px; }
+p { margin: 0 0 16px; max-width: 68ch; }
+ul, ol { padding-left: 1.3em; margin: 0 0 16px; max-width: 68ch; }
+li + li { margin-top: 5px; }
+.lead { font-size: 18.5px; line-height: 1.8; }
+.num { font-family: var(--font-mono); font-size: .93em; font-variant-numeric: tabular-nums; }
+.pull { font-family: var(--font-display); font-size: 22px; line-height: 1.6; margin: 28px 0; padding: 4px 0 4px 22px; border-left: 3px solid var(--accent); max-width: 34em; }
+
+.note { margin: 22px 0 24px; padding: 16px 20px 6px; border-radius: 6px; background: var(--tint-accent); }
+.note .tag { display: block; font-size: 12px; letter-spacing: .1em; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+.note p, .note ul, .note ol { font-size: 15.5px; }
+.note.warn { background: var(--tint-warn); } .note.warn .tag { color: var(--warn); }
+.note.loss { background: var(--tint-loss); } .note.loss .tag { color: var(--loss); }
+.note.calm { background: var(--tint-calm); } .note.calm .tag { color: var(--calm); }
+
+.tbl { overflow-x: auto; margin: 18px 0 26px; border: 1px solid var(--rule); border-radius: 6px; background: var(--plate); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; font-variant-numeric: tabular-nums; }
+caption { caption-side: top; text-align: left; padding: 12px 16px 4px; font-size: 13px; color: var(--muted); }
+th, td { padding: 9px 14px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+td.r, th.r { text-align: right; }
+td.mono { font-family: var(--font-mono); }
+thead th { font-size: 12.5px; color: var(--muted); font-weight: 500; letter-spacing: .04em; white-space: nowrap; }
+tbody tr:last-child td { border-bottom: 0; }
+.hl td { background: var(--tint-accent); }
+
+/* bias cards */
+.biases { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: 14px; margin: 18px 0 26px; }
+.bias { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px 12px; min-width: 0; }
+.bias h4 { margin: 0 0 8px; font-size: 16.5px; display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.bias h4 small { font-family: var(--font-mono); font-weight: 400; font-size: 11.5px; color: var(--muted); letter-spacing: .02em; }
+.bias dl { margin: 0; display: grid; grid-template-columns: 3.4em 1fr; gap: 4px 10px; font-size: 14.5px; line-height: 1.7; }
+.bias dt { color: var(--muted); font-size: 13px; padding-top: 1px; }
+.bias dd { margin: 0; }
+.bias dd.fix { color: var(--accent); }
+
+/* figures */
+figure.plate { margin: 26px 0 32px; background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 18px 18px 14px; }
+.fig-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 6px; }
+.fig-title { font-weight: 700; font-size: 15.5px; }
+.fig-no { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); }
+svg.chart { width: 100%; height: auto; display: block; }
+.scroll-x { overflow-x: auto; }
+svg.chart.wide { min-width: 620px; }
+figcaption { font-size: 13.5px; color: var(--muted); line-height: 1.7; margin-top: 8px; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 6px 0 4px; align-items: center; }
+.ctl { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--muted); }
+.ctl input[type="range"] { width: 150px; accent-color: var(--accent); }
+.ctl output { font-family: var(--font-mono); color: var(--ink); min-width: 4em; font-variant-numeric: tabular-nums; }
+.btn { font: inherit; font-size: 13.5px; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); cursor: pointer; }
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); margin-top: 4px; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 18px; height: 0; border-top: 2.5px solid; display: inline-block; }
+.legend i.dash { border-top-style: dashed; }
+.readout { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 12px; }
+.readout div { border-top: 1px solid var(--rule); padding-top: 8px; min-width: 0; }
+.readout b { display: block; font-family: var(--font-mono); font-size: 19px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.readout small { font-size: 12.5px; color: var(--muted); }
+.ax { font-family: var(--font-mono); font-size: 11.5px; }
+
+/* calculator */
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 8px 0 4px; }
+.form-grid label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+.form-grid input { font: inherit; font-family: var(--font-mono); padding: 7px 10px; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); color: var(--ink); width: 100%; }
+
+/* template */
+pre.tpl { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 16px; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.7; overflow-x: auto; white-space: pre; margin: 8px 0; }
+
+/* checklists */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; margin: 18px 0 12px; }
+.card { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; min-width: 0; }
+.card h4 { margin: 0 0 8px; }
+.card ul { list-style: none; padding: 0; margin: 0; font-size: 14.5px; line-height: 1.65; }
+.card li { display: grid; grid-template-columns: 22px 1fr; gap: 4px; align-items: start; }
+.card input[type="checkbox"] { margin-top: 5px; accent-color: var(--accent); }
+
+/* quiz */
+.quiz { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 6px 18px 18px; margin: 18px 0; }
+.qrow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 18px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.qrow:last-of-type { border-bottom: 0; }
+.qrow p { margin: 0; font-size: 15px; line-height: 1.6; }
+.scale { display: inline-flex; gap: 4px; }
+.scale label { position: relative; }
+.scale input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.scale span { display: grid; place-items: center; width: 34px; height: 30px; border: 1px solid var(--rule); border-radius: 5px; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.scale input:checked + span { background: var(--accent); color: var(--plate); border-color: var(--accent); }
+.scale input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 560px) { .qrow { grid-template-columns: minmax(0, 1fr); } }
+.scale-legend { font-size: 12.5px; color: var(--muted); margin: 10px 0 0; }
+.result { margin-top: 18px; display: grid; gap: 10px; }
+.bar-row { display: grid; grid-template-columns: 5.5em minmax(0, 1fr) 4.5em; gap: 12px; align-items: center; font-size: 14px; }
+.bar-track { height: 10px; background: var(--grid); border-radius: 5px; overflow: hidden; }
+.bar-fill { height: 100%; width: 0; background: var(--accent); border-radius: 5px; transition: width .3s; }
+.bar-fill.hi { background: var(--loss); }
+@media (prefers-reduced-motion: reduce) { .bar-fill { transition: none; } }
+.bar-row .val { font-family: var(--font-mono); text-align: right; color: var(--muted); }
+.advice { font-size: 14.5px; color: var(--ink); margin-top: 6px; }
+
+/* pager */
+.pager { display: flex; justify-content: space-between; gap: 16px; margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule); flex-wrap: wrap; }
+.pager button { font: inherit; background: transparent; border: 1px solid var(--rule); border-radius: 8px; padding: 10px 16px; cursor: pointer; color: var(--ink); text-align: left; max-width: 48%; min-width: 0; }
+.pager button small { display: block; font-size: 12px; color: var(--muted); }
+.pager button:hover { border-color: var(--accent); }
+.pager button.next { margin-left: auto; text-align: right; }
+@media (max-width: 560px) { .pager button { max-width: 100%; width: 100%; } .pager button.next { text-align: left; } }
+
+footer.end { margin-top: 48px; font-size: 13px; color: var(--muted); }
+footer.end p { max-width: none; }
+.ek { font-family: var(--font-body); font-size: .86em; color: var(--muted); font-weight: 400; }
+
+/* ---------- site bar (hanoptions.trade) ---------- */
+.sitebar { border-bottom: 1px solid var(--rule); background: var(--paper); font-size: 13.5px; line-height: 1.4; }
+.sitebar-inner { max-width: 1180px; margin: 0 auto; padding: 9px 24px; display: flex; gap: 18px; align-items: center; justify-content: space-between; }
+.sitebar-home { font-family: var(--font-mono); color: var(--muted); text-decoration: none; letter-spacing: .02em; white-space: nowrap; }
+.sitebar-home:hover { color: var(--ink); }
+.sitebar-links { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.sitebar-links::-webkit-scrollbar { display: none; }
+.sitebar-links a { color: var(--muted); text-decoration: none; padding: 3px 9px; border-radius: 4px; white-space: nowrap; }
+.sitebar-links a:hover { color: var(--ink); background: var(--grid); }
+.sitebar-links a[aria-current="page"] { color: var(--ink); background: var(--plate); box-shadow: inset 0 0 0 1px var(--rule); }
+@media (max-width: 900px) { .sitebar-inner { padding-inline: 16px; } }
+@media (max-width: 480px) { .sitebar-inner { gap: 10px; } .sitebar-links a { padding: 3px 7px; } }
+</style>
+<link rel="alternate" hreflang="zh-CN" href="https://hanoptions.trade/psychology/"><link rel="alternate" hreflang="en" href="https://hanoptions.trade/en/psychology/">
+<style id="lang-css">
+.lang-switch { flex: none; display: inline-flex; align-items: center; gap: 6px; padding: 3px 11px; border: 1px solid var(--rule); border-radius: 999px;
+  background: var(--plate); color: var(--ink); text-decoration: none; font-size: 13px; line-height: 1.5; white-space: nowrap; font-family: var(--font-body); letter-spacing: 0; }
+.lang-switch:hover { border-color: var(--ink); }
+.lang-switch svg { width: 13px; height: 13px; flex: none; }
+
+.sitebar-links { flex: 0 1 auto; min-width: 0; margin-left: auto; justify-content: flex-start; }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap">
+<style id="en-overrides">
+html[lang="en"] { --font-display: "Source Serif 4", "Noto Serif SC", Georgia, serif; --font-body: "Source Sans 3", "Noto Sans SC", system-ui, sans-serif; }
+html[lang="en"] body { line-height: 1.7; }
+html[lang="en"] body * { letter-spacing: normal !important; }
+html[lang="en"] p, html[lang="en"] li, html[lang="en"] td, html[lang="en"] figcaption { hyphens: auto; -webkit-hyphens: auto; }
+html[lang="en"] p { text-wrap: pretty; }
+html[lang="en"] .toc a { grid-template-columns: 48px 1fr; }
+</style>
+</head>
+<body>
+<nav class="sitebar" aria-label="Site navigation"><div class="sitebar-inner"><a class="sitebar-home" href="/en/">hanoptions.trade</a><div class="sitebar-links"><a href="/en/options/">US Options Course</a><a href="/en/psychology/" aria-current="page">Trading Psychology</a><a href="/en/macro/">Macro Trading Framework</a><a href="/en/policy/">Policy Narrative Investing</a><a href="/en/rebound/">Oversold Rebound List</a></div><a class="lang-switch" href="/psychology/" hreflang="zh-CN" lang="zh-CN" data-lang="zh"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>中文</a></div></nav>
+<header class="mast">
+  <div class="mast-inner">
+    <div class="mast-title">
+      <p class="eyebrow">Study handbook · 11 chapters</p>
+      <h1>Trading Psychology</h1>
+      <p class="deck">Most people don't lose money because they don't understand the market. They lose because, amid uncertainty and emotion, they can't do what they already know they should. This handbook is about the distance between knowing and doing.</p>
+    </div>
+    <div class="mast-stat"><b>26.6%</b>The chance that a good system, with an expected +0.35R per trade, is still down after 10 trades. After 100 trades, that chance falls to 1%.</div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="rail" aria-label="Chapters">
+    <ol id="rail"></ol>
+  </nav>
+
+  <main>
+    <div class="picker"><label for="pick" class="eyebrow" style="display:block">Chapters</label><select id="pick"></select></div>
+
+    <!-- ===================== 00 ===================== -->
+    <article class="chapter" id="c0" data-title="Introduction: why trading is a mental game">
+      <div class="chapter-head"><div class="no">00</div><div class="kicker">Introduction</div><h2>Why trading is a mental game</h2></div>
+      <p class="lead">Before they open a trading app, most people already know: “use a stop-loss,” “don't oversize,” “don't chase.” The hard part is whether you can still do it at the moment when your loss is growing, everyone else is making money, and you've just lost three trades in a row.</p>
+      <p>Trading psychology studies that moment. It doesn't study where the market will go. It studies why, when prices move, you so often do the opposite of your own plan, and how to keep what you do in line with what you know.</p>
+
+      <h3>The market is a “wicked” learning environment</h3>
+      <p>The learning environments we grow up with give clear, prompt and fair feedback: get it right and you gain points, get it wrong and you lose them. The market is completely different.</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Aspect</th><th>School and exams</th><th>Market</th></tr></thead>
+          <tbody>
+            <tr><td>Answers</td><td>There is a right answer</td><td>None, only probabilities</td></tr>
+            <tr><td>Feedback</td><td>Get it right and you score</td><td>You can be right and lose, or wrong and win</td></tr>
+            <tr><td>Timing</td><td>You get your results soon after the exam</td><td>It takes dozens or hundreds of trades to see your real level</td></tr>
+            <tr><td>Correction</td><td>A teacher points out your mistakes</td><td>No one tells you, and mistakes are often rewarded</td></tr>
+            <tr><td>Stakes</td><td>A grade</td><td>Real money, plus emotion</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>In this kind of environment, learning by “feel” teaches you the wrong lessons. One lucky oversized trade that makes money makes you more willing to oversize; one correct stop-loss followed by a rebound makes you afraid to take the stop next time. So traders need to deliberately build a way of learning that doesn't depend on any single outcome.</p>
+
+      <h3>Three layers: cognition, emotion, behavior</h3>
+      <ul>
+        <li><strong>Cognition</strong>: how you think about probability, risk and outcomes. Wrong beliefs make the right behavior look stupid.</li>
+        <li><strong>Emotion</strong>: fear, greed, regret, euphoria. They are not the enemy in themselves; they are information. The problem is letting them place the order.</li>
+        <li><strong>Behavior</strong>: what you actually do. The goal of mental training is to keep your behavior reliably inside the plan, even under pressure.</li>
+      </ul>
+
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">Every trade goes through this cycle, and every stage has its own psychological trap</span><span class="fig-no">Figure 0-1</span></div>
+        <div class="scroll-x">
+        <svg class="chart wide" viewBox="0 0 680 300" role="img" aria-label="The trading cycle and the chapters that cover each stage">
+          <defs><marker id="m-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill: var(--muted)"></path></marker></defs>
+          <g style="font-family: var(--font-body)">
+            <g>
+              <rect x="20" y="40" width="180" height="70" rx="8" style="fill: var(--tint-calm); stroke: var(--calm)"></rect>
+              <text x="110" y="70" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">Judgment</text>
+              <text x="110" y="93" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Chapters 1, 2, 7</text>
+            </g>
+            <g>
+              <rect x="250" y="40" width="180" height="70" rx="8" style="fill: var(--plate); stroke: var(--rule)"></rect>
+              <text x="340" y="70" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">Entry and sizing</text>
+              <text x="340" y="93" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Chapters 4, 5</text>
+            </g>
+            <g>
+              <rect x="480" y="40" width="180" height="70" rx="8" style="fill: var(--plate); stroke: var(--rule)"></rect>
+              <text x="570" y="70" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">Mid-trade swings</text>
+              <text x="570" y="93" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Chapters 3, 5</text>
+            </g>
+            <g>
+              <rect x="480" y="190" width="180" height="70" rx="8" style="fill: var(--tint-loss); stroke: var(--loss)"></rect>
+              <text x="570" y="220" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">Outcome and emotion</text>
+              <text x="570" y="243" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Chapters 3, 6</text>
+            </g>
+            <g>
+              <rect x="250" y="190" width="180" height="70" rx="8" style="fill: var(--tint-accent); stroke: var(--accent)"></rect>
+              <text x="340" y="220" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">Review</text>
+              <text x="340" y="243" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Chapter 8</text>
+            </g>
+            <g>
+              <rect x="20" y="190" width="180" height="70" rx="8" style="fill: var(--plate); stroke: var(--rule); stroke-dasharray: 4 4"></rect>
+              <text x="110" y="220" text-anchor="middle" style="fill: var(--ink); font-size: 15px; font-weight: 700">Outside trading</text>
+              <text x="110" y="243" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Chapter 9</text>
+            </g>
+            <g style="stroke: var(--muted)" stroke-width="1.4" fill="none">
+              <path d="M200 75 H246" marker-end="url(#m-arrow)"></path>
+              <path d="M430 75 H476" marker-end="url(#m-arrow)"></path>
+              <path d="M570 110 V186" marker-end="url(#m-arrow)"></path>
+              <path d="M480 225 H434" marker-end="url(#m-arrow)"></path>
+              <path d="M250 225 H204" marker-end="url(#m-arrow)"></path>
+              <path d="M110 190 V114" marker-end="url(#m-arrow)"></path>
+            </g>
+            <text x="455" y="146" text-anchor="middle" style="fill: var(--muted); font-size: 12px">The two riskiest links</text>
+            <path d="M455 152 C 470 165, 500 150, 520 140" style="fill: none; stroke: var(--loss)" stroke-width="1" stroke-dasharray="3 3"></path>
+            <path d="M455 152 C 440 165, 410 150, 395 118" style="fill: none; stroke: var(--loss)" stroke-width="1" stroke-dasharray="3 3"></path>
+          </g>
+        </svg>
+        </div>
+        <figcaption>“Outside trading” is the dashed box: sleep, financial pressure and the rhythm of your life aren't in your trading app, yet they decide what state you bring to your next judgment.</figcaption>
+      </figure>
+
+      <h3>How to use this handbook</h3>
+      <ul>
+        <li>Chapters 1–2 build the right way of thinking; Chapters 3–6 deal with emotion, position size, discipline and randomness; Chapters 7–9 cover independence, trade review and the part of you outside trading.</li>
+        <li>Chapters 4 and 6 have simulations with sliders you can drag. Try adjusting them yourself; you'll get more out of it than from reading the conclusions.</li>
+        <li>Chapter 10 is the toolkit: checklists, a loss-of-control protocol and a self-assessment. You can take the self-assessment first and then pick chapters based on the results.</li>
+      </ul>
+    </article>
+
+    <!-- ===================== 01 ===================== -->
+    <article class="chapter" id="c1" data-title="Probabilistic thinking: judge one trade by a hundred" hidden>
+      <div class="chapter-head"><div class="no">01</div><div class="kicker">Chapter 1</div><h2>Probabilistic thinking: judge one trade by a hundred</h2></div>
+      <p class="lead">The outcome of one trade tells you far less than you think. Professional traders treat each trade as one draw from a long series, not as an exam they have to pass.</p>
+
+      <h3>First, learn to count in R</h3>
+      <p>R is the risk you plan to take on a trade. If you buy at $50 with a stop-loss at $47, you're risking $3 per share; that is 1R. A $6 gain counts as +2R, and getting stopped out counts as −1R. Counting in R puts trades at different prices and sizes on the same ruler.</p>
+      <p>A system's long-run value is set by its expected value (EV):</p>
+      <div class="note calm"><span class="tag">Expected value</span><p><span class="num">EV (R) = win rate × average win − loss rate × average loss</span></p><p>For example, with a 45% win rate, an average win of 2R and an average loss of 1R: <span class="num">0.45 × 2 − 0.55 × 1 = +0.35R</span>. Over time, each trade earns on average an extra 0.35 times the amount at risk. That is quite a good system.</p></div>
+
+      <h3>Small samples lie</h3>
+      <p>Even with the good +0.35R system above, short-term results swing wildly:</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 1-1 Probability that a system with a 45% win rate and a 2:1 reward-to-risk ratio is still down overall after N trades</caption>
+          <thead><tr><th>Trades</th><th class="r">Chance of being down overall</th><th>The wrong conclusion you might draw</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">10</td><td class="r mono">26.6%</td><td>“This method doesn't work. Switch.”</td></tr>
+            <tr><td class="mono">20</td><td class="r mono">13.0%</td><td>“I must be executing it wrong.”</td></tr>
+            <tr><td class="mono">50</td><td class="r mono">4.3%</td><td>Getting closer to the truth</td></tr>
+            <tr class="hl"><td class="mono">100</td><td class="r mono">1.0%</td><td>A large enough sample to judge the system</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The reverse is also true: a system with negative EV has a fair chance of making money over its first 10 trades. That is exactly the stage at which many people “confirm” a method that is bound to lose.</p>
+      <p class="pull">Judge a method on at least a few dozen trades. Judge a trade on its decision process, not on whether it ended up red or green.</p>
+
+      <h3>Decision quality and outcome are two different things</h3>
+      <p>Treating the outcome as the only evidence of whether a decision was good is called “resulting” in decision research. In trading, it is one of the most expensive habits of mind. The chart below is the tool you'll use most often in a trade review:</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">Of the four combinations, the most dangerous is “bad decision, good outcome”</span><span class="fig-no">Figure 1-1</span></div>
+        <div class="scroll-x">
+        <svg class="chart wide" viewBox="0 0 680 330" role="img" aria-label="Four quadrants of decision quality and outcome">
+          <g style="font-family: var(--font-body)">
+            <text x="400" y="22" text-anchor="middle" style="fill: var(--muted); font-size: 13px">Outcome</text>
+            <text x="270" y="44" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 700">Made money</text>
+            <text x="530" y="44" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 700">Lost money</text>
+            <text x="30" y="190" text-anchor="middle" transform="rotate(-90 30 190)" style="fill: var(--muted); font-size: 13px">Decision quality</text>
+            <text x="92" y="122" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 700">Good decision</text>
+            <text x="92" y="256" text-anchor="middle" style="fill: var(--ink); font-size: 14px; font-weight: 700">Bad decision</text>
+            <rect x="145" y="56" width="250" height="128" rx="8" style="fill: var(--tint-accent); stroke: var(--accent)"></rect>
+            <text x="270" y="92" text-anchor="middle" style="fill: var(--accent); font-size: 15px; font-weight: 700">A deserved win</text>
+            <text x="270" y="118" text-anchor="middle" style="fill: var(--ink); font-size: 13px">Followed the plan, good result</text>
+            <text x="270" y="140" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Keep at it, but don't size up</text>
+            <rect x="405" y="56" width="250" height="128" rx="8" style="fill: var(--tint-calm); stroke: var(--calm)"></rect>
+            <text x="530" y="92" text-anchor="middle" style="fill: var(--calm); font-size: 15px; font-weight: 700">Bad luck</text>
+            <text x="530" y="118" text-anchor="middle" style="fill: var(--ink); font-size: 13px">Right process, unlucky draw</text>
+            <text x="530" y="140" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Keep the method: cost of business</text>
+            <rect x="145" y="192" width="250" height="128" rx="8" style="fill: var(--tint-loss); stroke: var(--loss)" stroke-width="2"></rect>
+            <text x="270" y="228" text-anchor="middle" style="fill: var(--loss); font-size: 15px; font-weight: 700">Lucky (most dangerous)</text>
+            <text x="270" y="254" text-anchor="middle" style="fill: var(--ink); font-size: 13px">Too big, chased, no stop, yet won</text>
+            <text x="270" y="276" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Breeds bad habits; review as a loss</text>
+            <rect x="405" y="192" width="250" height="128" rx="8" style="fill: var(--tint-warn); stroke: var(--warn)"></rect>
+            <text x="530" y="228" text-anchor="middle" style="fill: var(--warn); font-size: 15px; font-weight: 700">A deserved lesson</text>
+            <text x="530" y="254" text-anchor="middle" style="fill: var(--ink); font-size: 13px">Broke the rules and lost money</text>
+            <text x="530" y="276" text-anchor="middle" style="fill: var(--muted); font-size: 12.5px">Find which rule was broken</text>
+          </g>
+        </svg>
+        </div>
+        <figcaption>Losses force you to reflect, but profits reward mistakes. In a review, the time is usually best spent on the bottom-left: the bad trades that made money.</figcaption>
+      </figure>
+
+      <h3>Three questions before you place an order</h3>
+      <ol>
+        <li><strong>What is most likely to happen?</strong> Write down your view and roughly how likely you think it is.</li>
+        <li><strong>How much can you make if you're right?</strong> Express it in R, and say exactly where you'll take profit.</li>
+        <li><strong>How much are you prepared to lose if you're wrong?</strong> Where is the stop-loss, and what fact would make you admit your view is wrong?</li>
+      </ol>
+      <p>Of the three, the third matters most and is skipped most often. When placing an order, most people think only about the second.</p>
+
+      <h3>Being right is not the same as making money</h3>
+      <p>The same correct call can get you shaken out midway because the position is too big; it can end in “right direction, but the option died first” because the option was too short-dated; or it can catch only the tail end because you got in too late. Your final P&amp;L is the product of four things: judgment, timing, instrument and size. If any one of them is zero, the result is zero.</p>
+    </article>
+
+    <!-- ===================== 02 ===================== -->
+    <article class="chapter" id="c2" data-title="Cognitive biases: the brain&#x27;s default settings" hidden>
+      <div class="chapter-head"><div class="no">02</div><div class="kicker">Chapter 2</div><h2>Cognitive biases: the brain's default settings</h2></div>
+      <p class="lead">Cognitive biases are not stupidity. They are shortcuts the brain developed to make quick decisions in everyday life. They work well most of the time, but in the market they systematically push you in the wrong direction.</p>
+      <p>One of the best-known findings in behavioral finance is that the pain of a loss is roughly twice the pleasure of an equal gain. Many trading mistakes follow from this one fact. Below are the twelve most common biases in trading.</p>
+
+      <div class="biases">
+        <div class="bias"><h4>Loss aversion</h4><dl><dt>Symptom</dt><dd>Losing 1,000 hurts far more than gaining 1,000 feels good</dd><dt>In trading</dt><dd>You won't take the stop-loss and would rather “wait to get back to even”; you risk a big loss to avoid a small one</dd><dt>Fix</dt><dd class="fix">Set the stop-loss in stone before you enter; think about losses in R, not dollars</dd></dl></div>
+        <div class="bias"><h4>Disposition effect</h4><dl><dt>Symptom</dt><dd>You rush to sell winners and hang on to losers</dd><dt>In trading</dt><dd>“Take a little profit and run; when it's losing, hold on.” Your win rate isn't low, yet you lose money overall</dd><dt>Fix</dt><dd class="fix">Preset take-profit rules (e.g., sell half when it doubles); track your own average win and average loss</dd></dl></div>
+        <div class="bias"><h4>Anchoring to cost<small>ANCHORING BIAS</small></h4><dl><dt>Symptom</dt><dd>Treating your purchase price as the stock's “true value”</dd><dt>In trading</dt><dd>“I'll sell once it's back to my cost”; the market has no idea what your cost was</dd><dt>Fix</dt><dd class="fix">Ask every day: if I had no position, would I buy at this price?</dd></dl></div>
+        <div class="bias"><h4>Sunk cost</h4><dl><dt>Symptom</dt><dd>The more you've already put in, the less willing you are to let go</dd><dt>In trading</dt><dd>You keep adding to a losing position, and each add becomes a “rescue” rather than a new decision</dd><dt>Fix</dt><dd class="fix">At most one planned add to a losing position, and only after a confirming signal</dd></dl></div>
+        <div class="bias"><h4>Confirmation bias</h4><dl><dt>Symptom</dt><dd>Seeking only information that supports your view</dd><dt>In trading</dt><dd>Once in a position, you read only good news and bullish posts</dd><dt>Fix</dt><dd class="fix">For every position, write down “the strongest case against”; deliberately read the opposite view</dd></dl></div>
+        <div class="bias"><h4>Overconfidence</h4><dl><dt>Symptom</dt><dd>Overestimating how accurate your judgment is</dd><dt>In trading</dt><dd>You size up after a few wins; accounts often blow up right after a winning streak</dd><dt>Fix</dt><dd class="fix">Let risk rules, not confidence, set position size; after a winning streak, size down instead</dd></dl></div>
+        <div class="bias"><h4>Recency bias</h4><dl><dt>Symptom</dt><dd>Assuming whatever just happened will keep happening</dd><dt>In trading</dt><dd>Three up days and you think it will keep rising; one recent loss and you doubt the whole system</dd><dt>Fix</dt><dd class="fix">Look at long-term charts and large-sample statistics, not the last few candles</dd></dl></div>
+        <div class="bias"><h4>Hindsight bias</h4><dl><dt>Symptom</dt><dd>Feeling afterward that “I knew it all along”</dd><dt>In trading</dt><dd>You overestimate your predictive power and underestimate how uncertain things were at the time</dd><dt>Fix</dt><dd class="fix">Write down your view and your confidence beforehand; compare afterward</dd></dl></div>
+        <div class="bias"><h4>Herding and FOMO<small>HERDING / FOMO</small></h4><dl><dt>Symptom</dt><dd>Everyone else is making money, and being on the sidelines hurts</dd><dt>In trading</dt><dd>You chase and buy when emotions run hottest</dd><dt>Fix</dt><dd class="fix">Take only planned trades; a missed move is missed, and the market opens every day</dd></dl></div>
+        <div class="bias"><h4>Gambler's fallacy</h4><dl><dt>Symptom</dt><dd>After a few losses, thinking you're “due for a win”</dd><dt>In trading</dt><dd>After several stop-outs in a row, you size up the next trade to win it back</dd><dt>Fix</dt><dd class="fix">Each trade is independent; in a losing streak, cut size by rule instead of adding (Chapter 6)</dd></dl></div>
+        <div class="bias"><h4>Narrative fallacy</h4><dl><dt>Symptom</dt><dd>A good story makes you ignore the numbers and the price</dd><dt>In trading</dt><dd>You fall for a theme and keep consoling yourself with the story after the price breaks down</dd><dt>Fix</dt><dd class="fix">The narrative decides what to research; price and valuation decide when to buy. Write down the facts that would break the narrative</dd></dl></div>
+        <div class="bias"><h4>Survivorship bias</h4><dl><dt>Symptom</dt><dd>Seeing only the people who survived</dd><dt>In trading</dt><dd>Everyone posting trades on social media is a winner; people who blew up their accounts don't post</dd><dt>Fix</dt><dd class="fix">Treat someone else's one-off windfall as noise; compare yourself only with your own long-term record</dd></dl></div>
+      </div>
+
+      <h3>Biases come in chains</h3>
+      <p>A single bias does limited damage. Real disasters come from a chain of biases amplifying each other. A typical path:</p>
+      <ol>
+        <li>The position starts losing, and <strong>loss aversion</strong> keeps you from exiting at your stop;</li>
+        <li>You start reading only good news (<strong>confirmation bias</strong>) and tell yourself “I'll get out once it's back to my cost” (<strong>anchoring</strong>);</li>
+        <li>It keeps falling, and you average down because you've already put in so much (<strong>sunk cost fallacy</strong>);</li>
+        <li>The position keeps getting heavier, and a small loss turns into a big one that damages the account.</li>
+      </ol>
+      <div class="note"><span class="tag">How to break the chain</span><p>Don't count on willpower to see through a bias in the moment. Write the rules while you're calm (stop level, at most one add, a cap on position size) and let them make the decisions for you when things heat up. That is the subject of Chapter 5.</p></div>
+    </article>
+
+    <!-- ===================== 03 ===================== -->
+    <article class="chapter" id="c3" data-title="Emotion and state: when your body places the order" hidden>
+      <div class="chapter-head"><div class="no">03</div><div class="kicker">Chapter 3</div><h2>Emotion and state: when your body places the order</h2></div>
+      <p class="lead">Emotions are not something to eliminate. Fear tells you risk is rising; excitement warns you that you may be overconfident. The problem is never having emotions. It is letting them press the buy or sell button.</p>
+
+      <h3>Under stress, the brain narrows</h3>
+      <p>When your account is losing money fast, your body goes into something like a “fight or flight” stress response: your attention narrows to the price in front of you, and long-term plans and probabilistic thinking get pushed aside. Decisions made then are usually aimed at making the bad feeling stop right away, not at the best outcome. So there is a physiological basis for “the closer you watch the screen, the more mistakes you make.”</p>
+      <p>Research has also found that the more often people evaluate their results, the more losses they feel and the more risk-averse they become. Someone who checks their account every five minutes lives through more “losing moments” than someone who checks once a week, even if they hold exactly the same position.</p>
+
+      <h3>The six most common out-of-control states</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>State</th><th>What it makes you do</th><th>Warning signs</th><th>What to do</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Fear</strong></td><td>Afraid to enter as planned; closing as soon as you're slightly ahead</td><td>Checking the chart again and again without placing the order; sweaty palms</td><td>Cut the position to a size that no longer scares you</td></tr>
+            <tr><td><strong>Greed</strong></td><td>Not taking profit; adding to chase the rally</td><td>Starting to calculate “how much I'd make if it rose another 20%”</td><td>Follow your preset take-profit rule</td></tr>
+            <tr><td><strong>Revenge trading</strong></td><td>Opening a new trade right after a loss to win it back</td><td>Anger; feeling the market “owes” you</td><td>Stop trading for the day</td></tr>
+            <tr><td><strong>Euphoria</strong></td><td>Sizing up and lowering your standards after a run of wins</td><td>Feeling you've found the holy grail</td><td>Force a one-day cooldown; halve the size of your next trade</td></tr>
+            <tr><td><strong>Boredom</strong></td><td>Doing something even when there's no good opportunity</td><td>Your reason for opening a trade is “I haven't traded in a while”</td><td>Count not trading as a correct decision</td></tr>
+            <tr><td><strong>Regret</strong></td><td>Chasing after missing a move, or buying back after selling too early</td><td>Checking the stock you didn't buy, over and over</td><td>Write it down, then close that page</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>When not to trade</h3>
+      <p>A simple check that's easy to remember: <strong>hungry, angry, lonely, tired</strong>. If any one of them is clearly present, make no new decisions. Add three more: short on sleep, have been drinking, or just had a big loss or a big win.</p>
+      <div class="note warn"><span class="tag">Caution</span><p>The excitement after a run of profits is also a state that needs cooling down. Many people are wary of their emotions after a loss, yet mistake the high after a win for being “in the zone.” That is exactly where position size most often gets out of control.</p></div>
+
+      <h3>Position size is the best emotional regulator</h3>
+      <p>If the swings in a trade start to affect your sleep, mood or judgment, the problem usually isn't your mental toughness; the position is too big. Cut it to the point where “I can sleep even if it drops,” and most emotional problems go away on their own. You're calm because your position size lets you be calm, not because you're calm by nature.</p>
+      <p class="pull">Your position should be small enough that you can make decisions calmly.</p>
+
+      <h3>Your body is part of your trading system</h3>
+      <ul>
+        <li><strong>Sleep</strong>: lack of sleep weakens impulse control and risk judgment, the two abilities trading needs most.</li>
+        <li><strong>Exercise</strong>: regular exercise lowers your baseline stress level and helps you recover faster from losses.</li>
+        <li><strong>Routine</strong>: fixed hours for watching the market and trading lead to fewer mistakes than watching the screen all day. Good opportunities tend to cluster near the open and the close; the rest of the time you can step away from the screen.</li>
+      </ul>
+    </article>
+
+    <!-- ===================== 04 ===================== -->
+    <article class="chapter" id="c4" data-title="Position size is psychology: a positive edge can still go to zero" hidden>
+      <div class="chapter-head"><div class="no">04</div><div class="kicker">Chapter 4</div><h2>Position size is psychology: a positive edge can still go to zero</h2></div>
+      <p class="lead">Many people think that finding a method that makes money is enough. The math says something else: with the same positive-edge method, if your position is too large, the long-run result is a loss, or even zero.</p>
+
+      <h3>Losses and recovery are not symmetric</h3>
+      <p>A 50% loss takes a 100% gain to get back to even; a 75% loss takes 300%. The deeper the drawdown, the harder the recovery, and it gets harder at an accelerating rate.</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">The deeper the drawdown, the steeper the gain needed to recover</span><span class="fig-no">Figure 4-1</span></div>
+        <svg class="chart" id="f-rec" viewBox="0 0 680 300" role="img" aria-label="Drawdown size and the gain needed to recover"></svg>
+        <figcaption>A 10% drawdown needs only an 11.1% gain to recover, a 30% drawdown needs 42.9%, and a 50% drawdown needs 100%. So the first goal of risk management is to keep drawdowns out of the steep region on the right side of the curve.</figcaption>
+      </figure>
+
+      <h3>Position size sets the long-run growth rate</h3>
+      <p>Take the system from Chapter 1 (45% win rate, 2:1 reward-to-risk ratio): what fraction of the account should you risk per trade to get the fastest compound growth over time?</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">Long-run growth rises, then falls: too large a position turns a positive edge into a loss</span><span class="fig-no">Figure 4-2 · Interactive</span></div>
+        <div class="controls">
+          <label class="ctl" for="k-p">Win rate <input id="k-p" type="range" min="30" max="70" value="45"> <output id="k-p-o">45%</output></label>
+          <label class="ctl" for="k-b">Reward-to-risk <input id="k-b" type="range" min="5" max="40" value="20"> <output id="k-b-o">2.0 : 1</output></label>
+        </div>
+        <svg class="chart" id="f-kelly" viewBox="0 0 680 300" role="img" aria-label="Risk per trade and long-run growth rate"></svg>
+        <div class="readout">
+          <div><b id="k-r1">—</b><small>EV per trade</small></div>
+          <div><b id="k-r2">—</b><small>Risk per trade for fastest growth</small></div>
+          <div><b id="k-r3">—</b><small>Above this, a long-run loss is certain</small></div>
+        </div>
+        <figcaption>The vertical axis is the average compound growth rate per trade. With the default settings, risking 17.5% per trade grows fastest, but above 35.6% growth turns negative: the method itself makes money, yet the position size shrinks the account over time. In practice most people use half of this optimum or less, because growth is only a little lower while drawdowns are much smaller.</figcaption>
+      </figure>
+      <p>Mathematically, the optimum in the chart above is called the Kelly criterion. It assumes you know your win rate and reward-to-risk ratio exactly; in reality both are estimates, and they change as the market changes. Bet full Kelly on estimates that are too high and you land straight on the right side of the curve. That is why experienced traders usually risk only 0.5% to 2% of the account per trade.</p>
+
+      <h3>Same system, different sizes, different lives</h3>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">Equity curves in 24 parallel worlds</span><span class="fig-no">Figure 4-3 · Simulation</span></div>
+        <div class="controls">
+          <label class="ctl" for="mc-r">Risk per trade <input id="mc-r" type="range" min="1" max="40" value="2"> <output id="mc-r-o">2%</output></label>
+          <button class="btn" type="button" id="mc-seed">Resample</button>
+        </div>
+        <svg class="chart" id="f-mc" viewBox="0 0 680 320" role="img" aria-label="Simulated equity curves at different position sizes"></svg>
+        <div class="readout">
+          <div><b id="mc-r1">—</b><small>Median equity after 200 trades</small></div>
+          <div><b id="mc-r2">—</b><small>Share of worlds that end in a loss</small></div>
+          <div><b id="mc-r3">—</b><small>Median maximum drawdown</small></div>
+          <div><b id="mc-r4">—</b><small>Maximum drawdown of the worst path</small></div>
+        </div>
+        <figcaption>Each line is the same system (45% win rate, 2:1 reward-to-risk) over 200 trades with different luck. The vertical axis is on a log scale, and 1× is your starting capital. Drag the risk from 2% to above 25% and watch the curves go from a neat fan to a mess.</figcaption>
+      </figure>
+
+      <h3>Turn “how big a position” into an arithmetic problem</h3>
+      <p>First decide what percentage of the account you're willing to lose per trade, then work back from the stop-loss distance to the number of shares. That way your position size no longer depends on your mood at the time.</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">Size the position from risk</span><span class="fig-no">Tool 4-A</span></div>
+        <div class="form-grid">
+          <label for="ps-acct">Account size ($)<input id="ps-acct" type="number" value="20000"></label>
+          <label for="ps-risk">Risk per trade (%)<input id="ps-risk" type="number" value="1" step="0.25"></label>
+          <label for="ps-entry">Planned entry price<input id="ps-entry" type="number" value="50" step="0.01"></label>
+          <label for="ps-stop">Stop price<input id="ps-stop" type="number" value="47" step="0.01"></label>
+        </div>
+        <div class="readout">
+          <div><b id="ps-sh">—</b><small>Shares you can buy</small></div>
+          <div><b id="ps-val">—</b><small>Position value (% of account)</small></div>
+          <div><b id="ps-loss">—</b><small>Loss if the stop is hit</small></div>
+        </div>
+        <figcaption>If the number of shares feels “too small,” that is this tool protecting you.</figcaption>
+      </figure>
+      <div class="note"><span class="tag">Gut check</span><p>A more intuitive test: if this trade hits its stop, would the money lost spoil the rest of your day? If so, the position is too big, whatever the arithmetic says.</p></div>
+    </article>
+
+    <!-- ===================== 05 ===================== -->
+    <article class="chapter" id="c5" data-title="Discipline and rules: make the decision before you need it" hidden>
+      <div class="chapter-head"><div class="no">05</div><div class="kicker">Chapter 5</div><h2>Discipline and rules: make the decision before you need it</h2></div>
+      <p class="lead">Discipline is not gritting your teeth under pressure. It is making your decisions while you're calm, so that when the pressure comes, all that's left is execution.</p>
+
+      <h3>Why decide in advance</h3>
+      <p>Calm and agitated, you are almost two different decision-makers. When you're calm, you understand perfectly well what a stop-loss is for; as the loss grows, you'll find a hundred reasons to wait a little longer. Psychology has a very practical tool called the “if… then…” plan: tying a situation to an action ahead of time works far better than simply resolving to do better.</p>
+      <ul>
+        <li>If it closes below $47, sell at the next day's open, without reading the news.</li>
+        <li>If the day's loss reaches 3% of the account, close the trading app until tomorrow.</li>
+        <li>If I get stopped out three times in a row, halve the size of the next trade.</li>
+      </ul>
+
+      <h3>What a trading plan must spell out, at a minimum</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Item</th><th>Question to answer</th></tr></thead>
+          <tbody>
+            <tr><td>Thesis</td><td>Why do I think it will move this way? Spell it out in a sentence or two</td></tr>
+            <tr><td>Entry conditions</td><td>What price or signal has to appear before I get in?</td></tr>
+            <tr><td>Invalidation criteria</td><td>What fact would show I'm wrong? (Not just price)</td></tr>
+            <tr><td>Stop-loss</td><td>Where I admit I'm wrong, and how many R I lose</td></tr>
+            <tr><td>Take profit and exit</td><td>Where I sell part of it, and what I do with the rest</td></tr>
+            <tr><td>Position size</td><td>Shares or contracts, worked out with the Chapter 4 method</td></tr>
+            <tr><td>Time stop</td><td>How long it can go without moving as expected before I exit</td></tr>
+            <tr><td>Conditions for adding</td><td>When I add, and at most how many times</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Stop-losses are a cost of doing business</h3>
+      <p>A restaurant pays rent; a trader pays stop-losses. Taking a stop isn't admitting you're stupid. It means the situation has changed and your view no longer holds, so you preserve your strength for the next opportunity. Think of stops as a cost rather than a failure, and they become much easier to execute.</p>
+      <p>It is just as important to tell two things apart: <strong>price swings</strong> and <strong>a broken thesis</strong>. While the thesis still holds, you can ride out normal swings; that is waiting for confirmation. Once the facts have overturned the thesis, waiting longer is just stubbornly holding on. Write the difference into your invalidation criteria before you place the order.</p>
+
+      <h3>Trade less, raise the bar</h3>
+      <p>The more often you trade, the more commissions, slippage and emotional mistakes pile up. For most people, the fastest way to improve trade quality is not to win more but to make fewer mistakes: cut the trades that aren't in your plan and raise the bar. When there's no good opportunity, being in cash is itself a position.</p>
+      <div class="note calm"><span class="tag">One way to measure it</span><p>Sort your trades into two groups: those executed according to plan, and those with clear violations (chasing, no stop, oversized). Your confidence should come from a rising share of the first group, not from how much you've made lately.</p></div>
+
+      <h3>On breaking the rules</h3>
+      <p>Rules are not right forever; market conditions change. But rule changes belong in your weekend trade review, not in an impulse during trading hours. If you really must make an exception during the session, three conditions apply: very high conviction, a separate record afterward, and it must not become a habit.</p>
+    </article>
+
+    <!-- ===================== 06 ===================== -->
+    <article class="chapter" id="c6" data-title="Streaks: randomness runs longer than you think" hidden>
+      <div class="chapter-head"><div class="no">06</div><div class="kicker">Chapter 6</div><h2>Streaks: randomness runs longer than you think</h2></div>
+      <p class="lead">People misjudge randomness in a systematic way: we expect good and bad luck to alternate quickly, but runs in a random sequence are much longer than intuition suggests.</p>
+
+      <h3>A losing streak is almost certain to come</h3>
+      <p>Over 100 trades, a system with a 50% win rate has an 81% chance of at least one run of 5 straight losses, and better-than-even odds of a 6-trade losing streak. That doesn't mean the system is broken; it is simply what coin flips look like.</p>
+      <figure class="plate">
+        <div class="fig-head"><span class="fig-title">Probability of at least one run of k straight losses</span><span class="fig-no">Figure 6-1 · Interactive</span></div>
+        <div class="controls">
+          <label class="ctl" for="st-p">Win rate <input id="st-p" type="range" min="30" max="75" value="50"> <output id="st-p-o">50%</output></label>
+          <label class="ctl" for="st-n">Trades <input id="st-n" type="range" min="20" max="500" step="10" value="100"> <output id="st-n-o">100</output></label>
+        </div>
+        <svg class="chart" id="f-streak" viewBox="0 0 680 290" role="img" aria-label="Probability of losing streaks of different lengths"></svg>
+        <div class="readout">
+          <div><b id="st-r1">—</b><small>Median longest losing streak</small></div>
+          <div><b id="st-r2">—</b><small>Chance of 5 losses in a row</small></div>
+          <div><b id="st-r3">—</b><small>Chance of 8 losses in a row</small></div>
+        </div>
+        <figcaption>First estimate your system's win rate, then see how long a losing streak is “normal” over a year's worth of trades. Write that number into your trading plan, and when a losing streak arrives you won't misread it as the system failing.</figcaption>
+      </figure>
+      <div class="tbl">
+        <table>
+          <caption>Table 6-1 Probability of at least one run of k straight losses in 100 trades</caption>
+          <thead><tr><th>Win rate</th><th class="r">4 in a row</th><th class="r">5 in a row</th><th class="r">6 in a row</th><th class="r">8 in a row</th><th class="r">10 in a row</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">40%</td><td class="r mono">99.9%</td><td class="r mono">97.6%</td><td class="r mono">87.3%</td><td class="r mono">49.0%</td><td class="r mono">20.5%</td></tr>
+            <tr><td class="mono">50%</td><td class="r mono">97.3%</td><td class="r mono">81.0%</td><td class="r mono">54.6%</td><td class="r mono">17.0%</td><td class="r mono">4.4%</td></tr>
+            <tr><td class="mono">60%</td><td class="r mono">80.1%</td><td class="r mono">45.9%</td><td class="r mono">21.2%</td><td class="r mono">3.6%</td><td class="r mono">0.6%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>What to do in a losing streak</h3>
+      <ol>
+        <li><strong>First, classify it</strong>: is this streak within your system's “normal range”? Use the chart above to judge.</li>
+        <li><strong>Then check execution</strong>: were the losing trades taken according to plan, or were there violations? A losing streak with violations is a discipline problem, not a luck problem.</li>
+        <li><strong>Slow down by rule</strong>: set drawdown rules in advance. For example, halve your size at a 6% drawdown; at a 10% drawdown, stop trading for a week and do a full trade review.</li>
+        <li><strong>Never size up to win it back</strong>: the gambler's fallacy will tell you you're “due for a win,” but the next trade's win rate doesn't go up because you lost the previous ones.</li>
+      </ol>
+
+      <h3>Be even more careful in a winning streak</h3>
+      <p>Accounts rarely blow up during a losing streak; it happens more often after a run of wins. Confidence swells, size grows, standards slip, and then one big loss gives back weeks of profits along with capital. A winning streak is also part of a random sequence; it doesn't mean you've suddenly gotten good.</p>
+      <p class="pull">Let profits make your account bigger, not your nerve.</p>
+      <ul>
+        <li>After a big win, take a day off, then return to your normal rhythm.</li>
+        <li>During a winning streak, keep your usual risk per trade; don't raise it because you're “in the zone.”</li>
+        <li>Review the trades from a winning streak separately, and find the parts that came down to luck.</li>
+      </ul>
+    </article>
+
+    <!-- ===================== 07 ===================== -->
+    <article class="chapter" id="c7" data-title="Independent judgment: information, narratives and copy trading" hidden>
+      <div class="chapter-head"><div class="no">07</div><div class="kicker">Chapter 7</div><h2>Independent judgment: information, narratives and copy trading</h2></div>
+      <p class="lead">More information doesn't necessarily mean better judgment. What decides the outcome is how you process information, and who is ultimately responsible for the decision.</p>
+
+      <h3>Price often moves before the news</h3>
+      <p>Often the price moves first, and the news that explains the move comes later. A more useful question when you read the news: did the market react to it the way you expected? Good news that doesn't lift the price, or bad news that doesn't sink it, is a signal in itself. When you can't make sense of a situation, asking “who benefits?” often helps more than reading ten analyses.</p>
+
+      <h3>Your information diet</h3>
+      <ul>
+        <li><strong>Many sources, many viewpoints</strong>: read two accounts of the same event from opposite sides, and compare what each one emphasizes and what each one avoids.</li>
+        <li><strong>Separate signal from noise</strong>: for someone who trades on a daily or weekly timeframe, most intraday news is noise.</li>
+        <li><strong>Don't let your views trade for you</strong>: which party you support or which company you like has nothing to do with where the price goes.</li>
+        <li><strong>Be wary of posted wins</strong>: screenshots of huge profits on social media are a filtered sample. See enough of them and you'll grow dissatisfied with your own normal returns, and then take on more risk.</li>
+      </ul>
+
+      <h3>The real cost of copy trading</h3>
+      <p>Following someone else's trades looks effortless, but in fact you copy only the easiest part of the trade:</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>What you can copy</th><th>What you can't copy</th></tr></thead>
+          <tbody>
+            <tr><td>What to buy, and roughly at what price</td><td>Why they bought, and when they'd admit they're wrong</td></tr>
+            <tr><td>The moment they open the position</td><td>The later trims, stop-losses, hedges and changes of mind</td></tr>
+            <tr><td>The ticker</td><td>Their position size, account size and risk tolerance</td></tr>
+            <tr><td>Their confidence</td><td>Your own confidence (conviction can't be borrowed)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>So copy traders often run into this: the other trader has stopped out while you're still holding; they test with a small position while you bet big; they had a hedge leg you didn't copy. Same trade: they take a small loss, you take a big one.</p>
+      <div class="note"><span class="tag">Before you act on someone else's idea</span><ol><li>Can I explain the logic of this trade in my own words?</li><li>Do I know under what conditions it stops working?</li><li>Is this position size right for my account and my nerves?</li><li>If they stopped posting updates tomorrow, would I know how to manage this position?</li></ol><p>If you can't answer any one of the four, don't take the trade yet.</p></div>
+
+      <h3>Independent doesn't mean contrarian</h3>
+      <p>Going against the crowd is not an edge in itself. Independence means you take responsibility for every decision you make: you can explain it, and you can admit when it's wrong. You can learn ways of thinking from anyone, but you are the one who presses the button, and you are the one who lives with the result. What you learn from others should be their thinking process and methods, not their conclusions.</p>
+    </article>
+
+    <!-- ===================== 08 ===================== -->
+    <article class="chapter" id="c8" data-title="Review: turning losses into tuition" hidden>
+      <div class="chapter-head"><div class="no">08</div><div class="kicker">Chapter 8</div><h2>Review: turning losses into tuition</h2></div>
+      <p class="lead">A trader who doesn't review is taking exam after exam; a trader who reviews is studying a notebook of wrong answers. A loss is tuition only once you understand it; otherwise it's a tax.</p>
+
+      <h3>What to record in a trading journal</h3>
+      <p>Recording only P&amp;L is the slowest way to improve. Your journal should record your mind, not your account.</p>
+      <pre class="tpl" id="tpl">Date / ticker / direction / instrument:
+Reason for entry (thesis):
+Confidence at the time (1–5) and emotions:
+Plan: entry ___ stop ___ target ___ size ___R
+Actual: entry ___ exit ___ result ___R
+What I got right:
+What I got wrong:
+Did I break a rule? Which one:
+If I did it again, I would:
+Category: judgment error / execution error / risk-control error / normal variance</pre>
+      <p><button class="btn" type="button" id="tpl-copy">Copy template</button> <span id="tpl-msg" class="eyebrow" style="margin-left:8px"></span></p>
+
+      <h3>Attributing losses: four drawers</h3>
+      <p>Put every loss into one of the four drawers below. Put it in the wrong drawer and you'll fix the wrong thing.</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Drawer</th><th>Typical examples</th><th>How to fix it</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Judgment error</strong></td><td>The thesis itself didn't hold; you misread what was driving the move</td><td>Improve your analysis; fill gaps in your knowledge</td></tr>
+            <tr><td><strong>Execution error</strong></td><td>Chased the entry; didn't take the stop-loss as planned; changed the script midway</td><td>Tighten your rules and your “if… then…” plans</td></tr>
+            <tr><td><strong>Risk-control error</strong></td><td>Position so big you were forced to close at the worst point; instrument too short-dated</td><td>Go back to Chapter 4 and redo your sizing</td></tr>
+            <tr><td><strong>Normal variance</strong></td><td>Executed as planned; the odds went against you</td><td>Change nothing; it's a cost</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note loss"><span class="tag">The easiest one to miss</span><p>Winning trades need to be classified too. Chasing an entry, no stop set, oversized: even if these trades made money, they belong in “Execution error” or “Risk-control error.” If they aren't corrected, sooner or later they will be paid back with a bigger loss.</p></div>
+
+      <h3>Review weekly, tally monthly</h3>
+      <ul>
+        <li><strong>Weekly</strong>: read through this week's journal; find the single biggest mistake; pick just one behavior to improve next week. Changing one thing at a time works better than changing five at once.</li>
+        <li><strong>Monthly</strong>: tally your win rate, average win (R), average loss (R), expected value (EV), maximum drawdown and the number of trades that broke the rules.</li>
+        <li><strong>One especially useful number</strong>: add up the P&amp;L of all rule-breaking trades separately. Many people find that without those trades, the whole month would have been profitable.</li>
+      </ul>
+      <p class="pull">Real progress rarely comes from finding better entries. It comes mostly from skipping the few trades you shouldn't have taken.</p>
+    </article>
+
+    <!-- ===================== 09 ===================== -->
+    <article class="chapter" id="c9" data-title="Temperament and life: the part outside trading" hidden>
+      <div class="chapter-head"><div class="no">09</div><div class="kicker">Chapter 9</div><h2>Temperament and life: the part outside trading</h2></div>
+      <p class="lead">The market works like an amplifier: impulsiveness, procrastination, vanity and an inability to say no in your life all get amplified into numbers in your account. So the further you go in trading, the more of the work happens outside trading.</p>
+
+      <h3>Habits from your life follow you into the market</h3>
+      <ul>
+        <li><strong>Grabbing at small gains</strong>: skipping protection to save a little on fees, not taking profit to squeeze out a bit more, and ending up trapped in positions that get harder and harder to exit.</li>
+        <li><strong>No boundaries</strong>: people who can't say no to others in life also find it hard to say “no” to a losing position in the market; one “just wait a bit longer” from someone else and they waver.</li>
+        <li><strong>The “close enough” mindset</strong>: on things that matter, “close enough” usually means giving up your standards. A stop-loss that has “more or less” been hit, a position size that is “more or less” right: these are all holes.</li>
+      </ul>
+
+      <h3>How much money you need decides how patient you can be</h3>
+      <p>The higher your living costs and the more you depend on trading income, the more urgently you demand things from the market, and the more likely you are to force trades to make money. Conversely, with low living costs you ask little of the market and can wait for good opportunities. What financial freedom buys you is not so much money as choice: you can wait, you can sit out, and you don't have to prove yourself to anyone.</p>
+      <div class="note warn"><span class="tag">Especially for students and beginners</span><p>Trading with living expenses, tuition or borrowed money loads the heaviest psychological pressure straight into every trade. The smaller your capital, the less you should trade and the more slowly you should build skill. First learn not to lose big; then think about making money fast.</p></div>
+
+      <h3>The long view</h3>
+      <p>Trading is more like a professional skill that takes years of training than a chance to get rich overnight. A reasonable expectation: spend a few years surviving, building a method and accumulating a sample, then let a small, steady edge slowly compound. People who aim for “small, steady gains every week” usually end up going further than people who aim to “double it in one shot.”</p>
+
+      <h3>Take full responsibility for results</h3>
+      <p>Blaming losses on the big players, the news, a teacher or luck costs you the chance to improve. Taking responsibility for every decision isn't blaming yourself; it is taking back control. Only you can decide how to make the next trade.</p>
+
+      <h3>Don't stake your self-worth on your P&amp;L</h3>
+      <p>If a loss makes you feel like a failure and a win makes you feel brilliant, your emotions will be led around by your account. Focus on “did I follow my plan today?” rather than “how much did I make today?” The first is entirely in your control; the second isn't.</p>
+    </article>
+
+    <!-- ===================== 10 ===================== -->
+    <article class="chapter" id="c10" data-title="Toolkit: checklists, protocols and self-assessment" hidden>
+      <div class="chapter-head"><div class="no">10</div><div class="kicker">Chapter 10</div><h2>Toolkit: checklists, protocols and self-assessment</h2></div>
+      <p class="lead">This chapter turns the previous nine into things you can use every day. Your checkmarks and self-assessment results are saved only in your own browser.</p>
+
+      <h3>Four checklists</h3>
+      <div class="cards">
+        <div class="card"><h4>Before you trade</h4><ul>
+          <li><input type="checkbox" id="t1"><label for="t1">I can state the thesis in a sentence or two</label></li>
+          <li><input type="checkbox" id="t2"><label for="t2">I've written down the invalidation criteria and the stop-loss</label></li>
+          <li><input type="checkbox" id="t3"><label for="t3">Position size comes from my risk percentage, not my confidence</label></li>
+          <li><input type="checkbox" id="t4"><label for="t4">Not noticeably hungry, angry, lonely or tired</label></li>
+          <li><input type="checkbox" id="t5"><label for="t5">This is a planned trade, not chasing or revenge</label></li>
+        </ul></div>
+        <div class="card"><h4>While in the trade</h4><ul>
+          <li><input type="checkbox" id="t6"><label for="t6">Does the thesis still hold? Price swing or broken thesis?</label></li>
+          <li><input type="checkbox" id="t7"><label for="t7">No second add to a losing position</label></li>
+          <li><input type="checkbox" id="t8"><label for="t8">Not checking the account every few minutes</label></li>
+          <li><input type="checkbox" id="t9"><label for="t9">Take profit when the rule says so</label></li>
+        </ul></div>
+        <div class="card"><h4>After you close</h4><ul>
+          <li><input type="checkbox" id="t10"><label for="t10">Wrote the journal entry and put it in one of the four drawers</label></li>
+          <li><input type="checkbox" id="t11"><label for="t11">Checked the winning trades for rule violations too</label></li>
+          <li><input type="checkbox" id="t12"><label for="t12">After a big win or loss, no new positions today</label></li>
+        </ul></div>
+        <div class="card"><h4>Loss-of-control protocol</h4><ul>
+          <li><input type="checkbox" id="t13"><label for="t13">Catch yourself revenge trading or euphoric: stop placing orders</label></li>
+          <li><input type="checkbox" id="t14"><label for="t14">Cut current positions to a size you can sleep with</label></li>
+          <li><input type="checkbox" id="t15"><label for="t15">Step away from the screen for at least 30 minutes and go for a walk</label></li>
+          <li><input type="checkbox" id="t16"><label for="t16">Write down what just happened and how you felt</label></li>
+          <li><input type="checkbox" id="t17"><label for="t17">Decide the next day whether to resume trading</label></li>
+        </ul></div>
+      </div>
+
+      <h3>Trading psychology self-assessment</h3>
+      <p>Answer based on what actually happened over the past month: 1 means never, 5 means almost always. The higher the score, the more attention that item needs.</p>
+      <div class="quiz" id="quiz"></div>
+      <div class="result" id="quiz-result"></div>
+
+      <!--EN-GLOSSARY-START--><h3>Key terms</h3>
+      <p>The main terms in this handbook, in the order they first appear.</p>
+      <div class="tbl"><table><thead><tr><th>Term</th><th>First appears</th></tr></thead><tbody>
+        <tr><td>Trade review</td><td>Introduction</td></tr>
+        <tr><td>Fear</td><td>Introduction</td></tr>
+        <tr><td>Stop-loss</td><td>Introduction</td></tr>
+        <tr><td>Euphoria</td><td>Introduction</td></tr>
+        <tr><td>Discipline</td><td>Introduction</td></tr>
+        <tr><td>Greed</td><td>Introduction</td></tr>
+        <tr><td>Randomness</td><td>Introduction</td></tr>
+        <tr><td>Expected value (EV)</td><td>Chapter 1</td></tr>
+        <tr><td>Take profit</td><td>Chapter 1</td></tr>
+        <tr><td>Resulting</td><td>Chapter 1</td></tr>
+        <tr><td>Win rate</td><td>Chapter 1</td></tr>
+        <tr><td>Narrative</td><td>Chapter 2</td></tr>
+        <tr><td>Loss aversion</td><td>Chapter 2</td></tr>
+        <tr><td>Sunk cost fallacy</td><td>Chapter 2</td></tr>
+        <tr><td>Cognitive bias</td><td>Chapter 2</td></tr>
+        <tr><td>Winning streak</td><td>Chapter 2</td></tr>
+        <tr><td>Losing streak</td><td>Chapter 2</td></tr>
+        <tr><td>Anchoring</td><td>Chapter 2</td></tr>
+        <tr><td>Revenge trading</td><td>Chapter 3</td></tr>
+        <tr><td>Overconfidence</td><td>Chapter 3</td></tr>
+        <tr><td>Kelly criterion</td><td>Chapter 4</td></tr>
+        <tr><td>Drawdown</td><td>Chapter 4</td></tr>
+        <tr><td>Reward-to-risk ratio</td><td>Chapter 4</td></tr>
+        <tr><td>Invalidation criteria</td><td>Chapter 5</td></tr>
+        <tr><td>Slippage</td><td>Chapter 5</td></tr>
+        <tr><td>Trading plan</td><td>Chapter 6</td></tr>
+        <tr><td>Gambler's fallacy</td><td>Chapter 6</td></tr>
+        <tr><td>Risk per trade</td><td>Chapter 6</td></tr>
+        <tr><td>Copy trading</td><td>Chapter 7</td></tr>
+        <tr><td>Maximum drawdown</td><td>Chapter 8</td></tr>
+        <tr><td>Compounding</td><td>Chapter 9</td></tr>
+        <tr><td>Decision quality</td><td>Chapter 10</td></tr>
+        <tr><td>Probabilistic thinking</td><td>Chapter 10</td></tr>
+      </tbody></table></div>
+<!--EN-GLOSSARY-END-->
+      <h3>Further reading</h3>
+      <ul>
+        <li>Daniel Kahneman, “Thinking, Fast and Slow”: where loss aversion and many cognitive biases come from.</li>
+        <li>Annie Duke, “Thinking in Bets”: making decisions under uncertainty, and separating decision quality from outcomes.</li>
+        <li>Mark Douglas, “Trading in the Zone”: seeing every trade through probabilistic thinking.</li>
+        <li>Jocko Willink, “Extreme Ownership”: a mindset of taking full responsibility for results.</li>
+        <li>“Reminiscences of a Stock Operator”: traders a hundred years ago made the same mistakes we make today.</li>
+      </ul>
+    </article>
+
+    <nav class="pager" aria-label="Chapter navigation">
+      <button type="button" class="prev" id="pg-prev"><small>Previous</small><span></span></button>
+      <button type="button" class="next" id="pg-next"><small>Next</small><span></span></button>
+    </nav>
+
+    <footer class="end"><p>This handbook draws on common findings from behavioral finance and the practical experience of trading communities. Its examples are calculated with mathematical models, are for learning only and are not investment advice.</p></footer>
+  </main>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+
+  // ---------- chapters ----------
+  const chapters = [...document.querySelectorAll("article.chapter")];
+  const rail = document.getElementById("rail");
+  const pick = document.getElementById("pick");
+  const prevB = document.getElementById("pg-prev"), nextB = document.getElementById("pg-next");
+  chapters.forEach((c, i) => {
+    const t = c.dataset.title;
+    const li = document.createElement("li");
+    li.innerHTML = `<button type="button" data-i="${i}"><span class="k">${String(i).padStart(2, "0")}</span><span>${t}</span></button>`;
+    rail.appendChild(li);
+    const o = document.createElement("option"); o.value = i; o.textContent = String(i).padStart(2, "0") + " " + t; pick.appendChild(o);
+  });
+  const redraws = {};
+  let current = 0;
+  function show(i, scroll) {
+    i = Math.max(0, Math.min(chapters.length - 1, i));
+    current = i;
+    chapters.forEach((c, j) => { c.hidden = j !== i; });
+    rail.querySelectorAll("button").forEach(b => b.setAttribute("aria-current", +b.dataset.i === i ? "true" : "false"));
+    pick.value = i;
+    prevB.hidden = i === 0; nextB.hidden = i === chapters.length - 1;
+    if (i > 0) prevB.querySelector("span").textContent = chapters[i - 1].dataset.title;
+    if (i < chapters.length - 1) nextB.querySelector("span").textContent = chapters[i + 1].dataset.title;
+    if (redraws[i]) redraws[i].forEach(f => f());
+    store.set("tp-ch", String(i));
+    if (location.hash !== "#c" + i) history.replaceState(null, "", "#c" + i);
+    if (scroll) window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }
+  rail.addEventListener("click", e => { const b = e.target.closest("button"); if (b) show(+b.dataset.i, true); });
+  pick.addEventListener("change", () => show(+pick.value, true));
+  prevB.addEventListener("click", () => show(current - 1, true));
+  nextB.addEventListener("click", () => show(current + 1, true));
+  window.addEventListener("hashchange", () => { const m = location.hash.match(/^#c(\d+)$/); if (m) show(+m[1], false); });
+
+  // ---------- chart helper ----------
+  const NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+  function plot(svg, cfg) {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    if (!svg.dataset.h) svg.dataset.h = svg.viewBox.baseVal.height;
+    const cw = svg.getBoundingClientRect().width || 680;
+    const narrow = cw > 0 && cw < 560;
+    const W = narrow ? 440 : 680, H = +svg.dataset.h;
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    const m = { l: narrow ? 54 : 60, r: narrow ? 12 : 18, t: 14, b: 42 };
+    const [x0, x1] = cfg.x, [y0, y1] = cfg.y;
+    const sx = cfg.ylog ? v => Math.log10(v) : v => v;
+    const X = v => m.l + (v - x0) / (x1 - x0) * (W - m.l - m.r);
+    const Y = v => m.t + (1 - (sx(v) - sx(y0)) / (sx(y1) - sx(y0))) * (H - m.t - m.b);
+    const g = el("g", { class: "ax" }, svg);
+    if (cfg.band) el("rect", { x: X(cfg.band[0]), y: m.t, width: Math.max(0, X(cfg.band[1]) - X(cfg.band[0])), height: H - m.t - m.b, style: "fill: " + cfg.band[2] }, g);
+    cfg.yt.forEach(v => {
+      el("line", { x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v), style: "stroke: var(--grid)", "stroke-width": 1 }, g);
+      el("text", { x: m.l - 8, y: Y(v) + 4, "text-anchor": "end", style: "fill: var(--muted)" }, g).textContent = cfg.yf ? cfg.yf(v) : v;
+    });
+    cfg.xt.forEach(v => {
+      el("line", { x1: X(v), x2: X(v), y1: m.t, y2: H - m.b, style: "stroke: var(--grid)", "stroke-width": 1 }, g);
+      el("text", { x: X(v), y: H - m.b + 18, "text-anchor": "middle", style: "fill: var(--muted)" }, g).textContent = cfg.xf ? cfg.xf(v) : v;
+    });
+    if (cfg.zero !== undefined) el("line", { x1: m.l, x2: W - m.r, y1: Y(cfg.zero), y2: Y(cfg.zero), style: "stroke: var(--muted)", "stroke-width": 1 }, g);
+    el("text", { x: (m.l + W - m.r) / 2, y: H - 6, "text-anchor": "middle", style: "fill: var(--muted); font-family: var(--font-body); font-size: 12.5px" }, g).textContent = cfg.xlabel || "";
+    const cy = (m.t + H - m.b) / 2;
+    el("text", { x: 11, y: cy, "text-anchor": "middle", transform: `rotate(-90 11 ${cy})`, style: "fill: var(--muted); font-family: var(--font-body); font-size: 12.5px" }, g).textContent = cfg.ylabel || "";
+    const id = "cl" + Math.random().toString(36).slice(2, 8);
+    const cp = el("clipPath", { id }, svg); el("rect", { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b }, cp);
+    const sg = el("g", { "clip-path": `url(#${id})` }, svg);
+    (cfg.bars || []).forEach(b => {
+      const bw = (X(b.w) - X(0));
+      el("rect", { x: X(b.x) - bw / 2, y: Y(b.y), width: bw, height: Math.max(0, Y(y0) - Y(b.y)), rx: 2, style: `fill: ${b.color}` }, sg);
+    });
+    (cfg.series || []).forEach(s => {
+      const d = s.pts.map((p, i) => (i ? "L" : "M") + X(p[0]).toFixed(1) + " " + Y(p[1]).toFixed(1)).join("");
+      el("path", { d, style: `fill: none; stroke: ${s.color}; stroke-width: ${s.w || 2.2}; ${s.dash ? "stroke-dasharray:" + s.dash + ";" : ""} opacity: ${s.op || 1}`, "stroke-linejoin": "round" }, sg);
+    });
+    (cfg.dots || []).forEach(dt => el("circle", { cx: X(dt[0]), cy: Y(dt[1]), r: dt[3] || 4, style: `fill: ${dt[2]}` }, sg));
+    (cfg.labels || []).forEach(lb => {
+      el("text", { x: X(lb[0]) + (lb[3] || 0), y: Y(lb[1]) + (lb[4] || -8), "text-anchor": lb[5] || "middle", style: `fill: ${lb[6] || "var(--ink)"}; font-family: var(--font-mono); font-size: 11.5px` }, sg).textContent = lb[2];
+    });
+    return { X, Y };
+  }
+  const range = (a, b, st) => { const o = []; for (let v = a; v <= b + 1e-9; v += st) o.push(+v.toFixed(6)); return o; };
+  const reg = (ch, f) => { (redraws[ch] = redraws[ch] || []).push(f); };
+  let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => (redraws[current] || []).forEach(f => f()), 150); });
+
+  // ---------- 4-1 recovery ----------
+  (function () {
+    const svg = document.getElementById("f-rec");
+    const draw = () => {
+      const pts = range(0, 80, 0.5).map(d => [d, 100 * (1 / (1 - d / 100) - 1)]);
+      const marks = [10, 30, 50, 75];
+      plot(svg, {
+        x: [0, 80], y: [0, 420], xt: range(0, 80, 10), yt: [0, 100, 200, 300, 400],
+        xf: v => v + "%", yf: v => v + "%", xlabel: "Drawdown", ylabel: "Gain needed to recover",
+        series: [{ pts, color: "var(--loss)", w: 2.6 }],
+        dots: marks.map(d => [d, 100 * (1 / (1 - d / 100) - 1), "var(--loss)", 4.5]),
+        labels: marks.map(d => [d, 100 * (1 / (1 - d / 100) - 1), "+" + (100 * (1 / (1 - d / 100) - 1)).toFixed(d === 10 || d === 30 ? 1 : 0) + "%", -6, -10, "end"])
+      });
+    };
+    reg(4, draw);
+  })();
+
+  // ---------- 4-2 kelly ----------
+  (function () {
+    const svg = document.getElementById("f-kelly");
+    const pS = document.getElementById("k-p"), bS = document.getElementById("k-b");
+    function draw() {
+      const p = +pS.value / 100, b = +bS.value / 10, q = 1 - p;
+      document.getElementById("k-p-o").textContent = pS.value + "%";
+      document.getElementById("k-b-o").textContent = b.toFixed(1) + " : 1";
+      const g = f => 100 * (p * Math.log(1 + b * f) + q * Math.log(1 - f));
+      const xs = range(0, 0.6, 0.0025);
+      const pts = xs.map(f => [f * 100, g(f)]);
+      const ev = p * b - q;
+      const kelly = p - q / b;
+      let zero = null;
+      if (kelly > 0) { let lo = kelly, hi = 0.999; for (let i = 0; i < 60; i++) { const mid = (lo + hi) / 2; if (g(mid) > 0) lo = mid; else hi = mid; } zero = lo; }
+      const ymax = Math.max(1, kelly > 0 ? g(kelly) * 1.35 : 1);
+      const ymin = -Math.max(2, ymax);
+      const step = ymax > 8 ? 4 : ymax > 4 ? 2 : 1;
+      const yt = []; for (let v = Math.ceil(ymin / step) * step; v <= ymax; v += step) yt.push(v);
+      const dots = [], labels = [];
+      if (kelly > 0 && kelly < 0.6) { dots.push([kelly * 100, g(kelly), "var(--accent)", 5]); labels.push([kelly * 100, g(kelly), "Peak " + (kelly * 100).toFixed(1) + "%", 0, -12, "middle", "var(--accent)"]); }
+      if (kelly > 0 && kelly / 2 < 0.6) { dots.push([kelly * 50, g(kelly / 2), "var(--calm)", 4]); labels.push([kelly * 50, g(kelly / 2), "Half", 0, 18, "middle", "var(--calm)"]); }
+      if (zero && zero < 0.6) { dots.push([zero * 100, 0, "var(--loss)", 5]); labels.push([zero * 100, 0, (zero * 100).toFixed(1) + "%", 8, 18, "start", "var(--loss)"]); }
+      plot(svg, {
+        x: [0, 60], y: [ymin, ymax], xt: range(0, 60, 10), yt, xf: v => v + "%", yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%",
+        xlabel: "Risk per trade", ylabel: "Compound growth per trade", zero: 0,
+        band: zero && zero < 0.6 ? [zero * 100, 60, "var(--tint-loss)"] : (kelly <= 0 ? [0, 60, "var(--tint-loss)"] : null),
+        series: [{ pts, color: "var(--accent)", w: 2.6 }], dots, labels
+      });
+      document.getElementById("k-r1").textContent = (ev >= 0 ? "+" : "−") + Math.abs(ev).toFixed(2) + "R";
+      document.getElementById("k-r2").textContent = kelly > 0 ? (kelly * 100).toFixed(1) + "%" : "Negative EV";
+      document.getElementById("k-r3").textContent = zero ? (zero * 100).toFixed(1) + "%" : (kelly > 0 ? "—" : "Any size");
+    }
+    pS.addEventListener("input", draw); bS.addEventListener("input", draw);
+    reg(4, draw);
+  })();
+
+  // ---------- 4-3 monte carlo ----------
+  (function () {
+    const svg = document.getElementById("f-mc");
+    const rS = document.getElementById("mc-r");
+    let seed = 20261010;
+    function rng(s) { return function () { s |= 0; s = s + 0x6D2B79F5 | 0; let t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+    function draw() {
+      const r = +rS.value / 100;
+      document.getElementById("mc-r-o").textContent = rS.value + "%";
+      const rand = rng(seed);
+      const P = 24, T = 200, p = 0.45, b = 2;
+      const outcomes = [];
+      for (let k = 0; k < P; k++) { const o = []; for (let t = 0; t < T; t++) o.push(rand() < p); outcomes.push(o); }
+      const finals = [], dds = [], series = [];
+      outcomes.forEach((o, k) => {
+        let eq = 1, peak = 1, mdd = 0; const pts = [[0, 1]];
+        o.forEach((w, t) => { eq *= w ? 1 + b * r : 1 - r; eq = Math.max(eq, 1e-4); peak = Math.max(peak, eq); mdd = Math.max(mdd, 1 - eq / peak); pts.push([t + 1, eq]); });
+        finals.push(eq); dds.push(mdd);
+        series.push({ pts, color: eq >= 1 ? "var(--accent)" : "var(--loss)", w: 1.3, op: 0.65 });
+      });
+      const med = a => { const s = [...a].sort((x, y) => x - y); return (s[11] + s[12]) / 2; };
+      plot(svg, {
+        x: [0, 200], y: [0.01, 1000], ylog: true, xt: range(0, 200, 50), yt: [0.01, 0.1, 1, 10, 100, 1000],
+        yf: v => v >= 1 ? v + "×" : v + "×", xlabel: "Trades", ylabel: "Equity (× starting capital, log scale)", zero: 1, series
+      });
+      const fm = med(finals);
+      document.getElementById("mc-r1").textContent = fm >= 100 ? Math.round(fm) + "×" : fm.toFixed(fm < 1 ? 3 : 2) + "×";
+      document.getElementById("mc-r2").textContent = Math.round(finals.filter(f => f < 1).length / P * 100) + "%";
+      document.getElementById("mc-r3").textContent = "−" + (med(dds) * 100).toFixed(0) + "%";
+      document.getElementById("mc-r4").textContent = "−" + (Math.max(...dds) * 100).toFixed(0) + "%";
+    }
+    rS.addEventListener("input", draw);
+    document.getElementById("mc-seed").addEventListener("click", () => { seed = (seed * 1103515245 + 12345) >>> 0; draw(); });
+    reg(4, draw);
+  })();
+
+  // ---------- position size ----------
+  (function () {
+    const ids = ["ps-acct", "ps-risk", "ps-entry", "ps-stop"];
+    function calc() {
+      const [a, r, e, s] = ids.map(i => +document.getElementById(i).value);
+      const per = Math.abs(e - s);
+      if (!a || !r || !e || !per) { ["ps-sh", "ps-val", "ps-loss"].forEach(i => document.getElementById(i).textContent = "—"); return; }
+      const risk = a * r / 100;
+      const sh = Math.floor(risk / per);
+      document.getElementById("ps-sh").textContent = sh.toLocaleString("en-US") + " shares";
+      document.getElementById("ps-val").textContent = "$" + Math.round(sh * e).toLocaleString("en-US") + "(" + (sh * e / a * 100).toFixed(1) + "%)";
+      document.getElementById("ps-loss").textContent = "−$" + Math.round(sh * per).toLocaleString("en-US");
+    }
+    ids.forEach(i => document.getElementById(i).addEventListener("input", calc));
+    calc();
+  })();
+
+  // ---------- 6-1 streaks ----------
+  (function () {
+    const svg = document.getElementById("f-streak");
+    const pS = document.getElementById("st-p"), nS = document.getElementById("st-n");
+    function probRun(n, k, q) {
+      let dp = new Array(k).fill(0); dp[0] = 1; let hit = 0;
+      for (let t = 0; t < n; t++) {
+        const nd = new Array(k).fill(0);
+        for (let r = 0; r < k; r++) { const pr = dp[r]; if (!pr) continue; nd[0] += pr * (1 - q); if (r + 1 >= k) hit += pr * q; else nd[r + 1] += pr * q; }
+        dp = nd;
+      }
+      return hit;
+    }
+    function draw() {
+      const p = +pS.value / 100, n = +nS.value, q = 1 - p;
+      document.getElementById("st-p-o").textContent = pS.value + "%";
+      document.getElementById("st-n-o").textContent = n;
+      const ks = range(3, 14, 1);
+      const probs = ks.map(k => probRun(n, k, q) * 100);
+      let med = 1; for (let k = 2; k < 40; k++) { if (probRun(n, k, q) < 0.5) { med = k - 1; break; } }
+      plot(svg, {
+        x: [2.4, 14.6], y: [0, 100], xt: ks, yt: [0, 25, 50, 75, 100], yf: v => v + "%", xf: v => v,
+        xlabel: "Losing streak length k (at least once)", ylabel: "Probability",
+        bars: ks.map((k, i) => ({ x: k, y: probs[i], w: 0.62, color: k === med ? "var(--loss)" : "var(--calm)" })),
+        labels: ks.map((k, i) => [k, probs[i], probs[i] >= 99.95 ? "≈100" : probs[i] < 0.1 ? "<0.1" : probs[i].toFixed(probs[i] < 10 ? 1 : 0), 0, -6, "middle", "var(--muted)"])
+      });
+      document.getElementById("st-r1").textContent = med + " in a row";
+      document.getElementById("st-r2").textContent = (probRun(n, 5, q) * 100).toFixed(1) + "%";
+      document.getElementById("st-r3").textContent = (probRun(n, 8, q) * 100).toFixed(1) + "%";
+    }
+    pS.addEventListener("input", draw); nS.addEventListener("input", draw);
+    reg(6, draw);
+  })();
+
+  // ---------- template copy ----------
+  document.getElementById("tpl-copy").addEventListener("click", () => {
+    const txt = document.getElementById("tpl").textContent;
+    const msg = document.getElementById("tpl-msg");
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(document.getElementById("tpl")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); msg.textContent = "Selected. Press ⌘C or Ctrl+C to copy"; };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(() => { msg.textContent = "Copied"; }, fallback); else fallback();
+  });
+
+  // ---------- checklists ----------
+  document.querySelectorAll(".card input[type=checkbox]").forEach(cb => {
+    cb.checked = store.get("tp-" + cb.id) === "1";
+    cb.addEventListener("change", () => store.set("tp-" + cb.id, cb.checked ? "1" : "0"));
+  });
+
+  // ---------- self assessment ----------
+  (function () {
+    const dims = { e: "Emotion", d: "Discipline", r: "Risk", i: "Independence" };
+    const chap = { e: "Chapter 3", d: "Chapters 5 and 8", r: "Chapters 4 and 6", i: "Chapters 1 and 7" };
+    const qs = [
+      ["e", "After a loss, I quickly open another trade to win the money back."],
+      ["d", "I place orders without having written down a stop-loss."],
+      ["r", "The ups and downs of a single trade affect my sleep or my mood for the whole day."],
+      ["i", "I buy because someone recommended it or because it's hot on social media."],
+      ["e", "After a run of profits, I feel I'm on form and want to trade bigger."],
+      ["d", "When the price hits my stop, I wait a bit longer to see what happens."],
+      ["r", "I add to a losing position more than once."],
+      ["i", "I can't say what would invalidate my position; I just know it “should go up.”"],
+      ["e", "I trade when I'm very tired, irritated or have been drinking."],
+      ["d", "I make trades outside my plan just because I don't want to miss out."],
+      ["r", "I'm not sure what percentage of my account I'm risking on each trade."],
+      ["i", "I judge how well I'm doing mainly by whether I made or lost money this week."]
+    ];
+    const box = document.getElementById("quiz");
+    box.innerHTML = qs.map((q, i) => `<div class="qrow"><p>${i + 1}. ${q[1]}</p><div class="scale" role="radiogroup" aria-label="Question ${i + 1}">${[1, 2, 3, 4, 5].map(v => `<label><input type="radio" name="q${i}" id="q${i}-${v}" value="${v}"><span>${v}</span></label>`).join("")}</div></div>`).join("") + `<p class="scale-legend">1 Never · 2 Rarely · 3 Sometimes · 4 Often · 5 Almost always</p>`;
+    const res = document.getElementById("quiz-result");
+    function score() {
+      const ans = qs.map((_, i) => { const c = box.querySelector(`input[name=q${i}]:checked`); return c ? +c.value : null; });
+      store.set("tp-quiz", JSON.stringify(ans));
+      const done = ans.filter(a => a !== null).length;
+      const rows = Object.keys(dims).map(k => {
+        const vals = ans.filter((a, i) => qs[i][0] === k && a !== null);
+        const avg = vals.length ? vals.reduce((s, v) => s + v, 0) / vals.length : 0;
+        return { k, avg, n: vals.length };
+      });
+      const worst = done === qs.length ? rows.slice().sort((a, b) => b.avg - a.avg)[0] : null;
+      res.innerHTML = `<p class="eyebrow" style="margin:0">Answered ${done} / ${qs.length} · Higher scores need more attention</p>` +
+        rows.map(r => `<div class="bar-row"><span>${dims[r.k]}</span><div class="bar-track"><div class="bar-fill${r.avg >= 3.5 ? " hi" : ""}" style="width:${r.n ? (r.avg - 1) / 4 * 100 : 0}%"></div></div><span class="val">${r.n ? r.avg.toFixed(1) : "—"}</span></div>`).join("") +
+        (worst ? `<p class="advice">The area that needs the most attention is <strong>${dims[worst.k]}</strong> (average score ${worst.avg.toFixed(1)}). Start with ${chap[worst.k]}. ${worst.avg < 2.5 ? "Overall you're in good shape. Keep up the journaling habit." : ""}</p>` : `<p class="advice">Once you've answered all 12 questions, this will tell you which chapter to read first.</p>`);
+    }
+    try { const saved = JSON.parse(store.get("tp-quiz") || "null"); if (Array.isArray(saved)) saved.forEach((v, i) => { if (v) { const r = document.getElementById(`q${i}-${v}`); if (r) r.checked = true; } }); } catch (e) {}
+    box.addEventListener("change", score);
+    score();
+  })();
+
+  // ---------- boot ----------
+  const hm = location.hash.match(/^#c(\d+)$/);
+  const saved = store.get("tp-ch");
+  show(hm ? +hm[1] : (saved !== null ? +saved : 0), false);
+})();
+</script>
+<script id="lang-js">(function(){document.querySelectorAll(".lang-switch").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("hl-lang",a.getAttribute("data-lang"))}catch(e){}var h=a.getAttribute("href");if(location.hash&&h.indexOf("#")<0)a.setAttribute("href",h+location.hash);});});})();</script>
+</body>
+</html>

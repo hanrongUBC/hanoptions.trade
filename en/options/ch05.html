@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chapter 5 Theta and vega · US Options Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  #fig4 .seg, #fig1 .seg, #fig3 .seg { flex-wrap: wrap; }
+  #fig4 .controls + .controls { margin-top: 2px; }
+</style>
+<link rel="alternate" hreflang="zh-CN" href="https://hanoptions.trade/options/ch05.html"><link rel="alternate" hreflang="en" href="https://hanoptions.trade/en/options/ch05.html">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap">
+<style id="en-overrides">
+html[lang="en"] { --font-display: "Source Serif 4", "Noto Serif SC", Georgia, serif; --font-body: "Source Sans 3", "Noto Sans SC", system-ui, sans-serif; }
+html[lang="en"] body { line-height: 1.7; }
+html[lang="en"] body * { letter-spacing: normal !important; }
+html[lang="en"] p, html[lang="en"] li, html[lang="en"] td, html[lang="en"] figcaption { hyphens: auto; -webkit-hyphens: auto; }
+html[lang="en"] p { text-wrap: pretty; }
+html[lang="en"] .toc a { grid-template-columns: 48px 1fr; }
+</style>
+</head>
+<body data-ch="5">
+<div class="topbar"><div class="topbar-inner"><div class="topbar-brand"><a class="site-home" href="/en/">hanoptions.trade</a><a class="brand" href="index.html">US Options <span>Course</span></a></div><div class="topbar-tools"><select id="ck-jump" aria-label="Jump to chapter"></select><a class="lang-switch" href="/options/ch05.html" hreflang="zh-CN" lang="zh-CN" data-lang="zh"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>中文</a></div></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">05</div>
+    <div class="eyebrow">US Options Course · Part 2 The core variables · Chapter 5</div>
+    <h1>Theta and <span class="g">vega</span></h1>
+    <p class="deck">Theta is the rent you pay every day to hold an option; Vega is your bet on volatility. Understand these two numbers and you can answer “Why did I lose money when nothing happened?” and “Why did I lose money when I got the direction right?”</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="In this chapter">
+    <p class="toc-title">In this chapter</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>Opening: a week when nothing happened</span></a></li>
+      <li><a href="#s1"><span class="n">5.1</span><span>Theta: the rent you pay every day</span></a></li>
+      <li><a href="#s2"><span class="n">5.2</span><span>The shape of time decay</span></a></li>
+      <li><a href="#s3"><span class="n">5.3</span><span>Weekends and holidays: two clocks</span></a></li>
+      <li><a href="#s4"><span class="n">5.4</span><span>Vega: what one vol point is worth</span></a></li>
+      <li><a href="#s5"><span class="n">5.5</span><span>IV crush</span></a></li>
+      <li><a href="#s6"><span class="n">5.6</span><span>Rho, and LEAPS when rates are high</span></a></li>
+      <li><a href="#s7"><span class="n">5.7</span><span>Second-order Greeks</span></a></li>
+      <li><a href="#s8"><span class="n">5.8</span><span>Reading a full Greeks table</span></a></li>
+      <li><a href="#cases"><span class="n">Cases</span><span>Three cases</span></a></li>
+      <li><a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>In this chapter</summary>
+      <ol>
+        <li><a href="#open">Opening: a week when nothing happened</a></li>
+        <li><a href="#s1">5.1 Theta: the rent you pay every day</a></li>
+        <li><a href="#s2">5.2 The shape of time decay</a></li>
+        <li><a href="#s3">5.3 Weekends and holidays: two clocks</a></li>
+        <li><a href="#s4">5.4 Vega: what one vol point is worth</a></li>
+        <li><a href="#s5">5.5 IV crush</a></li>
+        <li><a href="#s6">5.6 Rho, and LEAPS when rates are high</a></li>
+        <li><a href="#s7">5.7 Second-order Greeks</a></li>
+        <li><a href="#s8">5.8 Reading a full Greeks table</a></li>
+        <li><a href="#cases">Three cases</a></li>
+        <li><a href="#tools">Checklist and self-test</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>After this chapter you can</h4>
+        <ul>
+          <li>Estimate an option’s time decay over the next week or month, and explain how decay runs differently for ATM and OTM options</li>
+          <li>Use Vega to work out the loss when IV falls after an event, and judge before you trade whether being right on direction will actually make money</li>
+          <li>Read a full Greeks table and say what the position fears most</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Prerequisites</h4>
+        <ul>
+          <li>Chapter 3: the six inputs, put–call parity and the 0.8 rule</li>
+          <li>Chapter 4: Delta, Gamma and the Gamma–Theta trade-off</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Conventions</h4>
+        <ul>
+          <li>Examples use Black-Scholes with a 4% interest rate and no dividends</li>
+          <li>Theta is per calendar day; Vega is per 1-percentage-point change in IV; Rho is per 1-percentage-point change in rates</li>
+          <li>One contract = 100 shares</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">Opening</span>A week when nothing happened</h2>
+      <p class="lead">You and three friends each buy one call with a strike of 100 on the same day. The stock is at $100 and IV is 30%. The only difference is time to expiration: 7, 30, 90 and 365 days. A week later, the stock is still at $100.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 5-0 Four ATM calls, one week later with the stock unchanged (per share, $)</caption>
+          <thead><tr><th>Expiry</th><th>Entry price</th><th>After 1 week, IV unchanged</th><th>Change</th><th>After 1 week, IV down to 25%</th><th>Change</th></tr></thead>
+          <tbody>
+            <tr><td>7 days</td><td class="mono">1.695</td><td class="mono">0.000</td><td class="mono neg">−100%</td><td class="mono">0.000</td><td class="mono neg">−100%</td></tr>
+            <tr><td>30 days</td><td class="mono">3.591</td><td class="mono">3.127</td><td class="mono neg">−12.9%</td><td class="mono">2.628</td><td class="mono neg">−26.8%</td></tr>
+            <tr><td>90 days</td><td class="mono">6.412</td><td class="mono">6.141</td><td class="mono neg">−4.2%</td><td class="mono">5.198</td><td class="mono neg">−18.9%</td></tr>
+            <tr><td>365 days</td><td class="mono">13.753</td><td class="mono">13.606</td><td class="mono neg">−1.1%</td><td class="mono">11.707</td><td class="mono neg">−14.9%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The stock didn’t move a cent, and all four of you lost money. The 7-day call went straight to zero: at expiration an ATM option has no intrinsic value. Look only at the “IV unchanged” column and the shorter the term, the bigger the loss. That is <strong>Theta</strong>. Now look at the column where IV fell 5 points: the 365-day call lost an extra $1.90 per share, or $205 per contract, the most of the four; the 30-day call lost only $96. That is <strong>Vega</strong>.</p>
+      <p>In one sentence: short-dated options fear time, and long-dated options fear volatility. This chapter first takes these two sensitivities apart, then adds the interest-rate sensitivity, Rho, and a few second-order Greeks, and finally reads them all together in one complete table.</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">5.1</span>Theta: the rent you pay every day</h2>
+      <p>Theta is the change in an option’s price for each day that passes, with everything else held constant. Theta is negative for the buyer and positive for the seller. It eats only time value and never touches intrinsic value.</p>
+      <div class="formula">
+        <div class="eq"><span class="th">Θ</span><sub>call</sub> <span class="up">=</span> <span class="up">−</span><span class="frac"><span><span class="v">S</span><span class="up">·</span><span class="v">n</span>(<span class="v">d</span><sub>1</sub>)<span class="up">·</span>σ</span><span>2√<span class="v">T</span></span></span> <span class="up">−</span> <span class="v">rK</span><span class="v">e</span><sup>−<span class="v">rT</span></sup><span class="v">N</span>(<span class="v">d</span><sub>2</sub>)</div>
+        <p class="where">This is an annual figure; divide by 365 to get daily Theta. The first term is the “volatility term” and the second is the “rate term.” For a put, the rate term has the opposite sign: +<span class="v">rK</span>e<sup>−<span class="v">rT</span></sup><span class="v">N</span>(−<span class="v">d</span><sub>2</sub>).</p>
+      </div>
+      <p>Break down a 30-day ATM call (stock and strike both 100, IV 30%): daily Theta is <span class="num">−0.0624</span>, of which the volatility term is <span class="num">−0.0570</span> and the rate term <span class="num">−0.0054</span>. For the put at the same strike, the volatility term is the same <span class="num">−0.0570</span>, but the rate term becomes <span class="num">+0.0055</span>, for a total of <span class="num">−0.0515</span>. The put’s rate term is positive because when you exercise a put you receive <span class="v">K</span>, and the closer you are to expiration, the higher the present value of that cash.</p>
+      <p>The volatility term is more than 90% of the total, so Theta is essentially “the fee you pay for movement.” As derived in Chapter 4, it is tied to Gamma by the Black-Scholes equation: Θ ≈ −½σ²<span class="v">S</span>²Γ. Buy an option and you get positive Gamma, so you pay Theta. We won’t repeat that here; see Chapter 4, Section 4.6.</p>
+
+      <h3>Three details that are easy to miss</h3>
+      <ul>
+        <li><strong>Theta is an instantaneous rate.</strong> A 30-day ATM call actually loses <span class="num">0.0629</span> over one day, slightly more than the 0.0624 that Theta gives, because Theta itself grows over time. Estimate ten days of decay as <span class="num">0.0624 × 10 = 0.62</span>, and the actual figure is <span class="num">0.68</span>. The closer to expiration, the bigger this underestimate.</li>
+        <li><strong>The higher the IV, the higher the rent.</strong> The volatility term is proportional to σ. At IV of 15%, 30% and 60%, a 30-day ATM call has Theta of <span class="num">−0.034</span>, <span class="num">−0.062</span> and <span class="num">−0.119</span>, scaling up almost in proportion. A high-IV option isn’t just expensive; its daily rent is higher too.</li>
+        <li><strong>Theta can be positive.</strong> Chapter 3 noted that a deep ITM European-style put gets cheaper the longer its term. Seen another way, its Theta is positive: a 30-day European-style put with the stock at $100 and a strike of 150 has Theta of <span class="num">+0.0164</span>/day. An American-style put would be exercised early, so this doesn’t happen.</li>
+      </ul>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">5.2</span>The shape of time decay</h2>
+      <p>An ATM option’s time value decays with √<span class="v">T</span>, falling faster the closer it gets to expiration. An OTM option starts losing big chunks early, and its Theta peaks while expiration is still far away.</p>
+      <p>The 0.4 rule from Chapter 3 tells us that an ATM call ≈ 0.4 × <span class="v">S</span> × σ × √<span class="v">T</span>. Price is proportional to √<span class="v">T</span>, so daily decay is proportional to 1/√<span class="v">T</span>: cut the time remaining to a quarter and Theta doubles. Theta is <span class="num">−0.038</span> at 90 days, <span class="num">−0.062</span> at 30 days, <span class="num">−0.124</span> at 7 days and <span class="num">−0.319</span> on the last day.</p>
+      <p>The same relationship gives a mental-math rule: <strong>an ATM option loses about 1 / (2 × days remaining) of its value each day.</strong> Price is proportional to √<span class="v">T</span>, and its relative rate of change with respect to <span class="v">T</span> is 1/(2<span class="v">T</span>). With 30 days left that is about 1/60 ≈ 1.7% a day (Black-Scholes gives 1.74%); with 7 days left, about 7.1% (actual 7.3%); with 365 days left, about 0.14% (actual 0.15%). The actual values run slightly higher because of the rate term.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 5-1 Stock at $100, IV 30%: price and daily Theta at three strikes</caption>
+          <thead><tr><th>Days left</th><th>100 call</th><th>Theta</th><th>105 call</th><th>Theta</th><th>110 call</th><th>Theta</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">90</td><td class="mono">6.412</td><td class="mono">−0.038</td><td class="mono">4.276</td><td class="mono">−0.037</td><td class="mono">2.733</td><td class="mono">−0.032</td></tr>
+            <tr><td class="mono">60</td><td class="mono">5.168</td><td class="mono">−0.046</td><td class="mono">3.093</td><td class="mono">−0.043</td><td class="mono">1.726</td><td class="mono">−0.035</td></tr>
+            <tr><td class="mono">30</td><td class="mono">3.591</td><td class="mono">−0.062</td><td class="mono">1.662</td><td class="mono">−0.054</td><td class="mono">0.655</td><td class="mono">−0.035</td></tr>
+            <tr><td class="mono">14</td><td class="mono">2.419</td><td class="mono">−0.089</td><td class="mono">0.718</td><td class="mono">−0.064</td><td class="mono">0.144</td><td class="mono">−0.025</td></tr>
+            <tr><td class="mono">7</td><td class="mono">1.695</td><td class="mono">−0.124</td><td class="mono">0.261</td><td class="mono">−0.064</td><td class="mono">0.017</td><td class="mono">−0.009</td></tr>
+            <tr><td class="mono">3</td><td class="mono">1.101</td><td class="mono">−0.186</td><td class="mono">0.042</td><td class="mono">−0.038</td><td class="mono">0.000</td><td class="mono">−0.000</td></tr>
+            <tr class="hl"><td class="mono">1</td><td class="mono">0.632</td><td class="mono">−0.319</td><td class="mono">0.000</td><td class="mono">−0.003</td><td class="mono">0.000</td><td class="mono">−0.000</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Split the 90 days into “the first 60 days” and “the last 30 days” and see how much time value each period eats:</p>
+      <ul>
+        <li><strong>100 call (ATM)</strong>: loses 44% in the first 60 days and 56% in the last 30. The later it gets, the faster it falls.</li>
+        <li><strong>105 call</strong>: loses 61% in the first 60 days and 39% in the last 30.</li>
+        <li><strong>110 call (about one standard deviation OTM)</strong>: loses 76% in the first 60 days alone, leaving only a quarter for the last month.</li>
+      </ul>
+      <p>An OTM option’s value comes from “the chance that the stock reaches the strike.” As time runs out, that chance falls much faster than it does for an ATM option, so its value evaporates in big chunks early on. Near expiration it is already close to 0, so there is little left to lose each day.</p>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">ATM options lose value fastest in the last month; OTM options lose most of theirs in the first two</span><span class="fig-no">Figure 5-1 · Stock at $100, time value, interactive</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Vertical axis units">
+            <button type="button" data-mode="usd" aria-pressed="true">Dollars</button>
+            <button type="button" data-mode="pct" aria-pressed="false">% of 90-day value</button>
+          </div>
+          <label class="ctl" for="f1-iv">Implied volatility <input id="f1-iv" type="range" min="10" max="80" value="30"> <output id="f1-iv-o">30%</output></label>
+        </div>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 320" role="img" aria-label="Time value of options at different strikes decaying as days run out"></svg>
+        <div class="legend" id="f1-legend"></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small>ATM: share lost in the last 30 days</small></div>
+          <div><b id="f1-r2">—</b><small>110 call: share lost in the first 60 days</small></div>
+          <div><b id="f1-r3">—</b><small>ATM Theta on the last day</small></div>
+          <div><b id="f1-r4">—</b><small>110 call: days left at peak Theta</small></div>
+        </div>
+        <figcaption>Switch to “% of 90-day value” to see the shape: the blue ATM line is flat early and drops steeply at the end; the magenta 110 line heads down from the start. Drag IV down to 15% and the 110 line hugs 0 sooner, and its Theta peak moves further from expiration: when volatility is low, an OTM option becomes “hopeless” earlier. The orange 95 call (ITM) is plotted as time value only, and its shape is close to the ATM line.</figcaption>
+      </figure>
+
+      <h3>When an OTM option’s theta peaks</h3>
+      <p>There is a rule you can derive: an OTM option’s Theta is largest when “the strike is about one standard deviation from the current price.”</p>
+      <div class="formula">
+        <div class="eq">|<span class="th">Θ</span>| <span class="up">∝</span> <span class="frac"><span><span class="v">n</span>(<span class="v">d</span><sub>1</sub>)</span><span>√<span class="v">T</span></span></span> <span class="up">≈</span> <span class="frac"><span><span class="v">e</span><sup>−<span class="v">x</span>²/(2<span class="v">u</span>²)</sup></span><span><span class="v">u</span></span></span></div>
+        <div class="eq"><span class="v">x</span> <span class="up">=</span> ln(<span class="v">K</span>/<span class="v">S</span>)<span class="up">, </span> <span class="v">u</span> <span class="up">=</span> σ√<span class="v">T</span></div>
+        <p class="where">Differentiate with respect to <span class="v">u</span> and set the result to 0 to get <span class="v">u</span> = <span class="v">x</span>: σ√<span class="v">T</span> = ln(<span class="v">K</span>/<span class="v">S</span>). For an ATM option <span class="v">x</span> = 0, so its Theta keeps growing right up to the moment of expiration. The derivation ignores the drift term in <span class="v">d</span><sub>1</sub>, so the actual peak comes a little later.</p>
+      </div>
+      <div class="tbl">
+        <table>
+          <caption>Table 5-2 Days left when call Theta peaks, IV 30%</caption>
+          <thead><tr><th>Strike</th><th>Rule of thumb (ln(K/S)/σ)² × 365</th><th>Black-Scholes actual</th><th>Peak Theta</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">100</td><td class="mono">0 (expiration day)</td><td class="mono">Last day before expiration</td><td class="mono">−0.319</td></tr>
+            <tr><td class="mono">105</td><td class="mono">10 days</td><td class="mono">10 days</td><td class="mono">−0.066</td></tr>
+            <tr><td class="mono">110</td><td class="mono">37 days</td><td class="mono">40 days</td><td class="mono">−0.036</td></tr>
+            <tr><td class="mono">115</td><td class="mono">79 days</td><td class="mono">88 days</td><td class="mono">−0.026</td></tr>
+            <tr><td class="mono">120</td><td class="mono">135 days</td><td class="mono">154 days</td><td class="mono">−0.021</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>How to use it</h3>
+      <ul>
+        <li><strong>Buyers</strong>: try to keep your holding period out of the steepest stretch of Theta. For ATM options, avoid the last two or three weeks; when buying OTM options, pick an expiration somewhat beyond the point where “the strike is one standard deviation away.”</li>
+        <li><strong>Sellers</strong>: selling ATM options in their last few weeks collects accelerating Theta, but also carries the most Gamma (Chapter 4, Case 1). If you sell OTM options, you actually collect the most Theta between 30 and 60 days out.</li>
+        <li><strong>In percentage terms</strong>: in the final week, OTM options lose the largest share of their value each day. With 7 days left, the 105 call loses 24% a day and the ATM call only 7%. A small dollar loss doesn’t mean a small percentage loss.</li>
+      </ul>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">5.3</span>Weekends and holidays: two clocks</h2>
+      <p>Black-Scholes has a single time variable. Count calendar days and Theta is charged for both weekend days; count trading days and the weekend is free, but each trading day is charged more. Over a week the total decay is the same; only its distribution differs.</p>
+      <p>This course uses calendar days, 365 to a year. The other convention is trading days, about 252 to a year, with weekends and holidays not counted as time. The same price corresponds to slightly different IV numbers under the two clocks: to keep total variance σ²<span class="v">T</span> equal, trading-day IV = calendar-day IV × √(calendar days / 365) ÷ √(trading days / 252).</p>
+      <p>Example: it is Friday’s close, and the option expires on the Friday 4 weeks from now, with 28 calendar days or 20 trading days left. Priced at a calendar-day IV of 30%, it has an IV of 29.49% under the trading-day convention, and under both today’s price is <span class="num">$3.464</span>. With the stock not moving, here is the price at each close over the next week:</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 5-3 One week of the same ATM call under two clocks (stock unchanged, per share)</caption>
+          <thead><tr><th>Close</th><th>Calendar: days left</th><th>Price</th><th>Day’s decay</th><th>Trading: days left</th><th>Price</th><th>Day’s decay</th></tr></thead>
+          <tbody>
+            <tr><td>Fri</td><td class="mono">28</td><td class="mono">3.464</td><td class="mono">—</td><td class="mono">20</td><td class="mono">3.464</td><td class="mono">—</td></tr>
+            <tr class="hl"><td>Mon</td><td class="mono">25</td><td class="mono">3.266</td><td class="mono neg">−0.198</td><td class="mono">19</td><td class="mono">3.364</td><td class="mono neg">−0.100</td></tr>
+            <tr><td>Tue</td><td class="mono">24</td><td class="mono">3.197</td><td class="mono neg">−0.069</td><td class="mono">18</td><td class="mono">3.273</td><td class="mono neg">−0.091</td></tr>
+            <tr><td>Wed</td><td class="mono">23</td><td class="mono">3.127</td><td class="mono neg">−0.070</td><td class="mono">17</td><td class="mono">3.179</td><td class="mono neg">−0.094</td></tr>
+            <tr><td>Thu</td><td class="mono">22</td><td class="mono">3.056</td><td class="mono neg">−0.071</td><td class="mono">16</td><td class="mono">3.083</td><td class="mono neg">−0.096</td></tr>
+            <tr><td>Fri</td><td class="mono">21</td><td class="mono">2.983</td><td class="mono neg">−0.073</td><td class="mono">15</td><td class="mono">2.983</td><td class="mono neg">−0.099</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">Same total decay for the week; the calendar-day clock piles the weekend onto Monday</span><span class="fig-no">Figure 5-2 · Daily decay from Table 5-3</span></div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 260" role="img" aria-label="Daily time decay under the two clocks compared"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta); border-top-width: 8px"></i>Calendar-day clock</span><span><i style="border-color: var(--theta); border-top-width: 8px"></i>Trading-day clock</span></div>
+        <figcaption>Each set of bars adds up to 0.481. The calendar-day clock charges three days at once on Monday (0.198) and about 0.07 on each other day; the trading-day clock charges an even 0.09–0.10 a day and nothing for the weekend. The two prices are identical at every Friday close.</figcaption>
+      </figure>
+
+      <h3>Which clock the market actually uses</h3>
+      <p>Stock prices move almost entirely during trading hours; over a weekend there is news risk but no continuous price movement. So for describing volatility, the trading-day clock is closer to reality; for computing interest, calendar days are correct. Many market makers build the weekend’s decay into their quotes as early as Friday, typically by lowering the volatility they price with on Friday, or by simply measuring time in trading hours. The result:</p>
+      <ul>
+        <li>Option quotes on Friday afternoon often look “cheap” by a calendar-day model, and Monday’s open doesn’t show the big drop the calendar-day model expects.</li>
+        <li>As for the idea of “sell Friday, buy back Monday, and pocket two days of weekend Theta for free”: most of that profit is already priced in before Friday’s close. What’s left is the insurance premium you collect for weekend gap risk.</li>
+        <li>Holidays work the same way: market holidays such as Thanksgiving and Christmas don’t count as time on the trading-day clock, and options price them in ahead of the holiday.</li>
+      </ul>
+      <h3>Distortion in very short-dated options</h3>
+      <p>The shorter the term, the bigger the gap between the two clocks. Suppose a stock’s true volatility, measured in trading days, is 30%. On Friday you buy an option expiring Monday: 1 day left on the trading-day clock, 3 days on the calendar-day clock. If your platform backs out IV using calendar days, it will show <span class="num">30% × √(1/252) ÷ √(3/365) ≈ 20.8%</span>. Buy an option on Monday that expires Tuesday, and it will show <span class="num">30% × √(365/252) ≈ 36.1%</span>. Same stock, same true volatility: very short-dated IV looks low on Friday and high midweek. That comes from how time is counted, not from market sentiment. When comparing IV on short-dated options, first check which clock your platform uses.</p>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">5.4</span>Vega: what one vol point is worth</h2>
+      <p>Vega is the change in an option’s price when IV moves by 1 percentage point. The longer the term and the closer to the money, the larger the Vega; but as a percentage of price, OTM options are more sensitive to IV.</p>
+      <div class="formula">
+        <div class="eq"><span class="v">Vega</span> <span class="up">=</span> <span class="frac"><span><span class="v">S</span><span class="up">·</span><span class="v">n</span>(<span class="v">d</span><sub>1</sub>)<span class="up">·</span>√<span class="v">T</span></span><span>100</span></span></div>
+        <div class="eq"><span class="up">≈</span> <span class="frac"><span>0.4 <span class="up">×</span> <span class="v">S</span> <span class="up">×</span> √<span class="v">T</span></span><span>100</span></span> <span class="up">(ATM)</span></div>
+        <p class="where">A call and a put with the same strike and expiration have the same Vega, again a consequence of parity. The ATM approximation comes from the 0.4 rule in Chapter 3: <span class="v">C</span> ≈ 0.4<span class="v">S</span>σ√<span class="v">T</span>; differentiate with respect to σ and you get 0.4<span class="v">S</span>√<span class="v">T</span>.</p>
+      </div>
+      <div class="tbl">
+        <table>
+          <caption>Table 5-4 Stock at $100, IV 30%: call Vega (per share) and Vega as a percentage of price</caption>
+          <thead><tr><th>Strike</th><th>7 days</th><th>30 days</th><th>90 days</th><th>365 days</th></tr></thead>
+          <tbody>
+            <tr><td>90 (ITM)</td><td class="mono">0.002 · 0.0%</td><td class="mono">0.049 · 0.5%</td><td class="mono">0.138 · 1.1%</td><td class="mono">0.326 · 1.7%</td></tr>
+            <tr class="hl"><td>100 (ATM)</td><td class="mono">0.055 · 3.3%</td><td class="mono">0.114 · 3.2%</td><td class="mono">0.196 · 3.1%</td><td class="mono">0.383 · 2.8%</td></tr>
+            <tr><td>110 (OTM)</td><td class="mono">0.004 · 25.4%</td><td class="mono">0.068 · 10.3%</td><td class="mono">0.175 · 6.4%</td><td class="mono">0.399 · 4.1%</td></tr>
+            <tr><td>ATM approximation 0.4·S·√T/100</td><td class="mono">0.055</td><td class="mono">0.115</td><td class="mono">0.199</td><td class="mono">0.400</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Four observations:</p>
+      <ol>
+        <li><strong>Vega is proportional to √<span class="v">T</span>.</strong> The 365-day ATM Vega (0.383) is 7 times the 7-day figure. This is exactly the reverse of Theta, which is proportional to 1/√<span class="v">T</span>. The longer the term, the more the position behaves like a volatility position; the shorter the term, the more it behaves like a time position (Case 1).</li>
+        <li><strong>The peak sits slightly above the current price.</strong> The strike with the largest Vega is <span class="v">S</span>e<sup>(<span class="v">r</span>+σ²/2)<span class="v">T</span></sup>: 100.7 at 30 days and 108.9 at one year. So the one-year 110 call has a larger Vega (0.399) than the ATM call (0.383).</li>
+        <li><strong>In dollars, look at ATM; in percentage terms, look at OTM.</strong> The 30-day 110 call has a Vega of only 0.068, but that is 10.3% of its price. When IV rises from 30% to 35%, it goes from 0.655 to <span class="num">1.022</span>, up 56%; over the same move the ATM call goes from 3.591 to 4.161, up only 16%. If you want to bet a small amount on rising IV, OTM options give you the most leverage; by the same token, they also shrink the most when IV falls.</li>
+        <li><strong>ATM Vega barely changes with IV.</strong> At IV of 15%, 30% and 60%, a 30-day ATM call has Vega of 0.1138, 0.1140 and 0.1137. The OTM 110 call, by contrast, goes from 0.012 to 0.068 to 0.103. That difference is Volga, covered in Section 5.7.</li>
+      </ol>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">The longer the term and the closer to the money, the larger the Vega</span><span class="fig-no">Figure 5-3 · Stock at $100, interactive</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Vertical axis units">
+            <button type="button" data-mode="usd" aria-pressed="true">Dollar Vega</button>
+            <button type="button" data-mode="pct" aria-pressed="false">Vega ÷ price</button>
+          </div>
+          <label class="ctl" for="f3-iv">Implied volatility <input id="f3-iv" type="range" min="10" max="80" value="30"> <output id="f3-iv-o">30%</output></label>
+        </div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 320" role="img" aria-label="Call Vega across strikes for different terms"></svg>
+        <div class="legend" id="f3-legend"></div>
+        <div class="readout">
+          <div><b id="f3-r1">—</b><small>7-day ATM · per contract per point</small></div>
+          <div><b id="f3-r2">—</b><small>30-day ATM · per contract per point</small></div>
+          <div><b id="f3-r3">—</b><small>90-day ATM · per contract per point</small></div>
+          <div><b id="f3-r4">—</b><small>365-day ATM · per contract per point</small></div>
+        </div>
+        <figcaption>In the “Dollar Vega” view, all four curves peak near 100, growing taller and wider as the term lengthens, and the one-year peak shifts noticeably toward about 109. Switch to “Vega ÷ price” and the shape flips: the further OTM and the shorter the term, the higher the ratio. Raise IV and the dollar curves widen, so strikes far away start to carry Vega too.</figcaption>
+      </figure>
+      <p>The first thing to do with Vega is to ask, before you buy: “If IV goes back to this stock’s normal level, how much do I lose?” Suppose a 30-day ATM call is at IV 45% now and the stock’s usual IV is 30%. IV reverting alone would cost about <span class="num">15 × 0.114 = 1.71</span>/share (a full repricing also gives 1.71), equal to 19 days of this option’s Theta (−0.091 a day at IV 45%). Weigh this potential loss together with your view on direction.</p>
+      <h3>An IV point is not the same across terms</h3>
+      <p>Vega answers “what is a 1-point move in IV worth,” but IV at different expirations doesn’t move by the same amount. When the market gets a scare, 30-day IV might jump 10 points while one-year IV moves only three or four: short-term IV is like the waves, long-term IV like the tide. Comparing the one-year Vega of 0.383 directly with the 30-day 0.114 overstates the IV risk of long-dated options.</p>
+      <p>A common fix is “time-weighted Vega”: Vega × √(30 / days), which assumes that IV at a <span class="v">T</span>-day term moves √(30/<span class="v">T</span>) times as much as 30-day IV. On this basis, ATM options at 7, 30, 90 and 365 days come out at <span class="num">0.114</span>, <span class="num">0.114</span>, <span class="num">0.113</span> and <span class="num">0.110</span>, almost the same. In other words, when 30-day IV rises 10 points (ATM call +1.14) and one-year IV rises only 2.9 points, the one-year ATM call gains +1.10, a similar dollar impact; if one-year IV also rose the full 10 points, it would gain 3.83. The square-root relationship is only a rule of thumb, and how closely short- and long-term IV move together varies a lot from period to period. We look at this more closely with term structure in Chapter 6.</p>
+      <h3>Vega of a position</h3>
+      <p>Position Vega = per-option Vega × 100 × number of contracts × direction. Long options have positive Vega; short options, negative. The two legs of a spread partly offset: a 30-day 100/110 call spread (buy the 100, sell the 110) has a Vega of <span class="num">0.114 − 0.068 = 0.046</span>, only 40% of a single long ATM call. That is why many traders use spreads instead of single legs before an event: they keep part of the directional exposure and cut more than half of the IV risk.</p>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">5.5</span>IV crush</h2>
+      <p>IV gets bid up before an event and collapses back to normal as soon as the event passes. If the collapse is big enough, a buyer who got the direction right still loses money.</p>
+      <p>Take an earnings scenario (the IVs are hypothetical): the stock is at $100 and reports earnings tonight. ATM options expiring in 7 days are at IV 80%: the call is <span class="num">$4.454</span>, the put <span class="num">$4.378</span> and the straddle <span class="num">$8.832</span>. Tomorrow, with 6 days left, IV drops back to the stock’s usual 35%.</p>
+      <h3>First, read the price the market puts on earnings</h3>
+      <p>Variance adds up day by day. Total variance over 7 days = the variance of 6 ordinary days + the variance of earnings day:</p>
+      <div class="formula">
+        <div class="eq">0.80<sup>2</sup> <span class="up">×</span> <span class="frac"><span>7</span><span>365</span></span> <span class="up">=</span> 0.35<sup>2</sup> <span class="up">×</span> <span class="frac"><span>6</span><span>365</span></span> <span class="up">+</span> σ<sub>event</sub><sup>2</sup></div>
+        <div class="eq"><span class="up">⇒</span> σ<sub>event</sub> <span class="up">≈ 10.1%</span></div>
+        <p class="where">The market prices earnings day at a standard deviation of about 10.1%, which corresponds to a mean absolute move of about 0.8 × 10.1% ≈ 8.1% (the 0.8 rule from Chapter 3).</p>
+      </div>
+      <div class="tbl">
+        <table>
+          <caption>Table 5-5 P&amp;L the day after earnings (per share, IV from 80% to 35%, 6 days left)</caption>
+          <thead><tr><th>Stock price</th><th>Call price</th><th>Call P&amp;L</th><th>If IV unchanged</th><th>Straddle price</th><th>Straddle P&amp;L</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">90</td><td class="mono">0.014</td><td class="mono neg">−4.440</td><td class="mono neg">−3.676</td><td class="mono">9.963</td><td class="mono pos">+1.131</td></tr>
+            <tr><td class="mono">95</td><td class="mono">0.284</td><td class="mono neg">−4.171</td><td class="mono neg">−2.459</td><td class="mono">5.501</td><td class="mono neg">−3.331</td></tr>
+            <tr><td class="mono">100</td><td class="mono">1.823</td><td class="mono neg">−2.632</td><td class="mono neg">−0.333</td><td class="mono">3.579</td><td class="mono neg">−5.253</td></tr>
+            <tr class="hl"><td class="mono">103</td><td class="mono">3.746</td><td class="mono neg">−0.708</td><td class="mono pos">+1.407</td><td class="mono">4.426</td><td class="mono neg">−4.406</td></tr>
+            <tr><td class="mono">105</td><td class="mono">5.380</td><td class="mono pos">+0.926</td><td class="mono pos">+2.747</td><td class="mono">5.694</td><td class="mono neg">−3.138</td></tr>
+            <tr><td class="mono">108</td><td class="mono">8.145</td><td class="mono pos">+3.691</td><td class="mono pos">+4.992</td><td class="mono">8.224</td><td class="mono neg">−0.608</td></tr>
+            <tr><td class="mono">110</td><td class="mono">10.093</td><td class="mono pos">+5.639</td><td class="mono pos">+6.622</td><td class="mono">10.120</td><td class="mono pos">+1.288</td></tr>
+            <tr><td class="mono">115</td><td class="mono">15.067</td><td class="mono pos">+10.613</td><td class="mono pos">+11.043</td><td class="mono">15.068</td><td class="mono pos">+6.236</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Reading it row by row:</p>
+      <ul>
+        <li><strong>Up 3%, and the call still loses 16%.</strong> With IV unchanged, the same rise would have made $1.41/share. The call’s breakeven is <span class="num">+3.90%</span>: any smaller rise loses money even though the direction was right.</li>
+        <li><strong>Breaking down the loss with the stock unchanged.</strong> −2.632 = one day of time decay, −0.333, + the IV drop, −2.299. The latter ≈ the Vega with 6 days left, 0.051 × 45 points = 2.30. Multiplying by the Vega at entry (0.055) would overstate it a little, because Vega also shrinks over time.</li>
+        <li><strong>The straddle needs a move of more than 8.7% to break even.</strong> The breakevens are <span class="num">−8.83%</span> and <span class="num">+8.65%</span>, close to the 8.1% mean absolute move the market priced. Buying the straddle is a bet that “this move will be even bigger than the market expects.”</li>
+      </ul>
+      <div class="note">
+        <span class="tag">The P&amp;L equation for event trades</span>
+        <p>P&amp;L after the event ≈ Delta × Δ<span class="v">S</span> + ½ Gamma × Δ<span class="v">S</span>² − Vega × points of IV drop − one day of Theta. For the buyer to make money, the first two terms must outweigh the last two. Plug in “IV falls back to its usual level” before you trade, and you’ll know how big a move you need.</p>
+      </div>
+
+      <h3>IV creep before an event, and deferred theta</h3>
+      <p>IV climbs all the way into an event, partly out of fear and partly from pure arithmetic. The event-day variance is a fixed chunk; the fewer days remain, the more of that chunk falls on each day, so annualized IV naturally rises. Keeping the setup above (usual IV 35%, earnings-day standard deviation 10.1%), take an ATM call that expires 3 days after earnings and assume the stock never moves:</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 5-6 IV and price of the same option before and after earnings (stock unchanged, per share)</caption>
+          <thead><tr><th>To earnings</th><th>Days left</th><th>Implied volatility</th><th>ATM call</th><th>Theta at constant IV</th></tr></thead>
+          <tbody>
+            <tr><td>30 days</td><td class="mono">33</td><td class="mono">48.2%</td><td class="mono">5.948</td><td class="mono">−0.092</td></tr>
+            <tr><td>17 days</td><td class="mono">20</td><td class="mono">55.1%</td><td class="mono">5.247</td><td class="mono">−0.134</td></tr>
+            <tr><td>7 days</td><td class="mono">10</td><td class="mono">69.6%</td><td class="mono">4.647</td><td class="mono">−0.235</td></tr>
+            <tr><td>3 days</td><td class="mono">6</td><td class="mono">85.2%</td><td class="mono">4.388</td><td class="mono">−0.368</td></tr>
+            <tr><td>1 day</td><td class="mono">4</td><td class="mono">101.4%</td><td class="mono">4.254</td><td class="mono">−0.534</td></tr>
+            <tr class="hl"><td>After earnings</td><td class="mono">3</td><td class="mono">35.0%</td><td class="mono">1.282</td><td class="mono">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>From 30 days before earnings to 1 day before, the option loses only 1.69 over 29 days, an average of 0.058 a day, far less than the “constant IV” Theta the platform shows. Once earnings pass, it drops 2.97 overnight, 70% of its remaining value. The time value of the event day doesn’t bleed away early; it is “stored” in IV and paid out all at once when the event happens. Seen this way, IV crush is simply deferred Theta.</p>
+      <p>Two corollaries: the high Theta readings you see before an event overstate daily decay, because they assume IV stays constant; and if you buy an event option a week or two early, you pay little day-to-day Theta. The real cost is that last night.</p>
+      <figure class="plate" id="fig4">
+        <div class="fig-head"><span class="fig-title">IV crush makes buyers lose even when they get the direction right</span><span class="fig-no">Figure 5-4 · 7-day ATM, day after earnings, P&amp;L per contract</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Choose a position">
+            <button type="button" data-k="c" aria-pressed="true">Long call</button>
+            <button type="button" data-k="p" aria-pressed="false">Long put</button>
+            <button type="button" data-k="s" aria-pressed="false">Long straddle</button>
+          </div>
+          <label class="ctl" for="f4-pre">Pre-event IV <input id="f4-pre" type="range" min="40" max="120" value="80"> <output id="f4-pre-o">80%</output></label>
+        </div>
+        <div class="controls">
+          <label class="ctl" for="f4-mv">Next-day stock move <input id="f4-mv" type="range" min="-15" max="15" step="0.5" value="3"> <output id="f4-mv-o">+3.0%</output></label>
+          <label class="ctl" for="f4-post">Post-event IV <input id="f4-post" type="range" min="10" max="100" value="35"> <output id="f4-post-o">35%</output></label>
+        </div>
+        <svg class="chart" id="f4-svg" viewBox="0 0 680 340" role="img" aria-label="P&amp;L heat map across next-day stock moves and post-event IV"></svg>
+        <div class="legend"><span><i style="border-color: var(--theta); border-top-width: 8px"></i>Profit zone</span><span><i style="border-color: var(--gamma); border-top-width: 8px"></i>Loss zone</span><span><i style="border-color: var(--ink)"></i>Breakeven line</span><span><i class="dash" style="border-color: var(--muted)"></i>Pre-event IV</span></div>
+        <div class="readout">
+          <div><b id="f4-r1">—</b><small>P&amp;L at this point (per contract)</small></div>
+          <div><b id="f4-r2">—</b><small>Same move, IV unchanged</small></div>
+          <div><b id="f4-r3">—</b><small>Breakeven move at this IV</small></div>
+          <div><b id="f4-r4">—</b><small>Cost to open (per contract)</small></div>
+        </div>
+        <figcaption>The darker the color, the larger the profit or loss. The default dot sits at “up 3%, IV down to 35%”: the direction is right, yet it is in the magenta loss zone. Follow the dashed line (IV unchanged) to the right, and a 0.6% rise already puts you in the green zone. Drag post-event IV down and the breakeven line shifts right; switch to “Long straddle,” and the width of the loss band in the middle is the size of move you need.</figcaption>
+      </figure>
+
+      <h3>What to do about it</h3>
+      <ul>
+        <li><strong>Use a spread</strong>: the two legs’ Vega partly offsets (Section 5.4), so IV crush does much less damage. The price is a capped payoff.</li>
+        <li><strong>Go further out in time</strong>: the event’s variance is spread over more days, so a longer-dated option’s IV is lifted by only a few points. In the same setup, a 60-day ATM call has a pre-event IV of about 42.8% and loses 18% the next day if the stock doesn’t move; the 7-day call loses 59%.</li>
+        <li><strong>Use a different instrument</strong>: if your view is on direction rather than volatility, consider the stock itself, or enter after the event.</li>
+        <li><strong>Take the other side</strong>: sellers collect exactly this IV premium, but they carry the gap risk. Chapter 10 is devoted to choosing structures for event trades.</li>
+      </ul>
+      <div class="note field">
+        <span class="tag">Field notes</span>
+        <p>A few common ways traders handle IV: IV tends to run high at the open, which suits selling options rather than chasing them; around earnings, use a debit spread instead of a single leg so the IV crush on the two legs partly cancels out; when you want to bet on a stock’s direction but its IV is too high, switch to a correlated substitute with lower IV (such as an ETF in the same industry); and when your view needs a long time to play out, prefer longer-dated options or the stock itself, because the time value of near-month options can make even a correct view lose money.</p>
+      </div>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">5.6</span>Rho, and LEAPS when rates are high</h2>
+      <p>Rho is the change in an option’s price when interest rates move by 1 percentage point. It is proportional to term: negligible for a 30-day option, but for a two-year LEAPS it is worth about two months of Theta.</p>
+      <div class="formula">
+        <div class="eq"><span class="v">Rho</span><sub>call</sub> <span class="up">=</span> <span class="frac"><span><span class="v">K</span><span class="v">T</span><span class="v">e</span><sup>−<span class="v">rT</span></sup><span class="v">N</span>(<span class="v">d</span><sub>2</sub>)</span><span>100</span></span></div>
+        <div class="eq"><span class="v">Rho</span><sub>put</sub> <span class="up">=</span> <span class="up">−</span><span class="frac"><span><span class="v">K</span><span class="v">T</span><span class="v">e</span><sup>−<span class="v">rT</span></sup><span class="v">N</span>(−<span class="v">d</span><sub>2</sub>)</span><span>100</span></span></div>
+        <p class="where">The formula contains a <span class="v">T</span>, so Rho grows linearly with term. The intuition comes from parity, <span class="v">C</span> − <span class="v">P</span> = <span class="v">S</span> − <span class="v">K</span>e<sup>−<span class="v">rT</span></sup>: the higher the rate, the lower the present value of the strike, and the more expensive the call is relative to the put. Buying a call is like “locking in the price now and paying at expiration”; the higher the rate, the more paying later is worth.</p>
+      </div>
+      <div class="tbl">
+        <table>
+          <caption>Table 5-7 ATM option prices (stock = strike = 100, IV 30%) at different interest rates</caption>
+          <thead><tr><th>Term</th><th>Call @1%</th><th>@4%</th><th>@6%</th><th>Put @1%</th><th>@4%</th><th>@6%</th><th>Call Rho @4%</th></tr></thead>
+          <tbody>
+            <tr><td>30 days</td><td class="mono">3.470</td><td class="mono">3.591</td><td class="mono">3.673</td><td class="mono">3.388</td><td class="mono">3.263</td><td class="mono">3.181</td><td class="mono">0.041</td></tr>
+            <tr><td>1 year</td><td class="mono">12.368</td><td class="mono">13.753</td><td class="mono">14.717</td><td class="mono">11.373</td><td class="mono">9.832</td><td class="mono">8.894</td><td class="mono">0.474</td></tr>
+            <tr class="hl"><td>2 years</td><td class="mono">17.642</td><td class="mono">20.280</td><td class="mono">22.123</td><td class="mono">15.661</td><td class="mono">12.591</td><td class="mono">10.815</td><td class="mono">0.906</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li><strong>Short-dated options</strong>: when rates rise from 4% to 6%, a 30-day call gains only 0.082, a little more than one day of Theta. You can safely ignore it.</li>
+        <li><strong>LEAPS</strong>: for the same change in rates, a 2-year call gains <span class="num">1.84</span> and the put loses <span class="num">1.78</span>. A 2-year ATM call has Rho of $90.6 per contract and Theta of $1.57 a day: a 1-percentage-point move in rates equals 58 days of time decay.</li>
+        <li><strong>Low-rate vs. high-rate environments</strong>: at a 1% rate, a 2-year ATM call and put differ by only $2; at 6%, by $11. The same LEAPS call costs noticeably more when rates are high, and the put noticeably less.</li>
+      </ul>
+
+      <figure class="plate" id="fig5">
+        <div class="fig-head"><span class="fig-title">Rates barely affect short-dated options but clearly move LEAPS prices</span><span class="fig-no">Figure 5-5 · Stock at $100, IV 30%, interactive</span></div>
+        <div class="controls">
+          <label class="ctl" for="f5-d">LEAPS term <input id="f5-d" type="range" min="180" max="1095" step="5" value="730"> <output id="f5-d-o">730 days</output></label>
+          <label class="ctl" for="f5-k">Strike <input id="f5-k" type="range" min="70" max="130" step="1" value="100"> <output id="f5-k-o">100</output></label>
+        </div>
+        <svg class="chart" id="f5-svg" viewBox="0 0 680 320" role="img" aria-label="Option prices vs. interest rates: LEAPS compared with 30-day options"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>LEAPS call</span><span><i style="border-color: var(--gamma)"></i>LEAPS put</span><span><i class="dash" style="border-color: var(--delta)"></i>30-day call</span><span><i class="dash" style="border-color: var(--gamma)"></i>30-day put</span></div>
+        <div class="readout">
+          <div><b id="f5-r1">—</b><small>LEAPS call Rho (per contract per 1%)</small></div>
+          <div><b id="f5-r2">—</b><small>30-day call Rho (per contract per 1%)</small></div>
+          <div><b id="f5-r3">—</b><small>Rates 4% → 6%: LEAPS call</small></div>
+          <div><b id="f5-r4">—</b><small>Rates 4% → 6%: LEAPS put</small></div>
+        </div>
+        <figcaption>The two dashed lines are nearly flat: 30-day options are insensitive to rates. The slope of the solid lines is Rho, steepest when you drag the term out to 1095 days (3 years). Drag the strike to 70 and the LEAPS call’s Rho is actually larger than at the money ($102 per contract), while the put becomes very cheap: deep in the money, the call’s rate sensitivity comes almost entirely from discounting the strike (Case 3).</figcaption>
+      </figure>
+      <h3>Dividends: the other “interest rate” in LEAPS</h3>
+      <p>Dividends push option prices the opposite way from interest rates: shareholders receive the dividend, call holders don’t. For a 30-day option, a 2% dividend yield makes the ATM call only 0.09 cheaper (Chapter 3, Table 3-2); for a 2-year ATM call, as the dividend yield goes from 0 to 1% to 2%, the price falls from <span class="num">20.28</span> to <span class="num">19.00</span> to <span class="num">17.78</span>, while the put rises from 12.59 to 14.01. When you use a LEAPS call in place of a high-dividend stock, the two years of dividends you give up are already deducted from the premium; if the company unexpectedly raises or cuts its dividend, the LEAPS price changes with it.</p>
+      <p>Falling rates while you hold LEAPS cost you money: if rates drop from 6% back to 4%, a 2-year ATM call loses $184 per contract without the stock or IV moving at all. When you hold LEAPS for a long time, Rho is a risk to watch, just like Delta and Vega.</p>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">5.7</span>Second-order Greeks</h2>
+      <p>The first-order Greeks themselves change. Vanna links Delta and Vega, Charm links Delta and Theta, and Volga describes how Vega itself changes with IV.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 5-8 Four commonly used second-order Greeks</caption>
+          <thead><tr><th>Name</th><th style="text-align:left">Definition</th><th style="text-align:left">Another reading</th><th style="text-align:left">When it matters</th></tr></thead>
+          <tbody>
+            <tr><td>Vanna</td><td class="mono" style="text-align:left">∂Delta/∂σ</td><td style="text-align:left">= ∂Vega/∂S: how Vega changes as the stock moves</td><td style="text-align:left">OTM options during big IV moves</td></tr>
+            <tr><td>Charm</td><td class="mono" style="text-align:left">∂Delta/∂t</td><td style="text-align:left">= ∂Theta/∂S: how Theta changes as the stock moves</td><td style="text-align:left">Near expiration; expiration-day hedging flows</td></tr>
+            <tr><td>Volga (Vomma)</td><td class="mono" style="text-align:left">∂Vega/∂σ</td><td style="text-align:left">Vega’s “Gamma”: how much price curves with IV</td><td style="text-align:left">Far-OTM options when IV spikes</td></tr>
+            <tr><td>Veta</td><td class="mono" style="text-align:left">∂Vega/∂t</td><td style="text-align:left">How fast Vega shrinks over time</td><td style="text-align:left">Holding volatility positions for a long time</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Vanna: two readings of one number</h3>
+      <p>Chapter 4 showed that the Delta of a 30-day 110 call rises with IV, by about 0.009 for each 1-point rise. Look at it the other way: when the stock goes from 100 to 101, this option’s Vega goes from <span class="num">0.0675</span> to <span class="num">0.0763</span>, an increase of 0.0087. Computed by central differences, both numbers are <span class="num">0.00873</span>, exactly equal. This is no coincidence: both are the cross second derivative of price with respect to <span class="v">S</span> and σ, and the order of differentiation can be swapped.</p>
+      <p>In practice: as the stock moves toward an OTM option’s strike, the option’s IV exposure grows. An ATM option’s Vanna is close to 0; the ITM 90 call has negative Vanna (−0.0069), so its Vega actually shrinks as the stock rises.</p>
+
+      <h3>Charm: theta and delta tell the same story</h3>
+      <p>After one day, the 110 call (30 days) sees its Delta fall from 0.152 by <span class="num">0.0047</span>. At the same time, for every $1 the stock rises, its daily Theta takes an extra <span class="num">0.0047</span>. Again, this is the same cross derivative. The ITM 90 call is the mirror image: its Delta drifts toward 1 by 0.0033 a day. Chapter 4 covered the expiration-day hedging flows that Charm creates; what we add here is its link to Theta: the more sensitive a position’s Theta is to the stock price, the faster its Delta drifts over time.</p>
+
+      <h3>Volga: OTM options gain “extra” when IV spikes</h3>
+      <p>Vega extrapolates linearly from a 1-point change in IV. An ATM option’s price is almost a straight line in IV, so the extrapolation is accurate; an OTM option’s price curves upward in IV, so when IV jumps, the actual gain far exceeds what Vega predicts.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 5-9 30-day options when IV jumps from 30%: linear Vega estimate vs. actual price</caption>
+          <thead><tr><th>Contract</th><th>Price at IV 30%</th><th>Vega</th><th>IV 50%: estimate</th><th>Actual</th><th>IV 60%: estimate</th><th>Actual</th></tr></thead>
+          <tbody>
+            <tr><td>100 call (ATM)</td><td class="mono">3.591</td><td class="mono">0.114</td><td class="mono">5.871</td><td class="mono">5.870</td><td class="mono">7.011</td><td class="mono">7.008</td></tr>
+            <tr><td>90 put (OTM)</td><td class="mono">0.401</td><td class="mono">0.049</td><td class="mono">1.375</td><td class="mono">1.754</td><td class="mono">1.863</td><td class="mono">2.604</td></tr>
+            <tr class="hl"><td>85 put (far OTM)</td><td class="mono">0.081</td><td class="mono">0.016</td><td class="mono">0.409</td><td class="mono">0.807</td><td class="mono">0.573</td><td class="mono">1.409</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>When IV doubles from 30% to 60%, the 85 put’s actual price is 2.5 times the Vega estimate. This is one reason far-OTM puts serve as crash insurance: in a crisis they benefit from Delta, Gamma, Vega and Volga all at once. It is also why sellers of far-OTM options lose far more than expected in a crisis: negative Volga means that the more IV rises, the bigger your Vega exposure gets. To put a number on it: sell 10 contracts of the 30-day 85 put and collect $81; with the stock unchanged and IV doubling from 30% to 60%, the loss is <span class="num">$1,328</span>, while the Vega estimate is only <span class="num">0.0164 × 30 × 1,000 = $492</span>. Stress-testing a short position with Vega understates tail risk by more than half. You have to reprice it in full.</p>
+      <h3>Veta: vega ages too</h3>
+      <p>A 30-day ATM call’s Vega falls from 0.1140 to 0.1121 in one day. If you hold a long-term positive-Vega position, your IV exposure shrinks day by day even if IV doesn’t change. That is why Section 5.5 used “Vega with 6 days left” to estimate the IV-crush loss.</p>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">5.8</span>Reading a full Greeks table</h2>
+      <p>Read a Greeks table in three steps: first use the signs to judge the shape of the position, then turn each number into a dollar scenario, and finally use the second-order terms to check how those numbers will change.</p>
+      <p>The example is a common diagonal spread (often called a “poor man’s covered call”): with the stock at $100 and IV 30%, buy 5 contracts of the 365-day 85 call (in place of the stock) and sell 5 contracts of the 30-day 105 call (to collect rent).</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 5-10 Full Greeks of the diagonal spread (position totals, in dollars or shares)</caption>
+          <thead><tr><th>Item</th><th>Long 5 × 365-day 85 call</th><th>Short 5 × 30-day 105 call</th><th>Total</th></tr></thead>
+          <tbody>
+            <tr><td>Price per share</td><td class="mono">22.347</td><td class="mono">1.662</td><td class="mono">—</td></tr>
+            <tr><td>Position value</td><td class="mono">+11,174</td><td class="mono">−831</td><td class="mono">+10,343</td></tr>
+            <tr><td>Delta (shares)</td><td class="mono">+397.7</td><td class="mono">−156.7</td><td class="mono">+240.9</td></tr>
+            <tr><td>Gamma (shares / $)</td><td class="mono">+4.7</td><td class="mono">−20.6</td><td class="mono neg">−15.9</td></tr>
+            <tr><td>Theta ($ / day)</td><td class="mono">−8.97</td><td class="mono">+27.03</td><td class="mono pos">+18.07</td></tr>
+            <tr><td>Vega ($ / IV point)</td><td class="mono">+141.9</td><td class="mono">−50.8</td><td class="mono">+91.1</td></tr>
+            <tr><td>Rho ($ / 1% rate)</td><td class="mono">+285.9</td><td class="mono">−12.2</td><td class="mono">+273.7</td></tr>
+            <tr><td>Vanna (Vega $ / $1 stock move)</td><td class="mono" colspan="2" style="text-align:center">—</td><td class="mono">−5.9</td></tr>
+            <tr><td>Charm (shares / day)</td><td class="mono" colspan="2" style="text-align:center">—</td><td class="mono">+2.0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Line by line</h3>
+      <ol>
+        <li><strong>Delta +241</strong>: directionally, this is like holding 241 shares, with $10,343 of capital tied up. Buying 241 shares would take $24,100.</li>
+        <li><strong>Gamma −15.9</strong>: for every $1 the stock rises, Delta drops by 15.9 shares, so the more it rises, the less the position acts like stock; on the way down Delta grows instead, so the further it falls, the faster you lose. Negative Gamma means big moves in either direction are unwelcome. It comes from the short-dated call you sold.</li>
+        <li><strong>Theta +$18/day</strong>: you net $18 a day. The short leg pays $27 a day; the long leg costs $9 a day.</li>
+        <li><strong>Vega +$91/point</strong>: each 1-point drop in IV loses $91, about 5 days of Theta. The long leg’s Vega is far larger than the short leg’s (Section 5.4: Vega is proportional to √<span class="v">T</span>), so this “rent-collecting” position is actually long volatility.</li>
+        <li><strong>Rho +$274/1%</strong>: a 1-percentage-point rise in rates makes $274, about 15 days of Theta. The reason is that the long leg is a one-year option (Section 5.6).</li>
+        <li><strong>Vanna −5.9</strong>: for every $1 the stock rises, position Vega falls by $5.9. As the stock climbs toward 105, the short leg gets closer to the money and its negative Vega grows.</li>
+        <li><strong>Charm +2.0</strong>: with nothing else changing, Delta rises by about 2 shares a day. The short leg is an OTM option whose Delta drifts toward 0 every day, so it hedges away less and less.</li>
+      </ol>
+      <h3>Turning the numbers into scenarios</h3>
+      <div class="tbl">
+        <table>
+          <caption>Table 5-11 Greeks estimate vs. full repricing (position P&amp;L, $)</caption>
+          <thead><tr><th>Scenario</th><th>Greeks estimate</th><th>Repriced</th><th style="text-align:left">Difference comes from</th></tr></thead>
+          <tbody>
+            <tr><td>Stock +5</td><td class="mono pos">+1,006</td><td class="mono pos">+990</td><td style="text-align:left">Gamma itself changes</td></tr>
+            <tr><td>Stock −5</td><td class="mono neg">−1,403</td><td class="mono neg">−1,374</td><td style="text-align:left">Same as above</td></tr>
+            <tr><td>Stock +10</td><td class="mono pos">+1,615</td><td class="mono pos">+1,539</td><td style="text-align:left">Higher-order terms</td></tr>
+            <tr class="hl"><td>Stock −10</td><td class="mono neg">−3,203</td><td class="mono neg">−2,945</td><td style="text-align:left">Short leg’s Gamma vanishes quickly on a big drop</td></tr>
+            <tr><td>IV −5 points</td><td class="mono neg">−456</td><td class="mono neg">−432</td><td style="text-align:left">Volga</td></tr>
+            <tr><td>7 days pass</td><td class="mono pos">+126</td><td class="mono pos">+133</td><td style="text-align:left">Short leg’s Theta accelerates</td></tr>
+            <tr><td>Rates +1%</td><td class="mono pos">+274</td><td class="mono pos">+275</td><td style="text-align:left">Nearly linear</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note warn">
+        <span class="tag">Check the units before reading your broker’s Greeks</span>
+        <ul>
+          <li>Per share or per contract, one contract or the whole position: the same Theta might show up as −0.06, −6 or −30.</li>
+          <li>Whether Theta is per calendar day or per trading day, and whether Friday already includes the weekend (Section 5.3).</li>
+          <li>Vega per 1-percentage-point change in IV (this course’s convention); some platforms use a 1% relative change, or show it as a decimal per 0.01.</li>
+          <li>Whether the signs are flipped for short positions: some platforms list the Greeks of the contract itself, and you have to multiply by −1 yourself.</li>
+        </ul>
+      </div>
+      <div class="note gam">
+        <span class="tag">The position in one sentence</span>
+        <p>It fears two things most: a sharp near-term drop (positive Delta plus negative Gamma; a $10 fall costs nearly 30% of the capital) and a fall in IV (positive Vega). It wants the stock to drift slowly up to around 105 with IV steady. The $18 a day of Theta income doesn’t cover the loss from a 1-point drop in IV, or from a drop of about $0.1 in the stock, so “collecting rent” is only a secondary source of return for this position.</p>
+      </div>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">Cases</span>Three cases</h2>
+
+      <div class="case">
+        <div class="case-no">Case 1</div>
+        <h3>Same strike at 7, 30, 90 and 365 days: a time position or a volatility position?</h3>
+        <p>With the stock at $100 and IV 30%, compare the Theta and Vega of the 100-strike call at different terms:</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 5-12 ATM calls (per share)</caption>
+            <thead><tr><th>Term</th><th>Price</th><th>Theta</th><th>Theta as % of price / day</th><th>Vega</th><th>IV rise needed to offset one day of Theta</th><th>One IV point = days of Theta</th></tr></thead>
+            <tbody>
+              <tr><td>7 days</td><td class="mono">1.695</td><td class="mono">−0.124</td><td class="mono">7.3%</td><td class="mono">0.055</td><td class="mono">2.24 points</td><td class="mono">0.45</td></tr>
+              <tr><td>30 days</td><td class="mono">3.591</td><td class="mono">−0.062</td><td class="mono">1.74%</td><td class="mono">0.114</td><td class="mono">0.55 points</td><td class="mono">1.8</td></tr>
+              <tr><td>90 days</td><td class="mono">6.412</td><td class="mono">−0.038</td><td class="mono">0.59%</td><td class="mono">0.196</td><td class="mono">0.19 points</td><td class="mono">5.2</td></tr>
+              <tr class="hl"><td>365 days</td><td class="mono">13.753</td><td class="mono">−0.021</td><td class="mono">0.15%</td><td class="mono">0.383</td><td class="mono">0.05 points</td><td class="mono">18.3</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>From 7 days to 365 days, Theta shrinks to a sixth and Vega grows sevenfold. Their ratio, |Θ| / Vega, is proportional to 1/<span class="v">T</span>, so the gap grows quadratically:</p>
+        <ul>
+          <li><strong>7 days</strong>: IV would have to rise 2.24 points every day just to offset Theta. Making money from IV is almost impossible. This is a pure “time + Gamma” position: either the stock makes a big move right away, or you lose the time value.</li>
+          <li><strong>365 days</strong>: a single IV point is worth 18 days of Theta. IV falling from 30% to 25% is like about three months of time decay happening at once (the last row of Table 5-0 in the opening). This is a volatility position; direction and time are secondary.</li>
+        </ul>
+        <p>Switch to the OTM 110 strike and the conclusion holds, only the ratios are more extreme: the 30-day 110 call loses 5.4% a day and its Vega is 10.3% of its price; at 365 days the figures are 0.21% and 4.1%.</p>
+        <div class="note gam">
+          <span class="tag">Takeaway</span>
+          <p>Choosing a term is choosing what you are betting on. To bet on “a big move soon,” go short-dated; to bet on “volatility will rise,” go long-dated. When you use long-dated options to bet on direction, remember that a few points of IV decline can wipe out months of gains; when you use short-dated options to bet on rising IV, Theta almost always wins.</p>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 2</div>
+        <h3>March 2020: buying puts after VIX hit a record</h3>
+        <p>In mid-March 2020, US stocks fell sharply day after day and VIX closed at a record high. Many people only started buying puts for “protection” at that point. What followed: the S&amp;P 500 bottomed in late March and rallied hard in April, and implied volatility drifted lower over the following months. Most puts bought at the highs took a double hit, from direction and from volatility.</p>
+        <p>An illustration with hypothetical numbers (index normalized to 100): buy a 30-day ATM put at IV 70% for <span class="num">$7.817</span>. For comparison, the same ATM put costs only <span class="num">$1.667</span> in a calm period with IV at 16%, so the same protection costs 4.7 times as much. Some scenarios ten days later (20 days left):</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 5-13 A 30-day ATM put bought at IV 70%, ten days later (per share)</caption>
+            <thead><tr><th style="text-align:left">Scenario</th><th>Index</th><th>IV</th><th>Put price</th><th>P&amp;L</th></tr></thead>
+            <tbody>
+              <tr><td style="text-align:left">Down another 5%, IV stays at 70%</td><td class="mono">95</td><td class="mono">70%</td><td class="mono">9.033</td><td class="mono pos">+15.6%</td></tr>
+              <tr class="hl"><td style="text-align:left">Down another 5%, IV falls to 50%</td><td class="mono">95</td><td class="mono">50%</td><td class="mono">7.329</td><td class="mono neg">−6.2%</td></tr>
+              <tr><td style="text-align:left">Flat, IV falls to 45%</td><td class="mono">100</td><td class="mono">45%</td><td class="mono">4.087</td><td class="mono neg">−47.7%</td></tr>
+              <tr><td style="text-align:left">Rebounds 8%, IV falls to 35%</td><td class="mono">108</td><td class="mono">35%</td><td class="mono">0.755</td><td class="mono neg">−90.3%</td></tr>
+              <tr><td style="text-align:left">Down another 10%, IV 60%</td><td class="mono">90</td><td class="mono">60%</td><td class="mono">11.571</td><td class="mono pos">+48.0%</td></tr>
+              <tr><td style="text-align:left">Down another 15%, IV rises to 75%</td><td class="mono">85</td><td class="mono">75%</td><td class="mono">16.362</td><td class="mono pos">+109.3%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The second row says it best: the directional call was right and the index fell another 5%, but because IV dropped from 70% to 50%, the put still lost money. Work out the breakeven: if IV falls to 50% after ten days, the index must drop to <span class="num">94.25</span> (another 5.75%) just to break even; if IV holds at 70%, it only needs to fall to 97.18.</p>
+        <p>Why does IV usually fall back after a high? Volatility tends to mean-revert, and extreme values are hard to sustain for long (Chapter 6). At entry, this put’s Theta is <span class="num">−0.127</span> a day, five times that of the same option at IV 16% (−0.025); its Vega is 0.114, so each 1-point drop in IV costs another 0.11.</p>
+        <div class="note gam">
+          <span class="tag">Takeaway</span>
+          <ul>
+            <li>Buy insurance when things are calm. Buying protection in a crisis means buying the most expensive volatility of the year, and it only pays if “the market keeps falling hard” and “the panic persists” both happen.</li>
+            <li>To express a bearish view when IV is high, use a put spread (sell a lower-strike put to offset part of the Vega), or simply reduce your stock position; at such times a single-leg put is the worst deal.</li>
+            <li>Before you trade, plug in “IV falls 20 points” and you’ll see how big a drop you need.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 3</div>
+        <h3>When rates are high, most of a LEAPS option’s time value is interest</h3>
+        <p>With the stock at $100 and IV 30%, buy a 2-year 70 call (deep ITM, often used in place of the stock). Use parity from Chapter 3 to break down its time value: <span class="v">C</span> = (<span class="v">S</span> − <span class="v">K</span>) + <span class="v">K</span>(1 − e<sup>−<span class="v">rT</span></sup>) + <span class="v">P</span>, that is, “intrinsic value + interest on the strike + the price of the put at the same strike.”</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 5-14 Price breakdown of the 2-year 70 call (per share)</caption>
+            <thead><tr><th>Rate</th><th>Call price</th><th>Intrinsic value</th><th>Time value</th><th>of which: interest</th><th>of which: put insurance</th><th>Delta</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">4%</td><td class="mono">38.030</td><td class="mono">30</td><td class="mono">8.030</td><td class="mono">5.382</td><td class="mono">2.648</td><td class="mono">0.893</td></tr>
+              <tr class="hl"><td class="mono">6%</td><td class="mono">40.073</td><td class="mono">30</td><td class="mono">10.073</td><td class="mono">7.916</td><td class="mono">2.157</td><td class="mono">0.909</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>At a 6% rate, 79% of the time value is interest. Buying this call is like controlling about 91 shares with $4,007 while “borrowing” the $7,000 strike for two years, with the interest prepaid in the premium.</p>
+        <p>Whether this interest counts as a loss depends on where the money you saved goes:</p>
+        <ul>
+          <li><strong>The cash saved goes into T-bills</strong>: buying the stock takes $10,000, the call only $4,007, and the remaining $5,993 earns 6%. Parity ensures the two come out even, so the interest isn’t wasted.</li>
+          <li><strong>The cash saved sits in your account earning nothing</strong>: over two years you pay <span class="num">70 × (1 − e<sup>−0.12</sup>) × 100 ≈ $792</span> for nothing ($538 at a 4% rate).</li>
+          <li><strong>The money saved buys more LEAPS</strong>: that is adding leverage, and your Delta exposure will far exceed your capital.</li>
+        </ul>
+        <div class="note gam">
+          <span class="tag">Takeaway</span>
+          <p>When rates are high, a big chunk of a LEAPS call’s price is financing cost. When you use one in place of the stock, either put the cash you save to work earning the same interest or accept the cost; and know that falling rates while you hold it will reduce the option’s value (Rho is about $102 per contract per 1%).</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">Tools</span>Checklist and self-test</h2>
+      <p>Your checkmarks are saved only in your own browser.</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">5-1</span>Before you buy: time</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">Add up Theta over the holding period, scaling it up for acceleration near expiration</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">ATM: avoid the last two or three weeks; OTM: avoid the stretch where the strike is “one standard deviation away”</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">Check whether your platform’s Theta is per calendar day or per trading day</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">5-2</span>Before you buy: volatility</h4>
+          <ul>
+            <li><input type="checkbox" id="k4"><label for="k4">Check where current IV sits in its own history (Chapter 6)</label></li>
+            <li><input type="checkbox" id="k5"><label for="k5">If there’s an event: compute the breakeven assuming “IV returns to its usual level afterward”</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">If Vega is too large, consider a spread so the two legs offset each other</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">5-3</span>While holding: a Greeks checkup</h4>
+          <ul>
+            <li><input type="checkbox" id="k7"><label for="k7">Convert Theta, Vega and Rho into dollars per day, per point and per 1%</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">Compute Vega ÷ |Theta|: how many days of Theta one IV point is worth</label></li>
+            <li><input type="checkbox" id="k9"><label for="k9">Holding LEAPS: include rate changes in your scenarios</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">5-4</span>Sellers: before collecting Theta</h4>
+          <ul>
+            <li><input type="checkbox" id="k10"><label for="k10">How much negative Gamma comes with this Theta (Chapter 4)</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">Reprice directly for IV spikes of 10 and 20 points; don’t extrapolate with Vega</label></li>
+            <li><input type="checkbox" id="k12"><label for="k12">For far-OTM options, look at Vega as a percentage of price, not just dollar Vega</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Five self-test questions</h3>
+      <details class="q"><summary><span class="num">1</span><span>A 30-day ATM call has Theta of −0.062. About how much does it lose over ten days (stock and IV unchanged)? Will the actual loss be more or less?</span></summary>
+        <div class="ans"><p>The Theta estimate is <span class="num">0.062 × 10 ≈ 0.62</span>; the actual loss is <span class="num">3.591 − 2.909 = 0.68</span>, which is more. An ATM option’s Theta grows as expiration approaches, so extrapolating from today’s Theta underestimates the loss.</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>A 30-day 110 call is priced at 0.655 with Vega of 0.0675. IV rises from 30% to 35%. Use Vega to estimate the new price and the percentage gain. What are the actual figures?</span></summary>
+        <div class="ans"><p>Estimate: <span class="num">0.655 + 5 × 0.0675 = 0.993</span>, up 52%. Actual: <span class="num">1.022</span>, up 56%; the extra comes from Volga. Over the same move, the ATM call rises only 16%.</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>Before earnings, a 7-day ATM straddle costs $8.83 (IV 80%), and IV is expected to return to 35% after earnings. How much does the stock need to move the next day for the straddle to break even? Roughly what standard deviation is the market pricing for earnings day?</span></summary>
+        <div class="ans"><p>Breakeven is about <span class="num">+8.65% / −8.83%</span>. Earnings-day standard deviation: <span class="num">√(0.80² × 7 − 0.35² × 6) / √365 ≈ 10.1%</span>, which corresponds to a mean absolute move of about 8.1%.</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>A 2-year ATM call has Rho of 0.906 and the ATM put Rho of −0.940. If rates rise from 4% to 6%, roughly how does each change?</span></summary>
+        <div class="ans"><p>The call about <span class="num">+0.906 × 2 ≈ +1.81</span> (actual +1.84), the put about <span class="num">−0.940 × 2 ≈ −1.88</span> (actual −1.78). Rho itself changes with rates, so the linear estimate is a little off. Per contract, that is about +$184 and −$178.</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>A position has Delta +241 shares, Gamma −15.9, Theta +$18/day and Vega +$91/point. What two scenarios does it fear most?</span></summary>
+        <div class="ans"><p>First, a sharp near-term drop: positive Delta produces a loss, and negative Gamma makes Delta grow as the stock falls, so the losses accelerate (a $10 drop loses about $2,945). Second, a fall in IV: each 1-point drop loses $91, and a 5-point drop about $432, more than three weeks of Theta.</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="Chapter navigation"></nav>
+
+    <footer class="end">
+      <p>Examples in this chapter are computed with the Black-Scholes model (4% interest rate, no dividends, 365-day year; Section 5.3 also uses a trading-day clock for comparison). The IVs in the earnings and 2020 scenarios are hypothetical. For education only; not investment advice.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+  const signed = (v, d) => (v > 0.0000001 ? "+" : v < -0.0000001 ? "−" : "") + Math.abs(v).toFixed(d === undefined ? 2 : d);
+  function niceStep(span, n) {
+    const raw = span / n, p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p;
+    return (f < 1.5 ? 1 : f < 3 ? 2 : f < 7 ? 5 : 10) * p;
+  }
+  function axis(lo, hi, n) {
+    const st = niceStep(hi - lo, n || 5);
+    const a = Math.floor(lo / st + 1e-9) * st, b = Math.ceil(hi / st - 1e-9) * st;
+    const t = []; for (let v = a; v <= b + st * 1e-6; v += st) t.push(+v.toFixed(6));
+    return { lo: a, hi: b, t };
+  }
+
+  // ---------- fig 5-1 时间价值衰减 ----------
+  (function () {
+    const svg = document.getElementById("f1-svg");
+    const ivS = document.getElementById("f1-iv");
+    const btns = document.querySelectorAll("#fig1 .seg button");
+    const Ks = [95, 100, 105, 110], cols = ["var(--warn)", "var(--delta)", "var(--theta)", "var(--gamma)"], ws = [1.8, 2.8, 2.2, 2.4];
+    const names = ["95 call (ITM)", "100 call (ATM)", "105 call", "110 call"];
+    let mode = "usd";
+    const tv = (K, d, s) => d <= 0 ? 0 : bs(100, K, d / DAY, s, "c").price - Math.max(100 - K, 0);
+    function draw() {
+      const s = +ivS.value / 100;
+      document.getElementById("f1-iv-o").textContent = ivS.value + "%";
+      const rems = range(0, 90, 0.5);
+      const series = Ks.map((K, i) => {
+        const v90 = tv(K, 90, s);
+        return { pts: rems.map(r => [90 - r, mode === "usd" ? tv(K, r, s) : (v90 > 1e-9 ? tv(K, r, s) / v90 * 100 : 0)]), color: cols[i], w: ws[i] };
+      });
+      let y, yt, yf, ylabel;
+      if (mode === "usd") {
+        const ya = axis(0, Math.max(...series.flatMap(q => q.pts.map(p => p[1]))) * 1.05, 5);
+        y = [0, ya.hi]; yt = ya.t; yf = v => (+v.toFixed(2)).toString(); ylabel = "Time value ($/share)";
+      } else { y = [0, 105]; yt = [0, 25, 50, 75, 100]; yf = v => v + "%"; ylabel = "% of 90-day value"; }
+      plot(svg, {
+        x: [0, 90], y, xt: [0, 15, 30, 45, 60, 75, 90], yt, yf, xf: v => 90 - v,
+        xlabel: "Days left", ylabel, vline: 60, series
+      });
+      document.getElementById("f1-legend").innerHTML = Ks.map((K, i) => `<span><i style="border-color: ${cols[i]}"></i>${names[i]}</span>`).join("") + `<span><i class="dash" style="border-color: var(--muted)"></i>30 days left</span>`;
+      const a90 = tv(100, 90, s), a30 = tv(100, 30, s), o90 = tv(110, 90, s), o30 = tv(110, 30, s);
+      document.getElementById("f1-r1").textContent = (a30 / a90 * 100).toFixed(1) + "%";
+      document.getElementById("f1-r2").textContent = o90 > 1e-9 ? ((1 - o30 / o90) * 100).toFixed(1) + "%" : "—";
+      document.getElementById("f1-r3").textContent = fmt(bs(100, 100, 1 / DAY, s, "c").theta, 3);
+      let best = 1, bv = 0;
+      for (let d = 1; d <= 400; d++) { const th = -bs(100, 110, d / DAY, s, "c").theta; if (th > bv) { bv = th; best = d; } }
+      document.getElementById("f1-r4").textContent = "" + best + " days";
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      mode = b.dataset.mode;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    ivS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 5-2 周末 (静态) ----------
+  (function () {
+    const svg = document.getElementById("f2-svg");
+    const cal = [0.198, 0.069, 0.070, 0.071, 0.073], trd = [0.100, 0.091, 0.094, 0.096, 0.099];
+    const days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+    function draw() {
+      const narrow = (svg.getBoundingClientRect().width || 680) < 560;
+      const bars = [], labels = [];
+      cal.forEach((v, i) => {
+        bars.push({ x: i + 1 - 0.19, y: v, w: 0.34, color: "var(--delta)" });
+        bars.push({ x: i + 1 + 0.19, y: trd[i], w: 0.34, color: "var(--theta)" });
+        labels.push([i + 1 - 0.19, v, narrow ? v.toFixed(2).slice(1) : v.toFixed(3), 0, -6, "middle", "var(--delta)"]);
+        labels.push([i + 1 + 0.19, trd[i], narrow ? trd[i].toFixed(2).slice(1) : trd[i].toFixed(3), 0, -6, "middle", "var(--theta)"]);
+      });
+      const res = plot(svg, {
+        x: [0.45, 5.55], y: [0, 0.23], xt: [], yt: [0, 0.05, 0.10, 0.15, 0.20], yf: v => v.toFixed(2),
+        xlabel: "", ylabel: "Daily decay ($/share)", bars, labels
+      });
+      const ax = svg.querySelector("g.ax");
+      days.forEach((t, i) => { el("text", { x: res.X(i + 1), y: res.H - res.m.b + 18, "text-anchor": "middle", style: "fill: var(--muted); font-family: var(--font-body); font-size: 12.5px" }, ax).textContent = t; });
+    }
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 5-3 Vega 随行权价与期限 ----------
+  (function () {
+    const svg = document.getElementById("f3-svg");
+    const ivS = document.getElementById("f3-iv");
+    const btns = document.querySelectorAll("#fig3 .seg button");
+    const days = [7, 30, 90, 365], ops = [0.35, 0.55, 0.78, 1];
+    let mode = "usd";
+    function draw() {
+      const s = +ivS.value / 100;
+      document.getElementById("f3-iv-o").textContent = ivS.value + "%";
+      const xs = range(70, 130, 0.25);
+      const series = days.map((d, i) => {
+        const pts = [];
+        xs.forEach(K => {
+          const g = bs(100, K, d / DAY, s, "c");
+          if (mode === "usd") pts.push([K, g.vega]);
+          else if (g.price > 0.02) pts.push([K, Math.min(g.vega / g.price * 100, 60)]);
+        });
+        return { pts, color: "var(--delta)", w: 2.4, op: ops[i] };
+      });
+      if (mode === "usd") {
+        const top = Math.max(...series.map(q => Math.max(...q.pts.map(p => p[1])))) * 1.08;
+        const ya = axis(0, top, 5);
+        plot(svg, { x: [70, 130], y: [0, ya.hi], xt: range(70, 130, 10), yt: ya.t, yf: v => v.toFixed(2), xlabel: "Strike ($)", ylabel: "Vega ($/share/point)", vline: 100, series });
+      } else {
+        plot(svg, { x: [70, 130], y: [0, 30], xt: range(70, 130, 10), yt: [0, 5, 10, 15, 20, 25, 30], yf: v => v + "%", xlabel: "Strike ($)", ylabel: "Vega ÷ price", vline: 100, series });
+      }
+      ["f3-r1", "f3-r2", "f3-r3", "f3-r4"].forEach((id, i) => {
+        document.getElementById(id).textContent = "$" + (bs(100, 100, days[i] / DAY, s, "c").vega * 100).toFixed(2);
+      });
+    }
+    document.getElementById("f3-legend").innerHTML = days.map((d, i) => `<span><i style="border-color: var(--delta); opacity: ${ops[i]}"></i>${d} days left</span>`).join("");
+    btns.forEach(b => b.addEventListener("click", () => {
+      mode = b.dataset.mode;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    ivS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 5-4 IV 崩塌热区 ----------
+  (function () {
+    const svg = document.getElementById("f4-svg");
+    const preS = document.getElementById("f4-pre"), mvS = document.getElementById("f4-mv"), postS = document.getElementById("f4-post");
+    const btns = document.querySelectorAll("#fig4 .seg button");
+    let kind = "c";
+    const T0 = 7 / DAY, T1 = 6 / DAY, K = 100;
+    function val(S, T, s) {
+      if (kind === "s") return bs(S, K, T, s, "c").price + bs(S, K, T, s, "p").price;
+      return bs(S, K, T, s, kind).price;
+    }
+    function root(f, a, b) {
+      let fa = f(a), fb = f(b);
+      if (fa * fb > 0) return null;
+      for (let i = 0; i < 40; i++) { const m = (a + b) / 2, fm = f(m); if (fa * fm <= 0) { b = m; fb = fm; } else { a = m; fa = fm; } }
+      return (a + b) / 2;
+    }
+    function bes(v0, sPost) {
+      const f = m => val(100 * (1 + m / 100), T1, sPost) - v0;
+      if (kind === "s") return [root(f, -15, 0), root(f, 0, 15)];
+      return [root(f, -15, 15)];
+    }
+    function draw() {
+      const pre = +preS.value / 100, mv = +mvS.value, post = +postS.value / 100;
+      document.getElementById("f4-pre-o").textContent = preS.value + "%";
+      document.getElementById("f4-mv-o").textContent = signed(mv, 1) + "%";
+      document.getElementById("f4-post-o").textContent = postS.value + "%";
+      const v0 = val(100, T0, pre);
+      const res = plot(svg, {
+        x: [-15, 15], y: [10, 100], xt: range(-15, 15, 5), yt: [10, 25, 40, 55, 70, 85, 100],
+        xf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%", yf: v => v + "%",
+        xlabel: "Next-day stock move", ylabel: "Post-event IV"
+      });
+      const g = res.g, X = res.X, Y = res.Y;
+      const dx = 1, dy = 3;
+      for (let m = -15; m <= 15 + 1e-9; m += dx) {
+        for (let iv = 10; iv <= 100 + 1e-9; iv += dy) {
+          const pnl = val(100 * (1 + m / 100), T1, iv / 100) - v0;
+          const a = Math.min(1, Math.abs(pnl) / v0);
+          const x0 = X(Math.max(-15, m - dx / 2)), x1 = X(Math.min(15, m + dx / 2));
+          const y0 = Y(Math.min(100, iv + dy / 2)), y1 = Y(Math.max(10, iv - dy / 2));
+          el("rect", { x: x0, y: y0, width: Math.max(0, x1 - x0), height: Math.max(0, y1 - y0), "shape-rendering": "crispEdges", style: `fill: ${pnl >= 0 ? "var(--theta)" : "var(--gamma)"}; fill-opacity: ${(0.08 + 0.5 * a).toFixed(3)}` }, g);
+        }
+      }
+      // breakeven lines
+      const lineA = [], lineB = [];
+      for (let iv = 10; iv <= 100; iv += 1) {
+        const r = bes(v0, iv / 100);
+        if (r[0] !== null) lineA.push([r[0], iv]);
+        if (r.length > 1 && r[1] !== null) lineB.push([r[1], iv]);
+      }
+      const path = pts => pts.map((p, i) => (i ? "L" : "M") + X(p[0]).toFixed(1) + " " + Y(p[1]).toFixed(1)).join("");
+      [lineA, lineB].forEach(pts => { if (pts.length > 1) el("path", { d: path(pts), style: "fill: none; stroke: var(--ink); stroke-width: 2.2" }, g); });
+      if (pre * 100 >= 10 && pre * 100 <= 100) el("path", { d: `M${X(-15)} ${Y(pre * 100)}L${X(15)} ${Y(pre * 100)}`, style: "fill: none; stroke: var(--muted); stroke-width: 1.6; stroke-dasharray: 6 5" }, g);
+      el("circle", { cx: X(mv), cy: Y(post * 100), r: 6, style: "fill: var(--ink); stroke: var(--plate); stroke-width: 2" }, g);
+      const pnl = (val(100 * (1 + mv / 100), T1, post) - v0) * 100;
+      const pnlSame = (val(100 * (1 + mv / 100), T1, pre) - v0) * 100;
+      document.getElementById("f4-r1").textContent = money(pnl);
+      document.getElementById("f4-r1").className = pnl >= 0 ? "pos" : "neg";
+      document.getElementById("f4-r2").textContent = money(pnlSame);
+      const r = bes(v0, post).filter(v => v !== null);
+      document.getElementById("f4-r3").textContent = r.length ? r.map(v => signed(v, r.length > 1 ? 1 : 2) + "%").join(" / ") : "None within ±15%";
+      document.getElementById("f4-r4").textContent = "$" + (v0 * 100).toFixed(0);
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      kind = b.dataset.k;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    [preS, mvS, postS].forEach(x => x.addEventListener("input", draw));
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 5-5 Rho ----------
+  (function () {
+    const svg = document.getElementById("f5-svg");
+    const dS = document.getElementById("f5-d"), kS = document.getElementById("f5-k");
+    function draw() {
+      const d = +dS.value, K = +kS.value, s = 0.30;
+      document.getElementById("f5-d-o").textContent = d + " days";
+      document.getElementById("f5-k-o").textContent = K;
+      const rs = range(0, 8, 0.1);
+      const L = d / DAY, S30 = 30 / DAY;
+      const lc = rs.map(r => [r, bs(100, K, L, s, "c", r / 100).price]);
+      const lp = rs.map(r => [r, bs(100, K, L, s, "p", r / 100).price]);
+      const sc = rs.map(r => [r, bs(100, K, S30, s, "c", r / 100).price]);
+      const sp = rs.map(r => [r, bs(100, K, S30, s, "p", r / 100).price]);
+      const all = [lc, lp, sc, sp].flat().map(p => p[1]);
+      const ya = axis(0, Math.max(...all) * 1.05, 5);
+      plot(svg, {
+        x: [0, 8], y: [0, ya.hi], xt: [0, 1, 2, 3, 4, 5, 6, 7, 8], yt: ya.t, xf: v => v + "%", yf: v => (+v.toFixed(2)).toString(),
+        xlabel: "Risk-free rate", ylabel: "Option price ($/share)", vline: 4,
+        series: [
+          { pts: sc, color: "var(--delta)", w: 1.8, dash: "6 5" }, { pts: sp, color: "var(--gamma)", w: 1.8, dash: "6 5" },
+          { pts: lc, color: "var(--delta)", w: 2.6 }, { pts: lp, color: "var(--gamma)", w: 2.6 }
+        ],
+        dots: [[4, bs(100, K, L, s, "c").price, "var(--delta)", 4.5], [4, bs(100, K, L, s, "p").price, "var(--gamma)", 4.5]]
+      });
+      document.getElementById("f5-r1").textContent = "$" + (bs(100, K, L, s, "c").rho * 100).toFixed(1);
+      document.getElementById("f5-r2").textContent = "$" + (bs(100, K, S30, s, "c").rho * 100).toFixed(1);
+      document.getElementById("f5-r3").textContent = money((bs(100, K, L, s, "c", 0.06).price - bs(100, K, L, s, "c", 0.04).price) * 100);
+      document.getElementById("f5-r4").textContent = money((bs(100, K, L, s, "p", 0.06).price - bs(100, K, L, s, "p", 0.04).price) * 100);
+    }
+    dS.addEventListener("input", draw); kS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+})();
+</script>
+<script id="lang-js">(function(){document.querySelectorAll(".lang-switch").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("hl-lang",a.getAttribute("data-lang"))}catch(e){}var h=a.getAttribute("href");if(location.hash&&h.indexOf("#")<0)a.setAttribute("href",h+location.hash);});});})();</script>
+</body>
+</html>

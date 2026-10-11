@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>US Options Course · hanoptions.trade</title>
+<meta name="description" content="From zero to managing an options account: sixteen chapters and an appendix, each with interactive charts, a checklist and a self-test.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+.home-mast { border-bottom: 1px solid var(--rule); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 24px 24px; background-position: -1px -1px; }
+.home-hero .eyebrow { font-size: 13px; letter-spacing: .08em; color: var(--muted); }
+.home-hero h1 .g { color: var(--gamma); }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0; margin-top: 28px; border-top: 1px solid var(--rule); max-width: 760px; }
+.stats div { padding: 14px 0 0; min-width: 0; }
+.stats b { display: block; font-family: var(--font-mono); font-size: 28px; font-weight: 500; color: var(--ink); line-height: 1.2; }
+.stats small { font-size: 13px; color: var(--muted); }
+.start { display: inline-block; margin-top: 26px; background: var(--delta); color: var(--plate); text-decoration: none; padding: 11px 22px; border-radius: 8px; font-weight: 500; }
+.start:hover { opacity: .9; }
+.dims { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 14px; margin: 8px 0 8px; }
+.dim { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; min-width: 0; }
+.dim h3 { margin: 0 0 4px; font-size: 17px; }
+.dim h3 span { font-family: var(--font-mono); font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 8px; }
+.dim p { margin: 0; font-size: 14.5px; color: var(--muted); line-height: 1.7; }
+.dim.d1 h3 { color: var(--delta); } .dim.d2 h3 { color: var(--theta); } .dim.d3 h3 { color: var(--gamma); }
+.intro-title { font-family: var(--font-display); font-size: 24px; margin: 8px 0 6px; }
+.intro-lead { color: var(--muted); max-width: 46em; margin-bottom: 16px; }
+.paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px; margin-top: 8px; }
+.path { border-top: 2px solid var(--ink); padding-top: 10px; min-width: 0; }
+.path h3 { margin: 0 0 6px; font-size: 16px; }
+.path p { margin: 0; font-size: 14.5px; color: var(--muted); line-height: 1.75; }
+.path a { white-space: nowrap; }
+.companion { margin-top: 48px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px 24px; align-items: center; background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 20px 22px; }
+.companion h3 { margin: 0 0 4px; font-size: 18px; }
+.companion p { margin: 0; font-size: 14.5px; color: var(--muted); }
+.companion a.go { text-decoration: none; border: 1px solid var(--delta); color: var(--delta); padding: 8px 16px; border-radius: 8px; white-space: nowrap; }
+@media (max-width: 560px) { .companion { grid-template-columns: minmax(0, 1fr); } }
+.companion + .companion { margin-top: 14px; }
+.home-foot { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--muted); }
+.home-foot p { max-width: none; margin: 0 0 6px; }
+</style>
+<link rel="alternate" hreflang="zh-CN" href="https://hanoptions.trade/options/"><link rel="alternate" hreflang="en" href="https://hanoptions.trade/en/options/">
+<style id="lang-css">
+.lang-switch { flex: none; display: inline-flex; align-items: center; gap: 6px; padding: 3px 11px; border: 1px solid var(--rule); border-radius: 999px;
+  background: var(--plate); color: var(--ink); text-decoration: none; font-size: 13px; line-height: 1.5; white-space: nowrap; font-family: var(--font-body); letter-spacing: 0; }
+.lang-switch:hover { border-color: var(--ink); }
+.lang-switch svg { width: 13px; height: 13px; flex: none; }
+
+.sitebar-links { flex: 0 1 auto; min-width: 0; margin-left: auto; justify-content: flex-start; }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap">
+<style id="en-overrides">
+html[lang="en"] { --font-display: "Source Serif 4", "Noto Serif SC", Georgia, serif; --font-body: "Source Sans 3", "Noto Sans SC", system-ui, sans-serif; }
+html[lang="en"] body { line-height: 1.7; }
+html[lang="en"] body * { letter-spacing: normal !important; }
+html[lang="en"] p, html[lang="en"] li, html[lang="en"] td, html[lang="en"] figcaption { hyphens: auto; -webkit-hyphens: auto; }
+html[lang="en"] p { text-wrap: pretty; }
+html[lang="en"] .toc a { grid-template-columns: 48px 1fr; }
+</style>
+</head>
+<body>
+<nav class="sitebar" aria-label="Site navigation"><div class="sitebar-inner"><a class="sitebar-home" href="/en/">hanoptions.trade</a><div class="sitebar-links"><a href="/en/options/" aria-current="page">US Options Course</a><a href="/en/psychology/">Trading Psychology</a><a href="/en/macro/">Macro Trading Framework</a><a href="/en/policy/">Policy Narrative Investing</a><a href="/en/rebound/">Oversold Rebound List</a></div><a class="lang-switch" href="/options/" hreflang="zh-CN" lang="zh-CN" data-lang="zh"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>中文</a></div></nav>
+<header class="home-mast">
+  <div class="home-hero">
+    <div class="eyebrow">From zero to managing an options account</div>
+    <h1>US Options <span class="g">Course</span></h1>
+    <p>Sixteen chapters and an appendix. Each chapter opens with a small scenario built on real numbers, includes charts whose inputs you can drag, and ends with a checklist and a self-test. Every option price, Greek and probability is computed by the model, so wherever you drag on a chart, you see the matching result.</p>
+    <div class="stats">
+      <div><b>16 + 1</b><small>chapters + appendix</small></div>
+      <div><b>140,000</b><small>characters of text</small></div>
+      <div><b>77</b><small>charts and calculators</small></div>
+      <div><b>4</b><small>copyable templates</small></div>
+    </div>
+    <a class="start" href="ch01.html">Start with Chapter 1</a>
+  </div>
+</header>
+
+<main class="home-body">
+  <section class="part" id="idea">
+    <h2 class="intro-title">The whole course is about one idea</h2>
+    <p class="intro-lead">A stock has one dimension: up or down. An option has three. Every strategy is a different combination of the three, and every loss comes from a dimension you didn't notice.</p>
+    <div class="dims">
+      <div class="dim d1"><h3>Direction<span>Delta · Gamma</span></h3><p>Where the underlying goes, and how fast. Chapter 4 explains it; Chapters 7 and 8 use it to choose a structure.</p></div>
+      <div class="dim d2"><h3>Time<span>Theta</span></h3><p>Who pays and who collects as each day passes. Chapter 5 covers the shape of the decay; Chapter 8 covers how sellers make a living from it.</p></div>
+      <div class="dim d3"><h3>Volatility<span>Vega · IV</span></h3><p>The gap between the volatility the market expects and the volatility that actually happens. Chapters 6, 9 and 10 are built around it.</p></div>
+    </div>
+  </section>
+
+  <section class="part" id="how">
+    <h2 class="intro-title">Three ways to read the course</h2>
+    <div class="paths">
+      <div class="path"><h3>New to options</h3><p>Read in order. Chapters 1–3 lay the foundation; Chapters 4–6 are the most important part of the course, so don't skip them. Do each chapter's self-test before moving on.</p></div>
+      <div class="path"><h3>Already trading options</h3><p>Start with <a href="ch04.html">Chapter 4</a>, <a href="ch06.html">Chapter 6</a>, <a href="ch13.html">Chapter 13</a> and <a href="ch15.html">Chapter 15</a>. Use the stress tests and the “five ways accounts die” to check your current account, then go back and fill in the other chapters.</p></div>
+      <div class="path"><h3>Just looking something up</h3><p>Go to the <a href="appendix.html">Appendix</a>: more than a hundred terms, a quick-reference table and payoff diagrams for more than twenty structures, and templates you can copy as is.</p></div>
+    </div>
+  </section>
+
+    <section class="part" id="p1">
+      <div class="part-head"><span class="pn">Part 1</span><h2>Foundations</h2><p>What a contract is, how it trades, and where its price comes from.</p></div>
+      <div class="ch-grid">
+      <a class="ch-card" href="ch01.html"><span class="cn">01</span><h3>What an option is, and where the money comes from</h3><p>The six terms of a contract, the four basic positions, payoff diagrams at expiry, and the five sources of option profit.</p></a>
+      <a class="ch-card" href="ch02.html"><span class="cn">02</span><h3>US options in practice</h3><p>American vs. European style, the expiration calendar, exercise and assignment, accounts and margin, orders and liquidity.</p></a>
+      <a class="ch-card" href="ch03.html"><span class="cn">03</span><h3>An intuition for option pricing</h3><p>The six inputs, the intuition behind Black-Scholes, put–call parity, reading prices as probabilities, and mental-math rules.</p></a>
+      </div>
+    </section>
+    <section class="part" id="p2">
+      <div class="part-head"><span class="pn">Part 2</span><h2>The core variables</h2><p>Four Greeks and volatility: every source of change in an option's price.</p></div>
+      <div class="ch-grid">
+      <a class="ch-card" href="ch04.html"><span class="cn">04</span><h3>Delta and gamma</h3><p>Directional exposure and how fast it changes: share equivalents, beta weighting, P&amp;L approximation and Gamma scalping.</p></a>
+      <a class="ch-card" href="ch05.html"><span class="cn">05</span><h3>Theta and vega</h3><p>The shape of time decay, sensitivity to volatility, IV crush, plus Rho and the second-order Greeks.</p></a>
+      <a class="ch-card" href="ch06.html"><span class="cn">06</span><h3>Volatility</h3><p>Realized vs. implied, the volatility risk premium, IV Rank, term structure, skew and VIX.</p></a>
+      </div>
+    </section>
+    <section class="part" id="p3">
+      <div class="part-head"><span class="pn">Part 3</span><h2>Strategies</h2><p>Buying, selling, neutral, event and hedging structures, and what each one is betting on.</p></div>
+      <div class="ch-grid">
+      <a class="ch-card" href="ch07.html"><span class="cn">07</span><h3>Strategies for buyers</h3><p>The buyer's three enemies, choosing strike and expiration, debit spreads, LEAPS and management rules.</p></a>
+      <a class="ch-card" href="ch08.html"><span class="cn">08</span><h3>Strategies for sellers</h3><p>What selling insurance really means: covered calls, cash-secured puts, the wheel, credit spreads and position stress tests.</p></a>
+      <a class="ch-card" href="ch09.html"><span class="cn">09</span><h3>Neutral and volatility strategies</h3><p>Straddles, strangles, iron condors, butterflies, calendars and diagonals: when to buy volatility and when to sell it.</p></a>
+      <a class="ch-card" href="ch10.html"><span class="cn">10</span><h3>Trading events</h3><p>The earnings IV cycle, expected vs. historical moves, macro event days, 0DTE and expiration-day effects.</p></a>
+      <a class="ch-card" href="ch11.html"><span class="cn">11</span><h3>Hedging and portfolio protection</h3><p>Protective puts, collars, put-spread hedges, tail-hedge budgets, and reshaping a portfolio with options.</p></a>
+      </div>
+    </section>
+    <section class="part" id="p4">
+      <div class="part-head"><span class="pn">Part 4</span><h2>Portfolio and risk management</h2><p>From a single trade to the whole account: aggregation, stress tests, process.</p></div>
+      <div class="ch-grid">
+      <a class="ch-card" href="ch12.html"><span class="cn">12</span><h3>Portfolio Greeks and adjustments</h3><p>Adding up a portfolio's four Greeks, reading its shape, the three directions to roll, and when to simply close the position.</p></a>
+      <a class="ch-card" href="ch13.html"><span class="cn">13</span><h3>Risk management for options</h3><p>Three measures of position size, rules for buyers and sellers, stress tests, the illusion of diversification, and the margin spiral.</p></a>
+      <a class="ch-card" href="ch14.html"><span class="cn">14</span><h3>Systems and process</h3><p>A nine-step process, turning a view into three dimensions, a strategy selection matrix, the trading journal and expectancy statistics.</p></a>
+      </div>
+    </section>
+    <section class="part" id="p5">
+      <div class="part-head"><span class="pn">Part 5</span><h2>Mindset and next steps</h2><p>How options accounts die, and where to go from there.</p></div>
+      <div class="ch-grid">
+      <a class="ch-card" href="ch15.html"><span class="cn">15</span><h3>Psychology and how accounts die</h3><p>The psychological traps of buyers and sellers, the five paths to a dead account, and their early warning signs.</p></a>
+      <a class="ch-card" href="ch16.html"><span class="cn">16</span><h3>Where to go next, and a summary</h3><p>Advanced directions in volatility trading, a master table of strategies, a 90-day practice plan and a summary of the whole course.</p></a>
+      </div>
+    </section>
+    <section class="part" id="p6">
+      <div class="part-head"><span class="pn">Appendix</span><h2>Quick reference</h2><p>Terms, strategies, payoff diagrams, templates and data sources.</p></div>
+      <div class="ch-grid">
+      <a class="ch-card" href="appendix.html"><span class="cn">A</span><h3>Appendix: glossary, quick reference and templates</h3><p>A glossary, a strategy quick-reference table, a gallery of payoff diagrams, four templates, data sources and tools.</p></a>
+      </div>
+    </section>
+
+  <div class="companion">
+    <div><h3>Companion reading: Trading Psychology</h3><p>An eleven-chapter study handbook on probabilistic thinking, cognitive biases, position-sizing math, the odds of losing streaks, and review. Best read alongside Chapters 13–15 of this course.</p></div>
+    <a class="go" href="/en/psychology/">Open the handbook</a>
+  </div>
+  <div class="companion">
+    <div><h3>Companion reading: Macro Trading Framework</h3><p>A twelve-chapter study handbook on the cross-asset dashboard, rates and valuation, market regimes, breadth and flows, event playbooks, and going from view to trade. Best read alongside Chapters 10–11 of this course.</p></div>
+    <a class="go" href="/en/macro/">Open the handbook</a>
+  </div>
+  <div class="companion">
+    <div><h3>Companion reading: Policy Narrative Investing</h3><p>A twelve-chapter study handbook on breaking the grand narratives in the news into investment themes you can verify, bet on, and admit you got wrong. Best read alongside the Macro Trading Framework.</p></div>
+    <a class="go" href="/en/policy/">Open the handbook</a>
+  </div>
+
+  <footer class="home-foot">
+    <p>The chapter structure of this course follows the outline of “US Options Trading” on emacrotrading.com; all text, cases, charts and numbers were written and calculated from scratch.</p>
+    <p>Examples use the Black-Scholes model by default: a 4% rate, no dividends, a 365-day year and 100 shares per contract. Any market data that has to be assumed is stated in the text. This course is for learning and is not investment advice.</p>
+  </footer>
+</main>
+
+<script id="lang-js">(function(){document.querySelectorAll(".lang-switch").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("hl-lang",a.getAttribute("data-lang"))}catch(e){}var h=a.getAttribute("href");if(location.hash&&h.indexOf("#")<0)a.setAttribute("href",h+location.hash);});});})();</script>
+</body></html>

@@ -1,0 +1,166 @@
+@@ cd4097db79 attr
+HSY recent closing prices
+@@ fd4ea40651 attr
+HSY 52-week range
+@@ 153f6e2ea5 attr
+PRMB recent closing prices
+@@ d18c2cacd2 attr
+PRMB 52-week range
+@@ 79e1cb0259 attr
+LOW Lowe's
+@@ 071c789166 attr
+LOW recent closing prices
+@@ 2ab1d784cf attr
+LOW 52-week range
+@@ 8decf74196 attr
+CMCSA Comcast
+@@ 3f2940f700 attr
+CMCSA recent closing prices
+@@ da35ed6bb3 attr
+CMCSA 52-week range
+@@ 309e1ccde0 attr
+BAC Bank of America
+@@ 735ca98943 attr
+BAC recent closing prices
+@@ 3669ba901a attr
+BAC 52-week range
+@@ d733d0fa24 attr
+BX Blackstone
+@@ 827e078462 attr
+BX recent closing prices
+@@ 15f5d4efd9 attr
+BX 52-week range
+@@ 7e6ece52ad attr
+VIK Viking Holdings
+@@ b5d15f4357 attr
+VIK recent closing prices
+@@ d946ac438f attr
+VIK 52-week range
+@@ 591b3900b2 attr
+MGM MGM Resorts
+@@ 079eced200 attr
+MGM recent closing prices
+@@ ec95d98610 attr
+MGM 52-week range
+@@ c6d19f2b84 attr
+RTX (Raytheon)
+@@ 63134690ce attr
+RTX recent closing prices
+@@ 60f798bc33 attr
+RTX 52-week range
+@@ 071d2fba0d attr
+GD General Dynamics
+@@ 27a49f00a7 attr
+GD recent closing prices
+@@ ea47c73e85 attr
+GD 52-week range
+@@ 41ee5f030f attr
+WM Waste Management
+@@ c079a0fa8b attr
+WM recent closing prices
+@@ 05091612f0 attr
+WM 52-week range
+@@ 17a93a0a6a attr
+JBHT recent closing prices
+@@ 244be9dbcc attr
+JBHT 52-week range
+@@ fb88f42fb6 attr
+SO Southern Company
+@@ 8e83e92cf3 attr
+SO recent closing prices
+@@ 66f1008e54 attr
+SO 52-week range
+@@ 5f5760cb9a attr
+DUK Duke Energy
+@@ 73635e6df9 attr
+DUK recent closing prices
+@@ b3af39b675 attr
+DUK 52-week range
+@@ 14b8e56900 attr
+SLB (Schlumberger)
+@@ 78adab1f52 attr
+SLB recent closing prices
+@@ ea2266c470 attr
+SLB 52-week range
+@@ 29eda832e0 attr
+ABT Abbott Laboratories
+@@ c4a0efe2cc attr
+ABT recent closing prices
+@@ e3572acf78 attr
+ABT 52-week range
+@@ 0d13be7b1b attr
+Toolkit: checklists, templates and exercises
+@@ f0852d355e attr
+Chapter navigation
+@@ f00546ce6d js
+McDonald's
+@@ fb9daf7795 js
+Wendy's
+@@ b5a1909f4a js
+PepsiCo
+@@ f628c0fe77 js
+Mondelez
+@@ 1fcbe3e463 js
+Hershey
+@@ 7bc3d05a9b js
+Lowe's
+@@ f019e17fb4 js
+Comcast
+@@ d6db99cb13 js
+Bank of America
+@@ f4c2e335bc js
+Blackstone
+@@ 6a34583d18 js
+Viking Holdings
+@@ b95dfab29a js
+MGM Resorts
+@@ 6c8fe18eca js
+RTX (Raytheon)
+@@ 81c8f15544 js
+General Dynamics
+@@ a8b9534d4e js
+Waste Management
+@@ 67952c5f44 js
+Southern Company
+@@ 2ad240e064 js
+Duke Energy
+@@ 08b6566633 js
+SLB (Schlumberger)
+@@ c1287fc9ec js
+Abbott Laboratories
+@@ 219b811844 js
+50-day MA 
+@@ 5f104c1b51 js
+200-day MA 
+@@ 9fd4dd1274 js
+Entry 
+@@ 31f7b21936 js
+52-wk low 
+@@ 51f089ae36 js
+USD
+@@ ab7334b9e6 js
+ (above chart)
+@@ 0b973b2a77 js
+ (below chart)
+@@ 179b819a5c js
+Price 
+@@ 763cb552bc js
+Target 
+@@ 694340196c js
+52-wk low 
+@@ 53a08d4d18 js
+52-wk high 
+@@ 0fd4951f4e js
+50-day 
+@@ 1841ff5f5a js
+200-day 
+@@ a75bb8889c js
+Forward P/E
+@@ 7ee01746a8 js
+Dividend yield (%)
+@@ 93df0b902e js
+Close vs. 200-day MA
+@@ 040e680663 js
+Selected. Press ⌘C or Ctrl+C to copy.
+@@ 2e746791f3 js
+Copied

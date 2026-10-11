@@ -1,0 +1,961 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chapter 3: An intuition for option pricing · US Options Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  #fig1 .seg, #fig4 .seg, #fig5 .seg { flex-wrap: wrap; }
+  #fig1 .controls + .controls { margin-top: 2px; }
+  .readout small b { display: inline; font-size: inherit; font-family: var(--font-mono); font-weight: 500; }
+</style>
+<link rel="alternate" hreflang="zh-CN" href="https://hanoptions.trade/options/ch03.html"><link rel="alternate" hreflang="en" href="https://hanoptions.trade/en/options/ch03.html">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap">
+<style id="en-overrides">
+html[lang="en"] { --font-display: "Source Serif 4", "Noto Serif SC", Georgia, serif; --font-body: "Source Sans 3", "Noto Sans SC", system-ui, sans-serif; }
+html[lang="en"] body { line-height: 1.7; }
+html[lang="en"] body * { letter-spacing: normal !important; }
+html[lang="en"] p, html[lang="en"] li, html[lang="en"] td, html[lang="en"] figcaption { hyphens: auto; -webkit-hyphens: auto; }
+html[lang="en"] p { text-wrap: pretty; }
+html[lang="en"] .toc a { grid-template-columns: 48px 1fr; }
+</style>
+</head>
+<body data-ch="3">
+<div class="topbar"><div class="topbar-inner"><div class="topbar-brand"><a class="site-home" href="/en/">hanoptions.trade</a><a class="brand" href="index.html">US Options <span>Course</span></a></div><div class="topbar-tools"><select id="ck-jump" aria-label="Jump to chapter"></select><a class="lang-switch" href="/options/ch03.html" hreflang="zh-CN" lang="zh-CN" data-lang="zh"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>中文</a></div></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">03</div>
+    <div class="eyebrow">US Options Course · Part 1 Foundations · Chapter 3</div>
+    <h1>An <span class="g">intuition</span> for option pricing</h1>
+    <p class="deck">The premium is set by six inputs. Five of them are printed on the quote; only volatility has to be supplied by the market. This chapter skips the rigorous derivations and explains what Black-Scholes is calculating, why put–call parity has to hold, and two rules you can work out in your head before you place an order.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="In this chapter">
+    <p class="toc-title">In this chapter</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>Opening: all at the money, a sevenfold price gap</span></a></li>
+      <li><a href="#s1"><span class="n">3.1</span><span>The six inputs and which way they push</span></a></li>
+      <li><a href="#s2"><span class="n">3.2</span><span>What Black-Scholes calculates</span></a></li>
+      <li><a href="#s3"><span class="n">3.3</span><span>The distribution of prices at expiration</span></a></li>
+      <li><a href="#s4"><span class="n">3.4</span><span>Limits of the normal assumption</span></a></li>
+      <li><a href="#s5"><span class="n">3.5</span><span>Put–call parity</span></a></li>
+      <li><a href="#s6"><span class="n">3.6</span><span>Synthetic positions</span></a></li>
+      <li><a href="#s7"><span class="n">3.7</span><span>Reading probabilities</span></a></li>
+      <li><a href="#s8"><span class="n">3.8</span><span>Mental math 1: the expected move</span></a></li>
+      <li><a href="#s9"><span class="n">3.9</span><span>Mental math 2: the straddle's 0.8</span></a></li>
+      <li><a href="#cases"><span class="n">Cases</span><span>Three cases</span></a></li>
+      <li><a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>In this chapter</summary>
+      <ol>
+        <li><a href="#open">Opening: all at the money, a sevenfold price gap</a></li>
+        <li><a href="#s1">3.1 The six inputs and which way they push</a></li>
+        <li><a href="#s2">3.2 What Black-Scholes calculates</a></li>
+        <li><a href="#s3">3.3 The distribution of prices at expiration</a></li>
+        <li><a href="#s4">3.4 Limits of the normal assumption</a></li>
+        <li><a href="#s5">3.5 Put–call parity</a></li>
+        <li><a href="#s6">3.6 Synthetic positions</a></li>
+        <li><a href="#s7">3.7 Reading probabilities</a></li>
+        <li><a href="#s8">3.8 Mental math 1: the expected move</a></li>
+        <li><a href="#s9">3.9 Mental math 2: the straddle's 0.8</a></li>
+        <li><a href="#cases">Three cases</a></li>
+        <li><a href="#tools">Checklist and self-test</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>After this chapter you can</h4>
+        <ul>
+          <li>Say whether each of the six inputs makes calls and puts more or less expensive, and explain why</li>
+          <li>Use put–call parity to get a put price from a call price, and recognize synthetic positions</li>
+          <li>Estimate a one-standard-deviation expected move and the price of an at-the-money straddle without a calculator</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Prerequisites</h4>
+        <ul>
+          <li>Chapter 1: intrinsic value, time value and payoff diagrams at expiry</li>
+          <li>Chapter 2: American and European style, exercise and assignment</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Conventions</h4>
+        <ul>
+          <li>Examples use Black-Scholes with a 4% rate and no dividends (Section 3.1 shows dividends separately)</li>
+          <li>Days are calendar days, with a 365-day year</li>
+          <li>One contract = 100 shares</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">Opening</span>All at the money, a sevenfold price gap</h2>
+      <p class="lead">Three stocks all closed at $100 today. On each one's option chain you find a call with a 100 strike. The quotes are $1.88, $7.01 and $13.75.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 3-0 Three at-the-money calls (stock price = strike = 100)</caption>
+          <thead><tr><th>Contract</th><th>Days left</th><th>Implied volatility</th><th>Call price</th><th>% of stock price</th></tr></thead>
+          <tbody>
+            <tr><td>A</td><td class="mono">30</td><td class="mono">15%</td><td class="mono">1.88</td><td class="mono">1.9%</td></tr>
+            <tr><td>B</td><td class="mono">30</td><td class="mono">60%</td><td class="mono">7.01</td><td class="mono">7.0%</td></tr>
+            <tr><td>C</td><td class="mono">365</td><td class="mono">30%</td><td class="mono">13.75</td><td class="mono">13.8%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>A and B have exactly the same stock price, strike and expiration, yet B costs <span class="num">3.7</span> times as much. The difference is entirely in volatility: the market expects B to move four times as much as A over the next month. C has the highest dollar price, but it is buying a whole year of uncertainty; $13.75 on its own tells you nothing about whether it is expensive or cheap.</p>
+      <p>So an option's dollar price, by itself, doesn't tell you whether it is cheap or expensive. To judge that, you first need to know where the price comes from. This chapter answers three questions: which inputs determine the premium; how those inputs are combined into a price; and how to estimate a roughly reasonable price without opening a calculator.</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">3.1</span>The six inputs and which way they push</h2>
+      <p>Of the six inputs, the underlying price, the strike, the time to expiration, the interest rate and dividends can all be looked up directly; only volatility has to be backed out of market prices. Start with which way calls and puts move when each input increases.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 3-1 Which way option prices move when an input increases</caption>
+          <thead><tr><th>Input increases</th><th>Call</th><th>Put</th><th style="text-align:left">Why</th></tr></thead>
+          <tbody>
+            <tr><td>Underlying price <span class="v">S</span></td><td class="mono pos">↑</td><td class="mono neg">↓</td><td style="text-align:left">The call gets closer to the money, the put farther from it</td></tr>
+            <tr><td>Strike <span class="v">K</span></td><td class="mono neg">↓</td><td class="mono pos">↑</td><td style="text-align:left">You buy at a higher price, and you also sell at a higher price</td></tr>
+            <tr><td>Time to expiration <span class="v">T</span></td><td class="mono pos">↑</td><td class="mono pos">↑ (usually)</td><td style="text-align:left">The more time, the farther the stock can go</td></tr>
+            <tr><td>Volatility σ</td><td class="mono pos">↑</td><td class="mono pos">↑</td><td style="text-align:left">Asymmetric payoff: extra favorable moves help, while unfavorable moves are floored by the premium</td></tr>
+            <tr><td>Risk-free rate <span class="v">r</span></td><td class="mono pos">↑</td><td class="mono neg">↓</td><td style="text-align:left">The present value of the strike shrinks: paying later is better, getting paid later is worse</td></tr>
+            <tr><td>Dividends <span class="v">q</span></td><td class="mono neg">↓</td><td class="mono pos">↑</td><td style="text-align:left">The stock drops when it goes ex-dividend, and option holders don't get the dividend</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The volatility row deserves a second thought. Once the stock falls below the strike, the most a call can lose is its premium, however far the stock falls; above the strike, it gains as much as the stock rises. So when volatility increases, the call holder just gets more chance of a “big rally,” while the cost of a “big drop” is already capped. The same goes for puts. That is why option prices always rise with volatility.</p>
+
+      <h3>Checking with numbers</h3>
+      <p>Below, the base case is “stock 100, strike 100, 30 days, IV 30%, rate 4%, no dividends,” and we change one input at a time.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 3-2 Changing one input at a time (per share, $)</caption>
+          <thead><tr><th>Scenario</th><th>Call</th><th>Change</th><th>Put</th><th>Change</th></tr></thead>
+          <tbody>
+            <tr class="hl"><td>Base case</td><td class="mono">3.591</td><td class="mono">—</td><td class="mono">3.263</td><td class="mono">—</td></tr>
+            <tr><td>Stock 100 → 105</td><td class="mono">6.798</td><td class="mono pos">+3.207</td><td class="mono">1.470</td><td class="mono neg">−1.793</td></tr>
+            <tr><td>Strike 100 → 105</td><td class="mono">1.662</td><td class="mono neg">−1.929</td><td class="mono">6.317</td><td class="mono pos">+3.054</td></tr>
+            <tr><td>Days 30 → 60</td><td class="mono">5.168</td><td class="mono pos">+1.577</td><td class="mono">4.513</td><td class="mono pos">+1.250</td></tr>
+            <tr><td>IV 30% → 35%</td><td class="mono">4.161</td><td class="mono pos">+0.570</td><td class="mono">3.833</td><td class="mono pos">+0.570</td></tr>
+            <tr><td>Rate 4% → 6%</td><td class="mono">3.673</td><td class="mono pos">+0.082</td><td class="mono">3.181</td><td class="mono neg">−0.082</td></tr>
+            <tr><td>Dividend yield 0 → 2%</td><td class="mono">3.504</td><td class="mono neg">−0.087</td><td class="mono">3.340</td><td class="mono pos">+0.077</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Three observations:</p>
+      <ul>
+        <li><strong>The stock price and the strike matter most.</strong> The change in the option's price for each $1 move in the stock is Delta (Chapter 4).</li>
+        <li><strong>IV raised the call and the put by exactly the same 0.570.</strong> This is no coincidence. Put–call parity (Section 3.5) shows that the call minus the put depends only on the stock price, the strike, the interest rate and time, not on volatility. So when volatility changes, the two have to rise and fall together.</li>
+        <li><strong>Interest rates and dividends have little effect on a 30-day option</strong>, just a few cents. For long-dated options of a year or two (LEAPS) you can't ignore them; Chapter 5 works through the numbers.</li>
+      </ul>
+      <div class="note warn">
+        <span class="tag">Exception: more time doesn't always make an option worth more</span>
+        <p>A European put that is deep in the money can actually get cheaper with more time to expiration. With the stock at $100, a European put with a 150 strike is worth <span class="num">49.51</span> with 30 days left and only <span class="num">46.05</span> with 365 days, both below its intrinsic value of 50. The reason is that the best a put can do is pay you $150, and the later that money arrives, the lower its present value. An American put can be exercised at any time, so it is never worth less than 50, which is why US single-stock options don't have this anomaly. But it does explain why deep in-the-money American puts are often exercised early (Chapter 2): the time value of holding on no longer makes up for the interest on getting the cash early.</p>
+      </div>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">Of the six inputs, only time and volatility make calls and puts more expensive together</span><span class="fig-no">Figure 3-1 · Sensitivity lab, interactive</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Horizontal axis variable">
+            <button type="button" data-v="S" aria-pressed="true">Stock price</button>
+            <button type="button" data-v="K" aria-pressed="false">Strike</button>
+            <button type="button" data-v="T" aria-pressed="false">Days</button>
+            <button type="button" data-v="s" aria-pressed="false">IV</button>
+            <button type="button" data-v="r" aria-pressed="false">Rate</button>
+            <button type="button" data-v="q" aria-pressed="false">Dividend</button>
+          </div>
+          <button type="button" class="btn" id="f1-reset">Reset to base case</button>
+        </div>
+        <div class="controls">
+          <label class="ctl" for="f1-S">Stock price <input id="f1-S" type="range" min="70" max="130" step="1" value="100"> <output id="f1-S-o">$100</output></label>
+          <label class="ctl" for="f1-K">Strike <input id="f1-K" type="range" min="70" max="130" step="1" value="100"> <output id="f1-K-o">$100</output></label>
+          <label class="ctl" for="f1-T">Days left <input id="f1-T" type="range" min="1" max="365" step="1" value="30"> <output id="f1-T-o">30 days</output></label>
+          <label class="ctl" for="f1-s">Implied volatility <input id="f1-s" type="range" min="5" max="100" step="1" value="30"> <output id="f1-s-o">30%</output></label>
+          <label class="ctl" for="f1-r">Risk-free rate <input id="f1-r" type="range" min="0" max="10" step="0.25" value="4"> <output id="f1-r-o">4.00%</output></label>
+          <label class="ctl" for="f1-q">Dividend yield <input id="f1-q" type="range" min="0" max="8" step="0.25" value="0"> <output id="f1-q-o">0.00%</output></label>
+        </div>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 320" role="img" aria-label="Call and put prices as the selected input changes"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>Call</span><span><i style="border-color: var(--gamma)"></i>Put</span><span>Dot: current setting</span></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small id="f1-r1s">Call price</small></div>
+          <div><b id="f1-r2">—</b><small id="f1-r2s">Put price</small></div>
+          <div><b id="f1-r3">—</b><small>Call − put</small></div>
+          <div><b id="f1-r4">—</b><small>S·e<sup>−qT</sup> − K·e<sup>−rT</sup></small></div>
+        </div>
+        <figcaption>Click “IV” first: the two lines rise together, and the gap between them stays the same everywhere. That gap is the two readouts on the right, which are always equal (Section 3.5). Then click “Stock price” and drag the days left down to 1–3: the curves bend into kinked lines close to the payoff diagram at expiry. Drag the stock price to 70 and then click “Days”: the put line falls as the days increase. That is the deep in-the-money European put exception described above.</figcaption>
+      </figure>
+
+      <h3>The one input you can't see: implied volatility</h3>
+      <p>The first five inputs are facts, but volatility is an estimate of the future that no one can observe directly. In practice you work backward: take the price the option trades at in the market, plug it into the formula and solve for the σ that makes the formula's price equal the market price. That is <strong>implied volatility (IV)</strong>.</p>
+      <p>For example, with the stock at $100, if a 30-day at-the-money call trades at $4.20, solving backward gives an IV of <span class="num">35.3%</span>. That price is higher than the base case (IV 30%, $3.591), and the extra is there because the market expects bigger moves. That's why traders often quote an option as “35 vol” rather than $4.20: IV puts options with different stock prices and expirations on the same yardstick. Chapter 6 covers how to judge whether IV is high or low.</p>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">3.2</span>What Black-Scholes calculates</h2>
+      <p>There are two ways to read the Black-Scholes price: as the expected payoff at expiration, discounted; or as the cost of replicating the option with stock and cash. Both readings give the same number.</p>
+      <div class="formula">
+        <div class="eq"><span class="v">C</span> <span class="up">=</span> <span class="v">S</span><span class="up">·</span><span class="v">N</span>(<span class="v">d</span><sub>1</sub>) <span class="up">−</span> <span class="v">K</span><span class="v">e</span><sup>−<span class="v">rT</span></sup><span class="up">·</span><span class="v">N</span>(<span class="v">d</span><sub>2</sub>)</div>
+        <div class="eq"><span class="v">d</span><sub>1</sub> <span class="up">=</span> <span class="frac"><span>ln(<span class="v">S</span>/<span class="v">K</span>) <span class="up">+</span> (<span class="v">r</span> <span class="up">+</span> σ<sup>2</sup>/2)<span class="v">T</span></span><span>σ√<span class="v">T</span></span></span></div>
+        <div class="eq"><span class="v">d</span><sub>2</sub> <span class="up">=</span> <span class="v">d</span><sub>1</sub> <span class="up">−</span> σ√<span class="v">T</span></div>
+        <p class="where"><span class="v">N</span>(·) is the cumulative probability of the standard normal distribution. The put price follows directly from parity (Section 3.5), so there's no need to memorize a separate formula.</p>
+      </div>
+
+      <h3>Reading 1: the expected payoff, discounted</h3>
+      <p>At expiration, a call pays max(<span class="v">S<sub>T</sub></span> − <span class="v">K</span>, 0). If you know the distribution of the stock price at expiration, average this payoff and discount it back to today at the interest rate, and you have the option price. The two terms of the formula do exactly that:</p>
+      <ul>
+        <li><strong>Second term</strong> <span class="v">K</span>e<sup>−<span class="v">rT</span></sup><span class="v">N</span>(<span class="v">d</span><sub>2</sub>): if the option finishes in the money, you pay the strike <span class="v">K</span>. <span class="v">N</span>(<span class="v">d</span><sub>2</sub>) is the probability of finishing in the money; multiply by it and discount. In the base case this is <span class="num">99.672 × 0.498 = 49.646</span>.</li>
+        <li><strong>First term</strong> <span class="v">S</span><span class="v">N</span>(<span class="v">d</span><sub>1</sub>): if the option finishes in the money, you get one share of stock. Whenever it finishes in the money, the stock is above 100, averaging about <span class="num">$107.23</span>; weighted by the probability of finishing in the money and discounted, that comes to <span class="num">100 × 0.532 = 53.237</span>.</li>
+        <li>Subtract one from the other: <span class="num">53.237 − 49.646 = 3.591</span>. Taking the expectation directly over the lognormal distribution by numerical integration and then discounting also gives <span class="num">3.591</span>.</li>
+      </ul>
+      <p>The “probability” and “expectation” here come with a condition: they are calculated under the <strong>risk-neutral</strong> distribution, which assumes the stock's expected return is exactly the risk-free rate of 4%. Why are we allowed to assume that? The second reading explains.</p>
+
+      <h3>Reading 2: the replicating portfolio</h3>
+      <p>Take the simplest possible example. The stock is at $100, and in one month it can do only one of two things: rise to 110 or fall to 90. A call with a 100 strike then pays 10 or 0.</p>
+      <p>Now buy 0.5 shares and at the same time borrow <span class="num">$44.85</span> (repaying 45, with interest, in one month). In one month: if the stock is at 110, the 0.5 shares are worth 55, and after repaying 45 you have 10 left; if it is at 90, the 0.5 shares are worth 45, and after repaying 45 you have 0. In both cases this portfolio pays exactly what the call pays, and it costs <span class="num">50 − 44.85 = $5.15</span>. So the call is worth $5.15.</p>
+      <div class="note">
+        <span class="tag">Key point: the odds of up or down never appear</span>
+        <p>The whole calculation never used “the probability that the stock goes up.” Even if you're 90% sure it will rise, the call is still worth only $5.15 in this model. If someone sells it for more, anyone can sell the option, replicate it with 0.5 shares plus borrowing, and lock in a riskless profit. Going the other way, the probability of a rise that makes the “expected payoff, discounted” also equal $5.15 is <span class="num">0.516</span>. That is the risk-neutral probability: it is backed out of prices and does not predict the real odds of a rise or fall.</p>
+      </div>
+      <p>Black-Scholes breaks this step into countless tiny steps, readjusting the number of shares at each one to the ratio at that moment. That ratio is <span class="v">N</span>(<span class="v">d</span><sub>1</sub>), which is Delta. That is why Delta appears in the price formula and is also the hedge ratio (Chapter 4).</p>
+      <p>This has an important consequence for trading: <strong>an option's price contains no view on direction, only a view on how big the moves will be.</strong> Whether you're bullish or bearish is expressed through whether you buy or sell and which strike you choose; whether an option is expensive depends only on whether its implied volatility is high or low compared with the actual volatility you expect.</p>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">3.3</span>The distribution of prices at expiration</h2>
+      <p>Black-Scholes assumes that the stock's log returns are normally distributed, so the stock price at expiration follows a right-skewed lognormal distribution: it can fall no lower than 0, and it has no upper limit.</p>
+      <div class="formula">
+        <div class="eq">ln<span class="up">(</span><span class="v">S<sub>T</sub></span> / <span class="v">S</span><span class="up">)</span> <span class="up">~</span> <span class="v">N</span><span class="up">(</span>(<span class="v">r</span> <span class="up">−</span> σ<sup>2</sup>/2)<span class="v">T</span><span class="up">,</span> σ<sup>2</sup><span class="v">T</span><span class="up">)</span></div>
+        <p class="where">The −σ²/2 in the mean is the conversion term between log returns and percentage returns: the higher the volatility, the further the median falls below the mean.</p>
+      </div>
+      <p>This assumption has three direct consequences:</p>
+      <ol>
+        <li><strong>The median is below the mean.</strong> The mean is <span class="v">S</span>e<sup><span class="v">rT</span></sup> and the median is <span class="v">S</span>e<sup>(<span class="v">r</span>−σ²/2)<span class="v">T</span></sup>. At 30 days and IV 30%, they are <span class="num">100.33</span> and <span class="num">99.96</span>, nearly the same. At one year and IV 60%, they become <span class="num">104.08</span> and <span class="num">86.94</span>: the probability that the stock is lower than today in a year is <span class="num">59.2%</span>, yet the average is higher than today. High-volatility stocks that “fall most of the time and occasionally soar” have exactly this shape.</li>
+        <li><strong>The ±1 standard deviation range is asymmetric.</strong> At 30 days and IV 30%, the range containing 68% of the probability is <span class="num">[91.72, 108.94]</span>: +8.94 on the upside and −8.28 on the downside.</li>
+        <li><strong>Symmetric distances, asymmetric probabilities.</strong> For the same $10 away from the current price, the probability of finishing above 110 is <span class="num">13.3%</span>, and the probability of finishing below 90 is <span class="num">11.1%</span>.</li>
+      </ol>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">The higher the volatility and the longer the term, the more right-skewed the distribution at expiration</span><span class="fig-no">Figure 3-2 · Stock at $100, interactive</span></div>
+        <div class="controls">
+          <label class="ctl" for="f2-d">Days left <input id="f2-d" type="range" min="7" max="365" value="30"> <output id="f2-d-o">30 days</output></label>
+          <label class="ctl" for="f2-iv">Implied volatility <input id="f2-iv" type="range" min="10" max="80" value="30"> <output id="f2-iv-o">30%</output></label>
+        </div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 300" role="img" aria-label="Lognormal distribution of the stock price at expiration and its normal approximation"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>Lognormal distribution (Black-Scholes)</span><span><i class="dash" style="border-color: var(--muted)"></i>Normal distribution with the same mean and standard deviation</span><span><i style="border-color: var(--tint-delta); border-top-width: 8px"></i>68% range</span></div>
+        <div class="readout">
+          <div><b id="f2-r1">—</b><small>68% range (±1σ)</small></div>
+          <div><b id="f2-r2">—</b><small>Median / mean</small></div>
+          <div><b id="f2-r3">—</b><small>Prob. of finishing above 110</small></div>
+          <div><b id="f2-r4">—</b><small>Prob. of finishing below 90</small></div>
+        </div>
+        <figcaption>At the default 30 days and IV 30%, the solid and dashed lines nearly coincide, and the normal approximation is perfectly adequate. Drag the days to 365 and IV to 60%, and the solid line's peak shifts clearly to the left while the right tail stretches out: the median drops to $87, while the mean is still $104. The dashed line now gives negative stock prices about a 6% probability (the amber area), an obvious error of the normal assumption at long terms and high volatility.</figcaption>
+      </figure>
+      <p>This chart also shows why options are priced in “log” terms. A move from 100 to 200 is +100%, and a move from 100 to 50 is −50%, but on a log scale the two are the same distance (both ln 2). The lognormal distribution handles these “multiplicative” moves naturally and guarantees that the stock price always stays positive.</p>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">3.4</span>Limits of the normal assumption</h2>
+      <p>Real stock returns have two features that the lognormal distribution can't describe: extreme moves happen much more often than the model says (fat tails), and big drops tend to be more common and more violent than big rallies (negative skew).</p>
+      <p>First, see how “optimistic” the normal distribution is about extreme days. Assume daily returns are normally distributed, with 252 trading days a year:</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 3-3 How often a one-day drop of more than k standard deviations occurs, on average</caption>
+          <thead><tr><th>k</th><th>Normal: daily probability</th><th>Normal: average interval</th><th>Fat-tail illustration: t distribution (3 degrees of freedom)</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">3σ</td><td class="mono">0.135%</td><td class="mono">2.9 years</td><td class="mono">0.6 years</td></tr>
+            <tr><td class="mono">4σ</td><td class="mono">0.0032%</td><td class="mono">125 years</td><td class="mono">1.3 years</td></tr>
+            <tr><td class="mono">5σ</td><td class="mono">2.9 × 10⁻⁷</td><td class="mono">14,000 years</td><td class="mono">2.5 years</td></tr>
+            <tr><td class="mono">6σ</td><td class="mono">9.9 × 10⁻¹⁰</td><td class="mono">4 million years</td><td class="mono">4.2 years</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The t distribution column is only an illustration: it is scaled to the same standard deviation as the normal distribution, so the only difference is how thick the tails are. Tail thickness in real markets changes from period to period, and there is no single fixed number. But the direction is certain: measured against long-run average daily volatility, US stock indexes have had several one-day drops of more than 5 standard deviations over the past few decades. Under a normal distribution, a day like that wouldn't come around even once in ten thousand years.</p>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">With fat tails, a “once in ten thousand years” drop comes every few years</span><span class="fig-no">Figure 3-3 · Vertical axis on a log scale (years)</span></div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 300" role="img" aria-label="Average interval between extreme drops under normal and fat-tailed distributions"></svg>
+        <div class="legend"><span><i style="border-color: var(--muted); border-top-width: 8px"></i>Normal distribution</span><span><i style="border-color: var(--warn); border-top-width: 8px"></i>t distribution (3 degrees of freedom, same standard deviation)</span></div>
+        <figcaption>Each step on the vertical axis is a factor of ten. From 3σ to 6σ, the normal distribution's interval explodes from a few years to millions of years; the fat-tailed distribution's only goes from half a year to four years. Almost all the risk of selling far out-of-the-money options lies in the gap between these two sets of bars.</figcaption>
+      </figure>
+
+      <h3>What this means for option prices</h3>
+      <ul>
+        <li><strong>The market charges extra for far out-of-the-money puts.</strong> Black-Scholes prices every strike with the same σ. If the tails are fatter, far out-of-the-money puts, which protect against big drops, should cost more. The market does exactly that: for the same expiration, out-of-the-money puts usually carry higher implied volatility than at-the-money options. This is called volatility skew (Chapter 6). For example, a 30-day 90 put is worth <span class="num">$0.40</span> at IV 30%; if the market quotes it at 36%, it is <span class="num">$0.74</span>, more than 80% more expensive.</li>
+        <li><strong>Volatility itself changes.</strong> The model assumes σ is constant; in reality, volatility jumps during sharp drops and drifts slowly back down when things are calm. That is exactly the problem Vega deals with in Chapter 5.</li>
+        <li><strong>Stocks gap.</strong> Earnings, mergers and regulatory news can make a stock jump past many price levels in a single step. The replication argument in Section 3.2 requires continuous rebalancing, which is impossible across a gap, so option sellers carry more risk in a gap than the model calculates.</li>
+      </ul>
+      <div class="note">
+        <span class="tag">How to use Black-Scholes</span>
+        <p>Treat it as a “quoting language” and a “ruler”: use it to convert prices into IV and then compare IV across options, and use it to calculate sensitivities such as Delta and Gamma. Don't take the probabilities it produces as real-world probabilities, especially in the tails.</p>
+      </div>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">3.5</span>Put–call parity</h2>
+      <p>The prices of a call and a put with the same strike and expiration are locked together by one equation: call − put = stock − present value of the strike.</p>
+      <div class="formula">
+        <div class="eq"><span class="v">C</span> <span class="up">−</span> <span class="v">P</span> <span class="up">=</span> <span class="v">S</span> <span class="up">−</span> <span class="v">K</span><span class="v">e</span><sup>−<span class="v">rT</span></sup></div>
+        <p class="where">Applies to European options on stocks that pay no dividend. <span class="v">K</span>e<sup>−<span class="v">rT</span></sup> is the present value of the strike: deposit this much today, and at rate <span class="v">r</span> it grows to exactly <span class="v">K</span> by expiration.</p>
+      </div>
+      <h3>Why it must hold</h3>
+      <p>Compare two portfolios. Portfolio A: buy 1 call and deposit <span class="v">K</span>e<sup>−<span class="v">rT</span></sup> in cash. Portfolio B: buy 1 put and hold 1 share of stock. Here is what each is worth at expiration (strike 100):</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 3-4 The two portfolios' values at expiration (per share, strike 100)</caption>
+          <thead><tr><th>Stock at expiration</th><th>A: call payoff</th><th>A: cash</th><th>A total</th><th>B: put payoff</th><th>B: stock</th><th>B total</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">80</td><td class="mono">0</td><td class="mono">100</td><td class="mono">100</td><td class="mono">20</td><td class="mono">80</td><td class="mono">100</td></tr>
+            <tr><td class="mono">90</td><td class="mono">0</td><td class="mono">100</td><td class="mono">100</td><td class="mono">10</td><td class="mono">90</td><td class="mono">100</td></tr>
+            <tr><td class="mono">100</td><td class="mono">0</td><td class="mono">100</td><td class="mono">100</td><td class="mono">0</td><td class="mono">100</td><td class="mono">100</td></tr>
+            <tr><td class="mono">110</td><td class="mono">10</td><td class="mono">100</td><td class="mono">110</td><td class="mono">0</td><td class="mono">110</td><td class="mono">110</td></tr>
+            <tr><td class="mono">120</td><td class="mono">20</td><td class="mono">100</td><td class="mono">120</td><td class="mono">0</td><td class="mono">120</td><td class="mono">120</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Wherever the stock ends up, both portfolios are worth max(<span class="v">S<sub>T</sub></span>, <span class="v">K</span>) at expiration. Two portfolios with exactly the same value at expiration must also cost the same today: <span class="v">C</span> + <span class="v">K</span>e<sup>−<span class="v">rT</span></sup> = <span class="v">P</span> + <span class="v">S</span>. Rearrange it and you have the parity formula.</p>
+      <p>Check it with the base-case numbers: <span class="num">3.591 − 3.263 = 0.328</span>, <span class="num">100 − 99.672 = 0.328</span>. Note that the whole derivation never used volatility, a distribution or Black-Scholes. As long as you can freely buy, sell, borrow and lend, parity holds. This is also why the change in IV in Section 3.1 raised the call and the put by the same 0.570.</p>
+
+      <h3>What happens when parity is violated</h3>
+      <p>Suppose the call is quoted at 3.80 while the put is still 3.263. Sell the call, buy the put and buy the stock (a combination called a conversion): you pay out <span class="num">100 + 3.263 − 3.80 = 99.463</span>. At expiration, wherever the stock is, you sell it at 100: if it has risen, it is called away through the call; if it has fallen, you sell it with the put. You pay 99.463 today and are certain to get 100 back in a month; after 4% interest costs, you still make an extra <span class="num">$0.21</span> per share, or $21 per contract. Market makers and arbitrage programs would do this trade immediately, until prices moved back near parity. For individual traders, parity is useful for checking quotes and understanding positions; leave the arbitrage to the market makers.</p>
+
+      <h3>American options and dividends</h3>
+      <ul>
+        <li><strong>American options</strong>: US single-stock options are American-style and can be exercised early, so parity turns from an equation into a range. With no dividends, <span class="v">S</span> − <span class="v">K</span> ≤ <span class="v">C</span> − <span class="v">P</span> ≤ <span class="v">S</span> − <span class="v">K</span>e<sup>−<span class="v">rT</span></sup>. For 30-day at-the-money options the range is 0 to 0.328, which is very narrow; for 1-year at-the-money options it is 0 to 3.92.</li>
+        <li><strong>With dividends</strong>: <span class="v">C</span> − <span class="v">P</span> = <span class="v">S</span> − PV(dividends) − <span class="v">K</span>e<sup>−<span class="v">rT</span></sup>. If a $1 dividend will be paid before expiration, the call is about $1 cheaper relative to the put. This is also why in-the-money calls tend to be exercised early before an ex-dividend date (Chapter 2).</li>
+        <li><strong>Hard-to-borrow stocks</strong>: when short selling means paying a borrow fee, puts become more expensive relative to calls by that cost, and parity seems to “break.” In fact, the formula has simply picked up an extra cost term.</li>
+      </ul>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">3.6</span>Synthetic positions</h2>
+      <p>Rearrange the parity equation and you get four pairs of equivalent positions, each “holding the same risk in a different form.”</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 3-5 Four rearrangements of parity (same strike, same expiration)</caption>
+          <thead><tr><th>The position you want</th><th style="text-align:left">Equivalent combination</th><th style="text-align:left">Equation</th></tr></thead>
+          <tbody>
+            <tr><td>Long stock</td><td style="text-align:left">Buy call + sell put + cash</td><td class="mono" style="text-align:left">S = C − P + Ke⁻ʳᵀ</td></tr>
+            <tr><td>Short stock</td><td style="text-align:left">Sell call + buy put + borrowing</td><td class="mono" style="text-align:left">−S = P − C − Ke⁻ʳᵀ</td></tr>
+            <tr><td>Covered call</td><td style="text-align:left">Sell put + cash</td><td class="mono" style="text-align:left">S − C = Ke⁻ʳᵀ − P</td></tr>
+            <tr><td>Protective put</td><td style="text-align:left">Buy call + cash</td><td class="mono" style="text-align:left">S + P = C + Ke⁻ʳᵀ</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Synthetic long and synthetic short</h3>
+      <p>Buy one 100 call (3.591) and sell one 100 put (3.263), for a net debit of <span class="num">$0.328</span> per share. This combination has a Delta of <span class="num">0.532 + 0.468 = 1.000</span>, and the Gammas cancel exactly (a call and a put at the same strike have the same Gamma): its risk is exactly the same as 100 shares of stock, and so is its profit and loss at expiration. The only difference is the money: buying the stock costs $10,000, while the synthetic long costs only $32.8 plus the margin required for the short put. If you deposit the money you save and earn interest on it, the result is identical to buying the stock; if you use it to add more contracts, you are adding leverage.</p>
+      <p>A synthetic short is the reverse: sell the call and buy the put. It's often used on stocks that are hard or expensive to borrow; the catch is that by then the market has already marked up the puts (see the previous section).</p>
+
+      <figure class="plate" id="fig4">
+        <div class="fig-head"><span class="fig-title">Rearranged, the two ways of holding the position have the same P&amp;L line at expiration</span><span class="fig-no">Figure 3-4 · 30 days, IV 30%, interactive</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Choose an equivalent combination">
+            <button type="button" data-p="long" aria-pressed="true">Synthetic long</button>
+            <button type="button" data-p="short" aria-pressed="false">Synthetic short</button>
+            <button type="button" data-p="cc" aria-pressed="false">Covered call = short put</button>
+            <button type="button" data-p="pp" aria-pressed="false">Protective put = call</button>
+          </div>
+          <label class="ctl" for="f4-k">Strike <input id="f4-k" type="range" min="90" max="110" step="1" value="100"> <output id="f4-k-o">100</output></label>
+        </div>
+        <svg class="chart" id="f4-svg" viewBox="0 0 680 320" role="img" aria-label="P&amp;L at expiration of the equivalent combinations compared"></svg>
+        <div class="legend" id="f4-legend"></div>
+        <div class="readout">
+          <div><b id="f4-r1">—</b><small id="f4-r1s">Portfolio A at the start</small></div>
+          <div><b id="f4-r2">—</b><small id="f4-r2s">Portfolio B at the start</small></div>
+          <div><b id="f4-r3">—</b><small>Difference at the start (= PV of strike)</small></div>
+          <div><b id="f4-r4">—</b><small>Difference in P&amp;L at expiration (any stock price)</small></div>
+        </div>
+        <figcaption>In all four combinations, the thick solid line and the dashed line coincide exactly; the thin lines are the two legs of portfolio A. Drag the strike and watch the third readout: the difference in starting cash between the two sides always equals the present value of the strike, K·e<sup>−rT</sup>. In other words, the entire difference between the two ways of holding the position is a sum of cash. P&amp;L assumes the starting cash earns 4% interest; for the difference when cash earns no interest, see Case 1.</figcaption>
+      </figure>
+
+      <h3>Covered call = short put</h3>
+      <p>The third row is the one most often overlooked. Owning stock and selling a call (a covered call) has exactly the same payoff at expiration as selling a put at the same strike with the full cash set aside (a cash-secured put): above the strike, both earn a fixed maximum gain; below it, both take the loss from the falling stock. Case 1 compares them point by point.</p>
+      <h3>Protective put = long call</h3>
+      <p>Owning stock and buying a put as insurance is equivalent to keeping most of the money in cash and buying just a call. The two have the same maximum loss on the way down and the same gain on the way up. This also shows that the cost of “buying insurance” can be measured directly by the call's time value.</p>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">3.7</span>Reading probabilities</h2>
+      <p>Option prices contain the market's view of the distribution at expiration: Delta approximates the probability of finishing in the money, and the probability of touching the strike before expiration is about twice that.</p>
+      <p>As Chapter 4 covers, Delta is <span class="v">N</span>(<span class="v">d</span><sub>1</sub>), and the risk-neutral probability of finishing in the money is <span class="v">N</span>(<span class="v">d</span><sub>2</sub>). A call's Delta is slightly higher than its probability of finishing in the money. For a put it's the reverse: |Delta| = <span class="v">N</span>(−<span class="v">d</span><sub>1</sub>) is slightly lower than the probability of finishing in the money, <span class="v">N</span>(−<span class="v">d</span><sub>2</sub>). The table below puts them side by side:</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 3-6 Stock at $100, 30 days, IV 30%: Delta, probability of finishing in the money and probability of touching</caption>
+          <thead><tr><th>Contract</th><th>Delta</th><th>Prob. ITM at expiration</th><th>2 × prob. ITM</th><th>Prob. of touching (exact)</th></tr></thead>
+          <tbody>
+            <tr><td>105 call</td><td class="mono">0.313</td><td class="mono">0.284</td><td class="mono">0.567</td><td class="mono">0.569</td></tr>
+            <tr><td>110 call</td><td class="mono">0.152</td><td class="mono">0.133</td><td class="mono">0.266</td><td class="mono">0.266</td></tr>
+            <tr><td>115 call</td><td class="mono">0.061</td><td class="mono">0.052</td><td class="mono">0.103</td><td class="mono">0.103</td></tr>
+            <tr><td>95 put</td><td class="mono">−0.249</td><td class="mono">0.277</td><td class="mono">0.554</td><td class="mono">0.552</td></tr>
+            <tr><td>90 put</td><td class="mono">−0.096</td><td class="mono">0.111</td><td class="mono">0.222</td><td class="mono">0.222</td></tr>
+            <tr><td>85 put</td><td class="mono">−0.024</td><td class="mono">0.030</td><td class="mono">0.059</td><td class="mono">0.059</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Why the probability of touching is about double</h3>
+      <p>Imagine the stock touches 110 at some moment before expiration. From then on, the remaining paths are about equally likely to go up or down, because drift is small over short periods. So “finishing above 110” is only about half as likely as “having touched 110.” Put the other way, probability of touching ≈ 2 × probability of finishing in the money. In mathematics this idea is called the reflection principle; the exact formula, with a correction for drift, differs from the “double” approximation by less than 0.003 in the table above.</p>
+      <p>The approximation breaks down in three situations:</p>
+      <ul>
+        <li><strong>Larger drift</strong>: with very long terms or high interest rates, “equally likely up or down” no longer holds.</li>
+        <li><strong>Closing prices only</strong>: the touch probabilities in the table assume continuous monitoring. If you check only once a day at the close (simulated with 30 observation points), the probability of touching 110 falls from 0.266 to about 0.22, and for 105 from 0.57 to about 0.50. Intraday touches that reverse by the close don't count.</li>
+        <li><strong>Real distributions have fat tails and gaps</strong>: then both probabilities are underestimated.</li>
+      </ul>
+
+      <h3>Finding “one standard deviation” on the option chain</h3>
+      <p>You'll often hear that “16 Delta is about one standard deviation.” This comes from <span class="v">N</span>(−1) = 0.159 in the standard normal distribution. At 30 days and IV 30%, the strikes one standard deviation away are <span class="num">100 × e<sup>±0.086</sup></span>, or 108.98 and 91.76. At these two strikes the probability of finishing in the money is indeed about 0.16, but the Deltas are <span class="num">0.179</span> for the call and <span class="num">−0.140</span> for the put, because <span class="v">d</span><sub>1</sub> and <span class="v">d</span><sub>2</sub> differ by σ√<span class="v">T</span>. So to find one standard deviation on the chain, look for about 0.18 on the call side and about 0.14 on the put side. The higher the IV and the longer the term, the bigger the gap.</p>
+      <div class="note warn">
+        <span class="tag">Note: these are probabilities priced by the market</span>
+        <p>These probabilities are backed out of option prices, so they include the risk-neutral assumption and the premium the market charges for the tails. Over the long run, out-of-the-money index puts have usually been priced above their average payout after the fact, so the probability of a drop implied by options is often higher than how often drops actually happen (the volatility risk premium in Chapter 6). Using them as a reference is fine; treating them as forecasts is a mistake.</p>
+      </div>
+      <div class="note field">
+        <span class="tag">In practice</span>
+        <p>Many covered call sellers choose strikes by Delta: sell calls with a Delta of around 0.2 that expire in one to one and a half months, and buy them back when only about 30% of the premium is left. By the reading in this section, a Delta of 0.2 means less than a 20% chance of finishing in the money, but close to a 40% chance of being touched during the holding period. So decide when you open the trade what you'll do if the stock runs up to the strike (roll, buy back or let the shares be called away), rather than making it up on the spot once it gets touched.</p>
+      </div>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">3.8</span>Mental math 1: the expected move</h2>
+      <p>One-standard-deviation expected move ≈ stock price × IV × √(days/365). IV is a full-year standard deviation; scale it by the square root of time to the period you care about.</p>
+      <div class="formula">
+        <div class="eq">Expected move <span class="up">≈</span> <span class="v">S</span> <span class="up">×</span> σ <span class="up">×</span> √<span class="up">(</span><span class="frac"><span>days</span><span>365</span></span><span class="up">)</span></div>
+        <p class="where">σ is the annualized implied volatility. There is about a 68% chance that the stock price at expiration lands within ±1 expected move.</p>
+      </div>
+      <p>Why the square root? Daily returns are roughly independent, and the variances of independent variables add: the variance over 30 days is 30 times the variance over 1 day, so the standard deviation is √30 times as large. An IV of 30% corresponds to a daily standard deviation of <span class="num">30% ÷ √365 = 1.57%</span>, and over 30 days it is <span class="num">1.57% × √30 = 8.6%</span>.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 3-7 Multipliers for common terms</caption>
+          <thead><tr><th>Term</th><th>√(days/365)</th><th>Shortcut</th></tr></thead>
+          <tbody>
+            <tr><td>1 day</td><td class="mono">0.052</td><td>IV ÷ 19 (÷ 16 under the trading-day convention; see Chapter 4)</td></tr>
+            <tr><td>1 week</td><td class="mono">0.139</td><td>IV ÷ 7.2</td></tr>
+            <tr><td>30 days</td><td class="mono">0.287</td><td>IV ÷ 3.5</td></tr>
+            <tr><td>90 days</td><td class="mono">0.497</td><td>IV ÷ 2</td></tr>
+            <tr><td>1 year</td><td class="mono">1.000</td><td>IV itself</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Example: stock at $200, IV 40%, two weeks (14 days): <span class="num">200 × 0.40 × √(14/365) = 200 × 0.40 × 0.196 = $15.7</span>. The market sees roughly a 68% chance that the stock will be between 184 and 216 in two weeks.</p>
+
+      <h3>How accurate is the mental math?</h3>
+      <p>Mental math gives a symmetric ±, while the lognormal range is wider on the upside and narrower on the downside, and the whole range also shifts down by −σ²/2. How far apart the two are depends on the size of σ√<span class="v">T</span>:</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 3-8 Mental math vs. the lognormal 68% range (stock at $100)</caption>
+          <thead><tr><th>Days</th><th>IV</th><th>σ√T</th><th>Mental math ±</th><th>Exact upper bound</th><th>Exact lower bound</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">7</td><td class="mono">30%</td><td class="mono">0.04</td><td class="mono">4.16</td><td class="mono">+4.23</td><td class="mono">−4.08</td></tr>
+            <tr><td class="mono">30</td><td class="mono">30%</td><td class="mono">0.09</td><td class="mono">8.60</td><td class="mono">+8.94</td><td class="mono">−8.28</td></tr>
+            <tr><td class="mono">90</td><td class="mono">30%</td><td class="mono">0.15</td><td class="mono">14.90</td><td class="mono">+15.92</td><td class="mono">−13.95</td></tr>
+            <tr><td class="mono">30</td><td class="mono">60%</td><td class="mono">0.17</td><td class="mono">17.20</td><td class="mono">+17.41</td><td class="mono">−16.77</td></tr>
+            <tr><td class="mono">365</td><td class="mono">30%</td><td class="mono">0.30</td><td class="mono">30.00</td><td class="mono">+34.31</td><td class="mono">−26.29</td></tr>
+            <tr class="hl"><td class="mono">365</td><td class="mono">60%</td><td class="mono">0.60</td><td class="mono">60.00</td><td class="mono">+58.41</td><td class="mono">−52.29</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>When σ√<span class="v">T</span> is within 0.2 (for example, up to three months at IV 30%, or up to one month at IV 60%), the mental-math value falls roughly between the exact upper and lower bounds, with an error of about $1. Above 0.3, be careful: in the last row, the upper bound is actually below the mental-math value, because the whole range has been pulled down by −σ²/2.</p>
+
+      <figure class="plate" id="fig5">
+        <div class="fig-head"><span class="fig-title">With short terms and low IV, mental math and the exact value are almost the same</span><span class="fig-no">Figure 3-5 · Stock at $100, interactive</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Choose a view">
+            <button type="button" data-view="move" aria-pressed="true">One-standard-deviation move</button>
+            <button type="button" data-view="strad" aria-pressed="false">ATM straddle price</button>
+          </div>
+        </div>
+        <div class="controls">
+          <label class="ctl" for="f5-iv">Implied volatility <input id="f5-iv" type="range" min="10" max="100" value="30"> <output id="f5-iv-o">30%</output></label>
+          <label class="ctl" for="f5-d">Read at <input id="f5-d" type="range" min="1" max="365" value="30"> <output id="f5-d-o">30 days</output></label>
+        </div>
+        <svg class="chart" id="f5-svg" viewBox="0 0 680 320" role="img" aria-label="Mental-math expected move vs. exact values as the term changes"></svg>
+        <div class="legend" id="f5-legend"></div>
+        <div class="readout">
+          <div><b id="f5-r1">—</b><small id="f5-r1s">Mental math</small></div>
+          <div><b id="f5-r2">—</b><small id="f5-r2s">Exact</small></div>
+          <div><b id="f5-r3">—</b><small id="f5-r3s">Gap</small></div>
+        </div>
+        <figcaption>In the “One-standard-deviation move” view, drag IV above 60% and you'll see the exact upper bound drop below the mental-math line near one year. Switch to the “ATM straddle price” view, and the two lines nearly coincide at any IV: even at IV 100% and one year, the error is only about 6%. This is the 0.8 rule of Section 3.9.</figcaption>
+      </figure>
+      <div class="note warn">
+        <span class="tag">When not to use it</span>
+        <p>Before events such as earnings or FDA decisions, IV includes the big move expected on the event day. Spreading it evenly across every day to work out “how much will it move tomorrow” is wrong: before the event, each day moves less than IV suggests, and on the event day it moves much more. Case 3 and Chapter 10 show how to split it out.</p>
+      </div>
+    </section>
+
+    <section id="s9">
+      <h2><span class="sn">3.9</span>Mental math 2: the straddle's 0.8</h2>
+      <p>The price of an at-the-money straddle (buying one call and one put at the same strike) ≈ 0.8 × the one-standard-deviation expected move. The 0.8 comes from the mean absolute value of the normal distribution: √(2/π) ≈ 0.798.</p>
+      <h3>Derivation 1: the average absolute move</h3>
+      <p>At expiration, an at-the-money straddle pays |<span class="v">S<sub>T</sub></span> − <span class="v">K</span>|, the absolute value of the stock's move. If the move is roughly normally distributed with standard deviation <span class="v">M</span> = <span class="v">S</span>σ√<span class="v">T</span>, the average of its absolute value is:</p>
+      <div class="formula">
+        <div class="eq"><span class="v">E</span>|<span class="v">Z</span>| <span class="up">=</span> 2<span class="up">∫</span><sub>0</sub><sup>∞</sup> <span class="v">z</span> <span class="frac"><span><span class="v">e</span><sup>−<span class="v">z</span>²/2</sup></span><span>√(2π)</span></span> <span class="v">dz</span></div>
+        <div class="eq"><span class="up">=</span> <span class="frac"><span>2</span><span>√(2π)</span></span> <span class="up">=</span> √<span class="up">(</span>2/π<span class="up">)</span> <span class="up">≈ 0.798</span></div>
+        <p class="where">So <span class="v">E</span>|Δ<span class="v">S</span>| ≈ 0.798 × <span class="v">M</span>. The straddle's price is the average absolute move (discounted), about 80% of one standard deviation.</p>
+      </div>
+      <h3>Derivation 2: starting from Black-Scholes</h3>
+      <p>At the money, <span class="v">S</span> = <span class="v">K</span>. Ignoring interest, <span class="v">d</span><sub>1</sub> = σ√<span class="v">T</span>/2 and <span class="v">d</span><sub>2</sub> = −σ√<span class="v">T</span>/2, and the call price becomes</p>
+      <div class="formula">
+        <div class="eq"><span class="v">C</span> <span class="up">=</span> <span class="v">S</span><span class="up">[</span><span class="v">N</span>(σ√<span class="v">T</span>/2) <span class="up">−</span> <span class="v">N</span>(−σ√<span class="v">T</span>/2)<span class="up">]</span></div>
+        <div class="eq"><span class="up">≈</span> <span class="v">S</span> <span class="up">·</span> σ√<span class="v">T</span> <span class="up">·</span> <span class="frac"><span>1</span><span>√(2π)</span></span> <span class="up">≈ 0.4 ×</span> <span class="v">S</span>σ√<span class="v">T</span></div>
+        <p class="where">The term in brackets is the area under the standard normal density over a band of width σ√T around 0, roughly the width × the peak height of 0.399. The put works the same way, so straddle = call + put ≈ 0.8 × <span class="v">S</span>σ√<span class="v">T</span>.</p>
+      </div>
+      <p>Along the way you get an even handier rule: <strong>ATM call ≈ 0.4 × stock price × IV × √(days/365)</strong>. Base case: <span class="num">0.4 × 100 × 0.30 × 0.287 = 3.44</span>, versus 3.591 from Black-Scholes. The 0.15 gap comes from interest: parity tells us the call is 0.328 more expensive than the put, and the call gets half of that. Add that half back and you get <span class="num">3.60</span>. The rule also works for backing out IV as in Section 3.1: <span class="num">(4.20 − 0.16) ÷ (0.4 × 100 × 0.287) ≈ 35.2%</span>, against an exact value of 35.3%.</p>
+
+      <h3>Checking the error with numbers</h3>
+      <div class="tbl">
+        <table>
+          <caption>Table 3-9 ATM straddle: Black-Scholes vs. the 0.8 rule (stock at $100)</caption>
+          <thead><tr><th>Days</th><th>IV</th><th>BS straddle price</th><th>0.8 × mental-math move</th><th>Rule error</th><th>Straddle ÷ mental-math move</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">1</td><td class="mono">30%</td><td class="mono">1.253</td><td class="mono">1.256</td><td class="mono">+0.3%</td><td class="mono">0.798</td></tr>
+            <tr><td class="mono">7</td><td class="mono">30%</td><td class="mono">3.314</td><td class="mono">3.324</td><td class="mono">+0.3%</td><td class="mono">0.798</td></tr>
+            <tr><td class="mono">30</td><td class="mono">30%</td><td class="mono">6.854</td><td class="mono">6.881</td><td class="mono">+0.4%</td><td class="mono">0.797</td></tr>
+            <tr><td class="mono">90</td><td class="mono">30%</td><td class="mono">11.843</td><td class="mono">11.918</td><td class="mono">+0.6%</td><td class="mono">0.795</td></tr>
+            <tr><td class="mono">30</td><td class="mono">60%</td><td class="mono">13.688</td><td class="mono">13.761</td><td class="mono">+0.5%</td><td class="mono">0.796</td></tr>
+            <tr><td class="mono">365</td><td class="mono">30%</td><td class="mono">23.585</td><td class="mono">24.000</td><td class="mono">+1.8%</td><td class="mono">0.786</td></tr>
+            <tr><td class="mono">365</td><td class="mono">60%</td><td class="mono">46.340</td><td class="mono">48.000</td><td class="mono">+3.6%</td><td class="mono">0.772</td></tr>
+            <tr class="hl"><td class="mono">365</td><td class="mono">100%</td><td class="mono">75.139</td><td class="mono">80.000</td><td class="mono">+6.5%</td><td class="mono">0.751</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The rule always overestimates slightly, and the error grows with σ√<span class="v">T</span>. The reason is that derivation 2 approximates the area under the curve as “width × peak,” while the normal density curves downward on both sides of the peak. A more precise expansion is <span class="v">N</span>(<span class="v">x</span>/2) − <span class="v">N</span>(−<span class="v">x</span>/2) ≈ 0.399<span class="v">x</span>(1 − <span class="v">x</span>²/24), with <span class="v">x</span> = σ√<span class="v">T</span>. At <span class="v">x</span> = 0.3 the correction is under 0.4%; at <span class="v">x</span> = 1 it is about 4%. For the terms and IVs you'll use day to day (σ√<span class="v">T</span> &lt; 0.3), the error is under 1%, so you can rely on the mental math.</p>
+      <h3>Two ways to use it in reverse</h3>
+      <ul>
+        <li><strong>Reading the expected move from the straddle</strong>: one standard deviation ≈ straddle ÷ 0.8 = 1.25 × straddle.</li>
+        <li><strong>Backing out IV from the straddle</strong>: IV ≈ straddle ÷ (0.8 × stock price × √(days/365)).</li>
+      </ul>
+      <div class="note">
+        <span class="tag">Agree on the measure first</span>
+        <p>Some platforms label the at-the-money straddle price directly as the “expected move.” That number corresponds to the average absolute move, about 80% of one standard deviation. Both usages are common, so before you compare against historical data, make sure both sides use the same measure: the straddle price corresponds to “the average absolute size of the move,” and straddle ÷ 0.8 corresponds to “one standard deviation.”</p>
+      </div>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">Cases</span>Three cases</h2>
+
+      <div class="case">
+        <div class="case-no">Case 1</div>
+        <h3>Using put–call parity to prove “covered call = short put”</h3>
+        <p>Stock at $100, 30 days, IV 30%. Two people make two trades that look different:</p>
+        <ul>
+          <li><strong>Trader A (covered call)</strong>: buys 100 shares and sells one 105 call, collecting $1.662 per share in premium. Net outlay at the start: <span class="num">100 − 1.662 = $98.338</span> per share.</li>
+          <li><strong>Trader B (cash-secured put)</strong>: sells one 105 put, collecting $6.317 per share in premium, and at the same time puts <span class="num">105 × e<sup>−0.04×30/365</sup> = $104.655</span> per share into short-term Treasury bills, which grow to exactly 105 at expiration. Net outlay at the start: <span class="num">104.655 − 6.317 = $98.338</span> per share.</li>
+        </ul>
+        <p>The two put up exactly the same money at the start, which is precisely the rearranged parity <span class="v">S</span> − <span class="v">C</span> = <span class="v">K</span>e<sup>−<span class="v">rT</span></sup> − <span class="v">P</span>. Now look at expiration, point by point:</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 3-10 Values and P&amp;L at expiration, point by point (per contract, $)</caption>
+            <thead><tr><th>Stock at expiration</th><th>A: stock</th><th>A: short call</th><th>A total</th><th>B: T-bills</th><th>B: short put</th><th>B total</th><th>P&amp;L (same for both)</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">85</td><td class="mono">8,500</td><td class="mono">0</td><td class="mono">8,500</td><td class="mono">10,500</td><td class="mono">−2,000</td><td class="mono">8,500</td><td class="mono neg">−1,334</td></tr>
+              <tr><td class="mono">90</td><td class="mono">9,000</td><td class="mono">0</td><td class="mono">9,000</td><td class="mono">10,500</td><td class="mono">−1,500</td><td class="mono">9,000</td><td class="mono neg">−834</td></tr>
+              <tr><td class="mono">95</td><td class="mono">9,500</td><td class="mono">0</td><td class="mono">9,500</td><td class="mono">10,500</td><td class="mono">−1,000</td><td class="mono">9,500</td><td class="mono neg">−334</td></tr>
+              <tr><td class="mono">100</td><td class="mono">10,000</td><td class="mono">0</td><td class="mono">10,000</td><td class="mono">10,500</td><td class="mono">−500</td><td class="mono">10,000</td><td class="mono pos">+166</td></tr>
+              <tr><td class="mono">105</td><td class="mono">10,500</td><td class="mono">0</td><td class="mono">10,500</td><td class="mono">10,500</td><td class="mono">0</td><td class="mono">10,500</td><td class="mono pos">+666</td></tr>
+              <tr><td class="mono">110</td><td class="mono">11,000</td><td class="mono">−500</td><td class="mono">10,500</td><td class="mono">10,500</td><td class="mono">0</td><td class="mono">10,500</td><td class="mono pos">+666</td></tr>
+              <tr><td class="mono">120</td><td class="mono">12,000</td><td class="mono">−1,500</td><td class="mono">10,500</td><td class="mono">10,500</td><td class="mono">0</td><td class="mono">10,500</td><td class="mono pos">+666</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>P&amp;L = total at expiration − the starting $9,833.8. Both have a breakeven of $98.34 and a maximum gain of $666 (with the stock at 105 or above), and on the way down both lose $100 for every $1 the stock falls. In practice, only four things can make them differ:</p>
+        <ol>
+          <li><strong>Interest on cash</strong>: if B's cash sits in the account earning no interest, B makes <span class="num">105 × (1 − e<sup>−rT</sup>) = $0.345</span> per share less than A, or $34.5 per contract. The amount by which the call is “more expensive” than the put is exactly this interest.</li>
+          <li><strong>Dividends</strong>: A collects dividends and B doesn't. But with dividends, calls are cheaper and puts more expensive, and parity already accounts for that.</li>
+          <li><strong>Early assignment</strong>: with American options, A's call may be exercised early before an ex-dividend date, and B's put may be assigned early when it is deep in the money, so the two may be taken out of their positions at different times.</li>
+          <li><strong>Costs and taxes</strong>: A makes two trades (the stock and the option), while B makes only one; the two may also be taxed differently.</li>
+        </ol>
+        <div class="note gam">
+          <span class="tag">Takeaways</span>
+          <p>“Covered calls are conservative, selling puts is aggressive” is an illusion. A cash-secured put and a covered call carry exactly the same risk. The real danger is using margin to scale up the number of contracts beyond what your cash can secure. That is a leverage problem and has nothing to do with which form you choose.</p>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 2</div>
+        <h3>March 2020: the weeks the normal assumption failed</h3>
+        <p>From late February 2020, COVID-19 spread around the world and US stocks fell fast. In mid-March, the S&amp;P 500 repeatedly triggered market-wide circuit breakers with intraday drops of 7%; the one-day drop on March 16 was the largest since 1987; and the VIX set a record closing high.</p>
+        <p>Measuring these days with a normal distribution leads to absurd conclusions. Suppose the index's daily standard deviation before the crisis was about 1% (about 16% annualized):</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 3-11 Frequencies under a normal distribution, using the pre-crisis daily standard deviation of 1%</caption>
+            <thead><tr><th>One-day drop</th><th>Equivalent to</th><th>Daily probability under normal</th><th>Average interval</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">5%</td><td class="mono">5σ</td><td class="mono">2.9 × 10⁻⁷</td><td class="mono">About 14,000 years</td></tr>
+              <tr><td class="mono">7%</td><td class="mono">7σ</td><td class="mono">1.3 × 10⁻¹²</td><td class="mono">About 3.1 billion years</td></tr>
+              <tr><td class="mono">10%</td><td class="mono">10σ</td><td class="mono">7.6 × 10⁻²⁴</td><td class="mono">About 5 × 10²⁰ years</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The universe is about 14 billion years old, yet days of all these kinds showed up within a few weeks. The problem lies in two places. First, the tails of returns are fatter than normal to begin with (Section 3.4). Second, the standard deviation itself isn't constant. Daily volatility in a crisis is several times what it is in calm times, and measuring a crisis with the σ of a calm period is a mistake in itself.</p>
+        <p>Now consider what this means for option sellers (the numbers below are a hypothetical scenario). The index is at 100 and IV is 16%. You sell a 30-day 95 put for <span class="num">$0.256</span> per share, or $25.6 per contract. Black-Scholes says the probability of it finishing in the money is only <span class="num">12.2%</span>. The next day the index falls 7% and IV jumps to 60%: the put is now worth <span class="num">$7.21</span>, a loss of <span class="num">$695</span> per contract, <span class="num">28</span> times the premium you collected. If IV had stayed at 16%, it would be worth only $2.67. In other words, $4.54 of the $6.95 loss came from the jump in IV, more than 60% of it.</p>
+        <div class="note gam">
+          <span class="tag">Takeaways</span>
+          <ul>
+            <li>Black-Scholes probabilities are calm-market probabilities. Using them to size short option positions badly underestimates tail risk.</li>
+            <li>Risk assessment for sellers should use scenarios: how much do you lose if the market “falls 7% and IV multiplies several times”? Delta and the probability of finishing in the money are only a reference.</li>
+            <li>The market uses volatility skew to mark up far out-of-the-money puts precisely because participants remember days like these. Before you decide that “out-of-the-money puts are overpriced, free premium for the taking,” run the scenario above.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 3</div>
+        <h3>A 30-second calculation before earnings</h3>
+        <p>The stock is at $250, and earnings come out this week. The at-the-money straddle expiring in 7 days is quoted at $15 (hypothetical). Without opening any pricing software, what can you read from it?</p>
+        <ol>
+          <li><strong>Average absolute move</strong>: <span class="num">15 ÷ 250 = 6%</span>. The market expects the stock to end up, on average, about 6% away from the current price at expiration.</li>
+          <li><strong>One standard deviation</strong>: <span class="num">15 ÷ 0.8 = $18.75</span>, or 7.5%. There is about a 68% chance that the price at expiration is between 231 and 269.</li>
+          <li><strong>Implied volatility</strong>: <span class="num">7.5% ÷ √(7/365) = 7.5% ÷ 0.139 ≈ 54%</span>. Backing it out precisely with Black-Scholes gives <span class="num">54.3%</span>; the mental math is off by 0.1 points.</li>
+          <li><strong>Split out earnings day</strong>: suppose the stock's normal IV is 35%. The other 6 days contribute a standard deviation of <span class="num">35% × √(6/365) = 4.49%</span>. Variances add, so the standard deviation of earnings day alone is <span class="num">√(7.52%² − 4.49%²) ≈ 6.0%</span>, which corresponds to an average absolute move of about <span class="num">0.8 × 6.0% ≈ 4.8%</span>.</li>
+          <li><strong>Compare with history</strong>: compare against the stock's <strong>average absolute move</strong> on the first day after its past several earnings reports, not the largest move and not the standard deviation. If the historical average is only around 3%, the options are priced rich this time; if it is 7%, they are cheap.</li>
+        </ol>
+        <div class="note gam">
+          <span class="tag">Takeaways</span>
+          <p>The straddle price, one standard deviation and implied volatility can be converted into one another: straddle ÷ 0.8 gives one standard deviation, and dividing that by √(days/365) and by the stock price gives IV. The most common mistake before an event is mixing measures: comparing the straddle price with a historical standard deviation, or spreading an IV that includes the event evenly across every day.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">Tools</span>Checklist and self-test</h2>
+      <p>Your checkmarks are saved only in your own browser.</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">3-1</span>Reading a quote: the six inputs</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">Confirm the stock price, strike and expiration; count days left in calendar days</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">Note the IV, and judge cheap or expensive by IV rather than by dollar price</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">For dividend payers, check whether an ex-dividend date falls before expiration</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">3-2</span>Parity check</h4>
+          <ul>
+            <li><input type="checkbox" id="k4"><label for="k4">Call − put ≈ stock − PV of strike (minus PV of dividends)</label></li>
+            <li><input type="checkbox" id="k5"><label for="k5">If it's far off, check these first: dividends, how hard the stock is to borrow, stale quotes</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">Cash-secured puts: is the cash earning interest?</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">3-3</span>Reading probabilities</h4>
+          <ul>
+            <li><input type="checkbox" id="k7"><label for="k7">Delta ≈ probability ITM: slightly high for calls, slightly low for puts</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">Probability of touching ≈ 2 × probability ITM; as a seller, plan for the “touch”</label></li>
+            <li><input type="checkbox" id="k9"><label for="k9">For tail risk, don't trust model probabilities; use scenario tests instead</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">3-4</span>Mental math</h4>
+          <ul>
+            <li><input type="checkbox" id="k10"><label for="k10">One standard deviation ≈ stock price × IV × √(days/365)</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">ATM straddle ≈ 0.8 ×, ATM call ≈ 0.4 × one standard deviation</label></li>
+            <li><input type="checkbox" id="k12"><label for="k12">When there's an event, split out the event day's variance separately</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Self-test: five questions</h3>
+      <details class="q"><summary><span class="num">1</span><span>With the stock unchanged, IV rises from 30% to 35%, and a 30-day at-the-money call gains $0.57. How much does the put with the same strike and expiration gain? Why?</span></summary>
+        <div class="ans"><p>Also $0.57. The parity equation <span class="num">C − P = S − K·e^{−rT}</span> contains no volatility, so the difference doesn't change when σ changes, and the two must rise and fall together.</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>The stock is at $50, a 60-day at-the-money call is $2.10, the rate is 4% and there are no dividends. About how much is the European put at the same strike?</span></summary>
+        <div class="ans"><p><span class="num">P = C − S + K·e^{−rT} = 2.10 − 50 + 50 × e^{−0.04×60/365} = 2.10 − 50 + 49.67 ≈ $1.77</span>. An American put would be slightly higher, but for an at-the-money option with no dividends the difference is small.</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>The stock is at $80, IV is 50%, and there are 45 days to expiration. Roughly how big is the one-standard-deviation expected move? Roughly how much is the at-the-money straddle?</span></summary>
+        <div class="ans"><p>Expected move: <span class="num">80 × 0.50 × √(45/365) = 40 × 0.351 ≈ $14.0</span>. Straddle: <span class="num">≈ 0.8 × 14.0 = $11.2</span>. The exact Black-Scholes value is $11.17, an error of about 0.6%.</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>A 30-day 110 call has a Delta of 0.152. Roughly what is the probability that it finishes in the money? And the probability that the stock touches 110 during those 30 days?</span></summary>
+        <div class="ans"><p>The probability of finishing in the money is slightly below Delta, about 13% (<span class="num">N(d₂) = 0.133</span>). The probability of touching is about double that, roughly 27%. If touching is judged only on daily closing prices, it is about 22%.</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>Someone says “a covered call is safer than a cash-secured put.” Use parity to explain why the two carry the same risk, and name two factors that make them not quite the same in practice.</span></summary>
+        <div class="ans"><p>Rearranging parity gives <span class="num">S − C = K·e^{−rT} − P</span>: owning stock and selling a call has exactly the same starting cost and payoff at expiration as holding cash equal to the present value of the strike and selling a put. Real-world differences: if the cash behind the short put earns no interest, you miss out on the interest on the strike; with American options, early assignment can come at different times; and who gets the dividend, the number of trades and the tax treatment also differ.</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="Chapter navigation"></nav>
+
+    <footer class="end">
+      <p>Examples in this chapter are calculated with the Black-Scholes model (4% rate, no dividends, 365-day year); the numbers for the t distribution, the historical scenario and the earnings quote are assumptions, as noted in the text. For education only; not investment advice.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+  const signed = (v, d) => (v > 0.0000001 ? "+" : v < -0.0000001 ? "−" : "") + Math.abs(v).toFixed(d === undefined ? 2 : d);
+  function niceStep(span, n) {
+    const raw = span / n, p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p;
+    return (f < 1.5 ? 1 : f < 3 ? 2 : f < 7 ? 5 : 10) * p;
+  }
+  /* axis(lo, hi, n): 把 hi 扩到下一个刻度, 返回 {lo, hi, t} */
+  function axis(lo, hi, n) {
+    const st = niceStep(hi - lo, n || 5);
+    const a = Math.floor(lo / st + 1e-9) * st, b = Math.ceil(hi / st - 1e-9) * st;
+    const t = []; for (let v = a; v <= b + st * 1e-6; v += st) t.push(+v.toFixed(6));
+    return { lo: a, hi: b, t };
+  }
+
+  // ---------- fig 3-1 敏感度实验台 ----------
+  (function () {
+    const svg = document.getElementById("f1-svg");
+    const ids = ["S", "K", "T", "s", "r", "q"];
+    const inp = {}; ids.forEach(k => { inp[k] = document.getElementById("f1-" + k); });
+    const spec = {
+      S: { lab: "Stock price ($)", f: v => "$" + v },
+      K: { lab: "Strike ($)", f: v => "$" + v },
+      T: { lab: "Days left", f: v => v + " days" },
+      s: { lab: "Implied volatility (%)", f: v => v + "%" },
+      r: { lab: "Risk-free rate (%)", f: v => (+v).toFixed(2) + "%" },
+      q: { lab: "Dividend yield (%)", f: v => (+v).toFixed(2) + "%" }
+    };
+    const base = { S: 100, K: 100, T: 30, s: 30, r: 4, q: 0 };
+    const btns = document.querySelectorAll("#fig1 .seg button");
+    let xv = "S";
+    const price = (o, kind) => bs(o.S, o.K, o.T / DAY, o.s / 100, kind, o.r / 100, o.q / 100).price;
+    const c0 = price(base, "c"), p0 = price(base, "p");
+    function draw() {
+      const o = {};
+      ids.forEach(k => { o[k] = +inp[k].value; document.getElementById("f1-" + k + "-o").textContent = spec[k].f(inp[k].value); });
+      const lo = +inp[xv].min, hi = +inp[xv].max;
+      const xs = range(lo, hi, (hi - lo) / 240);
+      const cs = xs.map(x => [x, price(Object.assign({}, o, { [xv]: x }), "c")]);
+      const ps = xs.map(x => [x, price(Object.assign({}, o, { [xv]: x }), "p")]);
+      const c = price(o, "c"), p = price(o, "p");
+      const top = Math.max(1, ...cs.map(v => v[1]), ...ps.map(v => v[1])) * 1.06;
+      const ya = axis(0, top, 5), xa = axis(lo, hi, 6);
+      plot(svg, {
+        x: [lo, hi], y: [0, ya.hi], xt: xa.t.filter(v => v >= lo - 1e-9 && v <= hi + 1e-9), yt: ya.t,
+        yf: v => (+v.toFixed(2)).toString(), xlabel: spec[xv].lab, ylabel: "Option price ($)", vline: o[xv],
+        series: [{ pts: cs, color: "var(--delta)", w: 2.6 }, { pts: ps, color: "var(--gamma)", w: 2.6 }],
+        dots: [[o[xv], c, "var(--delta)", 5], [o[xv], p, "var(--gamma)", 5]]
+      });
+      const T = o.T / DAY;
+      document.getElementById("f1-r1").textContent = c.toFixed(3);
+      document.getElementById("f1-r2").textContent = p.toFixed(3);
+      document.getElementById("f1-r1s").innerHTML = "Call · vs. base case <b>" + signed(c - c0, 3) + "</b>";
+      document.getElementById("f1-r2s").innerHTML = "Put · vs. base case <b>" + signed(p - p0, 3) + "</b>";
+      document.getElementById("f1-r3").textContent = fmt(c - p, 3);
+      document.getElementById("f1-r4").textContent = fmt(o.S * Math.exp(-o.q / 100 * T) - o.K * Math.exp(-o.r / 100 * T), 3);
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      xv = b.dataset.v;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    ids.forEach(k => inp[k].addEventListener("input", draw));
+    document.getElementById("f1-reset").addEventListener("click", () => { ids.forEach(k => { inp[k].value = base[k]; }); draw(); });
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 3-2 对数正态分布 ----------
+  (function () {
+    const svg = document.getElementById("f2-svg");
+    const dS = document.getElementById("f2-d"), ivS = document.getElementById("f2-iv");
+    const S = 100, r = CK.R;
+    function draw() {
+      const d = +dS.value, s = +ivS.value / 100, T = d / DAY;
+      document.getElementById("f2-d-o").textContent = d + " days";
+      document.getElementById("f2-iv-o").textContent = ivS.value + "%";
+      const m = (r - s * s / 2) * T, sd = s * Math.sqrt(T);
+      const M = S * Math.exp(r * T), V = M * Math.sqrt(Math.exp(sd * sd) - 1);
+      const lo = Math.max(-50, Math.min(S * Math.exp(m - 3.2 * sd), M - 2.8 * V));
+      const hi = Math.min(320, Math.max(S * Math.exp(m + 2.6 * sd), M + 2.8 * V));
+      const xs = range(lo, hi, (hi - lo) / 320);
+      const pdf = x => x <= 0 ? 0 : Math.exp(-Math.pow(Math.log(x / S) - m, 2) / (2 * sd * sd)) / (x * sd * Math.sqrt(2 * Math.PI));
+      const npdf = x => Math.exp(-Math.pow(x - M, 2) / (2 * V * V)) / (V * Math.sqrt(2 * Math.PI));
+      const ln = xs.map(x => [x, pdf(x)]), nn = xs.map(x => [x, npdf(x)]);
+      const ymax = Math.max(...ln.map(p => p[1]), ...nn.map(p => p[1])) * 1.16;
+      const b0 = S * Math.exp(m - sd), b1 = S * Math.exp(m + sd);
+      const xa = axis(lo, hi, 6);
+      const res = plot(svg, {
+        x: [lo, hi], y: [0, ymax], xt: xa.t.filter(v => v >= lo && v <= hi), yt: [],
+        xlabel: "Stock price at expiration ($)", ylabel: "Probability density", vline: S, zero: 0,
+        band: [b0, b1, "var(--tint-delta)"],
+        series: [{ pts: nn, color: "var(--muted)", w: 1.7, dash: "5 5" }, { pts: ln, color: "var(--delta)", w: 2.6, fill: 0, fillOp: 0.10 }],
+        labels: [[b0, ymax * 0.97, b0.toFixed(1), -4, 4, "end", "var(--delta)"], [b1, ymax * 0.97, b1.toFixed(1), 4, 4, "start", "var(--delta)"]]
+      });
+      if (lo < 0) {
+        el("rect", { x: res.X(lo), y: res.m.t, width: Math.max(0, res.X(0) - res.X(lo)), height: res.H - res.m.t - res.m.b, style: "fill: var(--tint-warn)" }, res.g);
+        const t = el("text", { x: (res.X(lo) + res.X(0)) / 2, y: res.m.t + 16, "text-anchor": "middle", style: "fill: var(--warn); font-family: var(--font-body); font-size: 12px" }, res.g);
+        t.textContent = "Negative prices";
+      }
+      const pUp = CK.N(bs(S, 110, T, s, "c").d2), pDn = CK.N(-bs(S, 90, T, s, "p").d2);
+      document.getElementById("f2-r1").textContent = b0.toFixed(1) + "–" + b1.toFixed(1);
+      document.getElementById("f2-r2").textContent = (S * Math.exp(m)).toFixed(1) + " / " + M.toFixed(1);
+      document.getElementById("f2-r3").textContent = (pUp * 100).toFixed(1) + "%";
+      document.getElementById("f2-r4").textContent = (pDn * 100).toFixed(1) + "%";
+    }
+    dS.addEventListener("input", draw); ivS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 3-3 肥尾 (静态) ----------
+  (function () {
+    const svg = document.getElementById("f3-svg");
+    const normal = [2.94, 125.3, 13843, 4022201], fat = [0.573, 1.287, 2.450, 4.174];
+    const nLabW = ["2.9 yrs", "125 yrs", "14,000 yrs", "4M yrs"], fLabW = ["0.6 yrs", "1.3 yrs", "2.5 yrs", "4.2 yrs"];
+    const nLabN = ["2.9", "125", "14K", "4M"], fLabN = ["0.6", "1.3", "2.5", "4.2"];
+    const yl = { 0.1: "0.1", 1: "1", 10: "10", 100: "100", 1000: "1K", 10000: "10K", 100000: "100K", 1000000: "1M", 10000000: "10M" };
+    function draw() {
+      const bars = [], labels = [];
+      const narrow = (svg.getBoundingClientRect().width || 680) < 560;
+      const nLab = narrow ? nLabN : nLabW, fLab = narrow ? fLabN : fLabW;
+      normal.forEach((v, i) => {
+        bars.push({ x: i + 1 - 0.19, y: v, w: 0.34, color: "var(--muted)" });
+        bars.push({ x: i + 1 + 0.19, y: fat[i], w: 0.34, color: "var(--warn)" });
+        labels.push([i + 1 - 0.19, v, nLab[i], 0, -6, "middle", "var(--ink)"]);
+        labels.push([i + 1 + 0.19, fat[i], fLab[i], 0, -6, "middle", "var(--warn)"]);
+      });
+      const res = plot(svg, {
+        x: [0.45, 4.55], y: [0.1, 3e7], ylog: true, xt: [], yt: [0.1, 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000],
+        yf: v => yl[v] || v, xlabel: "One-day drop (in standard deviations)", ylabel: "Average interval (years)", bars, labels
+      });
+      const ax = svg.querySelector("g.ax");
+      ["3σ", "4σ", "5σ", "6σ"].forEach((t, i) => {
+        el("text", { x: res.X(i + 1), y: res.H - res.m.b + 18, "text-anchor": "middle", style: "fill: var(--muted)" }, ax).textContent = t;
+      });
+    }
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 3-4 平价组合 ----------
+  (function () {
+    const svg = document.getElementById("f4-svg");
+    const kS = document.getElementById("f4-k");
+    const btns = document.querySelectorAll("#fig4 .seg button");
+    const S0 = 100, T = 30 / DAY, sig = 0.30, r = CK.R, g = Math.exp(r * T);
+    const names = {
+      long: { a: "Buy call + sell put", b: "Buy 100 shares", l1: "Buy call", l2: "Sell put" },
+      short: { a: "Sell call + buy put", b: "Short 100 shares", l1: "Sell call", l2: "Buy put" },
+      cc: { a: "Covered call: stock + sell call", b: "Sell put (cash-secured)", l1: "Stock", l2: "Sell call" },
+      pp: { a: "Stock + buy put", b: "Buy call (+ cash)", l1: "Stock", l2: "Buy put" }
+    };
+    let cur = "long";
+    const cash = v => (v >= 0 ? "Pay $" : "Receive $") + Math.abs(v).toFixed(2);
+    function draw() {
+      const K = +kS.value;
+      document.getElementById("f4-k-o").textContent = K;
+      const C = bs(S0, K, T, sig, "c").price, P = bs(S0, K, T, sig, "p").price;
+      const f = {
+        lc: x => Math.max(x - K, 0) - C * g, sc: x => C * g - Math.max(x - K, 0),
+        lp: x => Math.max(K - x, 0) - P * g, sp: x => P * g - Math.max(K - x, 0),
+        st: x => x - S0 * g, ss: x => S0 * g - x
+      };
+      const cfg = {
+        long: { l1: f.lc, l2: f.sp, b: f.st, ca: C - P, cb: S0 },
+        short: { l1: f.sc, l2: f.lp, b: f.ss, ca: P - C, cb: -S0 },
+        cc: { l1: f.st, l2: f.sc, b: f.sp, ca: S0 - C, cb: -P },
+        pp: { l1: f.st, l2: f.lp, b: f.lc, ca: S0 + P, cb: C }
+      }[cur];
+      const xs = range(70, 130, 0.5);
+      const A = xs.map(x => [x, cfg.l1(x) + cfg.l2(x)]), B = xs.map(x => [x, cfg.b(x)]);
+      const maxDiff = Math.max(...xs.map((x, i) => Math.abs(A[i][1] - B[i][1])));
+      plot(svg, {
+        x: [70, 130], y: [-36, 36], xt: range(70, 130, 10), yt: [-30, -15, 0, 15, 30],
+        yf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v),
+        xlabel: "Stock price at expiration ($)", ylabel: "P&L at expiration (per share)", zero: 0, vline: K,
+        series: [
+          { pts: xs.map(x => [x, cfg.l1(x)]), color: "var(--delta)", w: 1.5, op: 0.5 },
+          { pts: xs.map(x => [x, cfg.l2(x)]), color: "var(--gamma)", w: 1.5, op: 0.5 },
+          { pts: A, color: "var(--ink)", w: 3.4 },
+          { pts: B, color: "var(--warn)", w: 2.2, dash: "7 6" }
+        ]
+      });
+      const N = names[cur];
+      document.getElementById("f4-legend").innerHTML =
+        `<span><i style="border-color: var(--ink); border-top-width: 3.5px"></i>Portfolio A: ${N.a}</span>` +
+        `<span><i class="dash" style="border-color: var(--warn)"></i>Portfolio B: ${N.b}</span>` +
+        `<span><i style="border-color: var(--delta); opacity: .5"></i>${N.l1}</span>` +
+        `<span><i style="border-color: var(--gamma); opacity: .5"></i>${N.l2}</span>`;
+      document.getElementById("f4-r1").textContent = cash(cfg.ca);
+      document.getElementById("f4-r2").textContent = cash(cfg.cb);
+      document.getElementById("f4-r1s").textContent = "Portfolio A at the start (per share)";
+      document.getElementById("f4-r2s").textContent = "Portfolio B at the start (per share)";
+      document.getElementById("f4-r3").textContent = "$" + Math.abs(cfg.ca - cfg.cb).toFixed(2);
+      document.getElementById("f4-r4").textContent = "$" + maxDiff.toFixed(2);
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      cur = b.dataset.p;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    kS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 3-5 预期变动心算 ----------
+  (function () {
+    const svg = document.getElementById("f5-svg");
+    const ivS = document.getElementById("f5-iv"), dS = document.getElementById("f5-d");
+    const btns = document.querySelectorAll("#fig5 .seg button");
+    const S = 100, r = CK.R;
+    let view = "move";
+    const mental = (s, d) => S * s * Math.sqrt(d / DAY);
+    const upE = (s, d) => { const T = d / DAY; return S * Math.exp((r - s * s / 2) * T + s * Math.sqrt(T)) - S; };
+    const dnE = (s, d) => { const T = d / DAY; return S - S * Math.exp((r - s * s / 2) * T - s * Math.sqrt(T)); };
+    const strad = (s, d) => bs(S, S, d / DAY, s, "c").price + bs(S, S, d / DAY, s, "p").price;
+    function draw() {
+      const s = +ivS.value / 100, d = +dS.value;
+      document.getElementById("f5-iv-o").textContent = ivS.value + "%";
+      document.getElementById("f5-d-o").textContent = d + " days";
+      const xs = range(1, 365, 2).concat([365]);
+      let series, dots, top, legend;
+      if (view === "move") {
+        const mv = xs.map(x => [x, mental(s, x)]), up = xs.map(x => [x, upE(s, x)]), dn = xs.map(x => [x, dnE(s, x)]);
+        series = [{ pts: up, color: "var(--ink)", w: 2.2 }, { pts: dn, color: "var(--ink)", w: 2, dash: "6 5" }, { pts: mv, color: "var(--delta)", w: 2.8 }];
+        dots = [[d, mental(s, d), "var(--delta)", 4.5], [d, upE(s, d), "var(--ink)", 4], [d, dnE(s, d), "var(--ink)", 4]];
+        top = Math.max(...mv.map(p => p[1]), ...up.map(p => p[1]));
+        legend = `<span><i style="border-color: var(--delta)"></i>Mental math S·σ·√(days/365)</span><span><i style="border-color: var(--ink)"></i>Exact upper bound</span><span><i class="dash" style="border-color: var(--ink)"></i>Exact lower bound</span>`;
+        const a = mental(s, d), u = upE(s, d), w = dnE(s, d);
+        document.getElementById("f5-r1").textContent = "±" + a.toFixed(2);
+        document.getElementById("f5-r1s").textContent = "Mental math: one standard deviation";
+        document.getElementById("f5-r2").textContent = "+" + u.toFixed(2) + " / −" + w.toFixed(2);
+        document.getElementById("f5-r2s").textContent = "Exact: lognormal 68% range";
+        document.getElementById("f5-r3").textContent = "σ√T = " + (s * Math.sqrt(d / DAY)).toFixed(2);
+        document.getElementById("f5-r3s").textContent = "Below 0.2, mental math holds up";
+      } else {
+        const st = xs.map(x => [x, strad(s, x)]), ap = xs.map(x => [x, 0.8 * mental(s, x)]);
+        series = [{ pts: st, color: "var(--gamma)", w: 2.8 }, { pts: ap, color: "var(--delta)", w: 2.2, dash: "6 5" }];
+        dots = [[d, strad(s, d), "var(--gamma)", 4.5], [d, 0.8 * mental(s, d), "var(--delta)", 4]];
+        top = Math.max(...st.map(p => p[1]), ...ap.map(p => p[1]));
+        legend = `<span><i style="border-color: var(--gamma)"></i>Black-Scholes ATM straddle</span><span><i class="dash" style="border-color: var(--delta)"></i>0.8 × mental-math move</span>`;
+        const a = strad(s, d), b = 0.8 * mental(s, d);
+        document.getElementById("f5-r1").textContent = "$" + a.toFixed(3);
+        document.getElementById("f5-r1s").textContent = "Black-Scholes straddle";
+        document.getElementById("f5-r2").textContent = "$" + b.toFixed(3);
+        document.getElementById("f5-r2s").textContent = "0.8 rule";
+        document.getElementById("f5-r3").textContent = signed((b - a) / a * 100, 1) + "%";
+        document.getElementById("f5-r3s").textContent = "Rule error";
+      }
+      const ya = axis(0, top * 1.05, 5);
+      plot(svg, {
+        x: [0, 365], y: [0, ya.hi], xt: [0, 30, 90, 180, 270, 365], yt: ya.t,
+        xlabel: "Days left", ylabel: view === "move" ? "Stock move ($)" : "Price ($)", vline: d, series, dots
+      });
+      document.getElementById("f5-legend").innerHTML = legend;
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      view = b.dataset.view;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    ivS.addEventListener("input", draw); dS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+})();
+</script>
+<script id="lang-js">(function(){document.querySelectorAll(".lang-switch").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("hl-lang",a.getAttribute("data-lang"))}catch(e){}var h=a.getAttribute("href");if(location.hash&&h.indexOf("#")<0)a.setAttribute("href",h+location.hash);});});})();</script>
+</body>
+</html>

@@ -1,0 +1,1152 @@
+## source: psychology/index.html  (550 segments)
+@@ bd60e4d0ec html
+交易心理学 · hanoptions.trade
+@@ 72bf7cb92d html
+研习手册 · 十一章
+@@ 05cf54cac1 html
+交易心理学
+@@ 6d63af7389 html
+多数人亏钱，不是因为不懂市场，而是在不确定和情绪里做不到自己知道该做的事。这本手册讲的就是知道和做到之间的那段距离。
+@@ ec16d60e39 html
+章节
+@@ fb5f5a5979 html
+交易为什么是心理游戏
+@@ 029af73c42 html
+打开交易软件之前，大多数人已经知道「要止损<span class="ek">（Stop-loss）</span>」「别重仓」「别追高」。真正的难题是：在亏损正在扩大、别人都在赚钱、你已经连输三笔的那一刻，还能不能照做。
+@@ 7de76ab69f html
+交易心理学研究的就是这一刻。它不研究市场会往哪走，而是研究你在面对涨跌时，为什么常常做出与自己的计划相反的事，以及怎样让行为和认知保持一致。
+@@ f1855c2569 html
+市场是一个「恶劣的学习环境」
+@@ fbf9ebae52 html
+我们从小习惯的学习环境，反馈清楚、及时、公正：做对了得分，做错了扣分。市场完全不同。
+@@ f73f27b195 html
+维度
+@@ 8932064628 html
+学校、考试
+@@ 33c9de3c90 html
+市场
+@@ 6ada94bc4b html
+答案
+@@ 2f45910ce1 html
+有标准答案
+@@ bcb8ca5fe6 html
+没有，只有概率
+@@ d99bec6159 html
+反馈
+@@ ab79647669 html
+做对就得分
+@@ c1f69b393d html
+做对也可能亏，做错也可能赚
+@@ 29d5ebf63f html
+时间
+@@ 0588cf1566 html
+交卷后很快知道结果
+@@ 6816641667 html
+要几十上百笔才看得出真实水平
+@@ f5b61bcd04 html
+纠错
+@@ c7dc2bf1a2 html
+老师会指出错误
+@@ df6406e178 html
+没人告诉你，还常常奖励错误
+@@ 9e76dbe4bb html
+代价
+@@ 97e93ef397 html
+分数
+@@ 05363a4a43 html
+真金白银，外加情绪
+@@ f5caa7887a html
+在这样的环境里，靠「感觉」学习会学歪：一次侥幸的重仓赚了钱，会让你更愿意重仓；一次正确的止损之后价格反弹，会让你下次不敢止损。所以交易者需要刻意建立一套不依赖单次结果的学习方法。
+@@ b0bca56bca html
+三层结构：认知、情绪、行为
+@@ 89137b5d9d html
+<strong>认知</strong>：你怎么看待概率、风险和结果。错的认知会让正确的行为显得愚蠢。
+@@ be642c403c html
+<strong>情绪</strong>：恐惧<span class="ek">（Fear）</span>、贪婪<span class="ek">（Greed）</span>、后悔、狂喜<span class="ek">（Euphoria）</span>。它们本身不是敌人，是信息；问题在于让它们直接下单。
+@@ c2d6458b6a html
+<strong>行为</strong>：你实际做了什么。心理训练的目标，就是让行为在压力下也能稳定地落在计划里。
+@@ 4633a06335 html
+判断
+@@ 48e2729e26 html
+第 1、2、7 章
+@@ f3053580c4 html
+下单与仓位
+@@ 2b0ff48bc0 html
+第 4、5 章
+@@ b1780c58ba html
+持仓中的波动
+@@ cca9928639 html
+第 3、5 章
+@@ 3bcf668781 html
+结果与情绪
+@@ d26d6a3aef html
+第 3、6 章
+@@ 54078b185c html
+复盘
+@@ 3f60aec59f html
+第 8 章
+@@ e9da741eeb html
+交易之外的你
+@@ 31ac4811e8 html
+第 9 章
+@@ 86d6db9c02 html
+最容易失控的两段
+@@ 87f636b561 html
+「交易之外的你」是虚线框：睡眠、财务压力、生活节奏不在交易软件里，却决定了你带着什么状态进入下一次判断。
+@@ eaa8a866e4 html
+怎么用这本手册
+@@ ae26c48d72 html
+第 1–2 章先建立正确的认知；第 3–6 章处理情绪、仓位、纪律<span class="ek">（Discipline）</span>和随机性<span class="ek">（Randomness）</span>；第 7–9 章讲独立、复盘<span class="ek">（Trade review）</span>和交易之外的你。
+@@ 0e38827edd html
+第 4、6 章有可以拖动参数的模拟，建议亲手调一调，比读结论更有体会。
+@@ 2f2cf7ba6d html
+第 10 章是工具箱：清单、失控处理流程和一份自评。可以先做自评，再按结果挑章节读。
+@@ 0577bd64fb html
+概率思维：用一百笔交易看一笔交易
+@@ 3ba4991efe html
+一笔交易的结果，告诉你的信息比你以为的少得多。职业交易者把每一笔交易看成一个长序列里的一次抽样，而不是一场需要赢的考试。
+@@ d1ca37d492 html
+先学会用 R 来计数
+@@ 1f77aab6cb html
+R 是你在一笔交易里计划承担的风险。如果你在 $50 买入、止损<span class="ek">（Stop-loss）</span>设在 $47，每股风险 $3，这就是 1R。赚 $6 记为 +2R，止损出局记为 −1R。用 R 计数，能让不同价格、不同仓位的交易放在同一把尺子上比较。
+@@ 26c704fd26 html
+一个系统的长期价值由期望值<span class="ek">（Expected value (EV)）</span>决定：
+@@ 15b731b8b3 html
+<span class="num">期望（R）= 胜率 × 平均盈利 − 败率 × 平均亏损</span>
+@@ 8d07aa6dc1 html
+例如胜率<span class="ek">（Win rate）</span> 45%、平均盈利 2R、平均亏损 1R：<span class="num">0.45 × 2 − 0.55 × 1 = +0.35R</span>。每做一笔，长期平均多赚 0.35 倍的风险金额。这是一个相当好的系统。
+@@ 6257c4d9eb html
+小样本会骗人
+@@ 60f3febc40 html
+就算你拿着上面这个 +0.35R 的好系统，短期结果也会剧烈波动：
+@@ 0dac6b4c48 html
+表 1-1　胜率 45%、盈亏比 2:1 的系统，做 N 笔之后整体仍是亏损的概率
+@@ b2ee2d30ff html
+交易笔数
+@@ 2b7950a367 html
+整体亏损的概率
+@@ b401691b2a html
+你可能得出的错误结论
+@@ 5296ef9c5c html
+「这套方法不行，换一个」
+@@ 35c78d83e9 html
+「一定是我执行有问题」
+@@ bb1ed465af html
+开始接近真相
+@@ 5c0cb423b4 html
+样本足够，可以评价系统
+@@ adc46afc82 html
+反过来也一样：一个期望为负的系统，在前 10 笔里赚钱的概率同样不低。很多人就是在这个阶段「确认」了一套注定亏钱的方法。
+@@ 1e4c75c339 html
+评价一个方法至少要看几十笔交易，评价一笔交易要看决策过程，而不是看它最后是红是绿。
+@@ e43c135e8f html
+决策质量和结果是两回事
+@@ 78da038c0c html
+把结果当成决策好坏的唯一证据，在决策研究里被称为「结果导向<span class="ek">（Resulting）</span>」。在交易里，它是最贵的思维习惯之一。下面这张图是复盘<span class="ek">（Trade review）</span>时最常用的工具：
+@@ 24c05dd1b7 html
+结果
+@@ e695bea37f html
+赚钱
+@@ 3048bb25ff html
+亏钱
+@@ ac1c9cae04 html
+决策质量
+@@ 9a1ebd95dc html
+好决策
+@@ 6dd1d1c3e7 html
+坏决策
+@@ 5f3b9ba2c4 html
+应得的回报
+@@ 36f25a22e1 html
+按计划执行，结果也好
+@@ 30914088e6 html
+继续做，别因此加大仓位
+@@ 753322c2b4 html
+运气不好
+@@ 1346bb18da html
+过程正确，概率站在对面
+@@ 14d5ab023f html
+不改方法，这是做生意的成本
+@@ 0892d5d62b html
+侥幸（最危险）
+@@ 85ea02d468 html
+重仓、追高、没止损，却赚了
+@@ cfe7449345 html
+会强化坏习惯，复盘时要当亏损看
+@@ c4a81cb819 html
+应得的教训
+@@ 350642bd8f html
+违反纪律，也亏了钱
+@@ 51b41e509f html
+找出是哪条规则被破坏
+@@ 0f6d40557c html
+亏损会逼你反思，赚钱却会奖励错误。复盘时最该花时间的，往往是左下角那些赚了钱的坏交易。
+@@ d0835cd887 html
+下单前的三个问题
+@@ 0d71aecab2 html
+<strong>最可能发生什么？</strong>写下你的判断，以及你认为它的大致概率。
+@@ 6365d40b0a html
+<strong>对了能赚多少？</strong>用 R 表示，并说清楚在哪里止盈<span class="ek">（Take profit）</span>。
+@@ 729a93a591 html
+<strong>错了准备亏多少？</strong>止损位置在哪，什么事实出现就承认判断失效。
+@@ 50e1df0a37 html
+三个问题里，第三个最重要，也最常被跳过。多数人下单时只想第二个问题。
+@@ ca8498d632 html
+判断准确不等于能赚钱
+@@ 504910fa90 html
+同一个正确的判断，可以因为仓位太大被中途震出局，可以因为用了时间太短的期权「方向对了期权先死了」，也可以因为进场太晚只吃到尾巴。最终的盈亏是判断、时机、工具和仓位四件事的乘积，其中任何一项是零，结果都是零。
+@@ 7965f13edb html
+认知偏差：大脑的默认设置
+@@ cdec19eda6 html
+认知偏差<span class="ek">（Cognitive bias）</span>不是愚蠢，而是大脑为了在日常生活里快速做决定而形成的捷径。它们在大多数场合很好用，到了市场里却会系统性地把你推向错误的方向。
+@@ ff023a54c2 html
+行为金融学最有名的发现之一，是损失带来的痛苦大约是同等收益带来快乐的两倍左右。很多交易错误都可以从这一点推出来。下面是交易里最常见的十二种偏差。
+@@ 9dbbab01d2 html
+损失厌恶<small>LOSS AVERSION</small>
+@@ 04d62a072f html
+表现
+@@ 4922fe63c9 html
+亏 1000 的痛苦远大于赚 1000 的快乐
+@@ 241fdafde0 html
+交易中
+@@ e7ba1a84b5 html
+不愿止损<span class="ek">（Stop-loss）</span>，宁可「等回本」；为了避免小亏而承担大亏的风险
+@@ a311adcaba html
+对策
+@@ b163b05d83 html
+下单前就把止损写死；用 R 而不是金额去想亏损
+@@ 7afe94dc3f html
+处置效应<small>DISPOSITION EFFECT</small>
+@@ 2aa9cf53e3 html
+赚钱的仓位急着卖，亏钱的仓位死扛
+@@ 81fd45df91 html
+「赚一点就跑，亏了就扛」，胜率<span class="ek">（Win rate）</span>不低却整体亏钱
+@@ 6ffe997664 html
+预设止盈<span class="ek">（Take profit）</span>规则（如翻倍卖一半）；统计自己的平均盈利和平均亏损
+@@ 252eadd577 html
+锚定成本价<small>ANCHORING BIAS</small>
+@@ 75532f59c9 html
+把买入价当成股票的「真实价值」
+@@ 36b9c55bd5 html
+「回到成本就卖」；市场根本不知道你的成本价
+@@ 9de190b76d html
+每天问：如果现在空仓，我会在这个价买吗？
+@@ d2b6534b18 html
+沉没成本<small>SUNK COST FALLACY</small>
+@@ cbcd195b63 html
+已经投入的越多，越不愿放弃
+@@ 0470552d06 html
+亏损仓一补再补，补仓变成了「拯救」而不是新决定
+@@ e737f34563 html
+亏损仓最多一次有计划的加仓，并且要先看到确认信号
+@@ 8c5ac37db7 html
+确认偏误<small>CONFIRMATION BIAS</small>
+@@ 25101f0e6b html
+只找支持自己观点的信息
+@@ 08d6829624 html
+持仓后只看利好新闻和看多的帖子
+@@ c66495ca7d html
+每个仓位写一条「反方最强理由」；主动读相反立场
+@@ d311dd9ef0 html
+过度自信<small>OVERCONFIDENCE</small>
+@@ 02787c6c79 html
+高估自己的判断准确度
+@@ b49d49eb07 html
+连赢几笔后放大仓位，账户往往在连胜<span class="ek">（Winning streak）</span>之后爆掉
+@@ a1e2117cd9 html
+仓位由风险规则决定，不由信心决定；连胜后反而缩仓
+@@ aa8672a3ad html
+近因效应<small>RECENCY BIAS</small>
+@@ 425dc2a55e html
+把最近发生的事当成会一直持续
+@@ 31556039cb html
+涨了三天就以为会一直涨；最近一笔亏了就怀疑整个系统
+@@ 39cd321a62 html
+看长周期图和长样本统计，而不是最近几根 K 线
+@@ cf2e29bedf html
+后见之明<small>HINDSIGHT BIAS</small>
+@@ e3706bae80 html
+事后觉得「我早就知道」
+@@ e5d3af35e6 html
+高估自己的预测力，低估当时的不确定性
+@@ febd6994f4 html
+事前写下判断和信心程度，事后对照
+@@ 6287de55a2 html
+从众与错失恐惧<small>HERDING / FOMO</small>
+@@ 491b0bf179 html
+别人都在赚，自己不在场很难受
+@@ 862e4ea082 html
+追高进场，买在情绪最热的时候
+@@ ba6cf4e22d html
+只做计划内的交易；错过就是错过，市场每天都开
+@@ 9235416d70 html
+赌徒谬误<small>GAMBLER'S FALLACY</small>
+@@ 06c1b1c1fa html
+连输几次后以为「该赢了」
+@@ 17784d312d html
+连续止损后加大下一笔的仓位想翻本
+@@ 462aac6d42 html
+每笔交易独立；连败<span class="ek">（Losing streak）</span>时按规则减仓而不是加仓（第 6 章）
+@@ 1a4ac5c7a8 html
+叙事谬误<small>NARRATIVE FALLACY</small>
+@@ 4594d6d3c4 html
+一个好故事让人忽略数字和价格
+@@ 24a37be727 html
+爱上一个题材，价格走坏了还在用故事安慰自己
+@@ 76790af20b html
+叙事<span class="ek">（Narrative）</span>决定研究什么，价格和估值决定何时买；写下叙事失效的事实
+@@ 16fb2df869 html
+幸存者偏差<small>SURVIVORSHIP BIAS</small>
+@@ 3add138e72 html
+只看到活下来的人
+@@ a9a56fe822 html
+社交媒体上晒单的都是赢家，爆仓的人不会发帖
+@@ 637d32f576 html
+把别人的一次暴利当噪音；只和自己的长期记录比
+@@ ec9f0265a4 html
+偏差总是成串出现
+@@ 3e76cfc3a4 html
+单个偏差的伤害有限，真正的灾难来自一串偏差互相放大。一个很典型的路径：
+@@ 6b8d18bd90 html
+仓位开始亏损，<strong>损失厌恶<span class="ek">（Loss aversion）</span></strong>让你没有在止损位离场；
+@@ e412050708 html
+你开始只看利好消息（<strong>确认偏误</strong>），并告诉自己「回到成本就走」（<strong>锚定<span class="ek">（Anchoring）</span></strong>）；
+@@ 8044d2d9b3 html
+继续下跌，你补仓摊低成本，因为已经投入太多（<strong>沉没成本<span class="ek">（Sunk cost fallacy）</span></strong>）；
+@@ c7f5a4d986 html
+仓位越来越重，小亏变成伤及账户的大亏。
+@@ beadf765b1 html
+不要指望在当下用意志力识破偏差。在冷静的时候把规则写好（止损位、最多补仓一次、仓位上限），让规则替你在热的时候做决定。这是第 5 章的主题。
+@@ c934c343c7 html
+情绪与状态：当身体替你下单
+@@ 87cd9f1937 html
+情绪不是要消灭的东西。恐惧<span class="ek">（Fear）</span>提醒你风险在变大，兴奋提醒你可能过度自信<span class="ek">（Overconfidence）</span>。问题从来不是有情绪，而是让情绪直接按下买卖键。
+@@ ec52c5fa6e html
+压力下的大脑会变窄
+@@ a6d923b77d html
+账户快速亏损时，身体会进入类似「战斗或逃跑」的应激状态：注意力收窄到眼前的价格，长期计划和概率思考被挤到一边。这时候做出的决定，往往是为了让难受的感觉马上停止，而不是为了最优结果。所以「盯盘越紧越容易犯错」是有生理基础的。
+@@ 65a5a91d03 html
+研究还发现，评估结果的频率越高，人们感受到的损失越多，越倾向于规避风险。每五分钟看一次账户的人，比每周看一次的人经历更多的「亏损时刻」，即使两人持有的是完全相同的仓位。
+@@ 37170c70dc html
+六种最常见的失控状态
+@@ 044bd66bf3 html
+状态
+@@ 96f165769b html
+它让你做什么
+@@ 588eb9879b html
+识别信号
+@@ cf9fd4e329 html
+处理
+@@ db5f5ff38b html
+<strong>恐惧</strong>
+@@ 507ed0054a html
+不敢按计划进场；刚有浮盈就平仓
+@@ 36fa74d28e html
+反复看图却不下单；手心出汗
+@@ 14d87fe3d4 html
+把仓位缩到不再害怕的大小
+@@ 631437a281 html
+<strong>贪婪<span class="ek">（Greed）</span></strong>
+@@ 90af102f3b html
+不止盈<span class="ek">（Take profit）</span>；加仓追涨
+@@ 37987561f3 html
+开始计算「如果再涨 20% 我能赚多少」
+@@ 0455f0276f html
+执行预设的止盈规则
+@@ f3985edb00 html
+<strong>报复交易<span class="ek">（Revenge trading）</span></strong>
+@@ 57924ee986 html
+亏损后马上开新单想赢回来
+@@ 7f4725f254 html
+愤怒；觉得市场「欠」你
+@@ 5817ac0c82 html
+当天停止交易
+@@ 42127d2c48 html
+<strong>狂喜<span class="ek">（Euphoria）</span></strong>
+@@ 39ab0e6d75 html
+连赢后放大仓位、降低标准
+@@ 12596271f2 html
+觉得自己找到了圣杯
+@@ 7a80aea8d5 html
+强制冷却一天，下一笔减半仓位
+@@ cc181917c2 html
+<strong>无聊</strong>
+@@ ff388d3943 html
+没有好机会也要做点什么
+@@ e3d5300c57 html
+开仓理由是「好久没交易了」
+@@ 40b1ffae82 html
+把不交易记作一次正确决策
+@@ efef18f414 html
+<strong>后悔</strong>
+@@ d7c05fd08e html
+错过行情后追高，或卖飞后追回
+@@ 106586ee8b html
+反复看自己没买的那只股票
+@@ c4b232db0c html
+写下来，然后关掉那个页面
+@@ 71d174b53d html
+什么状态下不要交易
+@@ 252b96df52 html
+一个简单好记的检查：<strong>饿、怒、孤独、累</strong>。其中任何一项明显存在，就不做新的决定。再加上三条：睡眠不足、喝了酒、刚经历一笔大亏或大赚。
+@@ 76c13e5810 html
+连续赚钱之后的兴奋也是一种需要冷却的状态。很多人对亏损后的情绪有警惕，却把赚钱后的飘飘然当成「手感好」，这正是仓位失控最常见的起点。
+@@ 2cd67eedc6 html
+仓位是最好用的情绪调节器
+@@ 8d53c9940d html
+如果一笔交易的涨跌开始影响你的睡眠、心情或判断，问题通常不在心理素质，而在仓位太大。把仓位缩到「跌了也能睡着」的程度，大多数情绪问题会自己消失。冷静是仓位允许你冷静，而不是因为你天生冷静。
+@@ 8ececc114d html
+仓位应该小到让你能够冷静地做决定。
+@@ 1ea7ef39bc html
+身体是交易系统的一部分
+@@ 141b06f40e html
+<strong>睡眠</strong>：睡眠不足会削弱冲动控制和风险判断，这是交易最需要的两样能力。
+@@ 0fcd220a95 html
+<strong>运动</strong>：规律运动能降低基础压力水平，让你在亏损时恢复得更快。
+@@ ba51e87cdb html
+<strong>作息</strong>：固定的看盘和交易时段，比全天候盯盘更不容易犯错。好的机会多集中在开盘和收盘附近，其余时间可以离开屏幕。
+@@ 5962d6a7de html
+仓位即心理：正期望也会亏光
+@@ f39ef53463 html
+很多人以为只要找到一个赚钱的方法就够了。数学告诉我们另一件事：同一个正期望的方法，仓位太大，长期结果会是亏损甚至归零。
+@@ 361f7f4710 html
+亏损和回本不对称
+@@ 909f30ffe0 html
+亏 50% 需要涨 100% 才能回本，亏 75% 需要涨 300%。回撤<span class="ek">（Drawdown）</span>越深，回本越难，而且这种难是加速的。
+@@ 9f19bb86b8 html
+回撤 10% 只需涨 11.1%，回撤 30% 需要 42.9%，回撤 50% 需要 100%。所以风险管理的第一目标是不让回撤进入曲线右侧的陡峭区域。
+@@ a7564f95ae html
+仓位大小决定长期增长率
+@@ f86328ee0d html
+用第 1 章那个系统（胜率 45%、盈亏比<span class="ek">（Reward-to-risk ratio）</span> 2:1）来算：每笔交易拿出账户的多少比例去冒险，长期复合增长最快？
+@@ 88dad8819e html
+胜率 <input id="k-p" type="range" min="30" max="70" value="45"> <output id="k-p-o">45%</output>
+@@ 61ce95520f html
+盈亏比 <input id="k-b" type="range" min="5" max="40" value="20"> <output id="k-b-o">2.0 : 1</output>
+@@ 8630a71b84 html
+纵轴是平均每笔交易的复合增长率。默认参数下，每笔冒 17.5% 的风险增长最快，但超过 35.6% 增长率就变成负数：方法本身是赚钱的，仓位却会让账户长期缩水。实务中多数人用这个最优值的一半甚至更少，因为增长只少了一些，回撤却小得多。
+@@ ce608c21ba html
+上图的最优值在数学上叫凯利比例<span class="ek">（Kelly criterion）</span>。它假设你确切知道胜率<span class="ek">（Win rate）</span>和盈亏比，而现实中这两个数都是估计，还会随市场变化。估计偏高时按凯利下注，会直接落在曲线右侧。这就是为什么经验丰富的交易者通常每笔只冒账户 0.5% 到 2% 的风险。
+@@ 7838b8c410 html
+同一个系统，不同的仓位，不同的人生
+@@ 78f0998f2e html
+每笔风险 <input id="mc-r" type="range" min="1" max="40" value="2"> <output id="mc-r-o">2%</output>
+@@ b513ed60bf html
+重新抽样
+@@ da000916ea html
+每条线是同一个系统（胜率 45%、盈亏比 2:1）在不同运气下的 200 笔交易，纵轴为对数刻度，1× 为本金。把风险从 2% 拖到 25% 以上，看看曲线怎样从整齐的扇形变成一地鸡毛。
+@@ 1882d578ca html
+把「多大仓位」变成一道算术题
+@@ fd2b44e1ca html
+先决定每笔愿意亏账户的百分之几，再由止损<span class="ek">（Stop-loss）</span>距离倒推买多少股。这样仓位大小就不再取决于你当时的心情。
+@@ abb2467abb html
+账户资金（美元）<input id="ps-acct" type="number" value="20000">
+@@ b20ea83a18 html
+每笔风险（%）<input id="ps-risk" type="number" value="1" step="0.25">
+@@ f69aa1ba69 html
+计划买入价<input id="ps-entry" type="number" value="50" step="0.01">
+@@ 8c7e9ff98e html
+止损价<input id="ps-stop" type="number" value="47" step="0.01">
+@@ 55df70acd8 html
+如果算出来的股数让你觉得「太少了」，那正是这个工具在保护你。
+@@ 25b31c7ac3 html
+一个更直观的检验：如果这笔交易打到止损，亏掉的钱会不会影响你今天剩下的心情？会的话，就是仓位太大，与这道算术题算出来的结果无关。
+@@ 37df09f277 html
+纪律与规则：把决定提前做完
+@@ 80e9c6a3cf html
+纪律<span class="ek">（Discipline）</span>不是在压力下咬牙坚持，而是在冷静的时候把决定做完，让压力出现时只剩执行。
+@@ 37afe91434 html
+为什么要事先决定
+@@ c222edfc89 html
+人在冷静和激动两种状态下，几乎是两个不同的决策者。冷静时你很清楚止损<span class="ek">（Stop-loss）</span>的意义，亏损扩大时你会找出一百个理由再等等。心理学里有一个很实用的方法叫「如果…就…」计划：提前把情境和动作绑定在一起，比单纯下决心有效得多。
+@@ e8e8247497 html
+如果收盘跌破 $47，就在第二天开盘卖出，不看新闻。
+@@ a1d0532ddc html
+如果单日亏损达到账户的 3%，就关掉交易软件到明天。
+@@ 4fe517e823 html
+如果连续三笔止损，下一笔仓位减半。
+@@ ebc34fb31e html
+一份交易计划至少要写清楚这些
+@@ e9b9c5edba html
+项目
+@@ f75893769c html
+要回答的问题
+@@ 8cde5699f0 html
+论点
+@@ a1605e08be html
+我为什么认为会这样走？一两句话写清楚
+@@ 1fb18f9e06 html
+入场条件
+@@ 377c0002fe html
+什么价格或信号出现我才进？
+@@ 7db2954701 html
+失效条件<span class="ek">（Invalidation criteria）</span>
+@@ cdc4bb0512 html
+什么事实出现说明我错了？（不只是价格）
+@@ 56c6bccbbb html
+止损
+@@ 9a347c8d39 html
+在哪里认错，亏多少 R
+@@ 72c937f2a6 html
+止盈<span class="ek">（Take profit）</span>与退出
+@@ 639a462f3e html
+赚到哪里卖一部分，剩下的怎么处理
+@@ 0e1ae088fd html
+仓位
+@@ 21f397acfb html
+按第 4 章的算法得出的股数或张数
+@@ 2104a375d7 html
+时间止损
+@@ ed504d3889 html
+多长时间没按预期走就离场
+@@ 521f67ff1e html
+加仓条件
+@@ a5b06c6428 html
+什么情况下加，最多加几次
+@@ 0a77826c28 html
+止损是做生意的成本
+@@ 9b11da9aaf html
+开餐馆要付房租，做交易要付止损。止损不是承认自己愚蠢，而是情况变了、判断失效了，保存实力等下一个机会。把止损想成成本而不是失败，执行起来会容易得多。
+@@ e45b287558 html
+同样重要的是区分两件事：<strong>价格波动</strong>和<strong>逻辑失效</strong>。论点还成立时，正常的波动可以承受，这叫等待验证；论点已经被事实推翻，再等就是死扛。两者的区别，在下单前就要写进失效条件里。
+@@ ec88f6f0bc html
+少交易，提高标准
+@@ 499b0b5bc2 html
+交易越频繁，手续费、滑点<span class="ek">（Slippage）</span>和情绪失误的累积就越多。对多数人来说，提高交易质量最快的办法不是赢更多，而是少犯错：减少不在计划内的交易，把门槛提高。没有好机会的时候，空仓本身就是一种仓位。
+@@ a1bcd06d11 html
+把交易分成两类：按计划执行的，和有明显违规（追高、没止损、超仓位）的。信心应该来自前者的比例在提高，而不是最近赚了多少。
+@@ ec271b820b html
+关于打破规则
+@@ 4ef2354a1f html
+规则不是永远正确的，市场环境会变。但修改规则应该发生在周末的复盘<span class="ek">（Trade review）</span>里，而不是交易时段的冲动中。如果确实需要在盘中破例，必须满足：确定性非常高、事后单独记录、不能变成习惯。
+@@ 8379bfc9e9 html
+连胜与连败：随机性比你想象的更长
+@@ e020b9afad html
+人对随机性<span class="ek">（Randomness）</span>有一种系统性的误判：我们以为好运和坏运会很快轮换，实际上随机序列里的连续结果比直觉长得多。
+@@ 7f8cfb296f html
+连败几乎一定会来
+@@ 50072d1f36 html
+胜率<span class="ek">（Win rate）</span> 50% 的系统做 100 笔，至少出现一次连续 5 笔亏损的概率是 81%，出现 6 连败<span class="ek">（Losing streak）</span>的概率也超过一半。这不是系统坏了，是抛硬币本来的样子。
+@@ 8b563767e6 html
+胜率 <input id="st-p" type="range" min="30" max="75" value="50"> <output id="st-p-o">50%</output>
+@@ 98342fe9ee html
+交易笔数 <input id="st-n" type="range" min="20" max="500" step="10" value="100"> <output id="st-n-o">100</output>
+@@ ad32cd08e4 html
+先估计自己系统的胜率，再看看在一年的交易笔数里，几连败是「正常」的。把这个数字写进交易计划<span class="ek">（Trading plan）</span>，连败来临时就不会把它误读成系统失效。
+@@ 53afd4aa57 html
+表 6-1　做 100 笔交易，至少出现一次 k 连败的概率
+@@ a1091477ed html
+胜率
+@@ 07e2616508 html
+4 连败
+@@ 0acf1b187c html
+5 连败
+@@ 41a5f7d85d html
+6 连败
+@@ 50ee71bcf9 html
+8 连败
+@@ 801c036621 html
+10 连败
+@@ aef6edd820 html
+连败时怎么办
+@@ 1b1ca37959 html
+<strong>先区分</strong>：这次连败在你的系统「正常范围」内吗？用上图判断。
+@@ 5f3a9c5663 html
+<strong>再检查执行</strong>：亏损的单子是按计划做的，还是有违规？违规的连败是纪律<span class="ek">（Discipline）</span>问题，不是运气问题。
+@@ 97c07f1c54 html
+<strong>按规则减速</strong>：事先定好回撤<span class="ek">（Drawdown）</span>规则，例如回撤 6% 仓位减半，回撤 10% 停止交易一周、全面复盘<span class="ek">（Trade review）</span>。
+@@ 9cdf3ad1be html
+<strong>绝不加码翻本</strong>：赌徒谬误<span class="ek">（Gambler's fallacy）</span>会告诉你「该赢了」，但下一笔的胜率不会因为前面输了就变高。
+@@ 8f8e11cf71 html
+连胜时更要小心
+@@ f731979320 html
+账户很少在连亏中爆掉，更多是在连赢之后：信心膨胀，仓位放大，标准降低，然后一笔大亏把几周的利润连本带利吐回去。连胜<span class="ek">（Winning streak）</span>同样是随机序列的一部分，不代表你突然变厉害了。
+@@ 6558cc15b7 html
+赚钱可以让账户变大，但不要让胆子变大。
+@@ e36c889baf html
+大赚之后休息一天，再回到正常节奏。
+@@ 122cc30986 html
+连胜期间维持原来的风险比例<span class="ek">（Risk per trade）</span>，不因为「手感好」而放大。
+@@ 8c61651e9d html
+把连胜期的交易单独复盘一遍，找出其中靠运气的部分。
+@@ 63d010a2c3 html
+独立判断：信息、叙事与跟单
+@@ 2455d303db html
+信息越多不一定判断越好。决定结果的，是你怎样处理信息，以及最后由谁对决定负责。
+@@ 43ccb94f47 html
+价格常常走在新闻前面
+@@ 71fa59a670 html
+很多时候是先有价格变化，再有解释这个变化的新闻。读新闻时更有用的问题是：市场对这条消息的反应和你预期的一样吗？利好不涨、利空不跌，本身就是信号。看不懂局势的时候，问一句「谁从中获益？」往往比读十篇分析更有帮助。
+@@ a1b6e71c94 html
+信息饮食
+@@ 7d2b756a01 html
+<strong>多来源、多立场</strong>：同一件事读两个立场相反的版本，比较双方各自强调了什么、回避了什么。
+@@ a8cad9f9ad html
+<strong>分清信号和噪音</strong>：大部分盘中消息对一个按日或按周交易的人来说都是噪音。
+@@ 1ce1be7ae4 html
+<strong>别让立场替你交易</strong>：你支持哪个政党、喜欢哪家公司，和价格会怎么走没有关系。
+@@ 29b7953d67 html
+<strong>警惕晒单</strong>：社交媒体上的暴利截图是被筛选过的样本，看多了会让你对自己的正常收益感到不满，进而加大风险。
+@@ 55856b8cca html
+跟单的真实成本
+@@ f212366681 html
+跟着别人的单子做，看起来省力，实际上你只复制了交易里最容易的那一部分：
+@@ 493c80ec6f html
+你复制到的
+@@ c1b8b065c8 html
+你复制不到的
+@@ 91fec139f0 html
+买什么、大概什么价
+@@ 3234e7029e html
+他为什么买、什么情况下认错
+@@ 8a9bef539b html
+开仓那一刻
+@@ dd80d666a9 html
+后续的减仓、止损<span class="ek">（Stop-loss）</span>、对冲和改观点
+@@ 688baf497a html
+标的名字
+@@ 75c094077a html
+他的仓位比例、资金规模和承受力
+@@ 7b4d0fbb68 html
+他的信心
+@@ 7fb0a5afc2 html
+你自己的信心（信念借不来）
+@@ b1e1b994d3 html
+所以跟单<span class="ek">（Copy trading）</span>者常常会遇到：别人止损了你还拿着，别人小仓试错你重仓押注，别人的对冲腿你没抄。同一笔交易，别人小亏，你大亏。
+@@ 323a03d37d html
+我能用自己的话说出这笔交易的逻辑吗？
+@@ 0610da4134 html
+我知道它在什么情况下失效吗？
+@@ 34510ef2fc html
+这个仓位大小，对我的账户和我的神经合适吗？
+@@ 3f07c8397e html
+如果对方明天不再更新，我知道怎么管理这笔仓位吗？
+@@ 155d39a331 html
+四个问题里有一个答不上来，就先别做。
+@@ 2f7fbe7399 html
+独立不等于唱反调
+@@ 0650019eb4 html
+逆向本身不是优势。独立的意思是：你对自己的每一个决定负责，能解释它，也能在它错的时候认错。可以向任何人学习思路，但最后按下按钮的是你，承担结果的也是你。学习的对象应该是别人的思考过程和方法，而不是结论。
+@@ 27ae2da090 html
+复盘：把亏损变成学费
+@@ ab41e11275 html
+不复盘<span class="ek">（Trade review）</span>的交易者是在不停考试，复盘的交易者是在看错题本。亏损只有在被理解之后才是学费，否则就是税。
+@@ 0327ea0bfc html
+交易日记记什么
+@@ 16386f3f84 html
+只记盈亏是最慢的进步方式。日记要记录的是你的大脑，而不是你的账户。
+@@ 758d90293c html
+复制模板
+@@ 1c1901a28a html
+亏损归因：四个抽屉
+@@ 25cf3937c1 html
+每一笔亏损都放进下面四个抽屉之一。归错抽屉，就会修错地方。
+@@ b1cfe7a13c html
+抽屉
+@@ b6765a5792 html
+典型例子
+@@ 2f1c14ad35 html
+该怎么改
+@@ 492c5aac21 html
+<strong>判断错</strong>
+@@ a4b405e687 html
+论点本身不成立；看错了驱动因素
+@@ 5280331665 html
+改进分析方法、补知识
+@@ 2c61d61b94 html
+<strong>执行错</strong>
+@@ 25b55dc8ed html
+追高进场；没按计划止损<span class="ek">（Stop-loss）</span>；中途改剧本
+@@ 1b907d93c0 html
+强化规则和「如果…就…」计划
+@@ 70f2c0baaa html
+<strong>风控错</strong>
+@@ 783d003bdd html
+仓位太大被迫在最差位置平仓；工具期限太短
+@@ 8ac8af4e91 html
+回到第 4 章重新算仓位
+@@ a828c5b7c2 html
+<strong>正常波动</strong>
+@@ 25a7b1fb0b html
+按计划执行，概率站在了对面
+@@ cd0637e11a html
+什么都不用改，这是成本
+@@ 631f0f0e25 html
+赚了钱的交易也要归类。追高进场、没设止损、超仓位，即使赚了，也应该放进「执行错」或「风控错」。这些交易如果不被纠正，迟早会以更大的亏损还回去。
+@@ a4966a8b46 html
+每周复盘，每月统计
+@@ 33f003fc1b html
+<strong>每周</strong>：读一遍本周的日记；找出最大的一个错误；为下周只定一个要改进的行为。一次改一件事，比同时改五件更有效。
+@@ 338093495e html
+<strong>每月</strong>：统计胜率<span class="ek">（Win rate）</span>、平均盈利（R）、平均亏损（R）、期望值<span class="ek">（Expected value (EV)）</span>、最大回撤<span class="ek">（Maximum drawdown）</span>，以及违规交易的数量。
+@@ da461eb0b7 html
+<strong>一个特别有用的数字</strong>：把所有违规交易的盈亏单独加总。很多人会发现，只要不做这些交易，整个月就是赚钱的。
+@@ 53bce73fe0 html
+真正的进步很少来自找到更好的买点，更多来自少做那几笔不该做的交易。
+@@ 2cb647bf0c html
+心性与生活：交易之外的那部分
+@@ 76f652e75d html
+市场像一个放大器：你在生活里的冲动、拖延、虚荣、不会拒绝，都会在账户里被放大成数字。所以交易做到后来，很大一部分功夫在交易之外。
+@@ 0c2518e7f8 html
+生活里的习惯会被带进市场
+@@ 56c77c5e61 html
+<strong>贪小便宜</strong>：为了省一点手续费不买保护、为了多赚一点不止盈<span class="ek">（Take profit）</span>，最后把自己逼进越来越难退出的仓位。
+@@ e7383cb544 html
+<strong>没有边界感</strong>：生活中不敢拒绝别人的人，在市场里也很难对亏损仓位说「不」，别人一句「再等等」就动摇。
+@@ 50d431d79f html
+<strong>「差不多」心态</strong>：在重要的事上，差不多往往意味着放弃了标准。止损<span class="ek">（Stop-loss）</span>「差不多」到了、仓位「差不多」合适，都是漏洞。
+@@ cc1d1d628d html
+你需要多少钱，决定你能多耐心
+@@ ed5fcac239 html
+生活成本越高、对交易收入的依赖越大，你对市场的索取就越急，越容易为了赚钱而强行交易。反过来，生活成本低，对市场要求少，就更能等待好机会。财务自由买到的，与其说是钱，不如说是选择权：可以等，可以不做，可以不向任何人证明自己。
+@@ eb14e9c89b html
+用生活费、学费或借来的钱交易，等于把最大的心理压力直接装进了每一笔交易。本金越小，越应该少交易、慢慢练能力；先学会不亏大钱，再谈赚快钱。
+@@ 600cfef96c html
+长期主义
+@@ e859879f39 html
+交易更像一项需要多年训练的职业技能，而不是一夜致富的机会。一个合理的期待是：花几年时间活下来、建立方法、积累样本，然后让小而稳定的优势慢慢复利<span class="ek">（Compounding）</span>。追求「每周稳定小赚」的人，最终往往跑得比追求「一把翻倍」的人更远。
+@@ 4cc975449e html
+为结果负全责
+@@ 885c6200a6 html
+把亏损归咎于庄家、新闻、老师或运气，会让你失去改进的机会。为自己的每一个决定负责，不是自责，而是把控制权拿回来：只有你能决定下一笔交易怎么做。
+@@ 0f02529683 html
+别把自我价值押在盈亏上
+@@ 14c3ed35f4 html
+如果一次亏损让你觉得自己失败，一次盈利让你觉得自己了不起，你的情绪就会被账户牵着走。把注意力放在「我今天有没有按计划做」，而不是「我今天赚了多少」。前者完全由你控制，后者不是。
+@@ c0aa9c0140 html
+工具箱：清单、协议与自评
+@@ 12064758e9 html
+把前面九章变成每天可以用的东西。勾选和自评结果只保存在你自己的浏览器里。
+@@ cc33df74b1 html
+四张清单
+@@ def97792b7 html
+下单前
+@@ 387b58ba1b html
+能用一两句话说出论点
+@@ 7f4286a46c html
+写下了失效条件和止损
+@@ e42b4b5fe9 html
+仓位由风险比例算出，不由信心决定
+@@ 9c4ea129c0 html
+饿、怒、孤独、累都不明显
+@@ 2b36aa7a55 html
+这是计划内的交易，不是追涨或报复
+@@ 744032f16d html
+持仓中
+@@ 5624fee541 html
+论点还成立吗？价格波动还是逻辑失效？
+@@ f6bef1c838 html
+没有在亏损仓上加第二次仓
+@@ a3369ee8c7 html
+没有每几分钟就看一次账户
+@@ d5654cfcce html
+到了止盈规则就执行
+@@ 5ff73958b1 html
+平仓后
+@@ e7121041e8 html
+写了日记，归入四个抽屉之一
+@@ ed82d2aece html
+赚钱的单子也检查了有没有违规
+@@ 2b6cd79f88 html
+大赚或大亏后，今天不再开新仓
+@@ 805c9c1646 html
+失控处理流程
+@@ 3f96c65b2f html
+发现自己在报复交易或狂喜：停止下单
+@@ 84118bdc31 html
+把现有仓位缩到能睡着的大小
+@@ 0626149349 html
+离开屏幕至少 30 分钟，去走一走
+@@ ca5f668a92 html
+写下刚才发生了什么、当时的感受
+@@ 391da59be7 html
+第二天再决定要不要恢复交易
+@@ c814a88030 html
+交易心理自评
+@@ f92b83b655 html
+按最近一个月的真实情况选择：1 代表从不，5 代表几乎总是。分数越高，代表这一项越需要关注。
+@@ 9b965ded13 html
+中英术语表
+@@ 5825024006 html
+书中出现的主要术语和它们的英文原词，按首次出现的章节排列。读英文资料、用券商平台或者搜索时，用英文原词会准确得多。
+@@ 147b51b71b html
+中文
+@@ 79e91d826e html
+首次出现
+@@ 72ac7fd41c html
+导读
+@@ b77af26848 html
+恐惧
+@@ 35dd702383 html
+狂喜
+@@ 081962e768 html
+纪律
+@@ 6799aa42ed html
+贪婪
+@@ 56a6b7e7f2 html
+随机性
+@@ 89c9d927d5 html
+期望值
+@@ a63458a350 html
+第 1 章
+@@ 83ca92ce7a html
+止盈
+@@ 6b95439248 html
+结果导向
+@@ a1488a8f46 html
+叙事
+@@ 4b0f55bb92 html
+第 2 章
+@@ ead914addb html
+损失厌恶
+@@ e494dcceed html
+沉没成本
+@@ b59c8e011b html
+认知偏差
+@@ b5e70028f5 html
+连胜
+@@ 5c7b50a44c html
+连败
+@@ e83b405f43 html
+锚定
+@@ 910d7dab46 html
+报复交易
+@@ 0a9182db90 html
+第 3 章
+@@ d83aed376b html
+过度自信
+@@ 386e156830 html
+凯利比例
+@@ 3b11941a57 html
+第 4 章
+@@ 8fe73d5b2c html
+回撤
+@@ 40f0b3a3b7 html
+盈亏比
+@@ 495d9f14ee html
+失效条件
+@@ 6648ec5f17 html
+第 5 章
+@@ bf43047559 html
+滑点
+@@ dc2e8dbe06 html
+交易计划
+@@ 3013c461eb html
+第 6 章
+@@ 7e2276ef4d html
+赌徒谬误
+@@ 71b123df7d html
+风险比例
+@@ 501d90ff47 html
+跟单
+@@ d0243abec0 html
+第 7 章
+@@ b5784898f4 html
+最大回撤
+@@ 35282211a5 html
+复利
+@@ c2c124dc82 html
+第 10 章
+@@ 1e23bcf3be html
+概率思维
+@@ dd66cd0596 html
+延伸阅读
+@@ d1914a06d2 html
+丹尼尔·卡尼曼《思考，快与慢》：损失厌恶<span class="ek">（Loss aversion）</span>和各种认知偏差<span class="ek">（Cognitive bias）</span>的来源。
+@@ 6e6467627e html
+安妮·杜克《对赌》：在不确定中做决定，区分决策质量<span class="ek">（Decision quality）</span>和结果。
+@@ 6a17a4c1a4 html
+马克·道格拉斯《交易心理分析》：用概率思维<span class="ek">（Probabilistic thinking）</span>看待每一笔交易。
+@@ a817e17634 html
+乔科·威林克《极限控制》：为结果负全责的思维方式。
+@@ 3d769ca210 html
+《股票大作手回忆录》：一百年前的交易者，犯的是和今天一样的错。
+@@ 2e2ce2b286 html
+<small>上一章</small><span></span>
+@@ 5286a10ebc html
+<small>下一章</small><span></span>
+@@ 2014e5012d html
+本手册综合行为金融学的常见结论与交易社群的实战经验整理而成，书中示例由数学模型计算，供学习使用，不构成投资建议。
+@@ 1e13fbd1d0 text
+美股期权课
+@@ 6985e3fc6d text
+交易心理学
+@@ 549cca660d text
+宏观交易框架
+@@ f691f691fc text
+政策叙事投资
+@@ f025c44d71 text
+超卖反弹清单
+@@ d4b3891862 text
+一个每笔期望 +0.35R 的好系统，做 10 笔交易后仍然是亏损的概率。做到 100 笔，这个概率降到 1%。
+@@ c3ec1ad57c text
+导读
+@@ aae0f4420a text
+每一笔交易都会走完这个循环，每个环节都有对应的心理陷阱
+@@ 80e03d5043 text
+图 0-1
+@@ 5b18922e99 text
+第一章
+@@ f8355a3ad9 text
+期望值
+@@ 3e96163eda text
+四种组合里，最危险的是「坏决策、好结果」
+@@ e1021590e7 text
+图 1-1
+@@ b5b287fac6 text
+第二章
+@@ 7344937f4a text
+打断链条的办法
+@@ ec198ee68d text
+第三章
+@@ 9813bd5a4b text
+注意
+@@ 54e07b1acf text
+第四章
+@@ f5e7586b80 text
+回撤越深，回本所需的涨幅越陡
+@@ aa853fef44 text
+图 4-1
+@@ e37d5cc3cd text
+长期增长率先升后降，仓位过大会把正期望变成亏损
+@@ bc11489609 text
+图 4-2 · 可拖动
+@@ 9c7b6cba56 text
+每笔期望
+@@ eeb9a94523 text
+增长最快的风险比例
+@@ c813416c09 text
+超过这个比例长期必亏
+@@ 95e18a9d85 text
+24 个平行世界里的资金曲线
+@@ fdfa32f2a4 text
+图 4-3 · 模拟
+@@ 7c9e02a246 text
+200 笔后资金中位数
+@@ d61c0d7185 text
+最终亏损的世界占比
+@@ c23090bebe text
+最大回撤中位数
+@@ 0fa17294a7 text
+最惨那条的最大回撤
+@@ bd3b591b92 text
+按风险倒推仓位
+@@ 973d44fd28 text
+工具 4-A
+@@ bb4fc3490f text
+可以买入的股数
+@@ 1dbc4e5449 text
+仓位市值（占账户）
+@@ 7bad47dac3 text
+止损触发时的亏损
+@@ 141abdc3ef text
+情绪测试
+@@ 30b44a7821 text
+第五章
+@@ e15a11e144 text
+一个衡量方法
+@@ 45d7d3b76c text
+第六章
+@@ 48609979c7 text
+至少出现一次 k 连败的概率
+@@ 56f9d13a90 text
+图 6-1 · 可拖动
+@@ 28ccc0c330 text
+最长连败的中位数
+@@ 828b47730f text
+出现 5 连败的概率
+@@ 077b67aa6d text
+出现 8 连败的概率
+@@ aeccd92690 text
+第七章
+@@ 2070f8f314 text
+参考别人的想法之前
+@@ 6abb27b583 text
+第八章
+@@ 531c3211d8 text
+日期 / 标的 / 方向 / 工具：
+入场理由（论点）：
+当时的信心（1–5）和情绪：
+计划：入场 ___ 止损 ___ 目标 ___ 仓位 ___R
+实际：入场 ___ 出场 ___ 结果 ___R
+哪里判断对了：
+哪里判断错了：
+有没有违反规则？哪一条：
+如果重来一次，我会：
+归类：判断错 / 执行错 / 风控错 / 正常波动
+@@ f881cd8901 text
+最容易漏掉的
+@@ 30f805314b text
+第九章
+@@ d14b634b35 text
+尤其是学生和刚开始的人
+@@ ccc22c7da9 text
+第十章
+@@ 456edde821 attr
+十一章研习手册：概率思维、认知偏差、仓位数学、连败概率与复盘。知道和做到之间的那段距离。
+@@ 9ce7d3c4f4 attr
+站点导航
+@@ b4126ef441 attr
+章节
+@@ bf7233c44e attr
+导读：交易为什么是心理游戏
+@@ f5cdc36570 attr
+交易循环与各章对应关系
+@@ 940b6376d1 attr
+概率思维：用一百笔交易看一笔交易
+@@ 0d6dfec37d attr
+决策质量与结果的四象限
+@@ e7817e1140 attr
+认知偏差：大脑的默认设置
+@@ 808e08a24e attr
+情绪与状态：当身体替你下单
+@@ 53ce523ead attr
+仓位即心理：正期望也会亏光
+@@ 63e16528a1 attr
+回撤幅度与回本所需涨幅
+@@ 4fb4418548 attr
+每笔风险比例与长期增长率
+@@ 51b10c741b attr
+不同仓位下的模拟资金曲线
+@@ ceb3a54b37 attr
+纪律与规则：把决定提前做完
+@@ a16606af6b attr
+连胜与连败：随机性比你想象的更长
+@@ fbfc24b5e3 attr
+不同连败长度出现的概率
+@@ 77b3302cef attr
+独立判断：信息、叙事与跟单
+@@ 0afb89864c attr
+复盘：把亏损变成学费
+@@ 00ab6e63e4 attr
+心性与生活：交易之外的那部分
+@@ 5e89956ae5 attr
+工具箱：清单、协议与自评
+@@ f0852d355e attr
+章节翻页
+@@ fd738db15e js
+## code:       xf: v => v + "%", yf: v => v + "%", xlabel: "回撤幅度", ylabel: "回本所需涨幅",         se
+回撤幅度
+@@ c5498950ca js
+## code:  + "%", yf: v => v + "%", xlabel: "回撤幅度", ylabel: "回本所需涨幅",         series: [{ pts, colo
+回本所需涨幅
+@@ 845dd17799 js
+## code: ccent)", 5]); labels.push([kelly * 100, g(kelly), "最快 " + (kelly * 100).toFixed(1) + 
+最快 
+@@ 2a68419d95 js
+## code: lm)", 4]); labels.push([kelly * 50, g(kelly / 2), "一半", 0, 18, "middle", "var(--calm
+一半
+@@ 7f2e96d244 js
+## code:  ? "−" : "") + Math.abs(v) + "%",         xlabel: "每笔交易冒险的资金比例", ylabel: "每笔平均复合增长", zero: 0,
+每笔交易冒险的资金比例
+@@ d636a7347b js
+## code: (v) + "%",         xlabel: "每笔交易冒险的资金比例", ylabel: "每笔平均复合增长", zero: 0,         band: zero 
+每笔平均复合增长
+@@ 9f7614e069 js
+## code: nt = kelly > 0 ? (kelly * 100).toFixed(1) + "%" : "期望为负";       document.getElementByI
+期望为负
+@@ 085347936b js
+## code: zero * 100).toFixed(1) + "%" : (kelly > 0 ? "—" : "任何仓位");     }     pS.addEventListen
+任何仓位
+@@ c3a147ade8 js
+## code:      yf: v => v >= 1 ? v + "×" : v + "×", xlabel: "交易笔数", ylabel: "资金（本金的倍数，对数）", zero
+交易笔数
+@@ 52b52647ee js
+## code: >= 1 ? v + "×" : v + "×", xlabel: "交易笔数", ylabel: "资金（本金的倍数，对数）", zero: 1, series       });   
+资金（本金的倍数，对数）
+@@ 9887935d86 js
+## code: s-sh").textContent = sh.toLocaleString("en-US") + " 股";       document.getElementByI
+ 股
+@@ 1f233f1c6a js
+## code: 0], yf: v => v + "%", xf: v => v,         xlabel: "连败长度 k（至少出现一次）", ylabel: "概率",         bars: 
+连败长度 k（至少出现一次）
+@@ 42f9ea088a js
+## code: v => v,         xlabel: "连败长度 k（至少出现一次）", ylabel: "概率",         bars: ks.map((k, i) 
+概率
+@@ abbba660e2 js
+## code: ument.getElementById("st-r1").textContent = med + " 连败";       document.getElementByI
+ 连败
+@@ 040e680663 js
+## code: moveAllRanges(); s.addRange(r); msg.textContent = "已选中，按 ⌘C 或 Ctrl+C 复制"; };     if (navigator.clipboa
+已选中，按 ⌘C 或 Ctrl+C 复制
+@@ 2e746791f3 js
+## code: ard.writeText(txt).then(() => { msg.textContent = "已复制"; }, fallback); else fallback(
+已复制
+@@ 5c766e4734 js
+## code: ----------   (function () {     const dims = { e: "情绪", d: "纪律", r: "风险", i: "独立" };
+情绪
+@@ d19f625370 js
+## code: -   (function () {     const dims = { e: "情绪", d: "纪律", r: "风险", i: "独立" };     cons
+纪律
+@@ 2b0e95f4f7 js
+## code: tion () {     const dims = { e: "情绪", d: "纪律", r: "风险", i: "独立" };     const chap = 
+风险
+@@ bde9dbe23c js
+## code:      const dims = { e: "情绪", d: "纪律", r: "风险", i: "独立" };     const chap = { e: "第 3
+独立
+@@ be52240211 js
+## code: : "纪律", r: "风险", i: "独立" };     const chap = { e: "第 3 章", d: "第 5、8 章", r: "第 4、6 章", 
+第 3 章
+@@ 71a9767b41 js
+## code: 风险", i: "独立" };     const chap = { e: "第 3 章", d: "第 5、8 章", r: "第 4、6 章", i: "第 1、7 章" }
+第 5、8 章
+@@ 7cfac31a79 js
+## code: ;     const chap = { e: "第 3 章", d: "第 5、8 章", r: "第 4、6 章", i: "第 1、7 章" };     const qs
+第 4、6 章
+@@ 09c37f7385 js
+## code: ap = { e: "第 3 章", d: "第 5、8 章", r: "第 4、6 章", i: "第 1、7 章" };     const qs = [       ["e
+第 1、7 章
+@@ 841c2a8fa5 js
+## code:  章", i: "第 1、7 章" };     const qs = [       ["e", "亏损之后，我会很快再开一单想把钱赢回来。"],       ["d", "我会在没有写好止损的情况下下
+亏损之后，我会很快再开一单想把钱赢回来。
+@@ c146bd5299 js
+## code:        ["e", "亏损之后，我会很快再开一单想把钱赢回来。"],       ["d", "我会在没有写好止损的情况下下单。"],       ["r", "一笔交易的涨跌会影响我的睡眠
+我会在没有写好止损的情况下下单。
+@@ d57ab4bcc5 js
+## code: 。"],       ["d", "我会在没有写好止损的情况下下单。"],       ["r", "一笔交易的涨跌会影响我的睡眠或一整天的心情。"],       ["i", "我会因为别人推荐或社交媒体上
+一笔交易的涨跌会影响我的睡眠或一整天的心情。
+@@ 397118b662 js
+## code:      ["r", "一笔交易的涨跌会影响我的睡眠或一整天的心情。"],       ["i", "我会因为别人推荐或社交媒体上的热度而买入。"],       ["e", "连续赚钱后，我会觉得自己状态
+我会因为别人推荐或社交媒体上的热度而买入。
+@@ 3a8c3a00e5 js
+## code:       ["i", "我会因为别人推荐或社交媒体上的热度而买入。"],       ["e", "连续赚钱后，我会觉得自己状态很好，想做大一点。"],       ["d", "价格到了止损位，我会再等等看
+连续赚钱后，我会觉得自己状态很好，想做大一点。
+@@ 37472e06a7 js
+## code:     ["e", "连续赚钱后，我会觉得自己状态很好，想做大一点。"],       ["d", "价格到了止损位，我会再等等看。"],       ["r", "我会在亏损的仓位上补仓不止一
+价格到了止损位，我会再等等看。
+@@ b1852fa599 js
+## code: 点。"],       ["d", "价格到了止损位，我会再等等看。"],       ["r", "我会在亏损的仓位上补仓不止一次。"],       ["i", "我说不清自己仓位的失效条件，
+我会在亏损的仓位上补仓不止一次。
+@@ 4c4988fe9a js
+## code: 。"],       ["r", "我会在亏损的仓位上补仓不止一次。"],       ["i", "我说不清自己仓位的失效条件，只知道「应该会涨」。"],       ["e", "我会在很累、很烦或喝了酒之后
+我说不清自己仓位的失效条件，只知道「应该会涨」。
+@@ 59a7156cfd js
+## code:    ["i", "我说不清自己仓位的失效条件，只知道「应该会涨」。"],       ["e", "我会在很累、很烦或喝了酒之后交易。"],       ["d", "我会做计划之外的交易，只是因
+我会在很累、很烦或喝了酒之后交易。
+@@ 68af1a61e3 js
+## code: "],       ["e", "我会在很累、很烦或喝了酒之后交易。"],       ["d", "我会做计划之外的交易，只是因为不想错过。"],       ["r", "我不确定自己每笔交易冒了账户
+我会做计划之外的交易，只是因为不想错过。
+@@ 67bd53b71a js
+## code:        ["d", "我会做计划之外的交易，只是因为不想错过。"],       ["r", "我不确定自己每笔交易冒了账户百分之几的风险。"],       ["i", "我评价自己做得好不好，主要看
+我不确定自己每笔交易冒了账户百分之几的风险。
+@@ 419982ee4d js
+## code:      ["r", "我不确定自己每笔交易冒了账户百分之几的风险。"],       ["i", "我评价自己做得好不好，主要看这周赚了还是亏了。"]     ];     const box = docum
+我评价自己做得好不好，主要看这周赚了还是亏了。
+@@ 403863c221 tpl
+## code: );     box.innerHTML = qs.map((q, i) => `<div class="qrow"><
+<div class="qrow"><p>{0}. {1}</p><div class="scale" role="radiogroup" aria-label="第 {2} 题">{3}</div></div>
+@@ 8ecb220039 tpl
+## code: l>`).join("")}</div></div>`).join("") + `<p class="scale-leg
+<p class="scale-legend">1 从不 · 2 很少 · 3 有时 · 4 经常 · 5 几乎总是</p>
+@@ 94f8d8d02d tpl
+## code: a.avg)[0] : null;       res.innerHTML = `<p class="eyebrow" 
+<p class="eyebrow" style="margin:0">已答 {0} / {1}　分数越高越需要关注</p>
+@@ bf03ad21d2 js
+## code: worst.avg < 2.5 ? "整体状态不错，保持记录日记的习惯。" : ""
+整体状态不错，保持记录日记的习惯。
+@@ 9f2d4faba7 tpl
+## code: an></div>`).join("") +         (worst ? `<p class="advice">最
+<p class="advice">最需要关注的是 <strong>{0}</strong>（平均 {1} 分），建议先读 {2}。{3}</p>
+@@ f4d9623d28 tpl
+## code:  2.5 ? "整体状态不错，保持记录日记的习惯。" : ""}</p>` : `<p class="advice">答
+<p class="advice">答完全部 12 题后，这里会告诉你最该先读哪一章。</p>

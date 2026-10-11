@@ -1,0 +1,158 @@
+@@ 7608b371c5 html
+<span class="sn">15.6</span>Five paths to a dead account
+@@ bd3af44f70 html
+Most dead options accounts died along one of five paths. What they share: each step looks reasonable on its own, and the early warning signs are obvious; it’s just that nobody was looking at the time.
+@@ db89169282 html
+Path
+@@ 538006108e html
+How it starts
+@@ 76e0d7e73b html
+Amplifier
+@@ d451f09020 html
+How it ends
+@@ 330e984f58 html
+The middle column is the key. All five paths start from ordinary trades: buying 0DTE options, selling puts, rolling, using margin, trading events. What makes them deadly is the amplifier: doubling up, excess notional exposure, adding contracts, margin and equity moving in opposite directions, flipping sides after a loss. Spot the amplifier and you can break the chain early.
+@@ ff3d5b052f html
+Path 1: 0DTE options expiring worthless day after day
+@@ aa06d801a9 html
+<strong>How it happens.</strong> It starts with one small 0DTE trade a day. The chance of losing any one trade is about 88%; the chance of 5 losing days in a row is 53%, and of 6 in a row 47%. After a run of losses comes “doubling up to win it back”: <span class="num">$200 → $400 → $800 → $1,600 → $3,200 → $6,400</span>, a total of <span class="num">$12,600</span> put in over 6 days, 63% of a $20,000 account. Even raising each bet only 1.5×, 6 days take $4,156.
+@@ 937047beba html
+<span class="tg">Early warning signs</span>
+@@ b710266abe html
+Today’s bet is bigger than yesterday’s, and yesterday was a loss
+@@ 67a436e748 html
+More than one 0DTE trade on the same day
+@@ b95bdbf327 html
+Describing a trade as “I have to win it back today”
+@@ 1e321e664f html
+Can’t state the trade’s win rate and expectancy
+@@ 01bc3ea691 html
+<span class="tg">Prevention rules</span>
+@@ 1cde41fae1 html
+Set a monthly budget for lottery-type trades (e.g. 2% of the account) and stop when it’s used up
+@@ 766505e7a2 html
+Fixed bet size that doesn’t change with the previous trade’s result
+@@ ef87a51493 html
+No new 0DTE trades on a day you’ve lost
+@@ 768808da7c html
+Use only small change from realized profits
+@@ d2a5fda73e html
+Path 2: naked selling meets a gap
+@@ 7ef992c39f html
+<strong>How it happens.</strong> A $50,000 account sells 8 contracts of a 30-day 95 put (Delta −0.25) at 1.33 each. Notional exposure is $76,000, 1.5 times equity. Overnight the stock gaps to 80 and IV jumps to 70%; buying back at the open costs 16.57, a loss of <span class="num">$12,186</span>, 24% of the account. With no stop and the stock at 75 at expiry, the loss is <span class="num">$14,933</span>. A stop order is useless against a gap: it can only fill at the next price available.
+@@ a91ab14e3e html
+Notional exposure on short positions exceeds account equity
+@@ 83f71090c1 html
+Months in a row without a loss, and you start to feel “this strategy has no risk”
+@@ 41cae64cac html
+An underlying you’re short options on has earnings, regulatory or legal events before expiry
+@@ 52861f34a4 html
+Strikes creeping closer and closer to collect a bit more
+@@ b169763d85 html
+Naked notional exposure no more than 1× equity, or use only spreads
+@@ e7e25e6399 html
+Stress test (Chapter 13): after a 20% gap, the loss on any one trade is no more than 5% of the account, and no more than 20% across all short positions
+@@ 16d414f286 html
+Close before events, or switch to defined-risk spreads
+@@ 19c6c4caff html
+Path 3: rolling bigger and bigger
+@@ 9ec62c0392 html
+<strong>How it happens.</strong> Every time the position is breached, you “roll out further to a lower strike for a net credit.” To get that net credit, each roll needs more contracts:
+@@ b9ab4d9dde html
+Table 15-5 Three rolls (prices per share; P&amp;L and exposure in $)
+@@ f11f2be60f html
+When
+@@ 32cf37f9ae html
+Stock
+@@ 2f41e04000 html
+Action
+@@ 51b23ca8d2 html
+Realized this step
+@@ b7954a30e3 html
+Notional exposure
+@@ db6e89ca9f html
+Day 0
+@@ aac63190b7 html
+Sell 5 × 95 puts (30 days) for 1.33
+@@ 58907dee6f html
+Day 20
+@@ f0614d730d html
+Buy back at 5.63; sell 6 × 90 puts (45 days) for 4.81; net credit $69
+@@ f73d4642ae html
+Day 45
+@@ b7518d1033 html
+Buy back at 9.06; sell 10 × 82 puts (45 days) for 5.52; net credit $87
+@@ 76aaee5f39 html
+Expiry
+@@ 3800e9d003 html
+10 × 82 puts, intrinsic value 7.00
+@@ 62bf3e2679 html
+Every roll shows up on the broker’s screen as a “net credit,” yet the three together lost <span class="num">$6,178</span>, the contract count went from 5 to 10, and notional exposure from $47,500 to $82,000. If the stock falls to 72 by expiry, the total loss is $9,178; even if it rebounds to 78, it’s still a $3,178 loss.
+@@ a0d7d00ce5 html
+More contracts after a roll
+@@ cbcd526546 html
+Calling a roll that actually lost money a “net credit”
+@@ 7fe8872b53 html
+Expirations pushed further and further out, strikes chased lower and lower
+@@ 184ef0308b html
+Realized losses not recorded separately
+@@ e3216d85d0 html
+Roll any trade at most once, and never add contracts
+@@ 8dae9da42a html
+On every roll, book the loss on the buyback as a realized loss
+@@ fc5d54a361 html
+If you’d need more contracts to get a net credit, just close the position
+@@ 350bc48521 html
+Path 4: the margin spiral
+@@ 08a440881b html
+<strong>How it happens.</strong> A $50,000 account sells 12 contracts of a 30-day 90 put at 0.40 each, for notional exposure of $108,000. Margin below is estimated with the common Reg T formula for naked shorts (20% of the underlying’s value minus the out-of-the-money amount, with a floor of 10% of the strike, plus the option’s current price); many brokers set higher requirements of their own, so a second column uses 30%.
+@@ 5471e69ecd html
+Table 15-6 Margin when a decline and rising IV hit together ($)
+@@ 4f5994e37a html
+Day
+@@ 79785763f2 html
+Put price
+@@ 7884ed4a17 html
+Account equity
+@@ 4af63b7cf4 html
+20% requirement
+@@ 03a939148e html
+Remaining
+@@ 7de3c8b7bd html
+30% requirement
+@@ f13b2413d6 html
+The stock fell 17% and equity fell 21.7%, but the margin requirement at 30% rose from $24,481 to $41,208, up 68%. The two lines move toward each other and cross on day 12: margin call. Being forced to buy back now means filling at prices set by 70% IV, about the worst level of the whole move. The essence of the spiral: just when you most need time, the margin requirement takes it away.
+@@ 033d3ab34f html
+Margin used above 50% of equity
+@@ 3c7c71db25 html
+Watching only the minimum requirement, without knowing your broker’s actual one
+@@ 1ef74217c6 html
+Available funds drop fast whenever IV rises
+@@ 11543ff3ea html
+Thinking about “selling a bit more to make it up” during a decline
+@@ 15e59b6dc0 html
+Margin used no more than 30%–50% of equity
+@@ c37fa5493d html
+Stress tests assume a decline and rising IV together
+@@ 122ceca393 html
+Set the trigger for cutting positions before a margin call would hit
+@@ e3ef297d64 html
+Path 5: losing both ways on event days
+@@ a533415b5d html
+<strong>How it happens.</strong> The day before earnings, you buy 10 ATM straddles with 7 days to expiry (stock $100, IV 85%) for <span class="num">$9,383</span>; the implied expected move is about ±9.4%. After earnings the stock rises 5% and IV falls back to 35%; the straddle is worth only 5.69, a loss of <span class="num">$3,689</span>; a 5% drop loses $3,882 too. You lose whether you guessed the direction right or wrong, because the actual move was smaller than the move the market had already priced in.
+@@ 7ef76c1afd html
+The next quarter, having learned your “lesson,” you sell the same straddles instead and collect $9,383. This time the stock falls 14%, the straddle rises to 13.95, and you lose <span class="num">$4,567</span>. Two events, one loss on each side, about $8,256 in total. The problem isn’t whether you chose to buy or to sell; it’s that neither time did you compare the expected move with historical moves. You just flipped based on the last result.
+@@ a058fa6535 html
+Thinking only about direction on event trades, ignoring IV
+@@ 3b64dd2b76 html
+Lost on the last event, so planning the opposite this time
+@@ 6e23f42e2d html
+Can’t state this event’s expected move or the actual moves of the last few
+@@ 41ad62f9ca html
+Holding the original structure after the event to “wait a bit longer”
+@@ 2f07a7f261 html
+Track event trades separately, with their own limit
+@@ 503704a298 html
+First compare this expected move with the actual moves of the last 8 events
+@@ 340a851c8c html
+Deal with the position on the first trading day after the event, win or lose

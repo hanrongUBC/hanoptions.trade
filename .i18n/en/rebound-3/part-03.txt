@@ -1,0 +1,160 @@
+@@ 0faad7c5a8 html
+SLB <span class="zh">SLB (Schlumberger)</span>
+@@ c9fb420e05 html
+On the list, and on September 29 it was also added to his watchlist for selling puts. Note that it runs against the “falling oil prices” theme: lower oil prices usually hurt oilfield services companies.
+@@ dc8b794a25 html
+SLB (formerly Schlumberger) is the world's largest oilfield services company. It sells oil companies reservoir evaluation, drilling and well construction, production systems and digital software. Most of its revenue comes from outside North America: Q2 international revenue was $6.67 billion, about three-quarters of total revenue of $8.97 billion. Its results track oil companies' exploration and development spending closely, and in recent years it has also been building a data center solutions business.
+@@ e4509b898b html
+The 52-week range is $31.64 to $60.46, and the price is 19.0% below the high. The average analyst price target is $62.45 (30 analysts, average rating Buy). Price targets reflect an optimistic scenario and often lag the stock price.
+@@ 8355876c1f html
+The close of $48.95 is 7.3% below the 50-day moving average of $52.80 and also 3.6% below the 200-day moving average of $50.77. Falling below the 200-day shows that the pullback that began in late August has damaged the medium-term trend, though the 50-day is still above the 200-day.
+@@ a00a605110 html
+RSI is 39.02: weak, but not yet in oversold territory below 30.
+@@ 39fc559ac0 html
+Down 12.7% over the last 20 trading days, and about 18.6% from the August 31 close of $60.10.
+@@ 7840b65ddc html
+Support: the lowest close of the last 30 trading days, $47.96 (October 7). Below that, the 52-week low of $31.64 is too far away to be much of a guide.
+@@ 35714381df html
+Resistance: first the 200-day moving average at $50.77, then the 50-day moving average at $52.80. The highest close of the last 30 trading days was $60.10 (August 31), and the 52-week high is $60.46.
+@@ f68dc9c853 html
+$72.6 billion
+@@ 469fefd3ac html
+$12.8 billion / $4.1 billion
+@@ 6291edab79 html
+$4.4 billion
+@@ 83f949072a html
+Revenue over the trailing twelve months was $36.37 billion, up 2.5% year over year. Q2 revenue was $8.97 billion, up 5.0%, including $865 million from the acquired ChampionX.
+@@ fb61a33bbf html
+Earnings are falling: Q2 earnings per share (EPS) were $0.52, down 29.7% year over year, or $0.55 excluding charges, down 26%. Adjusted EBITDA was $1.90 billion, a profit margin of 21.2%. The Middle East conflict cut revenue in that region by 13% from the previous quarter.
+@@ 5937be4422 html
+Cash flow is still solid: trailing-twelve-month free cash flow was $4.38 billion, and in Q2 the company spent $648 million to buy back 12 million shares. Dividend yield 2.41%, payout ratio 57.2%.
+@@ dcfe1bb18c html
+Valuation: P/E (TTM) 23.8x, forward P/E 17.5x, EV/EBITDA 11.0x. The PEG is as high as 26.1 only because recent earnings growth is negative, so that metric says little here.
+@@ c587ede047 html
+Balance sheet: total debt of $12.81 billion, cash of $4.12 billion, ROIC 11.6%. Gross margin 17.0%, operating margin 14.2%, net margin 8.5%.
+@@ a8375c73a8 html
+New businesses: Q2 digital revenue was $697 million, up 18% year over year. Data center solutions revenue grew 63% in the first half, and the company expects an annualized run rate above $1 billion by year-end.
+@@ b1de8a0a53 html
+<span class="nd">2026-08-25</span><span>Reuters reported that SLB signed a contract with Venezuela's state oil company PDVSA that gives it access to reservoir and real-time production data and puts it in charge of upgrading the database. This opens a door for SLB to return to Venezuela, but the payment terms and the sanctions environment are still unclear. <a href="https://energynow.ca/2026/08/slb-gains-access-to-venezuelas-coveted-oilfield-data-through-contract-sources-say/" target="_blank" rel="noopener">energynow.ca</a></span>
+@@ 5b9ad50d55 html
+<span class="nd">2026-08-31</span><span>SLB announced a $4.1 billion deal (about $3.4 billion in cash plus about $700 million of assumed debt) for Kelvion, a data center cooling company. It expects to close in the first half of 2027 and targets $4.5–5 billion of data center revenue in 2028. The stock closed up about 4.8% that day at $60.10, near its 52-week high. <a href="https://worldoil.com/news/2026/8/31/slb-expands-data-center-business-with-4-1-billion-kelvion-acquisition/" target="_blank" rel="noopener">worldoil.com</a></span>
+@@ 16ccbf4dda html
+<span class="nd">2026-09-14</span><span>Saudi Arabia shut its East-West oil pipeline after a drone attack. Citi warned that a long shutdown would hit drilling activity and said SLB has the largest exposure to Saudi Arabia; the stock fell about 5% that day. The Middle East situation cuts both ways for SLB. <a href="https://www.nasdaq.com/articles/why-slb-stock-slumped-today" target="_blank" rel="noopener">nasdaq.com</a></span>
+@@ 538bddfb25 html
+<span class="nd">2026-09-24</span><span>SLB won four multiyear integrated well-construction contracts from Saudi Aramco covering more than 450 wells, with a 3-year base term and an optional 2-year extension. It is a concrete sign that its Middle East business is recovering. <a href="https://www.slb.com/newsroom/press-release/2026/pr-2026-0924-slb-aramco" target="_blank" rel="noopener">slb.com</a></span>
+@@ 2983ae80a0 html
+<span class="nd">2026-10-08</span><span>TotalEnergies signed a 15-year agreement with SLB for DrillPlan digital well planning. Long-term software contracts bring steadier recurring revenue. <a href="https://www.slb.com/newsroom/press-release/2026/pr-2026-1008-total-energies-drillplan" target="_blank" rel="noopener">slb.com</a></span>
+@@ 61ac0f66d1 html
+2026-10-23, before the open: Q3 earnings report. Watch whether Middle East revenue recovers, how data center revenue is progressing, and the 2027 outlook.
+@@ 48d11855f3 html
+The Kelvion acquisition is expected to close in the first half of 2027 and needs regulatory approval.
+@@ cbd7cfeba2 html
+How the Saudi East-West pipeline and shipping through the Strait of Hormuz recover.
+@@ dae82a80a6 html
+The impact of Hurricane Isaias on offshore production and operations in the Gulf of Mexico.
+@@ e04b924da8 html
+Oil: in 2026, oil prices have swung wildly on the Iran war and shipping through the Strait of Hormuz. WTI was about $103.29 on September 14. On October 8, with Hurricane Isaias threatening Gulf of Mexico production, December Brent rose to about $104.00 and November WTI was about $91.30. High oil prices usually encourage oil companies to spend more, but the Middle East conflict itself has also disrupted SLB's work in the region.
+@@ bd45a3cd2d html
+Rates and the dollar: the Fed raised rates to 3.75%–4.00% in September, and higher borrowing costs may make oil companies more cautious. Most of SLB's revenue comes from outside the US, so a stronger dollar shrinks that revenue once it is converted into dollars.
+@@ 157599f0e7 html
+Power demand: after the Kelvion deal, part of SLB's growth will come from demand for cooling and power infrastructure at AI data centers, which has little to do with oil prices.
+@@ bdc9beedbe html
+Orders keep landing: the Saudi Aramco contracts for more than 450 wells, the 15-year TotalEnergies digital contract and the Rovuma subsea systems contract in Mozambique show that Middle East and offshore demand is recovering.
+@@ e7d2310551 html
+The valuation is modest: the forward P/E is 17.46x. The consensus of 30 analysts is “Buy,” and the average target of $62.45 is about 27.6% above the current price.
+@@ 1fe6c57e7a html
+The digital and data center businesses are growing fast, and $4.38 billion of trailing-twelve-month free cash flow can support buybacks and the dividend.
+@@ f8be59590b html
+The Middle East conflict keeps flaring up: events like the Saudi pipeline shutdown hit SLB's drilling business directly, and management says the timing of a full recovery in the region is still uncertain.
+@@ 6df35b0885 html
+Earnings are still falling: EPS in the latest quarter was down 29.7% year over year, and if Q3 shows another decline, the valuation support weakens.
+@@ 6490bfa8f8 html
+The Kelvion deal means paying about $3.4 billion in cash and taking on about $700 million of debt, with integration risk. And if peace talks send oil prices down quickly (Brent fell to about $86 on August 26), oil companies may cut their budgets.
+@@ ce0a50620a html
+The October 23 Q3 report: whether Middle East revenue rises from the previous quarter, and whether data center revenue is on track for the $1 billion annualized target by year-end.
+@@ ff913b139b html
+Whether the stock can reclaim $50.77 (the 200-day moving average). A decisive break below $47.96 (the 30-day low) would mean the downtrend is continuing.
+@@ 436ed1c225 html
+Whether Brent can stay near $100, and when the Saudi East-West pipeline and shipping through the Strait of Hormuz return to normal.
+@@ d7c846dadb html
+Sources: <a href="https://stockanalysis.com/stocks/slb/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/slb/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/slb/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/slb/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/slb/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.01net.it/slb-announces-second-quarter-2026-results/" target="_blank" rel="noopener">01net.it</a> · <a href="https://energynow.ca/2026/08/slb-gains-access-to-venezuelas-coveted-oilfield-data-through-contract-sources-say/" target="_blank" rel="noopener">energynow.ca</a> · <a href="https://worldoil.com/news/2026/8/31/slb-expands-data-center-business-with-4-1-billion-kelvion-acquisition/" target="_blank" rel="noopener">worldoil.com</a> · <a href="https://www.nasdaq.com/articles/why-slb-stock-slumped-today" target="_blank" rel="noopener">nasdaq.com</a> · <a href="https://www.slb.com/newsroom/press-release/2026/pr-2026-0924-slb-aramco" target="_blank" rel="noopener">slb.com</a> · <a href="https://www.slb.com/newsroom/press-release/2026/pr-2026-1008-total-energies-drillplan" target="_blank" rel="noopener">slb.com</a> · <a href="https://oenergetice.cz/en/oil/hurricane-isaias-rattles-markets-oil-prices-surge-sharply" target="_blank" rel="noopener">oenergetice.cz</a> · <a href="https://www.oedigital.com/news/542438-iran-oman-talks-on-hormuz-reopening-drive-down-oil-prices" target="_blank" rel="noopener">oedigital.com</a> · <a href="https://www.kiplinger.com/investing/live/fed-meeting-updates-and-commentary-september-2026" target="_blank" rel="noopener">kiplinger.com</a>
+@@ d82e870d61 html
+ABT <span class="zh">Abbott Laboratories</span>
+@@ 9fb18452cd html
+The medical devices stock on the list. Interestingly, on September 29 he said he would “wait until after the election” to get into health care, yet Abbott was on his list the very next day.
+@@ 75048a762f html
+Abbott is a diversified health care company with four businesses: medical devices (FreeStyle Libre continuous glucose monitors, electrophysiology, and heart failure and structural heart devices), diagnostics (it completed the Exact Sciences acquisition in March 2026, adding Cologuard colorectal cancer screening), nutrition (Similac infant formula, Ensure) and branded generic drugs. Medical devices are the main growth engine today.
+@@ cc1264ec61 html
+The 52-week range is $81.97 to $135.13, and the price is 26.3% below the high. The average analyst price target is $120.72 (28 analysts, average rating Strong Buy). Price targets reflect an optimistic scenario and often lag the stock price.
+@@ acda533093 html
+The close of $99.60 is 6.2% below the 50-day moving average of $106.17 and 3.6% below the 200-day moving average of $103.34. The 50-day is still above the 200-day, but the price has broken below both, ending the August uptrend.
+@@ 0079614c2e html
+RSI is 42.26: weak, but not in oversold territory below 30.
+@@ 1303b4bd00 html
+From the August 24 close of $116.67 to $96.69 on October 1, the stock fell about 17.1%; it has recovered 2.2% over the last 5 trading days.
+@@ 6bd8ae3c36 html
+Support: the lowest close of the last 30 trading days, $96.69 (October 1); below that, the 52-week low of $81.97.
+@@ d4fc8c4c42 html
+Resistance: first the round number of $100 and the 200-day moving average at $103.34, then the 50-day moving average at $106.17. The highest close of the last 30 trading days was $112.47 (August 28), and the 52-week high is $135.13.
+@@ be23f72be8 html
+$172.4 billion
+@@ 176f61cb06 html
+$46.6 billion
+@@ f6f08dc66e html
+$32.7 billion / $5.6 billion
+@@ f1820c641f html
+Revenue over the trailing twelve months was $46.59 billion, up 8.1% year over year. Q2 revenue was $12.59 billion, up 13.0%, or 4.8% on a comparable basis; the difference comes mainly from consolidating Exact Sciences.
+@@ 296adf421d html
+Q2 earnings per share (EPS) were $0.53, down 47.5% year over year; adjusted EPS was $1.31, versus $1.26 a year earlier. The two measures are far apart, so keep them straight when you read an earnings report.
+@@ e6fe15ca16 html
+Guidance: full-year adjusted EPS was raised to $5.45 to $5.60, and comparable sales growth of 6.5% to 7.5% was left unchanged; Q3 adjusted EPS guidance is $1.38 to $1.46.
+@@ 650370599e html
+Segments: medical devices grew 8.4% on a comparable basis, including 13.4% in electrophysiology and 9.5% in continuous glucose monitoring. Nutrition fell 3.6% on a comparable basis, and rapid and molecular diagnostics fell 8.0%.
+@@ 1d173be1e9 html
+Valuation: the P/E (TTM) of 32.2x looks high because GAAP profit is depressed; the forward P/E is 17.2x and the PEG 1.87. Dividend yield 2.53%, payout ratio 81.5%, and the company has paid a dividend for 411 consecutive quarters.
+@@ 1fcde9e2fb html
+Balance sheet: total debt of $32.72 billion, cash of $5.60 billion, and trailing-twelve-month free cash flow of $7.82 billion. Gross margin 56.9%, operating margin 17.7%, ROIC 7.5%.
+@@ 50b8af0dff html
+<span class="nd">2026-08-21</span><span>Abbott agreed to pay $670 million to settle suits by about 2,000 plaintiffs claiming its formula for premature infants caused necrotizing enterocolitis (NEC), without admitting liability. This removes some of the legal uncertainty, but many cases are still pending. <a href="https://www.claimsjournal.com/news/national/2026/08/21/339713.htm" target="_blank" rel="noopener">claimsjournal.com</a></span>
+@@ a1596adb7b html
+<span class="nd">2026-09-08</span><span>The FDA approved Abbott's TactiFlex Duo ablation catheter, which can do both pulsed field and radiofrequency ablation, for treating atrial fibrillation. Electrophysiology is one of Abbott's fastest-growing device businesses. <a href="https://abbott.mediaroom.com/2026-09-08-Abbott-receives-FDA-approval-for-its-TactiFlex-TM-Duo-Ablation-Catheter-to-treat-people-with-abnormal-heart-rhythms?asPDF=1" target="_blank" rel="noopener">abbott.mediaroom.com</a></span>
+@@ b85621289d html
+<span class="nd">2026-09-14</span><span>The US Department of Justice announced that Abbott would pay about $385 million to settle False Claims Act allegations tied to contaminated infant formula from its Sturgis plant in 2022; Abbott did not admit liability. This closes the government's case over the 2022 recall. <a href="https://justice.gov/opa/pr/abbott-agrees-pay-over-384m-settle-allegations-related-contaminated-infant-formula" target="_blank" rel="noopener">justice.gov</a></span>
+@@ 15fae42e99 html
+<span class="nd">2026-10-02</span><span>Rothschild &amp; Co Redburn upgraded Abbott from Neutral to Buy and raised its target from $119 to $127. With the stock down near $100, sell-side views have started to turn positive. <a href="https://www.thestockobserver.com/?p=8937425" target="_blank" rel="noopener">thestockobserver.com</a></span>
+@@ f55f1aac37 html
+<span class="nd">2026-10-06</span><span>Barclays started covering Abbott with an Overweight rating and a $120 target, citing the lower valuation after the recent weakness in medtech and expecting industry fundamentals to stabilize in 2027. <a href="https://goldesel.de/aktien/news/abbott-laboratories-aktie-barclays-startet-mit-overweight-und-120-dollar-kursziel" target="_blank" rel="noopener">goldesel.de</a></span>
+@@ 6917ff4eb9 html
+2026-10-15: ex-dividend date (annual dividend $2.52).
+@@ 3c812943fd html
+2026-10-21, before the open: Q3 earnings report. Watch whether adjusted EPS lands within $1.38 to $1.46, and how Libre, cancer diagnostics and nutrition perform.
+@@ e5c78baa63 html
+How sales ramp up for the SimpleScreen colorectal cancer blood test (launched September 30) and TactiFlex Duo.
+@@ f8c2a0600e html
+What happens next in the NEC litigation over formula for premature infants.
+@@ ed71dd4138 html
+Long-term rates: the 10-year Treasury yield broke above 5% in mid-September and was about 5.27% on October 7, and the Fed also hiked in September. High rates lower the valuation multiples the market is willing to pay; Barclays also noted the recent broad weakness in medtech.
+@@ e5ee8670b1 html
+The dollar: a large share of Abbott's revenue comes from outside the US, so a stronger dollar lowers its reported revenue in dollars. That is why its earnings reports also give comparable growth.
+@@ 846208ea48 html
+Consumers and inflation: the nutrition business (formula, Ensure) behaves like a consumer business and fell 3.6% on a comparable basis in Q2. How sensitive consumers are to price will decide whether it can recover.
+@@ 3d241795db html
+The sell side is turning positive: in early October Redburn upgraded the stock to Buy (target $127), Barclays started coverage at Overweight (target $120), and on October 5 Evercore ISI raised its target from $120 to $124. The consensus of 28 analysts is “Strong Buy,” with an average target of $120.72.
+@@ 8031dc91a9 html
+Some of the legal uncertainty is gone: the two formula-related settlements in August and September total about $1.05 billion ($670 million plus $385 million).
+@@ 7538c02daf html
+The forward P/E is 17.19x and free cash flow is $7.82 billion; in Q2, management said it expects sales and profit growth to speed up in the second half.
+@@ 660b91df4c html
+Many NEC cases are still pending. Abbott says there are up to 12,700 claimants (including duplicate and unsupported claims), so more payouts may follow.
+@@ 44e0a64e3a html
+FreeStyle Libre quality problems: according to reports in April, in early 2026 the FDA issued a Class I recall for some sensors and sent a warning letter. If the fixes don't go well, growth and approvals for new products could suffer.
+@@ f69df5738a html
+The Exact Sciences acquisition brought dilution and debt (guidance was cut in April because of it). Nutrition and rapid diagnostics are still declining, and GAAP EPS fell 47.5% year over year.
+@@ 4b237d9440 html
+The October 21 Q3 report: whether adjusted EPS reaches $1.38 to $1.46, and whether full-year guidance of $5.45 to $5.60 is held or raised.
+@@ bbf411a905 html
+Whether the stock can reclaim $103.34 (the 200-day moving average). A break below $96.69 would mean the early-October low has failed.
+@@ 59d6337553 html
+Growth in continuous glucose monitoring (9.5% comparable in Q2), and whether cancer diagnostics reaches the mid-teens growth management has promised for the second half.
+@@ 26322e419c html
+Sources: <a href="https://stockanalysis.com/stocks/abt/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/abt/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/abt/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/abt/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/abt/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://abbott.mediaroom.com/2026-07-16-Abbott-Reports-Second-Quarter-2026-Results-and-Raises-Full-Year-EPS-Guidance" target="_blank" rel="noopener">abbott.mediaroom.com</a> · <a href="https://www.claimsjournal.com/news/national/2026/08/21/339713.htm" target="_blank" rel="noopener">claimsjournal.com</a> · <a href="https://abbott.mediaroom.com/2026-09-08-Abbott-receives-FDA-approval-for-its-TactiFlex-TM-Duo-Ablation-Catheter-to-treat-people-with-abnormal-heart-rhythms?asPDF=1" target="_blank" rel="noopener">abbott.mediaroom.com</a> · <a href="https://justice.gov/opa/pr/abbott-agrees-pay-over-384m-settle-allegations-related-contaminated-infant-formula" target="_blank" rel="noopener">justice.gov</a> · <a href="https://www.thestockobserver.com/?p=8937425" target="_blank" rel="noopener">thestockobserver.com</a> · <a href="https://goldesel.de/aktien/news/abbott-laboratories-aktie-barclays-startet-mit-overweight-und-120-dollar-kursziel" target="_blank" rel="noopener">goldesel.de</a> · <a href="https://www.marketbeat.com/stocks/NYSE/ABT/news" target="_blank" rel="noopener">marketbeat.com</a> · <a href="https://www.hudson-labs.com/research/abbott-q3-2026-earnings-preview-abt-revenue-guidance-key-drivers" target="_blank" rel="noopener">hudson-labs.com</a> · <a href="https://finance.yahoo.com/markets/stocks/articles/why-abbott-stock-trending-lower-201341959.html" target="_blank" rel="noopener">finance.yahoo.com</a> · <a href="https://www.kiplinger.com/investing/live/fed-meeting-updates-and-commentary-september-2026" target="_blank" rel="noopener">kiplinger.com</a> · <a href="https://investinglive.com/news/investinglive-americas-market-news-wrap-fed-officials-prepared-to-hike-again-this-year/" target="_blank" rel="noopener">investinglive.com</a>

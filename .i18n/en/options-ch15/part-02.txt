@@ -1,0 +1,158 @@
+@@ e81e0300b7 html
+<span class="sn">15.2</span>Buyer psychology: lottery tickets, 0DTE options and small losses that add up
+@@ 09fa2b08af html
+The buyer’s problem isn’t any single loss. Each one is small, and the occasional win is highly visible, so a negative-expectancy habit can go on for a long time without being noticed.
+@@ efb3f7006f html
+The lottery mindset: looking at the payout, not the probability
+@@ a24b12bb56 html
+Take an index ETF priced at $600 (prices are hypothetical). At 10 a.m. you buy a call that expires the same day, with a 603 strike (0.5% OTM), about 6 hours left and IV 16%. The mid is <span class="num">0.146</span>; filling at the ask costs half the spread, $0.01, more, for a cost of <span class="num">0.156</span>.
+@@ a1187ba96e html
+Probability of finishing in the money: <span class="num">11.8%</span>.
+@@ ec98e59c31 html
+In the 10% or so of cases that win, the average gain is <span class="num">7.8</span> times the cost and the median <span class="num">6.0</span> times. That’s what the screenshots look like.
+@@ 07165fbcc5 html
+Expectancy per trade: with perfectly fair pricing, about <span class="num">−7.2%</span> of cost. If realized volatility that day is only 85% of implied, it drops to <span class="num">−49.4%</span>.
+@@ 2bb8313abc html
+Most of the −7.2% comes from that one cent: $0.01 is 6.8% of $0.146. The cheaper the option, the bigger the share that fixed cent takes. The same day’s 606 call (1% OTM) has a mid of just <span class="num">0.008</span>; adding a cent more than doubles the cost, and even with fair pricing the expectancy per trade is <span class="num">−57.6%</span>. The cheapest lottery tickets have the worst odds.
+@@ 56c8600673 html
+Strike <input id="f1-k" type="range" min="601" max="609" value="603"> <output id="f1-k-o">603</output>
+@@ c1bdb18952 html
+Realized ÷ implied vol <input id="f1-r" type="range" min="70" max="120" step="5" value="100"> <output id="f1-r-o">100%</output>
+@@ 7c6d7059ec html
+New random draw
+@@ 2afd2f6fe6 html
+Underlying 600, IV 16%, 6 hours left; bought at the ask ($0.01 extra) and sold at expiry for intrinsic value minus $0.01. With the default random draw, 9 of the 100 trades win, ending $114 down after being up as much as $490 along the way. Press “New random draw” a few times: sometimes you make money, sometimes you lose, but the curve is always a long, slow slide with an occasional jump. Drag realized volatility to 85% and the slide gets noticeably steeper; drag the strike to 605 and the theoretical expectancy has already fallen to −31%.
+@@ 175c6c1232 html
+Chasing 0DTEs: there’s a new draw every day
+@@ 4802f284ad html
+There are 0DTE options every day. Lose yesterday, and today there’s a fresh one to “win it back,” with no cooling-off period. In the example above, the chance of losing any one trade is about 88%, the chance of losing five days in a row is <span class="num">0.882<sup>5</sup> = 53%</span>, and even ten in a row is <span class="num">28.5%</span>. Losing streaks are the norm, not bad luck.
+@@ fb61907665 html
+What’s really dangerous is how you react after a loss. “I have to win it back today” makes each bet bigger and bigger, and that is how the first path to a dead account in Section 15.6 forms.
+@@ af30aecace html
+Small losses that add up: none of them hurts
+@@ 23808bcabc html
+At $300 a trade, no single loss sets off any alarm. But one trade every trading day is 20 a month, and even with perfectly fair pricing the expectancy is <span class="num">20 × 300 × (−7.2%) = −$432</span>; when realized volatility is only 85% of implied, it is <span class="num">−$2,964</span>, half of a $6,000 monthly budget.
+@@ 197fd39976 html
+Manage lottery-style trades with a monthly budget, not trade by trade. Decide up front the most premium you will spend in a month (say 2% of the account), and stop when it’s spent. That adds the small losses, “none of which hurts,” back up into a number you can see.
+@@ d858b1e66f html
+When buying OTM options makes sense
+@@ 364873e167 html
+There’s nothing wrong in itself with buying cheap OTM options. In these three situations, there is a sound reason for it:
+@@ afae969dc1 html
+<strong>You have reason to think realized volatility will exceed implied.</strong> For example, IV is low, there’s a clear catalyst, and the market hasn’t priced it in (the “low IV” row of the Chapter 14 matrix). Then the expectancy can be positive, provided you can say what the market has missed.
+@@ fbcd931143 html
+<strong>It’s insurance, not a lottery ticket.</strong> An OTM put bought for a stock holding or a short-option position is there to cut off the tail, and its slightly negative expectancy is the insurance premium (Chapter 11). The test is whether it covers a specific risk you can’t afford to bear.
+@@ ade65b50d3 html
+<strong>It’s budgeted and defined in advance as a low-probability trade.</strong> Before entering, write down “this will most likely go to zero”; the money comes from the monthly lottery budget, not from your capital.
+@@ f391fd96ef html
+A 0DTE option that meets none of the three is, in essence, paid entertainment. That’s fine in itself, as long as you book it as entertainment, keep it out of your trading system’s results, and don’t use trading reasons to size up after losses.
+@@ b67ab53efc html
+<span class="sn">15.3</span>Seller psychology: the “easy money” illusion
+@@ 0d6933ef4f html
+The seller’s danger comes from feedback that is too good. A string of small wins convinces you the risk isn’t there, so you add when you should least add, and wait when you should most admit you’re wrong.
+@@ abe8231c0c html
+The “easy money” illusion
+@@ 0daf43f2bb html
+The chart below stretches the opening example to a year: every week you sell a 7-day put with a Delta of −0.15, priced at IV 30%, while the stock’s normal realized volatility is only 20% (the seller has an edge), with 8% annual drift. In week 47 the stock gaps down 18% in one move. The number of contracts is recalculated each week from a fixed “notional ÷ account equity” multiple, so it grows automatically as the account grows.
+@@ 7b37efcbae html
+Naked puts
+@@ 77b10634d8 html
+Put spread (5 wide)
+@@ 047b86f22a html
+Size: notional ÷ equity <input id="f2-l" type="range" min="0.5" max="5" step="0.5" value="1.5"> <output id="f2-l-o">1.5×</output>
+@@ 93576f3561 html
+At the default 1.5× notional: 51 of 52 weeks make money, the longest winning streak is 46 weeks, and the account grows from $50,000 to $62,510; week 47 loses $13,003 in one go, and the year ends back at $50,787. Drag to 3× and the gap week loses 41% of the account. Switch to the put spread with the same number of contracts and the gap week loses only 6%, at the cost of collecting a little less every normal week.
+@@ d75d1deb98 html
+The most deceptive part of this curve is the first 46 weeks. Cut out any stretch of it and it looks like a low-volatility fund rising steadily. A selling strategy’s risk is concentrated in a very few days, and everyday volatility doesn’t reflect it at all. Measure a short-option position by its everyday drawdowns or volatility and you will systematically underestimate the risk.
+@@ 7a5ec37af2 html
+Inflating size after a winning streak
+@@ 16c1191f5d html
+A winning streak makes you feel “I’ve figured it out,” yet for sellers, streaks come almost built into the strategy’s structure: a strategy with a 90% win rate has a 35% chance of winning 10 in a row. Adding after a streak means pushing your size to its maximum just before the next loss arrives. Section 15.7 uses a simulation to show what this does to the spread of account outcomes.
+@@ 12b24b3381 html
+Adding to a breached position to repair it
+@@ bb0c162aac html
+When a short leg is breached, a common impulse is to sell more at a lower strike, “using new premium to lower the cost basis.” An example: you sell 5 contracts of a 30-day 95 put at 1.33 each. On day 10 the stock falls to 91, IV rises to 38%, the 95 put rises to 5.53, and you are down $2,100 on paper. You then sell 5 contracts of a 20-day 90 put at 2.64, taking in $1,322. Net the paper loss against the new premium, and the books seem to show a loss of only $778.
+@@ 7655ab16b9 html
+On day 20 the stock is at 86, IV 45%. The original 5 contracts are down <span class="num">$3,928</span> and the 5 added ones another <span class="num">$1,185</span>, for a total of <span class="num">−$5,112</span>. Adding to repair didn’t reduce risk; it turned one loss into two, betting on the same direction with more exposure after that direction had already been proven wrong.
+@@ a6b369b418 html
+Skipping the stop to “wait for expiry”
+@@ be112b993a html
+The seller’s favorite line is “it’ll be fine if I just wait for expiry.” Look at what waiting buys you: a short 95 put, stock at 90, 10 days left, IV 40%, option price 5.63, of which 5.00 is intrinsic value and only <span class="num">0.63</span> is time value. Waiting for expiry wins back at most that 0.63, and only if the stock doesn’t move at all; yet one standard deviation over 10 days is <span class="num">90 × 0.40 × √(10/365) = ±5.96</span>. You’re taking ±6 of risk for 0.63 of time value. The Chapter 14 simulation also shows that holding to expiry, compared with stopping out by rule, nearly doubles the average loss in the worst 5%.
+@@ c5b2269f77 html
+<span class="sn">15.4</span>The Theta obsession
+@@ a6fec94d14 html
+Theta is the compensation you receive for carrying Gamma risk, not interest. When realized volatility equals implied, it exactly pays for the losses you can expect to take.
+@@ aea21f937b html
+Chapter 4 derived Θ ≈ −½σ²<span class="v">S</span>²Γ. With Delta hedged, one day’s P&amp;L on a short option is approximately:
+@@ 7b0decda91 html
+The first term is the time value collected each day; the second is the loss caused by the price move. The move at which the two are equal is the “breakeven move” from Chapter 4.
+@@ a27c529402 html
+Take a short 30-day ATM straddle (stock $100, IV 30%): |Θ| = <span class="num">0.114</span> ($11.40 per straddle per day), Γ = <span class="num">0.0925</span>. The breakeven move is <span class="num">√(2 × 0.114 ÷ 0.0925) = 1.57</span>, exactly one daily standard deviation, <span class="num">100 × 0.30 ÷ √365 = 1.57</span>.
+@@ f055271eb6 html
+Table 15-3 One day in a short ATM straddle, Delta-hedged (per straddle, $)
+@@ 6a4d87900b html
+Day’s move
+@@ 6778016a7e html
+Gamma loss
+@@ 79987a3fe7 html
+Theta collected
+@@ ad330c81ff html
+Day’s P&amp;L
+@@ 77c70c9624 html
+Days of Theta
+@@ 9997d47cb2 html
+If realized volatility is exactly 30%, the average daily Gamma loss is <span class="num">½ × 0.0925 × 100² × 0.30² ÷ 365 = 0.114</span>, matching Theta to the cent. Theta is just prepaying that expected loss. A seller’s real edge comes from realized volatility below implied: if realized is only 25%, the expected daily Gamma loss drops to 0.079, and only the remaining <span class="num">0.035</span> is profit, about <span class="num">30.6%</span> of Theta. Of the $11.40 you see each day, 70% is prepayment for future losses.
+@@ f9c33040c6 html
+What’s wrong with the “collecting rent” metaphor
+@@ 10fd2f0edc html
+Sell a 30-day 93.5 put (stock $100, IV 30%, Delta −0.19) and collect <span class="num">0.963</span>: 1.03% a month on the cash securing it, 12.4% a year in simple interest. It looks like steady rent. But a single gap to 80 loses <span class="num">93.5 − 80 − 0.963 = 12.54</span> per share, 13 months of “rent.” Real rent never makes you pay back thirteen months of rent in one go; short puts do.
+@@ 7d1a9ce4ec html
+In its final week, an ATM option loses 7.3% of its price per day, more than four times the rate at 30 days (Chapter 14, Table 14-5), which makes short trades near expiry look the most efficient. Over the same period Gamma more than doubles: the same price move does twice the damage. The most tempting Theta and the most dangerous Gamma are two sides of the same thing.
+@@ 2722ed036b html
+<span class="sn">15.5</span>Options culture on social media
+@@ 24b0bac815 html
+The option returns you see online are a filtered sample: winners post, losers stay quiet. So the average you see is systematically higher than the true average.
+@@ 5f8cbe46af html
+The 2021 retail options boom
+@@ 71b139a3cd html
+From the second half of 2020 into 2021, zero commissions and trading on phones drove a sharp rise in retail options volume, mostly purchases of short-dated OTM calls. In the January 2021 surge in GameStop and other “meme stocks,” calls bought by retail traders forced market makers to buy stock to hedge, and options amplified the move (Chapter 4, Case 3). Over the following years, index options gradually gained contracts expiring every trading day, and same-day expiries’ share of volume rose markedly.
+@@ 1d65632529 html
+The cultural legacy of that period has outlasted the prices themselves: options were spread as a tool for “turning a little money into a lot,” discussion focused on the return of single trades, and few people talked about win rate, expectancy or position size.
+@@ 7cc8e2a726 html
+The “sell puts, collect rent” narrative
+@@ 0020e229f5 html
+The counterpart to buyer culture is “sell puts, collect rent”: sell puts on stocks you’d be happy to own and treat the premium as rent; if you’re assigned, think of it as buying the stock at a discount, then sell covered calls to keep collecting rent (the wheel, Chapter 8). This narrative is half right: if you already planned to buy the stock at that price, selling a put does bring in more than a limit order would. The half it leaves out:
+@@ 9df72a67fe html
+By put–call parity, a cash-secured put and a covered call are the same position: you lose like a stockholder when the stock falls, and your upside is capped when it rises.
+@@ b143adb1a9 html
+The “rent” is compensation for gap risk; as calculated in the previous section, a single 20% drop eats 13 months of rent.
+@@ 596f71c86a html
+“Happy to own the stock” is often something said after the fact. By the time you are actually assigned, the stock is often far below the strike, and by then you may no longer want to own it.
+@@ fdee7d8231 html
+Survivorship bias in posted wins
+@@ 9871f885d3 html
+Here is a simulation using the 0DTE option from Section 15.2: 1,000 people each make 20 trades in a month at $300 a trade (a $6,000 monthly budget). The results:
+@@ a0ca68f782 html
+Table 15-4 1,000 people, 20 0DTE trades each, after one month (simulated, $)
+@@ 34000dcf18 html
+Metric
+@@ 571d7f7e90 html
+Fair pricing
+@@ b7dbd543e4 html
+Realized vol at 90% of implied
+@@ 2ff62b534d html
+Average monthly P&amp;L
+@@ 80701cf9a6 html
+Median
+@@ 294517d8c9 html
+Profitable for the month
+@@ 35ca1c2def html
+Lost more than half the budget
+@@ 4223032380 html
+Had at least one 10× trade
+@@ 6d22476c51 html
+Average of the top 5%
+@@ 377cfa216c html
+If only the top 5% post, the average you see is +$11,435, while the true average is −$517. Half of the people had at least one 10× trade within the month, so there’s never a shortage of screenshots. And the third who lost more than half their budget almost never show up in your timeline.
+@@ e0cd3cbec3 html
+When you see a 10× screenshot, translate it back into the 20 trades behind it: its owner most likely made or lost a little this month, and may already have lost half the budget. A screenshot tells you “this outcome exists,” not “this outcome is common.”

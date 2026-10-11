@@ -1,0 +1,198 @@
+@@ 5817a2100c html
+Chapter 4: Delta and gamma · US Options Course
+@@ 4f49b457d1 html
+Delta and <span class="g">gamma</span>
+@@ 92d211a077 html
+Delta tells you how much direction you are betting right now; Gamma tells you how fast that bet will grow or shrink on its own. Read these two numbers and, before you place an order, you can work out “how much I make if it rises, how much I lose if it falls, and what happens if I do nothing.”
+@@ 4a798dc727 html
+In this chapter
+@@ 2d52da7043 html
+<a href="#open"><span class="n">··</span><span>Opening: the position grew on its own</span></a>
+@@ fd4aab9684 html
+<a href="#s1"><span class="n">4.1</span><span>Three ways to read delta</span></a>
+@@ 989958eaf3 html
+<a href="#s2"><span class="n">4.2</span><span>How delta changes</span></a>
+@@ fed5852de4 html
+<a href="#s3"><span class="n">4.3</span><span>Portfolio delta and beta weighting</span></a>
+@@ f0ea410aa6 html
+<a href="#s4"><span class="n">4.4</span><span>Gamma: the speed of delta</span></a>
+@@ 5ea06f5a00 html
+<a href="#s5"><span class="n">4.5</span><span>The delta–gamma P&amp;L approximation</span></a>
+@@ 2953812e19 html
+<a href="#s6"><span class="n">4.6</span><span>The gamma–theta trade-off</span></a>
+@@ f319c4b9ee html
+<a href="#s7"><span class="n">4.7</span><span>A gamma scalping walkthrough</span></a>
+@@ b2b0f191d9 html
+<a href="#s8"><span class="n">4.8</span><span>Market-maker gamma and the market</span></a>
+@@ 12c019ed82 html
+<a href="#cases"><span class="n">Cases</span><span>Three cases</span></a>
+@@ dd7ded685d html
+<a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a>
+@@ a48f579e60 html
+<a href="#open">Opening: the position grew on its own</a>
+@@ 5804014290 html
+<a href="#s1">4.1 Three ways to read delta</a>
+@@ eb032acb88 html
+<a href="#s2">4.2 How delta changes</a>
+@@ 5eb6ffc210 html
+<a href="#s3">4.3 Portfolio delta and beta weighting</a>
+@@ b449dc09e4 html
+<a href="#s4">4.4 Gamma: the speed of delta</a>
+@@ 09a19ab069 html
+<a href="#s5">4.5 The delta–gamma P&amp;L approximation</a>
+@@ 425e516f11 html
+<a href="#s6">4.6 The gamma–theta trade-off</a>
+@@ 69fdb5b6af html
+<a href="#s7">4.7 A gamma scalping walkthrough</a>
+@@ 7acd867429 html
+<a href="#s8">4.8 Market-maker gamma and the market</a>
+@@ f3a78e0502 html
+<a href="#cases">Three cases</a>
+@@ 7ec24afd50 html
+<a href="#tools">Checklist and self-test</a>
+@@ 80161dff8a html
+After this chapter you can
+@@ f923c7c52c html
+Convert any options position into “how many shares it equals”
+@@ b8d32c67e8 html
+Estimate your P&amp;L for ±3% and ±5% moves before placing an order
+@@ 5bd67d64e4 html
+Work out how far the stock must “move” each day for a long option to break even
+@@ fc4f43bd05 html
+Prerequisites
+@@ b5c4aa0823 html
+Chapter 1: the four basic positions and payoff diagrams at expiry
+@@ e243972e13 html
+Chapter 3: the six inputs to premium
+@@ fe31444484 html
+Conventions
+@@ 303316b017 html
+Examples use Black-Scholes, a 4% rate, no dividends
+@@ 6c3d5d82a2 html
+Days are calendar days; a year is 365 days
+@@ cb0a70898e html
+One contract = 100 shares
+@@ 5cfead2909 html
+<span class="sn">Opening</span>The position grew on its own
+@@ af53fb03f6 html
+You buy 10 at-the-money calls: stock at $100, strike 100, 5 days to expiry, implied volatility 30%. Over the next few days you don't add a single contract, and the stock rises only 2%.
+@@ 897104d094 html
+On the day you buy, each option's Delta is <span class="num">0.513</span>, so 10 contracts are equivalent to holding <span class="num">513</span> shares. By the last day, with the stock at $102 and 1 day to expiry, Delta has become <span class="num">0.899</span>, equivalent to <span class="num">899</span> shares. You did nothing, yet your directional exposure grew by 75%.
+@@ a41d69293c html
+Table 4-0 Share equivalent of 10 contracts of the 100 call over the last five days before expiry
+@@ f11f2be60f html
+Time
+@@ 32cf37f9ae html
+Stock price
+@@ 8e53b7da1a html
+Days left
+@@ a06fe3fe00 html
+Delta per contract
+@@ d9eaa15101 html
+Equivalent shares
+@@ 71346f96f8 html
+Option price
+@@ f3e39a2b2f html
+Day 1
+@@ f69aa5484d html
+Day 2
+@@ e20bec35ef html
+Day 3
+@@ 6b68dcc91e html
+Day 4
+@@ b199baa2af html
+Day 5
+@@ 7d0f6f8dee html
+This is Gamma at work: it makes Delta change automatically with price and time. Stock has no such property; 100 shares are always 100 shares. Option risk can “grow on its own,” and this chapter teaches you to see it coming.
+@@ c312c00cad html
+<span class="sn">4.1</span>Three ways to read delta
+@@ 15af48cd5b html
+The same Delta number can be used in three ways. All three are valid, but each has its limits.
+@@ d241ec177e html
+Reading 1: price sensitivity
+@@ 0ad1f3d49c html
+When the underlying rises $1, the option's price changes by about Delta dollars. For a call with a Delta of <span class="num">0.53</span>, a move in the stock from 100 to 101 takes the option from about <span class="num">3.59</span> to <span class="num">4.12</span>. Call Deltas lie between 0 and 1; put Deltas lie between −1 and 0.
+@@ 999389b824 html
+Reading 2: hedge ratio and “share equivalent”
+@@ 7cd9df8139 html
+Delta × 100 is the number of shares one contract is equivalent to. This is the most practical reading, because it lets you add up stock and different options directly.
+@@ fc39270166 html
+Direction: +1 for long, −1 for short. Each share of stock always has a Delta of 1.
+@@ 3d1bab69fb html
+Buy 2 calls with Delta 0.40: <span class="num">+0.40 × 100 × 2 = +80</span> shares
+@@ 5db5ae65fc html
+Sell 3 puts with Delta −0.30: <span class="num">−0.30 × 100 × 3 × (−1) = +90</span> shares
+@@ d8cc57405c html
+Total <span class="num">+170</span>: directionally the same as holding 170 shares. Selling a put is bullish, just like buying a call
+@@ 2fa2a7da01 html
+Reading 3: probability of expiring in the money (approximate)
+@@ fafa0516ed html
+Delta is often used as the “probability of expiring in the money.” That is only an approximation: in Black-Scholes, Delta is <span class="v">N</span>(<span class="v">d</span><sub>1</sub>), while the risk-neutral probability of finishing in the money is <span class="v">N</span>(<span class="v">d</span><sub>2</sub>), and the former is always slightly larger. Also, this is the probability implied by market prices, not the real-world probability.
+@@ 199a56c092 html
+Table 4-1 Delta vs. probability, stock $100, 30 days, IV 30%
+@@ 937856adc5 html
+Call strike
+@@ 1bc9b51cac html
+Probability ITM at expiry N(d₂)
+@@ ac5557c527 html
+Probability of touching the strike before expiry ≈ 2 × N(d₂)
+@@ adc48f2a8d html
+“The probability of touching is about twice the probability of finishing in the money” matters especially to sellers. A call with a Delta of 0.15 has only a little over a 10% chance of expiring in the money, but nearly a 30% chance that the stock touches 110 during those 30 days. A seller's stop-loss usually gets hit on the touch, not at expiry.
+@@ 851c4e5213 html
+<span class="sn">4.2</span>How delta changes
+@@ c61f80343d html
+Three things push Delta around: price, time and volatility. The effect of price on Delta is Gamma (Section 4.4); the effects of time and volatility have their own names, Charm and Vanna. Get a feel for them first with the chart below.
+@@ 1ac69090ba html
+Call
+@@ 727fb827ee html
+Put
+@@ c042057812 html
+Days left <input id="f1-dte" type="range" min="1" max="120" value="30"> <output id="f1-dte-o">30 days</output>
+@@ b6225cc9cc html
+Implied volatility <input id="f1-iv" type="range" min="10" max="80" value="30"> <output id="f1-iv-o">30%</output>
+@@ 0799ae906a html
+Drag the days left down to 1–3 and the curve becomes an almost vertical step: near the money, a tiny price change makes Delta jump from 0.2 to 0.8. Raise implied volatility and the curve flattens: out-of-the-money Deltas are pushed up and in-the-money Deltas are pulled down.
+@@ 0be8b961df html
+Price: the closer to the money, the faster delta changes
+@@ b771a90a16 html
+Table 4-2 Call Delta by strike, stock $100, IV 30%
+@@ 4a14863fad html
+Strike
+@@ aeabff2947 html
+30-day call
+@@ e1a2f12927 html
+5-day call
+@@ abc521b1d7 html
+30-day put
+@@ c8dd8de26e html
+Put Delta equals call Delta minus 1 (same strike, same expiration). So the at-the-money call is about 0.53 and the at-the-money put about −0.47, not an even split: d₁ contains a drift term from the interest rate and volatility, which puts the at-the-money call's Delta slightly above 0.5.
+@@ 4c18a1d4ae html
+Time: charm pushes delta toward 0 or 1
+@@ f0de4b603f html
+Even if nothing else changes, Delta changes as a day passes. This rate of change is called <strong>Charm</strong>. Out-of-the-money Deltas drift toward 0 each day, and in-the-money Deltas drift toward 1. Going from 30 days to 29, the 110 call's Delta drops from <span class="num">0.152</span> to <span class="num">0.148</span>; with 10 days left it is only <span class="num">0.031</span>. The 90 call, meanwhile, rises from <span class="num">0.904</span> to <span class="num">0.985</span> at 10 days.
+@@ ab545f94b1 html
+Before the Friday close, market makers adjust their hedges on large numbers of options about to expire. Out-of-the-money Deltas collapse to zero and the stock held against them is unwound; that flow comes from Charm. A lot of “unexplained moves on expiration-day afternoons” are related to this.
+@@ 1ae1490c6a html
+Volatility: vanna changes delta
+@@ 1b1ef80b1f html
+The change in Delta for each 1-point change in implied volatility is called <strong>Vanna</strong>. The 110 call (30 days) has a Delta of <span class="num">0.152</span> at IV 30%; if IV rises to 31%, it becomes <span class="num">0.161</span>; at 40%, <span class="num">0.228</span>; if IV falls to 20%, only <span class="num">0.057</span>.
+@@ 0ecfbb9208 html
+This means that when IV collapses after earnings, both the price and the Delta of your out-of-the-money options shrink at the same time: even if you're right on direction, you capture less of the move.
+@@ 0ea98b4073 html
+<span class="sn">4.3</span>Portfolio delta and beta weighting
+@@ 8c840650ef html
+When you hold several stocks and options, the Delta of each position on its own can't answer “how much am I betting on the market overall?” The solution is to convert every position into “how many shares of SPY it equals.”
+@@ da8419bf5d html
+Position Delta is expressed in shares; β is the stock's Beta to the S&amp;P 500. The price ratio converts “shares” into “dollars” and then back into SPY shares.
+@@ e8dcec5dcd html
+Example: SPY is at $780. 200 shares of Stock A at $150 with β 1.3 equal <span class="num">200 × 150 / 780 × 1.3 = 50</span> shares of SPY. The calculator below comes filled in with three positions; you can replace them with your own.
+@@ 0cce89e309 html
+SPY price
+@@ 0e1ae088fd html
+Position
+@@ b7a96fb783 html
+Type
+@@ dd50819757 html
+Quantity
+@@ 8c96b1bac7 html
+Delta per unit

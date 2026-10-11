@@ -1,0 +1,208 @@
+@@ 76fc557033 html
+<span class="sn">Tools</span>Checklist and self-test
+@@ b4640d623d html
+Your checkmarks are saved only in your own browser.
+@@ 917bf668d2 html
+<span class="num">1-1</span>Before the order: read the contract
+@@ 011ed4766a html
+Check all six terms: underlying, type, strike, expiration, multiplier, premium
+@@ aca1e61d0b html
+Amount paid = quote × 100 × number of contracts
+@@ 64007836df html
+Confirm it is a standard contract that delivers 100 shares
+@@ 60295a5501 html
+<span class="num">1-2</span>Before the order: draw the payoff diagram at expiry
+@@ 8f0cbd4643 html
+Mark every strike as a kink
+@@ 3b488cb4e3 html
+Work out the slope of each segment (how many shares it equals)
+@@ dd80333bb6 html
+Write down max profit, max loss and breakeven
+@@ 152d83aa94 html
+<span class="num">1-3</span>Stock or option
+@@ 04441934ad html
+Is my expected move bigger than what the option needs to break even?
+@@ 4d28429e76 html
+Do I expect it to happen before expiration, with time to spare?
+@@ 0152e0cc3e html
+Can I accept the whole premium going to zero?
+@@ b28dbae63d html
+<span class="num">1-4</span>Name the source of profit
+@@ f3c9939494 html
+Which of the five sources does this trade make money from?
+@@ 972bbaa2b8 html
+Which things must all be true at once?
+@@ 745d3d15d9 html
+Short positions: write down the loss in a gap scenario
+@@ a6f5d33bbc html
+Self-test: five questions
+@@ 26aeb7f4ed html
+<span class="num">1</span><span>You buy 3 XYZ 95 puts quoted at 2.40. How much do you pay? What are the breakeven, the maximum loss and the maximum profit?</span>
+@@ ff2aed9857 html
+You pay <span class="num">2.40 × 100 × 3 = $720</span>, which is also the maximum loss. Breakeven is <span class="num">95 − 2.40 = 92.60</span>. The maximum profit comes if the stock falls to 0: <span class="num">92.60 × 300 = $27,780</span>.
+@@ 113b2306ab html
+<span class="num">2</span><span>The stock is at $100, the 105 put is quoted at 6.32 and the 95 call at 6.65 (both 30 days). What are the intrinsic value and time value of each? Why is their time value different?</span>
+@@ 03b44e3cd1 html
+105 put: intrinsic value 5.00, time value 1.32. 95 call: intrinsic value 5.00, time value 1.65. Both are $5 in the money; the difference comes from interest. The 95 call's time value ≈ the 95 put's price of 1.33 + interest of <span class="num">95 × (1 − e<sup>−0.04×30/365</sup>) = 0.31</span>; the 105 put's time value ≈ the 105 call's price of 1.66 − interest of 0.34. Interest pushes the time value of in-the-money calls up and that of in-the-money puts down.
+@@ ff379ddc16 html
+<span class="num">3</span><span>You sell 2 contracts of the 100 put and collect 3.26. At expiry the stock is at 92. What is the P&amp;L on this trade?</span>
+@@ 6aa141c6b3 html
+Per share, <span class="num">3.26 − (100 − 92) = −4.74</span>; for 2 contracts, <span class="num">−$948</span>. You took 200 shares at 100 with the market at 92, and the premium offset only part of the loss. Breakeven is 96.74.
+@@ 17b5d51be4 html
+<span class="num">4</span><span>A call has a Delta of 0.313 and a price of 1.66, with the stock at $100. What is its leverage multiple? Roughly how much does the option rise if the stock rises 1%?</span>
+@@ c6eec44e37 html
+<span class="num">Ω = 0.313 × 100 / 1.66 ≈ 18.9</span>, so if the stock rises 1%, the option rises about 19%. This is only an approximation for small moves: as the stock keeps rising, Delta grows, the option gets more expensive, and Ω falls.
+@@ 1fe481c08f html
+<span class="num">5</span><span>You sell a 30-day at-the-money straddle for 6.85. 10 days later the stock is still at 100 and the straddle is worth 5.60. Which source of profit are you earning from? What should worry you most?</span>
+@@ 1193b05411 html
+Using unrounded prices, you make <span class="num">(6.854 − 5.599) × 100 ≈ $126</span> per straddle, and the source is the passage of time; if the IV you sold at is higher than the realized volatility that follows, it also includes the volatility risk premium. What should worry you most is a big move or a gap: a straddle seller's losses accelerate in both directions.
+@@ 742a287ac4 html
+The examples in this chapter are calculated with the Black-Scholes model (4% rate, no dividends, 365-day year, implied volatility as assumed in the text). Probabilities are the model's risk-neutral probabilities. For teaching only; not investment advice.
+@@ a70e23cc3d text
+US Options 
+@@ 875f2902a9 text
+Course
+@@ 4343e6ba66 text
+US Options Course · Part 1 Foundations · Chapter 1
+@@ f24f21ec35 text
+Key point
+@@ b54102b01d text
+Long call
+@@ 63efb342b4 text
+Long put
+@@ c72f24cf16 text
+Buyers' losses are capped; so are sellers' gains
+@@ d53652188d text
+Figure 1-1 · P&amp;L at expiry, per share
+@@ 572ffc6904 text
+P&amp;L at expiry
+@@ b63a9dc5f6 text
+Profit zone
+@@ 642ddc0f39 text
+Loss zone
+@@ 57c66b16cc text
+Max profit (per contract)
+@@ 613c42887d text
+Max loss (per contract)
+@@ 97ea8114db text
+Breakeven
+@@ 90a72e4462 text
+Probability of profit at expiry (stock 100, 30 days, IV 30%)
+@@ afad38ea5d text
+Another way to see a short put
+@@ 9813bd5a4b text
+Watch out
+@@ 5323e31707 text
+Premium
+@@ 6a4574f84d text
+Intrinsic value
+@@ 15eb59be8a text
+Time value
+@@ f2b16304d2 text
+Time value is a hill centered on the strike
+@@ cf80885157 text
+Figure 1-2 · Strike 100, interactive
+@@ 34ff4b75d3 text
+Option price
+@@ bb90127e90 text
+Time value (shaded)
+@@ 52a4b05f0f text
+Time value at stock 90
+@@ 204961fb22 text
+Time value at stock 100
+@@ f94a1cd3f6 text
+Time value at stock 110
+@@ 237c945674 text
+ATM option price
+@@ 7d8c51c25d text
+% change in option price
+@@ 0d08237f26 text
+% change in stock price
+@@ 82de47d8c1 text
+The farther out of the money and the closer to expiry, the higher the leverage
+@@ dc74a9505e text
+Figure 1-3 · Call elasticity Ω, stock 100, IV 30%
+@@ 59cf9ff657 text
+Three costs of leverage
+@@ bdb18b52ff text
+Rise needed to break even
+@@ 3b99c5e750 text
+In the amber zone, the stock makes money and the option loses
+@@ 790542e47a text
+Figure 1-4 · Return at expiry, stock 100, IV 30%
+@@ 2848e50820 text
+Stock
+@@ ed218abb4d text
+Call option
+@@ cb6f49f51d text
+Right direction, losing option
+@@ c4e72b469b text
+Option cost (per contract)
+@@ 947c211ee0 text
+Breakeven at expiry
+@@ 32c1eba894 text
+Option return if stock +5%
+@@ b2eec57c40 text
+Option return if stock +10%
+@@ a1aa21848e text
+From the field
+@@ b3bbe07498 text
+Limits of the model
+@@ 046dfb89e4 text
+Case 1
+@@ c076194320 text
+Takeaway
+@@ 411ced42ca text
+Case 2
+@@ 81acdd30ad text
+Case 3
+@@ 5205b402f9 attr
+Jump to chapter
+@@ ae78ea9525 attr
+In this chapter
+@@ 59cdaff375 attr
+Example option symbol
+@@ d245320e95 attr
+Choose a position
+@@ f79bc35bba attr
+Payoff diagrams at expiry for the four basic positions
+@@ d12a833e34 attr
+Option type
+@@ 7aba23a601 attr
+Option price broken into intrinsic value and time value
+@@ da72b7b091 attr
+Leverage multiple by strike for different terms
+@@ 269487932a attr
+Returns on stock and a call at different stock prices at expiry
+@@ f0852d355e attr
+Chapter navigation
+@@ 0ee3e368a5 js
+Stock at expiry ($)
+@@ b436c20338 js
+P&L per share ($)
+@@ eb218abf76 js
+Breakeven 
+@@ 5f07ca4546 js
+Unlimited
+@@ c87f6311bf js
+ days
+@@ 34ae6467e4 js
+Stock price ($)
+@@ 1aef365805 js
+Value per share ($)
+@@ d4b3f49c63 js
+Strike (stock at 100)
+@@ 316129d72e js
+Leverage Ω
+@@ 9c5888694e js
+30-day ATM 14.8
+@@ 18f82df4e0 tpl
+<span><i style="border-color: var(--delta); opacity: {0}"></i>{1} days left</span>
+@@ 5172608290 js
+Return
+@@ 8bbadc4808 js
+Breakeven at expiry (needs 
+@@ b319d2d965 js
++
+@@ c20a0eac9c js
+−

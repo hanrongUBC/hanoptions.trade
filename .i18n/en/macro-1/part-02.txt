@@ -1,0 +1,220 @@
+@@ 0f96ec68de html
+Treasury yields rise but the dollar falls
+@@ f0b8f7281d html
+The higher US rates are, the more attractive the dollar
+@@ 613220a105 html
+Foreign money is cutting US assets, possibly over worries about fiscal or monetary credibility
+@@ 66c460a570 html
+Real yields rise and gold rises too
+@@ 61d7ef40f8 html
+The higher real yields are, the higher the opportunity cost of holding gold
+@@ 4fc471667f html
+Buyers are paying for something else: central bank gold buying, risk-off demand, a hedge against credibility risk
+@@ 3bb5d326f7 html
+Stocks rise and so does the VIX
+@@ e375bc357f html
+When stocks rise, demand for protection falls
+@@ 630f32cdbd html
+Heavy demand for call options to chase the rally; the move is getting crowded and fragile
+@@ f9ddb5056d html
+The index hits new highs while credit spreads widen
+@@ 0518c468d0 html
+When risk appetite is healthy, credit spreads narrow
+@@ 24e7c5d0d3 html
+Bond investors are seeing the risk before stock investors
+@@ f2c1a7fdc9 html
+Down
+@@ 7f8597ddd9 html
+Flat
+@@ 9726be4372 html
+Up
+@@ 2afc80feab html
+Narrowing
+@@ 88e1484fac html
+Widening
+@@ dea601c88c html
+The rules are ordered by severity: credit and volatility worsening together ranks highest, followed by unusual combinations of rates and the dollar. This is only a starting point for reading the market; a conclusion counts only after the market confirms it, as in Chapters 6 and 7.
+@@ fb4a3a206d html
+A pre-open reading routine
+@@ d087ca313f html
+Note the overnight change in the seven numbers: the 2-year, the 10-year, the dollar, crude oil, gold, the VIX and credit spreads.
+@@ c8b5d8af81 html
+Find the one that moved the most, or the most unusually.
+@@ de31d3c567 html
+Ask why: was it data, a speech, an auction, a geopolitical event, or money moving with no news behind it?
+@@ 94f04da522 html
+Decide whether it was already priced in early (Chapter 2).
+@@ 0ce9d77102 html
+Write one sentence: “Today the market is trading ___.” If you can't write it, there is no clear dominant theme today, so trade less.
+@@ 4c3fc51b68 html
+Quite a few macro traders keep these numbers on one screen and write that sentence before the open, before looking at individual stocks. They find that the best trading days tend to be the ones when the sentence comes easily; the days they are most likely to lose money are the ones when they are still rewriting it on the third try.
+@@ f595793cf1 html
+Transmission chains and second-order thinking
+@@ 6424c83d7a html
+News rarely moves stock prices directly. What moves them is how the news travels along a chain to earnings, rates and flows, and how much the market had already figured out before you did.
+@@ 946e4445bb html
+The main chain you'll use most
+@@ a6a8db4b5e html
+Most macro events fit into the chain below. With practice, whenever you see a piece of news you'll quickly ask, “Which link of the chain is this at?”
+@@ 89a12a2842 html
+Every link can break
+@@ 44c45cb238 html
+A transmission chain doesn't run automatically; every link has conditions. Being able to see where the chain breaks is worth more than knowing it by heart.
+@@ 5051a56162 html
+<strong>Oil to inflation</strong>: a brief shock won't feed into core inflation. Only high oil prices that last several months seep in slowly, through freight, airfares and chemicals.
+@@ a381ac0991 html
+<strong>Inflation to rates</strong>: the central bank may choose to “look through” a supply shock and not hike because of it. Then short-term rates stay put, while long-term rates may still rise on inflation worries.
+@@ 4b803a7697 html
+<strong>Rates to stocks</strong>: if rates are rising because the economy is strong and earnings are being revised up alongside, stocks can handle it; if earnings don't keep up, it is pure valuation compression.
+@@ cf12cc25a4 html
+<strong>Policy response</strong>: when oil reaches a politically unacceptable level, the government may release reserves or restrict exports, and the chain can suddenly reverse.
+@@ f4dd35640f html
+Oil supply shock
+@@ a77a0f5971 html
+Long-end rates jump
+@@ 1d6d4c4695 html
+Stronger dollar
+@@ d2ed67288c html
+Jobs weaken sharply
+@@ 897cc1e81b html
+Central bank surprises dovish
+@@ d2094e7e0b html
+For each shock you get one set of areas that benefit and one set that come under pressure, plus a confirmation signal for checking whether the chain is following the script. In the real world several shocks often hit at once; look for the one that dominates.
+@@ 46a7302476 html
+Second-order thinking: ask “and then what?”
+@@ d4d6cb675a html
+First-order thinking says: oil is rising, so buy energy stocks. The problem is that everyone has thought of this, and energy stocks soon get crowded. Second-order thinking goes on to ask: when oil gets painfully expensive, what will the government do? If policy suddenly pushes oil down, who rebounds hardest? The answer is airlines and travel, because they were sold the hardest beforehand.
+@@ 30aada7315 html
+That leads to a very practical combination: hold an energy position betting on higher oil, and use a small slice of capital to buy airline stocks, or call options on them, as a “surprise hedge.” If oil keeps rising, energy makes money; if oil drops on a policy surprise, the airline rebound offsets the energy loss. Chapter 10 works through this combination with numbers.
+@@ 456e75f589 html
+When you can't make sense of a situation, the question to ask is “who benefits?” Every policy, conflict or technological breakthrough lowers someone's costs and raises someone's revenue, and forces someone else to spend. Following the direction money is forced to flow is more reliable than guessing the outcome of the event itself.
+@@ e20bee6b44 html
+Same signal, opposite directions for different sectors
+@@ 977f5cc743 html
+If long-term yields fall because the market has started to worry about a slowdown, that's bearish for stocks overall. But for “bond-like” sectors such as utilities, REITs and consumer staples, lower rates directly cut their funding costs and make their dividends more attractive, so in the short run it is actually good news.
+@@ dc27eb3175 html
+That's why macro traders often say: trade where the money is flowing, rather than betting on the index going up or down. The index is the sum of hundreds of forces pulling in opposite directions, and the divergence between sectors is often clearer than the index itself.
+@@ e1028112ec html
+Is it already priced in?
+@@ 117dc3f9c9 html
+The market has expectations for almost every known event, and you can see them: Fed funds futures tell you how many hikes the market has priced, option prices tell you how big a move the market expects from an event, and analysts' consensus estimates tell you the “passing grade” for an earnings report.
+@@ 403830ae84 html
+Result vs. expectations
+@@ 4725833ca6 html
+Positioning beforehand
+@@ ff6748c21f html
+Typical reaction
+@@ d136dad75a html
+Better than expected
+@@ e908209b7b html
+Light positioning; everyone is waiting
+@@ dea7b94e94 html
+Sharp rally that may last several days
+@@ c7f54be73e html
+Longs are already crowded
+@@ 1e52b066af html
+Sell the news: a spike, then a fade
+@@ 9021634748 html
+Worse than expected
+@@ 31694684e3 html
+Shorts are already crowded; lots of protection bought
+@@ 50c25aaf15 html
+The bad news is out, so it rises (short covering, protection sold)
+@@ 5f1ab94958 html
+Optimistic positioning
+@@ 2d251b7836 html
+Falls, and the decline can easily accelerate
+@@ 9bed8fa1ae html
+There is also an often-overlooked case: <strong>priced in early</strong>. If a central bank official gives a dovish speech the day before a data release, the market may already have traded the good news of “weak data” in advance. When the data does come in weak the next day, the market may fall instead, because it's “not as bad as feared.”
+@@ 2ac8ef1557 html
+Watch the reaction, not the headline
+@@ 935a2bdae6 html
+Headlines are written for everyone; reactions are votes cast with real money. Two situations are especially worth recording:
+@@ 63ef8ad8b8 html
+<strong>Good news, no rally</strong>: a company announces a price increase, and the stock falls. Someone is using the good news to unload, or the market is worried about something else.
+@@ b39cc3e8f8 html
+<strong>Bad news, no drop</strong>: sanctions that look severe are announced, and oil barely moves. The market thinks they can't be enforced, or has already priced them in.
+@@ 82006847f9 html
+The market's reaction is the true weight of a piece of news.
+@@ bcc3051a45 html
+Rates, the Fed and valuation
+@@ 41bfadc666 html
+Interest rates are the gravity acting on all asset prices. When they move a little, the further in the future a cash flow lies, the more it is affected. Understand this and you understand why the same rise in rates leaves some stocks almost untouched and cuts others in half.
+@@ 68cc0d6e5a html
+One formula for how rates crush valuations
+@@ d9860858ea html
+Think of a company as a stream of cash flows that lasts forever and grows <span class="v">g</span> per year, and discount it back to today at a discount rate <span class="v">r</span>: that is the classic Gordon growth model. If all earnings are paid out to shareholders, the price-to-earnings ratio (P/E) simplifies to:
+@@ be339297d3 html
+Set the discount rate at 8%. A mature company with 2% long-term growth has a P/E of about 16.7; a high-growth company with 6% long-term growth has a P/E of about 50. Now raise the discount rate by 1 percentage point, to 9%:
+@@ a77eda0359 html
+Long-term growth rate g
+@@ 5b7952a69f html
+P/E at r = 8%
+@@ 0e13685bcf html
+P/E at r = 9%
+@@ fb414534f7 html
+Change in valuation
+@@ 8b3f84cd5c html
+2% (mature company)
+@@ 453d1a6569 html
+6% (high growth)
+@@ 448635fdff html
+Earnings didn't change by a cent, yet the high-growth company's theoretical value fell by a third. That is what happened to many growth stocks in 2022.
+@@ 8b3b10a33f html
+Change in discount rate <input id="gv-dr" type="range" min="-10" max="20" value="10"> <output id="gv-dr-o">+1.0%</output>
+@@ b0f43f703e html
+The base discount rate is 8%. Drag the slider to −1% and the high-growth company's valuation doubles; drag it to +2% and it halves. The curve bends: the gain when rates fall is bigger than the loss when they rise by the same amount, which is why growth stocks run so hard when rate cuts are expected.
+@@ a978cb7117 html
+Growth stocks are long-duration assets
+@@ 38872d68dd html
+Take the derivative of the formula above and you get a number that looks a lot like a bond's duration:
+@@ c4ab0cdc2a html
+Use this approximation for g = 5% and a 1-percentage-point rise in rates: −1% × 33 ≈ −33%, which overstates the exact −25% because the curve bends. But it captures the point: the higher the growth and the further away the earnings, the more a company looks like a 30- or 50-year bond. A company with no earnings, priced on a story ten years out, has an even longer duration.
+@@ 73fee11cb3 html
+It also explains a common pattern: on days when rates spike, small-cap growth stocks, unprofitable tech and biotech fall the most, while banks, energy and consumer staples fall the least, or even rise.
+@@ 29f40dd4e5 html
+The equity risk premium: how much more stocks pay you than bonds
+@@ eeb20e72b6 html
+The inverse of the P/E is the earnings yield. A P/E of 20 means an earnings yield of 5%: for every $100 you invest, the company earns $5 a year for you. Comparing it with Treasury yields asks: how much extra compensation do you get for taking on stock risk?
+@@ aaef283804 html
+Forward P/E<input id="erp-pe" type="number" value="19" step="0.5">
+@@ ad1ade4b9e html
+10-year nominal yield (%)<input id="erp-y" type="number" value="5.3" step="0.05">
+@@ 063206dbb2 html
+10-year real yield, TIPS (%)<input id="erp-t" type="number" value="2.65" step="0.05">
+@@ 2df0b1e81b html
+The default numbers are an illustrative set of assumptions. Earnings grow with inflation, but a nominal Treasury's coupon doesn't, so “earnings yield minus real yield” is the more logical measure. Look at both; the trend matters more than the absolute value.
+@@ e64d576de3 html
+A very low risk premium doesn't mean stocks will fall tomorrow. It is a poor timing tool, and valuations can stay expensive for a long time. What it really tells you is <strong>how thick the cushion is</strong>: when the premium is thin, a single rate shock is enough to cause significant valuation compression, because stocks no longer have much spare appeal relative to bonds.
+@@ 81e6996d2a html
+Four ways the yield curve moves
+@@ 353aeee6a2 html
+Watching the 10-year alone isn't enough; you need to see whether the short end or the long end moves more. Traders measure how steep the curve is by the spread between the 2-year and the 10-year, and sort its changes into four types:
+@@ d1b3325eb8 html
+Move
+@@ 91c891cae1 html
+What happened
+@@ d8c8129c5e html
+Typical backdrop
+@@ 9bcc6733dd html
+What it means for stocks
+@@ 8643810e8b html
+Bull steepening
+@@ fb675c538e html
+Short end falls more than the long end
+@@ f1bbaf70b3 html
+The market starts pricing rate cuts; common when the economy is clearly slowing and a recession is starting
+@@ 2d121104aa html
+Looks like good news, but is often the start of bad news
+@@ efeb83c0ff html
+Bull flattening
+@@ aaaa78e95f html
+Long end falls more than the short end
+@@ 02ba791cfc html
+Growth and inflation expectations fall; money rushes into long bonds in a risk-off move
+@@ f270a3a499 html
+Defensive sectors and long-duration assets do relatively well
+@@ f719e1e0d6 html
+Bear steepening
+@@ 0a1bb9076b html
+Long end rises more than the short end

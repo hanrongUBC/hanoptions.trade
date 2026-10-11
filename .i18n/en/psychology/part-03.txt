@@ -1,0 +1,220 @@
+@@ abb2467abb html
+Account size ($)<input id="ps-acct" type="number" value="20000">
+@@ b20ea83a18 html
+Risk per trade (%)<input id="ps-risk" type="number" value="1" step="0.25">
+@@ f69aa1ba69 html
+Planned entry price<input id="ps-entry" type="number" value="50" step="0.01">
+@@ 8c7e9ff98e html
+Stop price<input id="ps-stop" type="number" value="47" step="0.01">
+@@ 55df70acd8 html
+If the number of shares feels “too small,” that is this tool protecting you.
+@@ 25b31c7ac3 html
+A more intuitive test: if this trade hits its stop, would the money lost spoil the rest of your day? If so, the position is too big, whatever the arithmetic says.
+@@ 37df09f277 html
+Discipline and rules: make the decision before you need it
+@@ 80e9c6a3cf html
+Discipline is not gritting your teeth under pressure. It is making your decisions while you're calm, so that when the pressure comes, all that's left is execution.
+@@ 37afe91434 html
+Why decide in advance
+@@ c222edfc89 html
+Calm and agitated, you are almost two different decision-makers. When you're calm, you understand perfectly well what a stop-loss is for; as the loss grows, you'll find a hundred reasons to wait a little longer. Psychology has a very practical tool called the “if… then…” plan: tying a situation to an action ahead of time works far better than simply resolving to do better.
+@@ e8e8247497 html
+If it closes below $47, sell at the next day's open, without reading the news.
+@@ a1d0532ddc html
+If the day's loss reaches 3% of the account, close the trading app until tomorrow.
+@@ 4fe517e823 html
+If I get stopped out three times in a row, halve the size of the next trade.
+@@ ebc34fb31e html
+What a trading plan must spell out, at a minimum
+@@ e9b9c5edba html
+Item
+@@ f75893769c html
+Question to answer
+@@ 8cde5699f0 html
+Thesis
+@@ a1605e08be html
+Why do I think it will move this way? Spell it out in a sentence or two
+@@ 1fb18f9e06 html
+Entry conditions
+@@ 377c0002fe html
+What price or signal has to appear before I get in?
+@@ 7db2954701 html
+Invalidation criteria
+@@ cdc4bb0512 html
+What fact would show I'm wrong? (Not just price)
+@@ 56c6bccbbb html
+Stop-loss
+@@ 9a347c8d39 html
+Where I admit I'm wrong, and how many R I lose
+@@ 72c937f2a6 html
+Take profit and exit
+@@ 639a462f3e html
+Where I sell part of it, and what I do with the rest
+@@ 0e1ae088fd html
+Position size
+@@ 21f397acfb html
+Shares or contracts, worked out with the Chapter 4 method
+@@ 2104a375d7 html
+Time stop
+@@ ed504d3889 html
+How long it can go without moving as expected before I exit
+@@ 521f67ff1e html
+Conditions for adding
+@@ a5b06c6428 html
+When I add, and at most how many times
+@@ 0a77826c28 html
+Stop-losses are a cost of doing business
+@@ 9b11da9aaf html
+A restaurant pays rent; a trader pays stop-losses. Taking a stop isn't admitting you're stupid. It means the situation has changed and your view no longer holds, so you preserve your strength for the next opportunity. Think of stops as a cost rather than a failure, and they become much easier to execute.
+@@ e45b287558 html
+It is just as important to tell two things apart: <strong>price swings</strong> and <strong>a broken thesis</strong>. While the thesis still holds, you can ride out normal swings; that is waiting for confirmation. Once the facts have overturned the thesis, waiting longer is just stubbornly holding on. Write the difference into your invalidation criteria before you place the order.
+@@ ec88f6f0bc html
+Trade less, raise the bar
+@@ 499b0b5bc2 html
+The more often you trade, the more commissions, slippage and emotional mistakes pile up. For most people, the fastest way to improve trade quality is not to win more but to make fewer mistakes: cut the trades that aren't in your plan and raise the bar. When there's no good opportunity, being in cash is itself a position.
+@@ a1bcd06d11 html
+Sort your trades into two groups: those executed according to plan, and those with clear violations (chasing, no stop, oversized). Your confidence should come from a rising share of the first group, not from how much you've made lately.
+@@ ec271b820b html
+On breaking the rules
+@@ 4ef2354a1f html
+Rules are not right forever; market conditions change. But rule changes belong in your weekend trade review, not in an impulse during trading hours. If you really must make an exception during the session, three conditions apply: very high conviction, a separate record afterward, and it must not become a habit.
+@@ 8379bfc9e9 html
+Streaks: randomness runs longer than you think
+@@ e020b9afad html
+People misjudge randomness in a systematic way: we expect good and bad luck to alternate quickly, but runs in a random sequence are much longer than intuition suggests.
+@@ 7f8cfb296f html
+A losing streak is almost certain to come
+@@ 50072d1f36 html
+Over 100 trades, a system with a 50% win rate has an 81% chance of at least one run of 5 straight losses, and better-than-even odds of a 6-trade losing streak. That doesn't mean the system is broken; it is simply what coin flips look like.
+@@ 8b563767e6 html
+Win rate <input id="st-p" type="range" min="30" max="75" value="50"> <output id="st-p-o">50%</output>
+@@ 98342fe9ee html
+Trades <input id="st-n" type="range" min="20" max="500" step="10" value="100"> <output id="st-n-o">100</output>
+@@ ad32cd08e4 html
+First estimate your system's win rate, then see how long a losing streak is “normal” over a year's worth of trades. Write that number into your trading plan, and when a losing streak arrives you won't misread it as the system failing.
+@@ 53afd4aa57 html
+Table 6-1 Probability of at least one run of k straight losses in 100 trades
+@@ a1091477ed html
+Win rate
+@@ 07e2616508 html
+4 in a row
+@@ 0acf1b187c html
+5 in a row
+@@ 41a5f7d85d html
+6 in a row
+@@ 50ee71bcf9 html
+8 in a row
+@@ 801c036621 html
+10 in a row
+@@ aef6edd820 html
+What to do in a losing streak
+@@ 1b1ca37959 html
+<strong>First, classify it</strong>: is this streak within your system's “normal range”? Use the chart above to judge.
+@@ 5f3a9c5663 html
+<strong>Then check execution</strong>: were the losing trades taken according to plan, or were there violations? A losing streak with violations is a discipline problem, not a luck problem.
+@@ 97c07f1c54 html
+<strong>Slow down by rule</strong>: set drawdown rules in advance. For example, halve your size at a 6% drawdown; at a 10% drawdown, stop trading for a week and do a full trade review.
+@@ 9cdf3ad1be html
+<strong>Never size up to win it back</strong>: the gambler's fallacy will tell you you're “due for a win,” but the next trade's win rate doesn't go up because you lost the previous ones.
+@@ 8f8e11cf71 html
+Be even more careful in a winning streak
+@@ f731979320 html
+Accounts rarely blow up during a losing streak; it happens more often after a run of wins. Confidence swells, size grows, standards slip, and then one big loss gives back weeks of profits along with capital. A winning streak is also part of a random sequence; it doesn't mean you've suddenly gotten good.
+@@ 6558cc15b7 html
+Let profits make your account bigger, not your nerve.
+@@ e36c889baf html
+After a big win, take a day off, then return to your normal rhythm.
+@@ 122cc30986 html
+During a winning streak, keep your usual risk per trade; don't raise it because you're “in the zone.”
+@@ 8c61651e9d html
+Review the trades from a winning streak separately, and find the parts that came down to luck.
+@@ 63d010a2c3 html
+Independent judgment: information, narratives and copy trading
+@@ 2455d303db html
+More information doesn't necessarily mean better judgment. What decides the outcome is how you process information, and who is ultimately responsible for the decision.
+@@ 43ccb94f47 html
+Price often moves before the news
+@@ 71fa59a670 html
+Often the price moves first, and the news that explains the move comes later. A more useful question when you read the news: did the market react to it the way you expected? Good news that doesn't lift the price, or bad news that doesn't sink it, is a signal in itself. When you can't make sense of a situation, asking “who benefits?” often helps more than reading ten analyses.
+@@ a1b6e71c94 html
+Your information diet
+@@ 7d2b756a01 html
+<strong>Many sources, many viewpoints</strong>: read two accounts of the same event from opposite sides, and compare what each one emphasizes and what each one avoids.
+@@ a8cad9f9ad html
+<strong>Separate signal from noise</strong>: for someone who trades on a daily or weekly timeframe, most intraday news is noise.
+@@ 1ce1be7ae4 html
+<strong>Don't let your views trade for you</strong>: which party you support or which company you like has nothing to do with where the price goes.
+@@ 29b7953d67 html
+<strong>Be wary of posted wins</strong>: screenshots of huge profits on social media are a filtered sample. See enough of them and you'll grow dissatisfied with your own normal returns, and then take on more risk.
+@@ 55856b8cca html
+The real cost of copy trading
+@@ f212366681 html
+Following someone else's trades looks effortless, but in fact you copy only the easiest part of the trade:
+@@ 493c80ec6f html
+What you can copy
+@@ c1b8b065c8 html
+What you can't copy
+@@ 91fec139f0 html
+What to buy, and roughly at what price
+@@ 3234e7029e html
+Why they bought, and when they'd admit they're wrong
+@@ 8a9bef539b html
+The moment they open the position
+@@ dd80d666a9 html
+The later trims, stop-losses, hedges and changes of mind
+@@ 688baf497a html
+The ticker
+@@ 75c094077a html
+Their position size, account size and risk tolerance
+@@ 7b4d0fbb68 html
+Their confidence
+@@ 7fb0a5afc2 html
+Your own confidence (conviction can't be borrowed)
+@@ b1e1b994d3 html
+So copy traders often run into this: the other trader has stopped out while you're still holding; they test with a small position while you bet big; they had a hedge leg you didn't copy. Same trade: they take a small loss, you take a big one.
+@@ 323a03d37d html
+Can I explain the logic of this trade in my own words?
+@@ 0610da4134 html
+Do I know under what conditions it stops working?
+@@ 34510ef2fc html
+Is this position size right for my account and my nerves?
+@@ 3f07c8397e html
+If they stopped posting updates tomorrow, would I know how to manage this position?
+@@ 155d39a331 html
+If you can't answer any one of the four, don't take the trade yet.
+@@ 2f7fbe7399 html
+Independent doesn't mean contrarian
+@@ 0650019eb4 html
+Going against the crowd is not an edge in itself. Independence means you take responsibility for every decision you make: you can explain it, and you can admit when it's wrong. You can learn ways of thinking from anyone, but you are the one who presses the button, and you are the one who lives with the result. What you learn from others should be their thinking process and methods, not their conclusions.
+@@ 27ae2da090 html
+Review: turning losses into tuition
+@@ ab41e11275 html
+A trader who doesn't review is taking exam after exam; a trader who reviews is studying a notebook of wrong answers. A loss is tuition only once you understand it; otherwise it's a tax.
+@@ 0327ea0bfc html
+What to record in a trading journal
+@@ 16386f3f84 html
+Recording only P&amp;L is the slowest way to improve. Your journal should record your mind, not your account.
+@@ 758d90293c html
+Copy template
+@@ 1c1901a28a html
+Attributing losses: four drawers
+@@ 25cf3937c1 html
+Put every loss into one of the four drawers below. Put it in the wrong drawer and you'll fix the wrong thing.
+@@ b1cfe7a13c html
+Drawer
+@@ b6765a5792 html
+Typical examples
+@@ 2f1c14ad35 html
+How to fix it
+@@ 492c5aac21 html
+<strong>Judgment error</strong>
+@@ a4b405e687 html
+The thesis itself didn't hold; you misread what was driving the move
+@@ 5280331665 html
+Improve your analysis; fill gaps in your knowledge
+@@ 2c61d61b94 html
+<strong>Execution error</strong>
+@@ 25b55dc8ed html
+Chased the entry; didn't take the stop-loss as planned; changed the script midway
+@@ 1b907d93c0 html
+Tighten your rules and your “if… then…” plans

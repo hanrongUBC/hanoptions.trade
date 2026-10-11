@@ -1,0 +1,202 @@
+@@ 2910565cbd html
+Max pain
+@@ 803277b854 html
+Monthly expiration
+@@ 89542d579c html
+Options positioning
+@@ 95100d8920 html
+Open interest
+@@ 17b60dc063 html
+Leveraged ETF
+@@ fcd353cca2 html
+Volatility-targeting fund
+@@ 4a14863fad html
+Strike
+@@ d3467d0530 html
+Trend following
+@@ dc2e8dbe06 html
+Trading plan
+@@ 3f60aec59f html
+Chapter 8
+@@ fe63b5afff html
+Critical minerals
+@@ c5fc66f5dd html
+Insiders
+@@ b3cabe7895 html
+Medical devices
+@@ 495d9f14ee html
+Invalidation criteria
+@@ 0935d8a196 html
+Engineering and construction
+@@ 387c5b5f62 html
+Unusual options activity
+@@ 88d2f88420 html
+Data center
+@@ 346fefbb14 html
+Open interest
+@@ 56c6bccbbb html
+Stop-loss
+@@ d5a9695ef6 html
+Capital expenditure
+@@ 2911ec78dd html
+Expectation gap
+@@ 0cd798b9b9 html
+Risk-reward ratio
+@@ 7dc71edbc7 html
+Risk factor
+@@ 84dd3e724d html
+Midterm elections
+@@ 31ac4811e8 html
+Chapter 9
+@@ 24088f3a79 html
+Dot plot
+@@ e4e22bf445 html
+Treasury auction
+@@ 2127a59291 html
+FOMC meeting
+@@ 4e5ffb0125 html
+Straddle
+@@ 43dd96250f html
+Scaling in
+@@ c2c124dc82 html
+Chapter 10
+@@ 3e2dae5362 html
+Short selling
+@@ a59f077925 html
+Max loss
+@@ 1790db8eb8 html
+Cash is a position
+@@ b2b827bd7d html
+Reflexivity
+@@ ac3145e428 html
+Variance
+@@ 3964ccfe92 html
+Dollar index
+@@ 3724c32d4f html
+Iron condor
+@@ afa9d71216 html
+Further reading and data sources
+@@ 0238076812 html
+Howard Marks, Mastering the Market Cycle: how to tell where you are in the cycle.
+@@ 7293ec812e html
+Ray Dalio, Big Debt Crises: how interest rates, debt and policy interact.
+@@ e2ada1b4b2 html
+Edward Chancellor, The Price of Time: a history of interest rates, and how long stretches of low rates change asset prices.
+@@ ad0c28a6e4 html
+George Soros, The Alchemy of Finance: reflexivity, or how a narrative changes the reality it describes.
+@@ 563091077e html
+Data: the St. Louis Fed's FRED database (rates, spreads, employment), CME FedWatch (rate hike and cut probabilities), and the US Treasury's auction results and quarterly refunding announcements.
+@@ 2e2ce2b286 html
+<small>Previous</small><span></span>
+@@ 5286a10ebc html
+<small>Next</small><span></span>
+@@ b640efa67d html
+This handbook draws on common frameworks in macro finance and on traders' practical experience. Examples are calculated from the stated assumptions, and historical figures are approximate. It is for learning only and is not investment advice.
+@@ 1e13fbd1d0 text
+US Options Course
+@@ 6985e3fc6d text
+Trading Psychology
+@@ 549cca660d text
+Macro Trading Framework
+@@ f691f691fc text
+Policy Narrative Investing
+@@ f025c44d71 text
+Oversold Rebound List
+@@ 8b739a7a1d text
+If the discount rate rises just 1 percentage point, the theoretical value of a company with 5% long-term growth falls 25%. The higher the growth rate, the more sensitive it is to rates.
+@@ c3ec1ad57c text
+Introduction
+@@ 6fbdbb3d67 text
+Price = earnings per share × valuation multiple
+@@ 6c4410d67f text
+The valuation multiple is set by interest rates (the discount rate) and by how much risk investors are willing to take (the risk premium).
+@@ 922b2f6ec5 text
+Four steps of reasoning stand between seeing a change and placing a trade
+@@ 80e03d5043 text
+Figure 0-1
+@@ 1c2babb59e text
+How to use this handbook
+@@ 5b18922e99 text
+Chapter 1
+@@ b22c7fe6ff text
+Enter today's changes and see what they say together
+@@ a28a3602a0 text
+Figure 1-1 · Interactive
+@@ 0e39d95eb8 text
+10-year yield
+@@ 2a90e8dcc4 text
+Dollar index
+@@ 2183101d05 text
+Crude oil
+@@ cba980cb70 text
+Gold
+@@ 5c5f1197c7 text
+High-yield spread
+@@ a1aa21848e text
+In practice
+@@ b5b287fac6 text
+Chapter 2
+@@ bcfb2bd270 text
+Geopolitical or supply event
+@@ fd9f5743e4 text
+: blocked shipping lanes, sanctions, output cuts, extreme weather.
+@@ 0fd1e2b604 text
+Crude and diesel
+@@ a2afe2439b text
+: prices rise; transport and production costs go up.
+@@ 6c36ee75cf text
+Inflation expectations
+@@ df6cb599be text
+: breakeven inflation rises and price data start to reflect it.
+@@ 5c05c740a4 text
+Rates
+@@ 6db1e3b859 text
+: the market pushes back rate cuts or even prices in hikes; yields rise.
+@@ aad2abc010 text
+The dollar and gold
+@@ 7730f75e3b text
+: the dollar usually strengthens; gold depends on whether real rates or safe-haven demand wins out.
+@@ ed79148f01 text
+Sectors
+@@ 092e9bd32b text
+: energy benefits; long-duration growth stocks, small caps, airlines and consumer discretionary come under pressure.
+@@ aed5f48a60 text
+Pick a shock and see where it travels along the chain
+@@ b1382d7d6e text
+Figure 2-1 · Interactive
+@@ d8ff1327ca text
+Price reaction ≈ (actual result − market expectation) × amplification from positioning
+@@ a6704d885b text
+Whether the result is good or bad sets the direction; how crowded positioning is sets the size, and sometimes even flips the direction.
+@@ ec198ee68d text
+Chapter 3
+@@ 6fd9b553e2 text
+P/E ≈ 1 ÷ (r − g)
+@@ 5db4273bf6 text
+r = risk-free rate + equity risk premium; g = long-term growth rate. The smaller the denominator, the more sensitive valuation is to changes in r.
+@@ 88741416af text
+The higher the growth rate, the more sensitive valuation is to rates
+@@ 489640097d text
+Figure 3-1 · Adjustable
+@@ b7359201dc text
+Valuation change, g = 2%
+@@ 3a5f80eaa7 text
+Valuation change, g = 5%
+@@ 895f9fc62f text
+Valuation change, g = 6%
+@@ 9831d5a5a1 text
+Valuation change ≈ −Δr ÷ (r − g)
+@@ 77172d8a73 text
+1 ÷ (r − g) is the stock's “duration”: about 16.7 years at g = 2%, about 33 years at g = 5% and about 50 years at g = 6%.
+@@ 04f2e7a203 text
+Estimate what stocks pay you over Treasuries
+@@ f4756f9a5d text
+Tool 3-A
+@@ 1cd76726bf text
+Earnings yield
+@@ 3303a29142 text
+Premium over nominal Treasuries
+@@ f66b4cf2d4 text
+Premium over real yields
+@@ 8c24d7a739 text
+Chapter summary

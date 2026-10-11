@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chapter 9: Neutral and volatility strategies · US Options Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  .ctl select { font: inherit; font-size: 13.5px; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 4px; background: var(--paper); color: var(--ink); }
+  .ctl input[type="range"]:disabled { opacity: .35; }
+  #t91 td:last-child, #t91 th:last-child { text-align: left; font-family: var(--font-body); }
+  #t96 td, #t96 th { text-align: left; }
+</style>
+<link rel="alternate" hreflang="zh-CN" href="https://hanoptions.trade/options/ch09.html"><link rel="alternate" hreflang="en" href="https://hanoptions.trade/en/options/ch09.html">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap">
+<style id="en-overrides">
+html[lang="en"] { --font-display: "Source Serif 4", "Noto Serif SC", Georgia, serif; --font-body: "Source Sans 3", "Noto Sans SC", system-ui, sans-serif; }
+html[lang="en"] body { line-height: 1.7; }
+html[lang="en"] body * { letter-spacing: normal !important; }
+html[lang="en"] p, html[lang="en"] li, html[lang="en"] td, html[lang="en"] figcaption { hyphens: auto; -webkit-hyphens: auto; }
+html[lang="en"] p { text-wrap: pretty; }
+html[lang="en"] .toc a { grid-template-columns: 48px 1fr; }
+</style>
+</head>
+<body data-ch="9">
+<div class="topbar"><div class="topbar-inner"><div class="topbar-brand"><a class="site-home" href="/en/">hanoptions.trade</a><a class="brand" href="index.html">US Options <span>Course</span></a></div><div class="topbar-tools"><select id="ck-jump" aria-label="Jump to chapter"></select><a class="lang-switch" href="/options/ch09.html" hreflang="zh-CN" lang="zh-CN" data-lang="zh"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>中文</a></div></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">09</div>
+    <div class="eyebrow">US Options Course · Part 3 Strategies · Chapter 9</div>
+    <h1>Neutral and <span class="g">volatility</span> strategies</h1>
+    <p class="deck">Some trades don’t care whether the stock goes up or down, only how far it moves. This chapter lines up straddles, strangles, iron condors, butterflies and calendars on the same terms to compare their cost, breakevens and maximum risk, and gives you a set of rules for deciding whether to buy or sell volatility right now.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="In this chapter">
+    <p class="toc-title">In this chapter</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>Opening: being right on direction doesn’t help</span></a></li>
+      <li><a href="#s1"><span class="n">9.1</span><span>What volatility strategies bet on</span></a></li>
+      <li><a href="#s2"><span class="n">9.2</span><span>Straddles and strangles</span></a></li>
+      <li><a href="#s3"><span class="n">9.3</span><span>Iron condors, iron butterflies and butterflies</span></a></li>
+      <li><a href="#s4"><span class="n">9.4</span><span>Calendar and diagonal spreads</span></a></li>
+      <li><a href="#s5"><span class="n">9.5</span><span>Keeping Delta neutral</span></a></li>
+      <li><a href="#s6"><span class="n">9.6</span><span>When to buy and when to sell volatility</span></a></li>
+      <li><a href="#s7"><span class="n">9.7</span><span>Gamma scalping revisited</span></a></li>
+      <li><a href="#cases"><span class="n">Cases</span><span>Three cases</span></a></li>
+      <li><a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>In this chapter</summary>
+      <ol>
+        <li><a href="#open">Opening: being right on direction doesn’t help</a></li>
+        <li><a href="#s1">9.1 What volatility strategies bet on</a></li>
+        <li><a href="#s2">9.2 Straddles and strangles</a></li>
+        <li><a href="#s3">9.3 Iron condors, iron butterflies and butterflies</a></li>
+        <li><a href="#s4">9.4 Calendar and diagonal spreads</a></li>
+        <li><a href="#s5">9.5 Keeping Delta neutral</a></li>
+        <li><a href="#s6">9.6 When to buy and when to sell volatility</a></li>
+        <li><a href="#s7">9.7 Gamma scalping revisited</a></li>
+        <li><a href="#cases">Three cases</a></li>
+        <li><a href="#tools">Checklist and self-test</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>After this chapter you can</h4>
+        <ul>
+          <li>Price a straddle in your head with 0.8 × S × σ × √T and judge how big a move it needs to break even</li>
+          <li>Choose the short-leg Delta and wing width of an iron condor, write down its maximum profit and loss, and make adjustment decisions in a trend</li>
+          <li>Score “buy or sell volatility” with IV Rank, the term structure and the gap between realized and implied volatility</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Prerequisites</h4>
+        <ul>
+          <li>Chapter 4: the Gamma–Theta trade-off, Gamma scalping</li>
+          <li>Chapter 5: Vega; Chapter 6: IV Rank and the term structure</li>
+          <li>Chapter 8: credit spreads, management rules and position sizing</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Conventions</h4>
+        <ul>
+          <li>Black-Scholes, 4% rate, no dividends, 365-day year</li>
+          <li>Default underlying: a hypothetical stock at $100 with 30% IV</li>
+          <li>Prices are per share; multiply by 100 for one contract. “Buy” and “sell” refer to the whole structure</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">Opening</span>Being right on direction doesn’t help</h2>
+      <p class="lead">The stock is at $100 and IV is 30%. You think big news is coming next month, but you can’t tell whether it will be good or bad, so you buy a 30-day straddle at the 100 strike: one call plus one put, for $6.85 in total.</p>
+      <p>Whether this trade makes money has nothing to do with up or down. All that matters is how far the stock is from 100 at expiration:</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 9-0 Long 30-day 100 straddle (cost $6.85), P&amp;L at expiry (per contract, $)</caption>
+          <thead><tr><th>Stock price at expiry</th><th>85</th><th>93</th><th>97</th><th>100</th><th>103</th><th>107</th><th>115</th></tr></thead>
+          <tbody>
+            <tr><td>P&amp;L per contract</td><td class="mono pos">+815</td><td class="mono pos">+15</td><td class="mono neg">−385</td><td class="mono neg">−685</td><td class="mono neg">−385</td><td class="mono pos">+15</td><td class="mono pos">+815</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>If the stock rises to 103, you were right that it would go up, and you still lose $385. You only make money if the stock ends up outside the range of 93.15 to 106.85. So where does the ±6.85 hurdle come from? It is roughly the “average move” the market expects. At 30 days and 30% IV, a one-standard-deviation move is <span class="num">100 × 0.30 × √(30/365) = 8.60</span>, and the average absolute move is 0.8 times one standard deviation: <span class="num">0.8 × 8.60 = 6.88</span>.</p>
+      <p>So buying a straddle is a bet against the market: “The stock will actually move more than the average move you have priced in.” Selling a straddle is the opposite bet. Every strategy in this chapter is a different package for this one bet.</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">9.1</span>What volatility strategies bet on</h2>
+      <p>Volatility strategies shrink the effect of direction to very little. The bet that remains is one of two kinds: whether realized or implied volatility turns out larger, or whether implied volatility itself rises or falls.</p>
+      <ul>
+        <li><strong>Realized vs implied</strong>: if you hold to expiry, or delta-hedge while you hold, your P&amp;L is set by Gamma and Theta (Chapter 4, Section 4.6). The buyer needs realized volatility to be larger; the seller needs it to be smaller.</li>
+        <li><strong>Changes in implied volatility</strong>: if you close before expiry, P&amp;L is driven mainly by Vega. If IV rises after you buy, you can make money even if the stock hasn’t moved; if IV falls after you sell, the same is true.</li>
+      </ul>
+      <div class="formula">
+        <div class="eq">ATM straddle price <span class="up">≈</span> <span class="frac"><span>√2</span><span>√π</span></span> <span class="up">·</span> <span class="v">S</span> <span class="up">·</span> σ <span class="up">·</span> √<span class="v">T</span> <span class="up">≈ 0.8 ×</span> <span class="v">S</span> <span class="up">×</span> σ <span class="up">×</span> √<span class="v">T</span></div>
+        <p class="where">The expected absolute value of a standard normal variable is √(2/π) ≈ 0.798. An ATM straddle is worth |<span class="v">S<sub>T</sub></span> − <span class="v">K</span>| at expiry, so its price is approximately the “average absolute move” (Chapter 3, Section 3.9). For an ATM straddle at 60% IV with 7 days left, the approximation gives 6.65 and Black-Scholes gives 6.63. This mental math is accurate for short-dated ATM options; interest rates and skew add small errors.</p>
+      </div>
+      <div class="tbl">
+        <table id="t91">
+          <caption>Table 9-1 The Greeks of six structures (per contract; 45 days, 30/60 days for the calendar, IV 30%, stock at 100)</caption>
+          <thead><tr><th>Structure</th><th>Delta</th><th>Gamma</th><th>Theta / day</th><th>Vega / point</th><th>The bet</th></tr></thead>
+          <tbody>
+            <tr><td>Long 100 straddle</td><td class="mono">+7.9</td><td class="mono pos">+7.54</td><td class="mono neg">−$9.29</td><td class="mono pos">+$27.88</td><td>A big move, or IV rises</td></tr>
+            <tr><td>Long 95/105 strangle</td><td class="mono">+7.9</td><td class="mono pos">+6.73</td><td class="mono neg">−$8.34</td><td class="mono pos">+$24.91</td><td>An even bigger move</td></tr>
+            <tr><td>Short 86/91/112/117 iron condor</td><td class="mono">+1.5</td><td class="mono neg">−2.05</td><td class="mono pos">+$2.50</td><td class="mono neg">−$7.58</td><td>Stays between 89.9 and 113.1</td></tr>
+            <tr><td>Short 95/100/105 iron butterfly</td><td class="mono">0.0</td><td class="mono neg">−0.80</td><td class="mono pos">+$0.95</td><td class="mono neg">−$2.97</td><td>Stays near 100</td></tr>
+            <tr><td>Long 95/100/105 call butterfly</td><td class="mono">0.0</td><td class="mono neg">−0.80</td><td class="mono pos">+$1.00</td><td class="mono neg">−$2.97</td><td>Stays near 100</td></tr>
+            <tr><td>Long 100 calendar</td><td class="mono">+1.3</td><td class="mono neg">−1.36</td><td class="mono pos">+$1.69</td><td class="mono pos">+$4.67</td><td>Stays near 100, and back-month IV doesn’t fall</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>When you read this table, look at the signs of Gamma and Theta first: they are always opposite. Positive-Gamma structures (long straddle, long strangle) pay Theta every day; negative-Gamma structures (iron condor, iron butterfly, butterfly, calendar) collect Theta every day. The calendar is the only structure that is “negative Gamma, positive Vega”: it fears a big move in the stock but welcomes a rise in IV, which gives it a special use around earnings (Section 9.4).</p>
+      <h3>Time to expiry decides whether you are betting on Gamma or Vega</h3>
+      <p>Even for the same long ATM straddle, the time to expiry decides what you are mainly betting on. Per $1 of premium, every expiration has the same sensitivity to IV: an ATM straddle’s price is proportional to σ, so each 1-point rise in IV lifts the price by about <span class="num">1 ÷ 30 = 3.3%</span>. Gamma is another story. A 7-day straddle (3.31) carries 0.058 of Gamma per dollar of premium; a 180-day straddle (16.69) carries only 0.0022, a 26-fold difference. So a short-dated straddle is a Gamma bet, a bet that the stock moves a lot over the next few days. A long-dated straddle is a Vega bet: it barely responds to short-term realized volatility, and its P&amp;L depends mainly on changes in IV. The same goes for sellers: selling a short-dated structure sells Gamma, and selling a long-dated structure sells Vega.</p>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">The shape of a multi-leg structure decides where you make money and where you lose it</span><span class="fig-no">Figure 9-1 · Payoff diagram builder</span></div>
+        <div class="controls">
+          <label class="ctl" for="f1-sel">Structure
+            <select id="f1-sel">
+              <option value="straddle">Straddle</option>
+              <option value="strangle">Strangle</option>
+              <option value="condor" selected>Iron condor</option>
+              <option value="ironfly">Iron butterfly</option>
+              <option value="fly">Butterfly (calls)</option>
+              <option value="calendar">Calendar (calls)</option>
+            </select>
+          </label>
+          <div class="seg" role="group" aria-label="Direction">
+            <button type="button" data-dir="1" aria-pressed="false">Buy</button>
+            <button type="button" data-dir="-1" aria-pressed="true">Sell</button>
+          </div>
+          <label class="ctl" for="f1-w"><span id="f1-w-l">Wing width</span> <input id="f1-w" type="range" min="2" max="15" value="5"> <output id="f1-w-o">$5</output></label>
+          <label class="ctl" for="f1-t">Days elapsed <input id="f1-t" type="range" min="0" max="44" value="10"> <output id="f1-t-o">10 days</output></label>
+          <label class="ctl" for="f1-iv">IV change <input id="f1-iv" type="range" min="-15" max="15" value="0"> <output id="f1-iv-o">0 points</output></label>
+        </div>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 320" role="img" aria-label="Expiry and current P&amp;L of multi-leg strategies"></svg>
+        <div class="legend"><span><i style="border-color: var(--ink)"></i>P&amp;L at expiry (calendar: at front-month expiry)</span><span><i style="border-color: var(--delta)"></i>Current P&amp;L (after days elapsed and IV change)</span><span id="f1-legs" style="font-family: var(--font-mono)"></span></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small>Net premium (per contract)</small></div>
+          <div><b id="f1-r2">—</b><small>Max profit / max loss at expiry</small></div>
+          <div><b id="f1-r3">—</b><small>Breakevens at expiry</small></div>
+          <div><b id="f1-r4">—</b><small>Current Θ / day, Vega / point (per contract)</small></div>
+        </div>
+        <figcaption>The default is a short 45-day iron condor (short strikes 91/112, about 0.16 Delta). Drag the wing width from 5 to 15: the premium you collect rises from $113 to $174, but the maximum loss jumps from $387 to $1,326. Switch to the iron butterfly and the profit zone narrows while the premium gets fatter. Switch to the calendar and the expiry curve turns into a “tent”; drag the IV change down and the whole tent sinks: a calendar fears a drop in back-month IV.</figcaption>
+      </figure>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">9.2</span>Straddles and strangles</h2>
+      <p>A straddle buys a big move in either direction; a strangle trades a lower cost for breakevens that are farther away. Selling them means collecting that insurance premium and carrying the tails on both sides.</p>
+      <ul>
+        <li><strong>Straddle</strong>: a call plus a put with the same strike and the same expiration, usually at the money.</li>
+        <li><strong>Strangle</strong>: an OTM put plus an OTM call, with two separate strikes.</li>
+      </ul>
+      <div class="tbl">
+        <table>
+          <caption>Table 9-2 Three long structures at 30 days and 30% IV (cost per share; probability of profit and expectancy at different realized volatilities)</caption>
+          <thead><tr><th>Structure</th><th>Cost</th><th>Breakeven</th><th>Move needed</th><th>Probability of profit: realized 30% / 35% / 25%</th><th>Expectancy per contract: realized 35% / 25%</th></tr></thead>
+          <tbody>
+            <tr><td>100 straddle</td><td class="mono">6.85</td><td class="mono">93.15 / 106.85</td><td class="mono">±6.85%</td><td class="mono">42.5% / 49.4% / 33.9%</td><td class="mono">+$114 / −$114</td></tr>
+            <tr><td>95/105 strangle</td><td class="mono">3.00</td><td class="mono">92.00 / 108.00</td><td class="mono">±8.00%</td><td class="mono">35.2% / 42.5% / 26.4%</td><td class="mono">+$99 / −$93</td></tr>
+            <tr><td>90/110 strangle</td><td class="mono">1.06</td><td class="mono">88.94 / 111.06</td><td class="mono">±11.06%</td><td class="mono">19.8% / 26.9% / 12.3%</td><td class="mono">+$64 / −$51</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>A few patterns:</p>
+      <ul>
+        <li><strong>The cheaper it is, the worse your odds</strong>. The 90/110 strangle costs only $1.06, but the stock has to move more than 11% for it to make money, which the market prices at only about a 20% chance. Buyers are often drawn in by “cheap” and forget that it is cheap because it is hard to win.</li>
+        <li><strong>Expectancy depends only on realized volatility</strong>. When realized volatility equals IV, all three have an expectancy of 0; at 35% realized they are all positive, and at 25% they are all negative. The structure changes how often you win and how much you win, but not the bet itself.</li>
+        <li><strong>Gamma per dollar</strong>: the straddle buys about 0.013 of Gamma per dollar of premium, the 95/105 strangle about 0.026, and the 90/110 about 0.045. OTM structures have more leverage, but their Gamma only pays off when the stock gets near a strike.</li>
+      </ul>
+      <h3>Selling straddles and strangles: no floor on either side</h3>
+      <p>The seller collects the cost in the table as premium, and the risk flips over symmetrically: on the call side the loss has no upper limit, and on the put side it runs until the stock goes to zero. On a ±10% or ±20% jump the next day (assuming IV rises to 45%), a short 100 straddle comes out at −$569 / −$679 and −$1,321 / −$1,435, and a short 90/110 strangle at −$367 / −$496 and −$975 / −$1,138. The strangle loses somewhat less, but it also collects only one-sixth of the straddle’s premium. The position-sizing rules from Chapter 8 apply here too: size by the gap loss, not by margin.</p>
+      <h3>The other way a long straddle pays: rising IV</h3>
+      <p>Hold to expiry and you are betting on realized volatility; close early and you are betting on IV. A 45-day ATM straddle costs 8.39, with Vega of $27.88 per point. 10 days later the stock is still at 100. If IV is unchanged, the straddle is worth 7.40 and you lose $99 per contract: that is Theta. If IV rises to 33%, you lose $25; to 36%, you make $49; to 40%, you make $147. In other words, IV has to rise to about 34% within those 10 days just to offset the time decay.</p>
+      <p>The typical setup for this trade: a known event (earnings, a product launch, a regulatory ruling) is a few weeks away, and front-month IV hasn’t started to climb yet. If you sell after IV has risen but before the event, you never carry the jump from the event itself. The risk is that IV doesn’t rise while Theta takes its cut every day. And the market often prices things in early: by the time you notice IV “hasn’t risen yet,” it may already have (Chapter 10).</p>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">A straddle’s breakevens are the average move the market is quoting</span><span class="fig-no">Figure 9-2 · Long ATM straddle, P&amp;L at expiry (per contract)</span></div>
+        <div class="controls">
+          <label class="ctl" for="f2-iv">IV at purchase <input id="f2-iv" type="range" min="10" max="80" value="30"> <output id="f2-iv-o">30%</output></label>
+          <label class="ctl" for="f2-rv">Realized volatility <input id="f2-rv" type="range" min="10" max="80" value="30"> <output id="f2-rv-o">30%</output></label>
+          <label class="ctl" for="f2-d">Days to expiry <input id="f2-d" type="range" min="5" max="90" value="30"> <output id="f2-d-o">30 days</output></label>
+        </div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 320" role="img" aria-label="Straddle breakevens and the expected move"></svg>
+        <div class="legend"><span><i style="border-color: var(--gamma)"></i>P&amp;L at expiry</span><span><i style="border-color: var(--delta); opacity: .5"></i>Distribution of the move at expiry, at realized volatility (height illustrative only)</span><span><i style="border-color: var(--tint-theta); border-top-width: 8px"></i>±1 standard deviation at IV</span></div>
+        <div class="readout">
+          <div><b id="f2-r1">—</b><small>Straddle cost (% of stock price)</small></div>
+          <div><b id="f2-r2">—</b><small>Move needed to break even</small></div>
+          <div><b id="f2-r3">—</b><small>Buyer’s probability of profit (at realized volatility)</small></div>
+          <div><b id="f2-r4">—</b><small>Buyer’s expectancy (per contract)</small></div>
+        </div>
+        <figcaption>With both volatilities at 30%, the breakevens (±6.85%) sit inside ±1 standard deviation (±8.6%), the buyer’s probability of profit is 42.5%, and the expectancy is 0. Drag only realized volatility to 35%: the curve stays put, the distribution widens, and the probability of profit rises to 49.4%. Then drag the purchase IV to 45%: the cost goes up and the breakevens move out. With the same realized volatility, buying too expensively means negative expectancy.</figcaption>
+      </figure>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">9.3</span>Iron condors, iron butterflies and butterflies</h2>
+      <p>Add two “wings” to a short strangle or a short straddle and you get the iron condor and the iron butterfly, whose maximum loss is fixed. The wing width decides how much premium you trade for how much tail protection.</p>
+      <ul>
+        <li><strong>Iron condor</strong>: a put credit spread + a call credit spread. Example: sell the 91 put, buy the 86 put, sell the 112 call, buy the 117 call.</li>
+        <li><strong>Iron butterfly</strong>: sell an ATM straddle, then buy OTM options the same distance away on each side. Example: sell the 100 straddle, buy the 95 put and the 105 call.</li>
+        <li><strong>Butterfly</strong>: all calls (or all puts). Buy 1 at the lower strike, sell 2 in the middle, buy 1 at the higher strike, and pay a debit.</li>
+      </ul>
+      <div class="formula">
+        <div class="eq">Iron condor max loss <span class="up">=</span> wing width <span class="up">−</span> premium received&nbsp;&nbsp;&nbsp;&nbsp;Breakeven <span class="up">=</span> <span class="v">K</span><sub>short put</sub> <span class="up">−</span> <span class="v">C</span>, <span class="v">K</span><sub>short call</sub> <span class="up">+</span> <span class="v">C</span></div>
+        <p class="where">When both wings are the same width, the stock can only break through one side at expiry, so you only need to set aside capital for one maximum loss.</p>
+      </div>
+
+      <h3>Wing width: how much insurance to buy</h3>
+      <div class="tbl">
+        <table>
+          <caption>Table 9-3 45-day iron condor, short strikes 91 / 112 (about 0.16 Delta), different wing widths (IV 30%, per share)</caption>
+          <thead><tr><th>Wing width</th><th>Premium collected</th><th>Max loss</th><th>Loss : profit</th><th>Breakeven</th><th>Probability of profit: realized 30% / 25%</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">$3</td><td class="mono">0.78</td><td class="mono">2.22</td><td class="mono">2.8 : 1</td><td class="mono">90.22 / 112.78</td><td class="mono">70.9% / 79.5%</td></tr>
+            <tr class="hl"><td class="mono">$5</td><td class="mono">1.13</td><td class="mono">3.87</td><td class="mono">3.4 : 1</td><td class="mono">89.87 / 113.13</td><td class="mono">72.4% / 80.9%</td></tr>
+            <tr><td class="mono">$10</td><td class="mono">1.59</td><td class="mono">8.41</td><td class="mono">5.3 : 1</td><td class="mono">89.41 / 113.59</td><td class="mono">74.2% / 82.6%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>With the short strikes unchanged, the probability of a “full profit” is 67.3% for all three wing widths (the stock stays between 91 and 112). The wider the wings, the cheaper and farther away the insurance you buy, the more premium you collect, and the slightly higher your probability of profit; the price is a maximum loss that grows several times over. In a gap, a condor with $10 wings is almost a strangle. Theta per contract is +$1.55, +$2.50 and +$4.25 per day, and Vega is −$4.73, −$7.58 and −$12.86 per point: the wider the wings, the closer you get to a naked short strangle.</p>
+      <p>The order of choices: first set your maximum-loss budget for one trade (Section 8.8), then choose the wing width, and finally divide the budget by the maximum loss per contract to get the number of contracts. With wings too narrow ($1–2), the premium is so small that commissions and the bid–ask spread eat almost all of it; with wings too wide, the iron condor loses its point as a defined-risk trade.</p>
+
+      <h3>Iron butterflies and butterflies: two ways to build the same shape</h3>
+      <p>Selling a 45-day 95/100/105 iron butterfly collects 4.05, with a maximum loss of 0.95 and breakevens at 95.95 / 104.05; at market pricing, the probability of profit is only 30.0%. Widen the wings to 10 (90/100/110) and you collect 6.44, with a maximum loss of 3.56 and a 45.9% probability of profit. The iron butterfly has a low probability of profit and a high payoff ratio; it makes money when the stock gets “pinned” in the middle.</p>
+      <p>Buying the 95/100/105 call butterfly costs 0.925, with a maximum profit of 4.075 and breakevens at 95.93 / 104.07. Its payoff at expiry is exactly the same as the iron butterfly’s: <span class="num">5 × e<sup>−rT</sup> − 0.925 = 4.05</span>, which is exactly the premium the iron butterfly collects. One takes in money and one pays it out, but the shape is the same. Which one to use depends on liquidity and capital. The butterfly uses only calls, so the 95 leg is in the money and usually has a wider bid–ask spread; all four legs of the iron butterfly are at or out of the money, so it fills more easily. The butterfly ties up only its debit, while the iron butterfly freezes margin equal to its maximum loss. If the stock sits near the middle strike at expiry, either one can be assigned and leave you with a stock position, so it is best to close before expiration.</p>
+
+      <h3>Management, and adjusting in a trend</h3>
+      <ul>
+        <li><strong>Short-leg Delta</strong>: 0.10–0.20 is common. 0.16 is about one standard deviation out and balances premium against room for error.</li>
+        <li><strong>Taking profits</strong>: the 50% profit target and the 21-day rule from Chapter 8 apply here too. Because its profit zone is narrow, the iron butterfly usually takes profits at around 25%.</li>
+        <li><strong>The tested side</strong>: once a short leg’s Delta rises above 0.30, or the price touches the short strike, decide whether to close, roll or do nothing.</li>
+        <li><strong>The rule in a trend</strong>: in a trend, “tightening” an iron condor (moving the untested side toward the price) collects more premium, but makes both sides easier to hit. Before you adjust, ask yourself: if I had no position today, would I open this new one? Case 3 compares three choices with numbers.</li>
+      </ul>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">9.4</span>Calendar and diagonal spreads</h2>
+      <p>A calendar spread sells the front month and buys the back month, and earns the front month’s faster time decay. It needs the stock to stay near the strike and back-month IV not to fall sharply.</p>
+      <p>Same strike, different expirations: sell the 30-day 100 call for 3.591, buy the 60-day 100 call for 5.168, for a net debit of 1.577. The front-month option has more Theta and loses value faster every day; the back month has more Vega and is more sensitive to IV. So a calendar is <strong>positive Theta, positive Vega, negative Gamma</strong>: the passage of time and a rise in IV help it, and a big move in the stock hurts it.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 9-4 Long 100 call calendar (30/60 days, debit 1.577), P&amp;L at front-month expiry (per share), by back-month IV</caption>
+          <thead><tr><th>Stock price at expiry</th><th>85</th><th>90</th><th>95</th><th>100</th><th>105</th><th>110</th><th>115</th></tr></thead>
+          <tbody>
+            <tr><td>Back-month IV 25%</td><td class="mono neg">−1.55</td><td class="mono neg">−1.34</td><td class="mono neg">−0.53</td><td class="mono pos">+1.44</td><td class="mono neg">−0.25</td><td class="mono neg">−0.96</td><td class="mono neg">−1.18</td></tr>
+            <tr class="hl"><td>Back-month IV 30% (unchanged)</td><td class="mono neg">−1.48</td><td class="mono neg">−1.11</td><td class="mono neg">−0.07</td><td class="mono pos">+2.01</td><td class="mono pos">+0.22</td><td class="mono neg">−0.69</td><td class="mono neg">−1.06</td></tr>
+            <tr><td>Back-month IV 35%</td><td class="mono neg">−1.36</td><td class="mono neg">−0.81</td><td class="mono pos">+0.42</td><td class="mono pos">+2.58</td><td class="mono pos">+0.72</td><td class="mono neg">−0.34</td><td class="mono neg">−0.88</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>With IV unchanged, the profit zone runs from about 95.2 to 105.9, and if the stock sits exactly at 100 you make 2.01, more than the cost. The maximum loss approaches the 1.577 you paid: when the stock moves far away, both options turn into pure intrinsic value or become worthless, and the spread goes to 0. Each 5-point change in back-month IV moves the P&amp;L near the strike by about 0.57; the farther from the strike, the smaller the effect.</p>
+
+      <h3>Earnings calendars: sell the expensive front month, buy the cheap back month</h3>
+      <p>Before earnings, IV on the nearest expiration that includes the earnings date gets pushed up a lot, while the back month rises only a little. You can see why by breaking out the “event variance” (Chapter 6, Section 6.8):</p>
+      <div class="formula">
+        <div class="eq">σ<sup>2</sup><sub>expiry</sub> <span class="up">×</span> <span class="v">T</span> <span class="up">=</span> σ<sup>2</sup><sub>normal</sub> <span class="up">×</span> <span class="v">T</span> <span class="up">+</span> <span class="v">e</span><sup>2</sup></div>
+        <p class="where"><span class="v">e</span> is the one-day move the market expects on earnings day (one standard deviation). The same <span class="v">e</span> spread over 7 days and spread over 35 days lifts annualized IV by very different amounts.</p>
+      </div>
+      <p>Suppose normal volatility is 30% and the expected earnings-day move is <span class="v">e</span> = 7%. IV for the 7-day expiration is <span class="num">√(0.30² + 0.07² × 365/7) = 58.8%</span>, and IV for the 35-day expiration is <span class="num">√(0.30² + 0.07² × 365/35) = 37.6%</span>. Once earnings are out, the event variance disappears and both expirations go back to around 30%: front-month IV drops 29 points, the back month only 8. A calendar that sells the front month and buys the back month is collecting this difference.</p>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">Earnings calendars win on “small moves” and lose on big moves and back-month IV crush</span><span class="fig-no">Figure 9-3 · Sell 7-day / buy 35-day 100 call, per contract</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Evaluation time">
+            <button type="button" data-when="next" aria-pressed="true">Day after earnings</button>
+            <button type="button" data-when="exp" aria-pressed="false">Front-month expiry</button>
+          </div>
+          <label class="ctl" for="f3-iv">Back-month IV after earnings <input id="f3-iv" type="range" min="25" max="45" value="30"> <output id="f3-iv-o">30%</output></label>
+        </div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 320" role="img" aria-label="Earnings calendar spread P&amp;L across stock prices"></svg>
+        <div class="legend"><span><i style="border-color: var(--theta)"></i>At the selected back-month IV</span><span><i class="dash" style="border-color: var(--muted)"></i>Back-month IV doesn’t fall (stays at 37.6%)</span><span><i style="border-color: var(--tint-warn); border-top-width: 8px"></i>Move implied by the front-month straddle, ±6.5%</span></div>
+        <div class="readout">
+          <div><b id="f3-r1">—</b><small>Entry cost (debit)</small></div>
+          <div><b id="f3-r2">—</b><small>P&amp;L if the stock doesn’t move</small></div>
+          <div><b id="f3-r3">—</b><small>Profit zone</small></div>
+          <div><b id="f3-r4">—</b><small>Max loss within the range</small></div>
+        </div>
+        <figcaption>IV assumptions: normal volatility 30%, expected earnings-day move 7%; at entry, front-month IV is 58.8% and back-month IV 37.6%; after earnings, front-month IV returns to 30%. By default the back month also returns to 30%: if the stock doesn’t move you make $101, and the profit zone runs from about 95.0 to 106.1, slightly narrower than the ±6.5% implied by the front-month straddle. Drag back-month IV to 25% and the profit zone shrinks noticeably; drag it to 35% or higher and the result approaches the dashed line.</figcaption>
+      </figure>
+      <p>Case 2 works through the full numbers. A calendar’s maximum loss is about the debit you paid, which makes it a good fit for expressing, in small size, the view that “the actual jump on this earnings report will be smaller than the market expects.”</p>
+      <p>Choosing expirations: the front month is usually 1–5 weeks out, and the back month 3–8 weeks beyond it. The farther out the back month, the larger its Vega and the more the calendar behaves like a plain long-IV position, while the Theta difference between the two legs matters less. With the back month too close, the Theta difference is too small to be worth paying the bid–ask spread twice. Also check whether the back month includes another big event (such as the next earnings report or a Fed meeting). If it does, that event will hold up back-month IV, and you are in effect also long volatility on the next event, which may not be what you want.</p>
+
+      <h3>Diagonal spreads: calendars with different strikes</h3>
+      <p>The two legs of a diagonal spread have different expirations and different strikes. One common version uses a deep-ITM back-month call in place of stock for a covered call: buy the 90-day 90 call (12.65, Delta 0.80), sell the 30-day 105 call (1.66, Delta 0.31), for a net debit of 10.99 and a net Delta of 0.49. Compared with the covered call in Section 8.2, the capital drops from $10,000 to about $1,099. The costs: if the stock falls, the loss on the back-month call can be larger than the cushion from the premium; if the stock rallies hard, the front-month call goes deep in the money, total profit is capped, and it can even come in below what you expected because the back month doesn’t have enough time value left. Diagonals are also common around earnings: sell the expensive front month, buy the cheap back month, and use the strikes to express a bit of direction.</p>
+
+      <div class="note field">
+        <span class="tag">In practice</span>
+        <p>Traders often treat an earnings calendar as a small “lottery ticket”: the maximum loss is the debit paid, and you accept up front that you may lose all of it. A few common practices: choose a strike not far from the current price, so that a “small move” still lands in the profit zone; open the position in the last ten to twenty minutes before the close, to reduce the effect of intraday IV swings on your entry price; after earnings, either close the whole combination together or deal with the front-month leg before it expires. Avoid cutting just one leg, which turns a defined-risk structure into a naked single-leg position.</p>
+      </div>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">9.5</span>Keeping Delta neutral: frequency and cost</h2>
+      <p>Hedging frequency changes how much your P&amp;L swings, not its expectancy. The more often you hedge, the closer the result gets to the underlying bet of “realized minus implied volatility,” and the higher the cost.</p>
+      <p>A neutral structure’s Delta is close to zero only at the moment you open it. Once the stock moves, Gamma pushes Delta away. For 10 short ATM straddles, after the stock rises $1.57 (one daily standard deviation), Delta goes from −65 shares to −207 shares (Gamma is about −92.5 shares per dollar). Should you hedge back to zero, and how often? The simulation below answers that.</p>
+      <p>Setup: sell 10 contracts of a 30-day ATM straddle (collecting $6,854) and hedge with stock; check 4 times a day; trading cost $0.02 per share; 2,000 random paths (seed 99).</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 9-5 Short 10 straddles: results by hedging method ($)</caption>
+          <thead><tr><th>Hedging method</th><th>Average P&amp;L</th><th>Standard deviation</th><th>Worst 5% (5th percentile)</th><th>Average shares traded</th><th>Average cost</th></tr></thead>
+          <tbody>
+            <tr><td colspan="6" style="text-align: left; color: var(--muted); font-size: 13px;">Realized volatility 30% (equal to IV, no premium)</td></tr>
+            <tr><td>No hedge</td><td class="mono">+52</td><td class="mono">5,201</td><td class="mono neg">−9,856</td><td class="mono">0</td><td class="mono">0</td></tr>
+            <tr><td>Once a day at the close</td><td class="mono neg">−118</td><td class="mono">1,120</td><td class="mono neg">−2,000</td><td class="mono">3,496</td><td class="mono">70</td></tr>
+            <tr><td>Four times a day</td><td class="mono neg">−145</td><td class="mono">541</td><td class="mono neg">−1,076</td><td class="mono">7,014</td><td class="mono">140</td></tr>
+            <tr class="hl"><td>When Delta drifts ±100 shares</td><td class="mono neg">−105</td><td class="mono">689</td><td class="mono neg">−1,240</td><td class="mono">4,715</td><td class="mono">94</td></tr>
+            <tr><td>When Delta drifts ±300 shares</td><td class="mono neg">−32</td><td class="mono">1,362</td><td class="mono neg">−2,362</td><td class="mono">2,312</td><td class="mono">46</td></tr>
+            <tr><td colspan="6" style="text-align: left; color: var(--muted); font-size: 13px;">Realized volatility 25% (with a premium)</td></tr>
+            <tr><td>No hedge</td><td class="mono pos">+1,188</td><td class="mono">4,324</td><td class="mono neg">−7,128</td><td class="mono">0</td><td class="mono">0</td></tr>
+            <tr><td>Once a day at the close</td><td class="mono pos">+1,046</td><td class="mono">987</td><td class="mono neg">−389</td><td class="mono">3,192</td><td class="mono">64</td></tr>
+            <tr><td>Four times a day</td><td class="mono pos">+1,013</td><td class="mono">568</td><td class="mono pos">+203</td><td class="mono">6,392</td><td class="mono">128</td></tr>
+            <tr class="hl"><td>When Delta drifts ±100 shares</td><td class="mono pos">+1,057</td><td class="mono">698</td><td class="mono neg">−75</td><td class="mono">4,028</td><td class="mono">81</td></tr>
+            <tr><td>When Delta drifts ±300 shares</td><td class="mono pos">+1,114</td><td class="mono">1,285</td><td class="mono neg">−939</td><td class="mono">1,932</td><td class="mono">39</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li><strong>The premium sets the expectancy</strong>. With no premium, every hedging method averages close to 0, and the differences are basically trading costs (the standard error for no hedge is about $116). With a premium, they all come in around +$1,000.</li>
+        <li><strong>Hedging compresses the swings</strong>. Without hedging the standard deviation is $5,201; hedging four times a day cuts it to $541. In the case with a premium, hedging four times a day makes 95% of paths profitable (5th percentile +$203), while without hedging 5% of paths lose more than $7,000.</li>
+        <li><strong>Thresholds are cheaper than a fixed schedule</strong>. A ±100-share threshold uses about two-thirds of the trading volume and gets close to the stability of “four times a day.” In practice, market makers mostly hedge on thresholds or on bands set by Gamma, not by the clock.</li>
+      </ul>
+      <p>How do you set the threshold? A simple reference is “how much Delta changes on a one-daily-standard-deviation move,” which is |Γ| × <span class="v">S</span> × σ ÷ √365. For the 10 straddles that is <span class="num">92.5 × 100 × 0.30 ÷ 19.1 ≈ 145</span> shares. In the table, ±100 shares is about 0.7 daily standard deviations and ±300 shares about 2. A threshold between 0.5 and 1 daily standard deviation is a common compromise between variance and cost. Gamma grows as expiration approaches, so the number of shares the threshold corresponds to needs to be recomputed as you go.</p>
+      <p>For individual traders, the lesson of this table is this: if you sell volatility without hedging, what you mainly carry is directional risk, and the premium is only a small tilt in your favor. To make “selling volatility” live up to its name, either hedge, or use a defined-risk structure to cut off the directional risk. Adjusting with options is also a kind of hedge: selling a spread on the untested side or buying a small option in the same direction both pull Delta back, at the cost of changing the shape of the whole structure.</p>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">9.6</span>When to buy and when to sell volatility</h2>
+      <p>Look at three indicators together: where IV sits within its own history, the shape of the term structure, and the gap between realized and implied volatility. A bet is only worth making when all three point the same way.</p>
+      <h3>Indicator 1: IV Rank</h3>
+      <div class="formula">
+        <div class="eq">IV Rank <span class="up">=</span> <span class="frac"><span>Current IV <span class="up">−</span> Lowest IV in the past year</span><span>Highest IV in the past year <span class="up">−</span> Lowest IV in the past year</span></span></div>
+        <p class="where">Example: over the past year IV ranged from 22% to 68%, and it is now 32%, so IV Rank = (32 − 22) ÷ (68 − 22) = 21.7%. Another common measure, IV Percentile, counts “how many days in the past year IV was lower than today,” so a single extreme value doesn’t distort it (Chapter 6).</p>
+      </div>
+      <p>A low IV Rank means options are cheap relative to their own history, but “cheap” can last a long time, and low IV by itself doesn’t make IV rise. A high IV Rank means premiums are rich, but high IV usually has a reason: earnings, a lawsuit, a macro event. IV Rank tells you where the price is, not whether the price is right.</p>
+      <h3>Indicator 2: the term structure</h3>
+      <ul>
+        <li><strong>Steeply upward-sloping</strong> (front-month IV clearly below the back month): common in calm markets. When you sell short-dated options, they “roll down” to lower IV as time passes, which helps the seller.</li>
+        <li><strong>Flat</strong>: front and back months are about the same. The market has no particular worry about the near term, and the seller gets no extra roll-down. A buyer gives up nothing by buying the back month here.</li>
+        <li><strong>Inverted</strong> (front month above the back month): the market is paying for risk right in front of it, which is common in panics and before events. This is when front-month premium is richest, but also when realized volatility is most likely to keep expanding.</li>
+      </ul>
+      <h3>Indicator 3: realized vs implied volatility</h3>
+      <p>Compare realized volatility over the last 10–20 trading days with 30-day IV. If realized volatility stays above IV, options haven’t caught up with what is really going on, and buyers have the edge; if it stays below IV, the market is paying premium for volatility that isn’t happening, and sellers have the edge. “Stays” matters: one or two big days don’t count.</p>
+
+      <figure class="plate" id="fig4">
+        <div class="fig-head"><span class="fig-title">Only two cells have a “tailwind”; the other two call for waiting</span><span class="fig-no">Figure 9-4 · Decision matrix for buying and selling volatility</span></div>
+        <div class="scroll-x"><svg class="chart wide" viewBox="0 0 680 380" role="img" aria-label="Four quadrants by IV Rank and realized minus implied volatility">
+          <g style="font-family: var(--font-body); font-size: 13px">
+            <text x="20" y="166" text-anchor="middle" transform="rotate(-90 20 166)" style="fill: var(--muted); font-size: 12.5px">Realized − implied volatility</text>
+            <text x="54" y="96" text-anchor="middle" style="fill: var(--muted); font-size: 12px">Above IV</text>
+            <text x="54" y="236" text-anchor="middle" style="fill: var(--muted); font-size: 12px">Below IV</text>
+            <text x="235" y="322" text-anchor="middle" style="fill: var(--muted); font-size: 12px">Low IV Rank (&lt; 30)</text>
+            <text x="525" y="322" text-anchor="middle" style="fill: var(--muted); font-size: 12px">High IV Rank (&gt; 50)</text>
+            <rect x="92" y="20" width="286" height="140" rx="6" style="fill: var(--tint-delta); stroke: var(--delta)"></rect>
+            <text x="108" y="46" style="fill: var(--delta); font-weight: 700; font-size: 14.5px">Best for buying volatility</text>
+            <text x="108" y="72" style="fill: var(--ink)">Cheap options, and big realized moves</text>
+            <text x="108" y="96" style="fill: var(--ink)">Buy straddles / strangles, then hedge</text>
+            <text x="108" y="120" style="fill: var(--ink)">Gamma scalping (Section 9.7)</text>
+            <text x="108" y="144" style="fill: var(--muted); font-size: 12px">Risk: low IV can last; Theta bleeds daily</text>
+            <rect x="382" y="20" width="286" height="140" rx="6" style="fill: var(--tint-warn); stroke: var(--warn)"></rect>
+            <text x="398" y="46" style="fill: var(--warn); font-weight: 700; font-size: 14.5px">Conflict: rich, but really moving</text>
+            <text x="398" y="72" style="fill: var(--ink)">Early in a panic; term structure inverted</text>
+            <text x="398" y="96" style="fill: var(--ink)">Only small, defined-risk positions</text>
+            <text x="398" y="120" style="fill: var(--ink)">Sell once the inversion clears</text>
+            <text x="398" y="144" style="fill: var(--muted); font-size: 12px">Risk: selling while vol is still expanding</text>
+            <rect x="92" y="164" width="286" height="140" rx="6" style="fill: var(--tint-warn); stroke: var(--warn)"></rect>
+            <text x="108" y="190" style="fill: var(--warn); font-weight: 700; font-size: 14.5px">Conflict: a premium, but thin</text>
+            <text x="108" y="216" style="fill: var(--ink)">Little premium; IV can jump any time</text>
+            <text x="108" y="240" style="fill: var(--ink)">Sell less or none; calendars, debit flies</text>
+            <text x="108" y="264" style="fill: var(--ink)">A “range” view without selling naked</text>
+            <text x="108" y="288" style="fill: var(--muted); font-size: 12px">Risk: collect less, lose just as much</text>
+            <rect x="382" y="164" width="286" height="140" rx="6" style="fill: var(--tint-theta); stroke: var(--theta)"></rect>
+            <text x="398" y="190" style="fill: var(--theta); font-weight: 700; font-size: 14.5px">Best for selling volatility</text>
+            <text x="398" y="216" style="fill: var(--ink)">Rich premium, low realized volatility</text>
+            <text x="398" y="240" style="fill: var(--ink)">Condors, credit spreads, capped strangles</text>
+            <text x="398" y="264" style="fill: var(--ink)">Better when the term structure is steep</text>
+            <text x="398" y="288" style="fill: var(--muted); font-size: 12px">Risk: gaps; size with Chapter 8 stress tests</text>
+            <rect x="92" y="336" width="576" height="34" rx="6" style="fill: none; stroke: var(--rule)"></rect>
+            <text x="380" y="358" text-anchor="middle" style="fill: var(--ink); font-size: 12.5px">Term structure: steep upward → favors sellers; flat/inverted → favors buyers, sellers wait</text>
+          </g>
+        </svg></div>
+        <figcaption>The top-left and bottom-right cells are where the three indicators tend to agree. The top-right cell is the most tempting and the most dangerous: premium is at its most expensive, but it is expensive because realized volatility is happening right now. The problem with the bottom-left cell is that the return is too thin for the same tail risk.</figcaption>
+      </figure>
+      <div class="tbl">
+        <table id="t96">
+          <caption>Table 9-6 A simple scorecard (each item +1 / 0 / −1; consider a trade only if the total is ≥ +2)</caption>
+          <thead><tr><th>Indicator</th><th>+1 for buyers</th><th>Neutral 0</th><th>+1 for sellers</th></tr></thead>
+          <tbody>
+            <tr><td>IV Rank</td><td>&lt; 30</td><td>30–50</td><td>&gt; 50</td></tr>
+            <tr><td>Term structure (front − back)</td><td>Flat or inverted, with an unpriced catalyst</td><td>Slightly upward-sloping</td><td>Steeply upward-sloping</td></tr>
+            <tr><td>20-day realized volatility ÷ 30-day IV</td><td>&gt; 1.1 for more than a week</td><td>0.9–1.1</td><td>&lt; 0.8 for more than a week</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The thresholds are common starting points; calibrate them to each underlying’s own history. There is also one exception: before a known event (earnings, FOMC), high front-month IV is normal pricing, and IV Rank will read “high.” Whether that premium is worth selling depends on the historical distribution of event moves (Chapter 10), not on this table.</p>
+      <p>Three hypothetical examples:</p>
+      <ul>
+        <li><strong>Stock A</strong>: IV Rank 15, flat term structure, 20-day realized volatility ÷ IV = 1.25, holding for two weeks now. All three items go to buyers, for a buyer total of +3: you can buy a straddle and hedge it with the thresholds from Section 9.5.</li>
+        <li><strong>Stock B</strong>: IV Rank 72, steeply upward-sloping term structure, ratio 0.70. A seller total of +3: sell an iron condor and size it with the gap test from Chapter 8.</li>
+        <li><strong>Stock C</strong>: IV Rank 88, inverted term structure, ratio 1.30. IV Rank gives sellers +1, and the other two items give buyers +1 each, for a buyer total of +1, short of +2: don’t trade, and wait for the inversion to clear. This is exactly the top-right cell of Figure 9-4: the moment the premium is most tempting is the moment the rules tell you to stand aside.</li>
+      </ul>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">9.7</span>Gamma scalping revisited</h2>
+      <p>Buying a straddle and delta-hedging it isolates the bet on “realized vs implied volatility.” The expected daily P&amp;L is about ½ Γ S² (σ²<sub>realized</sub> − σ²<sub>implied</sub>) ÷ 365.</p>
+      <div class="formula">
+        <div class="eq">Daily hedged P&amp;L <span class="up">≈</span> <span class="frac"><span>1</span><span>2</span></span> <span class="gm">Γ</span> <span class="v">S</span><sup>2</sup> <span class="up">·</span> <span class="frac"><span>σ<sup>2</sup><sub>realized</sub> <span class="up">−</span> σ<sup>2</sup><sub>implied</sub></span><span>365</span></span></div>
+        <p class="where">This follows from Θ ≈ −½ σ² S² Γ in Chapter 4: Gamma earns ½ Γ (Δ<span class="v">S</span>)² each day, which averages out to ½ Γ <span class="v">S</span>² σ²<sub>realized</sub> ÷ 365, while Theta charges you at σ<sub>implied</sub>. The difference between the two is this formula.</p>
+      </div>
+      <p>Take the position from Chapter 4, Section 4.7: 10 contracts of a 30-day ATM straddle, Gamma about 92.5 shares per dollar, Theta about −$114 a day. By the formula, the expected daily P&amp;L is +$88.7 at 40% realized volatility, +$41.2 at 35%, 0 at 30% and −$34.8 at 25%. The process, in review:</p>
+      <ol>
+        <li>Buy a straddle when realized volatility looks likely to come in above IV (the top-left cell, Section 9.6).</li>
+        <li>When you open the position, hedge Delta to zero with stock.</li>
+        <li>Re-hedge on thresholds: sell stock when it rises, buy stock when it falls (Section 9.5).</li>
+        <li>Record realized volatility every day and compare it with the IV you bought at.</li>
+        <li>Exit when realized volatility falls back below IV, or when IV jumps (you can sell the Vega gain).</li>
+      </ol>
+      <p>For the full five-day walkthrough, see <a href="ch04.html#s7">Chapter 4, Section 4.7</a>. The simulation in Section 9.5 is its mirror image: sell a straddle and hedge it, and you earn the amount by which realized volatility falls short of implied. That is a market maker’s everyday business.</p>
+      <p>The difference between hedging and not hedging is what you are “watching.” An unhedged straddle only cares how far the stock is from the strike at the moment of expiry; a hedged straddle cares about the volatility accumulated along the whole path. In scenario A of Chapter 4, the stock swung back and forth sharply and ended up almost where it started: holding only the straddle lost $304, while hedging every day made $797. If your view is “it will swing violently but may not trend,” hedging is the way to cash in on that view.</p>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">Cases</span>Three cases</h2>
+
+      <div class="case">
+        <div class="case-no">Case 1</div>
+        <h3>Same stock, same view, three structures</h3>
+        <p>The stock is at 100 and IV is 30%. Your view: over the next 45 days it will be quieter than the market expects, with realized volatility of about 25%, and you have no view on direction. All three short structures can express this view:</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 9-7 Short straddle, short strangle, short iron condor (45 days, per contract)</caption>
+            <thead><tr><th>Item</th><th>Short 100 straddle</th><th>Short 91/112 strangle</th><th>Short 86/91/112/117 iron condor</th></tr></thead>
+            <tbody>
+              <tr><td>Premium collected</td><td class="mono">$839</td><td class="mono">$181</td><td class="mono">$113</td></tr>
+              <tr><td>Breakeven</td><td class="mono">91.57 / 108.43</td><td class="mono">89.19 / 113.81</td><td class="mono">89.87 / 113.13</td></tr>
+              <tr><td>Max loss</td><td class="mono neg">Unlimited</td><td class="mono neg">Unlimited</td><td class="mono">$387</td></tr>
+              <tr><td>Margin (exchange minimum)</td><td class="mono">$2,839</td><td class="mono">$1,281</td><td class="mono">$387</td></tr>
+              <tr><td>Probability of profit: realized 30% / 25%</td><td class="mono">57.7% / 66.4%</td><td class="mono">75.1% / 83.4%</td><td class="mono">72.4% / 80.9%</td></tr>
+              <tr class="hl"><td>Expectancy (25% realized)</td><td class="mono pos">+$140</td><td class="mono pos">+$79</td><td class="mono pos">+$39</td></tr>
+              <tr><td>Next day −10% (IV 40%)</td><td class="mono neg">−$473</td><td class="mono neg">−$385</td><td class="mono neg">−$138</td></tr>
+              <tr><td>Next day +10% (IV 35%)</td><td class="mono neg">−$502</td><td class="mono neg">−$314</td><td class="mono neg">−$88</td></tr>
+              <tr><td>Next day −20% (IV 45%)</td><td class="mono neg">−$1,216</td><td class="mono neg">−$1,046</td><td class="mono neg">−$267</td></tr>
+              <tr><td>Next day +20% (IV 40%)</td><td class="mono neg">−$1,334</td><td class="mono neg">−$987</td><td class="mono neg">−$203</td></tr>
+              <tr><td>Expectancy ÷ worst gap loss</td><td class="mono">10.5%</td><td class="mono">7.5%</td><td class="mono">14.6%</td></tr>
+              <tr><td>Theta per day / Vega per point</td><td class="mono">+$9.29 / −$27.88</td><td class="mono">+$5.73 / −$17.24</td><td class="mono">+$2.50 / −$7.58</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>How these were computed: expectancy integrates the P&amp;L at expiry using 25% realized volatility and a drift equal to the risk-free rate; the gap scenarios reprice with Black-Scholes at 44 days left, with assumed post-jump IVs; margin is the naked requirement on the larger side plus the premium on the other side, and the iron condor uses its maximum loss.</p>
+        <ul>
+          <li><strong>Expectancy per contract</strong>: the straddle is highest (+$140), because it collects the most premium and carries the most Gamma. If your view is wrong (35% realized), it also loses the most.</li>
+          <li><strong>Expectancy per unit of tail risk</strong>: the iron condor is best (14.6%) and the strangle worst (7.5%). The strangle looks “far away, high win rate,” but it collects a thin premium while its tail is almost as fat as the straddle’s.</li>
+          <li><strong>Whether you can sleep at night</strong>: only the iron condor’s worst case is a number you know in advance. Under Chapter 8’s rule of “−20% gap loss ≤ 10% of the account,” a $20,000 account can sell 1 straddle (−$1,334), or 1 strangle, or 7 iron condors (7 × $267 = $1,869). The 7 iron condors have an expectancy of about $274, higher than the 1 straddle’s $140.</li>
+        </ul>
+        <p>The takeaway: for the same view, the structure decides how much tail risk you carry for it. For an individual account, once you size by tail risk, the defined-risk iron condor is often the most efficient of the three ways to express it.</p>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 2</div>
+        <h3>An earnings calendar spread, worked through from start to finish</h3>
+        <p><strong>IV assumptions</strong> (all of them assumed, for illustration): the stock is at 100, normal volatility is 30%, and the market expects a 7% move on earnings day. Earnings come out after the close on day 3. The front month expires in 7 days, with IV of 58.8%; the back month expires in 35 days, with IV of 37.6% (the event-variance formula from Section 9.4). After earnings, IV for both expirations returns to 30%.</p>
+        <p><strong>Entry</strong>: sell the 7-day 100 call for 3.284, buy the 35-day 100 call for 4.823, for a net debit of 1.539, or $154 per contract. At entry, Theta is +$16.56/day (the front month’s high IV makes it lose value quickly every day) and Vega is +$6.78/point: front-month Vega is 0.055 and back-month Vega 0.123, so the calendar as a whole is long IV. That is why it fears a drop in back-month IV. The front-month straddle is priced at 6.49, so the market implies a move of about ±6.5%.</p>
+        <div class="tbl">
+          <table>
+          <caption>Table 9-8 P&amp;L on the first trading day after earnings (3 days left in the front month, 31 in the back month) (per share)</caption>
+          <thead><tr><th>Stock move</th><th>Back-month IV back to 30%</th><th>Back-month IV falls only to 33%</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">−15%</td><td class="mono neg">−1.43</td><td class="mono neg">−1.36</td></tr>
+            <tr><td class="mono">−10%</td><td class="mono neg">−1.04</td><td class="mono neg">−0.86</td></tr>
+            <tr><td class="mono">−7%</td><td class="mono neg">−0.52</td><td class="mono neg">−0.26</td></tr>
+            <tr><td class="mono">−5%</td><td class="mono neg">−0.01</td><td class="mono pos">+0.29</td></tr>
+            <tr><td class="mono">−3%</td><td class="mono pos">+0.54</td><td class="mono pos">+0.87</td></tr>
+            <tr class="hl"><td class="mono">0</td><td class="mono pos">+1.01</td><td class="mono pos">+1.36</td></tr>
+            <tr><td class="mono">+3%</td><td class="mono pos">+0.69</td><td class="mono pos">+1.02</td></tr>
+            <tr><td class="mono">+5%</td><td class="mono pos">+0.24</td><td class="mono pos">+0.55</td></tr>
+            <tr><td class="mono">+7%</td><td class="mono neg">−0.18</td><td class="mono pos">+0.09</td></tr>
+            <tr><td class="mono">+10%</td><td class="mono neg">−0.64</td><td class="mono neg">−0.44</td></tr>
+            <tr><td class="mono">+15%</td><td class="mono neg">−1.03</td><td class="mono neg">−0.92</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <ul>
+          <li><strong>Stock unchanged</strong>: you make 1.01, 66% of the cost. The front-month call drops from 3.284 to 1.10 (only 3 days left, IV 30%), while the back-month call only drops from 4.823 to 3.65.</li>
+          <li><strong>Breakevens</strong>: about 95.0 and 106.1 with back-month IV at 30%; if back-month IV only falls to 33%, they widen to 94.0 and 107.4. How far back-month IV falls decides how wide the profit zone is.</li>
+          <li><strong>At the implied move</strong>: if the stock moves about ±6.5%, the result is close to 0. A calendar makes money when the actual jump is clearly smaller than the jump implied by the front-month straddle.</li>
+          <li><strong>Big moves</strong>: at ±15% you lose 1.03 to 1.43, close to the full cost of 1.539, but never more than that.</li>
+        </ul>
+        <p>If you don’t close the day after earnings and instead hold to front-month expiry (28 days left in the back month, IV 30%), the profit with the stock at 100 rises to 1.925, and the profit zone narrows to about 95.4 to 105.6: a few more days of Theta, paid for with a narrower range and a longer window of jump risk. The two buttons in Figure 9-3 correspond to these two points in time.</p>
+        <div class="note">
+          <span class="tag">Key points</span>
+          <p>Writing down your IV assumptions is the most important step in an earnings calendar. The same structure gives a completely different result if the market also pushes back-month IV down hard, or if the actual jump is close to the big jumps in the stock’s history. Before you place the order, work out at least three cases: the stock doesn’t move, the stock moves by the implied move, and the stock moves by its largest historical jump; and pair each case with two back-month IVs.</p>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 3</div>
+        <h3>An iron condor in a trending market: close, tighten or leave it</h3>
+        <p>15 days ago, you sold the 45-day 86/91/112/117 iron condor for 1.129. Since then the stock has climbed steadily to 110, with 30 days left. Now:</p>
+        <ul>
+          <li>The iron condor shows an open loss of 0.503, or −$50 per contract. The Delta of the short 112 call has risen to 0.449, and the whole position’s Delta is −0.177 (the same as being short 17.7 shares per contract).</li>
+          <li>The 2× stop-loss line (the spread’s value rising to 3.386) is still far away: even at 113, the open loss is only 1.068. The stop-loss rule hasn’t triggered, but the direction has clearly turned against you.</li>
+        </ul>
+        <p>Three choices:</p>
+        <ol>
+          <li><strong>Close</strong>: lock in −$50.</li>
+          <li><strong>Tighten (roll the put spread up)</strong>: pay 0.033 to buy back the 86/91 put spread, then sell the 102/97 put spread for 0.627 (short-leg Delta −0.169). Total premium becomes 1.723, the maximum loss on the call side falls from 3.871 to 3.277, position Delta goes from −0.177 back to −0.079, and Theta rises from $1.67 to $3.23 a day.</li>
+          <li><strong>Leave it</strong>: keep holding the original iron condor.</li>
+        </ol>
+        <p>Another common approach is to roll the call spread up and out to the 60-day 120/125, but that costs a net debit of 0.668, cuts total premium to 0.461 and raises the maximum loss to 4.54. In this example it isn’t worth it.</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 9-9 Results of the three choices at expiry (per share)</caption>
+            <thead><tr><th>Stock price at expiry</th><th>95</th><th>100</th><th>105</th><th>110</th><th>115</th><th>120</th></tr></thead>
+            <tbody>
+              <tr><td>Unchanged</td><td class="mono pos">+1.13</td><td class="mono pos">+1.13</td><td class="mono pos">+1.13</td><td class="mono pos">+1.13</td><td class="mono neg">−1.87</td><td class="mono neg">−3.87</td></tr>
+              <tr><td>Close now</td><td class="mono neg">−0.50</td><td class="mono neg">−0.50</td><td class="mono neg">−0.50</td><td class="mono neg">−0.50</td><td class="mono neg">−0.50</td><td class="mono neg">−0.50</td></tr>
+              <tr class="hl"><td>Tighten (put spread moved up to 102/97)</td><td class="mono neg">−3.28</td><td class="mono neg">−0.28</td><td class="mono pos">+1.72</td><td class="mono pos">+1.72</td><td class="mono neg">−1.28</td><td class="mono neg">−3.28</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li><strong>Tightening</strong> does best if the trend continues gently (105 to 112), but it starts losing as soon as the stock falls back to 100, and hits its maximum loss at 95. You traded the newly collected 0.594 for the risk that “either side can get hit”: the profit zone shrinks from 89.9–113.1 to 100.3–113.7.</li>
+          <li><strong>Leaving it</strong> does best if the stock pulls back or goes sideways; if the trend runs another 5%, it starts losing heavily.</li>
+          <li><strong>Closing</strong> gives up profit in every scenario in exchange for certainty.</li>
+        </ul>
+        <p>No choice wins in every scenario. What decides it is your view of the trend, and the job of management rules is to decide for you when you don’t have a view. A practical order: first check whether a preset stop-loss or Delta threshold has triggered (for example, deal with the tested side once the short leg’s Delta goes above 0.30); then ask, “If I had no position today, would I open this adjusted one?”; if you can’t answer, close.</p>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">Tools</span>Checklist and self-test</h2>
+      <p>Your checkmarks are saved only in your own browser.</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">9-1</span>Before you bet: know what you are betting on</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">Compute the implied average move with 0.8 × S × σ × √T</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">Write down your estimate of realized volatility and what it is based on</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">Know whether this trade makes money from Gamma/Theta or from Vega</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">9-2</span>Timing: the three-item score</h4>
+          <ul>
+            <li><input type="checkbox" id="k4"><label for="k4">IV Rank and IV Percentile</label></li>
+            <li><input type="checkbox" id="k5"><label for="k5">Term structure: upward-sloping, flat or inverted</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">20-day realized volatility ÷ 30-day IV, and whether it has held for more than a week</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">9-3</span>Choosing a structure: iron condors and butterflies</h4>
+          <ul>
+            <li><input type="checkbox" id="k7"><label for="k7">Short-leg Delta 0.10–0.20; write down both breakevens</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">Work back from the maximum-loss budget to the wing width; contracts = budget ÷ max loss per contract</label></li>
+            <li><input type="checkbox" id="k9"><label for="k9">Write down in advance the short-leg Delta at which you will deal with the tested side</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">9-4</span>Calendars and events</h4>
+          <ul>
+            <li><input type="checkbox" id="k10"><label for="k10">Write down front-month and back-month IV and your post-earnings assumptions</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">Compute the P&amp;L for three stock prices × two back-month IVs</label></li>
+            <li><input type="checkbox" id="k12"><label for="k12">When you exit, close the whole combination together; don’t cut one leg on its own</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Five self-test questions</h3>
+      <details class="q"><summary><span class="num">1</span><span>The stock is at $200 and IV is 40%. Roughly what does a 30-day ATM straddle cost? How far does the stock have to move for you to break even?</span></summary>
+        <div class="ans"><p>Mental math: <span class="num">0.8 × 200 × 0.40 × √(30/365) = 18.35</span>; Black-Scholes gives 18.27. At expiry the stock has to be about ±$18.3 away from 200, or ±9.1%, for the buyer to make money.</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>You buy a 30-day 95/105 strangle for 3.00. Where are the breakevens? If you think realized volatility will be only 25%, is the expectancy positive or negative?</span></summary>
+        <div class="ans"><p>The breakevens are <span class="num">95 − 3.00 = 92.00</span> and <span class="num">105 + 3.00 = 108.00</span>. Realized volatility of 25% is below the 30% IV you bought at, so the expectancy is negative: about −$93 per contract in Table 9-2.</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>You sell the 86/91/112/117 iron condor for 1.13. What is the maximum loss? If your account allows a maximum loss of $2,000 per trade, how many contracts can you sell?</span></summary>
+        <div class="ans"><p>The maximum loss is <span class="num">5 − 1.13 = 3.87</span>, or $387 per contract. <span class="num">2,000 ÷ 387 = 5.2</span>, so 5 contracts at most.</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>Over the past year a stock’s IV ranged from 18% to 60%, and it is now 45%; 20-day realized volatility is 30%; the term structure is steeply upward-sloping. Scored with Table 9-6, does it lean toward buying or selling volatility?</span></summary>
+        <div class="ans"><p>IV Rank = <span class="num">(45 − 18) ÷ (60 − 18) = 64.3%</span>, +1 for sellers; realized ÷ implied = <span class="num">30 ÷ 45 = 0.67</span>, +1 for sellers (you still need to confirm it has held for more than a week); steeply upward-sloping term structure, +1 for sellers. A seller total of +3 leans toward selling volatility: use a defined-risk structure, and first confirm there is no unpriced event coming up.</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>10 contracts of a 30-day ATM straddle (Gamma about 92.5 shares per dollar, stock at 100, bought at 30% IV), delta-hedged. If realized volatility is 35%, how much do you expect to make per day?</span></summary>
+        <div class="ans"><p><span class="num">½ × 92.5 × 100² × (0.35² − 0.30²) ÷ 365 = ½ × 92.5 × 10,000 × 0.0325 ÷ 365 ≈ $41.2</span>. It is 0 when realized volatility equals 30%, and negative below 30%.</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="Chapter navigation"></nav>
+
+    <footer class="end">
+      <p>The examples in this chapter are computed with the Black-Scholes model (4% rate, no dividends, 365-day year) and the IV assumptions and simulations stated in the text. They are for teaching and are not investment advice.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY, R = CK.R;
+  const probAbove = (S, X, T, sig) => X <= 0 ? 1 : CK.N((Math.log(S / X) + (R - sig * sig / 2) * T) / (sig * Math.sqrt(T)));
+  const signedK = v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toLocaleString("en-US");
+  const tickK = v => Math.abs(v) >= 1000 ? (v > 0 ? "+" : "−") + +(Math.abs(v) / 1000).toFixed(1) + "k" : signedK(v);
+  const seg = (selector, onPick) => {
+    const btns = document.querySelectorAll(selector);
+    btns.forEach(b => b.addEventListener("click", () => {
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      onPick(b);
+    }));
+  };
+  function ticks(lo, hi, n) {
+    const span = hi - lo, raw = span / n, mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    const step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => span / s <= n) || 10 * mag;
+    const out = []; for (let v = Math.ceil(lo / step) * step; v <= hi + 1e-9; v += step) out.push(+v.toFixed(6));
+    return out;
+  }
+  function crossings(f, a, b, st) {
+    const out = []; let prev = f(a);
+    for (let x = a + st; x <= b + 1e-9; x += st) {
+      const v = f(x);
+      if ((prev <= 0 && v > 0) || (prev > 0 && v <= 0)) out.push(x - st * v / (v - prev));
+      prev = v;
+    }
+    return out;
+  }
+
+  // ---------- fig 9-1 builder ----------
+  (function () {
+    const ST = {
+      straddle: { dir: 1, wing: null, legs: w => [["p", 100, 1, 45], ["c", 100, 1, 45]] },
+      strangle: { dir: 1, wing: "Strike distance ±", legs: w => [["p", 100 - w, 1, 45], ["c", 100 + w, 1, 45]] },
+      condor: { dir: -1, wing: "Wing width", legs: w => [["p", 91 - w, -1, 45], ["p", 91, 1, 45], ["c", 112, 1, 45], ["c", 112 + w, -1, 45]] },
+      ironfly: { dir: -1, wing: "Wing width", legs: w => [["p", 100 - w, -1, 45], ["p", 100, 1, 45], ["c", 100, 1, 45], ["c", 100 + w, -1, 45]] },
+      fly: { dir: 1, wing: "Wing width", legs: w => [["c", 100 - w, 1, 45], ["c", 100, -2, 45], ["c", 100 + w, 1, 45]] },
+      calendar: { dir: 1, wing: null, legs: w => [["c", 100, -1, 30], ["c", 100, 1, 60]] }
+    };
+    const svg = document.getElementById("f1-svg");
+    const sel = document.getElementById("f1-sel"), wS = document.getElementById("f1-w"), tS = document.getElementById("f1-t"), ivS = document.getElementById("f1-iv");
+    const dirBtns = document.querySelectorAll("#fig1 .seg button");
+    let dir = -1;
+    const IV = 0.30;
+    function legVal(leg, S, t, iv) {
+      const [k, K, , d] = leg, rem = d - t;
+      if (rem <= 1e-9) return k === "c" ? Math.max(S - K, 0) : Math.max(K - S, 0);
+      return bs(S, K, rem / DAY, iv, k).price;
+    }
+    function posVal(legs, S, t, iv) { return legs.reduce((a, L) => a + L[2] * dir * legVal(L, S, t, iv), 0); }
+    function setDir(d) { dir = d; dirBtns.forEach(b => b.setAttribute("aria-pressed", +b.dataset.dir === d ? "true" : "false")); }
+    function draw() {
+      const s = ST[sel.value], w = +wS.value;
+      const legs = s.legs(w);
+      const front = Math.min(...legs.map(L => L[3]));
+      tS.max = front - 1; if (+tS.value > front - 1) tS.value = front - 1;
+      const t = +tS.value, shift = +ivS.value / 100;
+      wS.disabled = !s.wing;
+      document.getElementById("f1-w-l").textContent = s.wing || "(not used here)";
+      document.getElementById("f1-w-o").textContent = s.wing ? "$" + w : "—";
+      document.getElementById("f1-t-o").textContent = t + " days";
+      document.getElementById("f1-iv-o").textContent = (shift > 0 ? "+" : shift < 0 ? "−" : "") + Math.abs(+ivS.value) + " points";
+      const cost = posVal(legs, 100, 0, IV);
+      const expP = S => (posVal(legs, S, front, IV + shift) - cost) * 100;
+      const curP = S => (posVal(legs, S, t, IV + shift) - cost) * 100;
+      const xs = range(75, 125, 0.25);
+      const e = xs.map(S => [S, expP(S)]), c = xs.map(S => [S, curP(S)]);
+      const all = e.concat(c).map(p => p[1]);
+      let lo = Math.min(...all), hi = Math.max(...all);
+      const pad = Math.max(20, (hi - lo) * 0.1); lo -= pad; hi += pad;
+      if (lo > -50) lo = -50; if (hi < 50) hi = 50;
+      plot(svg, {
+        x: [75, 125], y: [lo, hi], xt: [80, 90, 100, 110, 120], yt: ticks(lo, hi, 6),
+        yf: tickK, xlabel: "Stock price ($)", ylabel: "P&L per contract ($)", zero: 0, vline: 100,
+        series: [{ pts: e, color: "var(--ink)", w: 2.4 }, { pts: c, color: "var(--delta)", w: 2.2 }]
+      });
+      // readouts
+      document.getElementById("f1-r1").textContent = (cost > 0 ? "Debit " : "Credit ") + CK.usd(Math.abs(cost) * 100);
+      const grid = range(0.5, 400, 0.5).map(expP);
+      const upInf = expP(1000) - expP(400) > 1, dnInf = expP(1000) - expP(400) < -1;
+      const mx = Math.max(...grid), mn = Math.min(...grid);
+      document.getElementById("f1-r2").textContent = (upInf ? "Unlimited" : money(mx)) + " / " + (dnInf ? "Unlimited" : money(mn));
+      const be = crossings(expP, 50, 150, 0.05);
+      document.getElementById("f1-r3").textContent = be.length ? be.map(x => x.toFixed(1)).join(" / ") : "None";
+      let th = 0, vg = 0;
+      legs.forEach(L => { const rem = L[3] - t; if (rem > 0) { const g = bs(100, L[1], rem / DAY, IV + shift, L[0]); th += L[2] * dir * g.theta; vg += L[2] * dir * g.vega; } });
+      const s2 = v => (v > 0.004 ? "+" : v < -0.004 ? "−" : "") + Math.abs(v).toFixed(2);
+      document.getElementById("f1-r4").textContent = s2(th * 100) + " / " + s2(vg * 100);
+      document.getElementById("f1-legs").textContent = legs.map(L => (L[2] * dir > 0 ? "+" : "−") + (Math.abs(L[2]) > 1 ? Math.abs(L[2]) + "×" : "") + L[1] + (L[0] === "c" ? "C" : "P") + "·" + L[3] + "d").join(" ");
+    }
+    sel.addEventListener("change", () => { setDir(ST[sel.value].dir); draw(); });
+    dirBtns.forEach(b => b.addEventListener("click", () => { setDir(+b.dataset.dir); draw(); }));
+    [wS, tS, ivS].forEach(x => x.addEventListener("input", draw));
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 9-2 straddle ----------
+  (function () {
+    const svg = document.getElementById("f2-svg");
+    const ivS = document.getElementById("f2-iv"), rvS = document.getElementById("f2-rv"), dS = document.getElementById("f2-d");
+    function draw() {
+      const iv = +ivS.value / 100, rv = +rvS.value / 100, d = +dS.value, T = d / DAY;
+      document.getElementById("f2-iv-o").textContent = ivS.value + "%";
+      document.getElementById("f2-rv-o").textContent = rvS.value + "%";
+      document.getElementById("f2-d-o").textContent = d + " days";
+      const cost = bs(100, 100, T, iv, "c").price + bs(100, 100, T, iv, "p").price;
+      const fair = bs(100, 100, T, rv, "c").price + bs(100, 100, T, rv, "p").price;
+      const sd = 100 * Math.max(iv, rv) * Math.sqrt(T);
+      const X = Math.max(20, Math.ceil(2.6 * sd / 5) * 5);
+      const xs = range(-X, X, X / 200);
+      const pnl = m => (Math.abs(m) - cost) * 100;
+      const hi = Math.max(300, pnl(X) * 1.08), lo = -cost * 100 * 1.3;
+      const sT = rv * Math.sqrt(T), mu = Math.log(100) + (R - rv * rv / 2) * T;
+      const pdf = m => { const S = 100 + m; return S <= 0 ? 0 : Math.exp(-Math.pow(Math.log(S) - mu, 2) / (2 * sT * sT)) / (S * sT * Math.sqrt(2 * Math.PI)); };
+      const pm = Math.max(...xs.map(pdf));
+      const dens = xs.map(m => [m, lo + pdf(m) / pm * 0.42 * (hi - lo)]);
+      const isd = 100 * iv * Math.sqrt(T);
+      const stepX = X <= 20 ? 5 : X <= 40 ? 10 : 20;
+      plot(svg, {
+        x: [-X, X], y: [lo, hi], xt: range(-X, X, stepX), yt: ticks(lo, hi, 6),
+        xf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%", yf: tickK,
+        xlabel: "Stock move at expiry", ylabel: "P&L per contract ($)", zero: 0, vline: 0,
+        band: [-isd, isd, "var(--tint-theta)"],
+        series: [{ pts: dens, color: "var(--delta)", w: 1.2, op: 0.5, fill: lo, fillOp: 0.10 }, { pts: xs.map(m => [m, pnl(m)]), color: "var(--gamma)", w: 2.6 }],
+        dots: [[-cost, 0, "var(--gamma)", 4.5], [cost, 0, "var(--gamma)", 4.5]]
+      });
+      const win = 1 - probAbove(100, 100 - cost, T, rv) + probAbove(100, 100 + cost, T, rv);
+      const ev = Math.exp(R * T) * (fair - cost) * 100;
+      document.getElementById("f2-r1").textContent = CK.usd(cost * 100) + " · " + cost.toFixed(2) + "%";
+      document.getElementById("f2-r2").textContent = "±" + cost.toFixed(2) + "%";
+      document.getElementById("f2-r3").textContent = (win * 100).toFixed(1) + "%";
+      document.getElementById("f2-r4").textContent = Math.abs(ev) < 0.5 ? "$0" : money(ev);
+    }
+    [ivS, rvS, dS].forEach(x => x.addEventListener("input", draw));
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 9-3 earnings calendar ----------
+  (function () {
+    const svg = document.getElementById("f3-svg"), ivS = document.getElementById("f3-iv");
+    const base = 0.30, ev = 0.07;
+    const tiv = d => Math.sqrt((base * base * d / DAY + ev * ev) / (d / DAY));
+    const fIV = tiv(7), bIV = tiv(35);
+    const debit = bs(100, 100, 35 / DAY, bIV, "c").price - bs(100, 100, 7 / DAY, fIV, "c").price;
+    const move = bs(100, 100, 7 / DAY, fIV, "c").price + bs(100, 100, 7 / DAY, fIV, "p").price;
+    let when = "next";
+    function pnlFn(biv) {
+      return when === "next"
+        ? S => (bs(S, 100, 31 / DAY, biv, "c").price - bs(S, 100, 3 / DAY, base, "c").price - debit) * 100
+        : S => (bs(S, 100, 28 / DAY, biv, "c").price - Math.max(S - 100, 0) - debit) * 100;
+    }
+    function draw() {
+      const biv = +ivS.value / 100;
+      document.getElementById("f3-iv-o").textContent = ivS.value + "%";
+      const f = pnlFn(biv), g = pnlFn(bIV);
+      const xs = range(80, 120, 0.2);
+      const a = xs.map(S => [S, f(S)]), b = xs.map(S => [S, g(S)]);
+      const vals = a.concat(b).map(p => p[1]);
+      const lo = Math.min(-200, Math.min(...vals) - 20), hi = Math.max(150, Math.max(...vals) + 30);
+      plot(svg, {
+        x: [80, 120], y: [lo, hi], xt: [80, 85, 90, 95, 100, 105, 110, 115, 120], yt: ticks(lo, hi, 6),
+        yf: tickK, xlabel: "Stock price after earnings ($)", ylabel: "P&L per contract ($)", zero: 0, vline: 100,
+        band: [100 - move, 100 + move, "var(--tint-warn)"],
+        series: [{ pts: b, color: "var(--muted)", w: 1.8, dash: "6 5" }, { pts: a, color: "var(--theta)", w: 2.6 }]
+      });
+      const be = crossings(f, 70, 130, 0.02);
+      const mn = Math.min(...range(50, 150, 0.5).map(f));
+      document.getElementById("f3-r1").textContent = CK.usd(debit * 100);
+      document.getElementById("f3-r2").textContent = money(f(100));
+      document.getElementById("f3-r3").textContent = be.length >= 2 ? be[0].toFixed(1) + " – " + be[be.length - 1].toFixed(1) : "None";
+      document.getElementById("f3-r4").textContent = money(mn);
+    }
+    seg("#fig3 .seg button", b => { when = b.dataset.when; draw(); });
+    ivS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+})();
+</script>
+<script id="lang-js">(function(){document.querySelectorAll(".lang-switch").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("hl-lang",a.getAttribute("data-lang"))}catch(e){}var h=a.getAttribute("href");if(location.hash&&h.indexOf("#")<0)a.setAttribute("href",h+location.hash);});});})();</script>
+</body>
+</html>

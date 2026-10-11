@@ -1,0 +1,188 @@
+@@ 9c9109d6a8 html
+US Options Course · hanoptions.trade
+@@ 23b604879b html
+US Options <span class="g">Course</span>
+@@ 17d9adad4e html
+Sixteen chapters and an appendix. Each chapter opens with a small scenario built on real numbers, includes charts whose inputs you can drag, and ends with a checklist and a self-test. Every option price, Greek and probability is computed by the model, so wherever you drag on a chart, you see the matching result.
+@@ c09fbc3b54 html
+The whole course is about one idea
+@@ 26c45b8f97 html
+A stock has one dimension: up or down. An option has three. Every strategy is a different combination of the three, and every loss comes from a dimension you didn't notice.
+@@ dba45454ea html
+Direction<span>Delta · Gamma</span>
+@@ 7ef03ac71f html
+Where the underlying goes, and how fast. Chapter 4 explains it; Chapters 7 and 8 use it to choose a structure.
+@@ 86587a60e5 html
+Time<span>Theta</span>
+@@ 43d2fbbe56 html
+Who pays and who collects as each day passes. Chapter 5 covers the shape of the decay; Chapter 8 covers how sellers make a living from it.
+@@ fad8c99707 html
+Volatility<span>Vega · IV</span>
+@@ 587fdfbbd0 html
+The gap between the volatility the market expects and the volatility that actually happens. Chapters 6, 9 and 10 are built around it.
+@@ 65a7c175e8 html
+Three ways to read the course
+@@ 0cbb6f4ebc html
+New to options
+@@ a4ac6f18b0 html
+Read in order. Chapters 1–3 lay the foundation; Chapters 4–6 are the most important part of the course, so don't skip them. Do each chapter's self-test before moving on.
+@@ e91109ee32 html
+Already trading options
+@@ 8d386e41e8 html
+Start with <a href="ch04.html">Chapter 4</a>, <a href="ch06.html">Chapter 6</a>, <a href="ch13.html">Chapter 13</a> and <a href="ch15.html">Chapter 15</a>. Use the stress tests and the “five ways accounts die” to check your current account, then go back and fill in the other chapters.
+@@ ce7f8d074e html
+Just looking something up
+@@ 1613e69b81 html
+Go to the <a href="appendix.html">Appendix</a>: more than a hundred terms, a quick-reference table and payoff diagrams for more than twenty structures, and templates you can copy as is.
+@@ 8b73edf10c html
+Foundations
+@@ 4354dd4c87 html
+What a contract is, how it trades, and where its price comes from.
+@@ 43bf1e434c html
+What an option is, and where the money comes from
+@@ afd79550ad html
+The six terms of a contract, the four basic positions, payoff diagrams at expiry, and the five sources of option profit.
+@@ 8b6a671e48 html
+US options in practice
+@@ 63a8084d4d html
+American vs. European style, the expiration calendar, exercise and assignment, accounts and margin, orders and liquidity.
+@@ 049d9d1e46 html
+An intuition for option pricing
+@@ 24a53f1222 html
+The six inputs, the intuition behind Black-Scholes, put–call parity, reading prices as probabilities, and mental-math rules.
+@@ 0fafb3be07 html
+The core variables
+@@ fb7b3b879f html
+Four Greeks and volatility: every source of change in an option's price.
+@@ 6fc88cdfb2 html
+Delta and gamma
+@@ 6be2f0395f html
+Directional exposure and how fast it changes: share equivalents, beta weighting, P&amp;L approximation and Gamma scalping.
+@@ d8484839a5 html
+Theta and vega
+@@ c7b66290c2 html
+The shape of time decay, sensitivity to volatility, IV crush, plus Rho and the second-order Greeks.
+@@ f87093cf4b html
+Volatility
+@@ 927e311957 html
+Realized vs. implied, the volatility risk premium, IV Rank, term structure, skew and VIX.
+@@ 1bfbaf5f5f html
+Strategies
+@@ 155b23b0df html
+Buying, selling, neutral, event and hedging structures, and what each one is betting on.
+@@ 8b18cdb21a html
+Strategies for buyers
+@@ ce08d60b52 html
+The buyer's three enemies, choosing strike and expiration, debit spreads, LEAPS and management rules.
+@@ 5d04b54ea7 html
+Strategies for sellers
+@@ fab05149e5 html
+What selling insurance really means: covered calls, cash-secured puts, the wheel, credit spreads and position stress tests.
+@@ 2fbd67bca8 html
+Neutral and volatility strategies
+@@ fff496b24d html
+Straddles, strangles, iron condors, butterflies, calendars and diagonals: when to buy volatility and when to sell it.
+@@ cccfe2647f html
+Trading events
+@@ 9fc5c46d43 html
+The earnings IV cycle, expected vs. historical moves, macro event days, 0DTE and expiration-day effects.
+@@ 90154c2eb3 html
+Hedging and portfolio protection
+@@ 165060289e html
+Protective puts, collars, put-spread hedges, tail-hedge budgets, and reshaping a portfolio with options.
+@@ ea52659cf8 html
+Portfolio and risk management
+@@ a67d7951cd html
+From a single trade to the whole account: aggregation, stress tests, process.
+@@ ed07834262 html
+Portfolio Greeks and adjustments
+@@ ddc110c91e html
+Adding up a portfolio's four Greeks, reading its shape, the three directions to roll, and when to simply close the position.
+@@ 042246cee9 html
+Risk management for options
+@@ 65505a99a0 html
+Three measures of position size, rules for buyers and sellers, stress tests, the illusion of diversification, and the margin spiral.
+@@ bfb54a397d html
+Systems and process
+@@ 7c7d38a388 html
+A nine-step process, turning a view into three dimensions, a strategy selection matrix, the trading journal and expectancy statistics.
+@@ 35d1e6cb19 html
+Mindset and next steps
+@@ 537b3c5721 html
+How options accounts die, and where to go from there.
+@@ 93577629ed html
+Psychology and how accounts die
+@@ 7202601aed html
+The psychological traps of buyers and sellers, the five paths to a dead account, and their early warning signs.
+@@ b43bc18d72 html
+Where to go next, and a summary
+@@ 8ee8a2a77f html
+Advanced directions in volatility trading, a master table of strategies, a 90-day practice plan and a summary of the whole course.
+@@ c5d13126f7 html
+Quick reference
+@@ 120f67d9e5 html
+Terms, strategies, payoff diagrams, templates and data sources.
+@@ 022649bd4a html
+Appendix: glossary, quick reference and templates
+@@ 2286fe25b5 html
+A glossary, a strategy quick-reference table, a gallery of payoff diagrams, four templates, data sources and tools.
+@@ 20aa3e1742 html
+Companion reading: Trading Psychology
+@@ 596431fbe4 html
+An eleven-chapter study handbook on probabilistic thinking, cognitive biases, position-sizing math, the odds of losing streaks, and review. Best read alongside Chapters 13–15 of this course.
+@@ ef079d21bf html
+Companion reading: Macro Trading Framework
+@@ 4de08ec8f2 html
+A twelve-chapter study handbook on the cross-asset dashboard, rates and valuation, market regimes, breadth and flows, event playbooks, and going from view to trade. Best read alongside Chapters 10–11 of this course.
+@@ 64b0f2fedc html
+Companion reading: Policy Narrative Investing
+@@ 79b213ed17 html
+A twelve-chapter study handbook on breaking the grand narratives in the news into investment themes you can verify, bet on, and admit you got wrong. Best read alongside the Macro Trading Framework.
+@@ c4dc73f84a html
+The chapter structure of this course follows the outline of “US Options Trading” on emacrotrading.com; all text, cases, charts and numbers were written and calculated from scratch.
+@@ 273579d9ca html
+Examples use the Black-Scholes model by default: a 4% rate, no dividends, a 365-day year and 100 shares per contract. Any market data that has to be assumed is stated in the text. This course is for learning and is not investment advice.
+@@ 1e13fbd1d0 text
+US Options Course
+@@ 6985e3fc6d text
+Trading Psychology
+@@ 549cca660d text
+Macro Trading Framework
+@@ f691f691fc text
+Policy Narrative Investing
+@@ f025c44d71 text
+Oversold Rebound List
+@@ 3037e122bc text
+From zero to managing an options account
+@@ ecafa7df60 text
+chapters + appendix
+@@ 37502b9f75 text
+140,000
+@@ 5a586d46be text
+characters of text
+@@ afe9dc0368 text
+charts and calculators
+@@ 1c755e1ea9 text
+copyable templates
+@@ 28205a3273 text
+Start with Chapter 1
+@@ ed2af2ccce text
+Part 1
+@@ 3079c4c71f text
+Part 2
+@@ a66a312c49 text
+Part 3
+@@ 38a899b2cb text
+Part 4
+@@ 807bd71731 text
+Part 5
+@@ abbb28421c text
+Appendix
+@@ e6eaf113ee text
+A
+@@ 761098695d text
+Open the handbook
+@@ d6ca417ef7 attr
+From zero to managing an options account: sixteen chapters and an appendix, each with interactive charts, a checklist and a self-test.
+@@ 9ce7d3c4f4 attr
+Site navigation

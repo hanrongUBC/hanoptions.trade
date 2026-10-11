@@ -1,0 +1,1105 @@
+## source: options/appendix.html  (480 segments)
+@@ c647684f89 html
+附录 · 美股期权课
+@@ 1911a19bbb html
+术语、速查与<span class="g">模板</span>
+@@ be321af0ec html
+这一页不用从头读。遇到不懂的词查 A，下单前核对结构查 B 和 C，建立自己的交易系统用 D，找数据和工具看 E。所有例子都用同一组参数，方便和正文对照。
+@@ 08ba746354 html
+附录目录
+@@ fc6bf9e244 html
+<a href="#a"><span class="n">A</span><span>术语表</span></a>
+@@ 2ef816efc8 html
+<a href="#b"><span class="n">B</span><span>策略速查表</span></a>
+@@ e22a03242b html
+<a href="#c"><span class="n">C</span><span>盈亏图集</span></a>
+@@ 53e9470b9a html
+<a href="#d"><span class="n">D</span><span>四份模板</span></a>
+@@ e4231abaca html
+<a href="#e"><span class="n">E</span><span>数据源与工具</span></a>
+@@ 5e6ba5016d html
+<a href="#a">A 术语表</a>
+@@ 898cabdf62 html
+<a href="#b">B 策略速查表</a>
+@@ ce6a7dc8c4 html
+<a href="#c">C 盈亏图集</a>
+@@ 09026c855d html
+<a href="#d">D 四份模板</a>
+@@ 7961e5796d html
+<a href="#e">E 数据源与工具</a>
+@@ 50643898bd html
+这份附录怎么用
+@@ bcfa0dcb81 html
+读正文遇到生词：在 A 里搜索
+@@ 4c48e6a82c html
+下单前：用 B 核对盈亏边界，用 C 看形状
+@@ a00ad564dc html
+建立系统：把 D 的四份模板复制到自己的笔记
+@@ 9f777286a7 html
+对应章节
+@@ 5f0f64cea8 html
+A：全课 16 章的术语
+@@ 9ae66d10a1 html
+B、C：第 7–11 章的策略
+@@ 01481139c7 html
+D：第 6、10、13、14 章的工具
+@@ e16980ee20 html
+约定
+@@ 7778419992 html
+股价 100、30 天、IV 25%、利率 4%、不派息
+@@ 380d58008d html
+价格与盈亏按每股计，一张合约 × 100
+@@ b640b04687 html
+D 为净借记，C 为净信用，K₁ &lt; K₂ &lt; K₃ &lt; K₄
+@@ 85128edc7a html
+<span class="sn">A</span>术语表
+@@ e90df0c94f html
+108 个术语，按六个主题分组，每个都给出英文原词和一句话解释。英文原词是你在券商平台、交易所文件和英文资料里会看到的写法。
+@@ 94e8bda91e html
+没有匹配的术语，换个关键词试试。
+@@ a5f31fcf43 html
+A.1　基础（24 条）
+@@ c2cda3a9b3 html
+术语
+@@ ebdbd4243c html
+一句话解释
+@@ 002bffaabe html
+<b>期权</b><span class="en">Option</span>
+@@ b22ed6e8d7 html
+在约定期限内按约定价格买入或卖出标的的合约：买方有权利，卖方有义务。
+@@ dcd84d8b0f html
+<b>看涨期权</b><span class="en">Call option</span>
+@@ ba81c6960c html
+按行权价买入标的的权利。
+@@ 33f247ecda html
+<b>看跌期权</b><span class="en">Put option</span>
+@@ b17c0f6ae3 html
+按行权价卖出标的的权利。
+@@ c508a06ec8 html
+<b>标的资产</b><span class="en">Underlying</span>
+@@ 1bbdc27ab0 html
+期权所对应的股票、ETF、指数或期货。
+@@ d1b8cd0771 html
+<b>行权价</b><span class="en">Strike price</span>
+@@ 3121c40855 html
+合约约定的买入或卖出价格。
+@@ 19f9672e2a html
+<b>到期日</b><span class="en">Expiration date</span>
+@@ 1a076ad499 html
+合约失效的日期；美股有周度、月度、季度等多种到期。
+@@ 53ab5a03b6 html
+<b>权利金</b><span class="en">Premium</span>
+@@ a66cb5acff html
+期权的价格，按每股报价，一张标准合约要乘以 100。
+@@ 87a016bc55 html
+<b>合约乘数</b><span class="en">Contract multiplier</span>
+@@ 8a865aaf7a html
+一张标准美股期权对应 100 股标的。
+@@ db4b41d0b9 html
+<b>实值</b><span class="en">In the money (ITM)</span>
+@@ 25f46b41df html
+立即行权有价值：看涨的股价高于行权价，看跌的股价低于行权价。
+@@ ffb7a02a7d html
+<b>平值</b><span class="en">At the money (ATM)</span>
+@@ f531477eb6 html
+行权价约等于当前股价。
+@@ 752c3ec3f2 html
+<b>虚值</b><span class="en">Out of the money (OTM)</span>
+@@ 66df175fa2 html
+立即行权没有价值的期权。
+@@ 47bd60c029 html
+<b>内在价值</b><span class="en">Intrinsic value</span>
+@@ 900245d2bf html
+立即行权能得到的价值，最低为零。
+@@ 7b8a2272bb html
+<b>时间价值</b><span class="en">Extrinsic value</span>
+@@ 4257ed903d html
+权利金减去内在价值的部分，到期时归零。
+@@ 6b22bddd4b html
+<b>美式期权</b><span class="en">American-style option</span>
+@@ 8466af00f5 html
+到期前任何交易日都可以行权；美股个股和 ETF 期权属于此类。
+@@ 68a0ae3a96 html
+<b>欧式期权</b><span class="en">European-style option</span>
+@@ cb602acbaa html
+只能在到期时行权；SPX 等宽基指数期权属于此类。
+@@ a8adf13fa0 html
+<b>行权</b><span class="en">Exercise</span>
+@@ d5b1e0b2e9 html
+买方使用权利，按行权价买入或卖出标的。
+@@ b512e4cb2a html
+<b>指派</b><span class="en">Assignment</span>
+@@ 60ece2e581 html
+卖方被要求履约；美式期权的卖方可能在到期前被指派。
+@@ 2694903ff7 html
+<b>现金结算</b><span class="en">Cash settlement</span>
+@@ 88661d7993 html
+到期按差价支付现金、不交割标的，例如 SPX 期权。
+@@ 362397a627 html
+<b>实物交割</b><span class="en">Physical settlement</span>
+@@ f59eba4802 html
+到期交割标的本身，例如个股和 SPY 期权。
+@@ 36866526fc html
+<b>期权链</b><span class="en">Option chain</span>
+@@ b4a6d3d0e3 html
+同一标的所有到期日和行权价的报价表。
+@@ 2036ea9782 html
+<b>未平仓合约</b><span class="en">Open interest (OI)</span>
+@@ 76c89c48c2 html
+尚未平仓或行权的合约总数，每个交易日更新一次。
+@@ 566d462543 html
+<b>成交量</b><span class="en">Volume</span>
+@@ 2d4683172a html
+当天成交的合约数量。
+@@ 0019e7999e html
+<b>买卖价差</b><span class="en">Bid-ask spread</span>
+@@ 8e1eb432e0 html
+最高买价与最低卖价之差，是进出场的隐性成本。
+@@ 1b63c4b816 html
+<b>中间价</b><span class="en">Mid price</span>
+@@ df86d17726 html
+买价与卖价的平均，限价单通常从这里开始挂。
+@@ e0b951bf1b html
+A.2　定价（12 条）
+@@ 2dd5ae747c html
+<b>Black-Scholes 模型</b><span class="en">Black-Scholes model</span>
+@@ f3e6e8076b html
+用股价、行权价、期限、波动率、利率和股息六个输入给欧式期权定价的模型。
+@@ 0efc199279 html
+<b>买卖权平价</b><span class="en">Put-call parity</span>
+@@ 1d5245a2ac html
+不派息时 C − P = S − K·e^(−rT)，把同一行权价的看涨、看跌和股票联系起来。
+@@ 52d9992139 html
+<b>风险中性定价</b><span class="en">Risk-neutral pricing</span>
+@@ 33fea76617 html
+假设标的按无风险利率增长、再折现期望收益的定价方法；由此得到的是市场定价的概率，不是真实概率。
+@@ 121a682e8d html
+<b>理论价值</b><span class="en">Theoretical value</span>
+@@ 8e5164b3b1 html
+由模型算出的公允价格，也是做市商报价的中心。
+@@ 90e4228647 html
+<b>隐含概率</b><span class="en">Implied probability</span>
+@@ 2f5c2085cd html
+由期权价格反推的到期价内概率，Black-Scholes 下为 N(d₂)。
+@@ 3a878d4424 html
+<b>预期变动</b><span class="en">Expected move</span>
+@@ b052d5e685 html
+市场隐含的一段时间内的波动幅度，常用 S × IV × √(天数/365) 或平值跨式价格估算。
+@@ e5bf9a27c4 html
+<b>提前行权</b><span class="en">Early exercise</span>
+@@ ade23495fc html
+美式期权在到期前行权，常见于除息日前的深度实值看涨。
+@@ 56b2ffb3cd html
+<b>合成头寸</b><span class="en">Synthetic position</span>
+@@ ccb963874e html
+用期权组合复制另一种头寸，例如买看涨加卖看跌约等于持有股票。
+@@ bec97182ef html
+<b>远期价格</b><span class="en">Forward price</span>
+@@ d6d431cff1 html
+当前价格加上持有成本后的交割价格，期货期权以它为定价基准。
+@@ 52df89e851 html
+<b>Black-76 模型</b><span class="en">Black-76 model</span>
+@@ 1ec156d978 html
+用期货价格代替股价的 Black-Scholes 变体，用于期货期权。
+@@ 626e6705c6 html
+<b>二叉树模型</b><span class="en">Binomial model</span>
+@@ bec89414d0 html
+用价格树逐步倒推的定价方法，可以处理美式期权的提前行权。
+@@ 7a86f4a959 html
+<b>无风险利率</b><span class="en">Risk-free rate</span>
+@@ e7963d9774 html
+定价使用的短期国债利率，本课统一取 4%。
+@@ e8c0ed730f html
+A.3　希腊字母（15 条）
+@@ 798a7d503d html
+标的每变动 $1，期权价格的变化；乘以 100 就是一张合约的等效股数。
+@@ 3b8754b87e html
+标的每变动 $1，Delta 的变化；买入期权为正，卖出为负。
+@@ e2729e51b7 html
+每过一天期权价格的变化；买方通常为负，卖方通常为正。
+@@ b96988c553 html
+隐含波动率每变动 1 个点，期权价格的变化。
+@@ ac41b840c6 html
+利率每变动 1%，期权价格的变化，期限越长越明显。
+@@ 39049e85d2 html
+时间流逝带来的 Delta 变化：虚值期权的 Delta 每天向 0 漂移，实值向 1 漂移。
+@@ d222ff5f80 html
+隐含波动率变化带来的 Delta 变化。
+@@ 34687f6b10 html
+Vega 对波动率的敏感度，虚值期权较大。
+@@ 2e9738b480 html
+<b>美元 Gamma</b><span class="en">Dollar gamma</span>
+@@ c458ab69ad html
+标的变动 1% 时，Delta 的变化相当于多少美元的股票，用来跨标的比较。
+@@ 5c32b0bcf6 html
+<b>等效股数</b><span class="en">Share equivalent</span>
+@@ a20213e950 html
+Delta × 100 × 张数 × 方向，用来把期权和股票直接相加。
+@@ 183b55af5f html
+<b>Beta 加权 Delta</b><span class="en">Beta-weighted delta</span>
+@@ eff574066f html
+按 Beta 和价格把各仓位的 Delta 换算成指数（如 SPY）的等效股数。
+@@ af07820d53 html
+<b>Delta 中性</b><span class="en">Delta neutral</span>
+@@ fdaa2acb4d html
+组合 Delta 约为零，对小幅价格变动不敏感。
+@@ 90f9a648b4 html
+持有正 Gamma 并反复把 Delta 对冲回零，用实际波动赚回 Theta 成本。
+@@ a2799746e4 html
+<b>Gamma 翻转点</b><span class="en">Gamma flip</span>
+@@ f6325bb386 html
+估算的做市商净 Gamma 由正转负的价位，低于它时对冲容易放大波动。
+@@ 15a4c6400d html
+<b>离散对冲误差</b><span class="en">Discrete hedging error</span>
+@@ 940d5f0183 html
+隔一段时间才调一次 Delta 留下的误差，标准差约与对冲次数的平方根成反比。
+@@ 3d36e9877d html
+A.4　波动率（16 条）
+@@ 44a0c08ec3 html
+<b>实际波动率</b><span class="en">Realized volatility</span>
+@@ 8a1ce04b39 html
+标的实际收益率的年化标准差，也叫历史波动率。
+@@ 8c9a5b9cfa html
+<b>隐含波动率</b><span class="en">Implied volatility (IV)</span>
+@@ 7027d40dff html
+让模型价格等于市场价格的波动率，是市场对未来波动的定价。
+@@ 77ad44f6a1 html
+<b>波动率风险溢价</b><span class="en">Volatility risk premium</span>
+@@ 3cbc33285f html
+隐含波动率平均高于随后实际波动率的部分；卖方长期赚取它，也承担尾部风险。
+@@ c2aad73935 html
+当前 IV 在过去一年最低值与最高值之间的位置，从 0 到 100。
+@@ 48fbe47e36 html
+<b>IV 百分位</b><span class="en">IV Percentile</span>
+@@ 289960dc4e html
+过去一年里 IV 低于当前值的天数占比。
+@@ 6fccefe608 html
+<b>期限结构</b><span class="en">Term structure</span>
+@@ d9b51494bc html
+不同到期日的平值 IV 连成的曲线。
+@@ d5346110ff html
+<b>正向结构</b><span class="en">Contango</span>
+@@ cd7b1f1c09 html
+远月 IV 高于近月，平静市场的常态。
+@@ ca9e574087 html
+<b>倒挂</b><span class="en">Backwardation</span>
+@@ f8520d2f99 html
+近月 IV 高于远月，常见于恐慌或重大事件之前。
+@@ 18f2e44002 html
+<b>偏度</b><span class="en">Skew</span>
+@@ f95008f91c html
+同一到期、不同行权价的 IV 差异；股指通常是虚值看跌更贵。
+@@ 068bc46bd8 html
+<b>波动率微笑</b><span class="en">Volatility smile</span>
+@@ b2da130e0c html
+IV 随行权价呈 U 形，两翼都比平值贵。
+@@ cf5b8efab8 html
+<b>波动率曲面</b><span class="en">Volatility surface</span>
+@@ c017473fbb html
+行权价 × 到期日的二维 IV 网格。
+@@ 9141dbf7a0 html
+<b>25 Delta 风险逆转</b><span class="en">25-delta risk reversal</span>
+@@ c3ef6abcfb html
+25Δ 看涨 IV 减 25Δ 看跌 IV，衡量偏度的方向与陡峭程度。
+@@ c314272eca html
+<b>远期波动率</b><span class="en">Forward volatility</span>
+@@ d07d39cbcb html
+由两个到期的总方差相减推出的、未来某段时间的隐含波动率。
+@@ d80bd29160 html
+<b>IV 崩塌</b><span class="en">IV crush</span>
+@@ 7f9c4b0550 html
+事件公布、不确定性消失后隐含波动率急跌。
+@@ be6a85cb32 html
+Cboe 用 SPX 期权计算的未来 30 天隐含波动率指数。
+@@ 3f9e829344 html
+<b>隐含相关性</b><span class="en">Implied correlation</span>
+@@ e1bc45f4ee html
+由指数 IV 与成分股 IV 反推的平均相关性。
+@@ f2c68ad904 html
+A.5　策略（21 条）
+@@ ea08532d31 html
+<b>备兑看涨</b><span class="en">Covered call</span>
+@@ 7b56595e8f html
+持有 100 股并卖出 1 张看涨，用上涨空间换权利金。
+@@ 4d2b95ca2b html
+<b>现金担保卖沽</b><span class="en">Cash-secured put</span>
+@@ d4ce3985e2 html
+卖出看跌并预留足额现金，愿意在行权价买入股票。
+@@ 25b7d01f1a html
+<b>保护性看跌</b><span class="en">Protective put</span>
+@@ f167384715 html
+持股并买入看跌，为下跌买保险。
+@@ 7aaf6896f7 html
+<b>领口</b><span class="en">Collar</span>
+@@ 1d8733ad5b html
+持股、买看跌、卖看涨，用卖出看涨的收入支付保护成本。
+@@ 0584d4da48 html
+<b>垂直价差</b><span class="en">Vertical spread</span>
+@@ 9361cbf6bc html
+同一到期、不同行权价的一买一卖。
+@@ 1fc52f83e9 html
+<b>借记价差</b><span class="en">Debit spread</span>
+@@ a8a456daa8 html
+开仓时净付出权利金的价差，最大亏损就是净借记。
+@@ 41f38b804a html
+<b>信用价差</b><span class="en">Credit spread</span>
+@@ 610a9d83be html
+开仓时净收入权利金的价差，最大亏损是宽度减去净信用。
+@@ 33467945cc html
+<b>跨式</b><span class="en">Straddle</span>
+@@ 89678eecbb html
+同一行权价的看涨加看跌：买入押大动，卖出押不动。
+@@ 2be242a721 html
+<b>宽跨式</b><span class="en">Strangle</span>
+@@ 70bfb9e3d7 html
+不同行权价的虚值看涨加虚值看跌。
+@@ 07051c8971 html
+<b>铁鹰</b><span class="en">Iron condor</span>
+@@ d93b14afc2 html
+卖出宽跨式，再买更远的两翼把风险封顶。
+@@ 0b2ff82103 html
+<b>铁蝶</b><span class="en">Iron butterfly</span>
+@@ 4d8f98b37f html
+卖出平值跨式，再买两翼把风险封顶。
+@@ f2db4d6f21 html
+<b>蝶式</b><span class="en">Butterfly</span>
+@@ 20a91eed4f html
+买 1、卖 2、买 1 的三行权价结构，押股价停在中间行权价附近。
+@@ 425494fb76 html
+<b>日历价差</b><span class="en">Calendar spread</span>
+@@ 360d83e945 html
+同一行权价卖近月、买远月，赚近月更快的时间衰减。
+@@ 461f9e0096 html
+<b>对角价差</b><span class="en">Diagonal spread</span>
+@@ f94dfee58d html
+不同行权价、不同到期的一卖一买。
+@@ 65e9f87bb8 html
+<b>比例价差</b><span class="en">Ratio spread</span>
+@@ bf37fee30e html
+买卖张数不等的价差，例如买 1 卖 2，多卖的部分没有保护。
+@@ 9544ed589f html
+<b>风险逆转</b><span class="en">Risk reversal</span>
+@@ eaae1eda8e html
+卖虚值看跌、买虚值看涨（或反过来），低成本表达方向并交易偏度。
+@@ 9452c83c58 html
+<b>轮子策略</b><span class="en">Wheel strategy</span>
+@@ dcaa989925 html
+卖沽被指派后持股，再卖备兑看涨，循环收取权利金。
+@@ bbd8a955b8 html
+到期超过一年的长期期权，常用深度实值看涨替代持股。
+@@ 7c6ad71410 html
+当天到期的期权，Gamma 和 Theta 都极大。
+@@ 453ebeb0d9 html
+<b>滚仓</b><span class="en">Roll</span>
+@@ 1e16f40c75 html
+平掉现有期权，同时开一张行权价或到期不同的期权。
+@@ 6aa71cdd7f html
+<b>自动赎回票据</b><span class="en">Autocallable note</span>
+@@ 6b8614c96e html
+达到敲出条件就提前结束并付票息的结构性产品，投资者实质上卖出了敲入看跌；国内常见变种叫雪球。
+@@ 063e357b6b html
+A.6　风险与账户（20 条）
+@@ f0de5029fe html
+<b>保证金</b><span class="en">Margin</span>
+@@ bdf83c6872 html
+券商要求为卖方仓位或借款预留的抵押资金。
+@@ fd0acea4c2 html
+<b>维持保证金</b><span class="en">Maintenance margin</span>
+@@ a6cc861b7c html
+持仓期间必须保持的最低保证金水平。
+@@ ba5ad31ff6 html
+<b>追加保证金通知</b><span class="en">Margin call</span>
+@@ 8ce29eb7e3 html
+账户低于维持保证金时，券商要求补钱或减仓的通知。
+@@ b9d676893c html
+<b>组合保证金</b><span class="en">Portfolio margin</span>
+@@ 4f2edb2db0 html
+按整个组合的压力测试结果计算保证金的方式，门槛较高，可用杠杆也更高。
+@@ f1852701b3 html
+<b>购买力</b><span class="en">Buying power</span>
+@@ bcdf0ac9ae html
+账户当前可以用来开新仓的资金额度。
+@@ dae0eb524d html
+<b>期权权限等级</b><span class="en">Options approval level</span>
+@@ 266c0f2029 html
+券商按经验与资产批准的可交易期权策略范围。
+@@ 7d2235f222 html
+<b>定义风险</b><span class="en">Defined risk</span>
+@@ 42b6d07fb1 html
+开仓时就知道最大亏损的结构，例如价差和铁鹰。
+@@ 76961f2c83 html
+<b>未定义风险</b><span class="en">Undefined risk</span>
+@@ b72b8ed42f html
+理论亏损没有上限或非常大的结构，例如裸卖看涨、卖出跨式。
+@@ a4a59eb6d1 html
+<b>最大亏损</b><span class="en">Max loss</span>
+@@ fa849713a7 html
+一笔仓位在最坏情况下的亏损，是决定仓位大小的依据。
+@@ c057893ce1 html
+<b>压力测试</b><span class="en">Stress test</span>
+@@ eee5f9bb90 html
+按假设的价格和 IV 情景重新定价，看组合会亏多少。
+@@ bbd00f3d0c html
+<b>尾部风险</b><span class="en">Tail risk</span>
+@@ 1df32daed4 html
+发生概率小、损失极大的极端行情风险。
+@@ 8bffbe504d html
+<b>跳空风险</b><span class="en">Gap risk</span>
+@@ 6be3f2813a html
+价格在两次交易之间（如隔夜）大幅跳动、来不及调整的风险。
+@@ 25bbab2f87 html
+<b>钉住风险</b><span class="en">Pin risk</span>
+@@ 2a6eb1bd73 html
+到期时股价贴近行权价，不确定会不会被行权或指派的风险。
+@@ 2071fff9c9 html
+<b>流动性风险</b><span class="en">Liquidity risk</span>
+@@ 71f376e9e1 html
+价差过宽或成交稀少，无法按合理价格进出的风险。
+@@ 4523bb3ce8 html
+<b>期望值</b><span class="en">Expected value</span>
+@@ 9e6e835413 html
+胜率 × 平均盈利 − 败率 × 平均亏损；扣除成本后为正才值得做。
+@@ 382352ba0f html
+<b>凯利比例</b><span class="en">Kelly criterion</span>
+@@ fd55db17d7 html
+让长期增长率最大的下注比例；实务中通常只用它的四分之一到一半。
+@@ 8769cbd74a html
+<b>最大回撤</b><span class="en">Maximum drawdown</span>
+@@ 455ed43fb7 html
+账户从最高点到之后最低点的最大跌幅。
+@@ a278644f63 html
+<b>交易日志</b><span class="en">Trading journal</span>
+@@ 318a7e81a4 html
+记录每笔交易的理由、执行、结果和归因的文档。
+@@ f98ab86cea html
+<b>限价单</b><span class="en">Limit order</span>
+@@ 816bf1368d html
+指定最高买价或最低卖价的订单，交易期权时应默认使用。
+@@ 2f676ea530 html
+<b>组合单</b><span class="en">Multi-leg order</span>
+@@ 21ea95bade html
+把价差的几条腿作为一个订单同时成交，避免单腿成交的风险。
+@@ 8af5b93d99 html
+<span class="sn">B</span>策略速查表
+@@ 81b672560e html
+24 种结构，按首次出现的章节排列。表格较宽，可以左右滑动，第一列固定。盈亏都按每股计，乘以 100 就是一组合约。
+@@ 05c51d6aa9 html
+K₁ &lt; K₂ &lt; K₃ &lt; K₄ 是行权价；S₀ 是买入股票的成本。
+@@ 886b176ff4 html
+D 是开仓净付出的权利金（净借记），C 是开仓净收入的权利金（净信用）；N 是净成本，付出为正、收入为负。
+@@ 01ba88c012 html
+观点一列依次是：方向 · 波动率 · 时间流逝对你是否有利。
+@@ b76305038c html
+日历和对角的两条腿到期不同，最大盈利和盈亏平衡要用远月期权的剩余价值重新定价，见 C 节的图。
+@@ 62093d308e html
+表 B-1　策略速查（每股；到期时的盈亏边界）
+@@ 2b2f1e4d50 html
+结构
+@@ a4460ebadd html
+构成
+@@ 884f43b517 html
+观点（方向 · 波动率 · 时间）
+@@ 343fd5ea1e html
+最大盈利
+@@ a59f077925 html
+最大亏损
+@@ 8690eb7ed6 html
+盈亏平衡
+@@ 732811535c html
+适用 IV 环境
+@@ ec16d60e39 html
+章节
+@@ 04dd608642 html
+<b>买入看涨</b>
+@@ 6b3dd3312f html
+买看涨 K
+@@ 397dcc3d22 html
+涨 · 升 · 不利
+@@ 5ca4b5e09a html
+无上限
+@@ e37aea299f html
+IV 偏低，预期变动被低估
+@@ 9b8191a7b0 html
+<b>买入看跌</b>
+@@ 0619dd54ff html
+买看跌 K
+@@ e018dc68a1 html
+跌 · 升 · 不利
+@@ 924c2607b1 html
+IV 偏低；也可作保护
+@@ 9b3ad0d194 html
+<b>牛市看涨价差</b>
+@@ f155aee840 html
+买看涨 K₁，卖看涨 K₂
+@@ 11c72d004d html
+涨 · 影响小 · 不利
+@@ 38add101ff html
+IV 中性或偏高时比单买看涨划算
+@@ bc29ddbf1e html
+<b>熊市看跌价差</b>
+@@ f5175de0c3 html
+买看跌 K₂，卖看跌 K₁
+@@ 529a4585ae html
+跌 · 影响小 · 不利
+@@ 09249f3fd0 html
+偏度陡时卖出腿更值钱
+@@ 1f5642da10 html
+<b>LEAPS 替代持股</b>
+@@ a1034d33b0 html
+买一年以上深度实值看涨 K
+@@ d1122312e1 html
+长期涨 · 升 · 轻微不利
+@@ ebc9f732cb html
+IV 偏低时买入
+@@ 1f2301a90d html
+<b>卖出裸看涨</b>
+@@ a2f0e35bda html
+卖看涨 K
+@@ ca51d10144 html
+不涨 · 降 · 有利
+@@ 0b3bedabde html
+IV 偏高；需最高权限，不建议
+@@ 3ea33f1bb3 html
+<b>现金担保卖沽</b>
+@@ 6665b72e18 html
+卖看跌 K，备足 100 × K 现金
+@@ e68ec06f15 html
+不跌 · 降 · 有利
+@@ c6c94ffb02 html
+IV 偏高，且愿意在 K 买入
+@@ c9fab90cfa html
+<b>备兑看涨</b>
+@@ 44cd0a1380 html
+持 100 股（成本 S₀），卖看涨 K
+@@ b7cad028b4 html
+温和涨 · 降 · 有利
+@@ eb8a07707c html
+IV 偏高，持股但接受被叫走
+@@ 5d1027855c html
+<b>牛市看跌价差</b>
+@@ 82112ac207 html
+卖看跌 K₂，买看跌 K₁
+@@ e0b36ad5eb html
+IV 偏高
+@@ a3b0488535 html
+<b>熊市看涨价差</b>
+@@ fb72afa056 html
+卖看涨 K₁，买看涨 K₂
+@@ 479db9eb8f html
+<b>买入跨式</b>
+@@ 1cb311b30c html
+买看涨 K，买看跌 K
+@@ 9393abdcff html
+大动 · 升 · 不利
+@@ e094f091ae html
+上方无上限，下方 K − D
+@@ aa30f93398 html
+K − D 与 K + D
+@@ 4fa72d127d html
+IV 低于你预期的实际波动
+@@ 1f7cb8a771 html
+<b>卖出跨式</b>
+@@ f782408719 html
+卖看涨 K，卖看跌 K
+@@ 4908a0415f html
+不动 · 降 · 有利
+@@ 6db835e4ed html
+K − C 与 K + C
+@@ 8926df8b8e html
+IV 明显偏高，需严格风控
+@@ 5199653006 html
+<b>买入宽跨式</b>
+@@ fdfc14618a html
+买看涨 K₂，买看跌 K₁
+@@ 7b3561aa65 html
+上方无上限，下方 K₁ − D
+@@ bc7e0ad668 html
+K₁ − D 与 K₂ + D
+@@ f314689c83 html
+IV 偏低、事件前
+@@ add24b2382 html
+<b>卖出宽跨式</b>
+@@ 8bdb8891df html
+卖看涨 K₂，卖看跌 K₁
+@@ 6d548987ee html
+区间 · 降 · 有利
+@@ 09bb2e8736 html
+K₁ − C 与 K₂ + C
+@@ 1fad311a23 html
+<b>铁鹰</b>
+@@ bf4c7418f5 html
+买 K₁ 看跌，卖 K₂ 看跌，卖 K₃ 看涨，买 K₄ 看涨
+@@ 37533ec334 html
+较宽一侧的宽度 − C
+@@ 186368805b html
+K₂ − C 与 K₃ + C
+@@ e2e2cd8bf5 html
+IV 偏高、期间无事件
+@@ 7701837d86 html
+<b>铁蝶</b>
+@@ e29a83d0d8 html
+买 K₁ 看跌，卖 K₂ 看跌和 K₂ 看涨，买 K₃ 看涨
+@@ aba3479edb html
+K₂ − C 与 K₂ + C
+@@ f4360c808b html
+IV 偏高，押股价钉在 K₂
+@@ 282aae5f35 html
+<b>买入看涨蝶式</b>
+@@ d934c75cf4 html
+买 K₁ 看涨，卖 2 张 K₂ 看涨，买 K₃ 看涨（等距）
+@@ 92bb391cf1 html
+停在 K₂ · 降 · 临近到期有利
+@@ 8269557950 html
+K₁ + D 与 K₃ − D
+@@ 816ce70e14 html
+低成本押目标价
+@@ 17fadf2907 html
+<b>日历价差</b>
+@@ 57ac392790 html
+卖近月 K，买远月 K
+@@ f4be0b8e76 html
+不动 · 远月 IV 升 · 有利
+@@ d3e2ae411d html
+近月到期时股价在 K 附近最大，取决于远月 IV
+@@ 6e74d3bfcf html
+约为 D（远月 IV 大跌时更多）
+@@ b046175317 html
+需按远月价值重新定价
+@@ 962faf4fbb html
+近月 IV 高于远月
+@@ 6bd71de454 html
+<b>对角价差</b>
+@@ 08354eb051 html
+买远月 K₁，卖近月 K₂
+@@ f759cb5e02 html
+温和涨 · 升 · 有利
+@@ af117a09da html
+取决于远月 IV
+@@ f764873648 html
+约为 D
+@@ e23ebe9e77 html
+需重新定价
+@@ 4859501763 html
+远月 IV 不贵
+@@ f876afe169 html
+<b>比例价差 1×2</b>
+@@ fffd7a6ca7 html
+买看涨 K₁，卖 2 张看涨 K₂（净成本 N）
+@@ 83eeb36ced html
+K₂ − K₁ − N（股价在 K₂）
+@@ 9e095f5406 html
+上方无上限
+@@ e03d5fbe5b html
+N &gt; 0 时下方 K₁ + N；上方 2K₂ − K₁ − N
+@@ 3e00cf06c2 html
+IV 偏高、偏度陡
+@@ f7eed1ab9d html
+<b>保护性看跌</b>
+@@ 0304f7dc38 html
+持 100 股（成本 S₀），买看跌 K
+@@ 22efe64b30 html
+持股防跌 · 升 · 不利
+@@ 3c10f7f0b7 html
+事件前、IV 偏低时更划算
+@@ 6e2ecff0e4 html
+<b>领口</b>
+@@ 49bfaf0745 html
+持股，买看跌 K₁，卖看涨 K₂（净成本 N）
+@@ f877a836ec html
+持股 · 影响小 · 影响小
+@@ 3428fe56e3 html
+偏度陡时看涨收入少，看跌更贵
+@@ 19975bbf6f html
+<b>风险逆转</b>
+@@ 2f856f8f4c html
+卖看跌 K₁，买看涨 K₂（净成本 N）
+@@ 2482752795 html
+涨 · 交易偏度 · 影响小
+@@ 83bbd04660 html
+N ≥ 0 时 K₂ + N；净收入时 K₁ − |N|
+@@ 06cab96b00 html
+偏度陡时可以净收入开仓
+@@ 5516eac470 html
+<b>合成多头</b>
+@@ ddeb7d343c html
+买看涨 K，卖看跌 K（净成本 N）
+@@ 91aefb0c4a html
+涨 · 中性 · 中性
+@@ ea07b96584 html
+替代持股，占用保证金
+@@ d62df2ec0e html
+三条使用提醒：最大亏损那一列写着「无上限」的结构，下单前必须有明确的止损和压力测试（第 13 章）；IV 环境只是倾向，不是开仓理由，开仓理由要来自你自己的三个符号（第 14 章）；同一个结构在不同行权价下 Vega、Theta 的符号可能翻转，详见第 16 章的总表。
+@@ 7ec33a26c3 html
+<span class="sn">C</span>盈亏图集
+@@ bf92732e6c html
+18 种常见结构的到期盈亏图，统一参数：股价 100、30 天、IV 25%、利率 4%，行权价取 90、95、100、105、110。日历价差画的是近月到期时的盈亏（远月剩 30 天，按 IV 25% 定价）。权利金和下方的数字都由 Black-Scholes 当场计算。
+@@ 75d3f51d64 html
+<span><i style="border-color: var(--delta)"></i>到期盈亏（每股）</span><span><i style="border-color: var(--theta); opacity: .5"></i>盈利区</span><span><i style="border-color: var(--gamma); opacity: .5"></i>亏损区</span><span><i class="dash" style="border-color: var(--muted)"></i>当前股价 100</span>
+@@ 56b89e736c html
+先看两端：线在右端或左端一直往下走，就是无上限的亏损。
+@@ 55a30bcc50 html
+再看斜率：右侧斜率 +1 相当于持有 100 股，−1 相当于空 100 股，0 表示那一侧封顶。
+@@ 74d4961794 html
+最后看拐点：每个拐点都是一个行权价。拐点越多，结构越依赖股价停在某个区间。
+@@ 6e04b7289e html
+<span class="sn">D</span>四份模板
+@@ 2ced655dbf html
+这四份模板对应第 16 章说的「四样成果」。它们是纯文本，可以粘贴到任何笔记软件或表格里。点「复制模板」；如果浏览器不允许复制，文字会被自动选中，按 Ctrl + C（Mac 上按 ⌘ + C）即可。
+@@ 5b5ff29332 html
+<span class="num">D.1</span>策略选择矩阵
+@@ 758d90293c html
+复制模板
+@@ 815cf0569c html
+<span class="meta">第 14 章</span>每次下单前填一份。先写三个符号，再从矩阵里挑 2–3 个候选，用最大亏损取舍。
+@@ 5f9766e973 html
+<span class="num">D.2</span>仓位规则卡
+@@ ec6fec36d8 html
+<span class="meta">第 13 章</span>写一次，每 90 天复核；修改必须写明理由。下单和加仓前逐条核对。
+@@ b9a8991c4f html
+<span class="num">D.3</span>期权交易日志
+@@ 962411a23e html
+<span class="meta">第 14、15 章</span>每笔一份。计划部分在下单前写完，复盘部分在平仓当天写。尤其要标出「赚钱但做错了」的交易。
+@@ 6bbd71a432 html
+<span class="num">D.4</span>事件日历与 IV 仪表盘
+@@ 9cb0e150e8 html
+<span class="meta">第 6、10 章</span>每天收盘更新仪表盘，每周日更新未来 8 周的事件。用同一个数据源，口径才可比。
+@@ a33d1a7627 html
+<span class="sn">E</span>数据源与工具
+@@ 97010ba302 html
+下面只列常见的类别和公开知名的工具，说明各自适合做什么。列出不代表推荐，网址只写主域名，使用前请自行核对；收费和功能会变化。
+@@ f7f5793a0d html
+券商平台
+@@ 38a3ddd48a html
+下单、实时期权链、组合 Greeks、盈亏分析
+@@ 66a7a76a73 html
+<b>Interactive Brokers</b> <span class="dom">interactivebrokers.com</span><br><span class="desc">品种覆盖广、成本低，期权分析工具齐全</span>
+@@ f18efc074f html
+<b>Charles Schwab（thinkorswim 平台）</b> <span class="dom">schwab.com</span><br><span class="desc">thinkorswim 的分析页可以画多腿盈亏图、做价格与 IV 情景</span>
+@@ f4f53ebfd9 html
+<b>Fidelity</b> <span class="dom">fidelity.com</span><br><span class="desc">综合券商，提供期权链与策略分析</span>
+@@ 40a42191fc html
+<b>tastytrade</b> <span class="dom">tastytrade.com</span><br><span class="desc">以期权交易为主的券商，界面围绕 IV Rank 和定义风险策略设计</span>
+@@ 0710c5a02b html
+选券商时比较：每张合约的佣金与费用、期权权限等级的申请条件、组合单与条件单支持、能否看到组合层面的 Delta、Theta、Vega。
+@@ 50bc5bafd1 html
+交易所、清算与教育
+@@ befa4831d5 html
+合约规格、规则、风险披露
+@@ 1aaf839cac html
+<b>Cboe</b> <span class="dom">cboe.com</span><br><span class="desc">SPX、XSP、VIX 等期权的合约规格；VIX 的计算方法与历史数据</span>
+@@ c9193006c7 html
+<b>OCC（期权清算公司）</b> <span class="dom">theocc.com</span><br><span class="desc">《标准化期权的特征与风险》披露文件，开通期权权限前应读；成交量统计</span>
+@@ 6a5fa52626 html
+<b>期权行业协会 OIC</b> <span class="dom">optionseducation.org</span><br><span class="desc">免费的期权基础课程、策略说明与计算器</span>
+@@ d92f7ec399 html
+<b>CME Group</b> <span class="dom">cmegroup.com</span><br><span class="desc">期货与期货期权的合约规格；FedWatch 工具显示市场隐含的利率决议概率</span>
+@@ 9a7c401789 html
+合约规格以交易所公布为准：乘数、行权方式、结算方式、最后交易日。
+@@ 5bb292458d html
+期权链与 IV 数据
+@@ 6150786e7c html
+贵贱判断、未平仓量、历史 IV
+@@ 636516811f html
+<b>券商平台自带</b><br><span class="desc">实时数据最可靠，IV Rank、期限结构、偏度图多数平台都有</span>
+@@ 9b47253cf5 html
+<b>Barchart</b> <span class="dom">barchart.com</span><br><span class="desc">期权链、IV Rank、未平仓量和成交量异动，部分功能免费</span>
+@@ d539a31ade html
+<b>Yahoo Finance</b> <span class="dom">finance.yahoo.com</span><br><span class="desc">免费期权链与行情，数据有延迟，适合练习读链</span>
+@@ c89da6adb7 html
+不同数据源的 IV 口径不同：用哪个到期、是否插值到 30 天、用中间价还是成交价。比较时始终用同一个来源。
+@@ 512e1b732a html
+财经日历
+@@ 4900f44d90 html
+事件日历的原始来源
+@@ 26cf1d841e html
+<b>美联储</b> <span class="dom">federalreserve.gov</span><br><span class="desc">FOMC 会议日程、声明与会议纪要</span>
+@@ b2eb122701 html
+<b>美国劳工统计局 BLS</b> <span class="dom">bls.gov</span><br><span class="desc">CPI、PPI、非农就业的发布日程</span>
+@@ 1ef4b001ec html
+<b>美国经济分析局 BEA</b> <span class="dom">bea.gov</span><br><span class="desc">PCE 物价指数、GDP 的发布日程</span>
+@@ a0c99d2fa2 html
+<b>Nasdaq 财报日历</b> <span class="dom">nasdaq.com</span><br><span class="desc">按日期查看即将公布财报的公司</span>
+@@ abf07f9802 html
+<b>公司投资者关系页面</b><br><span class="desc">财报日期以公司正式公告为准，第三方日历可能是预估</span>
+@@ 1e7a0503eb html
+财报日期常先出现「预估」再变成「确认」，事件交易只用确认后的日期。
+@@ 675effe4e8 html
+宏观与公司数据
+@@ 6a55f824c1 html
+利率、通胀、公告
+@@ f192914f9a html
+<b>FRED</b> <span class="dom">fred.stlouisfed.org</span><br><span class="desc">利率、通胀、就业等宏观时间序列，也有 VIX 的历史序列</span>
+@@ 6cff1b0013 html
+<b>美国财政部</b> <span class="dom">treasury.gov</span><br><span class="desc">国债收益率曲线数据</span>
+@@ e128b77347 html
+<b>SEC EDGAR</b> <span class="dom">sec.gov</span><br><span class="desc">上市公司 10-K、10-Q、8-K 等正式公告</span>
+@@ fcd7c637d3 html
+宏观数据看「公布值 − 预期值」，市场对意外部分反应最大。
+@@ 563ac6cb87 html
+盈亏图、定价与回测
+@@ 5f8015cb10 html
+下单前的模拟和事后统计
+@@ 135561a3f7 html
+<b>OptionStrat</b> <span class="dom">optionstrat.com</span><br><span class="desc">在线画多腿结构的盈亏图，可以调整日期和 IV</span>
+@@ 50def0d18f html
+<b>券商分析工具</b><br><span class="desc">如 thinkorswim 的分析页、Interactive Brokers 的期权分析工具，能直接用持仓做情景分析</span>
+@@ 66ad4bf2df html
+<b>Python</b> <span class="dom">python.org</span><br><span class="desc">配合 NumPy、pandas，用本课的 Black-Scholes 公式自己做定价、压力测试和蒙特卡洛模拟</span>
+@@ 7d324de6a6 html
+<b>QuantLib</b> <span class="dom">quantlib.org</span><br><span class="desc">开源的金融定价库，适合进阶时研究美式、障碍等期权</span>
+@@ de9e262080 html
+<b>你自己的交易日志</b><br><span class="desc">最重要的回测数据：只有它反映你真实的执行、滑点和纪律</span>
+@@ 0525a4c530 html
+任何回测都要扣除滑点和佣金，并用样本外数据检验。少于 30 笔的统计只能当作参考。
+@@ 86f83643a8 html
+下单用的价格以券商的实时报价为准，免费网站常有 15 分钟或更长的延迟。
+@@ 5152b6747c html
+同一个指标（IV Rank、预期变动）在不同网站的数值可能不同，固定用一个来源。
+@@ 5ee518b161 html
+任何「信号」「流向」类数据都是估算，用来提出问题，不用来代替你的判断。
+@@ 4a37158361 html
+本附录的权利金与盈亏由 Black-Scholes 模型计算（利率 4%，不派息，一年 365 天），用于教学，不构成投资建议；所列工具与数据源仅为常见类别举例，不构成推荐。
+@@ a70e23cc3d text
+美股期权
+@@ 875f2902a9 text
+课
+@@ e6eaf113ee text
+附
+@@ 0c8db18b58 text
+美股期权课 · 附录 速查
+@@ c5cf9b77cd text
+共
+@@ 888c81a7b6 text
+条
+@@ 81b9a10a8b text
+记号
+@@ 896258ac14 text
+怎么读这些图
+@@ 38806d721c text
+策略选择矩阵　（先写三个符号，再找结构）
+标的：________　日期：________
+IV / IV Rank：____ / ____　距下一个事件：____ 天
+
+一、我的观点（每行选一项）
+  方向：  [ ] 涨  [ ] 跌  [ ] 不动  [ ] 大动但方向不明
+  波动率：[ ] 会升（IV 偏低）  [ ] 会降（IV 偏高）  [ ] 无观点
+  时间：  [ ] 2 周内兑现  [ ] 1–3 个月  [ ] 6 个月以上
+  三个符号：方向 __ / 时间 __ / 波动率 __
+
+二、对照矩阵（方向 × IV 环境）
+  看涨 + IV 偏低：买看涨、牛市看涨价差、LEAPS
+  看涨 + IV 偏高：现金担保卖沽、牛市看跌价差
+  看跌 + IV 偏低：买看跌、熊市看跌价差
+  看跌 + IV 偏高：熊市看涨价差；持股时加领口
+  不动 + IV 偏低：日历价差（远月便宜时）
+  不动 + IV 偏高：铁鹰、铁蝶、蝶式（定义风险优先）
+  大动 + IV 偏低：买跨式、买宽跨式
+  大动 + IV 偏高：通常不做，卖方在大动中最危险
+
+三、候选结构
+  候选 1：____________  符号：__/__/__
+          最大亏损 $____  最大盈利 $____  盈亏平衡 ____
+  候选 2：____________  符号：__/__/__
+          最大亏损 $____  最大盈利 $____  盈亏平衡 ____
+  候选 3：____________  符号：__/__/__
+          最大亏损 $____  最大盈利 $____  盈亏平衡 ____
+
+四、选择
+  选定：____________
+  理由（一句话）：______________________________
+  如果观点错了，我在哪里认错：____________
+@@ eaa48b1de2 text
+仓位规则卡　（每 90 天复核一次，修改需写明理由）
+账户净值：$________　生效日期：________
+
+一、单笔
+  单笔最大亏损 ≤ 账户的 ___%（练习期 1%，上限 2%）
+  买方：最大亏损 = 付出的权利金
+  卖方：只做定义风险结构；最大亏损 = 宽度 − 收到的权利金
+  出场：亏到最大亏损的 ___%，或离到期 ___ 天，二者先到为准
+
+二、组合
+  同时持仓 ≤ ___ 笔
+  全部仓位最大亏损合计 ≤ 账户的 ___%
+  Beta 加权 Delta 合计 ≤ ___ 股 SPY 等效
+  组合 Vega ≤ $____ / 点；组合 Theta ≥ −$____ / 天
+  与同一事件（财报、FOMC、CPI）相关的仓位按一笔计
+
+三、压力测试（每次下单前、每周一次）
+  标的 ±1、±2 个标准差：组合亏损 ≤ ___%
+  标的 −10% 且 IV +10 点：组合亏损 ≤ ___%
+
+四、停止规则
+  单日亏损 ≥ ___%：当天不再开新仓
+  单月亏损 ≥ ___% 或违规 ___ 次：退回纸上交易两周
+  想「赶紧翻本」的时候：先缩仓，第二天再决定
+
+本次修改及理由：________________________________
+@@ 5861d2cfd6 text
+期权交易日志　编号：____
+开仓日期：________　标的：____　价格：____
+IV / IV Rank：____ / ____　下一个事件：________
+
+一、计划（下单前写）
+  观点（一句话）：______________________________
+  三个符号：方向 __ / 时间 __ / 波动率 __
+  结构与各腿：__________________________________
+  净权利金：____　最大盈利：____
+  最大亏损：____　盈亏平衡：____
+  Delta / Theta / Vega：____ / ____ / ____
+  占账户风险：___%（规则卡上限 ___%）
+  止盈：________　止损：________　时间止损：________
+
+二、执行
+  成交价：____　当时中间价：____　滑点：____
+  调整记录（日期、动作、理由）：
+    ________________________________________
+
+三、结果（平仓后写）
+  平仓日期：________　平仓价：____
+  盈亏：$____（____ 倍风险）　持有天数：____
+  期间标的变化：____　期间 IV 变化：____
+
+四、复盘
+  归因：[ ] 判断错  [ ] 执行错  [ ] 风控错  [ ] 正常波动
+  做对了什么：__________________________________
+  做错了什么：__________________________________
+  赚钱但做错了？ [ ] 是  [ ] 否
+  下次怎么做：__________________________________
+@@ 4dbdfc433e text
+事件日历与 IV 仪表盘　周：________　数据源：________
+
+一、IV 仪表盘（每天收盘更新）
+  标的 | 价格 | 平值 IV | IV Rank | 30 天预期变动 | 近 20 日实际波动 | IV − 实际
+  SPY  |      |         |         |               |                  |
+  QQQ  |      |         |         |               |                  |
+  ____ |      |         |         |               |                  |
+  ____ |      |         |         |               |                  |
+  ____ |      |         |         |               |                  |
+  预期变动 = 价格 × IV × √(天数 / 365)
+
+二、期限结构（每周一次）
+  标的：____　近月 IV：____　次月 IV：____
+  远期波动率 = √((σ2² × T2 − σ1² × T1) / (T2 − T1))：____
+  形状：[ ] 正向  [ ] 倒挂（原因：________）
+
+三、未来 8 周事件
+  日期 | 事件 | 相关标的 | 隐含幅度 | 过去 8 次平均实际幅度
+  ____ | ____ | ________ | ________ | ____________________
+  ____ | ____ | ________ | ________ | ____________________
+  ____ | ____ | ________ | ________ | ____________________
+  事件类型：财报 / FOMC / CPI / 就业 / 期权到期日 / 其他
+
+四、本周结论
+  IV 最贵的标的：________　最便宜的：________
+  值得准备的事件：________
+  需要提前缩仓的仓位：________
+@@ 1eb9d842a7 text
+数据的三条底线
+@@ 5205b402f9 attr
+跳转到章节
+@@ 5817d7e158 attr
+附录目录
+@@ 0b0282d371 attr
+搜索中文、英文或解释，如 Vega、偏度、assignment
+@@ a9ecc9861a attr
+搜索术语
+@@ f0852d355e attr
+章节翻页
+@@ f5787aaefc tpl
+## code: );       cnt.innerHTML = words.length ? `匹配 <b>${shown}</b> 
+匹配 <b>{0}</b> / {1} 条
+@@ b87ba73a29 tpl
+## code: h ? `匹配 <b>${shown}</b> / ${total} 条` : `共 <b>${total}</b> 条
+共 <b>{0}</b> 条
+@@ c44c7105fc js
+## code: const IV = 0.25, S0 = 100;     const A = [       ["买入看涨", "+100C", [["c", 100, 30, 1]]
+买入看涨
+@@ ae63614f8d js
+## code:    ["买入看涨", "+100C", [["c", 100, 30, 1]]],       ["买入看跌", "+100P", [["p", 100, 30, 1]]
+买入看跌
+@@ 1c0347a055 js
+## code:    ["买入看跌", "+100P", [["p", 100, 30, 1]]],       ["卖出看涨", "−105C", [["c", 105, 30, -1]
+卖出看涨
+@@ 2616f4cb68 js
+## code:   ["卖出看涨", "−105C", [["c", 105, 30, -1]]],       ["现金担保卖沽", "−95P", [["p", 95, 30, -1]]]
+现金担保卖沽
+@@ f9b0906877 js
+## code:   ["现金担保卖沽", "−95P", [["p", 95, 30, -1]]],       ["备兑看涨", "100 股 −105C", [["s", 0, 0, 
+备兑看涨
+@@ 7f337a5b16 js
+## code: 卖沽", "−95P", [["p", 95, 30, -1]]],       ["备兑看涨", "100 股 −105C", [["s", 0, 0, 1], ["c", 105, 
+100 股 −105C
+@@ c548f9a638 js
+## code: C", [["s", 0, 0, 1], ["c", 105, 30, -1]]],       ["保护性看跌", "100 股 +95P", [["s", 0, 0, 1
+保护性看跌
+@@ 4718938704 js
+## code: , 0, 0, 1], ["c", 105, 30, -1]]],       ["保护性看跌", "100 股 +95P", [["s", 0, 0, 1], ["p", 95, 3
+100 股 +95P
+@@ 557f355788 js
+## code: 95P", [["s", 0, 0, 1], ["p", 95, 30, 1]]],       ["领口", "100 股 +95P −105C", [["s", 0
+领口
+@@ 7064c6790e js
+## code: [["s", 0, 0, 1], ["p", 95, 30, 1]]],       ["领口", "100 股 +95P −105C", [["s", 0, 0, 1], ["p", 95, 3
+100 股 +95P −105C
+@@ 279b6d3488 js
+## code: ], ["p", 95, 30, 1], ["c", 105, 30, -1]]],       ["牛市看涨价差", "+100C −105C", [["c", 100, 3
+牛市看涨价差
+@@ 0b6a752dde js
+## code:  [["c", 100, 30, 1], ["c", 105, 30, -1]]],       ["熊市看跌价差", "+100P −95P", [["p", 100, 30
+熊市看跌价差
+@@ d503a8f174 js
+## code: , [["p", 100, 30, 1], ["p", 95, 30, -1]]],       ["牛市看跌价差", "−95P +90P", [["p", 95, 30, 
+牛市看跌价差
+@@ b451b6ee43 js
+## code: ", [["p", 95, 30, -1], ["p", 90, 30, 1]]],       ["熊市看涨价差", "−105C +110C", [["c", 105, 3
+熊市看涨价差
+@@ d4ab3151b9 js
+## code:  [["c", 105, 30, -1], ["c", 110, 30, 1]]],       ["买入跨式", "+100C +100P", [["c", 100, 3
+买入跨式
+@@ b8c903e0d8 js
+## code: , [["c", 100, 30, 1], ["p", 100, 30, 1]]],       ["卖出宽跨式", "−105C −95P", [["c", 105, 30
+卖出宽跨式
+@@ 84c9b71cbc js
+## code:  [["c", 105, 30, -1], ["p", 95, 30, -1]]],       ["铁鹰", "+90P −95P −105C +110C", [["
+铁鹰
+@@ 0f81ea2a5c js
+## code: , ["c", 105, 30, -1], ["c", 110, 30, 1]]],       ["铁蝶", "+95P −100P −100C +105C", [[
+铁蝶
+@@ a822a0659f js
+## code: , ["c", 100, 30, -1], ["c", 105, 30, 1]]],       ["买入看涨蝶式", "+95C −2×100C +105C", [["c",
+买入看涨蝶式
+@@ d1d53ec146 js
+## code: , ["c", 100, 30, -2], ["c", 105, 30, 1]]],       ["日历价差", "−100C +100C（60 天）", [["c", 
+日历价差
+@@ 6f63f47c2d js
+## code: 100, 30, -2], ["c", 105, 30, 1]]],       ["日历价差", "−100C +100C（60 天）", [["c", 100, 30, -1], ["c", 1
+−100C +100C（60 天）
+@@ e1a91faab7 js
+## code:  [["c", 100, 30, -1], ["c", 100, 60, 1]]],       ["比例价差 1×2", "+100C −2×105C", [["c", 100,
+比例价差 1×2
+@@ f8af4cde16 tpl
+## code: ssName = "plate";       fig.innerHTML = `<div class="fig-hea
+<div class="fig-head"><span class="fig-title">{0}</span><span class="fig-no">C-{1} · {2}</span></div>
+        <svg class="chart" viewBox="0 0 680 210" role="img" aria-label="{3}的到期盈亏图"></svg><div class="stats"></div>
+@@ 2200cbdb2f tpl
+## code: .05);       const prem = optCost >= 0 ? `净借记 <b>${f2(optCost
+净借记 <b>{0}</b>
+@@ d1d2830f63 tpl
+## code: st >= 0 ? `净借记 <b>${f2(optCost)}</b>` : `净信用 <b>${f2(-optCos
+净信用 <b>{0}</b>
+@@ 87544953dc js
+## code: -optCost)}</b>`;       const maxP = slope > 0.3 ? "<b>无上限</b>" : `<b>${f2(mx)}</b>`;       c
+<b>无上限</b>
+@@ 0db86c001e tpl
+## code: fig.querySelector(".stats").innerHTML = `${prem} · 最大盈利 ${ma
+{0} · 最大盈利 {1} · 最大亏损 {2}<br>盈亏平衡 <b>{3}</b>
+@@ 2e746791f3 js
+## code:       btn.dataset.state = "ok"; btn.textContent = "已复制";         } else {           s
+已复制
+@@ 68bd331b0e js
+## code: re); btn.dataset.state = "sel"; btn.textContent = "已选中，请按 Ctrl/⌘ + C";         }         clearTimeo
+已选中，请按 Ctrl/⌘ + C
+@@ b828d11b5b js
+## code: () => { btn.dataset.state = ""; btn.textContent = "复制模板"; }, 2600);       });     }); 
+复制模板

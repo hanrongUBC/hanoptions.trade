@@ -1,0 +1,238 @@
+@@ 7406fd37ba html
+Chapter 14 Systems and process · US Options Course
+@@ d46f1254d6 html
+Systems and <span class="g">process</span>
+@@ 709846e0f3 html
+The result of any single trade is largely luck. Only the process can be tested and improved. This chapter strings the tools from the first thirteen chapters into nine fixed steps, and shows you how to use your own journal to work out each strategy's real expectancy and judge whether the sample is big enough to draw a conclusion.
+@@ 4a798dc727 html
+In this chapter
+@@ bd304009c3 html
+<a href="#open"><span class="n">··</span><span>Opening: one view, three outcomes</span></a>
+@@ 53aee790e5 html
+<a href="#s1"><span class="n">14.1</span><span>The nine-step process</span></a>
+@@ e390c06c45 html
+<a href="#s2"><span class="n">14.2</span><span>A view in three dimensions</span></a>
+@@ 74f98a7184 html
+<a href="#s3"><span class="n">14.3</span><span>The strategy selection matrix</span></a>
+@@ 40d5bfafc4 html
+<a href="#s4"><span class="n">14.4</span><span>Strikes, expiration and size</span></a>
+@@ fab065b454 html
+<a href="#s5"><span class="n">14.5</span><span>Executing the entry</span></a>
+@@ 97da6af4d4 html
+<a href="#s6"><span class="n">14.6</span><span>Write management rules before you enter</span></a>
+@@ 127a91fea6 html
+<a href="#s7"><span class="n">14.7</span><span>The options trading journal</span></a>
+@@ 386ccc328d html
+<a href="#s8"><span class="n">14.8</span><span>Thinking in expectancy</span></a>
+@@ 13b51c0c64 html
+<a href="#s9"><span class="n">14.9</span><span>The weekly scan</span></a>
+@@ 136613e580 html
+<a href="#cases"><span class="n">Cases</span><span>Two cases</span></a>
+@@ dd7ded685d html
+<a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a>
+@@ 5d16f151c3 html
+<a href="#open">Opening: one view, three outcomes</a>
+@@ 72abe8e65b html
+<a href="#s1">14.1 The nine-step process</a>
+@@ 003730a0c2 html
+<a href="#s2">14.2 A view in three dimensions</a>
+@@ 733480a056 html
+<a href="#s3">14.3 The strategy selection matrix</a>
+@@ 85723892fd html
+<a href="#s4">14.4 Strikes, expiration and size</a>
+@@ 60b08d88df html
+<a href="#s5">14.5 Executing the entry</a>
+@@ f28396973f html
+<a href="#s6">14.6 Write management rules before you enter</a>
+@@ dd26d71684 html
+<a href="#s7">14.7 The options trading journal</a>
+@@ bee3a24a67 html
+<a href="#s8">14.8 Thinking in expectancy</a>
+@@ cbb62a9f3a html
+<a href="#s9">14.9 The weekly scan</a>
+@@ 9296165eff html
+<a href="#cases">Two cases</a>
+@@ 7ec24afd50 html
+<a href="#tools">Checklist and self-test</a>
+@@ 80161dff8a html
+After this chapter you can
+@@ b435689625 html
+Write any trade idea as three sentences: direction, volatility and time
+@@ a27c908352 html
+Choose a structure by direction × IV environment × event, and say why you didn't choose the other two
+@@ 355ef708d5 html
+Use your journal to compute each strategy's expectancy and 95% interval, and judge whether the sample is big enough
+@@ fc4f43bd05 html
+Prerequisites
+@@ 20b8c620db html
+Chapter 6: IV Rank, realized and implied volatility
+@@ 8ca7d37fa1 html
+Chapters 7–10: buyer, seller, neutral and event strategies
+@@ 1183c76b0a html
+Chapter 13: measuring position size and stress testing
+@@ fe31444484 html
+Conventions
+@@ 303316b017 html
+Examples use Black-Scholes with a 4% rate and no dividends
+@@ 0aeb7691d4 html
+Days are calendar days, 365 to a year; one contract = 100 shares
+@@ 7cebc436c3 html
+Journals, scan tables and simulated data are all fictional
+@@ 4b5efba7c8 html
+<span class="sn">Opening</span>One view, three outcomes
+@@ 31bf012d0d html
+You think XYZ (stock at $200) will rise to around 215 within a month. It reports earnings in 10 days, and implied volatility has been bid up to 55% ahead of the report. Three traders, A, B and C, see it exactly the way you do, and each places a trade.
+@@ 564eaf7b72 html
+The stock then does just what you all expected: 203 on day 7, a jump to 206 after earnings on day 10 with IV falling back to 32%, and 212 by day 30, up 6% for the month. Here is how the three traders did.
+@@ 65acacd658 html
+Table 14-0 One bullish view, three structures: results on day 30 (per share, $)
+@@ 22ce243b77 html
+Trader
+@@ 2b2f1e4d50 html
+Structure
+@@ 7231127a89 html
+Cost
+@@ 62d0b4ccfe html
+Value on day 30
+@@ 992c0eb5b3 html
+Return
+@@ a9cf81b02f html
+Missing sentence
+@@ a721c433f6 html
+A
+@@ 9cae9e6650 html
+7-day 210 call (IV 40%)
+@@ 597b18e7f1 html
+0 (expired)
+@@ 29d5ebf63f html
+Time
+@@ cbba2de0e6 html
+B
+@@ 10cd362ead html
+45-day 200 call (IV 55%)
+@@ f87093cf4b html
+Volatility
+@@ 83c5c29d5c html
+C
+@@ 84b5dd19f5 html
+45-day 200/215 call spread (IV 55%)
+@@ 2ad5a4d8ba html
+None
+@@ ba4ff0f640 html
+A bought the cheapest option. It expired before earnings, which is why its IV was only 40%. But the move took until day 30 to play out: when the option expired on day 7 the stock was only at 203, and the option went to zero. B gave the trade enough time but bought a single call at 55% IV. After earnings IV fell 23 points, and the Vega loss ate the gain from the 6% rise. C used a spread: the short 215 call offset most of the Vega, and the short leg sat right on the target price. The same move made 57%.
+@@ e01779f6df html
+All three made exactly the same call on direction, yet the results ran from −100% to +57%. The difference came from two things other than direction: volatility and time. This chapter turns C's thinking into a fixed process you can follow every time.
+@@ d38a156e7f html
+<span class="sn">14.1</span>The nine-step process
+@@ bf6f6a37e5 html
+The process makes every trade answer the same nine questions. Only when the questions are the same can you compare results across trades and trace a mistake to a specific step.
+@@ 75c6bc306b html
+Options trading is an environment of incomplete answers: a correct decision can lose money, and a wrong one can make money. From the P&amp;L of a single trade you can't tell good judgment from good luck. The process breaks a trade into nine stages, each with a clear output, so in review you can ask “which step went wrong?” instead of just saying “this one lost.”
+@@ a59a252054 html
+View
+@@ ff7e658f80 html
+3 sentences + invalidation
+@@ 8ecc628ba2 html
+IV environment
+@@ 61ac36a6ba html
+IV Rank · IV/HV · events
+@@ d35fb669cd html
+Matrix + trade-offs
+@@ 9821562c97 html
+Strike &amp; expiry
+@@ 7893eef4cd html
+Match target and catalyst
+@@ 0e1ae088fd html
+Size
+@@ 86962fa863 html
+Max loss ≤ 2% of account
+@@ ef0ea2518c html
+Entry
+@@ 02b97205d1 html
+Combo · mid · timing
+@@ afd442ae1c html
+Manage
+@@ db50273d15 html
+4 rules set before entry
+@@ 4b9fdb7a05 html
+Exit
+@@ 071e06f93b html
+Note which rule fired
+@@ c142378e94 html
+Record
+@@ 2a11945377 html
+Snapshot · cause · stats
+@@ 077679c17a html
+Problems the journal turns up change how you write the next view
+@@ 4d23a39b1c html
+Any step can output “no trade.” If step 2 finds the options too expensive and no suitable structure, if step 3 finds no structure in the matrix with the right shape, or if step 5 shows that even the smallest size exceeds the risk limit, stop.
+@@ ccfd00a7ca html
+Table 14-1 The nine-step process: the question each step answers, and its output
+@@ e938b678c4 html
+Step
+@@ f75893769c html
+Question to answer
+@@ c2af81522f html
+Output
+@@ 25f7bfa8ba html
+See
+@@ 7e1b9da534 html
+1 View
+@@ dec82e07c4 html
+What do I think will happen? One sentence each for direction, volatility and time
+@@ b8423fa86b html
+Three sentences, plus an invalidation price
+@@ d11ced53e1 html
+2 IV environment
+@@ e166f8cb75 html
+Are options expensive or cheap right now? Is there an event before expiration?
+@@ fb8f8191e5 html
+IV Rank, IV/HV, event dates
+@@ 2ed39f0850 html
+Chapters 6, 10
+@@ f67e7b3173 html
+3 Structure
+@@ ac30cef567 html
+Which structure's payoff shape matches the three sentences?
+@@ a504f6227d html
+One structure, plus the reasons for not choosing the other two
+@@ d457c453c4 html
+4 Strikes and expiration
+@@ 7b1e3e1559 html
+Which leg corresponds to the target price, the invalidation price and the catalyst timing?
+@@ 90be5a2280 html
+Specific contracts
+@@ 978b7d3dc1 html
+5 Size
+@@ 861a2d686e html
+How much do I lose in the worst case, and what share of the account is that?
+@@ 772e245467 html
+Number of contracts
+@@ 7b7a97d918 html
+14.4, Chapter 13
+@@ c9056ff631 html
+6 Entry
+@@ a7668d8612 html
+What order type, what price, what time of day?
+@@ 20d3f2803b html
+Fill price and slippage
+@@ a416a32e30 html
+7 Manage
+@@ 07ca362253 html
+What are the take-profit, stop-loss, time and adjustment rules?
+@@ 6d59b60a60 html
+Four rules (written before entry)
+@@ 07e072e8de html
+8 Exit
+@@ 8f3002a31d html
+Which rule fired? Did you do anything outside the rules?
+@@ ab4d2b879b html
+Exit price and reason
+@@ 6809d23905 html
+9 Record
+@@ 60878bbfa8 html
+Which steps went right, and which went wrong?
+@@ 800d55619a html
+One journal row, plus attribution
+@@ 6e41cc1b87 html
+Beginners spend most of their time on steps 1 and 8: finding opportunities, watching the screen, deciding when to sell. Long-run results depend more on steps 3, 5 and 7. The structure decides in which scenarios you make money, the size decides whether you survive the worst scenario, and the management rules decide whether losses get out of hand. All three are done before the order goes in and take almost no screen time.

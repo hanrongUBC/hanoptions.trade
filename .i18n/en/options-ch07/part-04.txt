@@ -1,0 +1,220 @@
+@@ 0cba1f5c78 html
+Down to 95 at expiry
+@@ 7afdff4b4f html
+Closed when back at 101 on day 45
+@@ 466ecb8102 html
+101 at expiry
+@@ 4ee588fce6 html
+108 at expiry
+@@ 4924448763 html
+115 at expiry
+@@ 69795f463a html
+125 at expiry
+@@ f7b42338ff html
+No single choice is best in every scenario. A ranges from −517 to +1,983, the widest swing; B is the steadiest but gives up everything that follows; C and D sit in between. What sets D apart is that it never loses, and it earns its maximum, $599, if the stock stays above 105.
+@@ 28f06d8858 html
+Lesson: handling a profit is a split between “keeping what you have” and “keeping what's still to come.” Deciding in advance which way you'll go matters more than picking by feel afterward. The worst choice is to think about nothing, just hold on, and watch +86% turn into −81%.
+@@ 76fc557033 html
+<span class="sn">Tools</span>Checklist and self-test
+@@ b4640d623d html
+Your checkmarks are saved only in your own browser.
+@@ 6943bba0de html
+<span class="num">7-1</span>Before you trade: check the three enemies
+@@ 6d6306ac05 html
+The rise needed to break even at expiry is smaller than my target rise
+@@ b3a4c0138c html
+Daily Theta is no more than 1% of the premium
+@@ 563fcb216f html
+IV Percentile below 50; events before expiration listed
+@@ 4ff9789120 html
+<span class="num">7-2</span>Choosing the contract
+@@ af140a176e html
+The view is written as “up how much, how long”
+@@ ea4739ad1f html
+Expiration ≥ 1.5–2 times the expected timeframe
+@@ d687bcf0e5 html
+Delta matches the type of view; below Δ0.30, small size only
+@@ b1ce1155a3 html
+Target price in hand: consider a spread with the short leg at the target
+@@ 52152835c5 html
+<span class="num">7-3</span>Structure and execution
+@@ f16bdf547d html
+IV high: use a spread, switch underlyings, or skip the trade
+@@ 8a6b20e8c9 html
+Spread confirmed as a single two-leg order
+@@ 2a3b6166e4 html
+Bid–ask spread no more than 5% of the premium
+@@ 7e09397e00 html
+<span class="num">7-4</span>Exit rules (written before the trade)
+@@ 54b4c047d7 html
+Profit target: a return target or an underlying price target; take some off when it hits
+@@ 042234d1c4 html
+Time stop: exit if the view hasn't played out with a third of the term left
+@@ 21062b662f html
+Stop-loss: the underlying price at which the view is invalidated
+@@ 629cf1d19f html
+If this premium goes to zero, the loss is no more than 3% of the account
+@@ a6f5d33bbc html
+Self-test: five questions
+@@ 38d12cadc6 html
+<span class="num">1</span><span>The stock is at 100 and you pay 1.66 for a 30-day 105 call. At expiry, how high does the stock have to be for you not to lose money?</span>
+@@ 6bad3a312f html
+Breakeven = <span class="num">105 + 1.66 = 106.66</span>, a 6.66% rise. If your target is a rise to 105, this option loses everything even if your view is exactly right.
+@@ dfb9802402 html
+<span class="num">2</span><span>A 30-day ATM call costs 3.59 with Theta −0.062. If the stock doesn't move, roughly what is it worth after 10 days? Is Theta × 10 an accurate estimate?</span>
+@@ ac5ca7cb30 html
+Repriced, it is <span class="num">2.91</span>, a loss of 0.68. The Theta estimate is 0.062 × 10 = 0.62, slightly too low, because Theta grows as expiration approaches.
+@@ 74a0b3b617 html
+<span class="num">3</span><span>A 100/110 call spread costs 3.68. What are its max profit and breakeven? What is the return if the stock is at 115 at expiry?</span>
+@@ 5ec3581a5d html
+Max profit <span class="num">10 − 3.68 = 6.32</span>; breakeven <span class="num">103.68</span>. At 115 at expiry the spread is worth 10, a return of <span class="num">6.32 / 3.68 = +171.8%</span>, the same as at 110.
+@@ 2f49753b96 html
+<span class="num">4</span><span>The stock is at 100 and a one-year 85 call costs 22.35. What is its time value, and how much of that is interest?</span>
+@@ 43ebab1e13 html
+Time value is <span class="num">22.35 − 15 = 7.35</span>. Interest is <span class="num">85 × (1 − e<sup>−0.04</sup>) = 3.33</span>; the remaining <span class="num">4.02</span> is the value of the 85 put, in other words the price of the “floor.”
+@@ 57d3b4749d html
+<span class="num">5</span><span>Your buying strategy wins 35% of the time. You risk 10% of the account per trade and lose the whole premium on every loss. How much of the account is left after 5 losses in a row? What is the probability that any given 5 consecutive trades all lose?</span>
+@@ 92b2bf4ec2 html
+<span class="num">0.9<sup>5</sup> = 59.0%</span>, a 41% loss. The probability that any 5 consecutive trades all lose is <span class="num">0.65<sup>5</sup> = 11.6%</span>; over 50 trades, the chance of running into this at least once is about 92%. Cut each trade to 2% and you still have 90.4% after 5 straight losses.
+@@ 1dcfb25a6a html
+All examples in this chapter are computed with the Black-Scholes model (4% rate, no dividends, 365-day year). Price paths and IV changes are hypothetical, and probabilities are risk-neutral approximations. For education only; not investment advice.
+@@ a70e23cc3d text
+US Options 
+@@ 875f2902a9 text
+Course
+@@ 6008c8832c text
+US Options Course · Part 3 Strategies · Chapter 7
+@@ c58eed84f9 text
+Breakeven at expiry
+@@ 2e2a9f59ff text
+Required rise
+@@ d275db69c1 text
+The further OTM, the more you depend on speed
+@@ 43a8a33767 text
+Figure 7-1 · 90-day calls, three strikes, interactive
+@@ 0e349a91db text
+94 call (Δ 0.71)
+@@ 23fb32f287 text
+102 call (Δ 0.50)
+@@ 24313a47d1 text
+110 call (Δ 0.31)
+@@ 7c6ce6ea72 text
+94 call, stock at 110
+@@ ce02897755 text
+102 call, stock at 110
+@@ e29011a51d text
+110 call, stock at 110
+@@ 334bf99d73 text
+Right but slow: the short-dated option dies first
+@@ dd4c4360da text
+Figure 7-2 · ATM 100 call, interactive
+@@ 0bba039537 text
+30-day option
+@@ 41989745d6 text
+60-day option
+@@ b51aa36b9c text
+120-day option
+@@ c1e0603040 text
+The spread gives up the big-rally tail for a lower breakeven and less IV risk
+@@ 12d7708646 text
+Figure 7-3 · P&amp;L per contract, interactive
+@@ c525c715f6 text
+Long 100 call
+@@ d3ba808e4f text
+100 / short-leg call spread
+@@ 2a2ab6a9bf text
+Spread cost
+@@ 9bf956869e text
+Spread max profit
+@@ afa10871f6 text
+Spread breakeven at expiry
+@@ eb190e77f0 text
+Vega: spread vs. long call
+@@ 15eb59be8a text
+Time value
+@@ 0f9b02ed25 text
+LEAPS plus cash: like a stock with a built-in floor
+@@ 9908d0831f text
+Figure 7-4 · Same $10,000, interactive
+@@ 882080f3b9 text
+A: 100 shares
+@@ 46ef2ed48e text
+B: 1 × 85 LEAPS + $7,765 cash
+@@ ea9dbf2cd7 text
+Capital used by B (A: $10,000)
+@@ 558757e13c text
+B: stock at 80
+@@ d8b37dcf58 text
+B: stock at 120
+@@ 35980b75be text
+B's breakeven stock price
+@@ e01ff65fdf text
+Coming up: the poor man's covered call
+@@ 146bed4686 text
+When stock is better
+@@ a1aa21848e text
+From the field
+@@ 046dfb89e4 text
+Case 1
+@@ 411ced42ca text
+Case 2
+@@ 81acdd30ad text
+Case 3
+@@ 5205b402f9 attr
+Jump to chapter
+@@ ae78ea9525 attr
+In this chapter
+@@ a8bf8d8acc attr
+Returns of three strikes at different stock prices
+@@ 386b5876fc attr
+Hypothetical stock price path
+@@ 0b7a2fb034 attr
+Returns of options at three terms over time
+@@ a294869f17 attr
+Valuation point
+@@ 1d7a38efd8 attr
+P&L of a long call vs. a call spread
+@@ 7873e69eb1 attr
+P&L of stock vs. LEAPS plus cash
+@@ f0852d355e attr
+Chapter navigation
+@@ c87f6311bf js
+ days
+@@ f485df2f3e js
+ points
+@@ f7d96f68d4 js
+Stock price at valuation
+@@ 9ac450905a js
+Return (on premium)
+@@ 150b8e7f30 js
+Stock price
+@@ bb6a7bf0ab js
+d
+@@ 5b6cee65a1 js
+Days since purchase
+@@ 17a6c3065b js
+-day option, 
+@@ 45f24f7dfa js
+day 
+@@ af53ed4585 js
+ (at expiry)
+@@ b4e396f863 js
+ (at 110)
+@@ 23340db9ee js
+Stock price at expiry
+@@ 8e9e876fa3 js
+Stock price on day 45
+@@ 7cc100dc44 js
+P&L per contract ($)
+@@ 672ee25ade js
+Spread cost (long call $
+@@ 5101839cbe js
+Spread breakeven at expiry (long call 
+@@ 7e97a1a451 js
+ months
+@@ 028cdc6e0c js
+P&L ($)
+@@ f954920505 js
+B: stock at 80 (A: 
+@@ cf5daa725e js
+B: stock at 120 (A: 

@@ -1,0 +1,180 @@
+@@ 460e2cb8e2 text
+For individual traders
+@@ 0549aa16fb text
+fwd
+@@ c90c573732 text
+index
+@@ 13d63d2dcf text
+Bottom line
+@@ 35d6ad08fa text
+Rules that hold across assets
+@@ 41ad4696a5 text
+At maturity, a snowball has the shape of a short put
+@@ f9ed4ebaa4 text
+Figure 16-2 · 12 months, knock-out at 100%, 2,000 paths
+@@ d15e9096a7 text
+Not knocked in, or ≥ 100 at maturity: full coupon
+@@ 4359ba7fda text
+Knocked in and &lt; 100 at maturity: lose the decline
+@@ ec41e97c5f text
+Comparison: cash-secured sale of a one-year ATM put
+@@ b447590c68 text
+Fair annualized coupon
+@@ eeeda31036 text
+Short-put premium as a share of the coupons' PV
+@@ ea8465e3e7 text
+Probability of a knock-in loss
+@@ bef63b9c8d text
+Average loss when there is a loss
+@@ 8310b853a1 text
+Before you buy any “high-coupon” product
+@@ d42d09eb32 text
+Every structure's three exposures at a glance, under the same parameters
+@@ 8f35705bf6 text
+Figure 16-3 · Stock at 100, IV 25%, 1 contract per set
+@@ 99865371b5 text
+Current P&amp;L (at the chosen days and IV)
+@@ 36ada71225 text
+P&amp;L at near-month expiration
+@@ 6a43605591 text
+Delta (shares)
+@@ 8dbe834538 text
+Theta (per day)
+@@ e49e79172a text
+Vega (per IV point)
+@@ e504216d4f text
+Direction / time / volatility
+@@ e0cf33c320 text
+The four tools form a closed loop
+@@ eb24400e25 text
+Figure 16-4 · Schematic
+@@ 046dfb89e4 text
+Case 1
+@@ a1aa21848e text
+From the field
+@@ 411ced42ca text
+Case 2
+@@ c076194320 text
+Takeaway
+@@ 81acdd30ad text
+Case 3
+@@ d002818bb8 text
+Log growth rate per trade
+@@ d7c2c0a026 text
+Positive expectancy, yet oversizing still shrinks most accounts
+@@ 98b7875469 text
+Figure 16-5 · Win rate 45%, payoff ratio 1.5, 30 sample paths
+@@ bb7e5979d3 text
+Sample paths (same win/loss sequence)
+@@ a39f671830 text
+Median (theoretical)
+@@ 21cebc6966 text
+Starting capital
+@@ 16b2316aba text
+Median after 100 trades
+@@ f5f0776630 text
+Mean (theoretical)
+@@ b85c9c6adc text
+Share with a drawdown ≥ 50%
+@@ e95a5da85a text
+Share ending below starting capital
+@@ 5205b402f9 attr
+Jump to chapter
+@@ ae78ea9525 attr
+In this chapter
+@@ 7d72be7119 attr
+Histogram of the P&L distribution at different hedging frequencies
+@@ 420afe7e78 attr
+Snowball payoff at maturity against the final index level, compared with a plain short put
+@@ 7cdc51c20f attr
+Current and expiry P&L curves for the selected structure
+@@ c9abd493d0 attr
+A closed loop formed by the event calendar and IV dashboard, the strategy selection matrix, the sizing rule card, order placement and management, and the trading journal
+@@ 739ba8fafc attr
+Account paths over 100 trades at different position sizes, log vertical axis
+@@ f0852d355e attr
+Chapter navigation
+@@ 6667116e4b js
+Every 5 days
+@@ caa91ff9de js
+Every 2 days
+@@ 97c8233de4 js
+Once a day
+@@ 8dcfa142b6 js
+Twice a day
+@@ ebe2d6f771 js
+4 times a day
+@@ 72bcc76c8b js
+8 times a day
+@@ 21b4c3a36f js
+Total P&L at expiry (10 contracts, $)
+@@ 33be03121a js
+Share of paths
+@@ 5c505e38be js
+Index at maturity (% of start)
+@@ c125862d7a js
+Investor return (% of principal)
+@@ ef59197932 js
+Coupon 
+@@ 9c348287d0 js
+Knock-in 
+@@ cda55961fd js
+Long stock
+@@ c44c7105fc js
+Long call
+@@ ae63614f8d js
+Long put
+@@ 4deac28945 js
+Naked short call
+@@ 2616f4cb68 js
+Cash-secured put
+@@ f9b0906877 js
+Covered call
+@@ c548f9a638 js
+Protective put
+@@ 557f355788 js
+Collar
+@@ 279b6d3488 js
+Bull call spread
+@@ 0b6a752dde js
+Bear put spread
+@@ d503a8f174 js
+Bull put spread
+@@ b451b6ee43 js
+Bear call spread
+@@ d4ab3151b9 js
+Long straddle
+@@ 18d7b1a233 js
+Short straddle
+@@ 6f05779108 js
+Long strangle
+@@ b8c903e0d8 js
+Short strangle
+@@ 84c9b71cbc js
+Iron condor
+@@ 0f81ea2a5c js
+Iron butterfly
+@@ a822a0659f js
+Long call butterfly
+@@ d1d53ec146 js
+Calendar spread
+@@ e5df79299a js
+Diagonal spread
+@@ e1a91faab7 js
+1×2 ratio spread
+@@ ca37a8a9dd js
+Risk reversal
+@@ 41b01e531b js
+LEAPS stock replacement
+@@ c87f6311bf js
+ days
+@@ f485df2f3e js
+ points
+@@ 34ae6467e4 js
+Stock price ($)
+@@ 8d662cccbd js
+P&L per set ($)
+@@ c3a147ade8 js
+Trades
+@@ 5f0172cdf5 js
+Account / starting capital (log)

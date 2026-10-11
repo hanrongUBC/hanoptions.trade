@@ -1,0 +1,110 @@
+@@ eb5ff5f8b3 js
+Part 1
+@@ fafbaabf07 js
+Foundations
+@@ 190ba17643 js
+What an option is, and where the money comes from
+@@ 1e48ce7eab js
+The six terms of a contract, the four basic positions, payoff diagrams at expiry, and the five sources of option profit.
+@@ 19360ba32c js
+US options in practice
+@@ ef8aeb76d7 js
+American vs. European style, the expiration calendar, exercise and assignment, accounts and margin, orders and liquidity.
+@@ bfd3bd8127 js
+An intuition for option pricing
+@@ 2b21770827 js
+The six inputs, the intuition behind Black-Scholes, put–call parity, reading prices as probabilities, and mental-math rules.
+@@ ebdf5548b7 js
+Part 2
+@@ 43ce0f8478 js
+The core variables
+@@ 71480339db js
+Delta and gamma
+@@ 09cbf322f0 js
+Directional exposure and how fast it changes: share equivalents, beta weighting, P&L approximation and Gamma scalping.
+@@ 0a65cacfb4 js
+Theta and vega
+@@ bff5f49483 js
+The shape of time decay, sensitivity to volatility, IV crush, plus Rho and the second-order Greeks.
+@@ 576e41e225 js
+Volatility
+@@ e35d0ad349 js
+Realized vs. implied, the volatility risk premium, IV Rank, term structure, skew and VIX.
+@@ aec3bafd43 js
+Part 3
+@@ c4cc7972f9 js
+Strategies
+@@ 3d6967db86 js
+Strategies for buyers
+@@ fb6bba615b js
+The buyer's three enemies, choosing strike and expiration, debit spreads, LEAPS and management rules.
+@@ eb7c90e370 js
+Strategies for sellers
+@@ dc81211b0b js
+What selling insurance really means: covered calls, cash-secured puts, the wheel, credit spreads and position stress tests.
+@@ 551385de6e js
+Neutral and volatility strategies
+@@ 0d213a94e6 js
+Straddles, strangles, iron condors, butterflies, calendars and diagonals: when to buy volatility and when to sell it.
+@@ bf62119244 js
+Trading events
+@@ fea487cfca js
+The earnings IV cycle, expected vs. historical moves, macro event days, 0DTE and expiration-day effects.
+@@ cbc37ed6ea js
+Hedging and portfolio protection
+@@ e6d193e501 js
+Protective puts, collars, put-spread hedges, tail-hedge budgets, and reshaping a portfolio with options.
+@@ 28015a2dc6 js
+Part 4
+@@ a3de84b67b js
+Portfolio and risk management
+@@ 6ec1783bc1 js
+Portfolio Greeks and adjustments
+@@ 922077b6d6 js
+Adding up a portfolio's four Greeks, reading its shape, the three directions to roll, and when to simply close the position.
+@@ 746e18fb75 js
+Risk management for options
+@@ 2b9d656b12 js
+Three measures of position size, rules for buyers and sellers, stress tests, the illusion of diversification, and the margin spiral.
+@@ d007416976 js
+Systems and process
+@@ 75f4538a0f js
+A nine-step process, turning a view into three dimensions, a strategy selection matrix, the trading journal and expectancy statistics.
+@@ 44c19b14c5 js
+Part 5
+@@ 45e40c05dc js
+Mindset and next steps
+@@ a86ebc9cb9 js
+Psychology and how accounts die
+@@ ed35c0ba87 js
+The psychological traps of buyers and sellers, the five paths to a dead account, and their early warning signs.
+@@ d3b9bc1683 js
+Where to go next, and a summary
+@@ 970703c0be js
+Advanced directions in volatility trading, a master table of strategies, a 90-day practice plan and a summary of the whole course.
+@@ 8e711d7935 js
+Appendix
+@@ 04ed50b0a7 js
+Quick reference
+@@ dbdd6e80a0 js
+Appendix: glossary, quick reference and templates
+@@ 64fad0b171 js
+A glossary, a strategy quick-reference table, a gallery of payoff diagrams, four templates, data sources and tools.
+@@ 3bd73a3e97 js
+A
+@@ fe67b9118f tpl
+<option value="index.html">Course home</option>
+@@ 45f24f7dfa js
+Chapter 
+@@ e33a7b3c68 js
+:
+@@ df348d82ed js
+: 
+@@ 67b6a4229e tpl
+<a class="prev" href="{0}"><small>Previous</small>{1}{2}</a>
+@@ 5f2f37a844 tpl
+<a class="prev" href="index.html"><small>Back</small>Course home</a>
+@@ 54c9f91347 tpl
+<a class="next" href="{0}"><small>Next</small>{1}{2}</a>
+@@ 9e4529cf05 tpl
+<a class="next" href="index.html"><small>Done</small>Back to course home</a>

@@ -1,0 +1,921 @@
+## source: rebound/index.html  (460 segments)
+@@ f0168675b5 html
+超卖反弹清单（2026 年 9–10 月） · hanoptions.trade
+@@ 3b054a194f html
+研习手册 · 二十家公司 · 数据截至 2026-10-09
+@@ 0438124bba html
+超卖反弹清单 <span class="ed">2026 年 9–10 月</span>
+@@ ee3b0ee378 html
+一位交易者在 9 月底列出的「短线会反弹」的股票，加上他 10 月初实际买入的几只。每家公司单独一章，从基本面、消息面和技术面三个角度拆开看。
+@@ ec16d60e39 html
+章节
+@@ 838778c739 html
+这份清单从哪里来
+@@ 2fe069f1a1 html
+9 月 30 日，一位交易者在群里发出 17 只「短线超卖<span class="ek">（Oversold）</span>」股票，逻辑是九月的输家被卖过头，等利率和油价回落，资金会从芯片和人工智能股轮动回来。这本手册把清单里的每家公司，加上他 10 月初实际买入的另外 3 家，逐一拆开看。
+@@ 1c1d45ce96 html
+他的原始逻辑
+@@ 7156f13ca7 html
+<strong>轮动论</strong>：「买九月份输家的回调，做空赢家的反弹。」九月领涨的芯片、AI 基础设施可能回调，被抛售的消费、金融、公用事业、工业股可能反弹。
+@@ f3046398db html
+<strong>宏观前提</strong>：原油要重新跌回 90 美元以下；收益率回落、加息预期降温；等权<span class="ek">（Equal-weight）</span>指数（RSP）和小盘股（IWM）持续跑赢纳斯达克 100（QQQ）。
+@@ 58e20f2293 html
+<strong>工具和期限</strong>：买正股，或者成交量够大时买看涨借方价差，「尽量不要裸」；持有约一个月，目标涨 3% 到 8%，到期日<span class="ek">（Expiration date）</span>放在 10 月底或 11 月期权到期<span class="ek">（Options expiration (OpEx)）</span>日。10 月 6 日他又说进入了「买股票不买期权」的阶段，因为逻辑兑现需要时间。
+@@ 348a0837bb html
+<strong>纪律</strong>：尾盘 30 分钟入场；确认之后才加仓；给每只股票设止损<span class="ek">（Stop-loss）</span>。
+@@ e662a21462 html
+清单和实际买入
+@@ ee3aec1570 html
+类别
+@@ e7cd9933a3 html
+股票
+@@ c6c54e4faa html
+9/30 清单（17 只）
+@@ def05ca4ef html
+10/2 至 10/5 记录的买入（9 只）
+@@ 60efc2c275 html
+MCD、BAC、MGM、LOW、GD、HSY，以及清单外的 WEN、PRMB、DUK
+@@ c87067bb7e html
+他记录的买入价和 10 月 9 日收盘价
+@@ 044e79a565 html
+日期
+@@ 3a381c8414 html
+买入价
+@@ b7354af156 html
+10/9 收盘
+@@ dc0aac1119 html
+变化
+@@ 44b5c5a58e html
+<b>MCD</b> 麦当劳
+@@ 4139f3f720 html
+<b>BAC</b> 美国银行
+@@ 408b5ae878 html
+<b>MGM</b> 美高梅
+@@ 6182d66d48 html
+<b>LOW</b> 劳氏
+@@ db8789995d html
+<b>GD</b> 通用动力
+@@ fa812ed17b html
+<b>WEN</b> 温蒂汉堡
+@@ 4790380c46 html
+<b>HSY</b> 好时
+@@ ffa0d1fc98 html
+<b>DUK</b> 杜克能源
+@@ 99d07c1c08 html
+九笔平均变化 +0.7%。清单里的 17 只从 9 月 30 日到 10 月 9 日平均 +0.9%，12 只上涨。一周多的时间太短，说明不了逻辑对错，但可以看出这批股票还没有出现「明显反弹」。
+@@ 02016e1712 html
+宏观前提，到 10 月上旬兑现了吗
+@@ 479b93c7e9 html
+他的前提
+@@ b135618fc4 html
+10 月上旬的实际情况
+@@ 6686b0b529 html
+原油跌回 90 美元以下
+@@ ee81dbe1b2 html
+10 月 7 日 WTI 约 88.48 美元，刚好在 90 美元下方；10 月 8 日飓风 Isaias 逼近美国，布伦特涨到约 104 美元、WTI 约 91.30 美元
+@@ 2919b322be html
+收益率回落
+@@ 441f29ff4d html
+10 月 7 日 10 年期美债收益率约 5.27%，30 年期一度到 5.73%，是 24 年来的高点
+@@ 949e82afb8 html
+加息预期降温
+@@ b8e30227b6 html
+美联储<span class="ek">（Federal Reserve (Fed)）</span> 9 月 16 日加息 25 个基点到 3.75% 至 4.00%，是 2023 年以来首次加息；会议纪要显示多数官员认为年底前再加一次可能合适
+@@ d04c7ba46e html
+等权和小盘持续跑赢
+@@ 0b83e2fe32 html
+10 月 5 日 RSP、IWM 上涨，他认为轮动论「似乎还可以成立」；10 月 8 日他说第二天才是「真正关键的验证日」
+@@ 8ab31cc603 html
+简单说：油价在 90 美元附近来回，长端利率还在上行。这两个前提都还没有站稳，所以本书每家公司的「接下来盯什么」，都会回到利率、油价和各自的财报<span class="ek">（Earnings report）</span>。
+@@ b8b14648e3 html
+每一章怎么读
+@@ dc5d697b06 html
+<strong>他为什么关注</strong>：这只股票出现在清单上的原因。
+@@ 163c87b3e4 html
+<strong>快照</strong>：收盘价、9/30 以来的变化、远期市盈率<span class="ek">（Forward P/E）</span>、股息率<span class="ek">（Dividend yield）</span>、RSI、下次财报日期。
+@@ aec19b3a64 html
+<strong>技术面</strong>：最近约 50 个交易日的走势、均线<span class="ek">（Moving average）</span>、52 周区间<span class="ek">（52-week range）</span>、支撑<span class="ek">（Support）</span>和阻力<span class="ek">（Resistance）</span>。
+@@ 77438eecc9 html
+<strong>基本面</strong>：生意模式、增长、利润率<span class="ek">（Profit margin）</span>、负债、估值。
+@@ 836bbfc530 html
+<strong>消息面</strong>：8 月到 10 月的重要新闻和接下来的催化剂<span class="ek">（Catalyst）</span>。
+@@ 05f8f4aa04 html
+<strong>正反两面</strong>：反弹的理由、继续走弱的理由、可以观察的确认信号。
+@@ 8aeb3b0b92 html
+所有价格、均线、RSI 和财务数据截至 2026 年 10 月 9 日收盘，主要来自 stockanalysis.com，新闻来自各章列出的来源。股价每天在变，读的时候先核对最新数据。
+@@ ecf090912e html
+这是一本学习用的分析手册，用来练习怎样从三个角度看一家公司。它不是买卖建议，也不预测股价。
+@@ 4120960453 html
+交易者的原话、买入价和逻辑来自群聊记录，未经核实。
+@@ 5597321cff html
+方法：一家公司看三面
+@@ 1c19a5bb8b html
+基本面告诉你这家公司值多少钱，消息面告诉你市场为什么现在重新给它定价，技术面告诉你买卖双方此刻站在哪里。超卖<span class="ek">（Oversold）</span>反弹的交易，三面都要看。
+@@ 9eadf9561d html
+基本面：先看生意，再看价格
+@@ 34000dcf18 html
+指标
+@@ 8d70ef0ee8 html
+它回答的问题
+@@ 58d1200697 html
+怎么读
+@@ 6d03a7bbab html
+收入增长
+@@ 5a76cdca52 html
+生意在变大还是变小
+@@ a22e0f09d2 html
+看最近一个季度和过去 12 个月两个数，方向比单个数字重要
+@@ 29c517b54e html
+经营利润率<span class="ek">（Operating margin）</span>、净利率<span class="ek">（Net margin）</span>
+@@ ce9b1ae30b html
+每赚 100 美元收入，能留下多少
+@@ 52674e8b84 html
+和同行比、和自己的历史比；利润率<span class="ek">（Profit margin）</span>下滑常常比收入下滑更早
+@@ 5d7245bb59 html
+市盈率<span class="ek">（Price-to-earnings ratio (P/E)）</span>（过去 12 个月 / 远期）
+@@ 06b6e34c9c html
+市场为一美元利润付多少钱
+@@ 076c49e4ef html
+远期市盈率<span class="ek">（Forward P/E）</span>用分析师对未来 12 个月的预测，盈利预期<span class="ek">（Earnings estimates）</span>下修时它会「变贵」
+@@ 64c2918430 html
+估值和增长是否匹配
+@@ 2278787e16 html
+市盈率除以盈利增长率，越低越便宜，但增长率是预测，误差很大
+@@ 1d5107ecee html
+把债务也算进来的估值
+@@ be371cc0e6 html
+负债重的公司（如美高梅）只看市盈率会低估风险
+@@ 29fe5220f6 html
+股息率<span class="ek">（Dividend yield）</span>、派息率<span class="ek">（Payout ratio）</span>
+@@ 7a42177259 html
+现金回报有多少、能不能持续
+@@ 34afba2630 html
+派息率太高（接近或超过 100%）的高股息<span class="ek">（Dividend）</span>，可能是削减股息的前兆
+@@ 9fac7e86a3 html
+总债务、自由现金流<span class="ek">（Free cash flow (FCF)）</span>
+@@ 2e00ba56cf html
+抗风险能力
+@@ e07081c119 html
+利率上升时，高负债公司的估值和利润都会受压
+@@ e3ff78ba42 html
+银行是例外。银行的「债务」是存款和借款，是它的原材料，不能和普通公司比。看银行要看净息差<span class="ek">（Net interest margin (NIM)）</span>、市净率<span class="ek">（Price-to-book ratio (P/B)）</span>、ROE 和资本充足率。
+@@ 9eb4812b4c html
+消息面：找到股价下跌的原因
+@@ a40aea4b37 html
+一只股票跌了 20%，背后总有原因：业绩不及预期、指引<span class="ek">（Guidance）</span>下调、管理层变动、诉讼、行业数据转弱，或者只是整个板块被资金抛售。区分两种情况非常重要：
+@@ 4e59494699 html
+被板块拖累（更可能反弹）
+@@ 9aa36506c1 html
+公司自身没有坏消息
+@@ a8bb8b1a05 html
+同行一起下跌
+@@ 0c482929f5 html
+原因是宏观或资金轮动
+@@ 938a39f41c html
+宏观条件改善，股价就有修复空间
+@@ 30aacefe0c html
+公司自己出了问题（更难反弹）
+@@ 74e64cb022 html
+业绩下滑、指引下调、削减股息
+@@ 6d7643fc73 html
+分析师集中下调目标价<span class="ek">（Price target）</span>
+@@ 6bdc1d9992 html
+收购预期消失、大股东退出
+@@ 750f86db0a html
+需要新的好消息才能扭转
+@@ fb8419f5c9 html
+还要列出接下来的催化剂<span class="ek">（Catalyst）</span>。超卖股在财报<span class="ek">（Earnings report）</span>前后最容易大幅波动：财报证明问题没有想象中严重，股价可能快速修复；财报证实了担忧，股价可能再下一个台阶。
+@@ adf9a17969 html
+技术面：价格、均线、RSI 和关键价位
+@@ c3ce3f19ee html
+工具
+@@ e7aa89bce1 html
+超卖反弹里的用法
+@@ 01568a72c0 html
+50 日、200 日均线<span class="ek">（200-day moving average）</span>
+@@ d6922ce48c html
+价格在均线<span class="ek">（Moving average）</span>上方偏强，下方偏弱；50 日线在 200 日线下方叫「空头排列<span class="ek">（Bearish alignment）</span>」
+@@ b96f32e89a html
+反弹的第一个确认，是收复 50 日均线<span class="ek">（50-day moving average）</span>
+@@ 1e7ae40e29 html
+RSI（14 日）
+@@ 8cdb1db6da html
+0 到 100，低于 30 叫超卖，高于 70 叫超买<span class="ek">（Overbought）</span>
+@@ e5b84b3a5f html
+超卖说明跌得急，不说明跌到底；RSI 可以在 30 以下停留很久
+@@ 87965d3ddb html
+52 周区间<span class="ek">（52-week range）</span>
+@@ 61b188f1bc html
+现价离一年内的高低点有多远
+@@ f1d08a0820 html
+贴近 52 周低点时，守住低点是第一道考验
+@@ 3e6d8253c6 html
+支撑<span class="ek">（Support）</span>和阻力<span class="ek">（Resistance）</span>
+@@ 10ee2e9536 html
+之前反复止跌或受阻的价位
+@@ 09ea588fcf html
+跌破支撑要认错；突破阻力才算反弹开始
+@@ 3f1bfb72a7 html
+跳空<span class="ek">（Gap）</span>缺口
+@@ 808544ab21 html
+两天之间没有成交的价格区间，常由新闻造成
+@@ 1b8919dc52 html
+坏消息造成的缺口，常常成为之后的阻力
+@@ 0d79235ecb html
+现价贴近 52 周低点，两条均线都在上方，目标价高出很多。这是典型的「超卖、但趋势仍然向下」的形态：价格便宜，买方还没有证明自己。
+@@ e512efe8e0 html
+把三面合在一起
+@@ 18c986e013 html
+组合
+@@ 72f8ba9a3a html
+含义
+@@ 6438f9e44c html
+常见做法
+@@ fda252902c html
+基本面稳、消息面是板块拖累、技术面超卖
+@@ 7bc90e8b4d html
+最典型的超卖反弹候选
+@@ 7dc4bb41c7 html
+等止跌信号，分批小仓位
+@@ def7a86eff html
+基本面转弱、消息面是公司自身问题、技术面超卖
+@@ 9a9010d8cd html
+可能是「接飞刀<span class="ek">（Catching a falling knife）</span>」
+@@ 6ee2dfb9ad html
+等财报或新消息证明最坏的情况已经过去
+@@ b4383e3793 html
+基本面稳、技术面已经收复均线
+@@ c9cb555f99 html
+反弹已经开始
+@@ 9f71d8c696 html
+错过了最低点，但确定性更高
+@@ b100730d9a html
+估值很低、股息率很高、但盈利在下滑
+@@ 47eae381d6 html
+可能是价值陷阱<span class="ek">（Value trap）</span>
+@@ 91480df192 html
+先看派息率和自由现金流能否支撑股息
+@@ ec451a3562 html
+超卖说明卖得太急，便宜说明价格低。两件事都不等于马上会涨。
+@@ 8ccea75157 html
+总览：二十家放在一起
+@@ 7dab41ac27 html
+先横向比，再纵向看。这一章把二十家公司放在同一张表和同一张图上，找出谁最超卖<span class="ek">（Oversold）</span>、谁最便宜、谁的财报<span class="ek">（Earnings report）</span>最先到。
+@@ 91fa75b193 html
+对比总表
+@@ 3c39f19488 html
+点表头可以排序，点某一行跳到那家公司的章节。数据截至 10 月 9 日收盘。
+@@ f13fd1ca36 html
+代码
+@@ f1e5ffd199 html
+公司
+@@ 738e83c4b1 html
+收盘价
+@@ 0ece13ccf7 html
+9/30 以来
+@@ b421172dae html
+距 50 日线
+@@ e0fc7a72d0 html
+距 200 日线
+@@ 1ae79c88ff html
+远期市盈率
+@@ c31b100cc9 html
+股息率
+@@ 7fc79f33c6 html
+下次财报
+@@ f7284cdc4d html
+麦当劳
+@@ be6249e9d9 html
+温蒂汉堡
+@@ a5132107e7 html
+百事公司
+@@ 0cb33d3c3f html
+未公布
+@@ 8c8223f390 html
+亿滋国际
+@@ 5c0aa577cb html
+好时
+@@ fa9b0b323d html
+劳氏
+@@ c808d19ea7 html
+康卡斯特
+@@ 717e5203ac html
+美国银行
+@@ dacaaf59cd html
+黑石集团
+@@ fdcc95f002 html
+维京游轮
+@@ 0e05ad701b html
+美高梅
+@@ 3de3046803 html
+雷神
+@@ 417020fd9f html
+通用动力
+@@ b0b021fcda html
+废物管理
+@@ ee48d842d5 html
+南方公司
+@@ e16905d7ef html
+杜克能源
+@@ 402890ff4b html
+斯伦贝谢
+@@ 2a27592cf9 html
+雅培
+@@ 4325193201 html
+几个一眼能看出来的事实：二十家里有 19 家收盘价在 200 日均线<span class="ek">（200-day moving average）</span>下方；RSI 低于 30 的有 WEN、CMCSA、MGM；距离 50 日线最远的是美高梅和温蒂，两家都有公司自身的坏消息。
+@@ b8490758f7 html
+跌得多的，是不是更便宜
+@@ f78d9af0b7 html
+越靠左，跌破 200 日均线越深。切到「远期市盈率<span class="ek">（Forward P/E）</span>」，左下角是又跌得深又便宜的公司；切到「股息率<span class="ek">（Dividend yield）</span>」，看高股息<span class="ek">（Dividend）</span>是否来自股价下跌；切到「RSI」，看谁已经接近超卖。
+@@ a3501b9935 html
+清单公布后的表现
+@@ 68f7e20e75 html
+灰色是不在 17 只清单里、但他实际买入的三家。一周多的涨跌主要是噪音，这张图的用途是提醒你：清单发出后，并没有出现整齐的反弹。
+@@ 23ab19251e html
+财报日历
+@@ bcfcf0b246 html
+超卖股在财报前后波动最大。按日期排好，就知道哪些公司的「验证日」最先到来。
+@@ 52e686d196 html
+说明
+@@ 9afd2e30ad html
+2026-10-14 盘前
+@@ ca3363a544 html
+2026-10-15 盘后
+@@ f6b41862e4 html
+<b>RTX</b> 雷神
+@@ 231ad7ccfb html
+2026-10-20 盘前
+@@ 4af6dea8e7 html
+<b>ABT</b> 雅培
+@@ 7ac2e3c435 html
+2026-10-21 盘前
+@@ f893471089 html
+<b>BX</b> 黑石集团
+@@ b7040bc263 html
+2026-10-22 盘前
+@@ df41711e70 html
+<b>CMCSA</b> 康卡斯特
+@@ 2911543885 html
+<b>SLB</b> 斯伦贝谢
+@@ ab0bda000d html
+2026-10-23 盘前
+@@ 28279906bb html
+<b>MDLZ</b> 亿滋国际
+@@ b64cceed3b html
+2026-10-27 盘后（预估，公司尚未确认）
+@@ 1150bc9045 html
+<b>WM</b> 废物管理
+@@ 8b093cb903 html
+2026-10-27 盘后
+@@ e2a3c6f3c3 html
+2026-10-28 盘后
+@@ 6e288a0e0f html
+2026-10-29 盘前
+@@ 3b118d29a3 html
+2026-10-30 盘前
+@@ 92a95cf863 html
+2026-11-04 盘前
+@@ d7564df683 html
+2026-11-05 盘前
+@@ 0db8c863ab html
+<b>SO</b> 南方公司
+@@ 6b3dc66d1d html
+2026-11-18 盘前
+@@ 259de63411 html
+<b>VIK</b> 维京游轮
+@@ 61ed1ef386 html
+2026-11-18（网站显示日期，公司尚未正式公告）
+@@ 4263bb0b42 html
+<b>PEP</b> 百事公司
+@@ 5235047e63 html
+Q3 已于 2026-10-08 公布；下一次（Q4）财报日期尚未公布
+@@ bb00d14d56 html
+10 月 14 日的美国银行是第一个，也是整个银行财报季的开始。日期以公司公告为准，标「预估」或「尚未公告」的可能变化。
+@@ 6eb851a26c html
+MCD <span class="zh">麦当劳</span>
+@@ 4f4f8894cf html
+在 9 月 30 日的 17 只超卖<span class="ek">（Oversold）</span>清单里，10 月 2 日记录以 231.89 美元买入正股。他也说过「石油越贵，外出的人越少」，所以麦当劳押的是油价回落、消费股被卖过头。
+@@ 384b24b2c1 html
+一句话认识它
+@@ 166c47c937 html
+麦当劳是全球最大的快餐连锁品牌之一，全球约有 4.6 万家餐厅，美国约 1.4 万家门店中 95% 由加盟商<span class="ek">（Franchisee）</span>经营。公司收入主要来自加盟商缴纳的租金和特许权使用费<span class="ek">（Royalty）</span>，其余来自直营店的餐饮销售。这种收租加抽成的模式利润率<span class="ek">（Profit margin）</span>很高，但增长要靠客流和同店销售<span class="ek">（Same-store sales）</span>。
+@@ 10efa46e48 html
+技术面
+@@ 6136ba2618 html
+均线<span class="ek">（Moving average）</span>画的是 10 月 9 日的当前值，不是历史走势。
+@@ 9147c7ef00 html
+52 周区间<span class="ek">（52-week range）</span> 229.20 至 341.75 美元，现价比高点低 31.2%。分析师平均目标价<span class="ek">（Price target）</span> 292.21 美元（34 位分析师，平均评级 Buy），目标价反映的是乐观情景，常常滞后于股价。
+@@ 219b333a47 html
+收盘价 235.23 美元，比 50 日均线<span class="ek">（50-day moving average）</span> 255.65 美元低 7.99%，比 200 日均线<span class="ek">（200-day moving average）</span> 287.73 美元低 18.25%。50 日均线在 200 日均线下方，属于空头排列<span class="ek">（Bearish alignment）</span>。
+@@ 407b67bdbc html
+RSI 为 36.68，偏弱，但还没跌进 30 以下的超卖区。
+@@ 938e5f2614 html
+支撑<span class="ek">（Support）</span>：52 周低点 229.20 美元（10 月 5 日盘中），现价只高出 2.63%；近 30 个交易日收盘低点 230.88 美元（10 月 7 日）。229 到 231 美元是关键支撑带。
+@@ d593e4ecf6 html
+阻力<span class="ek">（Resistance）</span>：9 月 23 日投资者日跳空<span class="ek">（Gap）</span>下跌，前一天收盘 250.35 美元，是第一道阻力；再往上是 50 日均线 255.65 美元和近 30 日收盘高点 265.00 美元（8 月 28 日）。
+@@ 2d395b88fe html
+52 周高点 341.75 美元，现价比它低 31.17%；过去 52 周股价下跌 20.10%。
+@@ 7406f8bbe8 html
+基本面
+@@ a5d989a71d html
+市值
+@@ 9115834769 html
+1,665 亿美元
+@@ 86814dd3b6 html
+市盈率（过去 12 个月 / 远期）
+@@ 0e5269aef6 html
+股息率 / 派息率
+@@ 13a6cf67dc html
+收入（过去 12 个月）
+@@ 63644c4f9a html
+277 亿美元
+@@ dc5ab94555 html
+收入增长（12 个月 / 最近一季）
+@@ d89a8bce79 html
+经营利润率 / 净利率
+@@ f721e9b6d6 html
+总债务 / 现金
+@@ 498a98bdc4 html
+546 / 8 亿美元
+@@ 2b232f7ca2 html
+自由现金流（过去 12 个月）
+@@ c14d0a6173 html
+78 亿美元
+@@ 35aa746a93 html
+过去十二个月收入 277.0 亿美元，同比增长 6.3%；毛利率<span class="ek">（Gross margin）</span> 57.38%，经营利润率<span class="ek">（Operating margin）</span> 45.72%，净利率<span class="ek">（Net margin）</span> 31.72%。
+@@ e06afda422 html
+Q2 2026 收入 70.99 亿美元，同比增长 3.74%；EPS 3.32 美元，增长 5.73%。全球同店销售只增长 1.3%，美国仅 0.8%，客流偏弱。
+@@ 9204f18c9e html
+估值：市盈率（TTM）19.11 倍，远期市盈率<span class="ek">（Forward P/E）</span> 17.81 倍，PEG 2.64，EV/EBITDA 14.75 倍。Wells Fargo 认为目前市盈率处在约 20 年的低位。
+@@ 24d171beb5 html
+年化股息<span class="ek">（Dividend）</span> 7.72 美元，股息率<span class="ek">（Dividend yield）</span> 3.28%，派息率<span class="ek">（Payout ratio）</span> 62.71%，已连续 51 年提高股息；过去十二个月自由现金流<span class="ek">（Free cash flow (FCF)）</span> 77.6 亿美元。
+@@ e8fd14cd2d html
+总债务 546.0 亿美元，现金只有 8.22 亿美元，账面股东权益为负，这是长期借债回购<span class="ek">（Share buyback）</span>的结果。ROIC 17.80%，利息成本对利率变化敏感。
+@@ c0a70b6a5a html
+34 位分析师平均评级为 Buy，平均目标价 292.21 美元，比现价高 24.22%；但 10 月以来 Wells Fargo、Guggenheim、Bernstein 等多家机构下调了目标价。
+@@ 599a1e581c html
+消息面
+@@ 0a19552c42 html
+<span class="nd">2026-08-04</span><span>公布 Q2 业绩：收入 70.99 亿美元增长 4%，EPS 3.32 美元增长 6%，但全球同店销售只增长 1.3%、美国 0.8%，说明客流增长乏力。 <a href="https://mcdonalds.mediaroom.com/2026-08-04-McDONALDS-REPORTS-SECOND-QUARTER-2026-RESULTS" target="_blank" rel="noopener">mcdonalds.mediaroom.com</a></span>
+@@ 5de55e1c47 html
+<span class="nd">2026-09-23</span><span>投资者日公布 NEXT 计划：未来十年投入 85 亿美元改造全球门店，美国加盟商每店要额外投入约 80 万美元。市场担心成本，股价当天下跌 4.81%，是 2025 年 4 月以来最大单日跌幅。 <a href="https://www.bostonglobe.com/2026/09/23/business/mcdonalds-plans-multibillion-dollar-investment/" target="_blank" rel="noopener">bostonglobe.com</a></span>
+@@ 8f422fa9ad html
+<span class="nd">2026-10-05</span><span>Wells Fargo 把目标价从 300 美元降到 270 美元（维持增持），Guggenheim 从 290 美元降到 250 美元（中性），理由是美国同店销售偏软、NEXT 计划增加执行风险。 <a href="https://stocktwits.com/news-articles/markets/equity/mc-donald-s-stock-draws-fresh-target-cuts-wells-fargo-says-analyst-day-message-is-still-hard-to-digest/cZDpUq1RBjR" target="_blank" rel="noopener">stocktwits.com</a></span>
+@@ 175ff5565d html
+<span class="nd">2026-10-06</span><span>美联社报道，一名消费者在伊利诺伊联邦法院起诉麦当劳，称其 AI 定价工具构成「算法价格操纵」并寻求集体诉讼；麦当劳称诉讼充满不实内容，菜单价格由加盟商决定。诉讼增加了法律和舆论风险。 <a href="https://abcnews.com/Technology/wireStory/mcdonalds-sued-ai-tool-recommends-prices-us-franchisees-137046042" target="_blank" rel="noopener">abcnews.com</a></span>
+@@ 6abe8f0c52 html
+<span class="nd">2026-10-08</span><span>据 Bloomberg 10 月 6 日报道，美国加盟商对每店约 80 万美元的改造费用感到意外，担心在客流下滑时增加负债。加盟商的配合程度决定 NEXT 计划能否推进。 <a href="https://www.restaurantdive.com/news/mcdonalds-faces-pushback-next-initiatives/832430/" target="_blank" rel="noopener">restaurantdive.com</a></span>
+@@ 9a44c60392 html
+<span class="nd">2026-10-08</span><span>Bernstein 把目标价从 295 美元降到 250 美元（维持与大市同步），认为利润率改善可以实现，但美国销售增长路径还没得到验证；当天股价仍上涨 2.61% 至 236.90 美元。 <a href="https://stocktwits.com/news-articles/markets/equity/mcd-stock-s-target-cut-to-250-by-bernstein-amid-sales-growth-concerns-next-uncertainty/cZDUlweRBNl" target="_blank" rel="noopener">stocktwits.com</a></span>
+@@ 3bed319d9c html
+接下来的催化剂
+@@ 8ce55dfbd1 html
+2026-11-04 盘前：Q3 财报<span class="ek">（Earnings report）</span>，重点看美国同店销售和客流是否回升，以及 NEXT 计划的成本和补贴细节。
+@@ 1d71f11eea html
+2026-12-01：除息日<span class="ek">（Ex-dividend date）</span>，年化股息 7.72 美元。
+@@ 2c9169c61c html
+AI 定价反垄断诉讼的后续进展，原告正在寻求集体诉讼资格。
+@@ 8ba5090e52 html
+加盟商对每店约 80 万美元改造费用的态度，以及公司是否公布更具体的改造时间表。
+@@ f305ad500d html
+宏观敏感度
+@@ 39bf9daaec html
+利率：麦当劳是高股息、低波动（贝塔 0.45）的股票，长期利率下行会提高股息股的吸引力，也会降低 546 亿美元债务的再融资成本；利率上行则相反。
+@@ 3b1cc4377a html
+消费：美国快餐客流整体持平，低收入顾客对价格敏感，通胀和油价上涨会挤压他们的外出就餐预算。10 月中旬开始的银行财报季会披露信用卡消费情况，可以作为参考。
+@@ d0261da365 html
+美元：Q2 收入按美元计增长 4%，按固定汇率只增长 2%，说明美元走弱帮了忙；如果美元转强，海外利润换算成美元会变少。
+@@ 45456e7011 html
+正反两面
+@@ 3f0c487c5a html
+反弹的理由
+@@ d596621131 html
+远期市盈率降到 17.81 倍，Wells Fargo 称这是约 20 年的市盈率低位；股息率 3.28%，对收息资金有吸引力。
+@@ c7a9339bf2 html
+股价贴近 52 周低点 229.20 美元，30 日内多次在 230 到 231 美元止跌，RSI 36.68 接近超卖区。
+@@ 549ca7e33b html
+NEXT 计划目标在 2030 年把经营利润率提高到 50% 出头至 50% 中段，Bernstein 认为利润率改善「高度可实现」。
+@@ 89ff5a83f5 html
+继续走弱的理由
+@@ 7e48d07205 html
+美国 Q2 同店销售只有 0.8%，客流问题没有解决，Bernstein 认为销售增长路径尚未验证。
+@@ 2f12ace8fc html
+NEXT 计划需要加盟商每店额外投入约 80 万美元，公司也要提供 85 亿美元支持（其中约 50 亿美元在 2030 年前），加盟商反弹可能拖慢执行并占用现金流。
+@@ 508a722cb5 html
+AI 定价反垄断诉讼和舆论压力可能影响品牌形象和定价灵活性。
+@@ 975391dacd html
+能否守住 229.20 美元的 52 周低点，收盘跌破说明支撑失效。
+@@ f40bd502cc html
+11 月 4 日 Q3 财报中，美国同店销售能否明显高于 Q2 的 0.8%。
+@@ 17dc70bc0e html
+股价能否收复 250.35 美元的缺口位置和 255.65 美元的 50 日均线。
+@@ c1726a74e6 html
+资料来源：<a href="https://stockanalysis.com/stocks/mcd/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/mcd/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/mcd/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/mcd/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://mcdonalds.mediaroom.com/2026-08-04-McDONALDS-REPORTS-SECOND-QUARTER-2026-RESULTS" target="_blank" rel="noopener">mcdonalds.mediaroom.com</a> · <a href="https://www.bostonglobe.com/2026/09/23/business/mcdonalds-plans-multibillion-dollar-investment/" target="_blank" rel="noopener">bostonglobe.com</a> · <a href="https://stocktwits.com/news-articles/markets/equity/mc-donald-s-stock-draws-fresh-target-cuts-wells-fargo-says-analyst-day-message-is-still-hard-to-digest/cZDpUq1RBjR" target="_blank" rel="noopener">stocktwits.com</a> · <a href="https://abcnews.com/Technology/wireStory/mcdonalds-sued-ai-tool-recommends-prices-us-franchisees-137046042" target="_blank" rel="noopener">abcnews.com</a> · <a href="https://www.restaurantdive.com/news/mcdonalds-faces-pushback-next-initiatives/832430/" target="_blank" rel="noopener">restaurantdive.com</a> · <a href="https://stocktwits.com/news-articles/markets/equity/mcd-stock-s-target-cut-to-250-by-bernstein-amid-sales-growth-concerns-next-uncertainty/cZDUlweRBNl" target="_blank" rel="noopener">stocktwits.com</a>
+@@ a179a7faa8 html
+WEN <span class="zh">温蒂汉堡</span>
+@@ a0ecd241cc html
+不在 9 月 30 日那 17 只里，10 月 5 日和同一批「持有时间较长」的正股一起买入，记录价 6.05 美元。属于更便宜、也更投机的快餐股。
+@@ 2f549f53ca html
+温蒂汉堡是美国的汉堡快餐连锁，Q2 末全球约有 7,180 家餐厅，绝大多数由加盟商<span class="ek">（Franchisee）</span>经营。公司收入主要来自加盟商的特许权使用费<span class="ek">（Royalty）</span>和租金、广告基金收入，以及少量直营店销售。
+@@ 52fd5174a6 html
+均线<span class="ek">（Moving average）</span>画的是 10 月 9 日的当前值，不是历史走势。这家公司的均线和 RSI 来自数据网站 10 月 7 日或 8 日的快照，比收盘价晚一两天。
+@@ c8e7ba369d html
+52 周区间<span class="ek">（52-week range）</span> 5.94 至 10.12 美元，现价比高点低 38.4%。分析师平均目标价<span class="ek">（Price target）</span> 7.57 美元（24 位分析师，平均评级 Hold），目标价反映的是乐观情景，常常滞后于股价。
+@@ 8353254fff html
+收盘价 6.23 美元，比 50 日均线<span class="ek">（50-day moving average）</span> 7.57 美元低 17.70%，比 200 日均线<span class="ek">（200-day moving average）</span> 7.52 美元低 17.15%，两条均线都压在上方（均线数据截至 10 月 7 日）。
+@@ 56c5cd281d html
+RSI 29.78（截至 10 月 7 日），处在 30 以下的超卖<span class="ek">（Oversold）</span>区，说明短期跌得很急。
+@@ 945cad78cb html
+支撑<span class="ek">（Support）</span>：52 周低点 5.94 美元（10 月 5 日盘中），现价高出 4.88%；近 30 个交易日收盘低点 6.10 美元（10 月 5 日）。
+@@ 038b013d1a html
+阻力<span class="ek">（Resistance）</span>：近 20 日收盘高点 7.63 美元（9 月 14 日），以及 7.52 到 7.57 美元的均线区；8 月 27 日从 9.04 美元跳空<span class="ek">（Gap）</span>跌到 7.82 美元，近 30 日收盘高点 8.30 美元（8 月 31 日）。
+@@ bf1bc49c0f html
+52 周高点 10.12 美元，现价低 38.44%；过去 52 周下跌 34.51%。
+@@ 008913e6f1 html
+12 亿美元
+@@ 96f111bdd9 html
+22 亿美元
+@@ 1722defa83 html
+41 / 3 亿美元
+@@ 1d35198e5c html
+3 亿美元
+@@ 937280fdf6 html
+过去十二个月收入 22.0 亿美元，同比下降 1.0%；毛利率<span class="ek">（Gross margin）</span> 33.11%，经营利润率<span class="ek">（Operating margin）</span> 13.55%，净利率<span class="ek">（Net margin）</span> 5.72%。
+@@ 43ebcab8e5 html
+Q2 2026 美国同店销售<span class="ek">（Same-store sales）</span>下降 7.0%，全球下降 6.3%；调整后 EPS 0.18 美元，去年同期 0.29 美元。过去十二个月 EPS 0.66 美元，同比下降 31.4%。
+@@ bd5eb69d3b html
+公司把季度股息<span class="ek">（Dividend）</span>从 0.14 美元降到 0.07 美元，年化 0.28 美元，按现价股息率<span class="ek">（Dividend yield）</span> 4.49%，同时撤回 2026 年业绩指引<span class="ek">（Guidance）</span>。
+@@ f21e18fbd3 html
+负债重：总债务 40.7 亿美元，现金 3.41 亿美元，净债务约 37.3 亿美元，是 11.9 亿美元市值的 3 倍多。ROIC 只有 5.40%，过去十二个月自由现金流<span class="ek">（Free cash flow (FCF)）</span> 2.64 亿美元。
+@@ a8b8a53cb1 html
+市盈率<span class="ek">（Price-to-earnings ratio (P/E)）</span> 9.47 倍、市销率<span class="ek">（Price-to-sales ratio (P/S)）</span> 0.53 看起来便宜，但远期市盈率<span class="ek">（Forward P/E）</span> 12.97 倍高于 TTM，说明市场预期盈利还会下降；分析师预测未来 3 年 EPS 年均变化为 -12.84%。
+@@ ddefea78ae html
+做空股数占流通股 31.08%，空头很集中。24 位分析师评级为 Hold，平均目标价 7.57 美元。
+@@ 81d59a627e html
+<span class="nd">2026-08-07</span><span>公布 Q2：美国同店销售下降 7.0%，调整后 EPS 0.18 美元（去年 0.29 美元），同时把季度股息降至 0.07 美元并撤回全年指引，说明扭转需要时间和资金。 <a href="https://www.sec.gov/Archives/edgar/data/0000030697/000119312526339132/d130352dex991.htm" target="_blank" rel="noopener">sec.gov</a></span>
+@@ 7bdb51f48a html
+<span class="nd">2026-08-26</span><span>Reuters 报道持股约 16% 的 Trian 目前没有私有化<span class="ek">（Take-private）</span>报价计划。8 月 12 日的收购传闻曾让股价单日上涨 14.7%，消息出来后股价 8 月 27 日下跌 13.55%，收购溢价预期落空。 <a href="https://kfgo.com/2026/08/26/exclusive-trian-has-no-plans-to-make-bid-for-wendys-right-now-sources-say/" target="_blank" rel="noopener">kfgo.com</a></span>
+@@ 2f08b47f02 html
+<span class="nd">2026-08-27</span><span>新 CEO Bob Wright 公布五点扭转计划（菜品质量与价值、运营、门店、营销、减少折扣），并新设首席营销与客户增长官，由前麦当劳高管 Tariq Hassan 出任，执行效果决定基本面能否企稳。 <a href="https://www.entrepreneur.com/buying-a-franchise/wendys-new-ceo-has-a-five-point-plan-to-get-back-in-the-burger-chain-fight" target="_blank" rel="noopener">entrepreneur.com</a></span>
+@@ d76047b74f html
+<span class="nd">2026-09-18</span><span>大加盟商 Meritage Hospitality（经营 314 家温蒂门店）申请破产保护，此前已关闭 60 家店，反映加盟商经营压力，后续可能有更多关店；当天股价下跌 3.58%。 <a href="https://www.nrn.com/restaurant-franchising/giant-wendy-s-franchisee-meritage-hospitality-group-files-for-bankruptcy" target="_blank" rel="noopener">nrn.com</a></span>
+@@ 29fca2bac9 html
+<span class="nd">2026-10-08</span><span>公司宣布 11 月 5 日盘前公布 Q3 业绩，美东 8:30 召开电话会，这是新管理层给出扭转细节的下一个窗口。 <a href="https://s1.q4cdn.com/202642389/files/doc_news/The-Wendys-Company-to-Report-Third-Quarter-2026-Results-on-November-5-2026.pdf" target="_blank" rel="noopener">s1.q4cdn.com</a></span>
+@@ 1ef07a491b html
+2026-11-05 盘前：Q3 财报<span class="ek">（Earnings report）</span>，美东 8:30 电话会。看同店销售降幅是否收窄，扭转计划有没有量化目标，是否恢复全年指引。
+@@ 4d576b045b html
+大加盟商 Meritage 破产程序中的关店名单，以及对系统销售的影响。
+@@ 95083ddb34 html
+新任首席营销官 Tariq Hassan 上任后的菜单和营销调整。
+@@ a7990939d6 html
+Trian（持股约 16%）的后续动向，Reuters 称其对未来意图保持开放。
+@@ 8c0005e295 html
+消费：温蒂的顾客对价格敏感，通胀、油价和就业变化会直接影响客流。10 月中旬开始的银行财报季可以观察中低收入人群的消费状况。
+@@ 12a9beb456 html
+成本：牛肉等食材成本上涨压缩加盟商利润，NRN 报道提到加盟商受到牛肉成本上升的影响。
+@@ add01c7b91 html
+利率：净债务约 37 亿美元，长期利率下行有利于将来再融资，利率上行会加重利息负担。
+@@ 9c72e6921b html
+RSI 低于 30，股价接近 52 周低点 5.94 美元，做空比例<span class="ek">（Short interest）</span>达流通股的 31.08%，一旦出现利好，空头回补<span class="ek">（Short covering）</span>会放大波动。
+@@ c9d7b60f28 html
+新 CEO 提出五点扭转计划，并从麦当劳引进营销主管；若 Q3 同店销售降幅收窄，会是基本面改善的第一个信号。
+@@ 2e724ff596 html
+Trian 仍持股约 16%，Reuters 称其对未来意图保持开放，私有化话题仍可能再出现。
+@@ 4effecd423 html
+同店销售连续多个季度下滑，Q2 美国下降 7.0%，扭转计划还在制定，全年指引已经撤回。
+@@ a95b21c343 html
+大加盟商 Meritage 破产并持续关店，可能拖累系统销售和特许权收入。
+@@ e004e1da8c html
+负债高，股息已削减，资本配置空间有限；远期市盈率 12.97 倍高于 TTM 的 9.47 倍，盈利预期<span class="ek">（Earnings estimates）</span>仍在下修。
+@@ 2929fa2cca html
+5.94 美元的 52 周低点能否守住。
+@@ 148cceba0c html
+11 月 5 日 Q3 美国同店销售与 Q2 的 -7.0% 相比是否改善，以及是否重新给出指引。
+@@ ae61f103c1 html
+股价能否站回 7.52 到 7.57 美元的均线区。
+@@ be70d8f30b html
+资料来源：<a href="https://stockanalysis.com/stocks/wen/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/wen/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/wen/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/wen/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0000030697/000119312526339132/d130352dex991.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://kfgo.com/2026/08/26/exclusive-trian-has-no-plans-to-make-bid-for-wendys-right-now-sources-say/" target="_blank" rel="noopener">kfgo.com</a> · <a href="https://www.entrepreneur.com/buying-a-franchise/wendys-new-ceo-has-a-five-point-plan-to-get-back-in-the-burger-chain-fight" target="_blank" rel="noopener">entrepreneur.com</a> · <a href="https://www.nrn.com/restaurant-franchising/giant-wendy-s-franchisee-meritage-hospitality-group-files-for-bankruptcy" target="_blank" rel="noopener">nrn.com</a> · <a href="https://s1.q4cdn.com/202642389/files/doc_news/The-Wendys-Company-to-Report-Third-Quarter-2026-Results-on-November-5-2026.pdf" target="_blank" rel="noopener">s1.q4cdn.com</a>
+@@ 40320849fe html
+PEP <span class="zh">百事公司</span>
+@@ 19b74d4856 html
+清单里的必需消费股。他的逻辑是：利率回落、加息预期降温时，高股息<span class="ek">（Dividend）</span>的防御股会反弹。
+@@ f95d999801 html
+百事公司有两大块业务：以菲多利（乐事、多力多滋）和桂格为代表的方便食品，以及百事可乐、佳得乐等饮料。过去十二个月收入 982.4 亿美元，北美是最大市场，近期增长主要来自国际业务。
+@@ 057155d09b html
+52 周区间<span class="ek">（52-week range）</span> 123.47 至 171.48 美元，现价比高点低 26.5%。分析师平均目标价<span class="ek">（Price target）</span> 143.05 美元（24 位分析师，平均评级 Hold），目标价反映的是乐观情景，常常滞后于股价。
+@@ 49fd2ff13e html
+收盘价 125.97 美元，比 50 日均线<span class="ek">（50-day moving average）</span> 135.52 美元低 7.05%，比 200 日均线<span class="ek">（200-day moving average）</span> 146.68 美元低 14.12%，均线呈空头排列<span class="ek">（Bearish alignment）</span>。
+@@ c69ae69f29 html
+RSI 36.89，偏弱，但没有进入 30 以下的超卖<span class="ek">（Oversold）</span>区。
+@@ 45d964b1ad html
+支撑<span class="ek">（Support）</span>：52 周低点 123.47 美元（10 月 7 日盘中），现价只高出 2.02%；近 30 个交易日收盘低点 123.73 美元也在 10 月 7 日。
+@@ 478dd4c13b html
+阻力<span class="ek">（Resistance）</span>：10 月 8 日财报<span class="ek">（Earnings report）</span>日盘中高点 129.50 美元，9 月 22 日收盘 131.19 美元；再往上是 50 日均线 135.52 美元和近 30 日收盘高点 141.07 美元（8 月 28 日）。
+@@ 69d17d196b html
+财报日成交约 2,395 万股，约为 20 日均量 1,052 万股的 2.3 倍，当天上涨 3.73%，次日回落 1.85%。52 周高点 171.48 美元，现价低 26.54%。
+@@ 63c6912ac6 html
+1,717 亿美元
+@@ 87456bb836 html
+982 亿美元
+@@ 9ed24162d5 html
+519 / 112 亿美元
+@@ b2886a695e html
+105 亿美元
+@@ f8946547db html
+过去十二个月收入 982.4 亿美元，同比增长 6.4%；毛利率<span class="ek">（Gross margin）</span> 54.33%，经营利润率<span class="ek">（Operating margin）</span> 16.05%，净利率<span class="ek">（Net margin）</span> 11.09%。
+@@ cd24f77015 html
+Q3 2026 收入 252.7 亿美元，增长 5.58%，有机收入增长 3.1%；报告 EPS 2.23 美元增长 17%，核心 EPS 2.34 美元只增长 2%。过去十二个月报告 EPS 增长 51.2%，与核心口径差距很大，看盈利趋势应以核心 EPS 为准。
+@@ fb91bf0cc6 html
+北美是短板：北美食品（PFNA）有机收入持平，核心经营利润下降 12%；国际各区有机收入增长 6% 到 9%。
+@@ e685d263a8 html
+全年指引<span class="ek">（Guidance）</span>下调：核心固定汇率 EPS 增长从「4% 到 6% 的下沿」降到 1% 到 2%，核心 EPS 增长从「5% 到 7% 的下沿」降到 2.5% 到 3.5%。
+@@ 0939684950 html
+年化股息 5.92 美元，股息率<span class="ek">（Dividend yield）</span> 4.70%，派息率<span class="ek">（Payout ratio）</span> 74.47%，连续 54 年增长；2026 年计划向股东返还 89 亿美元（股息约 79 亿，回购<span class="ek">（Share buyback）</span>约 10 亿）。过去十二个月自由现金流<span class="ek">（Free cash flow (FCF)）</span> 104.7 亿美元。
+@@ d838ddcd1e html
+估值：市盈率<span class="ek">（Price-to-earnings ratio (P/E)）</span> 15.85 倍，远期 14.86 倍，EV/EBITDA 11.08 倍。总债务 518.8 亿美元，现金 111.6 亿美元，ROIC 19.68%。24 位分析师评级为 Hold，平均目标价 143.05 美元。
+@@ 2cf0798b32 html
+<span class="nd">2026-09-29</span><span>JPMorgan 把评级从增持降为中性，目标价从 170 美元降到 138 美元，理由是菲多利北美咸味零食的复苏在 Q1 后停滞，Q4 达成指引更依赖降本。 <a href="https://stocktwits.com/news-articles/markets/equity/pep-stock-gets-a-downgrade-from-jp-morgan-firm-flags-frito-lay-weakness/cZMmCWWRBgW" target="_blank" rel="noopener">stocktwits.com</a></span>
+@@ 3a2902ef9d html
+<span class="nd">2026-10-07</span><span>Reuters 分析称，Elliott 入股后公司承诺三年内把核心经营利润率提高 100 个基点，但上半年核心经营利润率 16.3%，反而同比下降 15 个基点；GLP-1 减重药让北美销量承压，达标压力加大。 <a href="https://www.businessday.co.za/world/international-companies/2026-10-07-pepsicos-quiet-scramble-to-fight-off-the-glp-1-threat/" target="_blank" rel="noopener">businessday.co.za</a></span>
+@@ acfd663ccc html
+<span class="nd">2026-10-08</span><span>公布 Q3：收入 252.7 亿美元增长 5.6%，核心 EPS 2.34 美元，好于市场预期，但全年核心固定汇率 EPS 增长指引下调到 1% 到 2%；股价当天仍上涨 3.73%，说明利空已有部分预期。 <a href="https://www.sec.gov/Archives/edgar/data/0000077476/000007747626000050/q320268-kxexhibit991.htm" target="_blank" rel="noopener">sec.gov</a></span>
+@@ fe9e5cbd09 html
+<span class="nd">2026-10-08</span><span>美联社报道，公司将对多力多滋、Ruffles、SunChips 和部分汽水提价个位数百分比，以收回燃油、铝和农产品成本；Q3 用掉的 1.78 亿美元关税<span class="ek">（Tariff）</span>退款以后不会再有。 <a href="https://fortune.com/2026/10/08/pepsico-price-hike-doritos-ruffles-sodas-178-million-tariff-refund/" target="_blank" rel="noopener">fortune.com</a></span>
+@@ 2b9a154d79 html
+北美零食和部分汽水提价落地（个位数百分比），观察销量反应。
+@@ 2eedcbeb12 html
+公司表示未来几个月会推出额外的结构性降本措施。
+@@ 88e92ebb58 html
+同行信号：亿滋（MDLZ）预计 2026-10-27 盘后公布 Q3（日期为预估），可以对照零食需求。
+@@ 0d2d33f30c html
+下一次（Q4）财报日期尚未公布，届时检验全年核心 EPS 增长 2.5% 到 3.5% 的指引能否完成。
+@@ cb9f113887 html
+油价与原料：公司称提价是为了收回燃油、铝和农产品成本，油价上行会直接推高运输和包装成本。
+@@ 3e7ea21a9b html
+美元：公司把汇率对全年收入的贡献上调到约 1.5 个百分点，美元走弱有利于国际业务换算，美元走强则相反。
+@@ c51c6c186a html
+利率与消费：股息率 4.70%，长期利率下行会提高它相对债券的吸引力；但北美消费者在减少购买，CEO 表示对饮料业务「感觉不好」。
+@@ 0190757816 html
+股价贴近 52 周低点，远期市盈率<span class="ek">（Forward P/E）</span> 14.86 倍；Reuters 指出其 EV/EBITDA 已从 2022 年中的约 18 倍降到约 10 倍。
+@@ e1f77de1e6 html
+国际业务有机增长 6% 到 9%，Q3 收入和核心 EPS 好于预期，财报日放量上涨 3.73%。
+@@ 8567fc3ef2 html
+如果提价和降本能稳住北美利润率<span class="ek">（Profit margin）</span>，市场对指引下调的担忧有缓解空间；股息率 4.70% 提供一定支撑。
+@@ 05ac1b47e2 html
+北美零食份额流失，TD Cowen 称菲多利美国销售持平并在丢失份额；GLP-1 减重药可能长期抑制零食需求。
+@@ 5476fb4f4c html
+Q3 靠 1.78 亿美元关税退款抵消了部分成本，之后没有了；CFO 提到 Q4 北美核心经营利润率承压。
+@@ 79a80b0ef2 html
+提价可能再次压低销量，2022 到 2023 年连续两位数提价后就出现过销量下滑。
+@@ f776036eed html
+123.47 美元的 52 周低点能否守住。
+@@ ffd3eb1db6 html
+股价能否站上 129.50 美元（财报日高点），并回到 135.52 美元的 50 日均线上方。
+@@ 9bcff61601 html
+提价后北美零食销量的变化，以及下一次财报中 PFNA 有机收入能否转正。
+@@ ef2571aee0 html
+资料来源：<a href="https://stockanalysis.com/stocks/pep/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/pep/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/pep/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/pep/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0000077476/000007747626000050/q320268-kxexhibit991.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://fortune.com/2026/10/08/pepsico-price-hike-doritos-ruffles-sodas-178-million-tariff-refund/" target="_blank" rel="noopener">fortune.com</a> · <a href="https://www.businessday.co.za/world/international-companies/2026-10-07-pepsicos-quiet-scramble-to-fight-off-the-glp-1-threat/" target="_blank" rel="noopener">businessday.co.za</a> · <a href="https://stocktwits.com/news-articles/markets/equity/pep-stock-gets-a-downgrade-from-jp-morgan-firm-flags-frito-lay-weakness/cZMmCWWRBgW" target="_blank" rel="noopener">stocktwits.com</a> · <a href="https://stocktwits.com/news-articles/markets/equity/pepsi-co-tops-q3-estimates-as-international-growth-accelerates-cfo-sees-north-america-core-operating-margin-facing-pressure-in-q4/cZDUKgZRBNf" target="_blank" rel="noopener">stocktwits.com</a>
+@@ c77677d951 html
+MDLZ <span class="zh">亿滋国际</span>
+@@ 128745c385 html
+清单里的必需消费股（零食、巧克力）。和百事一样押防御股回暖，另外受可可价格影响很大。
+@@ 953806c3c2 html
+亿滋国际是全球零食公司，主要品牌有奥利奥、吉百利、妙卡、Toblerone 和 Clif 能量棒。收入以饼干和巧克力为主，大部分来自美国以外的市场，可可是最重要的原材料之一。
+@@ 7edac0cfb0 html
+52 周区间<span class="ek">（52-week range）</span> 51.20 至 66.65 美元，现价比高点低 9.4%。分析师平均目标价<span class="ek">（Price target）</span> 69.00 美元（23 位分析师，平均评级 Buy），目标价反映的是乐观情景，常常滞后于股价。
+@@ 1bec06e0cf html
+收盘价 60.41 美元，比 50 日均线<span class="ek">（50-day moving average）</span> 61.66 美元低 2.03%，比 200 日均线<span class="ek">（200-day moving average）</span> 59.74 美元高 1.12%，股价夹在两条均线之间，方向还不明确。
+@@ e0db825e57 html
+RSI 49.69，处于中性区间，没有超买<span class="ek">（Overbought）</span>或超卖<span class="ek">（Oversold）</span>。
+@@ 5bf44ea54f html
+支撑<span class="ek">（Support）</span>：200 日均线 59.74 美元；近 30 个交易日收盘低点 57.76 美元（10 月 1 日）；更远是 52 周低点 51.20 美元。
+@@ e67a118cff html
+阻力<span class="ek">（Resistance）</span>：50 日均线 61.66 美元；近 30 日收盘高点 62.47 美元（9 月 10 日）；52 周高点 66.65 美元，现价比它低 9.36%。
+@@ 844b23f1fd html
+10 月 1 日以来从 57.76 美元反弹约 4.6%，过去 52 周仅下跌 2.03%，走势相对平稳。
+@@ ff39538872 html
+771 亿美元
+@@ f6bb8183ec html
+397 亿美元
+@@ b87160c37f html
+221 / 17 亿美元
+@@ bc8d990182 html
+31 亿美元
+@@ 27923d178a html
+过去十二个月收入 396.8 亿美元，同比增长 6.9%；毛利率<span class="ek">（Gross margin）</span> 31.15%，经营利润率<span class="ek">（Operating margin）</span> 11.83%，净利率<span class="ek">（Net margin）</span> 8.86%。
+@@ 585993c952 html
+Q2 2026 收入 93.55 亿美元，增长 4.13%，有机增长 2.2%（价格贡献 1.5 个百分点，销量和产品组合 0.7 个百分点）；调整后 EPS 0.73 美元与去年持平，按固定汇率下降 2.7%。
+@@ f3c270ab00 html
+Q2 后公司把 2026 年有机收入增长指引<span class="ek">（Guidance）</span>上调到至少 2%（原来是 0 到 2%），调整后 EPS 固定汇率增长 0 到 5% 不变，全年自由现金流<span class="ek">（Free cash flow (FCF)）</span>约 30 亿美元。
+@@ e0ba579117 html
+报告口径 EPS 波动大：Q2 报告 EPS 1.20 美元，增长 144.9%，调整后 EPS 却持平，差异来自公司在调整口径中剔除的项目。过去十二个月 EPS 2.73 美元，同比下降 0.7%。
+@@ f6c4a5b038 html
+年化股息<span class="ek">（Dividend）</span> 2.08 美元，股息率<span class="ek">（Dividend yield）</span> 3.44%，派息率<span class="ek">（Payout ratio）</span> 76.23%，Q2 时季度股息上调 4%；过去十二个月自由现金流 30.9 亿美元。
+@@ e3b014adc4 html
+估值：市盈率<span class="ek">（Price-to-earnings ratio (P/E)）</span> 22.23 倍，远期 18.81 倍，EV/EBITDA 16.01 倍。总债务 220.6 亿美元，现金 17.2 亿美元，ROIC 7.89%。23 位分析师评级为 Buy，平均目标价 69.00 美元，比现价高 14.22%。
+@@ d56729c196 html
+<span class="nd">2026-07-28</span><span>公布 Q2（略早于本期时间窗口）：收入 93.55 亿美元增长 4.1%，有机增长 2.2%，调整后 EPS 0.73 美元持平；全年有机收入增长指引上调到至少 2%，季度股息提高 4%，这是近期基本面的主要依据。 <a href="https://www.sec.gov/Archives/edgar/data/0001103982/000162828026050157/mdlzearningsreleasecontent.htm" target="_blank" rel="noopener">sec.gov</a></span>
+@@ c179094741 html
+<span class="nd">2026-09-22</span><span>在全球推出 Toblerone 与 Biscoff 联名的 Diamond Truffles 高端巧克力，这是公司用联名和高端新品拉动巧克力销售的做法之一。 <a href="https://www.malaymail.com/news/money/mediaoutreach/2026/09/22/an-iconic-duo-toblerone-launches-truffles-with-biscoff/487118" target="_blank" rel="noopener">malaymail.com</a></span>
+@@ e1412e7686 html
+<span class="nd">2026-10-01</span><span>可可期货跌向每吨约 5,100 美元，为 7 月 27 日以来最低，ICE 可可库存升至 2.25 年高位；原料成本回落对亿滋这类巧克力生产商的毛利率有利。 <a href="https://tradingeconomics.com/commodity/cocoa/news/588793" target="_blank" rel="noopener">tradingeconomics.com</a></span>
+@@ 10d54f163e html
+<span class="nd">2026-10-07</span><span>可可期货从三周高点回落到每吨约 5,640 美元，市场在当季供应充足和 2026/27 年度减产预期之间拉锯；第三季度可可研磨数据定于 10 月 15 日公布。 <a href="https://tradingeconomics.com/commodity/cocoa" target="_blank" rel="noopener">tradingeconomics.com</a></span>
+@@ 26f2b119ef html
+<span class="nd">2026-10-08</span><span>同行百事公司公布北美零食疲弱、下调全年盈利指引并宣布提价，这是观察零食行业需求和定价的参考；当天 MDLZ 收涨 2.17%。 <a href="https://fortune.com/2026/10/08/pepsico-price-hike-doritos-ruffles-sodas-178-million-tariff-refund/" target="_blank" rel="noopener">fortune.com</a></span>
+@@ a3fa528518 html
+2026-10-15：欧洲和北美第三季度可可研磨数据公布，反映巧克力需求。
+@@ 8d8311f822 html
+2026-10-27 盘后（预估）：Q3 财报<span class="ek">（Earnings report）</span>，看价格和销量的平衡、欧洲销售是否止跌，以及对 2027 年成本的展望。
+@@ 64d192abfd html
+可可新作季：科特迪瓦 2026/27 年度产量预测约 180 万吨，低于上一季约 220 万吨，天气（厄尔尼诺）是变量。
+@@ f2ef0a116d html
+可可价格：可可期货 10 月 9 日收于约 5,670 美元/吨，1 个月下跌 4.9%，1 年下跌 3.05%。可可走低有利于巧克力业务利润率<span class="ek">（Profit margin）</span>，新作减产预期则可能推高价格。
+@@ c0142cd60d html
+美元：公司预计汇率换算为 2026 年收入增长贡献约 2 个百分点、调整后 EPS 约 0.05 美元；美元走弱有利，走强不利。
+@@ 30ac1477b1 html
+利率与消费：股息率 3.44%，长期利率下行会提高防御型股息股的吸引力；Q2 欧洲有机销售下降 3.5%，说明消费者对涨价敏感。
+@@ e046e96ed7 html
+股价站在 200 日均线 59.74 美元上方，并已从 10 月 1 日的 57.76 美元反弹，技术面相对健康。
+@@ 7f86208142 html
+可可价格较高位回落，若持续，后续利润率有改善空间；分析师平均目标价 69.00 美元。
+@@ 934f44fd4c html
+北美 Q2 有机收入增长 3.4%，价格和销量都有贡献，公司也上调了全年有机收入指引。
+@@ 75708d406a html
+Q2 欧洲有机销售下降 3.5%，价格和销量都在下降，欧洲是公司的重要市场。
+@@ 850c8f7f33 html
+科特迪瓦新作预计减产，可可价格可能再度上涨，挤压利润率。
+@@ 93d3a7e5e0 html
+同行百事公司北美零食疲弱，GLP-1 减重药对零食需求的长期影响还不确定；市盈率 22.23 倍，估值不算便宜。
+@@ b184e5e7dc html
+股价能否守住 200 日均线 59.74 美元，跌破后看 57.76 美元的 30 日低点。
+@@ 1e24ae89a1 html
+能否突破 61.66 美元的 50 日均线和 62.47 美元的 30 日高点。
+@@ ef3026de15 html
+10 月 15 日可可研磨数据，以及 10 月 27 日（预估）财报中欧洲销量和 2027 年展望。
+@@ 4bcd8bd19c html
+资料来源：<a href="https://stockanalysis.com/stocks/mdlz/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/mdlz/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/mdlz/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/mdlz/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0001103982/000162828026050157/mdlzearningsreleasecontent.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://www.grocerygazette.co.uk/2026/07/29/mondelez-raises-sales-outlook-as-oreo-and-cadbury-demand-holds-firm/" target="_blank" rel="noopener">grocerygazette.co.uk</a> · <a href="https://www.malaymail.com/news/money/mediaoutreach/2026/09/22/an-iconic-duo-toblerone-launches-truffles-with-biscoff/487118" target="_blank" rel="noopener">malaymail.com</a> · <a href="https://tradingeconomics.com/commodity/cocoa/news/588793" target="_blank" rel="noopener">tradingeconomics.com</a> · <a href="https://tradingeconomics.com/commodity/cocoa" target="_blank" rel="noopener">tradingeconomics.com</a> · <a href="https://fortune.com/2026/10/08/pepsico-price-hike-doritos-ruffles-sodas-178-million-tariff-refund/" target="_blank" rel="noopener">fortune.com</a>
+@@ 848fbac6b5 html
+HSY <span class="zh">好时</span>
+@@ f03657ef1d html
+在清单里，10 月 5 日记录以 160.19 美元买入；9 月 11 日的购物单也把它列为「可能加入」。和亿滋一样，可可成本是关键。
+@@ a87ac05410 html
+好时是美国最大的巧克力糖果公司，主要品牌有 Hershey&#x27;s、Reese&#x27;s、Kit Kat（美国授权）等，近年还通过收购拥有 SkinnyPop、Pirate&#x27;s Booty、LesserEvil、Dot&#x27;s 等咸味零食。收入主要来自北美糖果业务，国际业务占比较小。可可和糖是主要原材料，原料成本的涨跌对利润影响很大。
+@@ 7aee71cafd html
+52 周区间<span class="ek">（52-week range）</span> 156.16 至 239.48 美元，现价比高点低 32.0%。分析师平均目标价<span class="ek">（Price target）</span> 202.19 美元（23 位分析师，平均评级 Buy），目标价反映的是乐观情景，常常滞后于股价。
+@@ fda5df96f4 html
+收盘价 162.74 美元，比 50 日均线<span class="ek">（50-day moving average）</span> 174.39 美元低 6.7%，比 200 日均线<span class="ek">（200-day moving average）</span> 190.28 美元低 14.5%；50 日线位于 200 日线下方，中期趋势偏弱。
+@@ e3225bb70b html
+RSI 为 38.86，处于偏弱区域，但还没有跌到 30 以下的超卖<span class="ek">（Oversold）</span>区。
+@@ 61d302d82c html
+支撑<span class="ek">（Support）</span>：近 30 个交易日最低收盘价 157.61 美元（9 月 30 日），下方是 52 周低点 156.16 美元，两者很接近，156 至 158 美元是关键支撑区。
+@@ 854a2749a9 html
+阻力<span class="ek">（Resistance）</span>：先看 9 月 14 日收盘的 173.68 美元和 50 日均线 174.39 美元；再往上是 8 月 28 日的 179.05 美元和 200 日均线 190.28 美元。
+@@ 11c6ed1986 html
+最近一周股价从 160.19 美元回升到 162.74 美元，涨约 1.6%，目前在 157 至 163 美元之间横向整理。
+@@ f82e94204c html
+327 亿美元
+@@ 96fc7b2f0f html
+122 亿美元
+@@ 819c204943 html
+59 / 8 亿美元
+@@ d12cc65ab7 html
+过去十二个月收入 121.6 亿美元，同比增长 7.69%；二季度收入 27.87 亿美元，增长 6.6%，其中提价贡献约 12 个百分点，销量拖累约 8 个百分点。
+@@ 7e03b9812e html
+二季度报告每股收益<span class="ek">（Earnings per share (EPS)）</span> 2.26 美元，比上年同期的 0.31 美元增长约 631%，主要是上年基数很低；按调整后口径，每股收益 1.90 美元，增长 57%，更能代表真实改善幅度。
+@@ 97dfaa0c31 html
+毛利率<span class="ek">（Gross margin）</span> 38.38%，经营利润率<span class="ek">（Operating margin）</span> 18.02%，净利率<span class="ek">（Net margin）</span> 12.24%，投入资本回报率（ROIC）17.66%，盈利能力在食品公司中较强。
+@@ e3ff68df9f html
+估值方面，市盈率（TTM）22.24 倍，远期市盈率<span class="ek">（Forward P/E）</span> 17.55 倍，PEG 0.91；股息率<span class="ek">（Dividend yield）</span> 3.57%，派息率<span class="ek">（Payout ratio）</span> 79.37%，分红占利润的比例偏高。
+@@ 634c805cb5 html
+总债务 59.2 亿美元，现金 7.9 亿美元；过去十二个月自由现金流<span class="ek">（Free cash flow (FCF)）</span> 22.3 亿美元，足以覆盖分红。
+@@ 97c4024186 html
+7 月公司把 2026 年调整后每股收益增长指引<span class="ek">（Guidance）</span>收窄到 32.5% 至 35%（约 8.36 至 8.52 美元）。23 位分析师的共识评级是买入，平均目标价 202.19 美元。
+@@ a999e4eb59 html
+<span class="nd">2026-07-30</span><span>二季度收入增长 6.6%，调整后每股收益增长 57%，并收窄上调全年指引，说明提价和成本改善在推高利润，但销量下滑约 8 个百分点是隐忧。 <a href="https://www.sec.gov/Archives/edgar/data/0000047111/000162828026050769/exhibit991_2026xq2.htm" target="_blank" rel="noopener">sec.gov</a></span>
+@@ 9b8688659f html
+<span class="nd">2026-08-20</span><span>路透报道好时在万圣节档期加推咸味零食，早季小包装糖果销售同比两位数增长；万圣节约占美国全年糖果零售额近五分之一，直接影响三季度业绩。 <a href="https://www.esmmagazine.com/a-brands/hershey-targets-the-health-conscious-with-savoury-halloween-snacks-319686" target="_blank" rel="noopener">esmmagazine.com</a></span>
+@@ e943edbcc3 html
+<span class="nd">2026-09-03</span><span>公司任命在职近 15 年的内部财务高管 Dave Hulays 为首席财务官，接替计划退休的 Steve Voskuil，财务负责人平稳交接，降低了管理层变动的不确定性。 <a href="https://www.foodnavigator.com/Article/2026/09/03/hershey-appoints-dave-hulays-cfo-as-it-accelerates-snacking-growth-strategy/" target="_blank" rel="noopener">foodnavigator.com</a></span>
+@@ e7eef02367 html
+<span class="nd">2026-10-01</span><span>公司任命前百事、百加得高管 Amanda Almond 为国际业务总裁，10 月 12 日生效，接替 2019 年起负责国际业务的 Rohit Grover，显示公司想加快海外增长。 <a href="https://www.foodnavigator.com/Article/2026/10/01/hershey-appoints-amanda-almond-as-international-president-as-cpg-sets-industry-standard/" target="_blank" rel="noopener">foodnavigator.com</a></span>
+@@ e0cb77d3bb html
+2026-10-29 盘前公布三季度业绩，重点看万圣节档期销量、毛利率和全年指引。
+@@ c32a4c39ce html
+2026-10-31 万圣节，节后零售数据会反映季节性<span class="ek">（Seasonality）</span>销售强弱。
+@@ 49cefe7582 html
+可可价格走势，会影响 2027 年的成本和定价策略。
+@@ de1e397995 html
+好时属于防御型必需消费，贝塔只有 0.09，股价与大盘关联度低；但它对通胀和消费者预算敏感，二季度提价贡献约 12 个百分点、销量下降约 8 个百分点，说明消费者在减少购买量。
+@@ cd61bc5386 html
+长期利率下降通常有利于高股息<span class="ek">（Dividend）</span>防御股，3.57% 的股息率相对债券更有吸引力；长期利率上升则会削弱这一吸引力。
+@@ fb1d4ca501 html
+可可价格是最大的成本变量，可可回落有利于毛利率；公司收入主要在北美，美元汇率的影响相对有限。
+@@ 7bc4251255 html
+股价接近 52 周低点 156.16 美元，比 52 周高点 239.48 美元低约 32%；远期市盈率 17.55 倍低于 TTM 的 22.24 倍，市场仍预期利润增长。
+@@ 58c939c1be html
+全年调整后每股收益指引增长 32.5% 至 35%，如果 10 月 29 日的三季报确认毛利率改善并维持指引，可能修复市场情绪。
+@@ 1f73bb53f1 html
+分析师平均目标价 202.19 美元，比现价高约 24%；3.57% 的股息率对防御型资金有吸引力。
+@@ a0286d0737 html
+提价带来的销量下滑可能持续，如果万圣节档期表现不佳，收入增长会放缓。
+@@ 2af63ca25f html
+派息率 79.37%，利润一旦不及预期，分红增长空间有限。
+@@ f4e3625a91 html
+股价运行在 50 日和 200 日均线下方，空头仓位占流通股 6.33%，下跌趋势尚未扭转。
+@@ 984f5b50bb html
+156 至 158 美元支撑区（52 周低点 156.16 美元、9 月 30 日收盘 157.61 美元）能否守住。
+@@ dfc9c820eb html
+股价能否重新站上 50 日均线 174.39 美元。
+@@ bb8f28dc2a html
+10 月 29 日三季报中的销量变化、毛利率和全年指引是否维持。
+@@ fa9960b86d html
+资料来源：<a href="https://stockanalysis.com/stocks/hsy/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/hsy/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/hsy/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/hsy/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/hsy/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0000047111/000162828026050769/exhibit991_2026xq2.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://www.esmmagazine.com/a-brands/hershey-targets-the-health-conscious-with-savoury-halloween-snacks-319686" target="_blank" rel="noopener">esmmagazine.com</a> · <a href="https://www.foodnavigator.com/Article/2026/09/03/hershey-appoints-dave-hulays-cfo-as-it-accelerates-snacking-growth-strategy/" target="_blank" rel="noopener">foodnavigator.com</a> · <a href="https://www.foodnavigator.com/Article/2026/10/01/hershey-appoints-amanda-almond-as-international-president-as-cpg-sets-industry-standard/" target="_blank" rel="noopener">foodnavigator.com</a>
+@@ 3bc6dc378e html
+PRMB <span class="zh">Primo Brands（瓶装水）</span>
+@@ 9a62d877a6 html
+不在 17 只里，10 月 5 日买入，记录价 19.70 美元。瓶装水是刚需型消费，估值偏低。
+@@ ca4df1ba7b html
+Primo Brands 是北美的品牌饮用水公司，由 Primo Water 与 BlueTriton 在 2024 年底合并而成，旗下有 Poland Spring、Saratoga、Mountain Valley 等品牌。收入来自超市等零售渠道的瓶装水和气泡水、送水到家庭和办公室的大桶水服务、饮水机，以及门店换水和自助灌水业务。
+@@ 0c8605d517 html
+52 周区间<span class="ek">（52-week range）</span> 14.36 至 26.21 美元，现价比高点低 26.5%。分析师平均目标价<span class="ek">（Price target）</span> 30.27 美元（12 位分析师，平均评级 Buy），目标价反映的是乐观情景，常常滞后于股价。
+@@ 5fc70eb20b html
+收盘价 19.27 美元，比 50 日均线<span class="ek">（50-day moving average）</span> 21.73 美元低 11.3%，比 200 日均线<span class="ek">（200-day moving average）</span> 21.21 美元低 9.2%；50 日线仍略高于 200 日线，但价格已跌破两条均线，两线有形成死叉<span class="ek">（Death cross）</span>的风险。
+@@ f349557297 html
+RSI 为 36.86，偏弱，但还没有进入 30 以下的超卖<span class="ek">（Oversold）</span>区。
+@@ eb541251b1 html
+支撑<span class="ek">（Support）</span>：近 30 个交易日最低收盘价 19.00 美元（10 月 7 日）是最近的关键位；再往下要看 52 周低点 14.36 美元，距离现价约 25%。
+@@ 272668baf3 html
+阻力<span class="ek">（Resistance）</span>：先看 9 月 16 日收盘的 21.15 美元，然后是 200 日均线 21.21 美元和 50 日均线 21.73 美元，21 至 22 美元是一个阻力区；更高是 8 月 28 日的 23.00 美元。
+@@ 9dcfe51366 html
+从 8 月 5 日财报<span class="ek">（Earnings report）</span>当天收盘的 25.32 美元算起，股价已累计下跌约 24%，近 30 个交易日下跌约 16%。
+@@ 5acd114f1a html
+70 亿美元
+@@ 7bd77efa62 html
+67 亿美元
+@@ a6a817a72f html
+57 / 4 亿美元
+@@ a0ce99b995 html
+4 亿美元
+@@ f6981622fc html
+过去十二个月收入 67.4 亿美元，同比增长 11.52%，其中一部分来自合并带来的口径变化；二季度收入 17.96 亿美元，同比增长 3.82%，更接近内生增速。
+@@ 4258f557e8 html
+毛利率<span class="ek">（Gross margin）</span> 30.75%，经营利润率<span class="ek">（Operating margin）</span> 10.70%，但净利率<span class="ek">（Net margin）</span>只有 1.49%，每股收益（TTM）0.27 美元，利息和合并整合费用吃掉了大部分利润，所以市盈率（TTM）高达 72.36 倍；远期市盈率<span class="ek">（Forward P/E）</span> 13.63 倍更能反映正常化后的盈利。
+@@ fe56dc2c3b html
+二季度调整后每股收益 0.37 美元，高于市场预期；调整后 EBITDA 3.85 亿美元，利润率<span class="ek">（Profit margin）</span> 21.4%。全年收入增长指引<span class="ek">（Guidance）</span>上调到 2% 至 4%，调整后 EBITDA 指引 14.65 亿至 15.15 亿美元维持不变。
+@@ 7f5c05e409 html
+负债偏重：总债务 57.0 亿美元，现金 3.69 亿美元，二季度末净杠杆<span class="ek">（Leverage）</span> 3.42 倍，EV/EBITDA 9.20 倍，投入资本回报率（ROIC）只有 5.26%。
+@@ ed007713f6 html
+股息率<span class="ek">（Dividend yield）</span> 2.49%，按会计利润算的派息率<span class="ek">（Payout ratio）</span> 172.74%，分红主要靠现金流支撑：过去十二个月自由现金流<span class="ek">（Free cash flow (FCF)）</span> 3.715 亿美元，全年调整后自由现金流指引 7.9 亿至 8.1 亿美元。
+@@ 236843dd48 html
+空头仓位占流通股 11.25%，处于较高水平；12 位分析师共识评级为买入，平均目标价 30.27 美元。
+@@ 59d514ff19 html
+<span class="nd">2026-08-05</span><span>二季度调整后每股收益 0.37 美元超预期，并把全年收入增长指引从 1% 至 3% 上调到 2% 至 4%，当天收盘从 23.29 美元涨到 25.32 美元，约涨 8.7%。 <a href="https://www.sec.gov/Archives/edgar/data/0002042694/000127956926000742/ex991.htm" target="_blank" rel="noopener">sec.gov</a></span>
+@@ d3537635e7 html
+<span class="nd">2026-08-06</span><span>最大股东 One Rock Capital 的关联方以每股 24.47 美元配售 2000 万股（约 4.89 亿美元），持股从约 26.9% 降到约 21.3%，当天股价下跌 5.6% 至 23.91 美元，大股东减持带来了股票供给压力。 <a href="https://www.ifre.com/equities/2467102/primo-brands-slides-after-us489m-block" target="_blank" rel="noopener">ifre.com</a></span>
+@@ 05633c0c4d html
+<span class="nd">2026-09-04</span><span>Zacks 统计财报后一个月股价下跌约 8.4%，分析师盈利预期<span class="ek">（Earnings estimates）</span>整体下调，说明超预期的业绩没有带来持续买盘。 <a href="https://www.zacks.com/stock/news/2985289/primo-brands-prmb-down-84-since-last-earnings-report-can-it-rebound" target="_blank" rel="noopener">zacks.com</a></span>
+@@ 87e0665158 html
+<span class="nd">2026-09-09</span><span>管理层在巴克莱消费者大会上表示供应链<span class="ek">（Supply chain）</span>问题已解决、准时足量交付率超过 90%，换水和灌水业务年收入超过 6 亿美元且增速高于公司平均，这是服务质量修复的信号。 <a href="https://quartr.com/events/primo-brands-corporation-prmb-barclays-19th-annual-global-consumer-conference_onW4IN2G" target="_blank" rel="noopener">quartr.com</a></span>
+@@ e777a69a83 html
+2026-11-05 盘前（美东约 6 点）公布三季度业绩，8 点召开电话会。
+@@ 28726bfd38 html
+全年收入增长 2% 至 4%、调整后 EBITDA 14.65 亿至 15.15 亿美元、调整后自由现金流 7.9 亿至 8.1 亿美元的指引能否维持。
+@@ 7831e5e604 html
+大股东 One Rock 是否继续减持（目前持股约 21.3%）。
+@@ 34ee48f701 html
+瓶装水属于必需消费，需求稳定；但送水到家和办公室需要大量车队，油价上涨会推高配送成本、压缩利润率。
+@@ 3535402569 html
+公司净杠杆 3.42 倍，长期利率下降可以降低再融资成本，长期利率上升则会加重利息负担。
+@@ 4c27c23679 html
+通胀让消费者更看重价格时，零售瓶装水容易被自有品牌替代；公司每年做低个位数提价并收取统一配送费，提价空间受消费承受力限制。
+@@ 8190aafa33 html
+已连续两个季度收入超预期并上调指引，远期市盈率 13.63 倍、EV/EBITDA 9.20 倍，估值不高。
+@@ ca01a87fef html
+管理层称服务问题已解决、交付率超过 90%，如果 11 月 5 日三季报确认客户留存改善，可能扭转情绪。
+@@ 22a8383ae0 html
+空头仓位占流通股 11.25%，若业绩超预期，空头回补<span class="ek">（Short covering）</span>可能放大反弹；分析师平均目标价 30.27 美元。
+@@ 0a7b6f0272 html
+大股东减持后仍持有约 21.3%，未来如果继续出售会压制股价。
+@@ a1edbbaeb7 html
+总债务 57.0 亿美元，净利率只有 1.49%，利润对利息和一次性费用很敏感。
+@@ 1eb584d867 html
+股价处在两条均线下方，近 30 个交易日下跌约 16%，趋势仍然向下。
+@@ a1d3bea343 html
+10 月 7 日收盘低点 19.00 美元能否守住。
+@@ 20149facd9 html
+股价能否重新站上 21.2 至 21.7 美元的均线区域。
+@@ 99197b0bf9 html
+11 月 5 日三季报的收入增速、调整后 EBITDA 和自由现金流是否符合全年指引。
+@@ 12e9e9dd6b html
+资料来源：<a href="https://stockanalysis.com/stocks/prmb/statistics/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/prmb/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/prmb/history/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/prmb/financials/?p=quarterly" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://stockanalysis.com/stocks/prmb/financials/" target="_blank" rel="noopener">stockanalysis.com</a> · <a href="https://www.sec.gov/Archives/edgar/data/0002042694/000127956926000742/ex991.htm" target="_blank" rel="noopener">sec.gov</a> · <a href="https://www.ifre.com/equities/2467102/primo-brands-slides-after-us489m-block" target="_blank" rel="noopener">ifre.com</a> · <a href="https://www.zacks.com/stock/news/2985289/primo-brands-prmb-down-84-since-last-earnings-report-can-it-rebound" target="_blank" rel="noopener">zacks.com</a> · <a href="https://quartr.com/events/primo-brands-corporation-prmb-barclays-19th-annual-global-consumer-conference_onW4IN2G" target="_blank" rel="noopener">quartr.com</a> · <a href="https://finviz.com/news/399539/primo-brands-announces-date-for-2026-third-quarter-earnings-release-and-conference-call" target="_blank" rel="noopener">finviz.com</a>
+@@ 1db22c5da0 html
+LOW <span class="zh">劳氏</span>
+@@ 20602f75ed html
+在清单里，10 月 5 日记录以 180 美元买入。家居建材同时出现在他「利率下降受益」和「油价下降受益」两张清单上。
+@@ 9b636adb42 html
+劳氏是美国第二大家居建材零售商，门店超过 1,750 家，销售建材、工具、家电、园艺和装修用品。客户分为自己动手的 DIY 消费者和专业承包商（Pro），DIY 占销售额六成以上。近一年公司完成了对 ADG 和 FBM（Foundation Building Materials）的收购，加大了对专业客户和新房建设市场的布局。
+@@ 6b52ce134b html
+52 周区间<span class="ek">（52-week range）</span> 178.45 至 293.06 美元，现价比高点低 36.5%。分析师平均目标价<span class="ek">（Price target）</span> 249.39 美元（35 位分析师，平均评级 Buy），目标价反映的是乐观情景，常常滞后于股价。
+@@ fc292e808a html
+收盘价 186.00 美元，比 50 日均线<span class="ek">（50-day moving average）</span> 202.19 美元低 8.0%，比 200 日均线<span class="ek">（200-day moving average）</span> 230.08 美元低 19.2%；50 日线在 200 日线下方，均线呈空头排列<span class="ek">（Bearish alignment）</span>。

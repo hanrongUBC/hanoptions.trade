@@ -1,0 +1,178 @@
+@@ 198c2bd774 html
+The logic of this order is simple: capital won't go where it isn't safe. So when a region becomes a policy priority, the first orders usually go to companies in security, law enforcement and surveillance. Once security improves, investment in resource development follows. Only when both infrastructure and politics have stabilized does long-term investment in manufacturing and logistics arrive at scale.
+@@ d171cad4f6 html
+Types of companies often placed in this chain include drone and maritime equipment makers and government data-analytics software companies (phase one); copper miners and oil services companies (phase two); and industrial real estate, cross-border rail, and engineering and construction (E&amp;C) companies (phase three). The lazy way to invest in Latin America as a whole is a regional ETF, such as a Latin America 40 index fund or a Mexico country ETF.
+@@ 0c4d49f6d2 html
+Mexico: two sides of a coin
+@@ 90645af10f html
+The case for
+@@ 46555d8549 html
+Close to the US, short shipping times
+@@ f5fe8de187 html
+Relatively low labor costs
+@@ 5c928d2f9f html
+The North American trade agreement provides a framework
+@@ 70daf3f369 html
+Already the largest source of US imports
+@@ 9a6c074631 html
+The case against
+@@ aafbef1552 html
+The trade agreement is reviewed periodically, and tariff threats can appear at any time
+@@ 8f8bbf022f html
+Crime and security problems weigh on willingness to invest
+@@ 384356a91f html
+Infrastructure such as power and water can't keep up
+@@ a17f3a5e98 html
+Some investment just assembles Chinese components in Mexico
+@@ c016979435 html
+With a “two-sided narrative” like this, the best approach is to watch the evidence on both sides at once: foreign direct investment (FDI) and vacancy rates in industrial real estate (the case for), and trade agreement reviews, tariff announcements and security incidents (the case against). Shift your position toward whichever side the evidence is piling up on.
+@@ 5ccde1684d html
+Regional politics is changing too
+@@ 1b091cd5a9 html
+In recent years, some Latin American countries have elected governments that put more weight on markets and attracting foreign investment, while others have stepped up resource nationalism. For investors, a government's place on the political spectrum isn't the point. What matters are a few concrete things: can foreign capital move in and out freely, are contracts and property rights respected, and could resource taxes and royalties be raised suddenly? These decide the value of a mine or a railroad more than election slogans do.
+@@ b1bae7a3fc html
+Defense: wars end, preparing for them doesn't
+@@ 727faf38d8 html
+A conflict ends, but its lessons reshape countries' budgets for the next decade. To invest in the defense theme, separate two kinds of money: emergency spending during a conflict, and military-preparedness spending that continues after the conflict is over.
+@@ 79db9d2b8c html
+Why defense spending runs on a long cycle
+@@ 072e096049 html
+<strong>Europe is catching up</strong>: at the 2025 NATO summit, members agreed to raise defense and related spending to 5% of GDP by 2035, including 3.5% for core defense spending. That's far above the under-2% level that used to be common.
+@@ d59f14d9af html
+<strong>Stockpiles need rebuilding</strong>: recent conflicts have used up large amounts of munitions and air-defense missiles, and many countries will need years to replenish their stocks.
+@@ 7ac128188c html
+<strong>Bipartisan support</strong>: in the US, the defense budget is one of the few spending items both parties are willing to back, so it is durable.
+@@ 04d81d9af6 html
+<strong>Long procurement cycles</strong>: contracts for a warship or a fighter jet often run more than ten years, which gives contractors high revenue visibility.
+@@ b046b7a31c html
+Modern war needs “cheap, good enough and mass-producible”
+@@ fa5f4140c0 html
+Recent conflicts have shown that large numbers of cheap drones and munitions are often more effective than a few expensive platforms. Using a missile that costs millions of dollars to shoot down a drone that costs tens of thousands is economically unsustainable. This has shifted procurement priorities:
+@@ e0551de2ea html
+Direction
+@@ 01ed9c20c1 html
+Logic
+@@ 2507e9ea2b html
+Types of companies often discussed
+@@ 1cb0f77296 html
+Drones and loitering munitions
+@@ d3d6714e72 html
+Cheap, mass-producible, expendable
+@@ 212cb918bd html
+Makers of small drones and target drones
+@@ 0a96e7950d html
+Munitions and propellants
+@@ 777fc90c93 html
+Used up fastest, short on capacity
+@@ c4fc810001 html
+Munitions makers, chemical feedstock suppliers
+@@ e986f6814a html
+Air defense and counter-drone
+@@ 09a7a4650b html
+Needs cheaper ways to intercept
+@@ e82ec67411 html
+Sensors, electronic warfare, directed energy
+@@ e74dbf7c5e html
+Shipbuilding and repair
+@@ 7e86aa27dc html
+Navies are expanding; shipyard capacity is the bottleneck
+@@ 3d294948d7 html
+Military shipyards
+@@ 75b4f9be27 html
+Software and data
+@@ 0cd103214f html
+Battlefield information integration and decision speed
+@@ c8dad1208c html
+Defense data-analytics software companies
+@@ 7d666304d6 html
+The lazy expression is a US aerospace and defense ETF (for example, ITA or PPA). Be aware that commercial aerospace has a sizable weight in these ETFs, so they are also exposed to the air travel cycle.
+@@ aae39ef572 html
+The post-war trade: which costs will disappear
+@@ a9818a1776 html
+During a conflict, the market pays many extra costs for risk: the risk premium in crude, marine insurance premiums, freight costs from rerouting, airlines' fuel costs. When a conflict eases, the most useful questions to ask are: <strong>Which costs created by the war will disappear? Who benefits most when they do?</strong>
+@@ 511dd62427 html
+Escalation
+@@ f9bee2a520 html
+Prolonged standoff
+@@ 4978762c20 html
+Ceasefire talks
+@@ 9592e4ea2b html
+Post-war rebuilding
+@@ 1f8e3bc086 html
+The example is a regional conflict that affects an oil-producing region and shipping lanes. Real conflicts rarely move through the four stages in order; they often swing back and forth between escalation and standoff, so watch the “confirmation signals,” not the headlines.
+@@ 1fb754746c html
+One more point is easy to miss: <strong>defense stocks don't necessarily fall after a war.</strong> If the conflict's lessons drive long-term preparedness spending, defense contractors' orders keep growing; the ones that fall are usually companies that live on emergency spending and short-term orders. So chasing defense stocks at the height of a conflict and panic-selling them when it eases are both common mistakes.
+@@ 3d53a4c2dd html
+Don't make a conflict your only reason to trade
+@@ df86442c1e html
+The timing and outcome of geopolitical events are extremely hard to predict, and the market's reaction to them is often more short-lived than you'd expect. A sounder approach:
+@@ b9ee612a5b html
+Use long-term positions to bet on the structural growth of preparedness spending, not on any one conflict.
+@@ a977301eb9 html
+Trade a conflict short term with small size and defined-risk instruments (such as spreads), and write your exit conditions in advance.
+@@ 0c0e6f2c3f html
+Hedge within the portfolio: when you hold assets that benefit from escalation, put a small slice of money into assets that benefit from de-escalation, such as airline stocks or call options on them.
+@@ df03681d8b html
+Resource independence: energy, critical minerals and gold
+@@ 2816e3503f html
+Real industrial independence starts with resource independence. Without copper there's no power grid; without rare earth magnets there are no motors or missiles; without fuel, no amount of crude oil will move a truck.
+@@ a958534848 html
+Critical minerals: the bottleneck is processing, not mining
+@@ 1209e45694 html
+Many critical minerals aren't scarce on Earth. What's scarce is the capacity to separate, refine and process them after mining. Take rare earths: about 90% of the world's rare earth processing capacity is in China. That makes it a geopolitical tool:
+@@ 177680428d html
+Starting in 2023, materials such as gallium, germanium and graphite were brought under export controls one after another.
+@@ 668847ea36 html
+In 2025, the controls expanded to several rare earth elements and related technologies, and some overseas automakers and electronics makers faced parts shortages for a time.
+@@ b1c7cbe8b6 html
+Countries have responded by trying to build complete domestic “mine-to-magnet” chains. That takes many years and huge investment, and in the early years it often makes no economic sense, because the competitor's processing costs are lower and it can push prices down. So governments have started stepping in with more direct tools.
+@@ 1ea8a166a0 html
+Government stakes and price floors
+@@ a7bac9d563 html
+In 2025, the US government did things rarely seen before: the Department of Defense took a stake in a domestic rare earth company and committed to a long-term price floor and purchases; the government also took a stake in a large chipmaker. However you judge this, the investment implication is clear: <strong>the government has stepped in behind certain companies and taken on part of their price risk.</strong>
+@@ cd21a5f1a7 html
+A price floor works like a put option the government hands the company for free. Here is a hypothetical example:
+@@ ad04500d44 html
+Market price <input id="pf-m" type="range" min="30" max="160" value="60"> <output id="pf-m-o">$60</output>
+@@ 7c41c2404d html
+Government floor <input id="pf-f" type="range" min="0" max="140" step="5" value="110"> <output id="pf-f-o">$110</output>
+@@ 865a5b28eb html
+Assumptions: production cost of $70 per kilogram. The put is valued with Black-Scholes using a 1-year term, 40% price volatility and a 4% interest rate, only to show what this guarantee is worth in financial terms. The lower the market price, the more the guarantee is worth, the less the company's earnings depend on the price cycle, and the more its valuation shifts from that of a “cyclical stock” toward that of a “utility.”
+@@ 73c0d857d9 html
+Look at the risks on the other side too: government support can weaken when policy changes; a company with a government equity stake may make business decisions shaped by non-commercial factors; and once everyone recognizes the floor, the stock price will quickly price it in.
+@@ f9e1f926de html
+Energy: having oil doesn't mean having fuel
+@@ 15591fb8a0 html
+Energy independence isn't only about how much crude you can pump; it's also about how much gasoline, diesel and jet fuel you can refine. The US is a major crude producer, but its refining capacity has grown little for decades, and some refineries are closing. When refined products (especially diesel) are tight, refiners' margins (the crack spread) widen sharply, while crude producers don't necessarily benefit.
+@@ 35a75a4e41 html
+The links in the energy theme have different drivers:
+@@ 276905077a html
+Link
+@@ 3381fb6cd0 html
+Main drivers
+@@ 10c6ffb222 html
+Policy risk
+@@ 77dab4ecae html
+Upstream oil and gas production
+@@ 9e5df3f5fa html
+Oil price, output, capital discipline
+@@ 65a46599d6 html
+Drilling permits, export policy
+@@ 0ace61948b html
+Oil services
+@@ ad69d427a0 html
+Global drilling and development investment
+@@ d7d0ae9486 html
+Regional security, policies of resource countries
+@@ 05f19d5aab html
+Refining
+@@ 37a9ea31c4 html
+Crack spread, refinery utilization
+@@ 6ad5244e9b html
+Export restrictions, environmental rules
+@@ c96d725179 html
+Nuclear power and uranium
+@@ 276843e16e html
+Power demand, long-term power purchase agreements (PPAs)
+@@ 5498f496a7 html
+Permitting speed, fuel supply

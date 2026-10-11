@@ -1,0 +1,200 @@
+@@ 8fde0c1dea html
+XYZ earnings, Wednesday after the close
+@@ 4e2f39e187 html
+100% (2 days) / 54% (9 days)
+@@ 9e6a231385 html
+1σ 7.06%, mean 5.64%
+@@ a188b3f9e0 html
+Short iron condor 190/180–210/220, 1 contract
+@@ 4b596e50ec html
+Close 30 minutes after the next day’s open
+@@ caa5edaf19 html
+ABC earnings, Monday after the close
+@@ 0a5aa226db html
+70% (4 days) / 46% (11 days)
+@@ 81d80f8ed6 html
+1σ 6.92%, mean 5.52%
+@@ 5fda047832 html
+Long straddle or reverse iron condor, small size
+@@ a5a699268a html
+Premium paid
+@@ 03e2aac2ab html
+Close before the next day’s close, win or lose
+@@ fbf80dc338 html
+CPI, Tuesday 8:30
+@@ e14147dd0e html
+1-day 23.7% / base 14%
+@@ 96dfd7ecaa html
+No new directional positions; hedge holdings with short-dated index puts
+@@ ee45ab0ce1 html
+Cost of the hedge
+@@ e54bb0aca1 html
+Remove the hedge once the data are out and prices have settled
+@@ 18b80ee768 html
+Each column matches a checkpoint from this chapter:
+@@ a445771f31 html
+<strong>Front / back IV</strong>: used to isolate the event, and also to check whether the term structure is inverted.
+@@ dc9b86cead html
+<strong>Straddle-implied and isolated event move</strong>: the first is a quick estimate; the second is what you compare with history.
+@@ 78e8c59612 html
+<strong>Ratio</strong>: above 1.2, consider selling; below 0.9, consider buying; in between, leave it blank. ABC’s 0.79 says the market’s price this time is cheaper than the stock’s average past move.
+@@ 6c70f78058 html
+<strong>Max loss</strong>: fill in this column first, then work out the number of contracts. Keep the maximum loss on any single event to no more than 1%–2% of the account.
+@@ 06ee2c0d16 html
+<strong>Exit rule</strong>: an event trade is a bet on one night. Closing on the first day after the report is the default; holding on needs a new reason.
+@@ 9384093790 html
+You can add more columns: IV Rank (Chapter 6), the straddle’s bid–ask spread as a share of its price (walk away above 10%), whether the earnings date is confirmed, and whether any other event falls in the same expiration.
+@@ a9dd9e4635 html
+<span class="sn">Cases</span>Three cases
+@@ c39093d6a9 html
+Eight quarters of profit, and how much one big drop can eat
+@@ 1be8b18ba7 html
+Suppose that every quarter you open a position the day before XYZ reports, under the same conditions as Section 10.4 (front-month IV 100%, back month 54%, post-report IV 30%). Plug in the actual moves from the last 8 reports, and add a hypothetical quarter 9 in which the stock drops 15%.
+@@ a4f551e849 html
+Table 10-10 1 contract per quarter, P&amp;L at the close on the first day after the report ($)
+@@ b0e032d208 html
+Total, 8 quarters
+@@ 900975ae7f html
+Quarter 9 (hypothetical)
+@@ 800c486c79 html
+Over the 8 quarters, the short straddle made twice as much as the iron condor. But a single −15% in quarter 9 wipes out 72% of the short straddle’s 8 quarters of profit; on a 20% drop, the straddle would lose about $2,820 and all 8 quarters would have been for nothing, while the iron condor would still lose only $681.
+@@ 58ae087e11 html
+<strong>The one move that isn’t in the historical data decides how the seller ends up.</strong> The largest of the 8 samples is 8.9%; that doesn’t mean the next one can’t be 15%.
+@@ cc82de5dd0 html
+<strong>Size by maximum loss.</strong> With a $50,000 account and at most 2% ($1,000) at risk per event, you can do 1 iron condor (maximum loss $681). The short straddle has no maximum loss, so you can only size it by “a $1,817 loss in the −15% scenario,” and even one contract is over the limit.
+@@ 659689ae34 html
+A 0DTE iron condor on FOMC day: stopped out on both sides
+@@ c291a220bc html
+FOMC day, 13:30, SPY at 780, 2.5 hours to the close. Because it includes the event, 0DTE IV has been pushed up to 24% (on a trading-time basis). You sell 10 iron condors: the 785/790 call spread and the 775/770 put spread, with a rule to stop out of either side once that spread’s price rises to 2 times the credit.
+@@ c9e8ab0885 html
+Table 10-11 One afternoon’s path (per share; 10 contracts = 1,000 shares)
+@@ f56a9f3499 html
+Assumed IV
+@@ f8e32188b9 html
+Call spread
+@@ f41b826e8e html
+Put spread
+@@ 293bfb1844 html
+Action
+@@ e66f6f8a36 html
+13:30 entry
+@@ 61b89be776 html
+Credit $1,572
+@@ 5390e16f51 html
+14:05, after the statement
+@@ f3292eb7e0 html
+Call side stopped out, loss of $847
+@@ 9440865e67 html
+14:40, during the press conference
+@@ e1db66d7bf html
+Put side stopped out, loss of $808
+@@ 557a3a0052 html
+16:00 close
+@@ 8712c9cc66 html
+The original position would have expired worthless
+@@ 1e242a0dc9 html
+The two stops add up to <span class="num">−$847 − $808 = −$1,655</span>. If you had done nothing, all four legs would have expired worthless at the close and you would have kept the full <span class="num">$1,572</span>. Same closing price, one result −$1,655 and the other +$1,572: the difference is entirely the path.
+@@ 5f8aa3f787 html
+<strong>FOMC comes in two parts.</strong> The 14:00 statement and the 14:30 press conference often point in opposite directions, so any position with price-based stops has to be ready to get whipsawed twice.
+@@ c08d4501bd html
+<strong>The stops were too tight.</strong> At 24% IV, the 1σ move over 2.5 hours is $7.3, while the short legs were only $5 from the price. Using a doubling of the option price as the stop means giving up within 1σ.
+@@ 3dac5b7213 html
+<strong>Three better approaches:</strong> size by maximum loss and accept that there is no stop (maximum loss per contract <span class="num">5 − 1.572 = $3.43</span>, or $3,428 for 10; only trade it if you can accept that); wait until the press conference is over and prices have settled before opening; or simply don’t hold short Gamma between 14:00 and 15:00.
+@@ c6ad6f7a8b html
+August 5, 2024: the VIX reading and the price of options
+@@ 5bba231147 html
+Several things piled up at once. The Bank of Japan raised rates at the end of July, and the yen carry trade started to unwind; on August 2 the US July jobs report came in weak, and recession fears grew. On Monday, August 5, Japanese stocks crashed, and around the US open VIX briefly spiked to its highest level since March 2020, then fell back sharply the same day.
+@@ 6a54fe266e html
+Afterward, a number of analyses pointed to several facts that bear directly on option pricing:
+@@ 63dcd1bab3 html
+VIX is calculated from SPX option quotes. Around the open, SPX option quotes were sparse and bid–ask spreads extremely wide, and the formula amplified that state of the quotes into an extreme reading.
+@@ 651f3f8262 html
+VIX futures rose much less than spot VIX, and the term structure was deeply inverted: the market saw the panic as short-lived.
+@@ 2e5a89978d html
+The S&amp;P 500’s drop that day was nowhere near as dramatic as the VIX reading suggested. Over the following weeks, VIX fell back to near its pre-event range.
+@@ 244f6eb791 html
+A hypothetical example shows what it feels like to buy protection near the peak (the numbers below are assumed to illustrate the mechanism; they are not real quotes from that day). With the index at 100, a 30-day ATM put is worth <span class="num">1.55</span> at 15% IV and <span class="num">4.40</span> when IV spikes to 40%, 2.8 times as expensive. A week later the index has bounced 2% and IV is back at 20%: the put is worth only <span class="num">1.09</span>, a 75% loss. Even if the index had instead fallen another 3% a week later, with IV back at 25%, the put would be worth only <span class="num">4.08</span>, still a 7% loss: the loss from falling IV cancels out the gain from the direction.
+@@ 475686b1bd html
+<strong>Spot VIX can’t be traded.</strong> What you can buy are VIX futures and options, and they rise much less than spot at the peak of a panic.
+@@ f307e20acb html
+<strong>Protection is most expensive at the peak of a panic.</strong> Buy protection when IV is low (the tail-hedge budget in Chapter 11).
+@@ 89b7d7b542 html
+<strong>Near the peak, what sellers face is mark-to-market losses and margin.</strong> Even if the trade ends up making money, you may be forced to close along the way.
+@@ 76fc557033 html
+<span class="sn">Tools</span>Checklist and self-test
+@@ b4640d623d html
+Your checkmarks are saved only in your own browser.
+@@ bf8cfd9b49 html
+<span class="num">10-1</span>Before earnings: read the expectation
+@@ d21d5a9dc7 html
+Find the nearest expiration that includes earnings and compute straddle ÷ stock price
+@@ e8f1994963 html
+Isolate the event move using a nearer and a farther expiration
+@@ e9d5ea1f2f html
+Compare with the last 8 close-to-close moves and write down the ratio
+@@ 762b6bc410 html
+<span class="num">10-2</span>Choosing a structure and sizing it
+@@ a75e7f8776 html
+Consider selling only at a ratio &gt; 1.2 and buying only at &lt; 0.9; do nothing in between
+@@ 30bb2bd4e6 html
+Write down the maximum loss first (1%–2% of the account), then work out the number of contracts
+@@ 9846b30cbf html
+Stress test: post-report IV back to its base level, stock moves ±1.5 times the implied move
+@@ 6bd4a0aeec html
+<span class="num">10-3</span>Macro days and 0DTE
+@@ c0d1a76108 html
+Mark the 8:30 and 14:00 events; for the FOMC, remember there is also 14:30
+@@ ba818c2e1a html
+Write 0DTE exits as levels in the underlying, not option prices
+@@ eb4aacab25 html
+Check beta-weighted Delta before the event, and add a short-dated offsetting hedge if needed
+@@ 18d0f344dc html
+<span class="num">10-4</span>Contracts and the calendar
+@@ 2ecfd57238 html
+Use SPX or XSP for large notional size or when taxes matter; use SPY when you need shares or small size
+@@ 58b32b37cf html
+Check the ex-dividend date before selling ITM SPY calls
+@@ 2600ffd22e html
+Mark monthly expirations, triple witching, rebalancing and VIX settlement Wednesdays on the calendar
+@@ a6f5d33bbc html
+Five self-test questions
+@@ 999dfdccd6 html
+<span class="num">1</span><span>The stock is at $150, and the weekly ATM straddle that includes earnings costs $9. What are the implied average move and the 1σ move?</span>
+@@ 7649275f5b html
+Average move <span class="num">9 ÷ 150 = 6.0%</span>. 1σ ≈ <span class="num">6.0% ÷ 0.798 = 7.5%</span>, about $11.3.
+@@ f587ea25e8 html
+<span class="num">2</span><span>The front month expires in 3 days with IV of 90%, and the back month in 10 days with IV of 55%; both include earnings. What are the base volatility and the event 1σ move?</span>
+@@ 7014e45af4 html
+Total variance: <span class="num">0.81 × 3/365 = 0.006658</span>, <span class="num">0.3025 × 10/365 = 0.008288</span>. Base variance <span class="num">(0.008288 − 0.006658) ÷ (7/365) = 0.0850</span>, σ<sub>b</sub> ≈ 29.2%. Jump variance <span class="num">(0.81 − 0.0850) × 3/365 = 0.005959</span>, event 1σ ≈ 7.7%, expected absolute move about 6.2%.
+@@ 1eec435b46 html
+<span class="num">3</span><span>An ATM 0DTE option is worth $3.00 at the open. With the stock and IV unchanged, roughly what is it worth with 1 hour to the close? Why?</span>
+@@ 3458179a2b html
+About <span class="num">3.00 × √(1/6.5) ≈ $1.18</span> (the exact figure is $1.16; the difference comes from the interest-rate term). An ATM option’s value is roughly proportional to the square root of the time remaining, so time decay speeds up toward the end.
+@@ 61f689ffd2 html
+<span class="num">4</span><span>You sold the SPY 780 call expiring Friday. SPY closes at 779.9, and an after-hours headline pushes it to 783. What risk do you face? What if it were SPX?</span>
+@@ ed366def1d html
+SPY is American-style and physically settled, and holders can still decide to exercise after the close. The other side will very likely exercise, and on Monday morning you open short 100 shares per contract, exposed to any weekend gap. PM-settled SPX is cash-settled at the closing price, so news after the close doesn’t affect settlement.
+@@ a5d79dda52 html
+<span class="num">5</span><span>A CPI day lifts 1-day IV from 14% to 23.7%. Why does VIX barely move?</span>
+@@ 78f3e021d6 html
+VIX measures 30-day IV. Spread the same 1% jump variance over 30 days, and 30-day IV only goes from <span class="num">14%</span> to <span class="num">√(0.14² + 0.0001 × 365/30) = 14.43%</span>. To judge the premium on a single-day event, look at straddles expiring the same day or the next day.
+@@ b19baa8585 html
+The examples in this chapter are computed with the Black-Scholes model and the assumptions stated in the text (4% rate, no dividends; trading time for 0DTE). All market data are hypothetical. They are for teaching and are not investment advice.
+@@ a70e23cc3d text
+US Options
+@@ 875f2902a9 text
+Course
+@@ c70b2f4651 text
+US Options Course · Part 3 Strategies · Chapter 10
+@@ aa7ddb9b55 text
+expiry
+@@ 47ed392075 text
+Front-month IV climbs faster the closer earnings get, then dives overnight after the report
+@@ f4d2a31115 text
+Figure 10-1 · Model illustration, draggable
+@@ 4779e33e39 text
+Front month (expires day 25)
+@@ 021a0893ea text
+Back month (expires day 53)
+@@ a72713664e text
+Earnings report

@@ -1,0 +1,186 @@
+@@ f0168675b5 html
+Oversold Rebound List (Sep–Oct 2026) · hanoptions.trade
+@@ 3b054a194f html
+Study handbook · Twenty companies · Data as of 2026-10-09
+@@ 0438124bba html
+Oversold Rebound List <span class="ed">Sep–Oct 2026</span>
+@@ ee3b0ee378 html
+The stocks a trader listed in late September as “due for a short-term bounce,” plus the few he actually bought in early October. Each company gets its own chapter and is taken apart from three angles: fundamentals, news and technicals.
+@@ ec16d60e39 html
+Chapters
+@@ 838778c739 html
+Where this list came from
+@@ 2fe069f1a1 html
+On September 30, a trader posted 17 “short-term oversold” stocks in the group chat. His reasoning: September's losers had been sold too hard, and once rates and oil came down, money would rotate back into them out of chips and AI stocks. This handbook takes apart every company on the list, plus the 3 others he actually bought in early October, one at a time.
+@@ 1c1d45ce96 html
+His original thesis
+@@ 7156f13ca7 html
+<strong>The rotation thesis</strong>: “Buy September's losers on the pullback, short the winners on the bounce.” Chips and AI infrastructure, which led in September, could pull back, while the consumer, financial, utility and industrial stocks that were sold off could rebound.
+@@ f3046398db html
+<strong>Macro premises</strong>: crude oil falls back below $90; yields come down and rate-hike expectations cool; the equal-weight index (RSP) and small caps (IWM) keep outperforming the Nasdaq 100 (QQQ).
+@@ 58e20f2293 html
+<strong>Instruments and time frame</strong>: buy the stock, or buy call debit spreads when volume is high enough—“try not to go naked.” Hold for about a month and aim for a 3% to 8% gain, with expiration at the end of October or on the November options expiration (OpEx) date. On October 6 he added that he had moved into a “buy stock, not options” phase, because the thesis needs time to play out.
+@@ 348a0837bb html
+<strong>Discipline</strong>: enter in the last 30 minutes of the session; add only after confirmation; set a stop-loss on every stock.
+@@ e662a21462 html
+The list and the actual buys
+@@ ee3aec1570 html
+Category
+@@ e7cd9933a3 html
+Stock
+@@ c6c54e4faa html
+9/30 list (17 stocks)
+@@ def05ca4ef html
+Buys logged 10/2 to 10/5 (9 stocks)
+@@ 60efc2c275 html
+MCD, BAC, MGM, LOW, GD, HSY, plus WEN, PRMB and DUK from outside the list
+@@ c87067bb7e html
+His logged entry prices and the October 9 close
+@@ 044e79a565 html
+Date
+@@ 3a381c8414 html
+Entry price
+@@ b7354af156 html
+10/9 close
+@@ dc0aac1119 html
+Change
+@@ 44b5c5a58e html
+<b>MCD</b> McDonald's
+@@ 4139f3f720 html
+<b>BAC</b> Bank of America
+@@ 408b5ae878 html
+<b>MGM</b> MGM Resorts
+@@ 6182d66d48 html
+<b>LOW</b> Lowe's
+@@ db8789995d html
+<b>GD</b> General Dynamics
+@@ fa812ed17b html
+<b>WEN</b> Wendy's
+@@ 4790380c46 html
+<b>HSY</b> Hershey
+@@ ffa0d1fc98 html
+<b>DUK</b> Duke Energy
+@@ 99d07c1c08 html
+The nine trades averaged +0.7%. The 17 stocks on the list averaged +0.9% from September 30 to October 9, and 12 of them rose. A little over a week is too short to prove the thesis right or wrong, but it does show that these stocks have not yet staged a “clear rebound.”
+@@ 02016e1712 html
+Did the macro premises come true by early October?
+@@ 479b93c7e9 html
+His premise
+@@ b135618fc4 html
+What actually happened in early October
+@@ 6686b0b529 html
+Crude falls back below $90
+@@ ee81dbe1b2 html
+WTI was about $88.48 on October 7, just under $90; on October 8, with Hurricane Isaias approaching the US, Brent rose to about $104 and WTI to about $91.30
+@@ 2919b322be html
+Yields come down
+@@ 441f29ff4d html
+On October 7 the 10-year Treasury yield was about 5.27%, and the 30-year briefly reached 5.73%, a 24-year high
+@@ 949e82afb8 html
+Rate-hike expectations cool
+@@ b8e30227b6 html
+The Fed raised rates 25 basis points to 3.75% to 4.00% on September 16, its first hike since 2023; the minutes showed most officials thought one more hike before year-end could be appropriate
+@@ d04c7ba46e html
+Equal-weight and small caps keep outperforming
+@@ 0b83e2fe32 html
+RSP and IWM rose on October 5, and he said the rotation thesis “still seems to hold up”; on October 8 he said the next day would be “the real test”
+@@ 8ab31cc603 html
+In short: oil is swinging back and forth around $90, and long-term rates are still rising. Neither premise is on firm ground yet, so for every company in this book, “what to watch next” comes back to rates, oil and the company's own earnings report.
+@@ b8b14648e3 html
+How to read each chapter
+@@ dc5d697b06 html
+<strong>Why he's watching it</strong>: why the stock is on the list.
+@@ 163c87b3e4 html
+<strong>Snapshot</strong>: closing price, change since 9/30, forward P/E, dividend yield, RSI, next earnings date.
+@@ aec19b3a64 html
+<strong>Technicals</strong>: price action over roughly the last 50 trading days, moving averages, the 52-week range, support and resistance.
+@@ 77438eecc9 html
+<strong>Fundamentals</strong>: business model, growth, profit margins, debt, valuation.
+@@ 836bbfc530 html
+<strong>News</strong>: key news from August to October and the catalysts ahead.
+@@ 05f8f4aa04 html
+<strong>For and against</strong>: the case for a rebound, the case for further weakness, and confirmation signals to watch.
+@@ 8aeb3b0b92 html
+All prices, moving averages, RSI readings and financial data are as of the October 9, 2026 close and come mainly from stockanalysis.com; news comes from the sources listed in each chapter. Prices change every day, so check the latest data as you read.
+@@ ecf090912e html
+This is an analysis handbook for study: a way to practice looking at a company from three angles. It is not advice to buy or sell, and it does not predict prices.
+@@ 4120960453 html
+The trader's words, entry prices and reasoning come from the group chat log and have not been verified.
+@@ 5597321cff html
+Method: three angles on each company
+@@ 1c19a5bb8b html
+Fundamentals tell you what the company is worth, news tells you why the market is repricing it now, and technicals tell you where buyers and sellers stand at this moment. An oversold rebound trade needs all three.
+@@ 9eadf9561d html
+Fundamentals: the business first, then the price
+@@ 34000dcf18 html
+Metric
+@@ 8d70ef0ee8 html
+The question it answers
+@@ 58d1200697 html
+How to read it
+@@ 6d03a7bbab html
+Revenue growth
+@@ 5a76cdca52 html
+Whether the business is growing or shrinking
+@@ a22e0f09d2 html
+Look at both the latest quarter and the trailing 12 months; the direction matters more than any single number
+@@ 29c517b54e html
+Operating margin, net margin
+@@ ce9b1ae30b html
+How much of every $100 of revenue the company keeps
+@@ 52674e8b84 html
+Compare with peers and with the company's own history; margins often start falling before revenue does
+@@ 5d7245bb59 html
+Price-to-earnings ratio (P/E), trailing 12 months / forward
+@@ 06b6e34c9c html
+What the market pays for $1 of earnings
+@@ 076c49e4ef html
+Forward P/E uses analysts' forecasts for the next 12 months; when earnings estimates are cut, it “gets more expensive”
+@@ 64c2918430 html
+Whether valuation matches growth
+@@ 2278787e16 html
+P/E divided by the earnings growth rate; lower is cheaper, but the growth rate is a forecast and can be far off
+@@ 1d5107ecee html
+Valuation that counts debt too
+@@ be371cc0e6 html
+For heavily indebted companies (such as MGM Resorts), looking only at P/E understates the risk
+@@ 29fe5220f6 html
+Dividend yield, payout ratio
+@@ 7a42177259 html
+How much cash comes back to you, and whether it can last
+@@ 34afba2630 html
+A high dividend with a very high payout ratio (near or above 100%) can be a warning sign of a dividend cut
+@@ 9fac7e86a3 html
+Total debt, free cash flow (FCF)
+@@ 2e00ba56cf html
+How well the company can absorb shocks
+@@ e07081c119 html
+When rates rise, heavily indebted companies come under pressure on both valuation and profits
+@@ e3ff78ba42 html
+Banks are the exception. A bank's “debt” is deposits and borrowings, its raw material, so you can't compare it with an ordinary company's. For banks, look at net interest margin (NIM), price-to-book ratio (P/B), ROE and capital adequacy.
+@@ 9eb4812b4c html
+News: find out why the stock fell
+@@ a40aea4b37 html
+When a stock falls 20%, there is always a reason: results that missed expectations, lowered guidance, management changes, lawsuits, weakening industry data, or simply money pulling out of the whole sector. It is very important to tell two situations apart:
+@@ 4e59494699 html
+Dragged down by the sector (more likely to rebound)
+@@ 9aa36506c1 html
+No bad news at the company itself
+@@ a8bb8b1a05 html
+Peers fell too
+@@ 0c482929f5 html
+The cause is macro or sector rotation
+@@ 938a39f41c html
+If macro conditions improve, the stock has room to recover
+@@ 30aacefe0c html
+A problem at the company itself (harder to rebound)
+@@ 74e64cb022 html
+Falling results, lowered guidance, a dividend cut
+@@ 6d7643fc73 html
+A wave of analyst price-target cuts
+@@ 6bdc1d9992 html
+Takeover hopes fade, major shareholders exit
+@@ 750f86db0a html
+Needs new good news to turn around
+@@ fb8419f5c9 html
+Also list the catalysts ahead. Oversold stocks are most prone to big moves around earnings: if the report shows the problem is not as bad as feared, the stock can recover quickly; if it confirms the worries, the stock can drop another leg.

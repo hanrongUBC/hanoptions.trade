@@ -1,0 +1,186 @@
+@@ 9b8686e409 html
+<span class="sn">Cases</span>Two cases
+@@ c06b966f82 html
+From a macro view to an options position: all nine steps
+@@ 26a68f424a html
+Background (all hypothetical): inflation data has cooled for several months in a row, the market expects the FOMC meeting in 21 days may cut rates, and CPI comes out in 8 days. You think rate-sensitive small caps will benefit. A small-cap ETF (called IWM below; prices are hypothetical) trades at $250, with IV at 22%, a 52-week IV range of 17%–45% and 20-day realized volatility of 19%. Account equity is $80,000.
+@@ 002b217740 html
+<strong>Step 1: View.</strong> Direction: IWM rises to around 262 within 6 weeks (+5%); a close below 241 means I'm wrong. Volatility: IV at 22% isn't high and is unlikely to drop much before the FOMC. Time: the catalysts are CPI on day 8 and the FOMC on day 21, giving the view about 42 days to play out. The market's expected move over 42 days is <span class="num">250 × 0.22 × √(42/365) = ±18.7</span>, and working back from option prices, the probability of being above 262 after 42 days is about <span class="num">27.3%</span>. You think it is clearly higher, so this is a view that disagrees with the market.
+@@ ae61ef04bc html
+<strong>Step 2: IV environment.</strong> IV Rank = <span class="num">(22 − 17) ÷ (45 − 17) × 100 = 17.9</span>, which is low; IV/HV = 22 ÷ 19 = 1.16, so options are a bit rich relative to realized volatility but not outrageously so. There are events: both CPI and the FOMC fall within the holding period.
+@@ e8c524e339 html
+<strong>Step 3: Structure.</strong> The matrix cell “bullish · low · event” says: buy calls or a call debit spread, and get in early. Compare the two (63 days to expiration, IV 22%):
+@@ c990ebd0b1 html
+Table 14-10 Two candidate structures (per share, $)
+@@ 34000dcf18 html
+Metric
+@@ 6ba1d11815 html
+250 call
+@@ 69149106cb html
+250/262 call spread
+@@ 82e8b212a1 html
+Cost (max loss)
+@@ 27ddee7a25 html
+Breakeven at expiry
+@@ 4200b88d9c html
+Value at 262.5 on day 42
+@@ 53c7fe8ef2 html
+Value if still at 250 on day 42
+@@ 5b571f9096 html
+Delta / Theta per day
+@@ 2982b07683 html
+Vega (per IV point)
+@@ fb3f575d6f html
+Choose the spread. The reasons go into the journal: you don't need the upside beyond the 262 target, and selling it buys you half the cost and one-ninth of the Theta; the return is higher if the target is reached, and the loss is smaller if the stock goes nowhere. Not the single call, because IV/HV of 1.16 says options aren't cheap, so buying a single option has no clear edge. Not a short put spread, because IV is low and sellers collect too little.
+@@ 1f3badc463 html
+<strong>Step 4: Strikes and expiration.</strong> A 42-day window times 1.5 is about 63 days, so choose the 63-day expiration. Long leg at the 250 strike, ATM (Delta 0.55); short leg at 262, matching the target price (Delta 0.35).
+@@ c0461d84be html
+<strong>Step 5: Size.</strong> A 2% per-trade cap is $1,600; each spread's maximum loss is about $489, so trade 3 spreads.
+@@ 870806d334 html
+<strong>Step 6: Entry.</strong> Quotes: 250 call 9.85/10.10, 262 call 4.98/5.17; combo mid 4.90, natural 5.12. An hour before the close, place a combo order at 4.90; two minutes later, raise it to 4.95 and get filled. Total cost is <span class="num">3 × 495 = $1,485</span>, or 1.86% of the account.
+@@ f8a3484c16 html
+<strong>Step 7: Management rules (written before entry).</strong> Take-profit: IWM closes ≥ 262, or the spread ≥ 8.40 (70% of its maximum value of 12), whichever comes first. Stop-loss: IWM closes &lt; 241, or the spread ≤ 2.45 (about −50%). Time: if the take-profit hasn't been hit with 21 days left, close everything. Event: you hold through the FOMC, but the 3 spreads together have a Vega of only $8 per IV point, so a drop in IV has little effect. Adjustment: no adding, no moving the short leg up.
+@@ 0cc9921ac1 html
+<strong>Step 8: Exit.</strong> The path while the position was open, with the spread's mid price:
+@@ dc7b31590f html
+Table 14-11 Path of the position (spread value at the Black-Scholes mid)
+@@ 4f5994e37a html
+Day
+@@ 82698770af html
+Event
+@@ d784b201a4 html
+Spread value
+@@ 4c7db76232 html
+Open P&amp;L, 3 spreads
+@@ 78ac84a76a html
+Open
+@@ 392d54e3ef html
+CPI cools
+@@ 096b7706c7 html
+Before FOMC
+@@ c72e874aa8 html
+FOMC cuts
+@@ 52e2103987 html
+Take-profit hit
+@@ fcc829fd71 html
+Look at day 22: after the FOMC, IV fell from 23% to 20%, and the spread actually benefited. Once IWM rose past 256, the midpoint between the two strikes, the short leg's Vega became larger than the long leg's, and the spread's net Vega turned negative (at the same price, it is worth 6.43 at IV 23% and 6.54 at 20%, $35 more for 3 spreads). On day 34, before the close, IWM moved above 262 (closing at 262.4). The take-profit condition fired, and the spread sold at 8.10, a little below the 8.19 mid, for a P&amp;L of <span class="num">(8.10 − 4.95) × 300 = +$945</span>.
+@@ 52d394ebad html
+<strong>Step 9: Record.</strong> R-multiple = <span class="num">945 ÷ 1,485 = 0.64R</span>, held 34 days. At exit, IWM had actually risen 12.4, against a 42-day expected move of 18.7, so the move did not exceed what the market expected. The take-profit followed the rules, with no violations. Attribution: the judgment was right and execution went to plan. One-line review: putting the short leg at the target gave the take-profit a clear price.
+@@ 8136cdaa14 html
+Of the nine steps, the ones that really take time are steps 1 to 3; the rest are almost mechanical. Because the management rules were written in advance, the decision on day 34 only required looking at a closing price, not judging again whether “it will keep going up.” The trade itself was only 0.64R. Its value is that the journal now has one more record that can be counted and that followed the process exactly.
+@@ 2bd6906fa3 html
+Expectancy from three months of journal statistics: which conclusions hold up
+@@ a245b22827 html
+A fictional account made 76 trades in three months. Grouped by structure, the statistics are below. Every trade followed the management rules, and the stop-loss on credit spreads was set at about 2 times the credit.
+@@ 8df034881f html
+Table 14-12 Simulated journal summary (per trade, $; the last cell of the Total row is total P&amp;L)
+@@ 4ed46830a4 html
+Trades
+@@ 89c9d927d5 html
+Expectancy
+@@ 4aa4898caf html
+Std dev
+@@ 70b5feaef6 html
+95% interval
+@@ d61a88b063 html
+Trades for lower bound &gt; 0
+@@ 31bab55c9e html
+Short put spread
+@@ abae6b8984 html
+11 trades
+@@ 39377de09a html
+Long options
+@@ a0b1b4c595 html
+40 trades
+@@ 113634daa5 html
+77 trades
+@@ cee78d81ef html
+Long straddle before earnings
+@@ 57eec06783 html
+Total
+@@ 4a474a35be html
+Checking the first row's expectancy with the formula: <span class="num">(25/28) × 126.6 − (3/28) × 301.7 = +80.7</span>. 95% interval = expectancy ± 1.96 × std dev ÷ √trades; “trades for lower bound &gt; 0” = (1.96 × std dev ÷ expectancy)².
+@@ 98ab6e3ffd html
+<strong>Short put spread: the interval excludes zero, but the tail hasn't shown up.</strong> The 3 losses out of 28 trades were all around −$300, which shows the stop-loss is working. But this structure's maximum loss of about $420, which happens when a gap jumps past the stop, never appears in the sample. If its true probability is 6% and you add that in, expectancy drops from 80.7 to about <span class="num">0.80 × 126.6 − 0.14 × 301.7 − 0.06 × 410 = 34.4</span>. And at a 5% probability, the chance of not hitting it once in 28 trades is 23.8%. Conclusion: this strategy very likely has positive expectancy, but these 28 trades are no basis for increasing size.
+@@ 2d105dc9bb html
+<strong>Long options: looks best, actually the least certain.</strong> Expectancy of +116.9 ranks first, but the best two of the 16 trades were +895 and +710. Take those two out and the other 14 trades have an expectancy of only <span class="num">(1,870 − 895 − 710) ÷ 14 = +18.9</span>. The interval runs from −69 to +303, and it takes about 40 trades to reach a conclusion.
+@@ 6612994160 html
+<strong>Debit spreads and iron condors: the samples are too small to say anything.</strong> Debit spreads need about 77 trades. Iron condors show negative expectancy over 10 trades, but the interval runs from −146 to +101, so it may just be bad luck.
+@@ 40bf9dc63b html
+<strong>Long straddles before earnings: only 2 wins in 8 trades, losing $111 per trade on average.</strong> This isn't statistically significant yet either, but you can look for the cause in the journal's IV fields: if every entry was made at a very high IV Rank and IV collapsed after the event, this is the structural problem covered in Chapter 10, and you don't need to wait for a large enough sample to fix it.
+@@ f719a2eafe html
+76 trades in three months support very few conclusions. The most common mistake is to size up the top-ranked “long options,” whose lead comes mainly from two trades.
+@@ f4657aeb87 html
+Statistics tell you “where things are still uncertain”; the journal's other fields tell you “why.” Combine the two, and you can make sensible adjustments even when the sample is too small.
+@@ 2db7222d30 html
+The sample-size problem won't go away: once you group by structure and IV environment, each group has even fewer trades. So keep records for the long run and review quarterly, not weekly.
+@@ 76fc557033 html
+<span class="sn">Tools</span>Checklist and self-test
+@@ b4640d623d html
+Your checkmarks are saved only in your own browser.
+@@ 48f44d2278 html
+<span class="num">14-1</span>Before the order: five questions you must answer
+@@ c906508c4c html
+All three sentences written (direction, volatility, time), including the invalidation price
+@@ fcddb30858 html
+Checked IV Rank, IV/HV and the event calendar
+@@ 2df46b326c html
+The structure comes from the matrix, and I can say why I didn't choose the other two
+@@ e365f059af html
+Expiration ≥ latest catalyst date × 1.5 (except for events with fixed dates)
+@@ 14e2a32ff2 html
+Maximum loss ≤ 2% of the account; the number of contracts is calculated
+@@ 52471308ec html
+<span class="num">14-2</span>Entry: execution
+@@ 26c689a702 html
+Use a combo order for multi-leg structures
+@@ ecf254d732 html
+Start the limit at the mid and give up $0.01–0.05 at a time
+@@ cfffa2c058 html
+Near-the-money bid–ask spread ≤ 10% of the mid
+@@ c160a7c49a html
+Avoid the first 30 minutes after the open and the time around data releases
+@@ a94c52dbb8 html
+<span class="num">14-3</span>Management: four rules
+@@ 4e3834d10e html
+Take-profit: a price or a percentage, written as a number
+@@ 5d364d5db0 html
+Stop-loss: preferably written as an underlying price
+@@ 66bdc4c481 html
+Time: the latest number of days left at which you exit
+@@ 089a82b064 html
+Adjustment: what is allowed, and how many times at most
+@@ 43218564e8 html
+<span class="num">14-4</span>Weekly: scan and review
+@@ fc95fd3263 html
+Fill in attribution and R-multiples for this week's closed trades
+@@ 57e4c4da71 html
+Update expectancy and sample size by structure, and check whether the interval includes zero
+@@ 8409da9f01 html
+Run the candidate pool through three screens: liquidity, events, IV
+@@ 1347f96f8d html
+Write three sentences for each name on the short list; skip any you can't
+@@ a6f5d33bbc html
+Self-test: five questions
+@@ 577245eb0d html
+<span class="num">1</span><span>A strategy has a 70% win rate, an average win of $150 and an average loss of $300. What is its expectancy? What is its breakeven win rate?</span>
+@@ c4d98fe74c html
+Expectancy is <span class="num">0.70 × 150 − 0.30 × 300 = +$15</span>. The breakeven win rate is <span class="num">300 ÷ (150 + 300) = 66.7%</span>. The win rate is only 3.3 percentage points above breakeven, so a small error in the journal's win rate would flip the conclusion.
+@@ 3c129d7a33 html
+<span class="num">2</span><span>A stock's IV is 40%, and over the past 52 weeks its IV ranged from 25% to 65%. What is the IV Rank, and which tier is it in?</span>
+@@ 9cb753cd88 html
+<span class="num">(40 − 25) ÷ (65 − 25) × 100 = 37.5</span>, the mid tier. By the matrix, directional views should favor debit spreads. Also check IV/HV: if realized volatility is around 40% too, the options aren't expensive.
+@@ d1761f805b html
+<span class="num">3</span><span>A debit spread: the long leg is quoted 2.40/2.60 and the short leg 1.10/1.25, and you trade 10 spreads. How much does the cost differ between filling at the natural price and filling at the mid?</span>
+@@ ef408ffabc html
+Natural: <span class="num">2.60 − 1.10 = 1.50</span>; mid: <span class="num">2.50 − 1.175 = 1.325</span>. The difference is 0.175 per spread, or <span class="num">0.175 × 100 × 10 = $175</span> for 10 spreads, and you pay a similar difference again on exit.
+@@ 2fccda8a12 html
+<span class="num">4</span><span>A strategy in your journal has 30 trades, an expectancy of $25 per trade and a standard deviation of $200. Can you trust this expectancy? How many trades would be enough?</span>
+@@ a6b4612a68 html
+The standard error is <span class="num">200 ÷ √30 = $36.5</span>, and the 95% interval is <span class="num">25 ± 1.96 × 36.5 = [−$46.6, +$96.6]</span>. It includes zero, so you can't draw a conclusion yet. For the lower bound to turn positive, you need <span class="num">(1.96 × 200 ÷ 25)² ≈ 246</span> trades.
+@@ fdc298bbf9 html
+<span class="num">5</span><span>You think a catalyst will arrive within 3 to 5 weeks and want to buy an ATM call. How do you choose the expiration? When do you exit?</span>
+@@ ee67013de7 html
+Take 1.5 times the latest time of 5 weeks (35 days): at least about 53 days, so choose an expiration around 60 days. Time rule: exit at the latest with 21 days left, which means holding no more than about 39 days. If the catalyst still hasn't arrived by then, the time sentence was wrong: exit rather than rolling and stubbornly holding on.
+@@ 84d5fc83df html
+Option prices and Greeks in this chapter are calculated with the Black-Scholes model (4% rate, no dividends, 365-day year). Journals, scan data and simulation results are fictional or are assumptions stated in the text. They are for teaching only and are not investment advice.

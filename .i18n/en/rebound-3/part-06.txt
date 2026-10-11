@@ -1,0 +1,231 @@
+@@ 18cebce5b1 text
+MDLZ · Figure 1
+@@ 51b2b02888 text
+MDLZ · Figure 2
+@@ 109307fbb8 text
+Consumer staples · Confectionery and snacks
+@@ ac3d132ac3 text
+Bought 10/5 at 160.19
+@@ 2113c32dba text
+10/29 AM
+@@ ffc0b6ae23 text
+HSY · Figure 1
+@@ e8f883ed40 text
+HSY · Figure 2
+@@ 5d91fca73f text
+Consumer staples · Beverages (bottled water)
+@@ bea2df69c9 text
+Bought 10/5 at 19.70
+@@ b9178b85bc text
+PRMB · Figure 1
+@@ 5c8c5df685 text
+PRMB · Figure 2
+@@ adccc7d07d text
+Consumer discretionary · Home improvement retail
+@@ 034ee8329f text
+Bought 10/5 at 180.00
+@@ 973dc34e32 text
+11/18 AM
+@@ 07e0f51025 text
+LOW · Figure 1
+@@ aee19a69a9 text
+LOW · Figure 2
+@@ 7ff97469f3 text
+Communication services · Cable broadband and media
+@@ 770cda4963 text
+10/22 AM
+@@ eca082c2b5 text
+CMCSA · Figure 1
+@@ ce3ce55093 text
+CMCSA · Figure 2
+@@ 83a9037a88 text
+Financials · Large banks
+@@ 56649d89ee text
+Bought 10/2 at 53.75
+@@ a3e70b7183 text
+10/14 AM
+@@ 79922f530a text
+BAC · Figure 1
+@@ 0600d24800 text
+BAC · Figure 2
+@@ 72fb9cfff2 text
+Financials · Alternative asset management
+@@ d115ed6a64 text
+BX · Figure 1
+@@ 0f946c61ed text
+BX · Figure 2
+@@ fc30e6a4cd text
+Consumer discretionary · Cruises
+@@ 4409e3500e text
+None
+@@ c0d8420927 text
+VIK · Figure 1
+@@ 5ab6a002ab text
+VIK · Figure 2
+@@ 13f39a6e68 text
+Consumer discretionary · Casino resorts
+@@ 711a3bbe7b text
+Bought 10/2 at 30.50
+@@ 2afdd185e3 text
+10/28 PM
+@@ 3d41bab450 text
+MGM · Figure 1
+@@ 322fde493c text
+MGM · Figure 2
+@@ ec9ac0ef13 text
+Industrials · Aerospace and defense
+@@ 1c56c115d8 text
+10/20 AM
+@@ ded188a3a4 text
+RTX · Figure 1
+@@ f771a14f8d text
+RTX · Figure 2
+@@ 3d0e97e7e7 text
+Industrials · Defense and business jets
+@@ 2f64c91ad7 text
+Bought 10/5 at 331.50
+@@ fb420ba551 text
+10/30 AM
+@@ 6b8ac4a2e8 text
+GD · Figure 1
+@@ a633816b82 text
+GD · Figure 2
+@@ fff9dd4e5f text
+Industrials · Environmental services (solid waste)
+@@ 8f74b55abe text
+WM · Figure 1
+@@ bb3902a1e9 text
+WM · Figure 2
+@@ b470f1688d text
+Industrials · Freight and logistics (intermodal)
+@@ 1aa4f4d074 text
+10/15 PM
+@@ 758c3cb8c1 text
+JBHT · Figure 1
+@@ a26b0934fd text
+JBHT · Figure 2
+@@ df3cbdb1f5 text
+Utilities · Regulated electric and gas
+@@ 146e5aed84 text
+SO · Figure 1
+@@ 7a9396d1d4 text
+SO · Figure 2
+@@ e0763d4e67 text
+Bought 10/5 at 114.13
+@@ 07dde5aee3 text
+DUK · Figure 1
+@@ 7ff7b4af97 text
+DUK · Figure 2
+@@ 03a77e6c88 text
+Energy · Oilfield services
+@@ eaa1c03387 text
+10/23 AM
+@@ e17e0b48ea text
+SLB · Figure 1
+@@ 99bc54d498 text
+SLB · Figure 2
+@@ e6b18844b1 text
+Health care · Medical devices and diagnostics
+@@ d5570c3593 text
+10/21 AM
+@@ daa3f9e7b3 text
+ABT · Figure 1
+@@ a242c68b24 text
+ABT · Figure 2
+@@ da57b7e79b text
+Toolkit
+@@ 237771ab1a text
+Ticker / company:            Date:
+1. Why it's on the list:
+2. Snapshot: close ___  vs. 50-day ___  vs. 200-day ___  RSI ___
+             forward P/E ___  dividend yield ___  next earnings ___
+3. Fundamentals: revenue growth ___  margins ___  debt ___  valuation vs. history ___
+4. News: main reason for the drop ___
+         sector drag / company-specific problem
+         upcoming catalysts ___
+5. Technicals: support ___  resistance ___  trend ___
+6. For and against: case for a rebound ___   case for further weakness ___
+7. Confirmation signal: ___     I'm wrong if (facts only): ___
+8. One week later: What happened? Which call was right?
+@@ e0075fa9e3 attr
+Twenty candidates for a “short-term rebound,” each in its own chapter, analyzed through fundamentals, news and technicals. Data as of October 9, 2026.
+@@ 9ce7d3c4f4 attr
+Site navigation
+@@ b4126ef441 attr
+Chapters
+@@ 9cdb4bad3f attr
+Introduction: where this list came from
+@@ a20a259e06 attr
+Method: three angles on each company
+@@ e2b85119d0 attr
+McDonald's 52-week range example
+@@ 4c984a52e8 attr
+Overview: all twenty side by side
+@@ f3d20b4b9b attr
+McDonald's
+@@ cb256eaf20 attr
+Wendy's
+@@ cb761226ac attr
+PepsiCo
+@@ accaf98baa attr
+Mondelez
+@@ ac55aeecfe attr
+Hershey
+@@ c4f4265bf1 attr
+Lowe's
+@@ 26d527bb41 attr
+Comcast
+@@ 5f324c7be2 attr
+Bank of America
+@@ 2fbe0a3651 attr
+Blackstone
+@@ 76cefb0aca attr
+Viking Holdings
+@@ 9be90073cd attr
+MGM Resorts
+@@ d3125d6295 attr
+RTX (Raytheon)
+@@ 6538133676 attr
+General Dynamics
+@@ 741b51b9ea attr
+Waste Management
+@@ 4ce2afdb31 attr
+Southern Company
+@@ 9f1b50e80f attr
+Duke Energy
+@@ d7202a0a81 attr
+SLB (Schlumberger)
+@@ d7f9faccb3 attr
+Abbott Laboratories
+@@ cdc5297a11 attr
+Vertical-axis metric
+@@ 059cc9b989 attr
+Scatter plot of the twenty companies
+@@ e84bc787b7 attr
+Change since 9/30 for the twenty companies
+@@ 9cd17826cf attr
+MCD McDonald's
+@@ 6e0f849835 attr
+MCD recent closing prices
+@@ 79fa45204d attr
+MCD 52-week range
+@@ 64b43d82c7 attr
+WEN Wendy's
+@@ 2b4e639730 attr
+WEN recent closing prices
+@@ 954bc15863 attr
+WEN 52-week range
+@@ fde798f6c5 attr
+PEP PepsiCo
+@@ da859d96e2 attr
+PEP recent closing prices
+@@ 67e5703b5b attr
+PEP 52-week range
+@@ c12b8f54c9 attr
+MDLZ Mondelez
+@@ 41d58db2c1 attr
+MDLZ recent closing prices
+@@ d795a5820f attr
+MDLZ 52-week range
+@@ 4a1f603f12 attr
+HSY Hershey

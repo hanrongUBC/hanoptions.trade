@@ -1,0 +1,220 @@
+@@ 71bf799ed2 html
+Macro Trading Framework · hanoptions.trade
+@@ 0a41270e95 html
+Study handbook · 12 chapters
+@@ 1ff58308b0 html
+Macro Trading Framework
+@@ 01188751a1 html
+Stock prices come down to earnings and interest rates, and earnings and rates are pushed around by oil, the dollar, jobs and policy. This handbook ties those forces into a map you can use every day: what to watch, how to reason it through, when to trust it, and how to bet.
+@@ ec16d60e39 html
+Chapters
+@@ fc02ed4747 html
+What macro trading is for
+@@ e0e9f05284 html
+Macro trading is not about forecasting next quarter's GDP. It asks two more practical questions: where money will be forced to go next, and whether the market has already seen it coming.
+@@ ccdec9b9ad html
+The two legs of a stock price: earnings and the discount rate
+@@ 4663b4e14a html
+The price of any stock can be split into two parts:
+@@ 60a7ec2fc7 html
+Almost every piece of macro news ends up landing on these two legs. Rising oil raises companies' costs and squeezes earnings; it also pushes up inflation, makes it harder for the central bank to cut rates, and lifts the discount rate. A stronger dollar shrinks multinationals' overseas revenue once it is converted back, and tightens funding conditions around the world. Weakening jobs first make the market hope for rate cuts, then make it worry about earnings.
+@@ 0b201bb879 html
+So macro analysis always comes down to three questions: How will this change earnings? How will it change rates? How will it change risk appetite?
+@@ 6916b0576d html
+Six things a macro trader does every day
+@@ 943a99e928 html
+Observe: what moved
+@@ a63458a350 html
+Chapter 1
+@@ 81181f963e html
+Explain: why it moved
+@@ 68916c53b1 html
+Chapters 2 and 8
+@@ c44d8acfb2 html
+Trace: where it goes
+@@ d3ec085a95 html
+Chapters 2–5
+@@ 4a3b198153 html
+Verify: does price agree
+@@ 0955527450 html
+Chapters 6 and 7
+@@ 106bcd030f html
+Express: how to bet
+@@ 70d6307cd8 html
+Chapters 9 and 10
+@@ b04132dc06 html
+Review: what broke
+@@ 7d7d98c805 html
+Chapter 11
+@@ 853a22e382 html
+Beginners often skip “verify” and go straight from tracing to trading
+@@ 1f9aa7a898 html
+The four steps in the middle are all reasoning; only “verify” needs the market to give you an answer. However neat your reasoning, if price doesn't agree, don't bet yet.
+@@ 6ace9924f5 html
+Why stock and options traders need macro too
+@@ ea4ec29e37 html
+In 2022, many large tech companies whose earnings were still growing saw their shares fall anywhere from 30% to more than half. The companies hadn't gotten worse; their valuation multiples had. Rates rose quickly from near zero, and the price the market was willing to pay for the same dollar of earnings dropped sharply. That year, stock-picking skill could hardly offset the across-the-board selloff that macro brought.
+@@ f8d412fdb0 html
+When macro dominates the market, the correlation between individual stocks rises noticeably: everything goes up together and down together. Then however deep your research on a company, it only decides how much less you lose than everyone else. For options traders it is even more direct: rates, the dollar and data days change implied volatility (IV) across the whole market, and with it the price of every option.
+@@ bd9d1db727 html
+Three common mistakes
+@@ 2fb6ef8cc0 html
+Mistake
+@@ 04d62a072f html
+What it looks like
+@@ d8536a3053 html
+A better approach
+@@ 4fc7315839 html
+Treating macro as prophecy
+@@ 448f21d517 html
+Betting on one specific outcome, such as “they will definitely hike next month”
+@@ fc03e3cbf0 html
+Draw a map: list a few scenarios and how each would play out across assets, then watch which one the market moves toward
+@@ f621dc2af1 html
+Reading only the headlines
+@@ 9458b52081 html
+Buying on good news, selling on bad news
+@@ 99525c56bc html
+Watch how the market reacts. Good news that doesn't lift prices, or bad news that doesn't sink them, is a signal in itself
+@@ 46683ef356 html
+Mistaking beliefs for facts
+@@ 309fda5a4a html
+Ignoring the evidence in prices because you agree with a political position or a grand narrative
+@@ 405ca65e8c html
+Beliefs can help you decide what to research; bets should follow evidence. The market doesn't care whom you support
+@@ 586bfd0eac html
+Using macro on different time scales
+@@ 24574b6775 html
+Time scale
+@@ c7e5d310f4 html
+Dominant forces
+@@ ab38a20986 html
+Common tools
+@@ aceb5fa63e html
+Hours to days
+@@ 884ca1dfc2 html
+Data releases, central bank speeches, options expiration (OpEx), mechanical flows
+@@ 12f077d6e8 html
+Key levels, short-dated options, spreads
+@@ a8d62101f6 html
+Weeks
+@@ 2245105bb5 html
+Trends in rates and the dollar, earnings season, seasonality, sector rotation
+@@ fc0cd831c8 html
+Shares, sector ETFs, longer-dated spreads
+@@ 4fdbc1758f html
+Months
+@@ 09588533f4 html
+The business cycle, the policy cycle, the market regime
+@@ de55c0e046 html
+Overall position size, hedge ratio, cash allocation
+@@ 263c724d3b html
+Years
+@@ c1854feace html
+Structural narratives: AI, energy and resources, reshoring, population aging
+@@ 73a9de3d77 html
+Long-term holding, dollar-cost averaging, long-dated options
+@@ 8d6e9e9707 html
+The same macro call can turn out completely differently if you use a tool built for the wrong time scale. Express a thesis that needs six months to play out with options that expire in three weeks, and you can lose the entire premium even if you are right about the direction. Chapter 10 deals with this problem in detail.
+@@ 94bc46da9c html
+Chapters 1–4 are the parts: the dashboard, transmission chains, rates, and the dollar, gold and energy.
+@@ d15ba86b92 html
+Chapters 5–8 are the assembly: reading the regime, breadth and rotation, flows, and narratives.
+@@ acfe97105f html
+Chapters 9–11 are the application: calendars and events, getting from view to trade, and templates and checklists you can use every day.
+@@ 095d9b273c html
+Chapters 1, 2, 3, 5, 6, 7, 9 and 10 all have charts or tools you can operate. Try adjusting them yourself.
+@@ dfac84e484 html
+The cross-asset dashboard: seven numbers first
+@@ 250261b063 html
+The stock market is often the last to hear the news. Bonds, the dollar, crude oil and volatility often move first, and the way they combine says more about what the market is worried about than any single number.
+@@ e0bb3c7ae3 html
+Seven numbers and what they mean
+@@ 34000dcf18 html
+Indicator
+@@ fa1bfb3b54 html
+What it represents
+@@ 01bf419ef5 html
+What a rise usually means
+@@ a130ff0e66 html
+Easy to misread
+@@ 096ce401b4 html
+2-year Treasury yield
+@@ b5cc71a654 html
+The market's expectation for the policy rate over the next year or two
+@@ 191e828b74 html
+The market is pricing more hikes, or fewer cuts
+@@ b06a161f29 html
+The most sensitive to data and central bank speeches; can move a lot in a day
+@@ 35f678f513 html
+10-year Treasury yield
+@@ b6ec352e67 html
+A blend of growth, inflation expectations and the term premium
+@@ f807e35383 html
+The discount rate on stocks rises; long-duration assets come under pressure
+@@ d2af0ce78d html
+Break it down: is the real yield rising, or inflation expectations?
+@@ e7adf409ba html
+10-year real yield (TIPS)
+@@ 6926548d67 html
+The true cost of money after inflation expectations
+@@ 97871c9d7e html
+The opportunity cost of gold and growth stocks rises
+@@ 4cda0dfbc9 html
+Often explains valuation changes better than the nominal yield
+@@ 38b71414d0 html
+Dollar index (DXY)
+@@ 20bebc29f9 html
+The dollar against a basket of major currencies
+@@ 79fdec0ed7 html
+Global financial conditions tighten; commodities and emerging markets come under pressure
+@@ a444ce3545 html
+Why the dollar is rising matters more than how much it has risen (Chapter 4)
+@@ cdb03077ab html
+Crude oil (WTI, Brent)
+@@ a4d725ac3f html
+A mixed signal of demand and supply
+@@ 4d916a9414 html
+Inflation expectations rise; the burden on consumers grows
+@@ 2a9af8b7e7 html
+A demand-driven rise and a supply-shock rise mean opposite things for stocks
+@@ 90d4e9d87d html
+VIX and its term structure
+@@ 4baee4c67b html
+The implied volatility (IV) of the S&amp;P 500 over the next 30 days
+@@ a04cde3182 html
+Demand for protection is rising
+@@ 1f7bafe317 html
+Only front months above back months (inversion) signal immediate fear
+@@ f6031fd725 html
+High-yield spread
+@@ 533724082c html
+What investors charge for default risk
+@@ 4dcd20be2b html
+Credit stress is building
+@@ 961454817c html
+Usually moves slowly, but once it widens clearly it is often more reliable than stocks
+@@ 6eb511c1d7 html
+A few more worth keeping on a second screen: <strong>gold</strong> (a hedge against currency credibility and geopolitical risk), <strong>USD/JPY</strong> (a barometer of the carry trade) and <strong>copper</strong> (global industrial demand). There are also a few “leading clues”: Korea's stock market often leads global memory-chip stocks, financials often turn a step ahead of the Nasdaq 100, and small caps are the most sensitive to rates.
+@@ c3c87b5a5d html
+Look at the speed of change before the level
+@@ 16f7af5b2f html
+A 10-year yield at 4.8% doesn't say much by itself. Rising from 4.0% to 4.8% within one quarter hits stocks very differently from drifting up over a year. The market can digest slow change; it can't digest abrupt change.
+@@ 3c120b5622 html
+A simple habit: for each number, record two changes, over one day and over 20 trading days. Then compare them with how much that indicator usually moves. The 10-year yield usually moves about 5 basis points a day; on a day it moves 15, it's worth stopping to ask why.
+@@ d6345b5272 html
+Pay most attention when relationships break
+@@ a99707cf28 html
+These assets have some “normal” relationships with one another. When those break, it usually means the market is trading something new:
+@@ c7e9ed163c html
+Unusual combination
+@@ 1c3561d250 html
+Normally
+@@ 1443560eb1 html
+What it may mean
+@@ 85782aab89 html
+Stocks and bonds fall together
+@@ 4446c29c84 html
+When stocks fall, money flows into Treasuries and bonds rise
+@@ 4e971bcb05 html
+The market is trading an inflation or rate shock; Treasuries no longer work as a hedge

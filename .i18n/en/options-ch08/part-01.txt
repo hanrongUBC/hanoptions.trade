@@ -1,0 +1,240 @@
+@@ c5ca8f078d html
+Chapter 8: Strategies for sellers · US Options Course
+@@ 9900fecd98 html
+Strategies for <span class="g">sellers</span>
+@@ b2b73c3864 html
+Selling options is selling insurance: you collect a certain sum up front and take on an uncertain, occasionally very large payout. This chapter puts covered calls, put selling, the wheel, credit spreads and naked selling on the same set of books: how big the maximum loss is, what the real win rate is, whether the expectancy is positive or negative, and when to get out.
+@@ 4a798dc727 html
+In this chapter
+@@ 4ce8a4c84b html
+<a href="#open"><span class="n">··</span><span>Opening: two years of premium</span></a>
+@@ 277c8ea2aa html
+<a href="#s1"><span class="n">8.1</span><span>What selling really is: selling insurance</span></a>
+@@ bbc4e3b4c0 html
+<a href="#s2"><span class="n">8.2</span><span>Covered calls</span></a>
+@@ d54900e769 html
+<a href="#s3"><span class="n">8.3</span><span>Cash-secured puts</span></a>
+@@ ecdd8ae23a html
+<a href="#s4"><span class="n">8.4</span><span>The wheel</span></a>
+@@ 341856542b html
+<a href="#s5"><span class="n">8.5</span><span>Credit spreads</span></a>
+@@ 6775fd4f60 html
+<a href="#s6"><span class="n">8.6</span><span>Naked selling and margin</span></a>
+@@ a02195efb2 html
+<a href="#s7"><span class="n">8.7</span><span>Three rules of thumb for management</span></a>
+@@ 9569b8d11d html
+<a href="#s8"><span class="n">8.8</span><span>Position size and the gap test</span></a>
+@@ 3b01ba01cf html
+<a href="#s9"><span class="n">8.9</span><span>High win rates and negative expectancy</span></a>
+@@ 12c019ed82 html
+<a href="#cases"><span class="n">Cases</span><span>Three cases</span></a>
+@@ dd7ded685d html
+<a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a>
+@@ dded586c36 html
+<a href="#open">Opening: two years of premium</a>
+@@ 8f285428f9 html
+<a href="#s1">8.1 What selling really is: selling insurance</a>
+@@ 2551584a38 html
+<a href="#s2">8.2 Covered calls</a>
+@@ cc2c04fdcb html
+<a href="#s3">8.3 Cash-secured puts</a>
+@@ a091debb3f html
+<a href="#s4">8.4 The wheel</a>
+@@ 9461916770 html
+<a href="#s5">8.5 Credit spreads</a>
+@@ 4958133f0f html
+<a href="#s6">8.6 Naked selling and margin</a>
+@@ 16d7afd250 html
+<a href="#s7">8.7 Three rules of thumb for management</a>
+@@ de4344fd31 html
+<a href="#s8">8.8 Position size and the gap test</a>
+@@ 9bf12acde7 html
+<a href="#s9">8.9 High win rates and negative expectancy</a>
+@@ f3a78e0502 html
+<a href="#cases">Three cases</a>
+@@ 7ec24afd50 html
+<a href="#tools">Checklist and self-test</a>
+@@ 80161dff8a html
+After this chapter you can
+@@ dd535a1442 html
+Write down the maximum loss, the breakeven and the loss in a −20% gap for any short option position
+@@ 051650ba11 html
+Compute expectancy from the win rate and the average win and loss, and spot “high win rate, negative expectancy” strategies
+@@ 99a86c7b46 html
+Explain what the 50% profit target, the 21-day rule and the 2× stop each guard against, and when they don't apply
+@@ fc4f43bd05 html
+Prerequisites
+@@ 60d0b74f0a html
+Chapter 4: reading Delta as a probability, probability of touch, negative Gamma
+@@ 1e98f2fe1d html
+Chapter 5: the shape of Theta
+@@ d2ecc778c7 html
+Chapter 6: the volatility risk premium and IV Rank
+@@ fe31444484 html
+Conventions
+@@ 29904071fd html
+Black-Scholes, 4% rate, no dividends, 365-day year
+@@ ef144d2853 html
+Default underlying: a hypothetical stock at $100 with IV 30%
+@@ 0abba2a034 html
+One contract = 100 shares; commissions not included unless stated
+@@ fc3dc073fc html
+<span class="sn">Opening</span>Two years of premium, given back in a day
+@@ 65c8bae0b8 html
+The stock is at $100, IV 30%. You sell one put with a strike of 90 that expires in 30 days, and collect $40.
+@@ 037036e89b html
+This option's Delta is <span class="num">−0.096</span>, and the market-implied probability that it finishes in the money is about <span class="num">11%</span>. About nine times out of ten it expires worthless and the $40 is yours. It sounds like a steady monthly income.
+@@ b064b6289e html
+Now look at the other side. One day earnings disappoint and the stock gaps down to 80 at the open. At expiry you have to buy, at 90, a stock worth 80, a loss of $10 per share. Subtract the $0.40 you collected and each contract loses <span class="num">$960</span>, the equivalent of <span class="num">24</span> months of premium.
+@@ de45fcfc2e html
+Table 8-0 Selling one 30-day 90 put (for $40.1): P&amp;L by stock price at expiry
+@@ ae4224123c html
+Stock at expiry
+@@ 686e58431c html
+P&amp;L per contract
+@@ bb47575bf4 html
+Months of premium
+@@ c7e116c9be html
+A seller's problem is never “will I win?” The real questions are: how big is the loss when you do lose, how often does it come, and can you survive long enough to see the next one? Every tool in this chapter is built around those three questions.
+@@ 8c43798f29 html
+<span class="sn">8.1</span>What selling really is: selling insurance
+@@ 4d915dad7a html
+Selling options earns two things: time value, and the premium by which implied volatility usually exceeds realized volatility. The cost is negative convexity: as the stock rises you make money more and more slowly, and as it falls you lose money faster and faster.
+@@ 777a6ab9e0 html
+Premiums, claims and the loss ratio
+@@ 2303b712ce html
+An insurer's profit is premiums minus claims, and the same is true for an option seller. Sell a 30-day put with a 95 strike and you collect $1.33; at expiry you pay out max(95 − <span class="v">S<sub>T</sub></span>, 0). The expected size of that payout depends on how much the stock actually moves over the next 30 days, not on the IV at which you sold.
+@@ bb6e619f81 html
+Both terms are computed with Black-Scholes; only the volatility input differs. This assumes the stock drifts at the risk-free rate, which means no directional bet. Strictly, the whole thing should also be multiplied by e<sup>rT</sup>, about 1.003 for 30 days, which can be ignored.
+@@ cd7a67e1c8 html
+Table 8-1 Selling one 30-day put (filled at IV 30%): expected P&amp;L at different realized volatilities (per contract, $)
+@@ 4a14863fad html
+Strike
+@@ b9c93348d5 html
+Premium received
+@@ 06fe5eb382 html
+Realized 22%
+@@ 0a5e43c19b html
+Realized 25%
+@@ a220f81f34 html
+Realized 30%
+@@ 83b7cebb9c html
+Realized 35%
+@@ 52684153f6 html
+The table shows three things. First, when realized volatility equals implied volatility, the expected value is zero: the option is fairly priced and the seller has no edge. Second, the seller's entire edge comes from the gap between IV and realized volatility, which is the volatility risk premium from Chapter 6. Third, that edge as a share of the premium grows the further OTM you go: at 25% realized volatility, the expected profit on the 95 put is <span class="num">33%</span> of the premium and on the 90 put <span class="num">52%</span>, but in dollars it is only $21. In insurance terms, deep OTM policies have a lower loss ratio, but each one brings in only a few tens of dollars.
+@@ bc3c7c8236 html
+Most of the time, implied volatility on index options is higher than the volatility that is later realized, and that is why selling strategies can survive over the long run. The gap reverses in a few periods, and when it does it often reverses by a lot at once. The rightmost column of the table is that kind of period.
+@@ 016cc9ff01 html
+Negative convexity: a drop hurts more than a rise of the same size helps
+@@ cf319c03af html
+Table 8-2 Selling one 30-day 95 put (for $133): P&amp;L after a next-day move (per contract, IV unchanged)
+@@ 78dc05c8ed html
+Next-day move
+@@ 7dd2092829 html
+Repriced
+@@ 08f671f598 html
+Delta estimate only
+@@ dba3ccb7f9 html
+A 10% rise adds only $120, because the most you can ever make is $133; a 10% drop loses $468, and a 20% drop loses $1,343, nearly three times the Delta estimate. That is negative Gamma: the position automatically gets bigger as the stock falls and smaller as it rises (Chapter 4, Section 4.4).
+@@ c2eb0d5a89 html
+Short put
+@@ 26b4dd358d html
+Put credit spread ($5 wide)
+@@ 139c2ab6bc html
+Delta sold <input id="f1-d" type="range" min="5" max="50" value="16"> <output id="f1-d-o">0.16</output>
+@@ 7f4d0529da html
+Realized volatility <input id="f1-rv" type="range" min="15" max="45" value="30"> <output id="f1-rv-o">30%</output>
+@@ 788868bb49 html
+With realized volatility at 30% (equal to IV), the expected value is 0 wherever you drag Delta: the short put's win rate falls from 95% at Delta 0.05 to 63% at 0.50, and that change is exactly offset by the change in the payoff ratio. Drag realized volatility to 25% and the expected value turns positive at every Delta; drag it to 35% and it turns negative everywhere. Switch to the credit spread and the maximum loss shrinks from over $9,000 to $400–500, with almost no change in win rate.
+@@ 2e0b59149d html
+Choosing a Delta is choosing how to split “how often you win” against “how much you lose”; it doesn't change the expected value. A seller is really making just one bet: that future realized volatility will be lower than today's implied volatility.
+@@ 5bf6af0503 html
+<span class="sn">8.2</span>Covered calls
+@@ 7bb135942a html
+A covered call sells part of the stock's future upside for cash today. On the way down, it gives you only the small cushion of the premium.
+@@ 8664f1c07a html
+Structure: hold 100 shares and sell one call. If the stock is below the strike at expiry, the call expires worthless and you keep both the shares and the premium; if it is above, your shares are called away at the strike. By put–call parity (Chapter 3), a covered call has exactly the same payoff at expiry as a cash-secured put at the same strike. They are the same risk, and the covered call is not more “conservative.”
+@@ e5835f0530 html
+Choosing the strike and expiration
+@@ a57a0f9cb1 html
+Table 8-3 Holding stock at $100, selling a 30-day call (IV 30%)
+@@ 6e52cb2b8f html
+Premium
+@@ 9ed8d2c108 html
+Prob. called away*
+@@ 5cba2ec1bf html
+Return if not called
+@@ 9169a64a9b html
+Total return if called
+@@ 07b4865d9d html
+Downside cushion to
+@@ ada1d724d5 html
+* Risk-neutral probability of finishing in the money at expiry, N(d₂).
+@@ 26614e790a html
+Choosing a strike means dividing among three things: how much you collect now, how much upside you keep, and how likely you are to lose the shares. Practical rules:
+@@ b3155fa738 html
+<strong>You want to keep the shares for the long run</strong>: sell Delta 0.15–0.25. The chance of being called away is 10%–20%, and you keep plenty of upside.
+@@ a204d5aed6 html
+<strong>You don't mind the shares being called away and want to turn them into cash income</strong>: sell ATM or Delta 0.40 and above. The premium is rich, and being called away is the norm.
+@@ ecc6dd1df2 html
+<strong>Expiration</strong>: 30–45 days is the usual compromise. A 45-day 105 call brings in 2.42, or 1.61 per 30 days, slightly less than the 1.66 of the 30-day call. Shorter options have higher daily Theta, but you have to trade more often, and Gamma is bigger too.
+@@ f85c45915c html
+<strong>Earnings and ex-dividend dates</strong>: earnings can carry the stock past the strike in one jump; when there is a dividend, an ITM call may be exercised early on the day before the ex-dividend date. This chapter's examples pay no dividends.
+@@ deb4c09d70 html
+The real cost of “selling the upside”
+@@ 7843441724 html
+Table 8-4 Different stock prices one month later: covered 105 call vs. stock only (per share, $)
+@@ 1bead4dac0 html
+Stock only
+@@ 4fdce0b5ed html
+Covered 105
+@@ a628f06efa html
+Difference
+@@ bd2f574ce8 html
+When the stock moves a little up or down, the covered call makes an extra $1.66 a month; when the stock rises 20%, it makes $13.34 less, the equivalent of eight months of premium. A covered call cuts off the right tail of the return distribution, and a stock's long-run return happens to be concentrated in a handful of big up months. Case 2 shows this over a full year's path.
+@@ 95a3704692 html
+Handling assignment
+@@ 0e4c652885 html
+When the stock rises above the strike, you have three choices.
+@@ 1d491b3abf html
+<strong>Accept assignment</strong>. You sell at 105; add the 1.66 premium and you have effectively sold at 106.66. If that was a price you were happy to sell at anyway, do nothing.
+@@ 8fd33b0799 html
+<strong>Roll up and out</strong>. With 5 days left and the stock at 108, the 105 call is worth 3.49, of which only 0.49 is time value. Buy it back and sell a 35-day 110 call for 3.29: you pay a net 0.20 and lift your cap from 105 to 110. Sell a 63-day 110 call for 4.80 instead and you take in a net 1.31, but your shares are locked up for two more months. Rolling isn't free: you are trading more time for a higher cap.
+@@ 57b865028d html
+<strong>Buy back after being called away</strong>. If you still want to own the stock, buy it back after assignment; that is the second half of the wheel (Section 8.4). The buyback price is usually higher than the price you sold at, and that difference is the real cost of the covered call.
+@@ 4c51bdb5af html
+Without dividends, American-style calls are rarely exercised early, because the holder would throw away the remaining time value. Only when time value is close to zero (deep ITM, near expiry) or the stock goes ex-dividend the next day does the chance of early assignment rise noticeably.
+@@ db564cab2a html
+Selling ITM calls to “lower your cost”: keep the books separate
+@@ 1faa342c79 html
+Some traders repeatedly sell ITM calls against a stock they hold at a very low cost, and call it “lowering their cost basis.” Break it down: the stock is at 15 and you sell an 18-day 14 call (IV 80%, hypothetical) for 1.62. Of that, 1.00 is intrinsic value and 0.62 is time value. Your cost on paper really does fall by 1.62, but the 1.00 of intrinsic value is just the money for selling your stock at 14 ahead of time. Your real income is only 0.62.
+@@ cb3c041124 html
+This option's Delta is <span class="num">0.69</span>, so after you sell it only about 30% of your directional exposure is left. What it really amounts to is “cut the position by 70% + collect time value,” which suits someone who was planning to trim near 14 anyway. If you want to keep a full position, selling ITM calls quietly sells most of it.
+@@ fbaeaf6410 html
+<span class="sn">8.3</span>Cash-secured puts
+@@ 24fc7640c4 html
+A cash-secured put is like a “limit buy order with cash back,” but in the worst case it does worse than a real limit order.
+@@ ec2ee7e613 html
+Structure: sell one put and keep enough cash in the account to buy 100 shares at the strike. With the stock at 100, sell a 30-day 95 put for $133 and set aside $9,500. If the stock is below 95 at expiry, you buy at 95, for an effective cost of <span class="num">95 − 1.33 = 93.67</span>; otherwise you keep the premium and the cash is released.
+@@ 68e00f346a html
+“Buy at a price you'd be happy to own it at” sounds reasonable: you wanted to buy at 95 anyway, so why not sell a put and get paid first? Put it side by side with simply placing a limit buy order at 95:
+@@ b72d0afa1d html
+Table 8-5 Three approaches with the stock at $100 (per share, valued at expiry 30 days later)
+@@ ba2cd09a16 html
+Scenario
+@@ e0f5afa371 html
+Buy now
+@@ 9acf7bace2 html
+Limit buy at 95
+@@ 98752012bd html
+Sell 95 put
+@@ 0f18558285 html
+110 at expiry
+@@ f757a41e64 html
+Not filled 0
+@@ 6c7a406e59 html
+100 at expiry
+@@ 48622f7b71 html
+Dips to 93, back to 100 at expiry
+@@ 1591c115b7 html
+Filled at 95: +5.00

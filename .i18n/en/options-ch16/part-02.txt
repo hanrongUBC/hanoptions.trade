@@ -1,0 +1,200 @@
+@@ 9af8c09c57 html
+<span class="sn">16.3</span>Relative value on the volatility surface
+@@ 8ed48b392b html
+Surface trades don't ask whether an option is expensive in absolute terms, only which part of the same underlying's surface is expensive relative to another.
+@@ 6ede25ca70 html
+Chapter 6 broke implied volatility into three dimensions: level (ATM IV), skew (across strikes) and term structure (across expirations). Plot them together and you get the volatility surface. A relative-value trade buys a relatively cheap part of the surface, sells a relatively expensive part, and hedges away what the two have in common.
+@@ 84c09e19a2 html
+Table 16-3 A hypothetical 30-day skew (stock at $100): the OTM option at each strike
+@@ 90b76ac98f html
+Option
+@@ f36e49014c html
+Price
+@@ 4228a29287 html
+If every IV were 25%
+@@ effe92b11b html
+Difference due to skew
+@@ b9d822aa78 html
+90 put
+@@ 33497fbaa5 html
+95 put
+@@ cae126876f html
+100 call
+@@ 250fc5b796 html
+105 call
+@@ 31034e0e9a html
+110 call
+@@ 346e1bcb4a html
+Two common skew measures: the <strong>25-Delta risk reversal</strong> = 25Δ call IV − 25Δ put IV = <span class="num">22.5 − 29 = −6.5</span> points, which measures “how much more the left side costs than the right”; and the <strong>25-Delta butterfly</strong> = average of the wings − ATM = <span class="num">(29 + 22.5)/2 − 25 = 0.75</span> points, which measures “how much more the wings cost than the middle.” In the table, the 95 put and the 105 call have Deltas of almost exactly ±0.25.
+@@ a06ca2c35b html
+Skew trades
+@@ 7de2f5f460 html
+If −6.5 sits at the steepest end of this stock's skew over the past year, you might conclude that downside protection has been bid up too far. There are three ways to express that view:
+@@ 1934dcc400 html
+<strong>Risk reversal</strong>: sell the 95 put and buy the 105 call. With this skew you take in a net <span class="num">$0.309</span>/share; if the surface were flat, the same combination would cost <span class="num">$0.271</span>. The catch is a Delta of about <span class="num">+49</span> shares per set, which you have to hedge with stock before it counts as a “pure skew” trade.
+@@ 8513d3aeb1 html
+<strong>Put spread</strong>: buy the 100 put and sell the 95 put. With this skew it costs <span class="num">$1.450</span>, versus <span class="num">$1.797</span> on a flat surface. When you want protection but it looks expensive, use a spread to sell the expensive leg back (Chapter 11).
+@@ 85900d2615 html
+<strong>Put ratio spread</strong>: buy 1 ATM put and sell 2 OTM puts. You sell more skew, but the downside becomes a naked short, so it has to come with a tail-hedge budget.
+@@ 2e09c83fb4 html
+Steep skew usually has a reason: the market is pricing some kind of decline. A relative-value trade assumes you can explain why that pricing has gone too far. If you can't, you are just selling insurance.
+@@ 76519c5f5c html
+Term-structure trades
+@@ e780791dad html
+IVs at different expirations are tied together by one hard constraint: total variance σ²<span class="v">T</span> must increase with time to expiration. From this you can work out the forward volatility between two expirations:
+@@ c9a54865c3 html
+σ₁ and σ₂ are the ATM IVs of the near and far expirations; <span class="v">T</span>₁ and <span class="v">T</span>₂ are their times to expiration.
+@@ b50986a5b3 html
+Example: 30-day IV is 40% (with an earnings report inside that window) and 60-day IV is 30%. Forward volatility = <span class="num">√((0.09 × 60 − 0.16 × 30)/30) = 14.1%</span>. The market is saying that over the 30 days after earnings, volatility will be only about 14%. If the stock normally realizes around 25%, the far month looks cheap, and a calendar spread that sells the near month and buys the far month (Chapter 9) is a bet on exactly that view.
+@@ 4895589a26 html
+The same constraint lets you check whether quotes are consistent: with 30-day IV at 40%, 60-day IV can't be below <span class="num">40% × √(30/60) = 28.3%</span>. Otherwise total variance would fall with time to expiration, and a calendar spread would contain a riskless opportunity. When you see quotes like this in practice, it is usually bad data, or a factor you haven't accounted for, such as dividends or stock borrow.
+@@ 5f77197cb3 html
+Applied to events, it also lets you back out the implied size of the earnings move itself (Chapter 10). If IV is normally 25% and 30-day IV has been pushed up to 40%, the event contributes variance of <span class="num">(0.40² − 0.25²) × 30/365 = 0.0080</span>. That is equivalent to a one-standard-deviation move of about <span class="num">8.95%</span> on earnings day, or an average absolute move of about <span class="num">7.1%</span>.
+@@ 7fedebb0d9 html
+Across underlyings: the index and its components
+@@ cd7d4ec504 html
+An index's volatility depends on both its components' volatilities and the correlations between them. With equal weights and equal component volatilities:
+@@ bfccd65fd9 html
+<span class="v">w</span> is each component's weight; with 10 equal-weighted stocks, Σ<span class="v">w</span>² = 0.1.
+@@ 2d072b2fa6 html
+With 10 equal-weighted stocks each at 35% IV and the index at 20% IV, the implied correlation backs out to about <span class="num">0.25</span>. If the average correlation among the components is 0.5, index IV should be close to <span class="num">26%</span>. Selling index volatility and buying component volatility is called a dispersion trade, and at heart it sells correlation: in normal times, when stocks go their own way, it makes money; in a crisis, correlations spike and the losses come all at once. This is an institutional tool, and it is enough for an individual to know it exists. It also explains why index skew is usually steeper than single-stock skew: when the index falls, the correlations among its components rise together.
+@@ 53220fd964 html
+<span class="sn">16.4</span>The market maker's view
+@@ c85241eaad html
+Market makers earn the bid–ask spread and volume; direction and volatility are inventory risks they have to keep under control. Understand their constraints and you will know how to place your orders.
+@@ 04b298f359 html
+A 30-day ATM call has a theoretical value of $3.02, and a market maker might quote it <span class="num">2.97</span> bid, <span class="num">3.07</span> ask. On each contract traded, they expect to earn half the spread: $0.05 per share, or <span class="num">$5</span> per contract. Set that $5 against the risk they carry. In Section 16.2, 10 of the same options hedged once a day had a per-trade error with a standard deviation of about <span class="num">$455</span>, while the spread income on 10 contracts is only <span class="num">$50</span>. For a $50 edge to hold up statistically takes roughly <span class="num">(2 × 455 / 50)² ≈ 331</span> uncorrelated trades. A market maker can do that many in a day; an individual trader can't in a lifetime.
+@@ dcbb3e0861 html
+What sets the width of a quote
+@@ c3f0aabdde html
+<strong>Vega and volatility uncertainty</strong>: this option's Vega is 0.114, so misjudging IV by 0.5 points costs <span class="num">$0.057</span>, and the spread has to cover at least that.
+@@ ce657ae90a html
+<strong>Gamma and time to expiration</strong>: near expiration and near the money, Gamma is large, hedging error is large, and spreads widen.
+@@ 8ca56a6d7b html
+<strong>Events</strong>: before earnings and major data releases, information asymmetry grows, and market makers widen their spreads so informed traders don't “pick them off.”
+@@ 81f0df5b6e html
+<strong>Inventory</strong>: when a market maker has already sold too many puts, they raise both the bid and the ask on puts, to draw in sellers and sell fewer themselves. Part of the skew you see in quotes is market-maker inventory.
+@@ 01046d98a5 html
+<strong>Competition</strong>: the more actively an underlying trades, the tighter its quotes.
+@@ 2bdcf30b22 html
+Five rules for trading against market makers
+@@ 169cc35486 html
+Use limit orders. Start at the mid and give up $0.01–0.05 at a time; don't just cross the spread.
+@@ 79b47f828f html
+Check the spread as a share of price first: on contracts where spread ÷ mid is over 10%, the cost of getting in and out will eat most of your edge.
+@@ e57d1f7b4e html
+Enter multi-leg structures as a single combo order, so one leg doesn't fill while the price of the other runs away.
+@@ d521a7252d html
+Quotes are widest in the first few minutes after the open and around major data releases. Keep orders that aren't urgent out of those windows.
+@@ ab367f32da html
+Work out your exit cost in advance: on illiquid contracts, a stop-loss order can fill at a very bad price.
+@@ 557239a38c html
+A worked example: a 30-day iron condor (sell the 95 put and 105 call, buy the 90 put and 110 call, IV 25%) takes in <span class="num">$1.519</span> in theory. If each leg has a $0.10 bid–ask spread and you cross the spread both to open and to close, the cost is <span class="num">4 × $0.05 × 2 = $0.40</span>, or <span class="num">26%</span> of the premium. If your plan is to close once you have made half ($0.76), that $0.40 is <span class="num">53%</span> of your target profit. Seller strategies, with their “high win rate, small profit per trade,” are most vulnerable to exactly this kind of invisible cost.
+@@ aa80cad7c5 html
+Market makers survive on tens of thousands of small edges plus hedging. Individual traders don't have that scale, so they can't build their trading on “a tiny edge on every trade.” You need a clear reason for each trade, plus a position size that can withstand the noise.
+@@ d4a65170ec html
+<span class="sn">16.5</span>Cross-asset options
+@@ 9ad991247f html
+Indexes, rates, commodities, currencies and even volatility itself all have options. You read the Greeks the same way; what changes is how the underlying moves and how the contract settles.
+@@ 505904121d html
+Table 16-4 Options on common asset classes: read the specs before you think about strategy
+@@ 3ab5666aa7 html
+Stocks and ETFs
+@@ c3ce3f19ee html
+Instruments
+@@ fb6f1b3e9a html
+Single stocks, SPY, QQQ
+@@ 2ea89bc1ca html
+Settlement
+@@ 8487c1eff1 html
+American-style, physical delivery
+@@ f56221438c html
+Skew
+@@ 94c7df2eb3 html
+OTM puts are usually richer; calls can be richer when a hot stock surges
+@@ 77009935e5 html
+Watch for
+@@ aa024c0b82 html
+Early assignment, ex-dividend dates, earnings
+@@ 24e73713e1 html
+Broad-based indexes
+@@ c044f93d0b html
+SPX, NDX, RUT; the mini XSP
+@@ f3e5fd9880 html
+European-style, cash-settled, no early assignment
+@@ f6ed1df619 html
+Clearly skewed to the left, usually steeper than single stocks
+@@ f3494a2944 html
+One SPX contract has about 10 times the notional value of one SPY contract; check whether the settlement price is set in the morning or the afternoon
+@@ f87093cf4b html
+Volatility
+@@ 1ea2982a8d html
+VIX options
+@@ e074b24158 html
+European-style, cash-settled
+@@ a0bbccebd8 html
+Skewed to the right: calls are richer
+@@ 4570bddfaa html
+Priced off the VIX future for the matching month, not spot VIX; expiration is usually on a Wednesday
+@@ 6553833c72 html
+Rates
+@@ 60dbf85e68 html
+Long-bond ETFs, options on Treasury futures
+@@ 4854f60c06 html
+ETFs are American-style; futures options follow the contract specs
+@@ 32dc6e86f6 html
+Varies with the rate environment
+@@ be3a4d060b html
+Price moves opposite to yield; duration sets the sensitivity
+@@ 9cc365d4ae html
+Commodities
+@@ e220931cbb html
+Gold and crude oil ETFs, options on commodity futures
+@@ 444d1c22be html
+Calls are often richer during supply shocks
+@@ 7ecf4b20e4 html
+Futures-based ETFs carry roll costs; futures options are priced with Black-76
+@@ 6efef75829 html
+Currencies
+@@ a4a28e7da8 html
+Currency ETFs, options on FX futures
+@@ b4c2bc1b73 html
+Per the contract specs
+@@ 70447c831e html
+Tilted toward appreciation of the safe-haven currency
+@@ 1c749e71f1 html
+Both currencies' interest rates enter the price
+@@ f6e2310af0 html
+The Black-76 formula for options on futures. Compared with stock options, the only changes are replacing <span class="v">S</span> with the futures price <span class="v">F</span> and discounting the whole expression: the cost of carry is already built into <span class="v">F</span>. Its Delta is the sensitivity to the futures price; to convert it to dollars, multiply by the futures contract's multiplier (for example, $50 per point for E-mini S&amp;P futures).
+@@ 1c499d8fba html
+Volatility as the underlying
+@@ 2099b2a661 html
+VIX options are the easiest to misuse. Spot VIX can't be traded directly; VIX options are priced off the VIX future for the matching month. In calm periods, VIX futures usually sit above spot (an upward-sloping term structure), so the intuition that “VIX is only 15, so a 20 call is cheap” is often wrong: the matching month's future may already be near 18. VIX is right-skewed and mean-reverting, so long calls lose Theta most of the time and pay off only in sharp sell-offs. They work better as part of a tail hedge (Chapter 11) than as a directional bet.
+@@ 02f31cd7f6 html
+Read the contract specs first: multiplier, exercise style, settlement method, last trading day.
+@@ 6983916999 html
+Judge whether IV is rich or cheap against the underlying's own historical volatility; don't carry your experience with stocks straight over.
+@@ 49cf5bbc84 html
+The direction of skew differs by asset. Look at the surface before you place the order.
+@@ 0f53dbdff3 html
+<span class="sn">16.6</span>Short-option exposure in structured products
+@@ 72153363e3 html
+The high coupon on snowballs and autocallable notes is what the investor gets for selling a put with a barrier.
+@@ 23975fc8c5 html
+Structured products package options as “notes” and sell them to investors. The most common type is the autocallable note; a variant common in China is called the snowball. Below, we take one apart using a hypothetical set of typical terms.
+@@ ab32578019 html
+Term
+@@ f956887e4b html
+12 months, linked to a stock index, with the starting level set at 100
+@@ 2dd53c8f60 html
+Knock-out
+@@ deb79110ed html
+Observed monthly from month 3; if the index is ≥ 100, the note ends early and pays the annualized coupon for the months held
+@@ 87f8751a62 html
+Knock-in
+@@ 977feafd71 html
+Observed every trading day; once the index is ≤ 75, the note is marked “knocked in”
+@@ 76aaee5f39 html
+Maturity
+@@ 3fc0d08eed html
+Never knocked in: the full 12 months of coupon. Knocked in and below 100 at maturity: the principal loses as much as the index fell, with no coupon

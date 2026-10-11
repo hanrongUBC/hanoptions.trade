@@ -1,0 +1,198 @@
+@@ ec0be14e73 html
+Chapter 5 Theta and vega · US Options Course
+@@ 97db3f30e2 html
+Theta and <span class="g">vega</span>
+@@ d30cf80e72 html
+Theta is the rent you pay every day to hold an option; Vega is your bet on volatility. Understand these two numbers and you can answer “Why did I lose money when nothing happened?” and “Why did I lose money when I got the direction right?”
+@@ 4a798dc727 html
+In this chapter
+@@ 68840dede1 html
+<a href="#open"><span class="n">··</span><span>Opening: a week when nothing happened</span></a>
+@@ 8c8ce40cd4 html
+<a href="#s1"><span class="n">5.1</span><span>Theta: the rent you pay every day</span></a>
+@@ 058bc804e3 html
+<a href="#s2"><span class="n">5.2</span><span>The shape of time decay</span></a>
+@@ fc9062b6e5 html
+<a href="#s3"><span class="n">5.3</span><span>Weekends and holidays: two clocks</span></a>
+@@ 713eeaa7ef html
+<a href="#s4"><span class="n">5.4</span><span>Vega: what one vol point is worth</span></a>
+@@ c7ac71f3f8 html
+<a href="#s5"><span class="n">5.5</span><span>IV crush</span></a>
+@@ 32e0fb1595 html
+<a href="#s6"><span class="n">5.6</span><span>Rho, and LEAPS when rates are high</span></a>
+@@ 472a42ac52 html
+<a href="#s7"><span class="n">5.7</span><span>Second-order Greeks</span></a>
+@@ 12105b33d8 html
+<a href="#s8"><span class="n">5.8</span><span>Reading a full Greeks table</span></a>
+@@ 12c019ed82 html
+<a href="#cases"><span class="n">Cases</span><span>Three cases</span></a>
+@@ dd7ded685d html
+<a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a>
+@@ cea90845f5 html
+<a href="#open">Opening: a week when nothing happened</a>
+@@ 3e2e45e47f html
+<a href="#s1">5.1 Theta: the rent you pay every day</a>
+@@ ed67d141e6 html
+<a href="#s2">5.2 The shape of time decay</a>
+@@ 0e62ebccfb html
+<a href="#s3">5.3 Weekends and holidays: two clocks</a>
+@@ b5c60437cf html
+<a href="#s4">5.4 Vega: what one vol point is worth</a>
+@@ 33aabf54f1 html
+<a href="#s5">5.5 IV crush</a>
+@@ 3dd2fa8a28 html
+<a href="#s6">5.6 Rho, and LEAPS when rates are high</a>
+@@ 6ddc0fb6aa html
+<a href="#s7">5.7 Second-order Greeks</a>
+@@ 795de1843b html
+<a href="#s8">5.8 Reading a full Greeks table</a>
+@@ f3a78e0502 html
+<a href="#cases">Three cases</a>
+@@ 7ec24afd50 html
+<a href="#tools">Checklist and self-test</a>
+@@ 80161dff8a html
+After this chapter you can
+@@ 55d5ac63d4 html
+Estimate an option’s time decay over the next week or month, and explain how decay runs differently for ATM and OTM options
+@@ 17f7a7c3f2 html
+Use Vega to work out the loss when IV falls after an event, and judge before you trade whether being right on direction will actually make money
+@@ ba6f79a82e html
+Read a full Greeks table and say what the position fears most
+@@ fc4f43bd05 html
+Prerequisites
+@@ 2cb9ab8e69 html
+Chapter 3: the six inputs, put–call parity and the 0.8 rule
+@@ f9ebc208bf html
+Chapter 4: Delta, Gamma and the Gamma–Theta trade-off
+@@ fe31444484 html
+Conventions
+@@ 303316b017 html
+Examples use Black-Scholes with a 4% interest rate and no dividends
+@@ 1d04918655 html
+Theta is per calendar day; Vega is per 1-percentage-point change in IV; Rho is per 1-percentage-point change in rates
+@@ cb0a70898e html
+One contract = 100 shares
+@@ 25976fa350 html
+<span class="sn">Opening</span>A week when nothing happened
+@@ d0ff325641 html
+You and three friends each buy one call with a strike of 100 on the same day. The stock is at $100 and IV is 30%. The only difference is time to expiration: 7, 30, 90 and 365 days. A week later, the stock is still at $100.
+@@ 1d8f736091 html
+Table 5-0 Four ATM calls, one week later with the stock unchanged (per share, $)
+@@ 76aaee5f39 html
+Expiry
+@@ 3a381c8414 html
+Entry price
+@@ 617527265d html
+After 1 week, IV unchanged
+@@ dc0aac1119 html
+Change
+@@ 055fd4d042 html
+After 1 week, IV down to 25%
+@@ 112c3ac48e html
+7 days
+@@ 343909b5b4 html
+30 days
+@@ 175f892274 html
+90 days
+@@ 42c02b08b7 html
+365 days
+@@ 386e47fbd0 html
+The stock didn’t move a cent, and all four of you lost money. The 7-day call went straight to zero: at expiration an ATM option has no intrinsic value. Look only at the “IV unchanged” column and the shorter the term, the bigger the loss. That is <strong>Theta</strong>. Now look at the column where IV fell 5 points: the 365-day call lost an extra $1.90 per share, or $205 per contract, the most of the four; the 30-day call lost only $96. That is <strong>Vega</strong>.
+@@ 65486100f5 html
+In one sentence: short-dated options fear time, and long-dated options fear volatility. This chapter first takes these two sensitivities apart, then adds the interest-rate sensitivity, Rho, and a few second-order Greeks, and finally reads them all together in one complete table.
+@@ c92c24965b html
+<span class="sn">5.1</span>Theta: the rent you pay every day
+@@ ed6dc37cbb html
+Theta is the change in an option’s price for each day that passes, with everything else held constant. Theta is negative for the buyer and positive for the seller. It eats only time value and never touches intrinsic value.
+@@ 520a0e1279 html
+This is an annual figure; divide by 365 to get daily Theta. The first term is the “volatility term” and the second is the “rate term.” For a put, the rate term has the opposite sign: +<span class="v">rK</span>e<sup>−<span class="v">rT</span></sup><span class="v">N</span>(−<span class="v">d</span><sub>2</sub>).
+@@ 4c6f0d080d html
+Break down a 30-day ATM call (stock and strike both 100, IV 30%): daily Theta is <span class="num">−0.0624</span>, of which the volatility term is <span class="num">−0.0570</span> and the rate term <span class="num">−0.0054</span>. For the put at the same strike, the volatility term is the same <span class="num">−0.0570</span>, but the rate term becomes <span class="num">+0.0055</span>, for a total of <span class="num">−0.0515</span>. The put’s rate term is positive because when you exercise a put you receive <span class="v">K</span>, and the closer you are to expiration, the higher the present value of that cash.
+@@ d3efb4ee11 html
+The volatility term is more than 90% of the total, so Theta is essentially “the fee you pay for movement.” As derived in Chapter 4, it is tied to Gamma by the Black-Scholes equation: Θ ≈ −½σ²<span class="v">S</span>²Γ. Buy an option and you get positive Gamma, so you pay Theta. We won’t repeat that here; see Chapter 4, Section 4.6.
+@@ 97557b446e html
+Three details that are easy to miss
+@@ 7095d1bb2e html
+<strong>Theta is an instantaneous rate.</strong> A 30-day ATM call actually loses <span class="num">0.0629</span> over one day, slightly more than the 0.0624 that Theta gives, because Theta itself grows over time. Estimate ten days of decay as <span class="num">0.0624 × 10 = 0.62</span>, and the actual figure is <span class="num">0.68</span>. The closer to expiration, the bigger this underestimate.
+@@ e0b88a7b27 html
+<strong>The higher the IV, the higher the rent.</strong> The volatility term is proportional to σ. At IV of 15%, 30% and 60%, a 30-day ATM call has Theta of <span class="num">−0.034</span>, <span class="num">−0.062</span> and <span class="num">−0.119</span>, scaling up almost in proportion. A high-IV option isn’t just expensive; its daily rent is higher too.
+@@ f0b95ad435 html
+<strong>Theta can be positive.</strong> Chapter 3 noted that a deep ITM European-style put gets cheaper the longer its term. Seen another way, its Theta is positive: a 30-day European-style put with the stock at $100 and a strike of 150 has Theta of <span class="num">+0.0164</span>/day. An American-style put would be exercised early, so this doesn’t happen.
+@@ 36be5a80fa html
+<span class="sn">5.2</span>The shape of time decay
+@@ d070d98c07 html
+An ATM option’s time value decays with √<span class="v">T</span>, falling faster the closer it gets to expiration. An OTM option starts losing big chunks early, and its Theta peaks while expiration is still far away.
+@@ 16f13780ba html
+The 0.4 rule from Chapter 3 tells us that an ATM call ≈ 0.4 × <span class="v">S</span> × σ × √<span class="v">T</span>. Price is proportional to √<span class="v">T</span>, so daily decay is proportional to 1/√<span class="v">T</span>: cut the time remaining to a quarter and Theta doubles. Theta is <span class="num">−0.038</span> at 90 days, <span class="num">−0.062</span> at 30 days, <span class="num">−0.124</span> at 7 days and <span class="num">−0.319</span> on the last day.
+@@ 37e9199afc html
+The same relationship gives a mental-math rule: <strong>an ATM option loses about 1 / (2 × days remaining) of its value each day.</strong> Price is proportional to √<span class="v">T</span>, and its relative rate of change with respect to <span class="v">T</span> is 1/(2<span class="v">T</span>). With 30 days left that is about 1/60 ≈ 1.7% a day (Black-Scholes gives 1.74%); with 7 days left, about 7.1% (actual 7.3%); with 365 days left, about 0.14% (actual 0.15%). The actual values run slightly higher because of the rate term.
+@@ cc25756ef9 html
+Table 5-1 Stock at $100, IV 30%: price and daily Theta at three strikes
+@@ 8e53b7da1a html
+Days left
+@@ cae126876f html
+100 call
+@@ 250fc5b796 html
+105 call
+@@ 31034e0e9a html
+110 call
+@@ a72897865b html
+Split the 90 days into “the first 60 days” and “the last 30 days” and see how much time value each period eats:
+@@ 0c0222de5c html
+<strong>100 call (ATM)</strong>: loses 44% in the first 60 days and 56% in the last 30. The later it gets, the faster it falls.
+@@ 2ec94b24da html
+<strong>105 call</strong>: loses 61% in the first 60 days and 39% in the last 30.
+@@ 3ca023f1ec html
+<strong>110 call (about one standard deviation OTM)</strong>: loses 76% in the first 60 days alone, leaving only a quarter for the last month.
+@@ f6036d031a html
+An OTM option’s value comes from “the chance that the stock reaches the strike.” As time runs out, that chance falls much faster than it does for an ATM option, so its value evaporates in big chunks early on. Near expiration it is already close to 0, so there is little left to lose each day.
+@@ 08538343a8 html
+Dollars
+@@ ef15af4735 html
+% of 90-day value
+@@ b6225cc9cc html
+Implied volatility <input id="f1-iv" type="range" min="10" max="80" value="30"> <output id="f1-iv-o">30%</output>
+@@ 25c0a5ec01 html
+Switch to “% of 90-day value” to see the shape: the blue ATM line is flat early and drops steeply at the end; the magenta 110 line heads down from the start. Drag IV down to 15% and the 110 line hugs 0 sooner, and its Theta peak moves further from expiration: when volatility is low, an OTM option becomes “hopeless” earlier. The orange 95 call (ITM) is plotted as time value only, and its shape is close to the ATM line.
+@@ a27c01a53b html
+When an OTM option’s theta peaks
+@@ 64fb7e4429 html
+There is a rule you can derive: an OTM option’s Theta is largest when “the strike is about one standard deviation from the current price.”
+@@ a3dea0a8cb html
+Differentiate with respect to <span class="v">u</span> and set the result to 0 to get <span class="v">u</span> = <span class="v">x</span>: σ√<span class="v">T</span> = ln(<span class="v">K</span>/<span class="v">S</span>). For an ATM option <span class="v">x</span> = 0, so its Theta keeps growing right up to the moment of expiration. The derivation ignores the drift term in <span class="v">d</span><sub>1</sub>, so the actual peak comes a little later.
+@@ b591c7ed91 html
+Table 5-2 Days left when call Theta peaks, IV 30%
+@@ 4a14863fad html
+Strike
+@@ ce6a66b0f3 html
+Rule of thumb (ln(K/S)/σ)² × 365
+@@ a0b2e42c91 html
+Black-Scholes actual
+@@ b891dbeccc html
+Peak Theta
+@@ 5678f6d048 html
+0 (expiration day)
+@@ 383c19eb43 html
+Last day before expiration
+@@ 0cfaf335a6 html
+10 days
+@@ 22d25a218c html
+37 days
+@@ d49c7eea4f html
+40 days
+@@ 8e0d7565cf html
+79 days
+@@ 13f63bcdd5 html
+88 days
+@@ 58ea2b8b46 html
+135 days
+@@ c3ae8a56c1 html
+154 days
+@@ c8ce1716e7 html
+How to use it
+@@ e16577293f html
+<strong>Buyers</strong>: try to keep your holding period out of the steepest stretch of Theta. For ATM options, avoid the last two or three weeks; when buying OTM options, pick an expiration somewhat beyond the point where “the strike is one standard deviation away.”
+@@ 9b8bcc216d html
+<strong>Sellers</strong>: selling ATM options in their last few weeks collects accelerating Theta, but also carries the most Gamma (Chapter 4, Case 1). If you sell OTM options, you actually collect the most Theta between 30 and 60 days out.
+@@ 8a79de511c html
+<strong>In percentage terms</strong>: in the final week, OTM options lose the largest share of their value each day. With 7 days left, the 105 call loses 24% a day and the ATM call only 7%. A small dollar loss doesn’t mean a small percentage loss.

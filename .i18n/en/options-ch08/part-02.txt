@@ -1,0 +1,240 @@
+@@ d929325e6c html
+93 at expiry
+@@ 8ecb4d43d6 html
+Filled at 95: −2.00
+@@ 44a6cf8ea1 html
+Assigned, net 93.67: −0.67
+@@ dd20df0db7 html
+Gaps to 80 and stays there
+@@ 1e2453af34 html
+Filled at the 80 open: 0.00
+@@ e63f62e3ea html
+Assigned, net 93.67: −13.67
+@@ 313b0d3cc9 html
+The first two rows are the put seller's “cash back”: as long as the stock is above 95 at expiry, you collect an extra 1.33. The last row is the trap: when the stock gaps to 80, the limit order fills at an opening price near 80 (your order said “95 or lower”), but the put seller has to buy at 95. The bigger the gap, the worse the short put does compared with the limit order. The third row shows that a short put only cares about the moment of expiration: it can't catch any low along the way.
+@@ 81316cd125 html
+Four common traps
+@@ 5a58db63b0 html
+<strong>“Happy to own it at 95” comes with conditions</strong>. You are picturing a normal pullback to 95, but assignment usually comes after bad news, and by then 95 may no longer be a price you like. Before you trade, ask yourself: if it drops to 80 on disastrous earnings, would I still want to buy at 95?
+@@ 4a6c8f79b4 html
+<strong>The annualized-return illusion</strong>. $133 ÷ $9,500 = 1.4% a month, about 17% a year in simple terms. That number assumes nothing goes wrong in any month. It is a premium yield, not a return.
+@@ 471066b25d html
+<strong>“Secured” means actually setting the cash aside</strong>. In a margin account, selling a 95 put naked requires only about $1,633 (formula in Section 8.6), so it is easy to sell five times as many by accident, and the position goes from “secured” to “naked.”
+@@ 73ff9858f5 html
+<strong>Selling because the premium is high</strong>. A high premium means high IV, which means the market expects a big move. High-IV stocks are more likely to fall through the strike.
+@@ 017cf31ed5 html
+There is just one rule: only sell puts on stocks you would be willing to own in full, and set the number of contracts by “the market value of the position after assignment,” not by margin.
+@@ d7f8fa797a html
+<span class="sn">8.4</span>The wheel
+@@ 4209d42d13 html
+The wheel does best in flat and gently rising markets. In a sustained decline it gets stuck holding a losing stock and collects less and less premium.
+@@ 2936cb7da5 html
+Hold cash
+@@ 19ec1dfaec html
+Sell cash-secured put
+@@ 6196f53af4 html
+Hold 100 shares
+@@ 4170cb5cf0 html
+Sell covered call
+@@ 17ced2bc93 html
+Assigned
+@@ b06bf6ac64 html
+Called away: shares sold at the strike, back to cash
+@@ 3f8660e5fc html
+Expires: keep the premium, sell again
+@@ 159be65ba0 html
+Expires: sell again
+@@ e9432dbcd5 html
+Shares + short call = synthetic short put. All the way around, you are short put risk.
+@@ 4ea04bc04a html
+Each of the two “sell” boxes has two outcomes: if the option expires worthless you stay where you are and sell again; if it finishes in the money you move to the next box. The wheel only turns on assignment or when the shares are called away.
+@@ 6f7da0e8a1 html
+Below is a simulation over three hypothetical 12-month paths. Rules: start with $10,000 in cash; with no shares, sell a 30-day put at about Delta 0.30 (strike rounded to a whole number); with shares, sell a 30-day call at about Delta 0.30, but with the strike no lower than the price you were assigned at, so a sale never locks in a loss. IV is constant at 30%; no interest on cash and no commissions.
+@@ 550d3734d0 html
+Up
+@@ 7e2926f0f8 html
+Flat
+@@ f2c1a7fdc9 html
+Down
+@@ b1f2bc1a7d html
+Month
+@@ 34c0f15870 html
+Start price
+@@ 293bfb1844 html
+Action
+@@ 3ea44ad9db html
+Premium (per contract)
+@@ 70c0543c23 html
+End price
+@@ 24c05dd1b7 html
+Result
+@@ a2df708313 html
+End equity
+@@ 3bb29346e9 html
+On the up path the put is never assigned, so the wheel reduces to selling a put every month: it collects $2,355 and ends the year at $12,355, behind buy-and-hold's $13,600. The flat path is the wheel's home ground: two assignments and one call-away, ending at $11,847, while buy-and-hold only gets back to $10,000. On the down path the shares are put to you at 96 in month 1; after that the rules allow only 96 calls, the premium shrinks from $151 per contract all the way to $0, and the year ends at $7,670.
+@@ 55c2c6ff2e html
+The down path exposes the wheel's core flaw. Once you've been assigned, you face two bad choices:
+@@ 2ce36cd276 html
+<strong>Insist on a strike no lower than your cost</strong>: once the stock has fallen far, the 96 call is worth almost nothing and the wheel stops turning. You become an ordinary stockholder, taking the −35% decline with only $770 of premium as a cushion, and end the year at −23.3%.
+@@ 6b8cba94c5 html
+<strong>Keep selling Delta 0.30 calls anyway</strong>: on the same path you collect more premium and end the year at $8,492. But as soon as the stock bounces off its lows through a strike below your cost—say you are called away at 74—you have sold stock bought at 96 for 74, locking in −22 per share, and you miss the rest of the rebound.
+@@ c7a7b74426 html
+At its core, the wheel is a continuous sale of put risk: you sell puts when you have no shares and sell calls when you do (shares + short call = synthetic short put). Throughout the cycle you are a seller of puts, and a different path doesn't change that. It suits underlyings you would be happy to own for the long run anyway, with moderate volatility and no risk of a trending decline.
+@@ 688bdf6055 html
+Four rules to keep the wheel out of trouble
+@@ 4266346c07 html
+Only start the wheel on stocks you would be willing to hold for more than a year, and set aside the full cost of buying one contract's worth of shares.
+@@ f0b89499c0 html
+After assignment, first ask: if I had no position today, would I buy this? If the answer is no, sell it right away; don't let the covered call make the decision for you.
+@@ ed37c46bf6 html
+In a decline, set the strike of the call you sell at “the price you'd be willing to sell at,” not mechanically by cost or Delta.
+@@ b892d9e865 html
+Skip a cycle before earnings, or switch from selling puts to a put spread, so you don't get assigned in a gap.
+@@ 9024201f19 html
+<span class="sn">8.5</span>Credit spreads
+@@ e1ca13ec26 html
+A credit spread sells one option and at the same time buys a further OTM option of the same type, limiting the maximum loss from “almost all your capital” to “the width minus the premium.”
+@@ acca0e1a39 html
+<span class="v">C</span> is the net premium received and <span class="v">W</span> is the distance between the two strikes. A put credit spread breaks even at the short strike minus <span class="v">C</span>; a call credit spread at the short strike plus <span class="v">C</span>.
+@@ dd71940d04 html
+Example: stock at 100, sell a 45-day 91 put and buy an 86 put for a net credit of 0.631. The maximum loss is <span class="num">5 − 0.631 = 4.369</span>, or $437 per contract; you make money if the stock is above 90.37 at expiry.
+@@ 56c20018ab html
+Choosing the Delta: 0.10, 0.16, 0.30
+@@ 8887e1b746 html
+Table 8-6 45-day put credit spreads, $5 wide, IV 30%
+@@ c2608fdcbf html
+Short-leg Delta
+@@ d53eda3fcd html
+Credit (per share)
+@@ a2e9d73122 html
+Max loss (per share)
+@@ cf069bf981 html
+Loss : profit
+@@ 9344d13b65 html
+Prob. of profit at expiry*
+@@ 5760ed1586 html
+Prob. of touching short strike*
+@@ 703a34e6c2 html
+Daily Theta (per contract)
+@@ afe37be37c html
+Expected value, realized 30% (per contract)
+@@ 68bee52495 html
+Expected value, realized 25% (per contract)
+@@ 0ecd86c960 html
+Expected value ÷ max loss (realized 25%)
+@@ 25f4a117f7 html
+* Computed at IV 30% with drift equal to the risk-free rate. The probability of touch uses the reflection formula for geometric Brownian motion and is roughly twice the probability of finishing in the money (Table 4-1 in Chapter 4).
+@@ af9d3a19ca html
+<strong>Delta 0.10</strong>: the highest win rate, but each win brings in only $36, while a loss can cost up to $464. It rarely needs managing, but once it is hit it is often already close to max loss, with no room to adjust. It is the most sensitive to estimation error: if the true win rate is just a point or two below 89.4%, the expected value turns negative (Section 8.9).
+@@ 6bb2078c07 html
+<strong>Delta 0.16</strong>: about one standard deviation away, and the most common compromise. It has the highest Theta and less than a 40% chance of being touched.
+@@ 4e42eb4299 html
+<strong>Delta 0.30</strong>: more credit, a better payoff ratio and the highest expected value per unit of risk. The cost is a 70% chance of being touched while you hold it, which means frequent management, and Gamma risk shows up sooner.
+@@ 5c7426b3d9 html
+In a model with flat IV, the expected value of all three depends only on the gap between realized volatility and IV, and the closer to the money, the higher the expected value per unit of risk. In reality puts have skew (Chapter 6): the further OTM, the higher the IV. That lets the 0.10 spread collect more than the table shows, but the high IV on deep OTM options is itself the market's price for gaps, and not all of it is premium you get to keep.
+@@ c85cb76e47 html
+Defined risk has surprises too: early assignment
+@@ 79ceaf8513 html
+A spread's short leg is an American-style option and can be assigned before expiration. When the short leg of a put spread is deep in the money and its time value is close to zero, exercising early is a rational choice for the holder (Case 3 has the full numbers). After assignment you hold 100 shares per contract, the protective leg is still in place, and the final loss is still limited by the width. The trouble is capital: the shares have to be paid for in full or on margin, and the account may get a margin call the same day.
+@@ 3901585783 html
+In traders' records of real trades, a few mature ways of selling options show up again and again. One: sell puts only on stocks you plan to hold for the long run, write “ready to take the shares” on the order, keep the position at 10%–20% of the account measured at its post-assignment market value, and simply accept assignment when it comes. Two: sell ITM calls against shares whose cost is already very low, using the richer premium to keep pushing down the cost on paper, at the price of giving up most of the upside (see the breakdown in Section 8.2). Three: while short the stock, sell covered puts to collect premium, and switch to deeper ITM puts as the stock rises, which effectively lifts the average price of the short position. Four: credit spreads exercised early after a sharp move up or down; some brokers ignore the protective leg when computing margin, the account is asked to put up more money, and the trader ends up closing the whole thing at a bad price. What these have in common is that before placing the order, the trader had already answered: “If I'm assigned, what will I be holding, and can I live with it?”
+@@ 57e2d5b634 html
+<span class="sn">8.6</span>Naked selling: margin and unlimited risk
+@@ 6c7bf1e84c html
+The margin on a naked option covers only “normal” moves. In a gap the loss can exceed the margin itself, and the loss on a naked call has no theoretical limit.
+@@ f154bde923 html
+For naked calls, replace 10% × <span class="v">K</span> with 10% × <span class="v">S</span>. This is the exchange minimum; brokers usually require more, and raise it temporarily when markets are volatile.
+@@ d140bc08c8 html
+Example: stock at 100, sell a 30-day 90 put naked for 0.40. Margin is <span class="num">0.40 + max(20 − 10, 9) = 10.40</span>, or $1,040 per contract. If the put expires worthless, the return on margin is 3.85%, or 47% a year in simple terms. That number makes naked selling look very tempting.
+@@ 0c8f9ec531 html
+Table 8-7 After selling the 90 put naked: next-day stock moves (per contract; post-move IV is assumed)
+@@ 85ac74d5af html
+Next-day price
+@@ f56a9f3499 html
+Assumed IV
+@@ 71346f96f8 html
+Option price
+@@ 20a5397cd3 html
+Loss
+@@ 40e352aad7 html
+New margin requirement
+@@ 9500aa916e html
+100 (open)
+@@ fc32739e47 html
+On a 20% drop, each contract loses $1,038, already wiping out all of the original margin; meanwhile the margin requirement climbs to $2,679. Suppose a $20,000 account sold 10 contracts, using half its capital as margin: the next day equity is down to $9,620, but the margin requirement is $26,790. The broker will force the position closed, and at the worst prices.
+@@ 37e3842dec html
+Naked calls are even more extreme. Sell a 30-day 110 call for 0.66, with $1,066 of margin. A takeover announcement sends the stock to 140 (assume IV rises to 50%): the call is worth 30.64 and each contract loses $2,999; at 150, the loss is $3,978. The stock has no ceiling, and neither does the loss.
+@@ e65b98dec9 html
+Why institutions can do it and individuals shouldn't
+@@ 7bab70f8f5 html
+<strong>Diversification</strong>: an institution's book of short options is spread across thousands of strikes and underlyings, so a single gap hurts only a small part of it; individuals tend to concentrate in a few familiar stocks.
+@@ 9b89568843 html
+<strong>Hedging</strong>: market makers hedge Delta continuously and buy OTM wings to control the tails; individuals usually can't hedge overnight.
+@@ 53a3f39b1a html
+<strong>Margin and risk control</strong>: institutions use scenario-based portfolio margin and independent risk management, and know in advance how much they would lose at −20%; most individuals do that math for the first time after the gap.
+@@ 48c0a732c7 html
+<strong>Survival</strong>: institutions earn the market-making spread plus the volatility premium, a business with a capital cushion behind it; for an individual, one blown-up account means there is no next time.
+@@ f420e49794 html
+An individual seller's default choice should be a defined-risk structure (credit spreads, iron condors; see Chapter 9) or a truly cash-secured position. Naked selling is suitable only in small size, on liquid index products, and after running the stress test in Section 8.8.
+@@ f6dd635619 html
+<span class="sn">8.7</span>Three rules of thumb for management
+@@ 5a0a9028bf html
+“Take profits at 50%, act at 21 days to expiration, stop out when the loss reaches twice the premium” are rules of thumb. They change the shape of the return distribution; they don't create expected value out of nothing.
+@@ 96acf33a84 html
+These three rules are widely repeated. They come mainly from backtests of US index options and from the trader education published by options brokers, and the backtests mostly cover short puts, strangles and iron condors opened at around 45 days. The specific numbers aren't stable across years or underlyings. Below we first explain the mechanism behind each rule, then test them with a simulation.
+@@ 9f2fe4b408 html
+50% profit target: the second half isn't worth waiting for
+@@ 9d87306f5c html
+Table 8-8 45-day 91/86 put spread (credit 0.631): value with the stock steady at 100
+@@ 8e53b7da1a html
+Days left
+@@ d784b201a4 html
+Spread value
+@@ 808236b89d html
+Share earned
+@@ a3a6b7d989 html
+With the stock unchanged, it takes about 21 days to earn half. At that point only 0.315 is left to earn, yet you still carry up to 4.685 of potential loss. At entry the profit-to-loss ratio was <span class="num">0.631 : 4.369 ≈ 1 : 6.9</span>; after earning half it becomes <span class="num">0.315 : 4.685 ≈ 1 : 14.9</span>. Holding on is like opening a new trade on terms twice as bad. Close it, put the capital into a new 45-day position, and you get 1 : 6.9 back.
+@@ 7ec5ade403 html
+21 days: avoid the last three weeks “going binary”
+@@ c14d71ecb1 html
+Table 8-9 The same spread with the stock down to the 91 short strike (per contract)
+@@ f8d112fdaf html
+Gamma (per share)
+@@ 68959072d6 html
+Delta (per share)
+@@ 8fc8029e38 html
+Loss on a further 3% drop next day
+@@ c52eba10d9 html
+Daily Theta
+@@ 6b333ae2cb html
+The same −3% move costs $56 at 45 days and $191 at 2 days. Theta grows in step; this is the Gamma–Theta trade-off from Chapter 4, Section 4.6. In a model with no gaps, the “risk versus income” of the last few days doesn't become unfair. What really changes is two things:
+@@ ea9cda2b8d html
+<strong>The position turns binary</strong>. With 2 days left and the stock at 95, the spread's Delta is only 0.025; at 91, Delta becomes 0.486. A 4% move in the stock takes the position from “almost no risk” to “close to full exposure,” too fast for you to react.
+@@ 29c96f3d04 html
+<strong>A gap doesn't let you collect Theta day by day</strong>. Theta comes in one day at a time; a gap's loss arrives all at once. The closer to expiration, the bigger the share of the premium a single gap eats.
+@@ 94e2839964 html
+What the 21-day rule means: get out before Gamma climbs steeply, and leave the last three weeks of “collect Theta and bet nothing happens” to someone else. By then there isn't much premium left anyway (only 0.245 in Table 8-8, while the maximum loss is still 4.76).
+@@ 2aa4db1f27 html
+2× stop: pin each trade's loss to a known number
+@@ ceb50ad47c html
+Set the stop at “loss = 2 × premium,” that is, close when the spread's value rises to <span class="num">3 × 0.631 = 1.89</span>. The most you lose on a trade is then about $126 instead of $437. Combined with the 50% profit target, a win makes 0.315 and a loss costs 1.262, so the breakeven win rate is <span class="num">1.262 ÷ (1.262 + 0.315) = 80%</span>, regardless of the size of the premium.
+@@ 48070c7549 html
+The rule comes from naked strangles, which have no maximum loss, so you have to draw a line yourself. On a spread, it has to be converted for the structure. The 0.30 96/91 spread collects 1.321; a 2× stop corresponds to a loss of 2.64, while the maximum loss is only 3.68 to begin with. The stop saves little, yet it is easily knocked out by back-and-forth chop. Also, an overnight gap jumps right over a stop order, and the actual fill can be far worse than the stop level.
+@@ 73e2f6402a html
+Testing the three rules with a simulation
+@@ 9df223702d html
+Short Δ0.16
+@@ e8e4515348 html
+Short Δ0.30
+@@ 7faba56e9f html
+No gaps
+@@ d5218e4478 html
+With gaps
+@@ a2bca4f264 html
+Realized volatility <input id="f4-rv" type="range" min="15" max="40" value="25"> <output id="f4-rv-o">25%</output>
+@@ e308bdf61b html
+Rule
+@@ a1091477ed html
+Win rate
+@@ c305540a64 html
+Avg. per trade

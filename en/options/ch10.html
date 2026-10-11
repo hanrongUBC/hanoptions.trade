@@ -1,0 +1,920 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chapter 10: Trading events · US Options Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=STIX+Two+Text:ital,wght@1,400;1,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+  .calc .spy input { width: 5.5em; }
+  .calc .msg { font-size: 13.5px; color: var(--warn); margin: 6px 0 0; min-height: 1.2em; }
+  .calc .inrow { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 14px; color: var(--muted); margin: 0 0 8px; align-items: center; }
+  .calc .inrow label { display: inline-flex; gap: 6px; align-items: center; }
+  .seg { flex-wrap: wrap; max-width: 100%; }
+  .seg button { white-space: nowrap; }
+  .calc .inrow input { font-family: var(--font-mono); width: 5.5em; padding: 4px 6px; border: 1px solid var(--rule); border-radius: 4px; background: var(--paper); color: var(--ink); }
+</style>
+<link rel="alternate" hreflang="zh-CN" href="https://hanoptions.trade/options/ch10.html"><link rel="alternate" hreflang="en" href="https://hanoptions.trade/en/options/ch10.html">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap">
+<style id="en-overrides">
+html[lang="en"] { --font-display: "Source Serif 4", "Noto Serif SC", Georgia, serif; --font-body: "Source Sans 3", "Noto Sans SC", system-ui, sans-serif; }
+html[lang="en"] body { line-height: 1.7; }
+html[lang="en"] body * { letter-spacing: normal !important; }
+html[lang="en"] p, html[lang="en"] li, html[lang="en"] td, html[lang="en"] figcaption { hyphens: auto; -webkit-hyphens: auto; }
+html[lang="en"] p { text-wrap: pretty; }
+html[lang="en"] .toc a { grid-template-columns: 48px 1fr; }
+</style>
+</head>
+<body data-ch="10">
+<div class="topbar"><div class="topbar-inner"><div class="topbar-brand"><a class="site-home" href="/en/">hanoptions.trade</a><a class="brand" href="index.html">US Options <span>Course</span></a></div><div class="topbar-tools"><select id="ck-jump" aria-label="Jump to chapter"></select><a class="lang-switch" href="/options/ch10.html" hreflang="zh-CN" lang="zh-CN" data-lang="zh"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 8h13M8 1.5c2 2 2.8 4.2 2.8 6.5S10 12.5 8 14.5M8 1.5C6 3.5 5.2 5.7 5.2 8S6 12.5 8 14.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>中文</a></div></div></div>
+
+<header class="mast">
+  <div class="mast-inner">
+    <div class="chapno" aria-hidden="true">10</div>
+    <div class="eyebrow">US Options Course · Part 3 Strategies · Chapter 10</div>
+    <h1>Trading <span class="g">events</span></h1>
+    <p class="deck">On days like earnings, FOMC and CPI, option prices already spell out how big a move the market expects. This chapter teaches you to read that number, compare it with history, and then decide whether to buy, sell, or stay away altogether.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="In this chapter">
+    <p class="toc-title">In this chapter</p>
+    <ol id="toc-list">
+      <li><a href="#open"><span class="n">··</span><span>Opening: the expectation inside a straddle</span></a></li>
+      <li><a href="#s1"><span class="n">10.1</span><span>The earnings IV cycle</span></a></li>
+      <li><a href="#s2"><span class="n">10.2</span><span>Implied moves and historical moves</span></a></li>
+      <li><a href="#s3"><span class="n">10.3</span><span>Isolating event IV</span></a></li>
+      <li><a href="#s4"><span class="n">10.4</span><span>Choosing an earnings structure</span></a></li>
+      <li><a href="#s5"><span class="n">10.5</span><span>Macro event days</span></a></li>
+      <li><a href="#s6"><span class="n">10.6</span><span>0DTE: compressed into a few hours</span></a></li>
+      <li><a href="#s7"><span class="n">10.7</span><span>SPX and SPY</span></a></li>
+      <li><a href="#s8"><span class="n">10.8</span><span>VIX options and recurring events</span></a></li>
+      <li><a href="#s9"><span class="n">10.9</span><span>Event calendar and IV dashboard</span></a></li>
+      <li><a href="#cases"><span class="n">Cases</span><span>Three cases</span></a></li>
+      <li><a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <details class="mobile-toc">
+      <summary>In this chapter</summary>
+      <ol>
+        <li><a href="#open">Opening: the expectation inside a straddle</a></li>
+        <li><a href="#s1">10.1 The earnings IV cycle</a></li>
+        <li><a href="#s2">10.2 Implied moves and historical moves</a></li>
+        <li><a href="#s3">10.3 Isolating event IV</a></li>
+        <li><a href="#s4">10.4 Choosing an earnings structure</a></li>
+        <li><a href="#s5">10.5 Macro event days</a></li>
+        <li><a href="#s6">10.6 0DTE: compressed into a few hours</a></li>
+        <li><a href="#s7">10.7 SPX and SPY</a></li>
+        <li><a href="#s8">10.8 VIX options and recurring events</a></li>
+        <li><a href="#s9">10.9 Event calendar and IV dashboard</a></li>
+        <li><a href="#cases">Three cases</a></li>
+        <li><a href="#tools">Checklist and self-test</a></li>
+      </ol>
+    </details>
+
+    <div class="objectives">
+      <div>
+        <h4>After this chapter you can</h4>
+        <ul>
+          <li>Read the implied earnings move from the price of an ATM straddle and compare it with the actual moves of the last 8 reports</li>
+          <li>Use the IVs of a nearer and a farther expiration to isolate the move from the event itself and the “event-day IV”</li>
+          <li>Choose an earnings structure by the “implied ÷ historical” ratio and maximum loss, and explain the differences between SPX and SPY</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Prerequisites</h4>
+        <ul>
+          <li>Chapter 5: Vega and IV crush</li>
+          <li>Chapter 6: the term structure and IV Rank</li>
+          <li>Chapter 9: straddles, iron condors and calendar spreads</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Conventions</h4>
+        <ul>
+          <li>Black-Scholes, 4% rate, no dividends</li>
+          <li>Calendar days, 365-day year; 0DTE uses trading hours (Section 10.6)</li>
+          <li>One contract = 100 shares; all market data are hypothetical</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="open">
+      <h2><span class="sn">Opening</span>A straddle spells out the market’s expectation</h2>
+      <p class="lead">XYZ, a $200 stock, reports earnings after the close tonight. The ATM 200 straddle expiring this Friday (2 days left) is quoted at $11.81, and IV for this expiration is 100%. You think this report will be a big one, so you buy 1 straddle.</p>
+      <p>The next day the stock jumps 5% and closes at $210. Neither the direction nor the size is small, yet the straddle is worth only <span class="num">$10.02</span>, a loss of <span class="num">$178</span> per straddle. If the stock hadn’t moved at all, you would have lost <span class="num">$930</span>.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 10-0 P&amp;L on 1 long 200 straddle at the next day’s close (1 day left, IV back down to 30%)</caption>
+          <thead><tr><th>Stock move</th><th>Stock price</th><th>Straddle value</th><th>P&amp;L per straddle ($)</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">−10%</td><td class="mono">180.0</td><td class="mono">19.98</td><td class="mono pos">+817</td></tr>
+            <tr><td class="mono">−5%</td><td class="mono">190.0</td><td class="mono">9.98</td><td class="mono neg">−183</td></tr>
+            <tr><td class="mono">0</td><td class="mono">200.0</td><td class="mono">2.51</td><td class="mono neg">−930</td></tr>
+            <tr class="hl"><td class="mono">+5%</td><td class="mono">210.0</td><td class="mono">10.02</td><td class="mono neg">−178</td></tr>
+            <tr><td class="mono">+5.9%</td><td class="mono">211.8</td><td class="mono">11.82</td><td class="mono">0</td></tr>
+            <tr><td class="mono">+10%</td><td class="mono">220.0</td><td class="mono">20.02</td><td class="mono pos">+821</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The $11.81 you paid is the price the market set on this earnings move: <span class="num">11.81 ÷ 200 = 5.9%</span>. If the actual move is smaller than about 5.9%, the buyer loses and the seller wins; if it is larger, the reverse. Event trading really has only one question to answer: compared with how far this stock will actually move, is the move the market implies expensive or cheap? This chapter first teaches you to read the implied move, then to strip it down cleanly, and only then gets to structures, macro events and 0DTE.</p>
+    </section>
+
+    <section id="s1">
+      <h2><span class="sn">10.1</span>The earnings IV cycle</h2>
+      <p>IV climbs all the way into earnings and collapses the moment the report is out. Most of this cycle comes from arithmetic; market sentiment is just a layer on top.</p>
+      <p>Split a stock’s variance into two pieces: the <strong>base variance</strong> it has every day, plus one extra <strong>jump variance</strong> on the night of earnings. Any option that expires after earnings has to pay for that jump.</p>
+      <div class="formula">
+        <div class="eq">σ<sub>expiry</sub><sup>2</sup> <span class="v">T</span> <span class="up">=</span> σ<sub>b</sub><sup>2</sup> <span class="v">T</span> <span class="up">+</span> <span class="v">v</span><sub>e</sub> <span class="up"> ⇒ </span> σ<sub>expiry</sub> <span class="up">=</span> √<span class="up">(</span>σ<sub>b</sub><sup>2</sup> <span class="up">+</span> <span class="v">v</span><sub>e</sub> <span class="up">/</span> <span class="v">T</span><span class="up">)</span></div>
+        <p class="where">σ<sub>b</sub> is the base volatility; <span class="v">v</span><sub>e</sub> is the variance of the jump (for example, if the market expects a 1-standard-deviation jump of 7%, <span class="v">v</span><sub>e</sub> = 0.07² = 0.0049); <span class="v">T</span> is the time remaining (in years).</p>
+      </div>
+      <p>The key is the <span class="v">v</span><sub>e</sub> / <span class="v">T</span> term. The size of the jump stays the same, but the closer you get to expiration, the smaller <span class="v">T</span> becomes; the same jump is spread over fewer days, so it translates into a higher annualized IV. That is why front-month IV climbs on its own even if nobody changes their view of the earnings. Once the report is out, the jump has happened, <span class="v">v</span><sub>e</sub> drops out of the formula, and IV falls straight back to σ<sub>b</sub>.</p>
+      <p>Some numbers: base volatility is 30%, the market expects a 7% earnings jump (1 standard deviation), and the report comes out after the close on day 21. The front-month option expires on day 25, the back month on day 53.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 10-1 One earnings report, IV paths for two expirations (model calculation)</caption>
+          <thead><tr><th>Point in time</th><th>Days left in front month</th><th>Front-month IV</th><th>Back-month IV</th></tr></thead>
+          <tbody>
+            <tr><td>Today (day 0)</td><td class="mono">25</td><td class="mono">40.2%</td><td class="mono">35.2%</td></tr>
+            <tr><td>Day 14</td><td class="mono">11</td><td class="mono">50.3%</td><td class="mono">36.9%</td></tr>
+            <tr><td>Day 20</td><td class="mono">5</td><td class="mono">66.9%</td><td class="mono">38.0%</td></tr>
+            <tr class="hl"><td>Day 21 close, before the report</td><td class="mono">4</td><td class="mono">73.3%</td><td class="mono">38.2%</td></tr>
+            <tr><td>After the report</td><td class="mono">3</td><td class="mono">30.0%</td><td class="mono">30.0%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="plate" id="fig1">
+        <div class="fig-head"><span class="fig-title">Front-month IV climbs faster the closer earnings get, then dives overnight after the report</span><span class="fig-no">Figure 10-1 · Model illustration, draggable</span></div>
+        <div class="controls">
+          <label class="ctl" for="f1-base">Base volatility <input id="f1-base" type="range" min="15" max="60" value="30"> <output id="f1-base-o">30%</output></label>
+          <label class="ctl" for="f1-ev">Expected jump (1σ) <input id="f1-ev" type="range" min="2" max="14" step="0.5" value="7"> <output id="f1-ev-o">7%</output></label>
+        </div>
+        <svg class="chart" id="f1-svg" viewBox="0 0 680 320" role="img" aria-label="Front-month and back-month implied volatility over time"></svg>
+        <div class="legend"><span><i style="border-color: var(--gamma)"></i>Front month (expires day 25)</span><span><i style="border-color: var(--delta)"></i>Back month (expires day 53)</span><span><i class="dash" style="border-color: var(--muted)"></i>Earnings report</span></div>
+        <div class="readout">
+          <div><b id="f1-r1">—</b><small>Front-month IV, today</small></div>
+          <div><b id="f1-r2">—</b><small>Front-month IV, close before the report</small></div>
+          <div><b id="f1-r3">—</b><small>Front-month IV drop after the report</small></div>
+          <div><b id="f1-r4">—</b><small>Back-month IV, close before the report</small></div>
+        </div>
+        <figcaption>Drag the expected jump above 12%: front-month IV shoots past 100% before the report, while the back month only rises to around 50%, because in the back month the same jump is spread over 32 days. Raise the base volatility and both lines shift up together, but the post-report “dive” gets smaller, because the jump makes up a smaller share of total variance.</figcaption>
+      </figure>
+
+      <p>Three ways to read it:</p>
+      <ul>
+        <li><strong>The front month rises a lot, the back month a little.</strong> An inversion with front-month IV above the back month (the term structure from Chapter 6) is in itself evidence that the market is pricing an event.</li>
+        <li><strong>After the report, the front month falls hardest.</strong> In the table, the front month drops from 73.3% to 30%, a fall of 43 points; the back month drops only 8 points. A calendar spread that sells the front month and buys the back month earns exactly this difference.</li>
+        <li><strong>The real world adds another layer of demand.</strong> Speculative buying pushes IV higher than the model, and during earnings season IV often starts climbing weeks ahead. The model tells you “where IV should be if the expected jump stays the same”; only the part above that is sentiment.</li>
+      </ul>
+      <div class="note warn">
+        <span class="tag">When the model breaks down</span>
+        <ul>
+          <li>The earnings date isn’t confirmed yet: options may be betting on the wrong expiration, and the IV cycle shows up in the wrong place</li>
+          <li>Two things fall in the same expiration (earnings plus an investor day, or a regulatory ruling): there is more than one jump, and the methods that follow will overstate the “earnings” part</li>
+          <li>The company preannounces results: the jump happens early, and IV falls back early too</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s2">
+      <h2><span class="sn">10.2</span>Implied moves and historical moves</h2>
+      <p>The price of an ATM straddle is roughly the “average absolute move” the market expects, and a 1-standard-deviation move is about 1.25 times that.</p>
+      <p>The derivation takes one line. ATM call and put prices are each about 0.4 × <span class="v">S</span>σ√<span class="v">T</span> (the rule of thumb from Chapter 3), so the two together are about 0.8 × <span class="v">S</span>σ√<span class="v">T</span>. And the mean absolute value of a normal distribution is exactly √(2/π) ≈ 0.798 standard deviations. The two 0.8s are the same number, so:</p>
+      <div class="formula">
+        <div class="eq">Straddle <span class="up">≈</span> √<span class="up">(</span>2/π<span class="up">)</span> <span class="up">·</span> <span class="v">S</span>σ√<span class="v">T</span> <span class="up">=</span> Expected absolute move<span class="up">  </span>1σ move <span class="up">≈</span> Straddle <span class="up">÷ 0.8 ≈ 1.25 ×</span> Straddle</div>
+        <p class="where">XYZ from the opening: 0.798 × 200 × 1.00 × √(2/365) = $11.81, which matches the straddle quote. The implied average move is 5.9%, and 1σ is about 7.4%.</p>
+      </div>
+      <p>You can also read off a probability that often gets overlooked: under the normal assumption, the chance that the actual move exceeds the straddle price is <span class="num">2 × (1 − N(0.798)) = 42.5%</span>. A straddle buyer makes money at expiry less than half the time, but wins big when winning; the seller is the exact opposite.</p>
+      <h3>What to compare it with</h3>
+      <p>For the historical move, use the percentage change from “the last close before earnings” to “the first close after earnings,” because options are also valued at the close. Take the last 8 reports and look at two numbers: the mean and the median of the absolute moves. Below is hypothetical data for XYZ over the past 8 quarters.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 10-2 XYZ’s close-to-close moves on its last 8 earnings reports (hypothetical data)</caption>
+          <thead><tr><th>Quarter</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th><th>Q5</th><th>Q6</th><th>Q7</th><th>Q8</th></tr></thead>
+          <tbody>
+            <tr><td>Move</td><td class="mono">+3.2%</td><td class="mono">−5.1%</td><td class="mono">+2.4%</td><td class="mono">−8.9%</td><td class="mono">+4.0%</td><td class="mono">−1.7%</td><td class="mono">+6.3%</td><td class="mono">−2.6%</td></tr>
+            <tr><td>Above 5.9%?</td><td></td><td></td><td></td><td class="mono neg">Yes</td><td></td><td></td><td class="mono neg">Yes</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Mean absolute move <span class="num">4.28%</span>, median <span class="num">3.6%</span>, and only 2 of the 8 moves exceeded 5.9%. Implied ÷ historical = <span class="num">5.90 ÷ 4.28 = 1.38</span>: the market’s price is nearly 40% more expensive than the average of the past.</p>
+
+      <figure class="plate" id="fig2">
+        <div class="fig-head"><span class="fig-title">The implied move is larger than 6 of the 8 historical moves</span><span class="fig-no">Figure 10-2 · Implied vs historical comparison, editable</span></div>
+        <div class="controls">
+          <label class="ctl" for="f2-s">Stock price <input id="f2-s" type="number" value="200" step="1" min="1"></label>
+          <label class="ctl" for="f2-st">ATM straddle price <input id="f2-st" type="number" value="11.81" step="0.1" min="0.01"></label>
+        </div>
+        <svg class="chart" id="f2-svg" viewBox="0 0 680 300" role="img" aria-label="Bar chart of historical earnings moves, with the implied move as a horizontal line"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>Up quarters</span><span><i style="border-color: var(--gamma)"></i>Down quarters</span><span><i style="border-color: var(--ink)"></i>Implied average move</span><span><i class="dash" style="border-color: var(--muted)"></i>Implied 1σ</span></div>
+        <div class="readout">
+          <div><b id="f2-r1">—</b><small>Implied average move</small></div>
+          <div><b id="f2-r2">—</b><small>Implied ÷ historical mean (4.28%)</small></div>
+          <div><b id="f2-r3">—</b><small>Moves larger than implied</small></div>
+          <div><b id="f2-r4">—</b><small>Short straddle, average P&amp;L over 8 reports (estimated at expiry)</small></div>
+        </div>
+        <figcaption>The shaded band is where the seller wins: if a bar is below the solid horizontal line, a short straddle makes money at expiry. Change the straddle price to 8.5 and the implied move falls to about 4.3%, the ratio gets close to 1, 3 of the 8 moves exceed it, and the seller’s average profit nearly disappears. Change it to 14 and the ratio rises above 1.6, but then you have to ask: does the market know something that isn’t in the historical data?</figcaption>
+      </figure>
+
+      <h3>Where the ratio thresholds come from</h3>
+      <p>A common rule of thumb: consider selling only when implied ÷ historical is above 1.2, consider buying only when it is below 0.9, and do nothing in between. The thresholds come from sampling error. The standard deviation of the 8 absolute moves is <span class="num">2.40</span> percentage points, so the standard error of the mean is <span class="num">2.40 ÷ √8 = 0.85</span>. In other words, the “historical mean of 4.28%” could itself be anywhere from 3.4% to 5.1%, which puts the ratio anywhere from 1.15 to 1.72. When the ratio is only 1.1, the “expensive” you see may well be just noise.</p>
+      <p>The thresholds don’t apply when the company has just been through a major change (a merger, a new CEO, a turn in the industry cycle), so the last 8 reports no longer represent the future; when one extreme value in the history dominates the mean; or when the options are illiquid and the straddle’s bid–ask spread alone is more than a tenth of its price.</p>
+    </section>
+
+    <section id="s3">
+      <h2><span class="sn">10.3</span>Isolating event IV</h2>
+      <p>The IVs of two expirations are enough to solve for two things: the base volatility of ordinary days, and the size of the jump on earnings night.</p>
+      <p>A straddle’s price mixes in the time value of ordinary days. With 2 days left in the front month, that is not a big problem; with 10 days left, a lot more gets mixed in. The clean approach is to take two expirations that both include earnings and solve the equations from Section 10.1. Total variance <span class="v">w</span> = σ²<span class="v">T</span> is a straight line in <span class="v">T</span>: the slope is the base variance and the intercept is the jump variance. Two points determine a line.</p>
+      <div class="formula">
+        <div class="eq">σ<sub>b</sub><sup>2</sup> <span class="up">=</span> <span class="frac"><span>σ<sub>2</sub><sup>2</sup><span class="v">T</span><sub>2</sub> <span class="up">−</span> σ<sub>1</sub><sup>2</sup><span class="v">T</span><sub>1</sub></span><span><span class="v">T</span><sub>2</sub> <span class="up">−</span> <span class="v">T</span><sub>1</sub></span></span><span class="up">  </span><span class="v">v</span><sub>e</sub> <span class="up">=</span> <span class="up">(</span>σ<sub>1</sub><sup>2</sup> <span class="up">−</span> σ<sub>b</sub><sup>2</sup><span class="up">)</span> <span class="v">T</span><sub>1</sub></div>
+        <div class="eq">Event 1σ <span class="up">=</span> √<span class="v">v</span><sub>e</sub><span class="up">  </span>Expected absolute move <span class="up">≈ 0.8</span> √<span class="v">v</span><sub>e</sub><span class="up">  </span>Event-day IV <span class="up">=</span> √<span class="up">(</span>σ<sub>b</sub><sup>2</sup> <span class="up">+ 365 ×</span> <span class="v">v</span><sub>e</sub><span class="up">)</span></div>
+        <p class="where">Subscript 1 is the nearer expiration and 2 the farther one; <span class="v">T</span> is in years. “Event-day IV” is the volatility of that one day taken on its own and annualized, so you can compare it with ordinary days.</p>
+      </div>
+      <h3>A worked example</h3>
+      <p>XYZ at Wednesday’s close: the Friday expiration (<span class="v">T</span><sub>1</sub> = 2 days) has IV of 100%, and the next Friday’s expiration (<span class="v">T</span><sub>2</sub> = 9 days) has IV of 54%.</p>
+      <ol>
+        <li>Total variance: <span class="num">1.00² × 2/365 = 0.005479</span>; <span class="num">0.54² × 9/365 = 0.007190</span>.</li>
+        <li>Base variance: <span class="num">(0.007190 − 0.005479) ÷ (7/365) = 0.0892</span>, σ<sub>b</sub> = <span class="num">29.9%</span>.</li>
+        <li>Jump variance: <span class="num">(1.00 − 0.0892) × 2/365 = 0.004991</span>, event 1σ = <span class="num">7.06%</span> ($14.13), expected absolute move <span class="num">5.64%</span> ($11.27).</li>
+        <li>Event-day IV: <span class="num">√(0.0892 + 365 × 0.004991) = 138%</span>, 4.6 times that of an ordinary day.</li>
+      </ol>
+      <p>Read straight off the straddle, the move is 5.90%; with the event isolated, it is 5.64%. The 0.26-point difference is the time value of the two ordinary days. When comparing with history, use 5.64%: the ratio is <span class="num">5.64 ÷ 4.28 = 1.32</span>, still on the expensive side, but not as extreme as 1.38. After the report, front-month IV should reasonably land at σ<sub>b</sub> ≈ 30%, which is the “back down to 30%” assumed in the opening table.</p>
+
+      <figure class="plate calc" id="calc">
+        <div class="fig-head"><span class="fig-title">Connect the two expirations with a straight line, and the intercept is the earnings jump</span><span class="fig-no">Tool 10-A · Event IV isolation calculator</span></div>
+        <div class="inrow">
+          <label for="c-s">Stock price <input id="c-s" type="number" value="200" step="1"></label>
+          <label for="c-t1">Front-month days <input id="c-t1" type="number" value="2" step="1" min="1"></label>
+          <label for="c-iv1">Front-month IV % <input id="c-iv1" type="number" value="100" step="1"></label>
+          <label for="c-t2">Back-month days <input id="c-t2" type="number" value="9" step="1" min="2"></label>
+          <label for="c-iv2">Back-month IV % <input id="c-iv2" type="number" value="54" step="1"></label>
+        </div>
+        <svg class="chart" id="c-svg" viewBox="0 0 680 300" role="img" aria-label="Cumulative variance over time as a straight line, plus the event jump"></svg>
+        <div class="legend"><span><i style="border-color: var(--gamma)"></i>Cumulative variance including earnings</span><span><i class="dash" style="border-color: var(--muted)"></i>Base volatility only</span><span style="color: var(--ink)">● Quotes for the two expirations</span></div>
+        <div class="readout">
+          <div><b id="c-r1">—</b><small>Base volatility σ<sub>b</sub></small></div>
+          <div><b id="c-r2">—</b><small>Event 1σ move</small></div>
+          <div><b id="c-r3">—</b><small>Expected absolute move</small></div>
+          <div><b id="c-r4">—</b><small>Event-day IV</small></div>
+        </div>
+        <p class="msg" id="c-msg"></p>
+        <figcaption>The vertical axis is cumulative variance (in “percent squared”; take the √ and you get a percentage move). The two dots are σ²<span class="v">T</span> for the two expirations; extend the line through them left to day 0, and the intercept is the jump variance. Lower the back-month IV to 40% and the back month’s total variance becomes smaller than the front month’s, so the computed base variance turns negative: this tells you the back-month quote is inconsistent with the front month, or there is another event between the two expirations.</figcaption>
+      </figure>
+
+      <div class="note warn">
+        <span class="tag">What this method assumes</span>
+        <ul>
+          <li><strong>No other event between the two expirations.</strong> Otherwise the slope is pushed up, base volatility comes out too high, and the event is underestimated.</li>
+          <li><strong>Base volatility is the same across the two expirations.</strong> When the whole market is in a panic, near-term base volatility is often higher, and the method will overstate the event.</li>
+          <li><strong>Calendar days or trading days.</strong> When the back month spans a weekend, recomputing in trading days (2 days and 7 days, 252-day year) changes the event 1σ from 7.06% to 6.92%. The event estimate barely changes, but the base IV figure can’t be compared directly with the calendar-day result.</li>
+          <li>If σ<sub>b</sub>² or <span class="v">v</span><sub>e</sub> comes out negative, first check whether the quotes use the same ATM strike and whether they are thin intraday quotes.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s4">
+      <h2><span class="sn">10.4</span>Choosing an earnings structure</h2>
+      <p>The order for choosing a structure: look at the implied ÷ historical ratio first, then set the maximum loss you can take, and only then pick the specific legs.</p>
+      <p>Below, five common structures are placed in the same scenario: you open at XYZ’s Wednesday close, with front-month (2 days) IV at 100% and back-month (9 days) IV at 54%; you value the position at Thursday’s close, with IV for both expirations back down to 30%. The iron condor and reverse iron condor use strikes 190/180 and 210/220; the calendar sells the Friday 200 call and buys the next Friday’s 200 call.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 10-3 Five earnings structures: P&amp;L per contract at the close on the first day after the report ($)</caption>
+          <thead><tr><th>Structure</th><th>Entry</th><th>−8.9%</th><th>−5.6%</th><th>Unchanged</th><th>+5.6%</th><th>+8.9%</th><th>Breakeven</th><th>Max loss</th></tr></thead>
+          <tbody>
+            <tr><td>Short straddle</td><td class="mono">Credit 1,181</td><td class="mono neg">−597</td><td class="mono pos">+55</td><td class="mono pos">+930</td><td class="mono pos">+51</td><td class="mono neg">−601</td><td class="mono">±5.9%</td><td class="mono">Unlimited</td></tr>
+            <tr><td>Short iron condor</td><td class="mono">Credit 319</td><td class="mono neg">−424</td><td class="mono pos">+127</td><td class="mono pos">+319</td><td class="mono pos">+112</td><td class="mono neg">−409</td><td class="mono">−6.4% / +6.5%</td><td class="mono">681</td></tr>
+            <tr><td>Calendar (calls)</td><td class="mono">Debit 93</td><td class="mono neg">−88</td><td class="mono neg">−53</td><td class="mono pos">+143</td><td class="mono neg">−32</td><td class="mono neg">−69</td><td class="mono">−3.8% / +4.4%</td><td class="mono">93</td></tr>
+            <tr><td>Long straddle</td><td class="mono">Debit 1,181</td><td class="mono pos">+597</td><td class="mono neg">−55</td><td class="mono neg">−930</td><td class="mono neg">−51</td><td class="mono pos">+601</td><td class="mono">±5.9%</td><td class="mono">1,181</td></tr>
+            <tr><td>Reverse iron condor</td><td class="mono">Debit 319</td><td class="mono pos">+424</td><td class="mono neg">−127</td><td class="mono neg">−319</td><td class="mono neg">−112</td><td class="mono pos">+409</td><td class="mono">−6.4% / +6.5%</td><td class="mono">319</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>±5.6% is the expected absolute move isolated in Section 10.3, and ±8.9% is XYZ’s largest move in its history. Note three things when you read this table:</p>
+      <ul>
+        <li>The short straddle makes the most when the stock “doesn’t move” ($930), but at ±8.9% it loses $600 in one go, and at −15% it would lose $1,817.</li>
+        <li>The short iron condor makes only $319 when the stock doesn’t move, but its breakevens are actually wider than the straddle’s (the short legs are beyond ±5%, plus the premium collected), and its maximum loss is locked at $681.</li>
+        <li>The calendar’s P&amp;L is small either way, and its maximum loss is the $93 paid. It is very sensitive to IV after the report: if post-report IV is 25%, it makes only $105 when the stock doesn’t move; at 40%, it makes $220.</li>
+      </ul>
+
+      <figure class="plate" id="fig3">
+        <div class="fig-head"><span class="fig-title">One earnings report, five structures, five different bets</span><span class="fig-no">Figure 10-3 · P&amp;L per contract at the close on the first day after the report</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Choose a structure">
+            <button type="button" data-k="ss" aria-pressed="true">Short straddle</button>
+            <button type="button" data-k="ic" aria-pressed="false">Short iron condor</button>
+            <button type="button" data-k="cal" aria-pressed="false">Calendar</button>
+            <button type="button" data-k="ls" aria-pressed="false">Long straddle</button>
+            <button type="button" data-k="lic" aria-pressed="false">Reverse iron condor</button>
+          </div>
+          <label class="ctl" for="f3-iv">Post-report IV <input id="f3-iv" type="range" min="20" max="50" value="30"> <output id="f3-iv-o">30%</output></label>
+        </div>
+        <svg class="chart" id="f3-svg" viewBox="0 0 680 320" role="img" aria-label="P&amp;L curves of each structure after earnings"></svg>
+        <div class="legend"><span><i style="border-color: var(--delta)"></i>Selected structure</span><span><i style="border-color: var(--muted); opacity: .45"></i>Other structures</span><span><i style="border-color: var(--tint-gamma); border-top-width: 8px"></i>±5.6% expected move</span></div>
+        <div class="readout">
+          <div><b id="f3-r1">—</b><small>Entry (per contract)</small></div>
+          <div><b id="f3-r2">—</b><small>If the stock doesn’t move</small></div>
+          <div><b id="f3-r3">—</b><small>±8.9% move, worse side</small></div>
+          <div><b id="f3-r4">—</b><small>Max loss within ±15%</small></div>
+        </div>
+        <figcaption>Switch to “Calendar” and drag the post-report IV from 20% to 50%: the whole curve shifts up, because the back-month option you hold keeps more of its value. Switch to “Short straddle” and the vertical axis stretches a long way: that is its tail. Switch to “Short iron condor” and both ends are flattened by the wings.</figcaption>
+      </figure>
+
+      <div class="tbl">
+        <table>
+          <caption>Table 10-4 When each of the five structures fits</caption>
+          <thead><tr><th>Structure</th><th>Your view</th><th>When to use it</th><th>When not to</th></tr></thead>
+          <tbody>
+            <tr><td>Short straddle</td><td>Moves less than implied</td><td>Ratio &gt; 1.2, good liquidity, very small size</td><td>Your account can’t absorb a loss 3 times the credit</td></tr>
+            <tr><td>Short iron condor</td><td>Moves less than implied</td><td>Same as above, but with a cap on the maximum loss</td><td>Wings so narrow that the credit doesn’t cover commissions and slippage</td></tr>
+            <tr><td>Calendar</td><td>Moves little, and back-month IV holds up</td><td>Front-month IV far above the back month, and you want to risk little money</td><td>The back month also contains another event, or you expect a big move</td></tr>
+            <tr><td>Long straddle</td><td>Moves more than implied</td><td>Ratio &lt; 0.9, or there is a new variable this time that isn’t in the history</td><td>IV has already been bid up to the top of its IV Rank</td></tr>
+            <tr><td>Reverse iron condor</td><td>Moves a lot, but not to an extreme</td><td>You want to be long volatility but find the straddle too expensive</td><td>When it only makes money on a move of more than 10%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Entry timing, strikes and exit</h3>
+      <ul>
+        <li><strong>Entry timing.</strong> Sellers usually open the position just before the close on the last trading day before earnings: that is when front-month IV is highest and the fewest ordinary days remain. Opening a few days early means carrying a few more days of ordinary-day Gamma, and you may watch IV keep climbing.</li>
+        <li><strong>Where to put the short legs.</strong> The short legs of the iron condor in Table 10-3 are at ±5%, closer than the expected absolute move (5.64%); that is an aggressive setup. Under the market’s implied distribution, the chance of a move larger than 5% is about <span class="num">50%</span>. Move the short legs out to 185/215 (about 1σ away) and that chance falls to about <span class="num">31%</span>; the price is that the credit drops from $319 to <span class="num">$184</span> and the maximum loss rises from $681 to <span class="num">$816</span>. There is no free margin of safety, only different trade-offs.</li>
+        <li><strong>Exit.</strong> By default, close the whole position 15–30 minutes after the open on the first day after the report. The bid–ask spread is widest at the open, so wait for it to narrow; by then IV has already been crushed, and the money the event trade was meant to make has been made. Letting an event position drift into an ordinary holding means swapping in a trade you never analyzed.</li>
+        <li><strong>Handle a calendar as one unit.</strong> As the front-month leg nears expiry, either close the whole position or deal with the front-month leg early, so you don’t get assigned and end up with a lone back-month leg.</li>
+      </ul>
+      <div class="note field">
+        <span class="tag">In practice</span>
+        <p>Plenty of traders treat earnings as a “lottery ticket,” but a lottery has rules: use only a very small position in a calendar spread or butterfly, so that the maximum loss is the premium paid; place the order only about ten minutes before the close, so that price and IV are as close as possible to their final state before the report; if it loses, close the whole thing or let it expire, and don’t cut just one leg after the fact, which would turn a limited-risk structure into a naked position. If a stock’s IV is so high that “neither buying nor selling is worth it,” express the view with a sector ETF instead. Another common practice is to add a short-term hedge against your main exposure before the event: if you hold a lot of short positions, buy a small short-dated call spread on an index or leveraged ETF before earnings or the FOMC, and take it off after the event.</p>
+      </div>
+    </section>
+
+    <section id="s5">
+      <h2><span class="sn">10.5</span>Macro event days</h2>
+      <p>A macro event hits an index far less than an earnings report hits a single stock, but it hits every position in your portfolio at the same time.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 10-5 Timing and impact of three types of macro events (Eastern Time)</caption>
+          <thead><tr><th>Event</th><th>Release time</th><th>How prices react</th><th>Expiration mainly affected</th></tr></thead>
+          <tbody>
+            <tr><td>CPI</td><td>8:30, before the open</td><td>Mostly through the opening gap</td><td>Expirations that include the day, as of the night before</td></tr>
+            <tr><td>Nonfarm payrolls</td><td>8:30, usually the first Friday of the month</td><td>Mostly through the opening gap</td><td>Weekly options expiring that Friday</td></tr>
+            <tr><td>FOMC</td><td>Statement at 14:00, press conference at 14:30</td><td>Two bursts of intraday volatility, often in opposite directions</td><td>Same-day 0DTE and that week’s options</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Why VIX barely moves before CPI</h3>
+      <p>Work it through with the framework from Section 10.3. Suppose the base volatility of the S&amp;P 500 is 14%, and the market expects an extra 1% jump (1σ) on CPI day.</p>
+      <ul>
+        <li>Options expiring in 1 day: IV = <span class="num">√(0.14² + 0.01² × 365 / 1) = 23.7%</span>, almost double.</li>
+        <li>30-day IV (the VIX measure): <span class="num">√(0.14² + 0.01² × 365 / 30) = 14.43%</span>, only 0.4 points higher.</li>
+      </ul>
+      <p>The same jump looks huge over 1 day and gets diluted away over 30 days. So reading VIX to judge “whether the market fears CPI” badly understates the event premium; look at straddles expiring the same day or the next day instead. With SPX at 7,800, a 1-day ATM straddle costs about <span class="num">$45.6</span> (0.58%) on an ordinary day and about <span class="num">$77.2</span> (0.99%) on this CPI day.</p>
+      <h3>Hedging before an event: expensive per day, cheap per event</h3>
+      <p>Suppose your portfolio is equivalent to 300 shares of SPY (beta-weighted, as in Chapter 4), and you want to add protection the night before CPI, with SPY at 780.</p>
+      <ul>
+        <li>3 of the 780 puts expiring the next day, at 23.7% IV: $382 each, <span class="num">$1,145</span> in total, covering just this one day.</li>
+        <li>3 of the 30-day 780 puts, at 14.43% IV: $1,161 each, <span class="num">$3,483</span> in total, or <span class="num">$116</span> a day.</li>
+      </ul>
+      <p>Per day, the one-day hedge is nearly 10 times as expensive (<span class="num">1,145 ÷ 116 ≈ 9.9</span>), because its price is almost entirely event premium; the upside is that you pay only for the one day you need. Conversely, if you were planning to hold a month of protection anyway, buy the 30-day puts before the event: the event premium is only a small part of their price.</p>
+      <h3>Index IV after the event</h3>
+      <p>When the result is no surprise, short-term index IV usually falls back after the release, for the same reason as with earnings: the jump has happened. The difference is that the drop is smaller, and a macro event can change base volatility for the following weeks. For example, if the FOMC signals a new policy direction, the market may keep repricing over the next few days, and base volatility can actually rise.</p>
+      <p>The real risk of these events is at the portfolio level: every stock moves in the same direction at once, and diversification across stocks basically stops working for that day. Before the event, check your portfolio’s beta-weighted Delta (Chapter 4) and, if needed, add an offsetting position with short-dated index options. During the event, do as little as possible; wait until the press conference is over and prices have settled before acting.</p>
+    </section>
+
+    <section id="s6">
+      <h2><span class="sn">10.6</span>0DTE: a whole day compressed into a few hours</h2>
+      <p>0DTE options expire the same day. They squeeze a whole day of risk into a few hours, pushing both Gamma and Theta to extremes. SPX, SPY, QQQ and other major index products now have expirations every trading day.</p>
+      <div class="note">
+        <span class="tag">Conventions for this section</span>
+        <p>Intraday time is measured in trading time: one trading day is 6.5 hours, a year has 252 trading days, and time remaining <span class="v">T</span> = hours remaining ÷ (6.5 × 252). Read IV of 15% on this basis too. After-hours and overnight time are not counted.</p>
+      </div>
+      <div class="tbl">
+        <table>
+          <caption>Table 10-6 SPY 780 ATM call (IV 15%), values at different times before the close (per share)</caption>
+          <thead><tr><th>Time to close</th><th>Call price</th><th>Straddle price</th><th>Gamma</th><th>Theta per hour</th></tr></thead>
+          <tbody>
+            <tr><td>6.5 hours (open)</td><td class="mono">3.00</td><td class="mono">5.88</td><td class="mono">0.054</td><td class="mono">−0.24</td></tr>
+            <tr><td>4 hours</td><td class="mono">2.34</td><td class="mono">4.61</td><td class="mono">0.069</td><td class="mono">−0.30</td></tr>
+            <tr><td>2 hours</td><td class="mono">1.65</td><td class="mono">3.26</td><td class="mono">0.098</td><td class="mono">−0.42</td></tr>
+            <tr class="hl"><td>1 hour</td><td class="mono">1.16</td><td class="mono">2.31</td><td class="mono">0.138</td><td class="mono">−0.59</td></tr>
+            <tr><td>30 minutes</td><td class="mono">0.82</td><td class="mono">1.63</td><td class="mono">0.195</td><td class="mono">−0.83</td></tr>
+            <tr><td>15 minutes</td><td class="mono">0.58</td><td class="mono">1.15</td><td class="mono">0.276</td><td class="mono">−1.16</td></tr>
+            <tr><td>For comparison: 21 trading days</td><td class="mono">14.79</td><td class="mono">—</td><td class="mono">0.012</td><td class="mono">−0.06</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>A few numbers worth remembering:</p>
+      <ul>
+        <li>ATM Gamma in the last hour is <span class="num">11.7</span> times that of a one-month option, and <span class="num">23.5</span> times in the last 15 minutes.</li>
+        <li>An ATM option’s value is proportional to the square root of the time remaining. The $3.00 at the open is down to $1.16 by the last hour, about <span class="num">√(1/6.5) = 39%</span>: time decay is slow at first and fast at the end, and the last hour eats nearly 40% of the opening value.</li>
+        <li>In the last hour, a 0.2% rise in SPY ($1.56) takes the ATM call from $1.16 to $2.11, a gain of <span class="num">82%</span>; the same move at the open lifts it only 29%.</li>
+        <li>For the 784 call, 0.5% out of the money, Gamma peaks with a little under 2 hours to the close, then decays quickly, down to just 0.006 in the last 15 minutes: the option either goes to zero or gets “caught” by the stock and becomes at the money.</li>
+      </ul>
+
+      <figure class="plate" id="fig4">
+        <div class="fig-head"><span class="fig-title">ATM 0DTE Gamma and Theta both explode before the close</span><span class="fig-no">Figure 10-4 · SPY 780, IV 15%, trading time</span></div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Choose a measure">
+            <button type="button" data-m="g" aria-pressed="true">Gamma</button>
+            <button type="button" data-m="t" aria-pressed="false">Theta per hour</button>
+          </div>
+          <label class="ctl" for="f4-k">Distance OTM <input id="f4-k" type="range" min="0.1" max="1.5" step="0.1" value="0.5"> <output id="f4-k-o">0.5%</output></label>
+        </div>
+        <svg class="chart" id="f4-svg" viewBox="0 0 680 320" role="img" aria-label="Gamma or Theta of 0DTE options by hours remaining"></svg>
+        <div class="legend"><span><i style="border-color: var(--gamma)"></i>ATM 780</span><span><i style="border-color: var(--delta)"></i>OTM call</span><span><i class="dash" style="border-color: var(--muted)"></i>For comparison: ATM option with 21 trading days</span></div>
+        <div class="readout">
+          <div><b id="f4-r1">—</b><small>ATM Gamma, at the open</small></div>
+          <div><b id="f4-r2">—</b><small>ATM Gamma, last 15 minutes</small></div>
+          <div><b id="f4-r3">—</b><small>OTM Gamma, last 15 minutes</small></div>
+          <div><b id="f4-r4">—</b><small>ATM Theta, last hour (per hour)</small></div>
+        </div>
+        <figcaption>From left to right, the horizontal axis moves closer and closer to the close. The pink line turns sharply upward in the last hour; the blue line rises and then falls. Drag the strike distance above 1% and the blue line falls all the way from the open, hugging zero by the afternoon: in 0DTE, a strike like that is a lottery ticket from the start. Switch to Theta: an ATM option’s hourly decay in the last 15 minutes is nearly five times what it is at the open.</figcaption>
+      </figure>
+
+      <h3>How institutions and retail traders use them</h3>
+      <div class="grid2">
+        <div class="tile">
+          <h4>Institutions and professional traders</h4>
+          <ul>
+            <li>Systematically sell 0DTE spreads to collect premium, sized by maximum loss</li>
+            <li>Hedge a single-day event precisely: buy protection for just the CPI or FOMC day, without paying for the weeks after it</li>
+            <li>Market makers manage large amounts of short-dated Gamma intraday</li>
+          </ul>
+        </div>
+        <div class="tile">
+          <h4>Retail traders</h4>
+          <ul>
+            <li>Buy cheap OTM options to bet on direction: low price, high leverage</li>
+            <li>Common mistakes: setting stops on the option price, and sizing by number of contracts rather than by maximum loss</li>
+            <li>Sizing up after a win, mistaking one lucky break for skill</li>
+          </ul>
+        </div>
+      </div>
+      <h3>Its effect on intraday price action</h3>
+      <ul>
+        <li>Intraday Gamma is concentrated in the last two or three hours, and so is market makers’ hedging flow. When they are long Gamma, prices are more likely to get “pinned” near big strikes; when they are short Gamma, moves are more likely to accelerate (Chapter 4, Section 4.8).</li>
+        <li>Most 0DTE positions are opened and closed the same day. Open interest, updated only once a day, doesn’t see these positions, so Gamma estimates based on OI miss them.</li>
+        <li>Published research has not reached a consensus on whether 0DTE systematically amplifies market volatility. The safer view is that it has changed the distribution of intraday volatility, especially on event days.</li>
+      </ul>
+      <div class="note warn">
+        <span class="tag">Set stops on the underlying’s price</span>
+        <p>In the last hour, a 0.2% move in SPY can send an ATM option’s price up 80% or down by half. A stop at “the option is down 50%” is a stop on 0.1%–0.2% of price noise, and it is almost certain to get hit. Write 0DTE exit rules as levels in the underlying (for example, “close if SPY breaks below 776”), and size the position by its worst-case maximum loss.</p>
+      </div>
+    </section>
+
+    <section id="s7">
+      <h2><span class="sn">10.7</span>SPX and SPY: one index, two contracts</h2>
+      <p>SPX and SPY options track the same S&amp;P 500, but they are completely different in exercise style, settlement and tax treatment, and in event trading those differences turn directly into money.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 10-7 SPX vs SPY options (index at 7,800, SPY at 780)</caption>
+          <thead><tr><th>Item</th><th>SPX</th><th>SPY</th></tr></thead>
+          <tbody>
+            <tr><td>Exercise style</td><td>European-style, exercised only at expiration</td><td>American-style, can be exercised at any time</td></tr>
+            <tr><td>Settlement</td><td>Cash-settled</td><td>Physical delivery: shares change hands</td></tr>
+            <tr><td>Notional value per contract</td><td class="mono">About $780,000</td><td class="mono">About $78,000</td></tr>
+            <tr><td>Early assignment</td><td>Can’t happen</td><td>Possible, especially ITM calls before an ex-dividend date</td></tr>
+            <tr><td>Expiration risk</td><td>No stock delivery; AM-settled monthly contracts carry opening-price risk</td><td>Holders can still decide to exercise after the close, so you may carry an unexpected stock position over the weekend</td></tr>
+            <tr><td>US taxes</td><td>Section 1256 contracts: 60% long-term, 40% short-term, marked to market at year-end</td><td>By holding period; under one year is short-term</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>XSP is a mini SPX, one-tenth the size of SPX, with a notional value close to SPY’s. It is also European-style and cash-settled, and Section 1256 applies to it as well.</p>
+      <h3>How much Section 1256 saves</h3>
+      <p>Suppose your net options gain for the year is $10,000, the short-term capital gains rate is 32% and the long-term rate is 15% (assumed rates, only to show the calculation).</p>
+      <ul>
+        <li>SPY: all of it short-term, <span class="num">10,000 × 32% = $3,200</span>.</li>
+        <li>SPX: <span class="num">10,000 × (60% × 15% + 40% × 32%) = 10,000 × 21.8% = $2,180</span>, or $1,020 less in tax.</li>
+      </ul>
+      <p>Your actual tax depends on your personal situation and where you live; rely on the advice of a tax professional.</p>
+      <h3>Two kinds of expiration risk</h3>
+      <ul>
+        <li><strong>SPX AM settlement.</strong> Standard SPX contracts expiring on the third Friday of the month stop trading at Thursday’s close, and the settlement price is calculated from the opening prices of the index components on Friday. If you hold them through Thursday night, Friday’s opening gap directly sets the settlement price, and there is no way to close in between. The weekly and daily SPXW contracts are PM-settled at the closing price and don’t have this problem.</li>
+        <li><strong>SPY after-hours exercise.</strong> Expiring SPY options stop trading at 16:00, but holders still have a window after the close to decide whether to exercise. Say SPY closes on Friday just below the 780 call you sold, and an after-hours headline pushes it to 783: the other side may exercise, and on Monday morning you open with a short stock position.</li>
+      </ul>
+      <p>How to choose: for large notional size, when taxes matter, or for event spreads, prefer SPX; for a small account, finer position sizing, or when you actually want to deliver or receive shares, use SPY or XSP. When you sell ITM SPY calls, watch out for early assignment before an ex-dividend date.</p>
+    </section>
+
+    <section id="s8">
+      <h2><span class="sn">10.8</span>VIX options and recurring events</h2>
+      <p>VIX options are priced off VIX futures, and they settle in an unusual way. Monthly expiration, triple witching and index rebalancing are liquidity events written on the calendar well in advance.</p>
+      <h3>Three things that make VIX options different</h3>
+      <ol>
+        <li><strong>The underlying is a future.</strong> The VIX index itself can’t be traded; VIX options are priced off the VIX future for the same expiration month. In calm periods the future usually sits above spot: with spot VIX at 15, the same-month future may be around 17, and whether a call is in or out of the money depends on the future.</li>
+        <li><strong>The settlement price is a special opening quote.</strong> VIX options are European-style and cash-settled. On the morning of expiration (usually a Wednesday), a special quote (ticker VRO) is calculated from the opening prices of SPX options and used as the settlement price. It can be very different from the previous day’s closing VIX, and at the close the day before expiration you don’t know what the settlement price will be.</li>
+        <li><strong>Expiration follows SPX.</strong> VIX settlement is generally 30 days before the next month’s standard SPX expiration, so it is not the third Friday of the month. Mark the VIX settlement Wednesdays separately on your calendar.</li>
+      </ol>
+      <p>VIX is strongly mean-reverting: after a spike it often falls back quickly. That makes VIX calls a form of protection you “have to cash in on time,” which Chapter 11 covers in detail.</p>
+      <h3>Events already on the calendar</h3>
+      <div class="tbl">
+        <table>
+          <caption>Table 10-8 Recurring events and how they affect options</caption>
+          <thead><tr><th>Event</th><th>Time</th><th>Effect on options</th></tr></thead>
+          <tbody>
+            <tr><td>Monthly expiration</td><td>Third Friday of each month</td><td>Large open interest expires; before expiry prices tend to get pinned at big strikes, and after expiry market makers’ hedges are released</td></tr>
+            <tr><td>Triple witching</td><td>Third Friday of March, June, September and December</td><td>Stock options, index options and index futures expire on the same day, with very heavy volume in the closing auction</td></tr>
+            <tr><td>Index rebalancing</td><td>S&amp;P quarterly rebalancing takes effect at the close on triple witching; Russell reconstitution day</td><td>Stocks being added or removed trade heavily at the close on the effective date, and individual names can move abnormally</td></tr>
+            <tr><td>VIX settlement</td><td>Usually Wednesday morning</td><td>VIX options and futures expire; the settlement price comes from an opening quote</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Price behavior around monthly expiration is tied to Charm and Vanna from Chapter 4: near expiry, the Delta of OTM options quickly goes to zero, and the stock held as a hedge gets unwound; after expiry, the positions that had been “pinning” the price are gone, and the next week’s moves are often freer. The practical rule is simple: on these days, don’t hold a large short-Gamma position that is near expiry and near the money going into the close; in the first week after expiry, take a fresh look at the term structure and the Gamma distribution.</p>
+    </section>
+
+    <section id="s9">
+      <h2><span class="sn">10.9</span>Event calendar and IV dashboard</h2>
+      <p>Write each event as one row of a table, and fill in the implied move, historical move, structure, maximum loss and exit rule before you place the order. A row you can’t fill in is a trade you shouldn’t make.</p>
+      <p>This is one of the deliverables of this course: an event dashboard you update every Sunday. The template below fills in three rows with this chapter’s examples. The numbers for XYZ and ABC come from the isolation formula in Section 10.3, and the SPX row comes from Section 10.5.</p>
+      <div class="tbl">
+        <table>
+          <caption>Table 10-9 Event calendar and IV dashboard template (all example data hypothetical)</caption>
+          <thead><tr><th>Event and time</th><th>Underlying</th><th>Front / back IV</th><th>Straddle-implied</th><th>Isolated event move</th><th>Historical mean (8)</th><th>Ratio</th><th>Plan</th><th>Max loss</th><th>Exit rule</th></tr></thead>
+          <tbody>
+            <tr><td>XYZ earnings, Wednesday after the close</td><td class="mono">$200</td><td class="mono">100% (2 days) / 54% (9 days)</td><td class="mono">5.90%</td><td class="mono">1σ 7.06%, mean 5.64%</td><td class="mono">4.28%</td><td class="mono">1.32</td><td>Short iron condor 190/180–210/220, 1 contract</td><td class="mono">$681</td><td>Close 30 minutes after the next day’s open</td></tr>
+            <tr><td>ABC earnings, Monday after the close</td><td class="mono">$80</td><td class="mono">70% (4 days) / 46% (11 days)</td><td class="mono">5.84%</td><td class="mono">1σ 6.92%, mean 5.52%</td><td class="mono">7.00%</td><td class="mono">0.79</td><td>Long straddle or reverse iron condor, small size</td><td class="mono">Premium paid</td><td>Close before the next day’s close, win or lose</td></tr>
+            <tr><td>CPI, Tuesday 8:30</td><td class="mono">SPX 7,800</td><td class="mono">1-day 23.7% / base 14%</td><td class="mono">0.99%</td><td class="mono">1σ 1.0%</td><td class="mono">—</td><td class="mono">—</td><td>No new directional positions; hedge holdings with short-dated index puts</td><td class="mono">Cost of the hedge</td><td>Remove the hedge once the data are out and prices have settled</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Each column matches a checkpoint from this chapter:</p>
+      <ul>
+        <li><strong>Front / back IV</strong>: used to isolate the event, and also to check whether the term structure is inverted.</li>
+        <li><strong>Straddle-implied and isolated event move</strong>: the first is a quick estimate; the second is what you compare with history.</li>
+        <li><strong>Ratio</strong>: above 1.2, consider selling; below 0.9, consider buying; in between, leave it blank. ABC’s 0.79 says the market’s price this time is cheaper than the stock’s average past move.</li>
+        <li><strong>Max loss</strong>: fill in this column first, then work out the number of contracts. Keep the maximum loss on any single event to no more than 1%–2% of the account.</li>
+        <li><strong>Exit rule</strong>: an event trade is a bet on one night. Closing on the first day after the report is the default; holding on needs a new reason.</li>
+      </ul>
+      <p>You can add more columns: IV Rank (Chapter 6), the straddle’s bid–ask spread as a share of its price (walk away above 10%), whether the earnings date is confirmed, and whether any other event falls in the same expiration.</p>
+    </section>
+
+    <hr class="sep">
+
+    <section id="cases">
+      <h2><span class="sn">Cases</span>Three cases</h2>
+
+      <div class="case">
+        <div class="case-no">Case 1</div>
+        <h3>Eight quarters of profit, and how much one big drop can eat</h3>
+        <p>Suppose that every quarter you open a position the day before XYZ reports, under the same conditions as Section 10.4 (front-month IV 100%, back month 54%, post-report IV 30%). Plug in the actual moves from the last 8 reports, and add a hypothetical quarter 9 in which the stock drops 15%.</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 10-10 1 contract per quarter, P&amp;L at the close on the first day after the report ($)</caption>
+            <thead><tr><th>Quarter</th><th>Move</th><th>Short straddle</th><th>Short iron condor</th></tr></thead>
+            <tbody>
+              <tr><td>Q1</td><td class="mono">+3.2%</td><td class="mono pos">+533</td><td class="mono pos">+296</td></tr>
+              <tr><td>Q2</td><td class="mono">−5.1%</td><td class="mono pos">+163</td><td class="mono pos">+191</td></tr>
+              <tr><td>Q3</td><td class="mono">+2.4%</td><td class="mono pos">+681</td><td class="mono pos">+311</td></tr>
+              <tr><td>Q4</td><td class="mono">−8.9%</td><td class="mono neg">−597</td><td class="mono neg">−424</td></tr>
+              <tr><td>Q5</td><td class="mono">+4.0%</td><td class="mono pos">+377</td><td class="mono pos">+264</td></tr>
+              <tr><td>Q6</td><td class="mono">−1.7%</td><td class="mono pos">+799</td><td class="mono pos">+318</td></tr>
+              <tr><td>Q7</td><td class="mono">+6.3%</td><td class="mono neg">−81</td><td class="mono pos">+18</td></tr>
+              <tr><td>Q8</td><td class="mono">−2.6%</td><td class="mono pos">+651</td><td class="mono pos">+312</td></tr>
+              <tr class="hl"><td>Total, 8 quarters</td><td></td><td class="mono pos">+2,526</td><td class="mono pos">+1,287</td></tr>
+              <tr><td>Quarter 9 (hypothetical)</td><td class="mono">−15%</td><td class="mono neg">−1,817</td><td class="mono neg">−681</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Over the 8 quarters, the short straddle made twice as much as the iron condor. But a single −15% in quarter 9 wipes out 72% of the short straddle’s 8 quarters of profit; on a 20% drop, the straddle would lose about $2,820 and all 8 quarters would have been for nothing, while the iron condor would still lose only $681.</p>
+        <ul>
+          <li><strong>The one move that isn’t in the historical data decides how the seller ends up.</strong> The largest of the 8 samples is 8.9%; that doesn’t mean the next one can’t be 15%.</li>
+          <li><strong>Size by maximum loss.</strong> With a $50,000 account and at most 2% ($1,000) at risk per event, you can do 1 iron condor (maximum loss $681). The short straddle has no maximum loss, so you can only size it by “a $1,817 loss in the −15% scenario,” and even one contract is over the limit.</li>
+        </ul>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 2</div>
+        <h3>A 0DTE iron condor on FOMC day: stopped out on both sides</h3>
+        <p>FOMC day, 13:30, SPY at 780, 2.5 hours to the close. Because it includes the event, 0DTE IV has been pushed up to 24% (on a trading-time basis). You sell 10 iron condors: the 785/790 call spread and the 775/770 put spread, with a rule to stop out of either side once that spread’s price rises to 2 times the credit.</p>
+        <div class="tbl">
+          <table>
+            <caption>Table 10-11 One afternoon’s path (per share; 10 contracts = 1,000 shares)</caption>
+            <thead><tr><th>Time</th><th>SPY</th><th>Assumed IV</th><th>Call spread</th><th>Put spread</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>13:30 entry</td><td class="mono">780.0</td><td class="mono">24%</td><td class="mono">0.794</td><td class="mono">0.778</td><td>Credit $1,572</td></tr>
+              <tr><td>14:05, after the statement</td><td class="mono">785.0</td><td class="mono">20%</td><td class="mono">1.641</td><td class="mono">0.058</td><td>Call side stopped out, loss of $847</td></tr>
+              <tr><td>14:40, during the press conference</td><td class="mono">774.9</td><td class="mono">22%</td><td class="mono">—</td><td class="mono">1.586</td><td>Put side stopped out, loss of $808</td></tr>
+              <tr class="hl"><td>16:00 close</td><td class="mono">779.5</td><td class="mono">—</td><td class="mono">0</td><td class="mono">0</td><td>The original position would have expired worthless</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The two stops add up to <span class="num">−$847 − $808 = −$1,655</span>. If you had done nothing, all four legs would have expired worthless at the close and you would have kept the full <span class="num">$1,572</span>. Same closing price, one result −$1,655 and the other +$1,572: the difference is entirely the path.</p>
+        <ul>
+          <li><strong>FOMC comes in two parts.</strong> The 14:00 statement and the 14:30 press conference often point in opposite directions, so any position with price-based stops has to be ready to get whipsawed twice.</li>
+          <li><strong>The stops were too tight.</strong> At 24% IV, the 1σ move over 2.5 hours is $7.3, while the short legs were only $5 from the price. Using a doubling of the option price as the stop means giving up within 1σ.</li>
+          <li><strong>Three better approaches:</strong> size by maximum loss and accept that there is no stop (maximum loss per contract <span class="num">5 − 1.572 = $3.43</span>, or $3,428 for 10; only trade it if you can accept that); wait until the press conference is over and prices have settled before opening; or simply don’t hold short Gamma between 14:00 and 15:00.</li>
+        </ul>
+      </div>
+
+      <div class="case">
+        <div class="case-no">Case 3</div>
+        <h3>August 5, 2024: the VIX reading and the price of options</h3>
+        <p>Several things piled up at once. The Bank of Japan raised rates at the end of July, and the yen carry trade started to unwind; on August 2 the US July jobs report came in weak, and recession fears grew. On Monday, August 5, Japanese stocks crashed, and around the US open VIX briefly spiked to its highest level since March 2020, then fell back sharply the same day.</p>
+        <p>Afterward, a number of analyses pointed to several facts that bear directly on option pricing:</p>
+        <ul>
+          <li>VIX is calculated from SPX option quotes. Around the open, SPX option quotes were sparse and bid–ask spreads extremely wide, and the formula amplified that state of the quotes into an extreme reading.</li>
+          <li>VIX futures rose much less than spot VIX, and the term structure was deeply inverted: the market saw the panic as short-lived.</li>
+          <li>The S&amp;P 500’s drop that day was nowhere near as dramatic as the VIX reading suggested. Over the following weeks, VIX fell back to near its pre-event range.</li>
+        </ul>
+        <p>A hypothetical example shows what it feels like to buy protection near the peak (the numbers below are assumed to illustrate the mechanism; they are not real quotes from that day). With the index at 100, a 30-day ATM put is worth <span class="num">1.55</span> at 15% IV and <span class="num">4.40</span> when IV spikes to 40%, 2.8 times as expensive. A week later the index has bounced 2% and IV is back at 20%: the put is worth only <span class="num">1.09</span>, a 75% loss. Even if the index had instead fallen another 3% a week later, with IV back at 25%, the put would be worth only <span class="num">4.08</span>, still a 7% loss: the loss from falling IV cancels out the gain from the direction.</p>
+        <ul>
+          <li><strong>Spot VIX can’t be traded.</strong> What you can buy are VIX futures and options, and they rise much less than spot at the peak of a panic.</li>
+          <li><strong>Protection is most expensive at the peak of a panic.</strong> Buy protection when IV is low (the tail-hedge budget in Chapter 11).</li>
+          <li><strong>Near the peak, what sellers face is mark-to-market losses and margin.</strong> Even if the trade ends up making money, you may be forced to close along the way.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2><span class="sn">Tools</span>Checklist and self-test</h2>
+      <p>Your checkmarks are saved only in your own browser.</p>
+      <div class="cards">
+        <div class="card">
+          <h4><span class="num">10-1</span>Before earnings: read the expectation</h4>
+          <ul>
+            <li><input type="checkbox" id="k1"><label for="k1">Find the nearest expiration that includes earnings and compute straddle ÷ stock price</label></li>
+            <li><input type="checkbox" id="k2"><label for="k2">Isolate the event move using a nearer and a farther expiration</label></li>
+            <li><input type="checkbox" id="k3"><label for="k3">Compare with the last 8 close-to-close moves and write down the ratio</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">10-2</span>Choosing a structure and sizing it</h4>
+          <ul>
+            <li><input type="checkbox" id="k4"><label for="k4">Consider selling only at a ratio &gt; 1.2 and buying only at &lt; 0.9; do nothing in between</label></li>
+            <li><input type="checkbox" id="k5"><label for="k5">Write down the maximum loss first (1%–2% of the account), then work out the number of contracts</label></li>
+            <li><input type="checkbox" id="k6"><label for="k6">Stress test: post-report IV back to its base level, stock moves ±1.5 times the implied move</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">10-3</span>Macro days and 0DTE</h4>
+          <ul>
+            <li><input type="checkbox" id="k7"><label for="k7">Mark the 8:30 and 14:00 events; for the FOMC, remember there is also 14:30</label></li>
+            <li><input type="checkbox" id="k8"><label for="k8">Write 0DTE exits as levels in the underlying, not option prices</label></li>
+            <li><input type="checkbox" id="k9"><label for="k9">Check beta-weighted Delta before the event, and add a short-dated offsetting hedge if needed</label></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4><span class="num">10-4</span>Contracts and the calendar</h4>
+          <ul>
+            <li><input type="checkbox" id="k10"><label for="k10">Use SPX or XSP for large notional size or when taxes matter; use SPY when you need shares or small size</label></li>
+            <li><input type="checkbox" id="k11"><label for="k11">Check the ex-dividend date before selling ITM SPY calls</label></li>
+            <li><input type="checkbox" id="k12"><label for="k12">Mark monthly expirations, triple witching, rebalancing and VIX settlement Wednesdays on the calendar</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Five self-test questions</h3>
+      <details class="q"><summary><span class="num">1</span><span>The stock is at $150, and the weekly ATM straddle that includes earnings costs $9. What are the implied average move and the 1σ move?</span></summary>
+        <div class="ans"><p>Average move <span class="num">9 ÷ 150 = 6.0%</span>. 1σ ≈ <span class="num">6.0% ÷ 0.798 = 7.5%</span>, about $11.3.</p></div></details>
+      <details class="q"><summary><span class="num">2</span><span>The front month expires in 3 days with IV of 90%, and the back month in 10 days with IV of 55%; both include earnings. What are the base volatility and the event 1σ move?</span></summary>
+        <div class="ans"><p>Total variance: <span class="num">0.81 × 3/365 = 0.006658</span>, <span class="num">0.3025 × 10/365 = 0.008288</span>. Base variance <span class="num">(0.008288 − 0.006658) ÷ (7/365) = 0.0850</span>, σ<sub>b</sub> ≈ 29.2%. Jump variance <span class="num">(0.81 − 0.0850) × 3/365 = 0.005959</span>, event 1σ ≈ 7.7%, expected absolute move about 6.2%.</p></div></details>
+      <details class="q"><summary><span class="num">3</span><span>An ATM 0DTE option is worth $3.00 at the open. With the stock and IV unchanged, roughly what is it worth with 1 hour to the close? Why?</span></summary>
+        <div class="ans"><p>About <span class="num">3.00 × √(1/6.5) ≈ $1.18</span> (the exact figure is $1.16; the difference comes from the interest-rate term). An ATM option’s value is roughly proportional to the square root of the time remaining, so time decay speeds up toward the end.</p></div></details>
+      <details class="q"><summary><span class="num">4</span><span>You sold the SPY 780 call expiring Friday. SPY closes at 779.9, and an after-hours headline pushes it to 783. What risk do you face? What if it were SPX?</span></summary>
+        <div class="ans"><p>SPY is American-style and physically settled, and holders can still decide to exercise after the close. The other side will very likely exercise, and on Monday morning you open short 100 shares per contract, exposed to any weekend gap. PM-settled SPX is cash-settled at the closing price, so news after the close doesn’t affect settlement.</p></div></details>
+      <details class="q"><summary><span class="num">5</span><span>A CPI day lifts 1-day IV from 14% to 23.7%. Why does VIX barely move?</span></summary>
+        <div class="ans"><p>VIX measures 30-day IV. Spread the same 1% jump variance over 30 days, and 30-day IV only goes from <span class="num">14%</span> to <span class="num">√(0.14² + 0.0001 × 365/30) = 14.43%</span>. To judge the premium on a single-day event, look at straddles expiring the same day or the next day.</p></div></details>
+    </section>
+
+    <nav class="pager" id="ck-pager" aria-label="Chapter navigation"></nav>
+
+    <footer class="end">
+      <p>The examples in this chapter are computed with the Black-Scholes model and the assumptions stated in the text (4% rate, no dividends; trading time for 0DTE). All market data are hypothetical. They are for teaching and are not investment advice.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/course.js"></script>
+<script>
+(() => {
+  "use strict";
+  const { bs, plot, range, fmt, money, el } = CK;
+  const DAY = CK.DAY;
+  const sgn = (v, d) => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(d || 0);
+  function niceTicks(lo, hi, n) {
+    const span = hi - lo, raw = span / (n || 5);
+    const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    const st = [1, 2, 2.5, 5, 10].map(f => f * mag).find(s => s >= raw) || raw;
+    const a = Math.floor(lo / st) * st, b = Math.ceil(hi / st) * st;
+    const ticks = []; for (let v = a; v <= b + st * 1e-6; v += st) ticks.push(+v.toFixed(6));
+    return { lo: a, hi: b, ticks, st };
+  }
+
+  // ---------- fig 10-1: IV cycle ----------
+  (function () {
+    const svg = document.getElementById("f1-svg");
+    const bS = document.getElementById("f1-base"), eS = document.getElementById("f1-ev");
+    const E = 21, XF = 25, XB = 53;
+    const ivAt = (t, X, sb, ve) => t > E ? sb : Math.sqrt(sb * sb + ve / ((X - t) / DAY));
+    function draw() {
+      const sb = +bS.value / 100, mv = +eS.value / 100, ve = mv * mv;
+      document.getElementById("f1-base-o").textContent = bS.value + "%";
+      document.getElementById("f1-ev-o").textContent = (+eS.value) + "%";
+      const front = range(0, 24, 1).map(t => [t, ivAt(t, XF, sb, ve) * 100]);
+      const back = range(0, 30, 1).map(t => [t, ivAt(t, XB, sb, ve) * 100]);
+      const peak = ivAt(E, XF, sb, ve) * 100;
+      const nt = niceTicks(0, peak * 1.08, 5);
+      plot(svg, {
+        x: [0, 30], y: [0, nt.hi], xt: [0, 7, 14, 21, 28], yt: nt.ticks, yf: v => v.toFixed(0),
+        xlabel: "Days from today (earnings after the close on day 21)", ylabel: "Implied volatility (%)", vline: 21.5,
+        series: [{ pts: back, color: "var(--delta)", w: 2.4 }, { pts: front, color: "var(--gamma)", w: 2.6 }],
+        dots: [[E, peak, "var(--gamma)", 4]],
+        labels: [[E, peak, peak.toFixed(1) + "%", -6, -8, "end", "var(--gamma)"]]
+      });
+      document.getElementById("f1-r1").textContent = (ivAt(0, XF, sb, ve) * 100).toFixed(1) + "%";
+      document.getElementById("f1-r2").textContent = peak.toFixed(1) + "%";
+      document.getElementById("f1-r3").textContent = "−" + (peak - sb * 100).toFixed(1) + " points";
+      document.getElementById("f1-r4").textContent = (ivAt(E, XB, sb, ve) * 100).toFixed(1) + "%";
+    }
+    bS.addEventListener("input", draw); eS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 10-2: implied vs historical ----------
+  (function () {
+    const svg = document.getElementById("f2-svg");
+    const sIn = document.getElementById("f2-s"), stIn = document.getElementById("f2-st");
+    const hist = [3.2, -5.1, 2.4, -8.9, 4.0, -1.7, 6.3, -2.6];
+    const histMean = hist.reduce((a, h) => a + Math.abs(h), 0) / hist.length;
+    function draw() {
+      const S = Math.max(+sIn.value || 0, 0.01), st = Math.max(+stIn.value || 0, 0);
+      const imp = st / S * 100, one = imp / Math.sqrt(2 / Math.PI);
+      const ymax = niceTicks(0, Math.max(10, one * 1.12, 9.5), 5);
+      plot(svg, {
+        x: [0.4, 8.6], y: [0, ymax.hi], xt: [1, 2, 3, 4, 5, 6, 7, 8], xf: v => "Q" + v,
+        yt: ymax.ticks, yf: v => v + "%", xlabel: "Last 8 earnings reports (absolute move)", ylabel: "Size of move (%)",
+        hband: [0, imp, "var(--tint-theta)"],
+        bars: hist.map((h, i) => ({ x: i + 1, y: Math.abs(h), w: 0.56, color: h > 0 ? "var(--delta)" : "var(--gamma)" })),
+        series: [{ pts: [[0.4, imp], [8.6, imp]], color: "var(--ink)", w: 2 }, { pts: [[0.4, one], [8.6, one]], color: "var(--muted)", w: 1.6, dash: "5 5" }],
+        labels: hist.map((h, i) => [i + 1, Math.abs(h), Math.abs(h).toFixed(1), 0, -6, "middle", "var(--muted)"])
+      });
+      const over = hist.filter(h => Math.abs(h) > imp).length;
+      const avgPL = hist.reduce((a, h) => a + (st - Math.abs(h) / 100 * S), 0) / hist.length * 100;
+      document.getElementById("f2-r1").textContent = imp.toFixed(1) + "%";
+      document.getElementById("f2-r2").textContent = (imp / histMean).toFixed(2);
+      document.getElementById("f2-r3").textContent = over + " / 8";
+      document.getElementById("f2-r4").textContent = money(avgPL) + " / contract";
+    }
+    sIn.addEventListener("input", draw); stIn.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- tool 10-A: event IV stripping ----------
+  (function () {
+    const svg = document.getElementById("c-svg");
+    const ids = ["c-s", "c-t1", "c-iv1", "c-t2", "c-iv2"].map(id => document.getElementById(id));
+    const msg = document.getElementById("c-msg");
+    const outs = ["c-r1", "c-r2", "c-r3", "c-r4"].map(id => document.getElementById(id));
+    function draw() {
+      const [S, t1, iv1, t2, iv2] = ids.map(i => +i.value);
+      const T1 = t1 / DAY, T2 = t2 / DAY, s1 = iv1 / 100, s2 = iv2 / 100;
+      const w1 = s1 * s1 * T1, w2 = s2 * s2 * T2;
+      let sb2 = NaN, ve = NaN, ok = t2 > t1 && t1 > 0 && S > 0;
+      if (ok) { sb2 = (w2 - w1) / (T2 - T1); ve = (s1 * s1 - sb2) * T1; }
+      const good = ok && sb2 > 0 && ve > 0;
+      const k = 1e4; // variance in %^2
+      const xmax = Math.max(t2 * 1.15, t2 + 2);
+      const series = [], dots = [], labels = [];
+      let ymaxv = Math.max(w1, w2) * k * 1.25;
+      if (good) {
+        const ev = 0.5; // event happens half a day in
+        const path = [[0, 0], [ev, sb2 * ev / DAY * k], [ev, (sb2 * ev / DAY + ve) * k], [xmax, (sb2 * xmax / DAY + ve) * k]];
+        const baseOnly = [[0, 0], [xmax, sb2 * xmax / DAY * k]];
+        const ext = [[0, ve * k], [t1, w1 * k]];
+        series.push({ pts: baseOnly, color: "var(--muted)", w: 1.6, dash: "5 5" });
+        series.push({ pts: ext, color: "var(--gamma)", w: 1.4, dash: "2 4", op: 0.7 });
+        series.push({ pts: path, color: "var(--gamma)", w: 2.6 });
+        labels.push([ev, (sb2 * ev / DAY + ve / 2) * k, "Jump √=" + (Math.sqrt(ve) * 100).toFixed(2) + "%", 8, 4, "start", "var(--gamma)"]);
+        ymaxv = Math.max(ymaxv, (sb2 * xmax / DAY + ve) * k * 1.08);
+      }
+      dots.push([t1, w1 * k, "var(--ink)", 5], [t2, w2 * k, "var(--ink)", 5]);
+      labels.push([t1, w1 * k, "Front", 0, 18, "middle", "var(--ink)"], [t2, w2 * k, "Back", 0, -10, "middle", "var(--ink)"]);
+      const nt = niceTicks(0, ymaxv || 1, 5);
+      const xt = niceTicks(0, xmax, 5);
+      plot(svg, {
+        x: [0, xmax], y: [0, nt.hi], xt: xt.ticks.filter(v => v <= xmax), yt: nt.ticks, yf: v => v.toFixed(0),
+        xlabel: "Days to expiry", ylabel: "Cumulative variance (%²)", series, dots, labels
+      });
+      if (good) {
+        outs[0].textContent = (Math.sqrt(sb2) * 100).toFixed(1) + "%";
+        outs[1].textContent = (Math.sqrt(ve) * 100).toFixed(2) + "% ($" + (Math.sqrt(ve) * S).toFixed(2) + ")";
+        outs[2].textContent = (Math.sqrt(2 / Math.PI) * Math.sqrt(ve) * 100).toFixed(2) + "%";
+        outs[3].textContent = (Math.sqrt(sb2 + ve * DAY) * 100).toFixed(0) + "%";
+        msg.textContent = "";
+      } else {
+        outs.forEach(o => o.textContent = "—");
+        msg.textContent = !ok ? "Back-month days must be greater than front-month days." : sb2 <= 0 ? "The computed base variance is not positive: the back month’s total variance is smaller than the front month’s, so the quotes are inconsistent." : "Front-month IV is no higher than base volatility: no event premium is visible.";
+      }
+    }
+    ids.forEach(i => i.addEventListener("input", draw));
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 10-3: earnings structures ----------
+  (function () {
+    const svg = document.getElementById("f3-svg");
+    const ivS = document.getElementById("f3-iv");
+    const btns = document.querySelectorAll("#fig3 .seg button");
+    const S0 = 200, F0 = 2 / DAY, B0 = 9 / DAY, F1 = 1 / DAY, B1 = 8 / DAY, ivF = 1.0, ivB = 0.54;
+    const S = {
+      ss: [[-1, "c", 200, "F"], [-1, "p", 200, "F"]],
+      ic: [[-1, "p", 190, "F"], [1, "p", 180, "F"], [-1, "c", 210, "F"], [1, "c", 220, "F"]],
+      cal: [[-1, "c", 200, "F"], [1, "c", 200, "B"]],
+      ls: [[1, "c", 200, "F"], [1, "p", 200, "F"]],
+      lic: [[1, "p", 190, "F"], [-1, "p", 180, "F"], [1, "c", 210, "F"], [-1, "c", 220, "F"]]
+    };
+    const val = (legs, Sp, tf, tb, sf, sbk) => legs.reduce((a, l) => a + l[0] * bs(Sp, l[2], l[3] === "F" ? tf : tb, l[3] === "F" ? sf : sbk, l[1]).price, 0);
+    let cur = "ss";
+    function curve(k, post) {
+      const legs = S[k], v0 = val(legs, S0, F0, B0, ivF, ivB);
+      return { v0, pts: range(-15, 15, 0.25).map(m => [m, 100 * (val(legs, S0 * (1 + m / 100), F1, B1, post, post) - v0)]) };
+    }
+    function draw() {
+      const post = +ivS.value / 100;
+      document.getElementById("f3-iv-o").textContent = ivS.value + "%";
+      const all = {}; Object.keys(S).forEach(k => all[k] = curve(k, post));
+      const sel = all[cur];
+      const ys = sel.pts.map(p => p[1]);
+      const lo = Math.min(...ys), hi = Math.max(...ys);
+      const pad = (hi - lo) * 0.12 || 50;
+      const nt = niceTicks(lo - pad, hi + pad, 6);
+      const series = Object.keys(S).filter(k => k !== cur).map(k => ({ pts: all[k].pts, color: "var(--muted)", w: 1.4, op: 0.35 }));
+      series.push({ pts: sel.pts, color: "var(--delta)", w: 2.8 });
+      plot(svg, {
+        x: [-15, 15], y: [nt.lo, nt.hi], xt: range(-15, 15, 5), yt: nt.ticks,
+        xf: v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) + "%", yf: v => sgn(v),
+        xlabel: "Stock move after the report", ylabel: "P&L per contract ($)", zero: 0, band: [-5.64, 5.64, "var(--tint-gamma)"], series
+      });
+      const v0 = sel.v0 * 100;
+      document.getElementById("f3-r1").textContent = (v0 < 0 ? "Credit " : "Debit ") + CK.usd(Math.abs(v0));
+      const at = m => 100 * (val(S[cur], S0 * (1 + m / 100), F1, B1, post, post) - sel.v0);
+      document.getElementById("f3-r2").textContent = money(at(0));
+      document.getElementById("f3-r3").textContent = money(Math.min(at(8.9), at(-8.9)));
+      document.getElementById("f3-r4").textContent = money(Math.min(0, lo));
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      cur = b.dataset.k;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    ivS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+
+  // ---------- fig 10-4: 0DTE gamma / theta ----------
+  (function () {
+    const svg = document.getElementById("f4-svg");
+    const kS = document.getElementById("f4-k");
+    const btns = document.querySelectorAll("#fig4 .seg button");
+    const HY = 6.5 * 252, S = 780, iv = 0.15;
+    let mode = "g";
+    const g = (K, h) => bs(S, K, h / HY, iv, "c");
+    const thHr = r => r.theta * DAY / HY;
+    function draw() {
+      const dist = +kS.value;
+      document.getElementById("f4-k-o").textContent = dist.toFixed(1) + "%";
+      const K2 = Math.round(S * (1 + dist / 100));
+      const hs = range(0.1, 6.5, 0.05);
+      const ref = g(780, 21 * 6.5);
+      let cfg;
+      if (mode === "g") {
+        cfg = {
+          y: [0, 0.45], yt: [0, 0.1, 0.2, 0.3, 0.4], yf: v => v.toFixed(1), ylabel: "Gamma (per $1)",
+          series: [
+            { pts: [[6.5, ref.gamma], [0, ref.gamma]], color: "var(--muted)", w: 1.6, dash: "5 5" },
+            { pts: hs.map(h => [h, g(K2, h).gamma]), color: "var(--delta)", w: 2.4 },
+            { pts: hs.map(h => [h, g(780, h).gamma]), color: "var(--gamma)", w: 2.6 }
+          ]
+        };
+      } else {
+        cfg = {
+          y: [-2, 0], yt: [-2, -1.5, -1, -0.5, 0], yf: v => v === 0 ? "0" : "−" + Math.abs(v).toFixed(1), ylabel: "Theta per hour (per share, $)",
+          series: [
+            { pts: [[6.5, thHr(ref)], [0, thHr(ref)]], color: "var(--muted)", w: 1.6, dash: "5 5" },
+            { pts: hs.map(h => [h, thHr(g(K2, h))]), color: "var(--delta)", w: 2.4 },
+            { pts: hs.map(h => [h, thHr(g(780, h))]), color: "var(--gamma)", w: 2.6 }
+          ]
+        };
+      }
+      plot(svg, Object.assign({ x: [6.5, 0], xt: [6, 5, 4, 3, 2, 1, 0], xlabel: "Hours to the close" }, cfg));
+      document.getElementById("f4-r1").textContent = g(780, 6.5).gamma.toFixed(3);
+      document.getElementById("f4-r2").textContent = g(780, 0.25).gamma.toFixed(3);
+      document.getElementById("f4-r3").textContent = g(K2, 0.25).gamma.toFixed(3) + "(" + K2 + ")";
+      document.getElementById("f4-r4").textContent = "−$" + Math.abs(thHr(g(780, 1))).toFixed(2);
+    }
+    btns.forEach(b => b.addEventListener("click", () => {
+      mode = b.dataset.m;
+      btns.forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      draw();
+    }));
+    kS.addEventListener("input", draw);
+    CK.figure(draw);
+  })();
+})();
+</script>
+<script id="lang-js">(function(){document.querySelectorAll(".lang-switch").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("hl-lang",a.getAttribute("data-lang"))}catch(e){}var h=a.getAttribute("href");if(location.hash&&h.indexOf("#")<0)a.setAttribute("href",h+location.hash);});});})();</script>
+</body>
+</html>

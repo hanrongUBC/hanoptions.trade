@@ -1,0 +1,380 @@
+@@ 8af5b93d99 html
+<span class="sn">B</span>Strategy quick reference
+@@ 81b672560e html
+24 structures, in the order they first appear in the course. The table is wide: swipe left and right, and the first column stays put. All profits and losses are per share; multiply by 100 for one set of contracts.
+@@ 05c51d6aa9 html
+K₁ &lt; K₂ &lt; K₃ &lt; K₄ are strikes; S₀ is the cost of the stock you bought.
+@@ 886b176ff4 html
+D is the net premium paid to open (net debit) and C the net premium received to open (net credit); N is the net cost, positive if paid and negative if received.
+@@ 01ba88c012 html
+The View column reads: direction · volatility · whether the passage of time helps you.
+@@ b76305038c html
+The two legs of calendars and diagonals expire on different dates, so their max profit and breakeven have to be repriced using the remaining value of the back-month option; see the charts in Section C.
+@@ 62093d308e html
+Table B-1 Strategy quick reference (per share; profit and loss limits at expiry)
+@@ 2b2f1e4d50 html
+Structure
+@@ a4460ebadd html
+Construction
+@@ 884f43b517 html
+View (direction · vol · time)
+@@ 343fd5ea1e html
+Max profit
+@@ a59f077925 html
+Max loss
+@@ 8690eb7ed6 html
+Breakeven
+@@ 732811535c html
+Suits this IV environment
+@@ ec16d60e39 html
+Chapter
+@@ 04dd608642 html
+<b>Long call</b>
+@@ 6b3dd3312f html
+Buy call K
+@@ 397dcc3d22 html
+Up · rising · hurts
+@@ 5ca4b5e09a html
+Unlimited
+@@ e37aea299f html
+IV low; expected move underpriced
+@@ 9b8191a7b0 html
+<b>Long put</b>
+@@ 0619dd54ff html
+Buy put K
+@@ e018dc68a1 html
+Down · rising · hurts
+@@ 924c2607b1 html
+IV low; also works as a hedge
+@@ 9b3ad0d194 html
+<b>Bull call spread</b>
+@@ f155aee840 html
+Buy call K₁, sell call K₂
+@@ 11c72d004d html
+Up · minor · hurts
+@@ 38add101ff html
+Better value than a long call when IV is average or high
+@@ bc29ddbf1e html
+<b>Bear put spread</b>
+@@ f5175de0c3 html
+Buy put K₂, sell put K₁
+@@ 529a4585ae html
+Down · minor · hurts
+@@ 09249f3fd0 html
+The short leg is worth more when skew is steep
+@@ 1f5642da10 html
+<b>LEAPS as stock replacement</b>
+@@ a1034d33b0 html
+Buy deep ITM call K, more than a year out
+@@ d1122312e1 html
+Long-term up · rising · hurts slightly
+@@ ebc9f732cb html
+Buy when IV is low
+@@ 1f2301a90d html
+<b>Naked short call</b>
+@@ a2f0e35bda html
+Sell call K
+@@ ca51d10144 html
+Not up · falling · helps
+@@ 0b3bedabde html
+IV high; needs the highest approval level; not recommended
+@@ 3ea33f1bb3 html
+<b>Cash-secured put</b>
+@@ 6665b72e18 html
+Sell put K, hold 100 × K in cash
+@@ e68ec06f15 html
+Not down · falling · helps
+@@ c6c94ffb02 html
+IV high, and you're willing to buy at K
+@@ c9fab90cfa html
+<b>Covered call</b>
+@@ 44cd0a1380 html
+Own 100 shares (cost S₀), sell call K
+@@ b7cad028b4 html
+Mildly up · falling · helps
+@@ eb8a07707c html
+IV high; you own the stock but accept having it called away
+@@ 5d1027855c html
+<b>Bull put spread</b>
+@@ 82112ac207 html
+Sell put K₂, buy put K₁
+@@ e0b36ad5eb html
+IV high
+@@ a3b0488535 html
+<b>Bear call spread</b>
+@@ fb72afa056 html
+Sell call K₁, buy call K₂
+@@ 479db9eb8f html
+<b>Long straddle</b>
+@@ 1cb311b30c html
+Buy call K, buy put K
+@@ 9393abdcff html
+Big move · rising · hurts
+@@ e094f091ae html
+Unlimited on the upside; K − D on the downside
+@@ aa30f93398 html
+K − D and K + D
+@@ 4fa72d127d html
+IV below the realized volatility you expect
+@@ 1f7cb8a771 html
+<b>Short straddle</b>
+@@ f782408719 html
+Sell call K, sell put K
+@@ 4908a0415f html
+Flat · falling · helps
+@@ 6db835e4ed html
+K − C and K + C
+@@ 8926df8b8e html
+IV clearly high; needs strict risk control
+@@ 5199653006 html
+<b>Long strangle</b>
+@@ fdfc14618a html
+Buy call K₂, buy put K₁
+@@ 7b3561aa65 html
+Unlimited on the upside; K₁ − D on the downside
+@@ bc7e0ad668 html
+K₁ − D and K₂ + D
+@@ f314689c83 html
+IV low, before an event
+@@ add24b2382 html
+<b>Short strangle</b>
+@@ 8bdb8891df html
+Sell call K₂, sell put K₁
+@@ 6d548987ee html
+Range-bound · falling · helps
+@@ 09bb2e8736 html
+K₁ − C and K₂ + C
+@@ 1fad311a23 html
+<b>Iron condor</b>
+@@ bf4c7418f5 html
+Buy K₁ put, sell K₂ put, sell K₃ call, buy K₄ call
+@@ 37533ec334 html
+Width of the wider side − C
+@@ 186368805b html
+K₂ − C and K₃ + C
+@@ e2e2cd8bf5 html
+IV high, no event during the trade
+@@ 7701837d86 html
+<b>Iron butterfly</b>
+@@ e29a83d0d8 html
+Buy K₁ put, sell K₂ put and K₂ call, buy K₃ call
+@@ aba3479edb html
+K₂ − C and K₂ + C
+@@ f4360c808b html
+IV high; betting the stock pins at K₂
+@@ 282aae5f35 html
+<b>Long call butterfly</b>
+@@ d934c75cf4 html
+Buy K₁ call, sell 2 K₂ calls, buy K₃ call (equally spaced)
+@@ 92bb391cf1 html
+Pinned at K₂ · falling · helps near expiry
+@@ 8269557950 html
+K₁ + D and K₃ − D
+@@ 816ce70e14 html
+A low-cost bet on a target price
+@@ 17fadf2907 html
+<b>Calendar spread</b>
+@@ 57ac392790 html
+Sell front-month K, buy back-month K
+@@ f4be0b8e76 html
+Flat · back-month IV rising · helps
+@@ d3e2ae411d html
+Largest with the stock near K at front-month expiry; depends on back-month IV
+@@ 6e74d3bfcf html
+About D (more if back-month IV drops sharply)
+@@ b046175317 html
+Reprice using the back month's value
+@@ 962faf4fbb html
+Front-month IV above back-month
+@@ 6bd71de454 html
+<b>Diagonal spread</b>
+@@ 08354eb051 html
+Buy back-month K₁, sell front-month K₂
+@@ f759cb5e02 html
+Mildly up · rising · helps
+@@ af117a09da html
+Depends on back-month IV
+@@ f764873648 html
+About D
+@@ e23ebe9e77 html
+Needs repricing
+@@ 4859501763 html
+Back-month IV not expensive
+@@ f876afe169 html
+<b>1×2 ratio spread</b>
+@@ fffd7a6ca7 html
+Buy call K₁, sell 2 calls K₂ (net cost N)
+@@ 83eeb36ced html
+K₂ − K₁ − N (stock at K₂)
+@@ 9e095f5406 html
+Unlimited on the upside
+@@ e03d5fbe5b html
+If N &gt; 0, K₁ + N below; 2K₂ − K₁ − N above
+@@ 3e00cf06c2 html
+IV high, skew steep
+@@ f7eed1ab9d html
+<b>Protective put</b>
+@@ 0304f7dc38 html
+Own 100 shares (cost S₀), buy put K
+@@ 22efe64b30 html
+Long stock, hedged · rising · hurts
+@@ 3c10f7f0b7 html
+Better value before events and when IV is low
+@@ 6e2ecff0e4 html
+<b>Collar</b>
+@@ 49bfaf0745 html
+Own stock, buy put K₁, sell call K₂ (net cost N)
+@@ f877a836ec html
+Long stock · minor · minor
+@@ 3428fe56e3 html
+With steep skew the call brings in less and the put costs more
+@@ 19975bbf6f html
+<b>Risk reversal</b>
+@@ 2f856f8f4c html
+Sell put K₁, buy call K₂ (net cost N)
+@@ 2482752795 html
+Up · trades skew · minor
+@@ 83bbd04660 html
+K₂ + N if N ≥ 0; K₁ − |N| for a net credit
+@@ 06cab96b00 html
+Can open for a net credit when skew is steep
+@@ 5516eac470 html
+<b>Synthetic long</b>
+@@ ddeb7d343c html
+Buy call K, sell put K (net cost N)
+@@ 91aefb0c4a html
+Up · neutral · neutral
+@@ ea07b96584 html
+Replaces owning the stock; ties up margin
+@@ d62df2ec0e html
+Three reminders for using the table. For any structure with “Unlimited” in the max loss column, you must have a clear stop-loss and a stress test before you trade (Chapter 13). The IV environment is only a leaning, not a reason to open a trade; that reason has to come from your own three signs (Chapter 14). The same structure can flip the signs of its Vega and Theta at different strikes; see the summary table in Chapter 16.
+@@ 7ec33a26c3 html
+<span class="sn">C</span>Payoff diagram atlas
+@@ bf92732e6c html
+Payoff diagrams at expiry for 18 common structures, all with the same parameters: stock at 100, 30 days, IV 25%, 4% rate, strikes at 90, 95, 100, 105 and 110. The calendar spread shows P&amp;L at front-month expiry (with 30 days left on the back month, priced at IV 25%). The premiums and the figures under each chart are computed live with Black-Scholes.
+@@ 75d3f51d64 html
+<span><i style="border-color: var(--delta)"></i>P&amp;L at expiry (per share)</span><span><i style="border-color: var(--theta); opacity: .5"></i>Profit zone</span><span><i style="border-color: var(--gamma); opacity: .5"></i>Loss zone</span><span><i class="dash" style="border-color: var(--muted)"></i>Current price 100</span>
+@@ 56b89e736c html
+Start with the ends: if the line keeps falling at the right or left end, the loss is unlimited.
+@@ 55a30bcc50 html
+Then the slope: a slope of +1 on the right is like holding 100 shares, −1 is like being short 100 shares, and 0 means that side is capped.
+@@ 74d4961794 html
+Finally the kinks: every kink is a strike. The more kinks, the more the structure depends on the stock staying within a particular range.
+@@ 6e04b7289e html
+<span class="sn">D</span>Four templates
+@@ 2ced655dbf html
+These four templates correspond to the “four deliverables” described in Chapter 16. They are plain text and can be pasted into any notes app or spreadsheet. Click “Copy template”; if the browser won't allow copying, the text is selected automatically and you just press Ctrl + C (⌘ + C on a Mac).
+@@ 5b5ff29332 html
+<span class="num">D.1</span>Strategy selection matrix
+@@ 758d90293c html
+Copy template
+@@ 815cf0569c html
+<span class="meta">Chapter 14</span>Fill one in before every order. Write the three signs first, then pick 2–3 candidates from the matrix and choose among them by maximum loss.
+@@ 5f9766e973 html
+<span class="num">D.2</span>Position rules card
+@@ ec6fec36d8 html
+<span class="meta">Chapter 13</span>Write it once and review it every 90 days; any change must state its reason. Check it line by line before every order and every addition to a position.
+@@ b9a8991c4f html
+<span class="num">D.3</span>Options trading journal
+@@ 962411a23e html
+<span class="meta">Chapters 14, 15</span>One per trade. Finish the plan section before the order and the review section on the day you close. Be sure to flag the trades that “made money but were done wrong.”
+@@ 6bbd71a432 html
+<span class="num">D.4</span>Event calendar and IV dashboard
+@@ 9cb0e150e8 html
+<span class="meta">Chapters 6, 10</span>Update the dashboard at each day's close, and the events for the next 8 weeks every Sunday. Use a single data source so the numbers are comparable.
+@@ a33d1a7627 html
+<span class="sn">E</span>Data sources and tools
+@@ 97010ba302 html
+Below are only common categories and well-known public tools, with what each is good for. A listing is not a recommendation. Only the main domain is given; check it yourself before use. Fees and features change.
+@@ f7f5793a0d html
+Broker platforms
+@@ 38a3ddd48a html
+Orders, real-time option chains, portfolio Greeks, P&amp;L analysis
+@@ 66a7a76a73 html
+<b>Interactive Brokers</b> <span class="dom">interactivebrokers.com</span><br><span class="desc">Broad product coverage, low costs and a full set of options analytics</span>
+@@ f18efc074f html
+<b>Charles Schwab (thinkorswim platform)</b> <span class="dom">schwab.com</span><br><span class="desc">thinkorswim's Analyze tab can draw multi-leg payoff diagrams and run price and IV scenarios</span>
+@@ f4f53ebfd9 html
+<b>Fidelity</b> <span class="dom">fidelity.com</span><br><span class="desc">A full-service broker with option chains and strategy analysis</span>
+@@ 40a42191fc html
+<b>tastytrade</b> <span class="dom">tastytrade.com</span><br><span class="desc">An options-focused broker whose interface is built around IV Rank and defined-risk strategies</span>
+@@ 0710c5a02b html
+When choosing a broker, compare commissions and fees per contract, the requirements for each options approval level, support for multi-leg and conditional orders, and whether you can see Delta, Theta and Vega at the portfolio level.
+@@ 50bc5bafd1 html
+Exchanges, clearing and education
+@@ befa4831d5 html
+Contract specifications, rules, risk disclosures
+@@ 1aaf839cac html
+<b>Cboe</b> <span class="dom">cboe.com</span><br><span class="desc">Contract specifications for SPX, XSP, VIX and other options; VIX methodology and historical data</span>
+@@ c9193006c7 html
+<b>OCC (Options Clearing Corporation)</b> <span class="dom">theocc.com</span><br><span class="desc">The disclosure document “Characteristics and Risks of Standardized Options,” which you should read before applying for options approval; volume statistics</span>
+@@ 6a5fa52626 html
+<b>Options Industry Council (OIC)</b> <span class="dom">optionseducation.org</span><br><span class="desc">Free courses on options basics, strategy guides and calculators</span>
+@@ d92f7ec399 html
+<b>CME Group</b> <span class="dom">cmegroup.com</span><br><span class="desc">Contract specifications for futures and options on futures; the FedWatch tool shows market-implied probabilities for rate decisions</span>
+@@ 9a7c401789 html
+The exchange's published specifications are what count: multiplier, exercise style, settlement method, last trading day.
+@@ 5bb292458d html
+Option chains and IV data
+@@ 6150786e7c html
+Rich or cheap, open interest, historical IV
+@@ 636516811f html
+<b>Your broker's platform</b><br><span class="desc">Real-time data is most reliable here; most platforms show IV Rank, term structure and skew charts</span>
+@@ 9b47253cf5 html
+<b>Barchart</b> <span class="dom">barchart.com</span><br><span class="desc">Option chains, IV Rank, open interest and unusual volume; some features are free</span>
+@@ d539a31ade html
+<b>Yahoo Finance</b> <span class="dom">finance.yahoo.com</span><br><span class="desc">Free option chains and quotes; the data is delayed, but it's fine for practice reading chains</span>
+@@ c89da6adb7 html
+Data sources define IV differently: which expiration, whether it is interpolated to 30 days, whether it uses mid prices or last trades. Always compare using the same source.
+@@ 512e1b732a html
+Financial calendars
+@@ 4900f44d90 html
+Primary sources for the event calendar
+@@ 26cf1d841e html
+<b>Federal Reserve</b> <span class="dom">federalreserve.gov</span><br><span class="desc">FOMC meeting schedule, statements and minutes</span>
+@@ b2eb122701 html
+<b>Bureau of Labor Statistics (BLS)</b> <span class="dom">bls.gov</span><br><span class="desc">Release schedules for CPI, PPI and nonfarm payrolls</span>
+@@ 1ef4b001ec html
+<b>Bureau of Economic Analysis (BEA)</b> <span class="dom">bea.gov</span><br><span class="desc">Release schedules for the PCE price index and GDP</span>
+@@ a0c99d2fa2 html
+<b>Nasdaq earnings calendar</b> <span class="dom">nasdaq.com</span><br><span class="desc">Look up companies reporting earnings by date</span>
+@@ abf07f9802 html
+<b>Company investor relations pages</b><br><span class="desc">The company's official announcement is what counts for earnings dates; third-party calendars may show estimates</span>
+@@ 1e7a0503eb html
+Earnings dates often appear first as “estimated” and later as “confirmed.” Use only confirmed dates for event trades.
+@@ 675effe4e8 html
+Macro and company data
+@@ 6a55f824c1 html
+Rates, inflation, filings
+@@ f192914f9a html
+<b>FRED</b> <span class="dom">fred.stlouisfed.org</span><br><span class="desc">Macro time series for rates, inflation, employment and more, including VIX history</span>
+@@ 6cff1b0013 html
+<b>US Treasury</b> <span class="dom">treasury.gov</span><br><span class="desc">Treasury yield curve data</span>
+@@ e128b77347 html
+<b>SEC EDGAR</b> <span class="dom">sec.gov</span><br><span class="desc">Official company filings such as the 10-K, 10-Q and 8-K</span>
+@@ fcd7c637d3 html
+For macro data, look at “actual − forecast”: markets react most to the surprise.
+@@ 563ac6cb87 html
+Payoff diagrams, pricing and backtesting
+@@ 5f8015cb10 html
+Simulation before the trade, statistics after it
+@@ 135561a3f7 html
+<b>OptionStrat</b> <span class="dom">optionstrat.com</span><br><span class="desc">Draws payoff diagrams for multi-leg structures online; you can change the date and IV</span>
+@@ 50def0d18f html
+<b>Broker analysis tools</b><br><span class="desc">Such as thinkorswim's Analyze tab and Interactive Brokers' options analysis tools, which run scenarios directly on your positions</span>
+@@ 66ad4bf2df html
+<b>Python</b> <span class="dom">python.org</span><br><span class="desc">With NumPy and pandas, use this course's Black-Scholes formulas to do your own pricing, stress tests and Monte Carlo simulations</span>
+@@ 7d324de6a6 html
+<b>QuantLib</b> <span class="dom">quantlib.org</span><br><span class="desc">An open-source financial pricing library, good for studying American, barrier and other options once you're more advanced</span>
+@@ de9e262080 html
+<b>Your own trading journal</b><br><span class="desc">The most important backtest data: only it reflects your real execution, slippage and discipline</span>
+@@ 0525a4c530 html
+Every backtest must deduct slippage and commissions and be checked on out-of-sample data. Treat statistics from fewer than 30 trades as a rough guide only.
+@@ 86f83643a8 html
+Use your broker's real-time quotes for order prices; free websites are often delayed 15 minutes or more.
+@@ 5152b6747c html
+The same metric (IV Rank, expected move) can differ from site to site; stick to one source.
+@@ 5ee518b161 html
+Any “signal” or “flow” data is an estimate: use it to raise questions, not to replace your judgment.
+@@ 4a37158361 html
+Premiums and P&amp;L in this appendix are calculated with the Black-Scholes model (4% rate, no dividends, 365-day year). They are for teaching only and are not investment advice. The tools and data sources listed are examples of common categories, not recommendations.

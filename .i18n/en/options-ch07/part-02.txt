@@ -1,0 +1,236 @@
+@@ f7300e5e30 html
+The highlighted row matters most. Your view is “up 10%,” and the Delta 30 strike sits right at 110. If you are exactly right and the stock finishes at 110, this option goes to zero. <strong>An OTM option is a bet that the stock rises “more than your target”</strong>; its breakeven is 112.73. Conversely, the sooner the move comes, the better the OTM option does: if the stock reaches 110 the day you buy, it makes 158%.
+@@ 3d09ef1ea2 html
+Days elapsed <input id="f1-d" type="range" min="0" max="90" value="30"> <output id="f1-d-o">30 days</output>
+@@ ab8d69a093 html
+IV change <input id="f1-iv" type="range" min="-10" max="10" value="0"> <output id="f1-iv-o">0 points</output>
+@@ 1b93d1b26e html
+The vertical dashed line is the 110 target. Drag days elapsed to 0: at 110 the three lines rank OTM, ATM, ITM from top to bottom. Around 45 days they come close together. At 90 days (expiry), the OTM line drops to −100% at 110. Then drag IV down 5 points: the OTM option is hurt most, because time value makes up the largest share of its price.
+@@ edd2c053b3 html
+How to choose
+@@ ff6ba019e9 html
+<strong>Confident on direction, unsure on timing</strong>: Delta 0.60–0.75. It behaves like a stock with a built-in stop-loss, and time decay is a small share of the price.
+@@ 8bb937b496 html
+<strong>A clear catalyst, with a big move expected soon</strong>: Delta 0.40–0.50.
+@@ 5b0a57f00f html
+<strong>Delta below 0.30</strong>: use it only when you expect a rise far beyond your target, and soon. Size it like a lottery ticket.
+@@ 244b432493 html
+A simple check: the target must be well above breakeven, and when you reprice the option on the date you expect the move, as in Table 7-3, the return has to be enough to pay you for the risk you are taking.
+@@ 5c1f17e8d7 html
+<span class="sn">7.3</span>Expiration: build in a buffer
+@@ 4bbe185a98 html
+Buy more time than you expect the move to take. A rule of thumb is 1.5 to 2 times your expected timeframe, or at least 30 extra days.
+@@ c5d94ff9d7 html
+There are three reasons. First, timing is usually the least reliable part of any view. Second, time decay is fastest in the final month. Third, extra time isn't expensive: the longer the term, the lower the cost per day.
+@@ 7829f43780 html
+Table 7-5 ATM 100 call at three terms (stock 100, IV 30%)
+@@ ab32578019 html
+Term
+@@ 6e52cb2b8f html
+Premium
+@@ c52eba10d9 html
+Daily Theta
+@@ 46cbe74d45 html
+Theta / premium
+@@ c40637ca8a html
+Value left after 30 flat days
+@@ 343909b5b4 html
+30 days
+@@ 4861fb030f html
+60 days
+@@ 00f1e06b8e html
+120 days
+@@ f090edb634 html
+The 120-day option costs 2.1 times as much as the 30-day option but buys 4 times the time, and its cost per day is only 54% of the 30-day option's. This is the square-root rule at work: an ATM option's price is roughly proportional to √<span class="v">T</span>, so 4 times the time only about doubles the price.
+@@ f8cb00359d html
+Flat for <input id="f2-f" type="range" min="0" max="80" value="20"> <output id="f2-f-o">20 days</output>
+@@ f80345ccfe html
+The stock trades flat at 100 for some number of days, rises steadily to 110 over the next 20 days, then stays there. The readout is the return on the day the stock reaches 110 (or on the expiration date, if the option has already expired). Flat for 0 days: the 30-day option makes 183%, the best of the three. Flat for 20 days: the stock is only at 105 when the 30-day option expires, so it makes just 39%; the 60-day option makes 103%. Flat for 30 days: the 30-day option goes to zero. Flat for 60 days: only the 120-day option is still alive, up 51%.
+@@ b91567ffbc html
+Where 1.5 to 2 times comes from
+@@ 467d1704eb html
+The multiple is a compromise between two constraints, not a rigorous derivation. First, by the numbers in Section 7.9, an option loses value fastest in the last third of its life, and you want to be well clear of that stretch when your view plays out; buy twice the time and you still have half of it left when that happens. Second, buying too much time means paying for more Vega and tying up more capital: doubling the term raises the premium by about 44% (close to √2, with the small extra coming from interest). 1.5 to 2 times falls between the two.
+@@ 272f505bb2 html
+It doesn't apply in three cases: when you are trading a specific event (such as earnings), where what you want is the nearest expiration that covers that day; when back-month IV is clearly higher than front-month IV; and when capital is limited, in which case buy fewer contracts rather than a shorter term.
+@@ 39628ef894 html
+Rolling: buy more time
+@@ 16c8cf4c34 html
+If your view hasn't played out but the option is close to expiring, you can roll: sell the near-month option you hold and buy a later expiration. Example: the 90-day 102 call from Section 7.2 (5.48). On day 60 the stock is at 104 with 30 days left; the option is worth <span class="num">4.82</span>, of which 2.82 is time value, and it still loses 0.063 a day.
+@@ 23275a42ea html
+Roll to a new 90-day 104 call (ATM, Δ 0.56): price <span class="num">6.67</span>, an extra 1.85 per share.
+@@ b553b880f5 html
+Roll to a new 90-day 106 call (Δ 0.51): price <span class="num">5.74</span>, an extra 0.92 per share.
+@@ b9054d7bec html
+On paper a roll looks like one trade, but it is really two: close the old position (realizing the gain or loss) and open a new one. The new position has to pass this chapter's tests again: is the target above the new breakeven, is IV reasonable, is there enough time? If you wouldn't buy it as a fresh trade today, don't buy it in the name of a roll. Above all, don't roll just to avoid “realizing a loss.” That only postpones the loss and makes it bigger.
+@@ d7e1cb8225 html
+<span class="sn">7.4</span>Timing: watch IV
+@@ 0312907273 html
+Buy options when IV is high and you prepay for a lot of movement while also carrying the risk that IV falls. Buy when IV Rank is low and a rebound in IV becomes an extra tailwind.
+@@ d5e752a5e8 html
+Table 7-6 Cost of a 30-day ATM call at different IVs (stock 100)
+@@ 18a7af924b html
+Rise needed by expiry
+@@ 2af9c0c20d html
+Vega (per point)
+@@ 0e6b3c0dfa html
+An ATM option's Vega barely changes with IV, so every 1-point move in IV has the same dollar impact. The difference is direction: when IV is high relative to its own history, it is more likely to come down (mean reversion, Chapter 6); when it is low, it is more likely to go up.
+@@ 30078245cd html
+Table 7-7 45-day ATM call, stock up 5% after 10 days
+@@ ba2cd09a16 html
+Scenario
+@@ 3a381c8414 html
+Entry price
+@@ 423d0fbed2 html
+After 10 days
+@@ 992c0eb5b3 html
+Return
+@@ 1d025c5021 html
+Bought at IV 45% (high Rank), IV falls to 33%
+@@ 3e6871d152 html
+Bought at IV 45%, IV unchanged
+@@ d0399d57dc html
+Bought at IV 22%, IV unchanged
+@@ 295c1d1903 html
+Bought at IV 22% (low Rank), IV rises to 26%
+@@ 582ad3433c html
+The same +5% earns only 13% in the first row. If you buy at IV 45% and IV drops to 33%, the stock has to rise <span class="num">3.75%</span> just to break even. The last row is the reverse: with IV going from 22% to 26%, even if the stock doesn't move at all, the option is worth 3.40 after 10 days, more than the 3.33 you paid.
+@@ 60ccd246d3 html
+A second yardstick: IV vs. RV
+@@ ef9771e552 html
+IV Rank tells you where IV sits in its own history. The ratio of IV to RV tells you whether options are expensive relative to how much this stock is actually moving right now. As Chapter 4 showed, a 30-day ATM option at IV 30% needs the stock to move about <span class="num">$1.64</span> per calendar day for Gamma to earn back Theta. If the stock's 20-day RV is only 22%, its average one-standard-deviation move per calendar day is only <span class="num">$1.15</span>. Unless you have a strong directional view, this option is most likely losing money slowly. For a buyer, the ideal combination is a low IV Percentile and IV no higher than recent RV.
+@@ 893c86e9a3 html
+When IV is high but you still want to be bullish
+@@ 660fc8ca18 html
+<strong>Switch to a debit spread</strong>: the leg you sell is also priced at high IV, so most of the Vega cancels out (Section 7.5).
+@@ 555f41ffb8 html
+<strong>Avoid the event</strong>: if IV is high because of earnings, choose a contract that expires before the report, or wait until IV falls after the report and then buy.
+@@ 00b4e29e27 html
+<strong>Change the underlying</strong>: express the same view with a sector ETF, or with a highly correlated stock that has lower IV.
+@@ f8557f7ff6 html
+<strong>Switch to the selling side</strong>: high IV is itself an edge for sellers, for example selling cash-secured puts (Chapter 8).
+@@ ff3797b4c5 html
+The minimum check before you trade: IV Percentile below 50, ideally below 30; IV not clearly above 20-day RV; and is there an event before expiration, and where will IV fall to after it?
+@@ 853cfce615 html
+<span class="sn">7.5</span>Debit spreads
+@@ 88c6e055a6 html
+A debit spread means buying one option while selling a further OTM option of the same type and expiration. A call debit spread is also called a bull call spread: it costs less, caps the gain and shrinks Vega and Theta exposure sharply.
+@@ 9b11a0eec9 html
+Compare a 90-day long 100 call with the spread “buy the 100 call, sell the 110 call”:
+@@ ac12ac0b11 html
+Table 7-8 Long call vs. 100/110 call spread (90 days, stock 100, IV 30%)
+@@ 1561603582 html
+Long 100 call
+@@ 6e11084c53 html
+100/110 spread
+@@ 45ea690b75 html
+Spread / long call
+@@ 8e242a0271 html
+Cost (per contract)
+@@ 343fd5ea1e html
+Max profit
+@@ 2b8a3ecd19 html
+Unlimited
+@@ ba90bdce11 html
+Return if stock is 110 at expiry
+@@ f48adc18f5 html
+A spread is worth the difference between its two options. The 110 call you sold also has Theta and Vega, with the opposite sign, so the spread's Theta is only 15% of the long call's and its Vega only 11%: if IV drops 5 points, the long call loses 0.98 and the spread just 0.11. The cost is that Delta is also down to 44%: in a sharp short-term rally the spread gains more slowly, and it can only make money up to 110.
+@@ d515f5eed9 html
+Where to put the short leg
+@@ 706a2f6519 html
+Table 7-9 Long 100 call with the short leg at different strikes (90 days)
+@@ 6ea70916d7 html
+Spread
+@@ 8690eb7ed6 html
+Breakeven
+@@ 2da1469980 html
+Profit / cost
+@@ 8d155db3b8 html
+Vega vs. long call
+@@ 235b541ea4 html
+Theta vs. long call
+@@ 79c39f82c1 html
+The rule is simple: <strong>put the short leg at your target price</strong>. Your view is a rise to 110, so gains above 110 were never part of your plan. Selling them to lower your cost is the cheapest concession you can make. The narrower the spread, the more it behaves like a bet on a range and the less sensitive it is to IV and time; the wider it is, the closer it gets to a long call.
+@@ baa90a93df html
+At expiry
+@@ fbb13435ec html
+After 45 days, IV down 5
+@@ 9bb6ebbb0d html
+Short leg <input id="f3-k" type="range" min="103" max="130" value="110"> <output id="f3-k-o">110</output>
+@@ dab0719b81 html
+In “At expiry” mode, below the short strike the spread's line sits above the long call's: it costs less, so the same rise earns more. Once the stock passes the point where the two lines cross, the long call takes the lead. Drag the short leg to 130 and the spread becomes almost a long call again. Switch to “After 45 days, IV down 5” and the spread's curve flattens noticeably; with the stock unchanged, the spread loses less than half as much as the long call.
+@@ c32da73124 html
+Long call or spread: four questions
+@@ b6fb562528 html
+<strong>Do you have a clear target price?</strong> If yes, lean toward a spread with the short leg at the target. If not, and you just think it “will go up a lot,” lean toward the long call.
+@@ 33295a3648 html
+<strong>Is IV high relative to its own history?</strong> If so, lean toward a spread and let the short leg absorb part of the IV decline.
+@@ 961de9f6ca html
+<strong>How fast do you expect the move?</strong> For a sharp rally within days, the long call's Delta and Gamma help more; for a slow climb over months, the spread's low Theta helps more.
+@@ 2e96147e1c html
+<strong>Is there an event before expiration?</strong> If so, the spread's small Vega limits the damage from the post-event IV crush.
+@@ 6c491ca986 html
+If three of the four questions point to a spread, use the spread. It is a crude rule, but it stops you from overpaying just because “a long call has no cap.”
+@@ 31e29f6864 html
+The bearish mirror: put debit spreads
+@@ ba7a57b72a html
+For a bearish view the structure is fully symmetric: buy the higher-strike put and sell the lower-strike put. A 90-day 100/90 put spread costs <span class="num">3.66</span>, with a max profit of 6.34 and breakeven at 96.34; a long 100 put alone costs 5.43, with breakeven at 94.57. The spread's Theta is 24% of the long put's and its Vega 30%. These ratios are a little higher than for the call spread because, on a log scale, 90 is further from the money than 110, so the short leg offsets less.
+@@ 24ea83fc3c html
+The hassles of spreads
+@@ adf061d004 html
+<strong>Enter it as one order</strong>: if the two legs fill separately, a price move in between can leave you holding one naked side. Make sure the order ticket shows a single “spread order” with both legs filling together.
+@@ f72102e820 html
+<strong>You pay the bid–ask spread on two legs to close</strong>: on illiquid options, the round-trip cost can eat a large part of your profit.
+@@ 1c7c6bb20a html
+<strong>The stock finishes between the two strikes at expiry</strong>: the long leg is exercised, the short leg expires worthless, and on Monday you hold stock. Close the position yourself as expiration nears; don't leave it to the last minute.
+@@ 45ecbdd607 html
+<strong>Gains come slowly</strong>: a spread only gets close to its maximum value near expiration. If the stock reaches 115 by day 30, the spread is up just 107%, well short of the theoretical maximum of 172%, because the short leg still has time value.
+@@ 727b49e3b4 html
+<span class="sn">7.6</span>LEAPS: options as a stock substitute
+@@ 3abeb926b2 html
+A deep ITM call with more than a year to expiration and a Delta of 0.70–0.80 (LEAPS) gives you close to 80% of the stock's exposure for a little over 20% of the capital. The cost is some time value, which equals exactly “interest on borrowed money” plus “a protective put.”
+@@ 3a6980eb5c html
+Example: stock at 100, a one-year 85 call priced at <span class="num">22.35</span>, Delta <span class="num">0.795</span>. Intrinsic value is 15, time value 7.35. One contract costs $2,235 and gives you exposure to about 80 shares; buying 100 shares outright costs $10,000.
+@@ 5fdbe95b8e html
+What the time value actually buys
+@@ 1709f5e1fe html
+Start from put–call parity, <span class="v">C</span> = <span class="v">S</span> − <span class="v">K</span>e<sup>−rT</sup> + <span class="v">P</span>, and move the intrinsic value <span class="v">S</span> − <span class="v">K</span> to the left side:
+@@ 2ddbbcd7fd html
+The first term is the price of the put at the same strike; the second is the interest on borrowing <span class="v">K</span> for a year. With no dividends, the identity holds exactly.
+@@ 961211c0fd html
+Plug in the numbers: the 85 put is worth <span class="num">4.02</span>, the interest is 85 × (1 − e<sup>−0.04</sup>) = <span class="num">3.33</span>, and together they make <span class="num">7.35</span>, exactly the time value. So buying LEAPS does three things at once: buy the stock, borrow $85 (paying 4% interest) and buy an 85 put for protection. If what you wanted all along was a long position that “can lose at most down to 85,” LEAPS are a prepackaged way to hold it.
+@@ cadc0a72ea html
+Two ways to use the same $10,000
+@@ 4e169d3957 html
+A: buy 100 shares. B: buy 1 LEAPS contract and put the remaining $7,765 in T-bills at 4% (continuously compounded), about $317 over a year.
+@@ 93fe89ee57 html
+Table 7-10 P&amp;L after one year (at LEAPS expiry), $
+@@ fa22466a2d html
+Stock price after one year
+@@ e8f8a1571f html
+A: 100 shares
+@@ 9bf50054b3 html
+B: LEAPS + cash
+@@ 251691adfc html
+Above 85, B makes $418 less than A: that is the cost of the “protective put” plus the interest difference. Below 85, B's loss is capped at $1,918. If the stock falls 30%, A loses $3,000 and B only $1,918.
+@@ 9ee01ca3ae html
+Months held <input id="f4-m" type="range" min="0" max="12" value="6"> <output id="f4-m-o">6 months</output>
+@@ af9827d57f html
+At 0 months held, the blue line is flatter than the black one, because the LEAPS Delta is only 0.8. Drag right: time value drains away, the blue line moves down at high prices, and the floor at low prices gets flatter and flatter. At 12 months, the blue line becomes a horizontal line below 85: the loss is capped at $1,918.
+@@ e239483c23 html
+Compared with buying on margin
+@@ c905c60303 html
+The other way to hold 100 shares with less capital is to buy on margin. Say your broker charges 8% on margin loans: you put up $5,000, borrow $5,000 and pay $400 in interest over the year. If the stock falls to 70, you lose $3,000 plus $400 of interest, and a deeper fall brings a margin call. Of the LEAPS' $735 in time value, only $333 is interest (at the 4% risk-free rate); the other $402 buys the floor. You can lose at most $2,235, and there is no margin call. The trade-offs: option bid–ask spreads are usually wider than the stock's, and LEAPS don't collect dividends.
+@@ f94d8e3e30 html
+How to pick them, how to manage them
+@@ b65bed9a14 html
+<strong>Delta 0.70–0.80</strong>: go deeper and you pay less time value but tie up more capital, close to just buying the stock; go shallower and time value becomes a bigger share of the price, which is closer to speculation.
+@@ c803a72fae html
+<strong>More than a year to expiration</strong>; with 4–6 months left, consider rolling to a later expiration to stay out of the stretch where time decay speeds up.
+@@ a1158ba885 html
+<strong>Watch IV</strong>: this LEAPS has a Vega of 0.284, so a 10-point drop in IV costs $284 per contract. Don't buy LEAPS when IV is high.
+@@ c23dc38835 html
+<strong>Watch dividends</strong>: this course assumes no dividends. LEAPS holders don't receive dividends, and calls on dividend-paying stocks are priced lower to match, so include the dividend when you compare.
+@@ b7fc78371d html
+<strong>Don't lever up the money you saved</strong>: B's advantage comes from the cash left over. If you spend the $7,765 you saved on three more LEAPS, you go from “a stock with a floor” to a leveraged position with exposure to about 320 shares.
+@@ 109b8005e9 html
+If you hold LEAPS and sell a short-dated OTM call against them each month, you have what is often called a PMCC (Poor Man's Covered Call). For example, selling a 30-day 110 call (Delta 0.15) brings in <span class="num">0.66</span>, roughly covering a month of the LEAPS' time decay (0.0179 × 30 ≈ <span class="num">0.54</span>). The cost: anything above 110 that month is capped, and if the stock jumps you have to deal with the short call. Chapters 8 and 9 cover this in detail.

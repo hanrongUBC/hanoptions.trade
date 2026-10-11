@@ -1,0 +1,184 @@
+@@ bfdefd4847 html
+Chapter 6 Volatility · US Options Course
+@@ ebf470f679 html
+<span class="g">Volatility</span>
+@@ 3233fbd929 html
+Of the six inputs to option pricing, only volatility has to be “guessed,” and an IV number on its own says almost nothing about whether an option is cheap or expensive. This chapter reads it against four reference points: realized volatility, its own history, other terms and other strikes. It then uses VIX to apply the same reading to the whole market.
+@@ 4a798dc727 html
+In this chapter
+@@ 67f121f5fd html
+<a href="#open"><span class="n">··</span><span>Opening: one 32%, three conclusions</span></a>
+@@ 73161c0d66 html
+<a href="#s1"><span class="n">6.1</span><span>How to calculate realized volatility</span></a>
+@@ 4e82863386 html
+<a href="#s2"><span class="n">6.2</span><span>Implied vs. realized: expectation and outcome</span></a>
+@@ 077ee51e9f html
+<a href="#s3"><span class="n">6.3</span><span>The volatility risk premium</span></a>
+@@ d6b84657d4 html
+<a href="#s4"><span class="n">6.4</span><span>IV Rank and IV Percentile</span></a>
+@@ 4e0de5f564 html
+<a href="#s5"><span class="n">6.5</span><span>Term structure</span></a>
+@@ 313481102a html
+<a href="#s6"><span class="n">6.6</span><span>Skew and the volatility surface</span></a>
+@@ 406193b9af html
+<a href="#s7"><span class="n">6.7</span><span>VIX and its products</span></a>
+@@ 27e4d25569 html
+<a href="#s8"><span class="n">6.8</span><span>Event volatility</span></a>
+@@ 12c019ed82 html
+<a href="#cases"><span class="n">Cases</span><span>Three cases</span></a>
+@@ dd7ded685d html
+<a href="#tools"><span class="n">Tools</span><span>Checklist and self-test</span></a>
+@@ b64cda774b html
+<a href="#open">Opening: one 32%, three conclusions</a>
+@@ 41e4d6a15f html
+<a href="#s1">6.1 How to calculate realized volatility</a>
+@@ 1900bfc6c6 html
+<a href="#s2">6.2 Implied vs. realized: expectation and outcome</a>
+@@ f799a40a40 html
+<a href="#s3">6.3 The volatility risk premium</a>
+@@ 65d0a6ec33 html
+<a href="#s4">6.4 IV Rank and IV Percentile</a>
+@@ 02ec24ad3f html
+<a href="#s5">6.5 Term structure</a>
+@@ 2fd6d3bb7b html
+<a href="#s6">6.6 Skew and the volatility surface</a>
+@@ 5367ac9e2e html
+<a href="#s7">6.7 VIX and its products</a>
+@@ eb277ef02e html
+<a href="#s8">6.8 Event volatility</a>
+@@ f3a78e0502 html
+<a href="#cases">Three cases</a>
+@@ 7ec24afd50 html
+<a href="#tools">Checklist and self-test</a>
+@@ 80161dff8a html
+After this chapter you can
+@@ 5a0ce8d666 html
+Calculate realized volatility from closing prices and convert it between days, weeks, months and years
+@@ d6d4e15def html
+Calculate IV Rank and IV Percentile, and explain when the two give opposite signals
+@@ fd23c5c3ed html
+Use VIX to work out the S&amp;P 500’s one-month, one-standard-deviation range, and explain why long VIX products lose value over time
+@@ fc4f43bd05 html
+Prerequisites
+@@ f9c49dc395 html
+Chapter 3: the six inputs and the intuition behind Black-Scholes
+@@ 9506990a64 html
+Chapter 4: the Gamma–Theta trade-off
+@@ 5c1b9348ba html
+Chapter 5: Vega and IV crush
+@@ fe31444484 html
+Conventions
+@@ a91cfba45f html
+Option examples use Black-Scholes with a 4% interest rate, no dividends and a 365-day year
+@@ f10d6e7ca7 html
+Realized volatility is measured in trading days, 252 to a year
+@@ ef2b327da2 html
+IVs, VIX futures quotes and price series in the text are hypothetical or simulated
+@@ 1553244f14 html
+<span class="sn">Opening</span>One 32%, three conclusions
+@@ 951c0ec5dd html
+Stock X trades at $100, and the implied volatility (IV) of its 30-day ATM options is 32%. The ATM straddle, buying the 100 call and the 100 put together, costs $7.31. Three students look at the same quote and reach three conclusions.
+@@ 2afaf02072 html
+<strong>A</strong>: over the past 20 trading days, X’s realized volatility was only 22%. Priced at 22%, the same straddle is worth only <span class="num">$5.03</span>. The options are <span class="num">45%</span> too expensive, so sell.
+@@ 0c4ad0421c html
+<strong>B</strong>: over the past year, X’s IV ranged between 25% and 60%. At 32% it sits only <span class="num">20%</span> of the way up that range, so the options are cheap. Buy.
+@@ 3235d58dd8 html
+<strong>C</strong>: X reports earnings in 12 days. Without earnings, 30-day IV would be about 26%. The extra amounts to the market pricing a one-standard-deviation move of about <span class="num">±5.3%</span> on earnings day. The real question is: how big do you think this earnings move will be?
+@@ 29f2e6d36f html
+Table 6-0 Three readings of the same quote
+@@ b5608fd2f9 html
+Reading
+@@ e293acfe9e html
+Compared with
+@@ 2950a569b1 html
+Conclusion
+@@ 7cc6b582dd html
+What it misses
+@@ ac4fa73514 html
+A: vs. realized
+@@ ad0da7685a html
+Realized vol of 22% over the past 20 days
+@@ c70655970f html
+Expensive, sell
+@@ 7ef512a120 html
+Earnings haven’t happened yet
+@@ a94d0297a7 html
+B: vs. history
+@@ 93dfae7dbf html
+One-year IV range 25%–60%
+@@ f284430e99 html
+Cheap, buy
+@@ f0da7e763a html
+One spike may have stretched the range
+@@ 58a68ab2d7 html
+C: strip out the event
+@@ c6ea70f7ac html
+IV without the event about 26%
+@@ d09eab2b45 html
+Depends on your view of earnings
+@@ 0d995b7583 html
+Needs the stock’s actual moves on past earnings
+@@ 729aee1bbb html
+All three calculations are correct, yet the conclusions contradict each other. That is because an IV number by itself doesn’t tell you cheap or expensive; it only means something once you place it on a set of axes. This chapter builds those axes in turn: against realized volatility (6.1–6.3), against its own history (6.4), against other terms (6.5, 6.8) and against other strikes (6.6). Finally, it uses VIX (6.7) to apply these readings to the whole market.
+@@ 33bd1e63cc html
+<span class="sn">6.1</span>How to calculate realized volatility
+@@ 38a0715ae6 html
+Realized volatility (also called actual or historical volatility, written RV) is the standard deviation of log returns, scaled up to a year by the square root of time.
+@@ b9d87d8108 html
+σ<sub>daily</sub> is the sample standard deviation of daily log returns over a period (dividing by n − 1). 252 is the number of trading days in a year.
+@@ 627489285a html
+Working it by hand
+@@ e95b886485 html
+Six consecutive closing prices: 100, 101.5, 100.8, 102.2, 101.0, 101.9. The five log returns are <span class="num">+1.489%</span>, <span class="num">−0.692%</span>, <span class="num">+1.379%</span>, <span class="num">−1.181%</span> and <span class="num">+0.887%</span>, averaging <span class="num">+0.376%</span>. The sample standard deviation is <span class="num">1.232%</span>; multiply by √252 ≈ <span class="num">15.87</span> to get an annualized realized volatility of <span class="num">19.56%</span>.
+@@ a7c0c9ccd0 html
+Many platforms and traders assume a mean of zero and use √(Σ<span class="v">r</span>²/<span class="v">n</span>) directly. For this data that gives a daily volatility of <span class="num">1.164%</span>, or <span class="num">18.49%</span> annualized. Over a short window the mean is mostly noise, so assuming zero is actually more stable; the two methods diverge noticeably only when there is a strong trend. When comparing RV from different sources, first check which method each one uses.
+@@ 7f6ed49e82 html
+Why multiply by the square root
+@@ cc100871af html
+If daily returns are independent, the variance of the cumulative return over <span class="v">n</span> days is <span class="v">n</span> times the one-day variance, and the standard deviation is √<span class="v">n</span> times. So to annualize you multiply by √252, for a week by √5, and for a month (about 21 trading days) by √21. The assumption breaks down in two cases: when prices show a clear trend or mean reversion (returns are correlated from one day to the next), and when there are gaps (one day’s variance far exceeds the others’). When it breaks down, square-root scaling understates or overstates volatility over longer periods.
+@@ 92a43c0284 html
+Table 6-1 Converting annualized volatility into a one-standard-deviation move for each period
+@@ f001534c3f html
+Annualized volatility
+@@ 35749efa32 html
+Per trading day (÷15.87)
+@@ 370f97b3e9 html
+Per week (÷7.21)
+@@ c26433a2c5 html
+Per month (÷3.46)
+@@ 8cc4bf826a html
+The “rule of 16” traders talk about comes from the second row: 16% annualized is about 1% a day. Conversely, a stock that typically moves about 2% a day has an annualized volatility of around 32%.
+@@ 834b6fe14f html
+IV in Black-Scholes counts time in calendar days (<span class="v">T</span> = days / 365), while RV is annualized over trading days (× √252). Both are “annualized” numbers and can be compared directly. You only need to tell them apart when converting to “per day”: per trading day, use ÷√252; per calendar day, ÷√365. There is almost no price movement over weekends, so daily volatility measured in trading days is closer to what you see on your screen. This is also where Chapter 4’s “divide by 16” and “divide by 19” come from.
+@@ f9ba50952c html
+Window length: speed vs. noise
+@@ f944952e90 html
+RV computed over 10 days reacts quickly but has few data points and a lot of noise; RV over 60 days is stable but always a step behind. You can estimate how big the noise is: for normally distributed data, the error of the sample standard deviation is about σ / √(2<span class="v">n</span>).
+@@ d2fb021d51 html
+Table 6-2 One standard error of the estimate for different windows, when true volatility is 20%
+@@ a23e913ddb html
+Window (trading days)
+@@ 1681ee9d74 html
+Error factor 1/√(2n)
+@@ 3dacd372a3 html
+±1 standard error of the estimate
+@@ 8353fef917 html
+±4.5 points
+@@ 70925b443e html
+±3.2 points
+@@ 6903c28756 html
+±1.8 points
+@@ b1c9766ea1 html
+±1.3 points
+@@ 8c47822f80 html
+±0.9 points
+@@ 270ee4fae1 html
+In other words, for a stock whose true volatility is 20%, a 20-day RV of 17% or 23% is perfectly normal. Seeing IV 3 points above 20-day RV is not enough to say the options are expensive.
+@@ 64c7bc411a html
+Window <input id="f1-w" type="range" min="5" max="60" value="20"> <output id="f1-w-o">20 days</output>
+@@ 49e8bd1f18 html
+These prices are simulated with a fixed random seed: true volatility is 18% for the first 120 days, rises to 45% for 30 days along with a decline, then returns to 24%. Drag the window to 10 days: during the calm stretch RV jumps around between 9.0% and 26.5%, and it breaks above 30% just 8 days after the shock begins. Drag it to 60 days: the calm stretch is steady at 16.7% to 19.8%, but the shock takes 18 days to show up and another 45 days after it ends to fade, and RV peaks at only 37.1%.
+@@ 295b2d49f1 html
+In practice people often watch both a 20-day and a 60-day window: the 20-day tells you what has been happening lately, the 60-day what is normal. IV looks ahead over the next 30 calendar days, about 21 trading days, so 20-day RV is the most natural comparison. But remember: RV is the past and IV is the future. Comparing the past with the future carries error in itself.
+@@ 7e2ec75bab html
+Besides closing prices, there are estimators that use each day’s high and low (such as Parkinson and Garman-Klass), with smaller error for the same sample length. Their drawback is sensitivity to data quality: a single bad intraday print can distort the result. When you are starting out, the closing-price method is enough.

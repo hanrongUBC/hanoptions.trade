@@ -1,0 +1,156 @@
+@@ bbc17bbac1 js
+Build in stages
+@@ b967e9ad0a js
+Solid narrative, fair price
+@@ 5b0afbe486 js
+Watchlist: wait for price
+@@ 65e321244a js
+Solid narrative, but already priced in
+@@ 217e77a18b js
+Time-limited trades only
+@@ be2027f795 js
+Cheap, but the narrative is shaky
+@@ 685a29dd30 js
+Avoid
+@@ 30b6c44b6b js
+Shaky narrative, and not cheap
+@@ 58c2a3dbfa js
+The direction is clear, the policy is in place, and the market hasn't fully priced it in yet. Buy in stages according to plan, leave time between purchases, and write down fact-based invalidation criteria.
+@@ a7f7c81ede js
+This is where most popular themes sit: a good story that everyone already knows. Put it on your watchlist and wait for a pullback, for valuation to come back to a reasonable range, for volatility to fall. The narrative decides what to research; valuation decides when to buy.
+@@ da7b2a223c js
+The price looks cheap, but the policy is still just talk, only one party supports it, or the demand is a one-off. You can make time-limited, limited-risk trades, but don't treat it as a long-term holding.
+@@ 433e2716cc js
+The narrative is shaky, and the price isn't cheap either. The best decision is to stay out and save your attention for better opportunities.
+@@ e456ed6e38 js
+The policy is still just talk
+@@ baab2eb33b js
+Only one party supports it, so it could be rewritten after a change of government
+@@ bf179b7d2c js
+Demand may be a one-off
+@@ a46413e9e9 js
+The beneficiaries are easy to replace
+@@ f54db647f0 js
+Too much talk; it may already be crowded
+@@ e93e4fba3b js
+Expensive valuation
+@@ 9cd7c8e085 tpl
+<h4>{0}<span class="match">Durability {1}/8 · Price {2}/4</span></h4>
+@@ 8f7e1d9811 tpl
+<div class="row"><b>Weak spots</b>{0}.</div>
+@@ 2736a266c4 js
+Escalation
+@@ e210a8ea40 js
+The risk premium in crude rises; shipping insurance premiums and freight rates go up
+@@ ed951f8d94 js
+Safe-haven money flows into gold and the dollar; volatility rises
+@@ e54f36d294 js
+Emergency defense procurement rises; munitions and air defense are needed most urgently
+@@ 750169dc6f js
+High oil prices start to push up inflation expectations, and rates rise with them (see Macro Trading Framework, Chapter 2)
+@@ 65d166efd5 js
+Upstream oil and gas
+@@ 5ae58c62f6 js
+Tankers
+@@ c860f6b319 js
+Defense
+@@ 6441259998 js
+Gold
+@@ 43bb8936a4 js
+Airlines
+@@ ff50304123 js
+Cruises and travel
+@@ 5a634ae128 js
+Downstream chemicals
+@@ a0fc3daf78 js
+High-valuation growth stocks
+@@ 98f5c8e67a js
+Does oil stay above its pre-conflict range, or spike and fall back? Do shipping insurance rates keep rising?
+@@ 933eba9edc js
+Prolonged standoff
+@@ 8ed2858316 js
+The market gets used to it; the risk premium partly fades but doesn't disappear
+@@ 005d4ef26c js
+Defense orders shift from emergency purchases to restocking, with better visibility
+@@ 06a0544b92 js
+Blocked routes are replaced by alternatives, and detour costs become the norm
+@@ 64e8fed17b js
+Defense (restocking)
+@@ 5d0bf858b5 js
+Energy (if supply stays constrained)
+@@ 2e003e097d js
+Ports and logistics on alternative routes
+@@ 063a5451ac js
+Transport that relies on blocked routes
+@@ ebc109705e js
+Energy-intensive manufacturing
+@@ ccc46f0dc9 js
+Is the defense order backlog still growing? Is oil price volatility falling?
+@@ 29353b7aa8 js
+Ceasefire talks
+@@ 3db7ed79f9 js
+The crude risk premium unwinds quickly; shipping insurance premiums fall
+@@ 68c4642e6c js
+The sectors hit hardest by the conflict rebound hardest
+@@ f568b4c5b4 js
+Safe-haven assets come under short-term pressure
+@@ 29a8de25c9 js
+Travel
+@@ 70afc50251 js
+Emerging markets
+@@ 1f43d86c3e js
+Energy
+@@ 3e6479d49b js
+Gold (short term)
+@@ 1a42ce9b44 js
+Defense firms that rely only on emergency orders
+@@ 7b7e95f10c js
+Does the ceasefire have enforcement and monitoring? Are shipping companies starting to return to their original routes?
+@@ a9cd5ebab5 js
+Postwar rebuilding
+@@ 66fa13d716 js
+Rebuilding needs large amounts of steel, cement, engineering services and power equipment
+@@ 57f10d9025 js
+Energy infrastructure is repaired and supply gradually recovers
+@@ 53a6d54616 js
+Lessons from the conflict drive long-term preparedness spending; defense budgets don't fall with the ceasefire
+@@ 451b13bbc1 js
+Engineering and construction
+@@ a160867b71 js
+Building materials
+@@ 047547bc21 js
+Power equipment
+@@ e6d90cdfb8 js
+Long-term defense contractors
+@@ e48d440459 js
+Wartime-premium assets
+@@ 03ae3237a5 js
+Energy (once supply recovers)
+@@ dca40b66b7 js
+Is reconstruction money actually arriving (international aid, loans, budgets)? Has long-term defense spending been written into law?
+@@ 5f46be1c5c tpl
+<div class="row" style="margin-top:10px"><b>Relative winners</b>{0}</div><div class="row"><b>Relative losers</b>{1}</div>
+@@ 75d15edad9 tpl
+<p style="margin-top:8px"><strong>Verify:</strong> {0}</p></div>
+@@ f48563c8b4 js
+None
+@@ 1bd58b9ad0 js
+Market price ($/kg)
+@@ 44d0462bcd js
+Profit per kg
+@@ 694d1675e3 js
+Floor $
+@@ 7a7392f221 js
+ / kg
+@@ 4a5417514a js
+Share of added cost passed on
+@@ d5cbcb8812 js
+Change in gross profit
+@@ 79665988d3 js
+Implied volatility
+@@ 7973d3056e js
+Percent
+@@ 040e680663 js
+Selected. Press ⌘C or Ctrl+C to copy
+@@ 2e746791f3 js
+Copied
