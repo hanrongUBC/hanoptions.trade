@@ -9,6 +9,7 @@ COURSES = [
     ("psychology", "交易心理学"),
     ("macro",      "宏观交易框架"),
     ("policy",     "政策叙事投资"),
+    ("rebound",    "超卖反弹清单"),
 ]
 
 def sitebar_css():

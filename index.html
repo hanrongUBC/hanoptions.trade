@@ -14,7 +14,7 @@
    the rest of the page is a quiet reading list on the same graph-paper stock as the courses. */
 :root {
   --paper: #f4f7f6; --plate: #ffffff; --ink: #15202a; --muted: #5b6873; --rule: #d6dee1; --grid: #e7eded;
-  --options: #2a55c0; --psychology: #0f6a63; --macro: #3b4fa3; --policy: #b13450;
+  --options: #2a55c0; --psychology: #0f6a63; --macro: #3b4fa3; --policy: #b13450; --rebound: #a4441b;
   --shelf: #15202a;
   --font-display: "Noto Serif SC", "Songti SC", "STSong", serif;
   --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
@@ -24,13 +24,13 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --paper: #0f161c; --plate: #151f27; --ink: #e3e9ed; --muted: #93a2ad; --rule: #27343e; --grid: #1c2830;
-    --options: #86a6ff; --psychology: #4cc2b5; --macro: #93a5ff; --policy: #f07a93; --shelf: #93a2ad;
+    --options: #86a6ff; --psychology: #4cc2b5; --macro: #93a5ff; --policy: #f07a93; --rebound: #f0a27a; --shelf: #93a2ad;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --paper: #0f161c; --plate: #151f27; --ink: #e3e9ed; --muted: #93a2ad; --rule: #27343e; --grid: #1c2830;
-  --options: #86a6ff; --psychology: #4cc2b5; --macro: #93a5ff; --policy: #f07a93; --shelf: #93a2ad;
+  --options: #86a6ff; --psychology: #4cc2b5; --macro: #93a5ff; --policy: #f07a93; --rebound: #f0a27a; --shelf: #93a2ad;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -71,13 +71,15 @@ a:focus-visible { outline: 2px solid var(--options); outline-offset: 3px; border
 .spine.psychology { --c: var(--psychology); width: 60px; }
 .spine.macro { --c: var(--macro); width: 76px; }
 .spine.policy { --c: var(--policy); width: 68px; }
+.spine.rebound { --c: var(--rebound); width: 80px; }
 @media (max-width: 760px) {
   .hero-inner { grid-template-columns: minmax(0, 1fr); gap: 36px; padding-block: 40px 40px; }
   .hero-text { order: -1; }
   .shelf { gap: 8px; padding-inline: 14px; }
   .spine { height: 240px; }
   .spine .t { font-size: 21px; margin-top: 18px; }
-  .spine.options { width: 84px; } .spine.psychology { width: 50px; } .spine.macro { width: 62px; } .spine.policy { width: 56px; }
+  .spine.options { width: 76px; } .spine.psychology { width: 46px; } .spine.macro { width: 56px; } .spine.policy { width: 52px; } .spine.rebound { width: 58px; }
+  .shelf { gap: 6px; padding-inline: 10px; }
 }
 
 /* ---------- reading order ---------- */
@@ -104,7 +106,7 @@ a:focus-visible { outline: 2px solid var(--options); outline-offset: 3px; border
 .chapters a:hover { color: var(--c); text-decoration: underline; }
 .chapters li.part { display: block; font-size: 12.5px; color: var(--c); font-weight: 500; padding: 14px 0 4px; border-top: 0; break-after: avoid; }
 .chapters li.part + li { border-top: 0; }
-.book.options { --c: var(--options); } .book.psychology { --c: var(--psychology); } .book.macro { --c: var(--macro); } .book.policy { --c: var(--policy); }
+.book.options { --c: var(--options); } .book.psychology { --c: var(--psychology); } .book.macro { --c: var(--macro); } .book.policy { --c: var(--policy); } .book.rebound { --c: var(--rebound); }
 @media (max-width: 760px) {
   .book { grid-template-columns: minmax(0, 1fr); gap: 14px; padding-block: 36px 40px; }
   .book h2 { font-size: 26px; }
@@ -122,28 +124,29 @@ a:focus-visible { outline: 2px solid var(--options); outline-offset: 3px; border
 
 <nav class="sitebar" aria-label="站点导航"><div class="wrap sitebar-inner">
   <a class="sitebar-home" href="/">hanoptions.trade</a>
-  <div class="sitebar-links"><a href="/options/">美股期权课</a><a href="/psychology/">交易心理学</a><a href="/macro/">宏观交易框架</a><a href="/policy/">政策叙事投资</a></div>
+  <div class="sitebar-links"><a href="/options/">美股期权课</a><a href="/psychology/">交易心理学</a><a href="/macro/">宏观交易框架</a><a href="/policy/">政策叙事投资</a><a href="/rebound/">超卖反弹清单</a></div>
 </div></nav>
 
 <header class="hero">
   <div class="wrap hero-inner">
-    <div class="shelf" aria-label="四本手册">
+    <div class="shelf" aria-label="五本手册">
       <a class="spine options" href="/options/"><span class="t">美股期权课</span><span class="n">16 章</span></a>
       <a class="spine psychology" href="/psychology/"><span class="t">交易心理学</span><span class="n">11 章</span></a>
       <a class="spine macro" href="/macro/"><span class="t">宏观交易框架</span><span class="n">12 章</span></a>
       <a class="spine policy" href="/policy/"><span class="t">政策叙事投资</span><span class="n">12 章</span></a>
+      <a class="spine rebound" href="/rebound/"><span class="t">超卖反弹清单</span><span class="n">9–10 月</span></a>
     </div>
     <div class="hero-text">
       <h1>交易研习手册</h1>
-      <p class="lead">四本自学笔记：一门从零开始的美股期权课，和三本关于心理、宏观、政策的研习手册。</p>
-      <p class="lead">图表里的参数都可以拖动，每章结尾有清单和自测。所有数字由模型实际算出，供学习使用，不构成投资建议。</p>
+      <p class="lead">五本自学笔记：一门从零开始的美股期权课，三本关于心理、宏观、政策的研习手册，和一本把方法用在具体公司上的个股研究。</p>
+      <p class="lead">图表里的参数都可以拖动，每章结尾有清单和自测。期权和宏观的示例由模型实际算出，个股数据来自公开市场数据；全部供学习使用，不构成投资建议。</p>
     </div>
   </div>
 </header>
 
 <main class="wrap">
   <section class="order">
-    <p><b>建议顺序：</b>先读《美股期权课》前六章把定价和希腊字母学扎实，中途插读《交易心理学》；进入策略部分后，再用《宏观交易框架》和《政策叙事投资》学会选方向、选时机。</p>
+    <p><b>建议顺序：</b>先读《美股期权课》前六章把定价和希腊字母学扎实，中途插读《交易心理学》；进入策略部分后，再用《宏观交易框架》和《政策叙事投资》学会选方向、选时机；最后用《超卖反弹清单》练习从基本面、消息面和技术面拆一家公司。</p>
   </section>
 
   <section class="book options" id="options">
@@ -251,6 +254,46 @@ a:focus-visible { outline: 2px solid var(--options); outline-offset: 3px; border
         <li><span class="k">09</span><a href="/policy/#c9">选举与政策周期</a></li>
         <li><span class="k">10</span><a href="/policy/#c10">执行：ETF、两组个股与期权工具</a></li>
         <li><span class="k">11</span><a href="/policy/#c11">工具箱：主题地图、叙事卡片与练习</a></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="book rebound" id="rebound">
+    <div>
+      <h2><a href="/rebound/">超卖反弹清单</a></h2>
+      <p class="meta"><b>2026</b> 年 9–10 月<br><b>20</b> 家公司，每家单独一章<br>数据截至 <b>10/9</b> 收盘</p>
+      <a class="open" href="/rebound/">打开手册</a>
+    </div>
+    <div>
+      <p class="deck">一位交易者在 9 月底列出的「短线会反弹」的股票，加上他 10 月初实际买入的几只。每家公司从基本面、消息面和技术面拆开看，附对比总表和财报日历。</p>
+      <ol class="chapters">
+        <li class="part">方法与总览</li>
+        <li><span class="k">导</span><a href="/rebound/#c0">这份清单从哪里来</a></li>
+        <li><span class="k">01</span><a href="/rebound/#c1">方法：一家公司看三面</a></li>
+        <li><span class="k">02</span><a href="/rebound/#c2">总览：二十家放在一起</a></li>
+        <li class="part">二十家公司</li>
+        <li><span class="k">03</span><a href="/rebound/#c3">MCD 麦当劳</a></li>
+        <li><span class="k">04</span><a href="/rebound/#c4">WEN 温蒂汉堡</a></li>
+        <li><span class="k">05</span><a href="/rebound/#c5">PEP 百事公司</a></li>
+        <li><span class="k">06</span><a href="/rebound/#c6">MDLZ 亿滋国际</a></li>
+        <li><span class="k">07</span><a href="/rebound/#c7">HSY 好时</a></li>
+        <li><span class="k">08</span><a href="/rebound/#c8">PRMB Primo Brands</a></li>
+        <li><span class="k">09</span><a href="/rebound/#c9">LOW 劳氏</a></li>
+        <li><span class="k">10</span><a href="/rebound/#c10">CMCSA 康卡斯特</a></li>
+        <li><span class="k">11</span><a href="/rebound/#c11">BAC 美国银行</a></li>
+        <li><span class="k">12</span><a href="/rebound/#c12">BX 黑石集团</a></li>
+        <li><span class="k">13</span><a href="/rebound/#c13">VIK 维京游轮</a></li>
+        <li><span class="k">14</span><a href="/rebound/#c14">MGM 美高梅</a></li>
+        <li><span class="k">15</span><a href="/rebound/#c15">RTX 雷神</a></li>
+        <li><span class="k">16</span><a href="/rebound/#c16">GD 通用动力</a></li>
+        <li><span class="k">17</span><a href="/rebound/#c17">WM 废物管理</a></li>
+        <li><span class="k">18</span><a href="/rebound/#c18">JBHT J.B. Hunt</a></li>
+        <li><span class="k">19</span><a href="/rebound/#c19">SO 南方公司</a></li>
+        <li><span class="k">20</span><a href="/rebound/#c20">DUK 杜克能源</a></li>
+        <li><span class="k">21</span><a href="/rebound/#c21">SLB 斯伦贝谢</a></li>
+        <li><span class="k">22</span><a href="/rebound/#c22">ABT 雅培</a></li>
+        <li class="part">工具箱</li>
+        <li><span class="k">23</span><a href="/rebound/#c23">清单、模板与练习</a></li>
       </ol>
     </div>
   </section>
